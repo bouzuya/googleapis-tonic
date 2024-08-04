@@ -2,970 +2,1129 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeliveryRequestHeader {
-#[prost(string, tag = "1")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub region_code: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub sdk_version: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub os_version: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub device_model: ::prost::alloc::string::String,
-#[prost(enumeration = "delivery_request_header::SdkType", tag = "6")]
-pub sdk_type: i32,
-#[prost(string, tag = "7")]
-pub maps_sdk_version: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub nav_sdk_version: ::prost::alloc::string::String,
-#[prost(enumeration = "delivery_request_header::Platform", tag = "9")]
-pub platform: i32,
-#[prost(string, tag = "10")]
-pub manufacturer: ::prost::alloc::string::String,
-#[prost(int32, tag = "11")]
-pub android_api_level: i32,
-#[prost(string, tag = "12")]
-pub trace_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub region_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub sdk_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub os_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub device_model: ::prost::alloc::string::String,
+    #[prost(enumeration = "delivery_request_header::SdkType", tag = "6")]
+    pub sdk_type: i32,
+    #[prost(string, tag = "7")]
+    pub maps_sdk_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub nav_sdk_version: ::prost::alloc::string::String,
+    #[prost(enumeration = "delivery_request_header::Platform", tag = "9")]
+    pub platform: i32,
+    #[prost(string, tag = "10")]
+    pub manufacturer: ::prost::alloc::string::String,
+    #[prost(int32, tag = "11")]
+    pub android_api_level: i32,
+    #[prost(string, tag = "12")]
+    pub trace_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `DeliveryRequestHeader`.
 pub mod delivery_request_header {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SdkType {
-Unspecified = 0,
-Consumer = 1,
-Driver = 2,
-Javascript = 3,
-}
-impl SdkType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SdkType::Unspecified => "SDK_TYPE_UNSPECIFIED",
-SdkType::Consumer => "CONSUMER",
-SdkType::Driver => "DRIVER",
-SdkType::Javascript => "JAVASCRIPT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SDK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CONSUMER" => Some(Self::Consumer),
-"DRIVER" => Some(Self::Driver),
-"JAVASCRIPT" => Some(Self::Javascript),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Platform {
-Unspecified = 0,
-Android = 1,
-Ios = 2,
-Web = 3,
-}
-impl Platform {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Platform::Unspecified => "PLATFORM_UNSPECIFIED",
-Platform::Android => "ANDROID",
-Platform::Ios => "IOS",
-Platform::Web => "WEB",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
-"ANDROID" => Some(Self::Android),
-"IOS" => Some(Self::Ios),
-"WEB" => Some(Self::Web),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SdkType {
+        Unspecified = 0,
+        Consumer = 1,
+        Driver = 2,
+        Javascript = 3,
+    }
+    impl SdkType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SdkType::Unspecified => "SDK_TYPE_UNSPECIFIED",
+                SdkType::Consumer => "CONSUMER",
+                SdkType::Driver => "DRIVER",
+                SdkType::Javascript => "JAVASCRIPT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SDK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONSUMER" => Some(Self::Consumer),
+                "DRIVER" => Some(Self::Driver),
+                "JAVASCRIPT" => Some(Self::Javascript),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Platform {
+        Unspecified = 0,
+        Android = 1,
+        Ios = 2,
+        Web = 3,
+    }
+    impl Platform {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Platform::Unspecified => "PLATFORM_UNSPECIFIED",
+                Platform::Android => "ANDROID",
+                Platform::Ios => "IOS",
+                Platform::Web => "WEB",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
+                "ANDROID" => Some(Self::Android),
+                "IOS" => Some(Self::Ios),
+                "WEB" => Some(Self::Web),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeliveryVehicleAttribute {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-#[prost(oneof = "delivery_vehicle_attribute::DeliveryVehicleAttributeValue", tags = "3, 4, 5")]
-pub delivery_vehicle_attribute_value: ::core::option::Option<delivery_vehicle_attribute::DeliveryVehicleAttributeValue>,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "delivery_vehicle_attribute::DeliveryVehicleAttributeValue",
+        tags = "3, 4, 5"
+    )]
+    pub delivery_vehicle_attribute_value:
+        ::core::option::Option<delivery_vehicle_attribute::DeliveryVehicleAttributeValue>,
 }
 /// Nested message and enum types in `DeliveryVehicleAttribute`.
 pub mod delivery_vehicle_attribute {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DeliveryVehicleAttributeValue {
-#[prost(string, tag = "3")]
-StringValue(::prost::alloc::string::String),
-#[prost(bool, tag = "4")]
-BoolValue(bool),
-#[prost(double, tag = "5")]
-NumberValue(f64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DeliveryVehicleAttributeValue {
+        #[prost(string, tag = "3")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(bool, tag = "4")]
+        BoolValue(bool),
+        #[prost(double, tag = "5")]
+        NumberValue(f64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeliveryVehicleLocation {
-#[prost(message, optional, tag = "1")]
-pub location: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
-#[deprecated]
-#[prost(message, optional, tag = "8")]
-pub horizontal_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "22")]
-pub latlng_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "2")]
-pub heading: ::core::option::Option<i32>,
-#[deprecated]
-#[prost(message, optional, tag = "10")]
-pub bearing_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "23")]
-pub heading_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "5")]
-pub altitude: ::core::option::Option<f64>,
-#[deprecated]
-#[prost(message, optional, tag = "9")]
-pub vertical_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "24")]
-pub altitude_accuracy: ::core::option::Option<f64>,
-#[deprecated]
-#[prost(message, optional, tag = "3")]
-pub speed_kmph: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "6")]
-pub speed: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "7")]
-pub speed_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "13")]
-pub server_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "11")]
-pub location_sensor: i32,
-#[prost(message, optional, tag = "27")]
-pub is_road_snapped: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "12")]
-pub is_gps_sensor_enabled: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "14")]
-pub time_since_update: ::core::option::Option<i32>,
-#[deprecated]
-#[prost(message, optional, tag = "15")]
-pub num_stale_updates: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "16")]
-pub raw_location: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
-#[prost(message, optional, tag = "17")]
-pub raw_location_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "28")]
-pub raw_location_sensor: i32,
-#[prost(message, optional, tag = "25")]
-pub raw_location_accuracy: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "18")]
-pub supplemental_location: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
-#[prost(message, optional, tag = "19")]
-pub supplemental_location_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "20")]
-pub supplemental_location_sensor: i32,
-#[prost(message, optional, tag = "21")]
-pub supplemental_location_accuracy: ::core::option::Option<f64>,
-#[deprecated]
-#[prost(bool, tag = "26")]
-pub road_snapped: bool,
+    #[prost(message, optional, tag = "1")]
+    pub location: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
+    #[deprecated]
+    #[prost(message, optional, tag = "8")]
+    pub horizontal_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "22")]
+    pub latlng_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "2")]
+    pub heading: ::core::option::Option<i32>,
+    #[deprecated]
+    #[prost(message, optional, tag = "10")]
+    pub bearing_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "23")]
+    pub heading_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "5")]
+    pub altitude: ::core::option::Option<f64>,
+    #[deprecated]
+    #[prost(message, optional, tag = "9")]
+    pub vertical_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "24")]
+    pub altitude_accuracy: ::core::option::Option<f64>,
+    #[deprecated]
+    #[prost(message, optional, tag = "3")]
+    pub speed_kmph: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub speed: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "7")]
+    pub speed_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "13")]
+    pub server_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "11")]
+    pub location_sensor: i32,
+    #[prost(message, optional, tag = "27")]
+    pub is_road_snapped: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "12")]
+    pub is_gps_sensor_enabled: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "14")]
+    pub time_since_update: ::core::option::Option<i32>,
+    #[deprecated]
+    #[prost(message, optional, tag = "15")]
+    pub num_stale_updates: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "16")]
+    pub raw_location: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "17")]
+    pub raw_location_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "28")]
+    pub raw_location_sensor: i32,
+    #[prost(message, optional, tag = "25")]
+    pub raw_location_accuracy: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "18")]
+    pub supplemental_location:
+        ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "19")]
+    pub supplemental_location_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "DeliveryVehicleLocationSensor", tag = "20")]
+    pub supplemental_location_sensor: i32,
+    #[prost(message, optional, tag = "21")]
+    pub supplemental_location_accuracy: ::core::option::Option<f64>,
+    #[deprecated]
+    #[prost(bool, tag = "26")]
+    pub road_snapped: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeWindow {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskAttribute {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(oneof = "task_attribute::TaskAttributeValue", tags = "2, 3, 4")]
-pub task_attribute_value: ::core::option::Option<task_attribute::TaskAttributeValue>,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(oneof = "task_attribute::TaskAttributeValue", tags = "2, 3, 4")]
+    pub task_attribute_value: ::core::option::Option<task_attribute::TaskAttributeValue>,
 }
 /// Nested message and enum types in `TaskAttribute`.
 pub mod task_attribute {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum TaskAttributeValue {
-#[prost(string, tag = "2")]
-StringValue(::prost::alloc::string::String),
-#[prost(bool, tag = "3")]
-BoolValue(bool),
-#[prost(double, tag = "4")]
-NumberValue(f64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TaskAttributeValue {
+        #[prost(string, tag = "2")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(bool, tag = "3")]
+        BoolValue(bool),
+        #[prost(double, tag = "4")]
+        NumberValue(f64),
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DeliveryVehicleLocationSensor {
-UnknownSensor = 0,
-Gps = 1,
-Network = 2,
-Passive = 3,
-RoadSnappedLocationProvider = 4,
-CustomerSuppliedLocation = 5,
-FleetEngineLocation = 6,
-FusedLocationProvider = 100,
-CoreLocation = 200,
+    UnknownSensor = 0,
+    Gps = 1,
+    Network = 2,
+    Passive = 3,
+    RoadSnappedLocationProvider = 4,
+    CustomerSuppliedLocation = 5,
+    FleetEngineLocation = 6,
+    FusedLocationProvider = 100,
+    CoreLocation = 200,
 }
 impl DeliveryVehicleLocationSensor {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DeliveryVehicleLocationSensor::UnknownSensor => "UNKNOWN_SENSOR",
-DeliveryVehicleLocationSensor::Gps => "GPS",
-DeliveryVehicleLocationSensor::Network => "NETWORK",
-DeliveryVehicleLocationSensor::Passive => "PASSIVE",
-DeliveryVehicleLocationSensor::RoadSnappedLocationProvider => "ROAD_SNAPPED_LOCATION_PROVIDER",
-DeliveryVehicleLocationSensor::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
-DeliveryVehicleLocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
-DeliveryVehicleLocationSensor::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
-DeliveryVehicleLocationSensor::CoreLocation => "CORE_LOCATION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_SENSOR" => Some(Self::UnknownSensor),
-"GPS" => Some(Self::Gps),
-"NETWORK" => Some(Self::Network),
-"PASSIVE" => Some(Self::Passive),
-"ROAD_SNAPPED_LOCATION_PROVIDER" => Some(Self::RoadSnappedLocationProvider),
-"CUSTOMER_SUPPLIED_LOCATION" => Some(Self::CustomerSuppliedLocation),
-"FLEET_ENGINE_LOCATION" => Some(Self::FleetEngineLocation),
-"FUSED_LOCATION_PROVIDER" => Some(Self::FusedLocationProvider),
-"CORE_LOCATION" => Some(Self::CoreLocation),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DeliveryVehicleLocationSensor::UnknownSensor => "UNKNOWN_SENSOR",
+            DeliveryVehicleLocationSensor::Gps => "GPS",
+            DeliveryVehicleLocationSensor::Network => "NETWORK",
+            DeliveryVehicleLocationSensor::Passive => "PASSIVE",
+            DeliveryVehicleLocationSensor::RoadSnappedLocationProvider => {
+                "ROAD_SNAPPED_LOCATION_PROVIDER"
+            }
+            DeliveryVehicleLocationSensor::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
+            DeliveryVehicleLocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
+            DeliveryVehicleLocationSensor::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
+            DeliveryVehicleLocationSensor::CoreLocation => "CORE_LOCATION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN_SENSOR" => Some(Self::UnknownSensor),
+            "GPS" => Some(Self::Gps),
+            "NETWORK" => Some(Self::Network),
+            "PASSIVE" => Some(Self::Passive),
+            "ROAD_SNAPPED_LOCATION_PROVIDER" => Some(Self::RoadSnappedLocationProvider),
+            "CUSTOMER_SUPPLIED_LOCATION" => Some(Self::CustomerSuppliedLocation),
+            "FLEET_ENGINE_LOCATION" => Some(Self::FleetEngineLocation),
+            "FUSED_LOCATION_PROVIDER" => Some(Self::FusedLocationProvider),
+            "CORE_LOCATION" => Some(Self::CoreLocation),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DeliveryVehicleNavigationStatus {
-UnknownNavigationStatus = 0,
-NoGuidance = 1,
-EnrouteToDestination = 2,
-OffRoute = 3,
-ArrivedAtDestination = 4,
+    UnknownNavigationStatus = 0,
+    NoGuidance = 1,
+    EnrouteToDestination = 2,
+    OffRoute = 3,
+    ArrivedAtDestination = 4,
 }
 impl DeliveryVehicleNavigationStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DeliveryVehicleNavigationStatus::UnknownNavigationStatus => "UNKNOWN_NAVIGATION_STATUS",
-DeliveryVehicleNavigationStatus::NoGuidance => "NO_GUIDANCE",
-DeliveryVehicleNavigationStatus::EnrouteToDestination => "ENROUTE_TO_DESTINATION",
-DeliveryVehicleNavigationStatus::OffRoute => "OFF_ROUTE",
-DeliveryVehicleNavigationStatus::ArrivedAtDestination => "ARRIVED_AT_DESTINATION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_NAVIGATION_STATUS" => Some(Self::UnknownNavigationStatus),
-"NO_GUIDANCE" => Some(Self::NoGuidance),
-"ENROUTE_TO_DESTINATION" => Some(Self::EnrouteToDestination),
-"OFF_ROUTE" => Some(Self::OffRoute),
-"ARRIVED_AT_DESTINATION" => Some(Self::ArrivedAtDestination),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DeliveryVehicleNavigationStatus::UnknownNavigationStatus => "UNKNOWN_NAVIGATION_STATUS",
+            DeliveryVehicleNavigationStatus::NoGuidance => "NO_GUIDANCE",
+            DeliveryVehicleNavigationStatus::EnrouteToDestination => "ENROUTE_TO_DESTINATION",
+            DeliveryVehicleNavigationStatus::OffRoute => "OFF_ROUTE",
+            DeliveryVehicleNavigationStatus::ArrivedAtDestination => "ARRIVED_AT_DESTINATION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN_NAVIGATION_STATUS" => Some(Self::UnknownNavigationStatus),
+            "NO_GUIDANCE" => Some(Self::NoGuidance),
+            "ENROUTE_TO_DESTINATION" => Some(Self::EnrouteToDestination),
+            "OFF_ROUTE" => Some(Self::OffRoute),
+            "ARRIVED_AT_DESTINATION" => Some(Self::ArrivedAtDestination),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeliveryVehicle {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub last_location: ::core::option::Option<DeliveryVehicleLocation>,
-#[prost(enumeration = "DeliveryVehicleNavigationStatus", tag = "3")]
-pub navigation_status: i32,
-#[prost(bytes = "vec", tag = "4")]
-pub current_route_segment: ::prost::alloc::vec::Vec<u8>,
-#[prost(message, optional, tag = "5")]
-pub current_route_segment_end_point: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
-#[prost(message, optional, tag = "6")]
-pub remaining_distance_meters: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "7")]
-pub remaining_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, repeated, tag = "8")]
-pub remaining_vehicle_journey_segments: ::prost::alloc::vec::Vec<VehicleJourneySegment>,
-#[prost(message, repeated, tag = "9")]
-pub attributes: ::prost::alloc::vec::Vec<DeliveryVehicleAttribute>,
-#[prost(enumeration = "delivery_vehicle::DeliveryVehicleType", tag = "10")]
-pub r#type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub last_location: ::core::option::Option<DeliveryVehicleLocation>,
+    #[prost(enumeration = "DeliveryVehicleNavigationStatus", tag = "3")]
+    pub navigation_status: i32,
+    #[prost(bytes = "vec", tag = "4")]
+    pub current_route_segment: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "5")]
+    pub current_route_segment_end_point:
+        ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "6")]
+    pub remaining_distance_meters: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "7")]
+    pub remaining_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, repeated, tag = "8")]
+    pub remaining_vehicle_journey_segments: ::prost::alloc::vec::Vec<VehicleJourneySegment>,
+    #[prost(message, repeated, tag = "9")]
+    pub attributes: ::prost::alloc::vec::Vec<DeliveryVehicleAttribute>,
+    #[prost(enumeration = "delivery_vehicle::DeliveryVehicleType", tag = "10")]
+    pub r#type: i32,
 }
 /// Nested message and enum types in `DeliveryVehicle`.
 pub mod delivery_vehicle {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DeliveryVehicleType {
-Unspecified = 0,
-Auto = 1,
-TwoWheeler = 2,
-Bicycle = 3,
-Pedestrian = 4,
-}
-impl DeliveryVehicleType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DeliveryVehicleType::Unspecified => "DELIVERY_VEHICLE_TYPE_UNSPECIFIED",
-DeliveryVehicleType::Auto => "AUTO",
-DeliveryVehicleType::TwoWheeler => "TWO_WHEELER",
-DeliveryVehicleType::Bicycle => "BICYCLE",
-DeliveryVehicleType::Pedestrian => "PEDESTRIAN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DELIVERY_VEHICLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"AUTO" => Some(Self::Auto),
-"TWO_WHEELER" => Some(Self::TwoWheeler),
-"BICYCLE" => Some(Self::Bicycle),
-"PEDESTRIAN" => Some(Self::Pedestrian),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DeliveryVehicleType {
+        Unspecified = 0,
+        Auto = 1,
+        TwoWheeler = 2,
+        Bicycle = 3,
+        Pedestrian = 4,
+    }
+    impl DeliveryVehicleType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DeliveryVehicleType::Unspecified => "DELIVERY_VEHICLE_TYPE_UNSPECIFIED",
+                DeliveryVehicleType::Auto => "AUTO",
+                DeliveryVehicleType::TwoWheeler => "TWO_WHEELER",
+                DeliveryVehicleType::Bicycle => "BICYCLE",
+                DeliveryVehicleType::Pedestrian => "PEDESTRIAN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DELIVERY_VEHICLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "AUTO" => Some(Self::Auto),
+                "TWO_WHEELER" => Some(Self::TwoWheeler),
+                "BICYCLE" => Some(Self::Bicycle),
+                "PEDESTRIAN" => Some(Self::Pedestrian),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationInfo {
-#[prost(message, optional, tag = "1")]
-pub point: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "1")]
+    pub point: ::core::option::Option<super::super::super::super::google::r#type::LatLng>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleJourneySegment {
-#[prost(message, optional, tag = "1")]
-pub stop: ::core::option::Option<VehicleStop>,
-#[prost(message, optional, tag = "2")]
-pub driving_distance_meters: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "3")]
-pub driving_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, repeated, tag = "5")]
-pub path: ::prost::alloc::vec::Vec<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "1")]
+    pub stop: ::core::option::Option<VehicleStop>,
+    #[prost(message, optional, tag = "2")]
+    pub driving_distance_meters: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "3")]
+    pub driving_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, repeated, tag = "5")]
+    pub path: ::prost::alloc::vec::Vec<super::super::super::super::google::r#type::LatLng>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleStop {
-#[prost(message, optional, tag = "1")]
-pub planned_location: ::core::option::Option<LocationInfo>,
-#[prost(message, repeated, tag = "2")]
-pub tasks: ::prost::alloc::vec::Vec<vehicle_stop::TaskInfo>,
-#[prost(enumeration = "vehicle_stop::State", tag = "3")]
-pub state: i32,
+    #[prost(message, optional, tag = "1")]
+    pub planned_location: ::core::option::Option<LocationInfo>,
+    #[prost(message, repeated, tag = "2")]
+    pub tasks: ::prost::alloc::vec::Vec<vehicle_stop::TaskInfo>,
+    #[prost(enumeration = "vehicle_stop::State", tag = "3")]
+    pub state: i32,
 }
 /// Nested message and enum types in `VehicleStop`.
 pub mod vehicle_stop {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TaskInfo {
-#[prost(string, tag = "1")]
-pub task_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub task_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "3")]
-pub target_time_window: ::core::option::Option<super::TimeWindow>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-New = 1,
-Enroute = 2,
-Arrived = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::New => "NEW",
-State::Enroute => "ENROUTE",
-State::Arrived => "ARRIVED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"NEW" => Some(Self::New),
-"ENROUTE" => Some(Self::Enroute),
-"ARRIVED" => Some(Self::Arrived),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TaskInfo {
+        #[prost(string, tag = "1")]
+        pub task_id: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub task_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "3")]
+        pub target_time_window: ::core::option::Option<super::TimeWindow>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        New = 1,
+        Enroute = 2,
+        Arrived = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::New => "NEW",
+                State::Enroute => "ENROUTE",
+                State::Arrived => "ARRIVED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NEW" => Some(Self::New),
+                "ENROUTE" => Some(Self::Enroute),
+                "ARRIVED" => Some(Self::Arrived),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Task {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "task::Type", tag = "2")]
-pub r#type: i32,
-#[prost(enumeration = "task::State", tag = "3")]
-pub state: i32,
-#[prost(enumeration = "task::TaskOutcome", tag = "9")]
-pub task_outcome: i32,
-#[prost(message, optional, tag = "10")]
-pub task_outcome_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "11")]
-pub task_outcome_location: ::core::option::Option<LocationInfo>,
-#[prost(enumeration = "task::TaskOutcomeLocationSource", tag = "12")]
-pub task_outcome_location_source: i32,
-#[prost(string, tag = "4")]
-pub tracking_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub delivery_vehicle_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub planned_location: ::core::option::Option<LocationInfo>,
-#[prost(message, optional, tag = "7")]
-pub task_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "14")]
-pub target_time_window: ::core::option::Option<TimeWindow>,
-#[prost(message, optional, tag = "8")]
-pub journey_sharing_info: ::core::option::Option<task::JourneySharingInfo>,
-#[prost(message, optional, tag = "13")]
-pub task_tracking_view_config: ::core::option::Option<TaskTrackingViewConfig>,
-#[prost(message, repeated, tag = "15")]
-pub attributes: ::prost::alloc::vec::Vec<TaskAttribute>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "task::Type", tag = "2")]
+    pub r#type: i32,
+    #[prost(enumeration = "task::State", tag = "3")]
+    pub state: i32,
+    #[prost(enumeration = "task::TaskOutcome", tag = "9")]
+    pub task_outcome: i32,
+    #[prost(message, optional, tag = "10")]
+    pub task_outcome_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "11")]
+    pub task_outcome_location: ::core::option::Option<LocationInfo>,
+    #[prost(enumeration = "task::TaskOutcomeLocationSource", tag = "12")]
+    pub task_outcome_location_source: i32,
+    #[prost(string, tag = "4")]
+    pub tracking_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub delivery_vehicle_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub planned_location: ::core::option::Option<LocationInfo>,
+    #[prost(message, optional, tag = "7")]
+    pub task_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "14")]
+    pub target_time_window: ::core::option::Option<TimeWindow>,
+    #[prost(message, optional, tag = "8")]
+    pub journey_sharing_info: ::core::option::Option<task::JourneySharingInfo>,
+    #[prost(message, optional, tag = "13")]
+    pub task_tracking_view_config: ::core::option::Option<TaskTrackingViewConfig>,
+    #[prost(message, repeated, tag = "15")]
+    pub attributes: ::prost::alloc::vec::Vec<TaskAttribute>,
 }
 /// Nested message and enum types in `Task`.
 pub mod task {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct JourneySharingInfo {
-#[prost(message, repeated, tag = "1")]
-pub remaining_vehicle_journey_segments: ::prost::alloc::vec::Vec<super::VehicleJourneySegment>,
-#[prost(message, optional, tag = "2")]
-pub last_location: ::core::option::Option<super::DeliveryVehicleLocation>,
-#[prost(bool, tag = "3")]
-pub last_location_snappable: bool,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Pickup = 1,
-Delivery = 2,
-ScheduledStop = 3,
-Unavailable = 4,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Pickup => "PICKUP",
-Type::Delivery => "DELIVERY",
-Type::ScheduledStop => "SCHEDULED_STOP",
-Type::Unavailable => "UNAVAILABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PICKUP" => Some(Self::Pickup),
-"DELIVERY" => Some(Self::Delivery),
-"SCHEDULED_STOP" => Some(Self::ScheduledStop),
-"UNAVAILABLE" => Some(Self::Unavailable),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Open = 1,
-Closed = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Open => "OPEN",
-State::Closed => "CLOSED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"OPEN" => Some(Self::Open),
-"CLOSED" => Some(Self::Closed),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TaskOutcome {
-Unspecified = 0,
-Succeeded = 1,
-Failed = 2,
-}
-impl TaskOutcome {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TaskOutcome::Unspecified => "TASK_OUTCOME_UNSPECIFIED",
-TaskOutcome::Succeeded => "SUCCEEDED",
-TaskOutcome::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TASK_OUTCOME_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TaskOutcomeLocationSource {
-Unspecified = 0,
-Provider = 2,
-LastVehicleLocation = 3,
-}
-impl TaskOutcomeLocationSource {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TaskOutcomeLocationSource::Unspecified => "TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED",
-TaskOutcomeLocationSource::Provider => "PROVIDER",
-TaskOutcomeLocationSource::LastVehicleLocation => "LAST_VEHICLE_LOCATION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVIDER" => Some(Self::Provider),
-"LAST_VEHICLE_LOCATION" => Some(Self::LastVehicleLocation),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct JourneySharingInfo {
+        #[prost(message, repeated, tag = "1")]
+        pub remaining_vehicle_journey_segments:
+            ::prost::alloc::vec::Vec<super::VehicleJourneySegment>,
+        #[prost(message, optional, tag = "2")]
+        pub last_location: ::core::option::Option<super::DeliveryVehicleLocation>,
+        #[prost(bool, tag = "3")]
+        pub last_location_snappable: bool,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Pickup = 1,
+        Delivery = 2,
+        ScheduledStop = 3,
+        Unavailable = 4,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Pickup => "PICKUP",
+                Type::Delivery => "DELIVERY",
+                Type::ScheduledStop => "SCHEDULED_STOP",
+                Type::Unavailable => "UNAVAILABLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PICKUP" => Some(Self::Pickup),
+                "DELIVERY" => Some(Self::Delivery),
+                "SCHEDULED_STOP" => Some(Self::ScheduledStop),
+                "UNAVAILABLE" => Some(Self::Unavailable),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Open = 1,
+        Closed = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Open => "OPEN",
+                State::Closed => "CLOSED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "OPEN" => Some(Self::Open),
+                "CLOSED" => Some(Self::Closed),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TaskOutcome {
+        Unspecified = 0,
+        Succeeded = 1,
+        Failed = 2,
+    }
+    impl TaskOutcome {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TaskOutcome::Unspecified => "TASK_OUTCOME_UNSPECIFIED",
+                TaskOutcome::Succeeded => "SUCCEEDED",
+                TaskOutcome::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TASK_OUTCOME_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TaskOutcomeLocationSource {
+        Unspecified = 0,
+        Provider = 2,
+        LastVehicleLocation = 3,
+    }
+    impl TaskOutcomeLocationSource {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TaskOutcomeLocationSource::Unspecified => {
+                    "TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED"
+                }
+                TaskOutcomeLocationSource::Provider => "PROVIDER",
+                TaskOutcomeLocationSource::LastVehicleLocation => "LAST_VEHICLE_LOCATION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TASK_OUTCOME_LOCATION_SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVIDER" => Some(Self::Provider),
+                "LAST_VEHICLE_LOCATION" => Some(Self::LastVehicleLocation),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TaskTrackingViewConfig {
-#[prost(message, optional, tag = "1")]
-pub route_polyline_points_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
-#[prost(message, optional, tag = "2")]
-pub estimated_arrival_time_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
-#[prost(message, optional, tag = "3")]
-pub estimated_task_completion_time_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
-#[prost(message, optional, tag = "4")]
-pub remaining_driving_distance_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
-#[prost(message, optional, tag = "5")]
-pub remaining_stop_count_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
-#[prost(message, optional, tag = "6")]
-pub vehicle_location_visibility: ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "1")]
+    pub route_polyline_points_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "2")]
+    pub estimated_arrival_time_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "3")]
+    pub estimated_task_completion_time_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "4")]
+    pub remaining_driving_distance_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "5")]
+    pub remaining_stop_count_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
+    #[prost(message, optional, tag = "6")]
+    pub vehicle_location_visibility:
+        ::core::option::Option<task_tracking_view_config::VisibilityOption>,
 }
 /// Nested message and enum types in `TaskTrackingViewConfig`.
 pub mod task_tracking_view_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct VisibilityOption {
-#[prost(oneof = "visibility_option::VisibilityOption", tags = "1, 2, 3, 4, 5")]
-pub visibility_option: ::core::option::Option<visibility_option::VisibilityOption>,
-}
-/// Nested message and enum types in `VisibilityOption`.
-pub mod visibility_option {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum VisibilityOption {
-#[prost(int32, tag = "1")]
-RemainingStopCountThreshold(i32),
-#[prost(message, tag = "2")]
-DurationUntilEstimatedArrivalTimeThreshold(::prost_types::Duration),
-#[prost(int32, tag = "3")]
-RemainingDrivingDistanceMetersThreshold(i32),
-#[prost(bool, tag = "4")]
-Always(bool),
-#[prost(bool, tag = "5")]
-Never(bool),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct VisibilityOption {
+        #[prost(oneof = "visibility_option::VisibilityOption", tags = "1, 2, 3, 4, 5")]
+        pub visibility_option: ::core::option::Option<visibility_option::VisibilityOption>,
+    }
+    /// Nested message and enum types in `VisibilityOption`.
+    pub mod visibility_option {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum VisibilityOption {
+            #[prost(int32, tag = "1")]
+            RemainingStopCountThreshold(i32),
+            #[prost(message, tag = "2")]
+            DurationUntilEstimatedArrivalTimeThreshold(::prost_types::Duration),
+            #[prost(int32, tag = "3")]
+            RemainingDrivingDistanceMetersThreshold(i32),
+            #[prost(bool, tag = "4")]
+            Always(bool),
+            #[prost(bool, tag = "5")]
+            Never(bool),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskTrackingInfo {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub tracking_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub vehicle_location: ::core::option::Option<DeliveryVehicleLocation>,
-#[prost(message, repeated, tag = "4")]
-pub route_polyline_points: ::prost::alloc::vec::Vec<super::super::super::super::google::r#type::LatLng>,
-#[prost(message, optional, tag = "5")]
-pub remaining_stop_count: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "6")]
-pub remaining_driving_distance_meters: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "7")]
-pub estimated_arrival_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub estimated_task_completion_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "task::State", tag = "11")]
-pub state: i32,
-#[prost(enumeration = "task::TaskOutcome", tag = "9")]
-pub task_outcome: i32,
-#[prost(message, optional, tag = "12")]
-pub task_outcome_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub planned_location: ::core::option::Option<LocationInfo>,
-#[prost(message, optional, tag = "13")]
-pub target_time_window: ::core::option::Option<TimeWindow>,
-#[prost(message, repeated, tag = "14")]
-pub attributes: ::prost::alloc::vec::Vec<TaskAttribute>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub tracking_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub vehicle_location: ::core::option::Option<DeliveryVehicleLocation>,
+    #[prost(message, repeated, tag = "4")]
+    pub route_polyline_points:
+        ::prost::alloc::vec::Vec<super::super::super::super::google::r#type::LatLng>,
+    #[prost(message, optional, tag = "5")]
+    pub remaining_stop_count: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub remaining_driving_distance_meters: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "7")]
+    pub estimated_arrival_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub estimated_task_completion_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "task::State", tag = "11")]
+    pub state: i32,
+    #[prost(enumeration = "task::TaskOutcome", tag = "9")]
+    pub task_outcome: i32,
+    #[prost(message, optional, tag = "12")]
+    pub task_outcome_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub planned_location: ::core::option::Option<LocationInfo>,
+    #[prost(message, optional, tag = "13")]
+    pub target_time_window: ::core::option::Option<TimeWindow>,
+    #[prost(message, repeated, tag = "14")]
+    pub attributes: ::prost::alloc::vec::Vec<TaskAttribute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDeliveryVehicleRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub delivery_vehicle_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub delivery_vehicle: ::core::option::Option<DeliveryVehicle>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub delivery_vehicle_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub delivery_vehicle: ::core::option::Option<DeliveryVehicle>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDeliveryVehicleRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeliveryVehiclesRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub filter: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub viewport: ::core::option::Option<super::super::super::super::google::geo::r#type::Viewport>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub viewport: ::core::option::Option<super::super::super::super::google::geo::r#type::Viewport>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeliveryVehiclesResponse {
-#[prost(message, repeated, tag = "1")]
-pub delivery_vehicles: ::prost::alloc::vec::Vec<DeliveryVehicle>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub total_size: i64,
+    #[prost(message, repeated, tag = "1")]
+    pub delivery_vehicles: ::prost::alloc::vec::Vec<DeliveryVehicle>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub total_size: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDeliveryVehicleRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(message, optional, tag = "3")]
-pub delivery_vehicle: ::core::option::Option<DeliveryVehicle>,
-#[prost(message, optional, tag = "4")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(message, optional, tag = "3")]
+    pub delivery_vehicle: ::core::option::Option<DeliveryVehicle>,
+    #[prost(message, optional, tag = "4")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateTasksRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub requests: ::prost::alloc::vec::Vec<CreateTaskRequest>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub requests: ::prost::alloc::vec::Vec<CreateTaskRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateTasksResponse {
-#[prost(message, repeated, tag = "1")]
-pub tasks: ::prost::alloc::vec::Vec<Task>,
+    #[prost(message, repeated, tag = "1")]
+    pub tasks: ::prost::alloc::vec::Vec<Task>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTaskRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub task_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub task: ::core::option::Option<Task>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub task_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub task: ::core::option::Option<Task>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaskRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTaskRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(message, optional, tag = "3")]
-pub task: ::core::option::Option<Task>,
-#[prost(message, optional, tag = "4")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(message, optional, tag = "3")]
+    pub task: ::core::option::Option<Task>,
+    #[prost(message, optional, tag = "4")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksResponse {
-#[prost(message, repeated, tag = "1")]
-pub tasks: ::prost::alloc::vec::Vec<Task>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub total_size: i64,
+    #[prost(message, repeated, tag = "1")]
+    pub tasks: ::prost::alloc::vec::Vec<Task>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub total_size: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaskTrackingInfoRequest {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<DeliveryRequestHeader>,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<DeliveryRequestHeader>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod delivery_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Last Mile Delivery service.
-#[derive(Debug, Clone)]
-pub struct DeliveryServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DeliveryServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DeliveryServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DeliveryServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates and returns a new `DeliveryVehicle`.
-pub async fn create_delivery_vehicle(&mut self, request: impl tonic::IntoRequest<super::CreateDeliveryVehicleRequest>) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/CreateDeliveryVehicle");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "CreateDeliveryVehicle"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns the specified `DeliveryVehicle` instance.
-pub async fn get_delivery_vehicle(&mut self, request: impl tonic::IntoRequest<super::GetDeliveryVehicleRequest>) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/GetDeliveryVehicle");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "GetDeliveryVehicle"));
-self.inner.unary(req, path, codec).await
-}
-/// Writes updated `DeliveryVehicle` data to Fleet Engine, and assigns
-/// `Tasks` to the `DeliveryVehicle`. You cannot update the name of the
-/// `DeliveryVehicle`. You *can* update `remaining_vehicle_journey_segments`,
-/// but it must contain all of the `VehicleJourneySegment`s to be persisted on
-/// the `DeliveryVehicle`. The `task_id`s are retrieved from
-/// `remaining_vehicle_journey_segments`, and their corresponding `Tasks` are
-/// assigned to the `DeliveryVehicle` if they have not yet been assigned.
-pub async fn update_delivery_vehicle(&mut self, request: impl tonic::IntoRequest<super::UpdateDeliveryVehicleRequest>) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/UpdateDeliveryVehicle");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "UpdateDeliveryVehicle"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates and returns a batch of new `Task` objects.
-pub async fn batch_create_tasks(&mut self, request: impl tonic::IntoRequest<super::BatchCreateTasksRequest>) -> std::result::Result<tonic::Response<super::BatchCreateTasksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/BatchCreateTasks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "BatchCreateTasks"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates and returns a new `Task` object.
-pub async fn create_task(&mut self, request: impl tonic::IntoRequest<super::CreateTaskRequest>) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/CreateTask");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "CreateTask"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets information about a `Task`.
-pub async fn get_task(&mut self, request: impl tonic::IntoRequest<super::GetTaskRequest>) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/GetTask");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "GetTask"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates `Task` data.
-pub async fn update_task(&mut self, request: impl tonic::IntoRequest<super::UpdateTaskRequest>) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/UpdateTask");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "UpdateTask"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets all `Task`s that meet the specified filtering criteria.
-pub async fn list_tasks(&mut self, request: impl tonic::IntoRequest<super::ListTasksRequest>) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/ListTasks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "ListTasks"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns the specified `TaskTrackingInfo` instance.
-pub async fn get_task_tracking_info(&mut self, request: impl tonic::IntoRequest<super::GetTaskTrackingInfoRequest>) -> std::result::Result<tonic::Response<super::TaskTrackingInfo>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/GetTaskTrackingInfo");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "GetTaskTrackingInfo"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets all `DeliveryVehicle`s that meet the specified filtering criteria.
-pub async fn list_delivery_vehicles(&mut self, request: impl tonic::IntoRequest<super::ListDeliveryVehiclesRequest>) -> std::result::Result<tonic::Response<super::ListDeliveryVehiclesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.delivery.v1.DeliveryService/ListDeliveryVehicles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.delivery.v1.DeliveryService", "ListDeliveryVehicles"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Last Mile Delivery service.
+    #[derive(Debug, Clone)]
+    pub struct DeliveryServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DeliveryServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DeliveryServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DeliveryServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates and returns a new `DeliveryVehicle`.
+        pub async fn create_delivery_vehicle(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDeliveryVehicleRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/CreateDeliveryVehicle",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "CreateDeliveryVehicle",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns the specified `DeliveryVehicle` instance.
+        pub async fn get_delivery_vehicle(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDeliveryVehicleRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/GetDeliveryVehicle",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "GetDeliveryVehicle",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Writes updated `DeliveryVehicle` data to Fleet Engine, and assigns
+        /// `Tasks` to the `DeliveryVehicle`. You cannot update the name of the
+        /// `DeliveryVehicle`. You *can* update `remaining_vehicle_journey_segments`,
+        /// but it must contain all of the `VehicleJourneySegment`s to be persisted on
+        /// the `DeliveryVehicle`. The `task_id`s are retrieved from
+        /// `remaining_vehicle_journey_segments`, and their corresponding `Tasks` are
+        /// assigned to the `DeliveryVehicle` if they have not yet been assigned.
+        pub async fn update_delivery_vehicle(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDeliveryVehicleRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeliveryVehicle>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/UpdateDeliveryVehicle",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "UpdateDeliveryVehicle",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates and returns a batch of new `Task` objects.
+        pub async fn batch_create_tasks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateTasksRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchCreateTasksResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/BatchCreateTasks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "BatchCreateTasks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates and returns a new `Task` object.
+        pub async fn create_task(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateTaskRequest>,
+        ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/CreateTask",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "CreateTask",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets information about a `Task`.
+        pub async fn get_task(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTaskRequest>,
+        ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/GetTask",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "GetTask",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates `Task` data.
+        pub async fn update_task(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateTaskRequest>,
+        ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/UpdateTask",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "UpdateTask",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets all `Task`s that meet the specified filtering criteria.
+        pub async fn list_tasks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListTasksRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/ListTasks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "ListTasks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns the specified `TaskTrackingInfo` instance.
+        pub async fn get_task_tracking_info(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTaskTrackingInfoRequest>,
+        ) -> std::result::Result<tonic::Response<super::TaskTrackingInfo>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/GetTaskTrackingInfo",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "GetTaskTrackingInfo",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets all `DeliveryVehicle`s that meet the specified filtering criteria.
+        pub async fn list_delivery_vehicles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDeliveryVehiclesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDeliveryVehiclesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/maps.fleetengine.delivery.v1.DeliveryService/ListDeliveryVehicles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "maps.fleetengine.delivery.v1.DeliveryService",
+                "ListDeliveryVehicles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

@@ -2,124 +2,124 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Distribution {
-#[prost(string, tag = "1")]
-pub cpe_uri: ::prost::alloc::string::String,
-#[prost(enumeration = "Architecture", tag = "2")]
-pub architecture: i32,
-#[prost(message, optional, tag = "3")]
-pub latest_version: ::core::option::Option<Version>,
-#[prost(string, tag = "4")]
-pub maintainer: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    #[prost(enumeration = "Architecture", tag = "2")]
+    pub architecture: i32,
+    #[prost(message, optional, tag = "3")]
+    pub latest_version: ::core::option::Option<Version>,
+    #[prost(string, tag = "4")]
+    pub maintainer: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Location {
-#[prost(string, tag = "1")]
-pub cpe_uri: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub version: ::core::option::Option<Version>,
-#[prost(string, tag = "3")]
-pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub version: ::core::option::Option<Version>,
+    #[prost(string, tag = "3")]
+    pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Package {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "10")]
-pub distribution: ::prost::alloc::vec::Vec<Distribution>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "10")]
+    pub distribution: ::prost::alloc::vec::Vec<Distribution>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Details {
-#[prost(message, optional, tag = "1")]
-pub installation: ::core::option::Option<Installation>,
+    #[prost(message, optional, tag = "1")]
+    pub installation: ::core::option::Option<Installation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Installation {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub location: ::prost::alloc::vec::Vec<Location>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub location: ::prost::alloc::vec::Vec<Location>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Version {
-#[prost(int32, tag = "1")]
-pub epoch: i32,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub revision: ::prost::alloc::string::String,
-#[prost(enumeration = "version::VersionKind", tag = "4")]
-pub kind: i32,
+    #[prost(int32, tag = "1")]
+    pub epoch: i32,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub revision: ::prost::alloc::string::String,
+    #[prost(enumeration = "version::VersionKind", tag = "4")]
+    pub kind: i32,
 }
 /// Nested message and enum types in `Version`.
 pub mod version {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VersionKind {
-Unspecified = 0,
-Normal = 1,
-Minimum = 2,
-Maximum = 3,
-}
-impl VersionKind {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
-VersionKind::Normal => "NORMAL",
-VersionKind::Minimum => "MINIMUM",
-VersionKind::Maximum => "MAXIMUM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-"NORMAL" => Some(Self::Normal),
-"MINIMUM" => Some(Self::Minimum),
-"MAXIMUM" => Some(Self::Maximum),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum VersionKind {
+        Unspecified = 0,
+        Normal = 1,
+        Minimum = 2,
+        Maximum = 3,
+    }
+    impl VersionKind {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
+                VersionKind::Normal => "NORMAL",
+                VersionKind::Minimum => "MINIMUM",
+                VersionKind::Maximum => "MAXIMUM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+                "NORMAL" => Some(Self::Normal),
+                "MINIMUM" => Some(Self::Minimum),
+                "MAXIMUM" => Some(Self::Maximum),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Architecture {
-Unspecified = 0,
-X86 = 1,
-X64 = 2,
+    Unspecified = 0,
+    X86 = 1,
+    X64 = 2,
 }
 impl Architecture {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
-Architecture::X86 => "X86",
-Architecture::X64 => "X64",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
-"X86" => Some(Self::X86),
-"X64" => Some(Self::X64),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
+            Architecture::X86 => "X86",
+            Architecture::X64 => "X64",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
+            "X86" => Some(Self::X86),
+            "X64" => Some(Self::X64),
+            _ => None,
+        }
+    }
 }

@@ -2,97 +2,97 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayableLocation {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub center_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "6")]
-pub snapped_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
-#[prost(oneof = "playable_location::LocationId", tags = "2, 3")]
-pub location_id: ::core::option::Option<playable_location::LocationId>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub center_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "6")]
+    pub snapped_point: ::core::option::Option<super::super::super::super::r#type::LatLng>,
+    #[prost(oneof = "playable_location::LocationId", tags = "2, 3")]
+    pub location_id: ::core::option::Option<playable_location::LocationId>,
 }
 /// Nested message and enum types in `PlayableLocation`.
 pub mod playable_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum LocationId {
-#[prost(string, tag = "2")]
-PlaceId(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-PlusCode(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum LocationId {
+        #[prost(string, tag = "2")]
+        PlaceId(::prost::alloc::string::String),
+        #[prost(string, tag = "3")]
+        PlusCode(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpacingOptions {
-#[prost(double, tag = "1")]
-pub min_spacing_meters: f64,
-#[prost(enumeration = "spacing_options::PointType", tag = "2")]
-pub point_type: i32,
+    #[prost(double, tag = "1")]
+    pub min_spacing_meters: f64,
+    #[prost(enumeration = "spacing_options::PointType", tag = "2")]
+    pub point_type: i32,
 }
 /// Nested message and enum types in `SpacingOptions`.
 pub mod spacing_options {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PointType {
-Unspecified = 0,
-CenterPoint = 1,
-SnappedPoint = 2,
-}
-impl PointType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PointType::Unspecified => "POINT_TYPE_UNSPECIFIED",
-PointType::CenterPoint => "CENTER_POINT",
-PointType::SnappedPoint => "SNAPPED_POINT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"POINT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CENTER_POINT" => Some(Self::CenterPoint),
-"SNAPPED_POINT" => Some(Self::SnappedPoint),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PointType {
+        Unspecified = 0,
+        CenterPoint = 1,
+        SnappedPoint = 2,
+    }
+    impl PointType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PointType::Unspecified => "POINT_TYPE_UNSPECIFIED",
+                PointType::CenterPoint => "CENTER_POINT",
+                PointType::SnappedPoint => "SNAPPED_POINT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "POINT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CENTER_POINT" => Some(Self::CenterPoint),
+                "SNAPPED_POINT" => Some(Self::SnappedPoint),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
-#[prost(int32, tag = "1")]
-pub max_location_count: i32,
-#[prost(message, optional, tag = "2")]
-pub spacing: ::core::option::Option<SpacingOptions>,
-#[prost(string, repeated, tag = "3")]
-pub included_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, tag = "1")]
+    pub max_location_count: i32,
+    #[prost(message, optional, tag = "2")]
+    pub spacing: ::core::option::Option<SpacingOptions>,
+    #[prost(string, repeated, tag = "3")]
+    pub included_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Criterion {
-#[prost(int32, tag = "1")]
-pub game_object_type: i32,
-#[prost(message, optional, tag = "2")]
-pub filter: ::core::option::Option<Filter>,
-#[prost(message, optional, tag = "3")]
-pub fields_to_return: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(int32, tag = "1")]
+    pub game_object_type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub filter: ::core::option::Option<Filter>,
+    #[prost(message, optional, tag = "3")]
+    pub fields_to_return: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AreaFilter {
-#[prost(fixed64, tag = "1")]
-pub s2_cell_id: u64,
+    #[prost(fixed64, tag = "1")]
+    pub s2_cell_id: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayableLocationList {
-#[prost(message, repeated, tag = "1")]
-pub locations: ::prost::alloc::vec::Vec<PlayableLocation>,
+    #[prost(message, repeated, tag = "1")]
+    pub locations: ::prost::alloc::vec::Vec<PlayableLocation>,
 }

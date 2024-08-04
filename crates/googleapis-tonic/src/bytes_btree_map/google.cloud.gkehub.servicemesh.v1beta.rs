@@ -2,336 +2,358 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MembershipSpec {
-#[deprecated]
-#[prost(enumeration = "membership_spec::ControlPlaneManagement", tag = "1")]
-pub control_plane: i32,
-#[prost(enumeration = "membership_spec::Management", tag = "4")]
-pub management: i32,
+    #[deprecated]
+    #[prost(enumeration = "membership_spec::ControlPlaneManagement", tag = "1")]
+    pub control_plane: i32,
+    #[prost(enumeration = "membership_spec::Management", tag = "4")]
+    pub management: i32,
 }
 /// Nested message and enum types in `MembershipSpec`.
 pub mod membership_spec {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ControlPlaneManagement {
-Unspecified = 0,
-Automatic = 1,
-Manual = 2,
-}
-impl ControlPlaneManagement {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ControlPlaneManagement::Unspecified => "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
-ControlPlaneManagement::Automatic => "AUTOMATIC",
-ControlPlaneManagement::Manual => "MANUAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTROL_PLANE_MANAGEMENT_UNSPECIFIED" => Some(Self::Unspecified),
-"AUTOMATIC" => Some(Self::Automatic),
-"MANUAL" => Some(Self::Manual),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Management {
-Unspecified = 0,
-Automatic = 1,
-Manual = 2,
-}
-impl Management {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Management::Unspecified => "MANAGEMENT_UNSPECIFIED",
-Management::Automatic => "MANAGEMENT_AUTOMATIC",
-Management::Manual => "MANAGEMENT_MANUAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MANAGEMENT_UNSPECIFIED" => Some(Self::Unspecified),
-"MANAGEMENT_AUTOMATIC" => Some(Self::Automatic),
-"MANAGEMENT_MANUAL" => Some(Self::Manual),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ControlPlaneManagement {
+        Unspecified = 0,
+        Automatic = 1,
+        Manual = 2,
+    }
+    impl ControlPlaneManagement {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ControlPlaneManagement::Unspecified => "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+                ControlPlaneManagement::Automatic => "AUTOMATIC",
+                ControlPlaneManagement::Manual => "MANUAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "AUTOMATIC" => Some(Self::Automatic),
+                "MANUAL" => Some(Self::Manual),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Management {
+        Unspecified = 0,
+        Automatic = 1,
+        Manual = 2,
+    }
+    impl Management {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Management::Unspecified => "MANAGEMENT_UNSPECIFIED",
+                Management::Automatic => "MANAGEMENT_AUTOMATIC",
+                Management::Manual => "MANAGEMENT_MANUAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MANAGEMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "MANAGEMENT_AUTOMATIC" => Some(Self::Automatic),
+                "MANAGEMENT_MANUAL" => Some(Self::Manual),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipState {
-#[prost(message, optional, tag = "2")]
-pub control_plane_management: ::core::option::Option<membership_state::ControlPlaneManagement>,
-#[prost(message, optional, tag = "4")]
-pub data_plane_management: ::core::option::Option<membership_state::DataPlaneManagement>,
-#[prost(message, repeated, tag = "8")]
-pub conditions: ::prost::alloc::vec::Vec<membership_state::Condition>,
+    #[prost(message, optional, tag = "2")]
+    pub control_plane_management: ::core::option::Option<membership_state::ControlPlaneManagement>,
+    #[prost(message, optional, tag = "4")]
+    pub data_plane_management: ::core::option::Option<membership_state::DataPlaneManagement>,
+    #[prost(message, repeated, tag = "8")]
+    pub conditions: ::prost::alloc::vec::Vec<membership_state::Condition>,
 }
 /// Nested message and enum types in `MembershipState`.
 pub mod membership_state {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ControlPlaneManagement {
-#[prost(message, repeated, tag = "2")]
-pub details: ::prost::alloc::vec::Vec<super::StatusDetails>,
-#[prost(enumeration = "LifecycleState", tag = "3")]
-pub state: i32,
-#[prost(enumeration = "control_plane_management::Implementation", tag = "4")]
-pub implementation: i32,
-}
-/// Nested message and enum types in `ControlPlaneManagement`.
-pub mod control_plane_management {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Implementation {
-Unspecified = 0,
-Istiod = 1,
-TrafficDirector = 2,
-Updating = 3,
-}
-impl Implementation {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Implementation::Unspecified => "IMPLEMENTATION_UNSPECIFIED",
-Implementation::Istiod => "ISTIOD",
-Implementation::TrafficDirector => "TRAFFIC_DIRECTOR",
-Implementation::Updating => "UPDATING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"IMPLEMENTATION_UNSPECIFIED" => Some(Self::Unspecified),
-"ISTIOD" => Some(Self::Istiod),
-"TRAFFIC_DIRECTOR" => Some(Self::TrafficDirector),
-"UPDATING" => Some(Self::Updating),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DataPlaneManagement {
-#[prost(enumeration = "LifecycleState", tag = "1")]
-pub state: i32,
-#[prost(message, repeated, tag = "2")]
-pub details: ::prost::alloc::vec::Vec<super::StatusDetails>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Condition {
-#[prost(enumeration = "condition::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub documentation_link: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub details: ::prost::alloc::string::String,
-#[prost(enumeration = "condition::Severity", tag = "4")]
-pub severity: i32,
-}
-/// Nested message and enum types in `Condition`.
-pub mod condition {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-MeshIamPermissionDenied = 100,
-CniConfigUnsupported = 201,
-GkeSandboxUnsupported = 202,
-NodepoolWorkloadIdentityFederationRequired = 203,
-CniInstallationFailed = 204,
-CniPodUnschedulable = 205,
-UnsupportedMultipleControlPlanes = 301,
-VpcscGaSupported = 302,
-ConfigApplyInternalError = 401,
-ConfigValidationError = 402,
-ConfigValidationWarning = 403,
-QuotaExceededBackendServices = 404,
-QuotaExceededHealthChecks = 405,
-QuotaExceededHttpRoutes = 406,
-QuotaExceededTcpRoutes = 407,
-QuotaExceededTlsRoutes = 408,
-QuotaExceededTrafficPolicies = 409,
-QuotaExceededEndpointPolicies = 410,
-QuotaExceededGateways = 411,
-QuotaExceededMeshes = 412,
-QuotaExceededServerTlsPolicies = 413,
-QuotaExceededClientTlsPolicies = 414,
-QuotaExceededServiceLbPolicies = 415,
-QuotaExceededHttpFilters = 416,
-QuotaExceededTcpFilters = 417,
-QuotaExceededNetworkEndpointGroups = 418,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::MeshIamPermissionDenied => "MESH_IAM_PERMISSION_DENIED",
-Code::CniConfigUnsupported => "CNI_CONFIG_UNSUPPORTED",
-Code::GkeSandboxUnsupported => "GKE_SANDBOX_UNSUPPORTED",
-Code::NodepoolWorkloadIdentityFederationRequired => "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
-Code::CniInstallationFailed => "CNI_INSTALLATION_FAILED",
-Code::CniPodUnschedulable => "CNI_POD_UNSCHEDULABLE",
-Code::UnsupportedMultipleControlPlanes => "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
-Code::VpcscGaSupported => "VPCSC_GA_SUPPORTED",
-Code::ConfigApplyInternalError => "CONFIG_APPLY_INTERNAL_ERROR",
-Code::ConfigValidationError => "CONFIG_VALIDATION_ERROR",
-Code::ConfigValidationWarning => "CONFIG_VALIDATION_WARNING",
-Code::QuotaExceededBackendServices => "QUOTA_EXCEEDED_BACKEND_SERVICES",
-Code::QuotaExceededHealthChecks => "QUOTA_EXCEEDED_HEALTH_CHECKS",
-Code::QuotaExceededHttpRoutes => "QUOTA_EXCEEDED_HTTP_ROUTES",
-Code::QuotaExceededTcpRoutes => "QUOTA_EXCEEDED_TCP_ROUTES",
-Code::QuotaExceededTlsRoutes => "QUOTA_EXCEEDED_TLS_ROUTES",
-Code::QuotaExceededTrafficPolicies => "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
-Code::QuotaExceededEndpointPolicies => "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
-Code::QuotaExceededGateways => "QUOTA_EXCEEDED_GATEWAYS",
-Code::QuotaExceededMeshes => "QUOTA_EXCEEDED_MESHES",
-Code::QuotaExceededServerTlsPolicies => "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
-Code::QuotaExceededClientTlsPolicies => "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
-Code::QuotaExceededServiceLbPolicies => "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
-Code::QuotaExceededHttpFilters => "QUOTA_EXCEEDED_HTTP_FILTERS",
-Code::QuotaExceededTcpFilters => "QUOTA_EXCEEDED_TCP_FILTERS",
-Code::QuotaExceededNetworkEndpointGroups => "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"MESH_IAM_PERMISSION_DENIED" => Some(Self::MeshIamPermissionDenied),
-"CNI_CONFIG_UNSUPPORTED" => Some(Self::CniConfigUnsupported),
-"GKE_SANDBOX_UNSUPPORTED" => Some(Self::GkeSandboxUnsupported),
-"NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED" => Some(Self::NodepoolWorkloadIdentityFederationRequired),
-"CNI_INSTALLATION_FAILED" => Some(Self::CniInstallationFailed),
-"CNI_POD_UNSCHEDULABLE" => Some(Self::CniPodUnschedulable),
-"UNSUPPORTED_MULTIPLE_CONTROL_PLANES" => Some(Self::UnsupportedMultipleControlPlanes),
-"VPCSC_GA_SUPPORTED" => Some(Self::VpcscGaSupported),
-"CONFIG_APPLY_INTERNAL_ERROR" => Some(Self::ConfigApplyInternalError),
-"CONFIG_VALIDATION_ERROR" => Some(Self::ConfigValidationError),
-"CONFIG_VALIDATION_WARNING" => Some(Self::ConfigValidationWarning),
-"QUOTA_EXCEEDED_BACKEND_SERVICES" => Some(Self::QuotaExceededBackendServices),
-"QUOTA_EXCEEDED_HEALTH_CHECKS" => Some(Self::QuotaExceededHealthChecks),
-"QUOTA_EXCEEDED_HTTP_ROUTES" => Some(Self::QuotaExceededHttpRoutes),
-"QUOTA_EXCEEDED_TCP_ROUTES" => Some(Self::QuotaExceededTcpRoutes),
-"QUOTA_EXCEEDED_TLS_ROUTES" => Some(Self::QuotaExceededTlsRoutes),
-"QUOTA_EXCEEDED_TRAFFIC_POLICIES" => Some(Self::QuotaExceededTrafficPolicies),
-"QUOTA_EXCEEDED_ENDPOINT_POLICIES" => Some(Self::QuotaExceededEndpointPolicies),
-"QUOTA_EXCEEDED_GATEWAYS" => Some(Self::QuotaExceededGateways),
-"QUOTA_EXCEEDED_MESHES" => Some(Self::QuotaExceededMeshes),
-"QUOTA_EXCEEDED_SERVER_TLS_POLICIES" => Some(Self::QuotaExceededServerTlsPolicies),
-"QUOTA_EXCEEDED_CLIENT_TLS_POLICIES" => Some(Self::QuotaExceededClientTlsPolicies),
-"QUOTA_EXCEEDED_SERVICE_LB_POLICIES" => Some(Self::QuotaExceededServiceLbPolicies),
-"QUOTA_EXCEEDED_HTTP_FILTERS" => Some(Self::QuotaExceededHttpFilters),
-"QUOTA_EXCEEDED_TCP_FILTERS" => Some(Self::QuotaExceededTcpFilters),
-"QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS" => Some(Self::QuotaExceededNetworkEndpointGroups),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Severity {
-Unspecified = 0,
-Error = 1,
-Warning = 2,
-Info = 3,
-}
-impl Severity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-Severity::Error => "ERROR",
-Severity::Warning => "WARNING",
-Severity::Info => "INFO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-"ERROR" => Some(Self::Error),
-"WARNING" => Some(Self::Warning),
-"INFO" => Some(Self::Info),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum LifecycleState {
-Unspecified = 0,
-Disabled = 1,
-FailedPrecondition = 2,
-Provisioning = 3,
-Active = 4,
-Stalled = 5,
-NeedsAttention = 6,
-Degraded = 7,
-}
-impl LifecycleState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LifecycleState::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
-LifecycleState::Disabled => "DISABLED",
-LifecycleState::FailedPrecondition => "FAILED_PRECONDITION",
-LifecycleState::Provisioning => "PROVISIONING",
-LifecycleState::Active => "ACTIVE",
-LifecycleState::Stalled => "STALLED",
-LifecycleState::NeedsAttention => "NEEDS_ATTENTION",
-LifecycleState::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LIFECYCLE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DISABLED" => Some(Self::Disabled),
-"FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
-"PROVISIONING" => Some(Self::Provisioning),
-"ACTIVE" => Some(Self::Active),
-"STALLED" => Some(Self::Stalled),
-"NEEDS_ATTENTION" => Some(Self::NeedsAttention),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ControlPlaneManagement {
+        #[prost(message, repeated, tag = "2")]
+        pub details: ::prost::alloc::vec::Vec<super::StatusDetails>,
+        #[prost(enumeration = "LifecycleState", tag = "3")]
+        pub state: i32,
+        #[prost(enumeration = "control_plane_management::Implementation", tag = "4")]
+        pub implementation: i32,
+    }
+    /// Nested message and enum types in `ControlPlaneManagement`.
+    pub mod control_plane_management {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Implementation {
+            Unspecified = 0,
+            Istiod = 1,
+            TrafficDirector = 2,
+            Updating = 3,
+        }
+        impl Implementation {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Implementation::Unspecified => "IMPLEMENTATION_UNSPECIFIED",
+                    Implementation::Istiod => "ISTIOD",
+                    Implementation::TrafficDirector => "TRAFFIC_DIRECTOR",
+                    Implementation::Updating => "UPDATING",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "IMPLEMENTATION_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ISTIOD" => Some(Self::Istiod),
+                    "TRAFFIC_DIRECTOR" => Some(Self::TrafficDirector),
+                    "UPDATING" => Some(Self::Updating),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataPlaneManagement {
+        #[prost(enumeration = "LifecycleState", tag = "1")]
+        pub state: i32,
+        #[prost(message, repeated, tag = "2")]
+        pub details: ::prost::alloc::vec::Vec<super::StatusDetails>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Condition {
+        #[prost(enumeration = "condition::Code", tag = "1")]
+        pub code: i32,
+        #[prost(string, tag = "2")]
+        pub documentation_link: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub details: ::prost::alloc::string::String,
+        #[prost(enumeration = "condition::Severity", tag = "4")]
+        pub severity: i32,
+    }
+    /// Nested message and enum types in `Condition`.
+    pub mod condition {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Code {
+            Unspecified = 0,
+            MeshIamPermissionDenied = 100,
+            CniConfigUnsupported = 201,
+            GkeSandboxUnsupported = 202,
+            NodepoolWorkloadIdentityFederationRequired = 203,
+            CniInstallationFailed = 204,
+            CniPodUnschedulable = 205,
+            UnsupportedMultipleControlPlanes = 301,
+            VpcscGaSupported = 302,
+            ConfigApplyInternalError = 401,
+            ConfigValidationError = 402,
+            ConfigValidationWarning = 403,
+            QuotaExceededBackendServices = 404,
+            QuotaExceededHealthChecks = 405,
+            QuotaExceededHttpRoutes = 406,
+            QuotaExceededTcpRoutes = 407,
+            QuotaExceededTlsRoutes = 408,
+            QuotaExceededTrafficPolicies = 409,
+            QuotaExceededEndpointPolicies = 410,
+            QuotaExceededGateways = 411,
+            QuotaExceededMeshes = 412,
+            QuotaExceededServerTlsPolicies = 413,
+            QuotaExceededClientTlsPolicies = 414,
+            QuotaExceededServiceLbPolicies = 415,
+            QuotaExceededHttpFilters = 416,
+            QuotaExceededTcpFilters = 417,
+            QuotaExceededNetworkEndpointGroups = 418,
+        }
+        impl Code {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Code::Unspecified => "CODE_UNSPECIFIED",
+                    Code::MeshIamPermissionDenied => "MESH_IAM_PERMISSION_DENIED",
+                    Code::CniConfigUnsupported => "CNI_CONFIG_UNSUPPORTED",
+                    Code::GkeSandboxUnsupported => "GKE_SANDBOX_UNSUPPORTED",
+                    Code::NodepoolWorkloadIdentityFederationRequired => {
+                        "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED"
+                    }
+                    Code::CniInstallationFailed => "CNI_INSTALLATION_FAILED",
+                    Code::CniPodUnschedulable => "CNI_POD_UNSCHEDULABLE",
+                    Code::UnsupportedMultipleControlPlanes => "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+                    Code::VpcscGaSupported => "VPCSC_GA_SUPPORTED",
+                    Code::ConfigApplyInternalError => "CONFIG_APPLY_INTERNAL_ERROR",
+                    Code::ConfigValidationError => "CONFIG_VALIDATION_ERROR",
+                    Code::ConfigValidationWarning => "CONFIG_VALIDATION_WARNING",
+                    Code::QuotaExceededBackendServices => "QUOTA_EXCEEDED_BACKEND_SERVICES",
+                    Code::QuotaExceededHealthChecks => "QUOTA_EXCEEDED_HEALTH_CHECKS",
+                    Code::QuotaExceededHttpRoutes => "QUOTA_EXCEEDED_HTTP_ROUTES",
+                    Code::QuotaExceededTcpRoutes => "QUOTA_EXCEEDED_TCP_ROUTES",
+                    Code::QuotaExceededTlsRoutes => "QUOTA_EXCEEDED_TLS_ROUTES",
+                    Code::QuotaExceededTrafficPolicies => "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+                    Code::QuotaExceededEndpointPolicies => "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+                    Code::QuotaExceededGateways => "QUOTA_EXCEEDED_GATEWAYS",
+                    Code::QuotaExceededMeshes => "QUOTA_EXCEEDED_MESHES",
+                    Code::QuotaExceededServerTlsPolicies => "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+                    Code::QuotaExceededClientTlsPolicies => "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+                    Code::QuotaExceededServiceLbPolicies => "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+                    Code::QuotaExceededHttpFilters => "QUOTA_EXCEEDED_HTTP_FILTERS",
+                    Code::QuotaExceededTcpFilters => "QUOTA_EXCEEDED_TCP_FILTERS",
+                    Code::QuotaExceededNetworkEndpointGroups => {
+                        "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS"
+                    }
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "MESH_IAM_PERMISSION_DENIED" => Some(Self::MeshIamPermissionDenied),
+                    "CNI_CONFIG_UNSUPPORTED" => Some(Self::CniConfigUnsupported),
+                    "GKE_SANDBOX_UNSUPPORTED" => Some(Self::GkeSandboxUnsupported),
+                    "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED" => {
+                        Some(Self::NodepoolWorkloadIdentityFederationRequired)
+                    }
+                    "CNI_INSTALLATION_FAILED" => Some(Self::CniInstallationFailed),
+                    "CNI_POD_UNSCHEDULABLE" => Some(Self::CniPodUnschedulable),
+                    "UNSUPPORTED_MULTIPLE_CONTROL_PLANES" => {
+                        Some(Self::UnsupportedMultipleControlPlanes)
+                    }
+                    "VPCSC_GA_SUPPORTED" => Some(Self::VpcscGaSupported),
+                    "CONFIG_APPLY_INTERNAL_ERROR" => Some(Self::ConfigApplyInternalError),
+                    "CONFIG_VALIDATION_ERROR" => Some(Self::ConfigValidationError),
+                    "CONFIG_VALIDATION_WARNING" => Some(Self::ConfigValidationWarning),
+                    "QUOTA_EXCEEDED_BACKEND_SERVICES" => Some(Self::QuotaExceededBackendServices),
+                    "QUOTA_EXCEEDED_HEALTH_CHECKS" => Some(Self::QuotaExceededHealthChecks),
+                    "QUOTA_EXCEEDED_HTTP_ROUTES" => Some(Self::QuotaExceededHttpRoutes),
+                    "QUOTA_EXCEEDED_TCP_ROUTES" => Some(Self::QuotaExceededTcpRoutes),
+                    "QUOTA_EXCEEDED_TLS_ROUTES" => Some(Self::QuotaExceededTlsRoutes),
+                    "QUOTA_EXCEEDED_TRAFFIC_POLICIES" => Some(Self::QuotaExceededTrafficPolicies),
+                    "QUOTA_EXCEEDED_ENDPOINT_POLICIES" => Some(Self::QuotaExceededEndpointPolicies),
+                    "QUOTA_EXCEEDED_GATEWAYS" => Some(Self::QuotaExceededGateways),
+                    "QUOTA_EXCEEDED_MESHES" => Some(Self::QuotaExceededMeshes),
+                    "QUOTA_EXCEEDED_SERVER_TLS_POLICIES" => {
+                        Some(Self::QuotaExceededServerTlsPolicies)
+                    }
+                    "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES" => {
+                        Some(Self::QuotaExceededClientTlsPolicies)
+                    }
+                    "QUOTA_EXCEEDED_SERVICE_LB_POLICIES" => {
+                        Some(Self::QuotaExceededServiceLbPolicies)
+                    }
+                    "QUOTA_EXCEEDED_HTTP_FILTERS" => Some(Self::QuotaExceededHttpFilters),
+                    "QUOTA_EXCEEDED_TCP_FILTERS" => Some(Self::QuotaExceededTcpFilters),
+                    "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS" => {
+                        Some(Self::QuotaExceededNetworkEndpointGroups)
+                    }
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Severity {
+            Unspecified = 0,
+            Error = 1,
+            Warning = 2,
+            Info = 3,
+        }
+        impl Severity {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+                    Severity::Error => "ERROR",
+                    Severity::Warning => "WARNING",
+                    Severity::Info => "INFO",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ERROR" => Some(Self::Error),
+                    "WARNING" => Some(Self::Warning),
+                    "INFO" => Some(Self::Info),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum LifecycleState {
+        Unspecified = 0,
+        Disabled = 1,
+        FailedPrecondition = 2,
+        Provisioning = 3,
+        Active = 4,
+        Stalled = 5,
+        NeedsAttention = 6,
+        Degraded = 7,
+    }
+    impl LifecycleState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                LifecycleState::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
+                LifecycleState::Disabled => "DISABLED",
+                LifecycleState::FailedPrecondition => "FAILED_PRECONDITION",
+                LifecycleState::Provisioning => "PROVISIONING",
+                LifecycleState::Active => "ACTIVE",
+                LifecycleState::Stalled => "STALLED",
+                LifecycleState::NeedsAttention => "NEEDS_ATTENTION",
+                LifecycleState::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LIFECYCLE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DISABLED" => Some(Self::Disabled),
+                "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "ACTIVE" => Some(Self::Active),
+                "STALLED" => Some(Self::Stalled),
+                "NEEDS_ATTENTION" => Some(Self::NeedsAttention),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusDetails {
-#[prost(string, tag = "1")]
-pub code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub details: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub details: ::prost::alloc::string::String,
 }

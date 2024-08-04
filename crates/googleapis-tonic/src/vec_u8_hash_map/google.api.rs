@@ -2,1480 +2,1487 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Http {
-#[prost(message, repeated, tag = "1")]
-pub rules: ::prost::alloc::vec::Vec<HttpRule>,
-#[prost(bool, tag = "2")]
-pub fully_decode_reserved_expansion: bool,
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<HttpRule>,
+    #[prost(bool, tag = "2")]
+    pub fully_decode_reserved_expansion: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub body: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub response_body: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "11")]
-pub additional_bindings: ::prost::alloc::vec::Vec<HttpRule>,
-#[prost(oneof = "http_rule::Pattern", tags = "2, 3, 4, 5, 6, 8")]
-pub pattern: ::core::option::Option<http_rule::Pattern>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub body: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub response_body: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "11")]
+    pub additional_bindings: ::prost::alloc::vec::Vec<HttpRule>,
+    #[prost(oneof = "http_rule::Pattern", tags = "2, 3, 4, 5, 6, 8")]
+    pub pattern: ::core::option::Option<http_rule::Pattern>,
 }
 /// Nested message and enum types in `HttpRule`.
 pub mod http_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Pattern {
-#[prost(string, tag = "2")]
-Get(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-Put(::prost::alloc::string::String),
-#[prost(string, tag = "4")]
-Post(::prost::alloc::string::String),
-#[prost(string, tag = "5")]
-Delete(::prost::alloc::string::String),
-#[prost(string, tag = "6")]
-Patch(::prost::alloc::string::String),
-#[prost(message, tag = "8")]
-Custom(super::CustomHttpPattern),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Pattern {
+        #[prost(string, tag = "2")]
+        Get(::prost::alloc::string::String),
+        #[prost(string, tag = "3")]
+        Put(::prost::alloc::string::String),
+        #[prost(string, tag = "4")]
+        Post(::prost::alloc::string::String),
+        #[prost(string, tag = "5")]
+        Delete(::prost::alloc::string::String),
+        #[prost(string, tag = "6")]
+        Patch(::prost::alloc::string::String),
+        #[prost(message, tag = "8")]
+        Custom(super::CustomHttpPattern),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomHttpPattern {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub path: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LaunchStage {
-Unspecified = 0,
-Unimplemented = 6,
-Prelaunch = 7,
-EarlyAccess = 1,
-Alpha = 2,
-Beta = 3,
-Ga = 4,
-Deprecated = 5,
+    Unspecified = 0,
+    Unimplemented = 6,
+    Prelaunch = 7,
+    EarlyAccess = 1,
+    Alpha = 2,
+    Beta = 3,
+    Ga = 4,
+    Deprecated = 5,
 }
 impl LaunchStage {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LaunchStage::Unspecified => "LAUNCH_STAGE_UNSPECIFIED",
-LaunchStage::Unimplemented => "UNIMPLEMENTED",
-LaunchStage::Prelaunch => "PRELAUNCH",
-LaunchStage::EarlyAccess => "EARLY_ACCESS",
-LaunchStage::Alpha => "ALPHA",
-LaunchStage::Beta => "BETA",
-LaunchStage::Ga => "GA",
-LaunchStage::Deprecated => "DEPRECATED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LAUNCH_STAGE_UNSPECIFIED" => Some(Self::Unspecified),
-"UNIMPLEMENTED" => Some(Self::Unimplemented),
-"PRELAUNCH" => Some(Self::Prelaunch),
-"EARLY_ACCESS" => Some(Self::EarlyAccess),
-"ALPHA" => Some(Self::Alpha),
-"BETA" => Some(Self::Beta),
-"GA" => Some(Self::Ga),
-"DEPRECATED" => Some(Self::Deprecated),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LaunchStage::Unspecified => "LAUNCH_STAGE_UNSPECIFIED",
+            LaunchStage::Unimplemented => "UNIMPLEMENTED",
+            LaunchStage::Prelaunch => "PRELAUNCH",
+            LaunchStage::EarlyAccess => "EARLY_ACCESS",
+            LaunchStage::Alpha => "ALPHA",
+            LaunchStage::Beta => "BETA",
+            LaunchStage::Ga => "GA",
+            LaunchStage::Deprecated => "DEPRECATED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "LAUNCH_STAGE_UNSPECIFIED" => Some(Self::Unspecified),
+            "UNIMPLEMENTED" => Some(Self::Unimplemented),
+            "PRELAUNCH" => Some(Self::Prelaunch),
+            "EARLY_ACCESS" => Some(Self::EarlyAccess),
+            "ALPHA" => Some(Self::Alpha),
+            "BETA" => Some(Self::Beta),
+            "GA" => Some(Self::Ga),
+            "DEPRECATED" => Some(Self::Deprecated),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonLanguageSettings {
-#[deprecated]
-#[prost(string, tag = "1")]
-pub reference_docs_uri: ::prost::alloc::string::String,
-#[prost(enumeration = "ClientLibraryDestination", repeated, tag = "2")]
-pub destinations: ::prost::alloc::vec::Vec<i32>,
+    #[deprecated]
+    #[prost(string, tag = "1")]
+    pub reference_docs_uri: ::prost::alloc::string::String,
+    #[prost(enumeration = "ClientLibraryDestination", repeated, tag = "2")]
+    pub destinations: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientLibrarySettings {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(enumeration = "LaunchStage", tag = "2")]
-pub launch_stage: i32,
-#[prost(bool, tag = "3")]
-pub rest_numeric_enums: bool,
-#[prost(message, optional, tag = "21")]
-pub java_settings: ::core::option::Option<JavaSettings>,
-#[prost(message, optional, tag = "22")]
-pub cpp_settings: ::core::option::Option<CppSettings>,
-#[prost(message, optional, tag = "23")]
-pub php_settings: ::core::option::Option<PhpSettings>,
-#[prost(message, optional, tag = "24")]
-pub python_settings: ::core::option::Option<PythonSettings>,
-#[prost(message, optional, tag = "25")]
-pub node_settings: ::core::option::Option<NodeSettings>,
-#[prost(message, optional, tag = "26")]
-pub dotnet_settings: ::core::option::Option<DotnetSettings>,
-#[prost(message, optional, tag = "27")]
-pub ruby_settings: ::core::option::Option<RubySettings>,
-#[prost(message, optional, tag = "28")]
-pub go_settings: ::core::option::Option<GoSettings>,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(enumeration = "LaunchStage", tag = "2")]
+    pub launch_stage: i32,
+    #[prost(bool, tag = "3")]
+    pub rest_numeric_enums: bool,
+    #[prost(message, optional, tag = "21")]
+    pub java_settings: ::core::option::Option<JavaSettings>,
+    #[prost(message, optional, tag = "22")]
+    pub cpp_settings: ::core::option::Option<CppSettings>,
+    #[prost(message, optional, tag = "23")]
+    pub php_settings: ::core::option::Option<PhpSettings>,
+    #[prost(message, optional, tag = "24")]
+    pub python_settings: ::core::option::Option<PythonSettings>,
+    #[prost(message, optional, tag = "25")]
+    pub node_settings: ::core::option::Option<NodeSettings>,
+    #[prost(message, optional, tag = "26")]
+    pub dotnet_settings: ::core::option::Option<DotnetSettings>,
+    #[prost(message, optional, tag = "27")]
+    pub ruby_settings: ::core::option::Option<RubySettings>,
+    #[prost(message, optional, tag = "28")]
+    pub go_settings: ::core::option::Option<GoSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Publishing {
-#[prost(message, repeated, tag = "2")]
-pub method_settings: ::prost::alloc::vec::Vec<MethodSettings>,
-#[prost(string, tag = "101")]
-pub new_issue_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "102")]
-pub documentation_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "103")]
-pub api_short_name: ::prost::alloc::string::String,
-#[prost(string, tag = "104")]
-pub github_label: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "105")]
-pub codeowner_github_teams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "106")]
-pub doc_tag_prefix: ::prost::alloc::string::String,
-#[prost(enumeration = "ClientLibraryOrganization", tag = "107")]
-pub organization: i32,
-#[prost(message, repeated, tag = "109")]
-pub library_settings: ::prost::alloc::vec::Vec<ClientLibrarySettings>,
-#[prost(string, tag = "110")]
-pub proto_reference_documentation_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "111")]
-pub rest_reference_documentation_uri: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub method_settings: ::prost::alloc::vec::Vec<MethodSettings>,
+    #[prost(string, tag = "101")]
+    pub new_issue_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "102")]
+    pub documentation_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "103")]
+    pub api_short_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "104")]
+    pub github_label: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "105")]
+    pub codeowner_github_teams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "106")]
+    pub doc_tag_prefix: ::prost::alloc::string::String,
+    #[prost(enumeration = "ClientLibraryOrganization", tag = "107")]
+    pub organization: i32,
+    #[prost(message, repeated, tag = "109")]
+    pub library_settings: ::prost::alloc::vec::Vec<ClientLibrarySettings>,
+    #[prost(string, tag = "110")]
+    pub proto_reference_documentation_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "111")]
+    pub rest_reference_documentation_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JavaSettings {
-#[prost(string, tag = "1")]
-pub library_package: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub service_class_names: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "3")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(string, tag = "1")]
+    pub library_package: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub service_class_names:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CppSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhpSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PythonSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DotnetSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
-#[prost(map = "string, string", tag = "2")]
-pub renamed_services: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "3")]
-pub renamed_resources: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub ignored_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub forced_namespace_aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "6")]
-pub handwritten_signatures: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(map = "string, string", tag = "2")]
+    pub renamed_services:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "3")]
+    pub renamed_resources:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub ignored_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub forced_namespace_aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub handwritten_signatures: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RubySettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GoSettings {
-#[prost(message, optional, tag = "1")]
-pub common: ::core::option::Option<CommonLanguageSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub common: ::core::option::Option<CommonLanguageSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MethodSettings {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub long_running: ::core::option::Option<method_settings::LongRunning>,
-#[prost(string, repeated, tag = "3")]
-pub auto_populated_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub long_running: ::core::option::Option<method_settings::LongRunning>,
+    #[prost(string, repeated, tag = "3")]
+    pub auto_populated_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `MethodSettings`.
 pub mod method_settings {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LongRunning {
-#[prost(message, optional, tag = "1")]
-pub initial_poll_delay: ::core::option::Option<::prost_types::Duration>,
-#[prost(float, tag = "2")]
-pub poll_delay_multiplier: f32,
-#[prost(message, optional, tag = "3")]
-pub max_poll_delay: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "4")]
-pub total_poll_timeout: ::core::option::Option<::prost_types::Duration>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LongRunning {
+        #[prost(message, optional, tag = "1")]
+        pub initial_poll_delay: ::core::option::Option<::prost_types::Duration>,
+        #[prost(float, tag = "2")]
+        pub poll_delay_multiplier: f32,
+        #[prost(message, optional, tag = "3")]
+        pub max_poll_delay: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "4")]
+        pub total_poll_timeout: ::core::option::Option<::prost_types::Duration>,
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ClientLibraryOrganization {
-Unspecified = 0,
-Cloud = 1,
-Ads = 2,
-Photos = 3,
-StreetView = 4,
-Shopping = 5,
-Geo = 6,
-GenerativeAi = 7,
+    Unspecified = 0,
+    Cloud = 1,
+    Ads = 2,
+    Photos = 3,
+    StreetView = 4,
+    Shopping = 5,
+    Geo = 6,
+    GenerativeAi = 7,
 }
 impl ClientLibraryOrganization {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ClientLibraryOrganization::Unspecified => "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
-ClientLibraryOrganization::Cloud => "CLOUD",
-ClientLibraryOrganization::Ads => "ADS",
-ClientLibraryOrganization::Photos => "PHOTOS",
-ClientLibraryOrganization::StreetView => "STREET_VIEW",
-ClientLibraryOrganization::Shopping => "SHOPPING",
-ClientLibraryOrganization::Geo => "GEO",
-ClientLibraryOrganization::GenerativeAi => "GENERATIVE_AI",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOUD" => Some(Self::Cloud),
-"ADS" => Some(Self::Ads),
-"PHOTOS" => Some(Self::Photos),
-"STREET_VIEW" => Some(Self::StreetView),
-"SHOPPING" => Some(Self::Shopping),
-"GEO" => Some(Self::Geo),
-"GENERATIVE_AI" => Some(Self::GenerativeAi),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ClientLibraryOrganization::Unspecified => "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
+            ClientLibraryOrganization::Cloud => "CLOUD",
+            ClientLibraryOrganization::Ads => "ADS",
+            ClientLibraryOrganization::Photos => "PHOTOS",
+            ClientLibraryOrganization::StreetView => "STREET_VIEW",
+            ClientLibraryOrganization::Shopping => "SHOPPING",
+            ClientLibraryOrganization::Geo => "GEO",
+            ClientLibraryOrganization::GenerativeAi => "GENERATIVE_AI",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" => Some(Self::Unspecified),
+            "CLOUD" => Some(Self::Cloud),
+            "ADS" => Some(Self::Ads),
+            "PHOTOS" => Some(Self::Photos),
+            "STREET_VIEW" => Some(Self::StreetView),
+            "SHOPPING" => Some(Self::Shopping),
+            "GEO" => Some(Self::Geo),
+            "GENERATIVE_AI" => Some(Self::GenerativeAi),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ClientLibraryDestination {
-Unspecified = 0,
-Github = 10,
-PackageManager = 20,
+    Unspecified = 0,
+    Github = 10,
+    PackageManager = 20,
 }
 impl ClientLibraryDestination {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ClientLibraryDestination::Unspecified => "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
-ClientLibraryDestination::Github => "GITHUB",
-ClientLibraryDestination::PackageManager => "PACKAGE_MANAGER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLIENT_LIBRARY_DESTINATION_UNSPECIFIED" => Some(Self::Unspecified),
-"GITHUB" => Some(Self::Github),
-"PACKAGE_MANAGER" => Some(Self::PackageManager),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ClientLibraryDestination::Unspecified => "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
+            ClientLibraryDestination::Github => "GITHUB",
+            ClientLibraryDestination::PackageManager => "PACKAGE_MANAGER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED" => Some(Self::Unspecified),
+            "GITHUB" => Some(Self::Github),
+            "PACKAGE_MANAGER" => Some(Self::PackageManager),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FieldBehavior {
-Unspecified = 0,
-Optional = 1,
-Required = 2,
-OutputOnly = 3,
-InputOnly = 4,
-Immutable = 5,
-UnorderedList = 6,
-NonEmptyDefault = 7,
-Identifier = 8,
+    Unspecified = 0,
+    Optional = 1,
+    Required = 2,
+    OutputOnly = 3,
+    InputOnly = 4,
+    Immutable = 5,
+    UnorderedList = 6,
+    NonEmptyDefault = 7,
+    Identifier = 8,
 }
 impl FieldBehavior {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FieldBehavior::Unspecified => "FIELD_BEHAVIOR_UNSPECIFIED",
-FieldBehavior::Optional => "OPTIONAL",
-FieldBehavior::Required => "REQUIRED",
-FieldBehavior::OutputOnly => "OUTPUT_ONLY",
-FieldBehavior::InputOnly => "INPUT_ONLY",
-FieldBehavior::Immutable => "IMMUTABLE",
-FieldBehavior::UnorderedList => "UNORDERED_LIST",
-FieldBehavior::NonEmptyDefault => "NON_EMPTY_DEFAULT",
-FieldBehavior::Identifier => "IDENTIFIER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FIELD_BEHAVIOR_UNSPECIFIED" => Some(Self::Unspecified),
-"OPTIONAL" => Some(Self::Optional),
-"REQUIRED" => Some(Self::Required),
-"OUTPUT_ONLY" => Some(Self::OutputOnly),
-"INPUT_ONLY" => Some(Self::InputOnly),
-"IMMUTABLE" => Some(Self::Immutable),
-"UNORDERED_LIST" => Some(Self::UnorderedList),
-"NON_EMPTY_DEFAULT" => Some(Self::NonEmptyDefault),
-"IDENTIFIER" => Some(Self::Identifier),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            FieldBehavior::Unspecified => "FIELD_BEHAVIOR_UNSPECIFIED",
+            FieldBehavior::Optional => "OPTIONAL",
+            FieldBehavior::Required => "REQUIRED",
+            FieldBehavior::OutputOnly => "OUTPUT_ONLY",
+            FieldBehavior::InputOnly => "INPUT_ONLY",
+            FieldBehavior::Immutable => "IMMUTABLE",
+            FieldBehavior::UnorderedList => "UNORDERED_LIST",
+            FieldBehavior::NonEmptyDefault => "NON_EMPTY_DEFAULT",
+            FieldBehavior::Identifier => "IDENTIFIER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FIELD_BEHAVIOR_UNSPECIFIED" => Some(Self::Unspecified),
+            "OPTIONAL" => Some(Self::Optional),
+            "REQUIRED" => Some(Self::Required),
+            "OUTPUT_ONLY" => Some(Self::OutputOnly),
+            "INPUT_ONLY" => Some(Self::InputOnly),
+            "IMMUTABLE" => Some(Self::Immutable),
+            "UNORDERED_LIST" => Some(Self::UnorderedList),
+            "NON_EMPTY_DEFAULT" => Some(Self::NonEmptyDefault),
+            "IDENTIFIER" => Some(Self::Identifier),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceDescriptor {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub pattern: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub name_field: ::prost::alloc::string::String,
-#[prost(enumeration = "resource_descriptor::History", tag = "4")]
-pub history: i32,
-#[prost(string, tag = "5")]
-pub plural: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub singular: ::prost::alloc::string::String,
-#[prost(enumeration = "resource_descriptor::Style", repeated, tag = "10")]
-pub style: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub pattern: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub name_field: ::prost::alloc::string::String,
+    #[prost(enumeration = "resource_descriptor::History", tag = "4")]
+    pub history: i32,
+    #[prost(string, tag = "5")]
+    pub plural: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub singular: ::prost::alloc::string::String,
+    #[prost(enumeration = "resource_descriptor::Style", repeated, tag = "10")]
+    pub style: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `ResourceDescriptor`.
 pub mod resource_descriptor {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum History {
-Unspecified = 0,
-OriginallySinglePattern = 1,
-FutureMultiPattern = 2,
-}
-impl History {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-History::Unspecified => "HISTORY_UNSPECIFIED",
-History::OriginallySinglePattern => "ORIGINALLY_SINGLE_PATTERN",
-History::FutureMultiPattern => "FUTURE_MULTI_PATTERN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HISTORY_UNSPECIFIED" => Some(Self::Unspecified),
-"ORIGINALLY_SINGLE_PATTERN" => Some(Self::OriginallySinglePattern),
-"FUTURE_MULTI_PATTERN" => Some(Self::FutureMultiPattern),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Style {
-Unspecified = 0,
-DeclarativeFriendly = 1,
-}
-impl Style {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Style::Unspecified => "STYLE_UNSPECIFIED",
-Style::DeclarativeFriendly => "DECLARATIVE_FRIENDLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-"DECLARATIVE_FRIENDLY" => Some(Self::DeclarativeFriendly),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum History {
+        Unspecified = 0,
+        OriginallySinglePattern = 1,
+        FutureMultiPattern = 2,
+    }
+    impl History {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                History::Unspecified => "HISTORY_UNSPECIFIED",
+                History::OriginallySinglePattern => "ORIGINALLY_SINGLE_PATTERN",
+                History::FutureMultiPattern => "FUTURE_MULTI_PATTERN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HISTORY_UNSPECIFIED" => Some(Self::Unspecified),
+                "ORIGINALLY_SINGLE_PATTERN" => Some(Self::OriginallySinglePattern),
+                "FUTURE_MULTI_PATTERN" => Some(Self::FutureMultiPattern),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Style {
+        Unspecified = 0,
+        DeclarativeFriendly = 1,
+    }
+    impl Style {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Style::Unspecified => "STYLE_UNSPECIFIED",
+                Style::DeclarativeFriendly => "DECLARATIVE_FRIENDLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DECLARATIVE_FRIENDLY" => Some(Self::DeclarativeFriendly),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceReference {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub child_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub child_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpBody {
-#[prost(string, tag = "1")]
-pub content_type: ::prost::alloc::string::String,
-#[prost(bytes = "vec", tag = "2")]
-pub data: ::prost::alloc::vec::Vec<u8>,
-#[prost(message, repeated, tag = "3")]
-pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    #[prost(string, tag = "1")]
+    pub content_type: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", tag = "2")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, repeated, tag = "3")]
+    pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RoutingRule {
-#[prost(message, repeated, tag = "2")]
-pub routing_parameters: ::prost::alloc::vec::Vec<RoutingParameter>,
+    #[prost(message, repeated, tag = "2")]
+    pub routing_parameters: ::prost::alloc::vec::Vec<RoutingParameter>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RoutingParameter {
-#[prost(string, tag = "1")]
-pub field: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub path_template: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub field: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub path_template: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldInfo {
-#[prost(enumeration = "field_info::Format", tag = "1")]
-pub format: i32,
-#[prost(message, repeated, tag = "2")]
-pub referenced_types: ::prost::alloc::vec::Vec<TypeReference>,
+    #[prost(enumeration = "field_info::Format", tag = "1")]
+    pub format: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub referenced_types: ::prost::alloc::vec::Vec<TypeReference>,
 }
 /// Nested message and enum types in `FieldInfo`.
 pub mod field_info {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Format {
-Unspecified = 0,
-Uuid4 = 1,
-Ipv4 = 2,
-Ipv6 = 3,
-Ipv4OrIpv6 = 4,
-}
-impl Format {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Format::Unspecified => "FORMAT_UNSPECIFIED",
-Format::Uuid4 => "UUID4",
-Format::Ipv4 => "IPV4",
-Format::Ipv6 => "IPV6",
-Format::Ipv4OrIpv6 => "IPV4_OR_IPV6",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"UUID4" => Some(Self::Uuid4),
-"IPV4" => Some(Self::Ipv4),
-"IPV6" => Some(Self::Ipv6),
-"IPV4_OR_IPV6" => Some(Self::Ipv4OrIpv6),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Format {
+        Unspecified = 0,
+        Uuid4 = 1,
+        Ipv4 = 2,
+        Ipv6 = 3,
+        Ipv4OrIpv6 = 4,
+    }
+    impl Format {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Format::Unspecified => "FORMAT_UNSPECIFIED",
+                Format::Uuid4 => "UUID4",
+                Format::Ipv4 => "IPV4",
+                Format::Ipv6 => "IPV6",
+                Format::Ipv4OrIpv6 => "IPV4_OR_IPV6",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "UUID4" => Some(Self::Uuid4),
+                "IPV4" => Some(Self::Ipv4),
+                "IPV6" => Some(Self::Ipv6),
+                "IPV4_OR_IPV6" => Some(Self::Ipv4OrIpv6),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TypeReference {
-#[prost(string, tag = "1")]
-pub type_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub type_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Distribution {
-#[prost(int64, tag = "1")]
-pub count: i64,
-#[prost(double, tag = "2")]
-pub mean: f64,
-#[prost(double, tag = "3")]
-pub sum_of_squared_deviation: f64,
-#[prost(message, optional, tag = "4")]
-pub range: ::core::option::Option<distribution::Range>,
-#[prost(message, optional, tag = "6")]
-pub bucket_options: ::core::option::Option<distribution::BucketOptions>,
-#[prost(int64, repeated, tag = "7")]
-pub bucket_counts: ::prost::alloc::vec::Vec<i64>,
-#[prost(message, repeated, tag = "10")]
-pub exemplars: ::prost::alloc::vec::Vec<distribution::Exemplar>,
+    #[prost(int64, tag = "1")]
+    pub count: i64,
+    #[prost(double, tag = "2")]
+    pub mean: f64,
+    #[prost(double, tag = "3")]
+    pub sum_of_squared_deviation: f64,
+    #[prost(message, optional, tag = "4")]
+    pub range: ::core::option::Option<distribution::Range>,
+    #[prost(message, optional, tag = "6")]
+    pub bucket_options: ::core::option::Option<distribution::BucketOptions>,
+    #[prost(int64, repeated, tag = "7")]
+    pub bucket_counts: ::prost::alloc::vec::Vec<i64>,
+    #[prost(message, repeated, tag = "10")]
+    pub exemplars: ::prost::alloc::vec::Vec<distribution::Exemplar>,
 }
 /// Nested message and enum types in `Distribution`.
 pub mod distribution {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Range {
-#[prost(double, tag = "1")]
-pub min: f64,
-#[prost(double, tag = "2")]
-pub max: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BucketOptions {
-#[prost(oneof = "bucket_options::Options", tags = "1, 2, 3")]
-pub options: ::core::option::Option<bucket_options::Options>,
-}
-/// Nested message and enum types in `BucketOptions`.
-pub mod bucket_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Linear {
-#[prost(int32, tag = "1")]
-pub num_finite_buckets: i32,
-#[prost(double, tag = "2")]
-pub width: f64,
-#[prost(double, tag = "3")]
-pub offset: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Exponential {
-#[prost(int32, tag = "1")]
-pub num_finite_buckets: i32,
-#[prost(double, tag = "2")]
-pub growth_factor: f64,
-#[prost(double, tag = "3")]
-pub scale: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Explicit {
-#[prost(double, repeated, tag = "1")]
-pub bounds: ::prost::alloc::vec::Vec<f64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Options {
-#[prost(message, tag = "1")]
-LinearBuckets(Linear),
-#[prost(message, tag = "2")]
-ExponentialBuckets(Exponential),
-#[prost(message, tag = "3")]
-ExplicitBuckets(Explicit),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Exemplar {
-#[prost(double, tag = "1")]
-pub value: f64,
-#[prost(message, optional, tag = "2")]
-pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "3")]
-pub attachments: ::prost::alloc::vec::Vec<::prost_types::Any>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Range {
+        #[prost(double, tag = "1")]
+        pub min: f64,
+        #[prost(double, tag = "2")]
+        pub max: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BucketOptions {
+        #[prost(oneof = "bucket_options::Options", tags = "1, 2, 3")]
+        pub options: ::core::option::Option<bucket_options::Options>,
+    }
+    /// Nested message and enum types in `BucketOptions`.
+    pub mod bucket_options {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Linear {
+            #[prost(int32, tag = "1")]
+            pub num_finite_buckets: i32,
+            #[prost(double, tag = "2")]
+            pub width: f64,
+            #[prost(double, tag = "3")]
+            pub offset: f64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Exponential {
+            #[prost(int32, tag = "1")]
+            pub num_finite_buckets: i32,
+            #[prost(double, tag = "2")]
+            pub growth_factor: f64,
+            #[prost(double, tag = "3")]
+            pub scale: f64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Explicit {
+            #[prost(double, repeated, tag = "1")]
+            pub bounds: ::prost::alloc::vec::Vec<f64>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Options {
+            #[prost(message, tag = "1")]
+            LinearBuckets(Linear),
+            #[prost(message, tag = "2")]
+            ExponentialBuckets(Exponential),
+            #[prost(message, tag = "3")]
+            ExplicitBuckets(Explicit),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Exemplar {
+        #[prost(double, tag = "1")]
+        pub value: f64,
+        #[prost(message, optional, tag = "2")]
+        pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, repeated, tag = "3")]
+        pub attachments: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelDescriptor {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(enumeration = "label_descriptor::ValueType", tag = "2")]
-pub value_type: i32,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(enumeration = "label_descriptor::ValueType", tag = "2")]
+    pub value_type: i32,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `LabelDescriptor`.
 pub mod label_descriptor {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ValueType {
-String = 0,
-Bool = 1,
-Int64 = 2,
-}
-impl ValueType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ValueType::String => "STRING",
-ValueType::Bool => "BOOL",
-ValueType::Int64 => "INT64",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STRING" => Some(Self::String),
-"BOOL" => Some(Self::Bool),
-"INT64" => Some(Self::Int64),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ValueType {
+        String = 0,
+        Bool = 1,
+        Int64 = 2,
+    }
+    impl ValueType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ValueType::String => "STRING",
+                ValueType::Bool => "BOOL",
+                ValueType::Int64 => "INT64",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STRING" => Some(Self::String),
+                "BOOL" => Some(Self::Bool),
+                "INT64" => Some(Self::Int64),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricDescriptor {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
-#[prost(enumeration = "metric_descriptor::MetricKind", tag = "3")]
-pub metric_kind: i32,
-#[prost(enumeration = "metric_descriptor::ValueType", tag = "4")]
-pub value_type: i32,
-#[prost(string, tag = "5")]
-pub unit: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub metadata: ::core::option::Option<metric_descriptor::MetricDescriptorMetadata>,
-#[prost(enumeration = "LaunchStage", tag = "12")]
-pub launch_stage: i32,
-#[prost(string, repeated, tag = "13")]
-pub monitored_resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
+    #[prost(enumeration = "metric_descriptor::MetricKind", tag = "3")]
+    pub metric_kind: i32,
+    #[prost(enumeration = "metric_descriptor::ValueType", tag = "4")]
+    pub value_type: i32,
+    #[prost(string, tag = "5")]
+    pub unit: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub metadata: ::core::option::Option<metric_descriptor::MetricDescriptorMetadata>,
+    #[prost(enumeration = "LaunchStage", tag = "12")]
+    pub launch_stage: i32,
+    #[prost(string, repeated, tag = "13")]
+    pub monitored_resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `MetricDescriptor`.
 pub mod metric_descriptor {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MetricDescriptorMetadata {
-#[deprecated]
-#[prost(enumeration = "super::LaunchStage", tag = "1")]
-pub launch_stage: i32,
-#[prost(message, optional, tag = "2")]
-pub sample_period: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "3")]
-pub ingest_delay: ::core::option::Option<::prost_types::Duration>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MetricKind {
-Unspecified = 0,
-Gauge = 1,
-Delta = 2,
-Cumulative = 3,
-}
-impl MetricKind {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MetricKind::Unspecified => "METRIC_KIND_UNSPECIFIED",
-MetricKind::Gauge => "GAUGE",
-MetricKind::Delta => "DELTA",
-MetricKind::Cumulative => "CUMULATIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METRIC_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-"GAUGE" => Some(Self::Gauge),
-"DELTA" => Some(Self::Delta),
-"CUMULATIVE" => Some(Self::Cumulative),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ValueType {
-Unspecified = 0,
-Bool = 1,
-Int64 = 2,
-Double = 3,
-String = 4,
-Distribution = 5,
-Money = 6,
-}
-impl ValueType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ValueType::Unspecified => "VALUE_TYPE_UNSPECIFIED",
-ValueType::Bool => "BOOL",
-ValueType::Int64 => "INT64",
-ValueType::Double => "DOUBLE",
-ValueType::String => "STRING",
-ValueType::Distribution => "DISTRIBUTION",
-ValueType::Money => "MONEY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VALUE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BOOL" => Some(Self::Bool),
-"INT64" => Some(Self::Int64),
-"DOUBLE" => Some(Self::Double),
-"STRING" => Some(Self::String),
-"DISTRIBUTION" => Some(Self::Distribution),
-"MONEY" => Some(Self::Money),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MetricDescriptorMetadata {
+        #[deprecated]
+        #[prost(enumeration = "super::LaunchStage", tag = "1")]
+        pub launch_stage: i32,
+        #[prost(message, optional, tag = "2")]
+        pub sample_period: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "3")]
+        pub ingest_delay: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MetricKind {
+        Unspecified = 0,
+        Gauge = 1,
+        Delta = 2,
+        Cumulative = 3,
+    }
+    impl MetricKind {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MetricKind::Unspecified => "METRIC_KIND_UNSPECIFIED",
+                MetricKind::Gauge => "GAUGE",
+                MetricKind::Delta => "DELTA",
+                MetricKind::Cumulative => "CUMULATIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METRIC_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+                "GAUGE" => Some(Self::Gauge),
+                "DELTA" => Some(Self::Delta),
+                "CUMULATIVE" => Some(Self::Cumulative),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ValueType {
+        Unspecified = 0,
+        Bool = 1,
+        Int64 = 2,
+        Double = 3,
+        String = 4,
+        Distribution = 5,
+        Money = 6,
+    }
+    impl ValueType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ValueType::Unspecified => "VALUE_TYPE_UNSPECIFIED",
+                ValueType::Bool => "BOOL",
+                ValueType::Int64 => "INT64",
+                ValueType::Double => "DOUBLE",
+                ValueType::String => "STRING",
+                ValueType::Distribution => "DISTRIBUTION",
+                ValueType::Money => "MONEY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VALUE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "BOOL" => Some(Self::Bool),
+                "INT64" => Some(Self::Int64),
+                "DOUBLE" => Some(Self::Double),
+                "STRING" => Some(Self::String),
+                "DISTRIBUTION" => Some(Self::Distribution),
+                "MONEY" => Some(Self::Money),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metric {
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Context {
-#[prost(message, repeated, tag = "1")]
-pub rules: ::prost::alloc::vec::Vec<ContextRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<ContextRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContextRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub requested: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub provided: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub allowed_request_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub allowed_response_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub requested: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub provided: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub allowed_request_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub allowed_response_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigChange {
-#[prost(string, tag = "1")]
-pub element: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub old_value: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub new_value: ::prost::alloc::string::String,
-#[prost(enumeration = "ChangeType", tag = "4")]
-pub change_type: i32,
-#[prost(message, repeated, tag = "5")]
-pub advices: ::prost::alloc::vec::Vec<Advice>,
+    #[prost(string, tag = "1")]
+    pub element: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub old_value: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub new_value: ::prost::alloc::string::String,
+    #[prost(enumeration = "ChangeType", tag = "4")]
+    pub change_type: i32,
+    #[prost(message, repeated, tag = "5")]
+    pub advices: ::prost::alloc::vec::Vec<Advice>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Advice {
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ChangeType {
-Unspecified = 0,
-Added = 1,
-Removed = 2,
-Modified = 3,
+    Unspecified = 0,
+    Added = 1,
+    Removed = 2,
+    Modified = 3,
 }
 impl ChangeType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
-ChangeType::Added => "ADDED",
-ChangeType::Removed => "REMOVED",
-ChangeType::Modified => "MODIFIED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ADDED" => Some(Self::Added),
-"REMOVED" => Some(Self::Removed),
-"MODIFIED" => Some(Self::Modified),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
+            ChangeType::Added => "ADDED",
+            ChangeType::Removed => "REMOVED",
+            ChangeType::Modified => "MODIFIED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ADDED" => Some(Self::Added),
+            "REMOVED" => Some(Self::Removed),
+            "MODIFIED" => Some(Self::Modified),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SystemParameters {
-#[prost(message, repeated, tag = "1")]
-pub rules: ::prost::alloc::vec::Vec<SystemParameterRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<SystemParameterRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SystemParameterRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub parameters: ::prost::alloc::vec::Vec<SystemParameter>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub parameters: ::prost::alloc::vec::Vec<SystemParameter>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SystemParameter {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub http_header: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub url_query_parameter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub http_header: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub url_query_parameter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Monitoring {
-#[prost(message, repeated, tag = "1")]
-pub producer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
-#[prost(message, repeated, tag = "2")]
-pub consumer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
+    #[prost(message, repeated, tag = "1")]
+    pub producer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
+    #[prost(message, repeated, tag = "2")]
+    pub consumer_destinations: ::prost::alloc::vec::Vec<monitoring::MonitoringDestination>,
 }
 /// Nested message and enum types in `Monitoring`.
 pub mod monitoring {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MonitoringDestination {
-#[prost(string, tag = "1")]
-pub monitored_resource: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MonitoringDestination {
+        #[prost(string, tag = "1")]
+        pub monitored_resource: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Authentication {
-#[prost(message, repeated, tag = "3")]
-pub rules: ::prost::alloc::vec::Vec<AuthenticationRule>,
-#[prost(message, repeated, tag = "4")]
-pub providers: ::prost::alloc::vec::Vec<AuthProvider>,
+    #[prost(message, repeated, tag = "3")]
+    pub rules: ::prost::alloc::vec::Vec<AuthenticationRule>,
+    #[prost(message, repeated, tag = "4")]
+    pub providers: ::prost::alloc::vec::Vec<AuthProvider>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthenticationRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub oauth: ::core::option::Option<OAuthRequirements>,
-#[prost(bool, tag = "5")]
-pub allow_without_credential: bool,
-#[prost(message, repeated, tag = "7")]
-pub requirements: ::prost::alloc::vec::Vec<AuthRequirement>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub oauth: ::core::option::Option<OAuthRequirements>,
+    #[prost(bool, tag = "5")]
+    pub allow_without_credential: bool,
+    #[prost(message, repeated, tag = "7")]
+    pub requirements: ::prost::alloc::vec::Vec<AuthRequirement>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtLocation {
-#[prost(string, tag = "3")]
-pub value_prefix: ::prost::alloc::string::String,
-#[prost(oneof = "jwt_location::In", tags = "1, 2, 4")]
-pub r#in: ::core::option::Option<jwt_location::In>,
+    #[prost(string, tag = "3")]
+    pub value_prefix: ::prost::alloc::string::String,
+    #[prost(oneof = "jwt_location::In", tags = "1, 2, 4")]
+    pub r#in: ::core::option::Option<jwt_location::In>,
 }
 /// Nested message and enum types in `JwtLocation`.
 pub mod jwt_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum In {
-#[prost(string, tag = "1")]
-Header(::prost::alloc::string::String),
-#[prost(string, tag = "2")]
-Query(::prost::alloc::string::String),
-#[prost(string, tag = "4")]
-Cookie(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum In {
+        #[prost(string, tag = "1")]
+        Header(::prost::alloc::string::String),
+        #[prost(string, tag = "2")]
+        Query(::prost::alloc::string::String),
+        #[prost(string, tag = "4")]
+        Cookie(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthProvider {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub issuer: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub jwks_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub audiences: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub authorization_url: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "6")]
-pub jwt_locations: ::prost::alloc::vec::Vec<JwtLocation>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub issuer: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub jwks_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub audiences: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub authorization_url: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "6")]
+    pub jwt_locations: ::prost::alloc::vec::Vec<JwtLocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OAuthRequirements {
-#[prost(string, tag = "1")]
-pub canonical_scopes: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub canonical_scopes: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthRequirement {
-#[prost(string, tag = "1")]
-pub provider_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub audiences: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub provider_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub audiences: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Backend {
-#[prost(message, repeated, tag = "1")]
-pub rules: ::prost::alloc::vec::Vec<BackendRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<BackendRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackendRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub address: ::prost::alloc::string::String,
-#[prost(double, tag = "3")]
-pub deadline: f64,
-#[deprecated]
-#[prost(double, tag = "4")]
-pub min_deadline: f64,
-#[prost(double, tag = "5")]
-pub operation_deadline: f64,
-#[prost(enumeration = "backend_rule::PathTranslation", tag = "6")]
-pub path_translation: i32,
-#[prost(string, tag = "9")]
-pub protocol: ::prost::alloc::string::String,
-#[prost(map = "string, message", tag = "10")]
-pub overrides_by_request_protocol: ::std::collections::HashMap<::prost::alloc::string::String, BackendRule>,
-#[prost(oneof = "backend_rule::Authentication", tags = "7, 8")]
-pub authentication: ::core::option::Option<backend_rule::Authentication>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(double, tag = "3")]
+    pub deadline: f64,
+    #[deprecated]
+    #[prost(double, tag = "4")]
+    pub min_deadline: f64,
+    #[prost(double, tag = "5")]
+    pub operation_deadline: f64,
+    #[prost(enumeration = "backend_rule::PathTranslation", tag = "6")]
+    pub path_translation: i32,
+    #[prost(string, tag = "9")]
+    pub protocol: ::prost::alloc::string::String,
+    #[prost(map = "string, message", tag = "10")]
+    pub overrides_by_request_protocol:
+        ::std::collections::HashMap<::prost::alloc::string::String, BackendRule>,
+    #[prost(oneof = "backend_rule::Authentication", tags = "7, 8")]
+    pub authentication: ::core::option::Option<backend_rule::Authentication>,
 }
 /// Nested message and enum types in `BackendRule`.
 pub mod backend_rule {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PathTranslation {
-Unspecified = 0,
-ConstantAddress = 1,
-AppendPathToAddress = 2,
-}
-impl PathTranslation {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PathTranslation::Unspecified => "PATH_TRANSLATION_UNSPECIFIED",
-PathTranslation::ConstantAddress => "CONSTANT_ADDRESS",
-PathTranslation::AppendPathToAddress => "APPEND_PATH_TO_ADDRESS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PATH_TRANSLATION_UNSPECIFIED" => Some(Self::Unspecified),
-"CONSTANT_ADDRESS" => Some(Self::ConstantAddress),
-"APPEND_PATH_TO_ADDRESS" => Some(Self::AppendPathToAddress),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Authentication {
-#[prost(string, tag = "7")]
-JwtAudience(::prost::alloc::string::String),
-#[prost(bool, tag = "8")]
-DisableAuth(bool),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PathTranslation {
+        Unspecified = 0,
+        ConstantAddress = 1,
+        AppendPathToAddress = 2,
+    }
+    impl PathTranslation {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PathTranslation::Unspecified => "PATH_TRANSLATION_UNSPECIFIED",
+                PathTranslation::ConstantAddress => "CONSTANT_ADDRESS",
+                PathTranslation::AppendPathToAddress => "APPEND_PATH_TO_ADDRESS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PATH_TRANSLATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONSTANT_ADDRESS" => Some(Self::ConstantAddress),
+                "APPEND_PATH_TO_ADDRESS" => Some(Self::AppendPathToAddress),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Authentication {
+        #[prost(string, tag = "7")]
+        JwtAudience(::prost::alloc::string::String),
+        #[prost(bool, tag = "8")]
+        DisableAuth(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Billing {
-#[prost(message, repeated, tag = "8")]
-pub consumer_destinations: ::prost::alloc::vec::Vec<billing::BillingDestination>,
+    #[prost(message, repeated, tag = "8")]
+    pub consumer_destinations: ::prost::alloc::vec::Vec<billing::BillingDestination>,
 }
 /// Nested message and enum types in `Billing`.
 pub mod billing {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BillingDestination {
-#[prost(string, tag = "1")]
-pub monitored_resource: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BillingDestination {
+        #[prost(string, tag = "1")]
+        pub monitored_resource: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldPolicy {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource_permission: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub resource_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub resource_permission: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub resource_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MethodPolicy {
-#[prost(string, tag = "9")]
-pub selector: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub request_policies: ::prost::alloc::vec::Vec<FieldPolicy>,
+    #[prost(string, tag = "9")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub request_policies: ::prost::alloc::vec::Vec<FieldPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Control {
-#[prost(string, tag = "1")]
-pub environment: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub method_policies: ::prost::alloc::vec::Vec<MethodPolicy>,
+    #[prost(string, tag = "1")]
+    pub environment: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub method_policies: ::prost::alloc::vec::Vec<MethodPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Documentation {
-#[prost(string, tag = "1")]
-pub summary: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "5")]
-pub pages: ::prost::alloc::vec::Vec<Page>,
-#[prost(message, repeated, tag = "3")]
-pub rules: ::prost::alloc::vec::Vec<DocumentationRule>,
-#[prost(string, tag = "4")]
-pub documentation_root_url: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub service_root_url: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub overview: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub summary: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub pages: ::prost::alloc::vec::Vec<Page>,
+    #[prost(message, repeated, tag = "3")]
+    pub rules: ::prost::alloc::vec::Vec<DocumentationRule>,
+    #[prost(string, tag = "4")]
+    pub documentation_root_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub service_root_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub overview: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentationRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub deprecation_description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub deprecation_description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Page {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub content: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub subpages: ::prost::alloc::vec::Vec<Page>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub content: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub subpages: ::prost::alloc::vec::Vec<Page>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Endpoint {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "101")]
-pub target: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub allow_cors: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "101")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub allow_cors: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogDescriptor {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Logging {
-#[prost(message, repeated, tag = "1")]
-pub producer_destinations: ::prost::alloc::vec::Vec<logging::LoggingDestination>,
-#[prost(message, repeated, tag = "2")]
-pub consumer_destinations: ::prost::alloc::vec::Vec<logging::LoggingDestination>,
+    #[prost(message, repeated, tag = "1")]
+    pub producer_destinations: ::prost::alloc::vec::Vec<logging::LoggingDestination>,
+    #[prost(message, repeated, tag = "2")]
+    pub consumer_destinations: ::prost::alloc::vec::Vec<logging::LoggingDestination>,
 }
 /// Nested message and enum types in `Logging`.
 pub mod logging {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LoggingDestination {
-#[prost(string, tag = "3")]
-pub monitored_resource: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "1")]
-pub logs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LoggingDestination {
+        #[prost(string, tag = "3")]
+        pub monitored_resource: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "1")]
+        pub logs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonitoredResourceDescriptor {
-#[prost(string, tag = "5")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
-#[prost(enumeration = "LaunchStage", tag = "7")]
-pub launch_stage: i32,
+    #[prost(string, tag = "5")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub labels: ::prost::alloc::vec::Vec<LabelDescriptor>,
+    #[prost(enumeration = "LaunchStage", tag = "7")]
+    pub launch_stage: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonitoredResource {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonitoredResourceMetadata {
-#[prost(message, optional, tag = "1")]
-pub system_labels: ::core::option::Option<::prost_types::Struct>,
-#[prost(map = "string, string", tag = "2")]
-pub user_labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub system_labels: ::core::option::Option<::prost_types::Struct>,
+    #[prost(map = "string, string", tag = "2")]
+    pub user_labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Quota {
-#[prost(message, repeated, tag = "3")]
-pub limits: ::prost::alloc::vec::Vec<QuotaLimit>,
-#[prost(message, repeated, tag = "4")]
-pub metric_rules: ::prost::alloc::vec::Vec<MetricRule>,
+    #[prost(message, repeated, tag = "3")]
+    pub limits: ::prost::alloc::vec::Vec<QuotaLimit>,
+    #[prost(message, repeated, tag = "4")]
+    pub metric_rules: ::prost::alloc::vec::Vec<MetricRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(map = "string, int64", tag = "2")]
-pub metric_costs: ::std::collections::HashMap<::prost::alloc::string::String, i64>,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(map = "string, int64", tag = "2")]
+    pub metric_costs: ::std::collections::HashMap<::prost::alloc::string::String, i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuotaLimit {
-#[prost(string, tag = "6")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub default_limit: i64,
-#[prost(int64, tag = "4")]
-pub max_limit: i64,
-#[prost(int64, tag = "7")]
-pub free_tier: i64,
-#[prost(string, tag = "5")]
-pub duration: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub metric: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub unit: ::prost::alloc::string::String,
-#[prost(map = "string, int64", tag = "10")]
-pub values: ::std::collections::HashMap<::prost::alloc::string::String, i64>,
-#[prost(string, tag = "12")]
-pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub default_limit: i64,
+    #[prost(int64, tag = "4")]
+    pub max_limit: i64,
+    #[prost(int64, tag = "7")]
+    pub free_tier: i64,
+    #[prost(string, tag = "5")]
+    pub duration: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub metric: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub unit: ::prost::alloc::string::String,
+    #[prost(map = "string, int64", tag = "10")]
+    pub values: ::std::collections::HashMap<::prost::alloc::string::String, i64>,
+    #[prost(string, tag = "12")]
+    pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceInfo {
-#[prost(message, repeated, tag = "1")]
-pub source_files: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    #[prost(message, repeated, tag = "1")]
+    pub source_files: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Usage {
-#[prost(string, repeated, tag = "1")]
-pub requirements: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "6")]
-pub rules: ::prost::alloc::vec::Vec<UsageRule>,
-#[prost(string, tag = "7")]
-pub producer_notification_channel: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "1")]
+    pub requirements: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "6")]
+    pub rules: ::prost::alloc::vec::Vec<UsageRule>,
+    #[prost(string, tag = "7")]
+    pub producer_notification_channel: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsageRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_unregistered_calls: bool,
-#[prost(bool, tag = "3")]
-pub skip_service_control: bool,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_unregistered_calls: bool,
+    #[prost(bool, tag = "3")]
+    pub skip_service_control: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub title: ::prost::alloc::string::String,
-#[prost(string, tag = "22")]
-pub producer_project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "33")]
-pub id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
-#[prost(message, repeated, tag = "4")]
-pub types: ::prost::alloc::vec::Vec<::prost_types::Type>,
-#[prost(message, repeated, tag = "5")]
-pub enums: ::prost::alloc::vec::Vec<::prost_types::Enum>,
-#[prost(message, optional, tag = "6")]
-pub documentation: ::core::option::Option<Documentation>,
-#[prost(message, optional, tag = "8")]
-pub backend: ::core::option::Option<Backend>,
-#[prost(message, optional, tag = "9")]
-pub http: ::core::option::Option<Http>,
-#[prost(message, optional, tag = "10")]
-pub quota: ::core::option::Option<Quota>,
-#[prost(message, optional, tag = "11")]
-pub authentication: ::core::option::Option<Authentication>,
-#[prost(message, optional, tag = "12")]
-pub context: ::core::option::Option<Context>,
-#[prost(message, optional, tag = "15")]
-pub usage: ::core::option::Option<Usage>,
-#[prost(message, repeated, tag = "18")]
-pub endpoints: ::prost::alloc::vec::Vec<Endpoint>,
-#[prost(message, optional, tag = "21")]
-pub control: ::core::option::Option<Control>,
-#[prost(message, repeated, tag = "23")]
-pub logs: ::prost::alloc::vec::Vec<LogDescriptor>,
-#[prost(message, repeated, tag = "24")]
-pub metrics: ::prost::alloc::vec::Vec<MetricDescriptor>,
-#[prost(message, repeated, tag = "25")]
-pub monitored_resources: ::prost::alloc::vec::Vec<MonitoredResourceDescriptor>,
-#[prost(message, optional, tag = "26")]
-pub billing: ::core::option::Option<Billing>,
-#[prost(message, optional, tag = "27")]
-pub logging: ::core::option::Option<Logging>,
-#[prost(message, optional, tag = "28")]
-pub monitoring: ::core::option::Option<Monitoring>,
-#[prost(message, optional, tag = "29")]
-pub system_parameters: ::core::option::Option<SystemParameters>,
-#[prost(message, optional, tag = "37")]
-pub source_info: ::core::option::Option<SourceInfo>,
-#[prost(message, optional, tag = "45")]
-pub publishing: ::core::option::Option<Publishing>,
-#[prost(message, optional, tag = "20")]
-pub config_version: ::core::option::Option<u32>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag = "22")]
+    pub producer_project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "33")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
+    #[prost(message, repeated, tag = "4")]
+    pub types: ::prost::alloc::vec::Vec<::prost_types::Type>,
+    #[prost(message, repeated, tag = "5")]
+    pub enums: ::prost::alloc::vec::Vec<::prost_types::Enum>,
+    #[prost(message, optional, tag = "6")]
+    pub documentation: ::core::option::Option<Documentation>,
+    #[prost(message, optional, tag = "8")]
+    pub backend: ::core::option::Option<Backend>,
+    #[prost(message, optional, tag = "9")]
+    pub http: ::core::option::Option<Http>,
+    #[prost(message, optional, tag = "10")]
+    pub quota: ::core::option::Option<Quota>,
+    #[prost(message, optional, tag = "11")]
+    pub authentication: ::core::option::Option<Authentication>,
+    #[prost(message, optional, tag = "12")]
+    pub context: ::core::option::Option<Context>,
+    #[prost(message, optional, tag = "15")]
+    pub usage: ::core::option::Option<Usage>,
+    #[prost(message, repeated, tag = "18")]
+    pub endpoints: ::prost::alloc::vec::Vec<Endpoint>,
+    #[prost(message, optional, tag = "21")]
+    pub control: ::core::option::Option<Control>,
+    #[prost(message, repeated, tag = "23")]
+    pub logs: ::prost::alloc::vec::Vec<LogDescriptor>,
+    #[prost(message, repeated, tag = "24")]
+    pub metrics: ::prost::alloc::vec::Vec<MetricDescriptor>,
+    #[prost(message, repeated, tag = "25")]
+    pub monitored_resources: ::prost::alloc::vec::Vec<MonitoredResourceDescriptor>,
+    #[prost(message, optional, tag = "26")]
+    pub billing: ::core::option::Option<Billing>,
+    #[prost(message, optional, tag = "27")]
+    pub logging: ::core::option::Option<Logging>,
+    #[prost(message, optional, tag = "28")]
+    pub monitoring: ::core::option::Option<Monitoring>,
+    #[prost(message, optional, tag = "29")]
+    pub system_parameters: ::core::option::Option<SystemParameters>,
+    #[prost(message, optional, tag = "37")]
+    pub source_info: ::core::option::Option<SourceInfo>,
+    #[prost(message, optional, tag = "45")]
+    pub publishing: ::core::option::Option<Publishing>,
+    #[prost(message, optional, tag = "20")]
+    pub config_version: ::core::option::Option<u32>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ErrorReason {
-Unspecified = 0,
-ServiceDisabled = 1,
-BillingDisabled = 2,
-ApiKeyInvalid = 3,
-ApiKeyServiceBlocked = 4,
-ApiKeyHttpReferrerBlocked = 7,
-ApiKeyIpAddressBlocked = 8,
-ApiKeyAndroidAppBlocked = 9,
-ApiKeyIosAppBlocked = 13,
-RateLimitExceeded = 5,
-ResourceQuotaExceeded = 6,
-LocationTaxPolicyViolated = 10,
-UserProjectDenied = 11,
-ConsumerSuspended = 12,
-ConsumerInvalid = 14,
-SecurityPolicyViolated = 15,
-AccessTokenExpired = 16,
-AccessTokenScopeInsufficient = 17,
-AccountStateInvalid = 18,
-AccessTokenTypeUnsupported = 19,
-CredentialsMissing = 20,
-ResourceProjectInvalid = 21,
-SessionCookieInvalid = 23,
-UserBlockedByAdmin = 24,
-ResourceUsageRestrictionViolated = 25,
-SystemParameterUnsupported = 26,
-OrgRestrictionViolation = 27,
-OrgRestrictionHeaderInvalid = 28,
-ServiceNotVisible = 29,
-GcpSuspended = 30,
-LocationPolicyViolated = 31,
+    Unspecified = 0,
+    ServiceDisabled = 1,
+    BillingDisabled = 2,
+    ApiKeyInvalid = 3,
+    ApiKeyServiceBlocked = 4,
+    ApiKeyHttpReferrerBlocked = 7,
+    ApiKeyIpAddressBlocked = 8,
+    ApiKeyAndroidAppBlocked = 9,
+    ApiKeyIosAppBlocked = 13,
+    RateLimitExceeded = 5,
+    ResourceQuotaExceeded = 6,
+    LocationTaxPolicyViolated = 10,
+    UserProjectDenied = 11,
+    ConsumerSuspended = 12,
+    ConsumerInvalid = 14,
+    SecurityPolicyViolated = 15,
+    AccessTokenExpired = 16,
+    AccessTokenScopeInsufficient = 17,
+    AccountStateInvalid = 18,
+    AccessTokenTypeUnsupported = 19,
+    CredentialsMissing = 20,
+    ResourceProjectInvalid = 21,
+    SessionCookieInvalid = 23,
+    UserBlockedByAdmin = 24,
+    ResourceUsageRestrictionViolated = 25,
+    SystemParameterUnsupported = 26,
+    OrgRestrictionViolation = 27,
+    OrgRestrictionHeaderInvalid = 28,
+    ServiceNotVisible = 29,
+    GcpSuspended = 30,
+    LocationPolicyViolated = 31,
 }
 impl ErrorReason {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ErrorReason::Unspecified => "ERROR_REASON_UNSPECIFIED",
-ErrorReason::ServiceDisabled => "SERVICE_DISABLED",
-ErrorReason::BillingDisabled => "BILLING_DISABLED",
-ErrorReason::ApiKeyInvalid => "API_KEY_INVALID",
-ErrorReason::ApiKeyServiceBlocked => "API_KEY_SERVICE_BLOCKED",
-ErrorReason::ApiKeyHttpReferrerBlocked => "API_KEY_HTTP_REFERRER_BLOCKED",
-ErrorReason::ApiKeyIpAddressBlocked => "API_KEY_IP_ADDRESS_BLOCKED",
-ErrorReason::ApiKeyAndroidAppBlocked => "API_KEY_ANDROID_APP_BLOCKED",
-ErrorReason::ApiKeyIosAppBlocked => "API_KEY_IOS_APP_BLOCKED",
-ErrorReason::RateLimitExceeded => "RATE_LIMIT_EXCEEDED",
-ErrorReason::ResourceQuotaExceeded => "RESOURCE_QUOTA_EXCEEDED",
-ErrorReason::LocationTaxPolicyViolated => "LOCATION_TAX_POLICY_VIOLATED",
-ErrorReason::UserProjectDenied => "USER_PROJECT_DENIED",
-ErrorReason::ConsumerSuspended => "CONSUMER_SUSPENDED",
-ErrorReason::ConsumerInvalid => "CONSUMER_INVALID",
-ErrorReason::SecurityPolicyViolated => "SECURITY_POLICY_VIOLATED",
-ErrorReason::AccessTokenExpired => "ACCESS_TOKEN_EXPIRED",
-ErrorReason::AccessTokenScopeInsufficient => "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
-ErrorReason::AccountStateInvalid => "ACCOUNT_STATE_INVALID",
-ErrorReason::AccessTokenTypeUnsupported => "ACCESS_TOKEN_TYPE_UNSUPPORTED",
-ErrorReason::CredentialsMissing => "CREDENTIALS_MISSING",
-ErrorReason::ResourceProjectInvalid => "RESOURCE_PROJECT_INVALID",
-ErrorReason::SessionCookieInvalid => "SESSION_COOKIE_INVALID",
-ErrorReason::UserBlockedByAdmin => "USER_BLOCKED_BY_ADMIN",
-ErrorReason::ResourceUsageRestrictionViolated => "RESOURCE_USAGE_RESTRICTION_VIOLATED",
-ErrorReason::SystemParameterUnsupported => "SYSTEM_PARAMETER_UNSUPPORTED",
-ErrorReason::OrgRestrictionViolation => "ORG_RESTRICTION_VIOLATION",
-ErrorReason::OrgRestrictionHeaderInvalid => "ORG_RESTRICTION_HEADER_INVALID",
-ErrorReason::ServiceNotVisible => "SERVICE_NOT_VISIBLE",
-ErrorReason::GcpSuspended => "GCP_SUSPENDED",
-ErrorReason::LocationPolicyViolated => "LOCATION_POLICY_VIOLATED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ERROR_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-"SERVICE_DISABLED" => Some(Self::ServiceDisabled),
-"BILLING_DISABLED" => Some(Self::BillingDisabled),
-"API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
-"API_KEY_SERVICE_BLOCKED" => Some(Self::ApiKeyServiceBlocked),
-"API_KEY_HTTP_REFERRER_BLOCKED" => Some(Self::ApiKeyHttpReferrerBlocked),
-"API_KEY_IP_ADDRESS_BLOCKED" => Some(Self::ApiKeyIpAddressBlocked),
-"API_KEY_ANDROID_APP_BLOCKED" => Some(Self::ApiKeyAndroidAppBlocked),
-"API_KEY_IOS_APP_BLOCKED" => Some(Self::ApiKeyIosAppBlocked),
-"RATE_LIMIT_EXCEEDED" => Some(Self::RateLimitExceeded),
-"RESOURCE_QUOTA_EXCEEDED" => Some(Self::ResourceQuotaExceeded),
-"LOCATION_TAX_POLICY_VIOLATED" => Some(Self::LocationTaxPolicyViolated),
-"USER_PROJECT_DENIED" => Some(Self::UserProjectDenied),
-"CONSUMER_SUSPENDED" => Some(Self::ConsumerSuspended),
-"CONSUMER_INVALID" => Some(Self::ConsumerInvalid),
-"SECURITY_POLICY_VIOLATED" => Some(Self::SecurityPolicyViolated),
-"ACCESS_TOKEN_EXPIRED" => Some(Self::AccessTokenExpired),
-"ACCESS_TOKEN_SCOPE_INSUFFICIENT" => Some(Self::AccessTokenScopeInsufficient),
-"ACCOUNT_STATE_INVALID" => Some(Self::AccountStateInvalid),
-"ACCESS_TOKEN_TYPE_UNSUPPORTED" => Some(Self::AccessTokenTypeUnsupported),
-"CREDENTIALS_MISSING" => Some(Self::CredentialsMissing),
-"RESOURCE_PROJECT_INVALID" => Some(Self::ResourceProjectInvalid),
-"SESSION_COOKIE_INVALID" => Some(Self::SessionCookieInvalid),
-"USER_BLOCKED_BY_ADMIN" => Some(Self::UserBlockedByAdmin),
-"RESOURCE_USAGE_RESTRICTION_VIOLATED" => Some(Self::ResourceUsageRestrictionViolated),
-"SYSTEM_PARAMETER_UNSUPPORTED" => Some(Self::SystemParameterUnsupported),
-"ORG_RESTRICTION_VIOLATION" => Some(Self::OrgRestrictionViolation),
-"ORG_RESTRICTION_HEADER_INVALID" => Some(Self::OrgRestrictionHeaderInvalid),
-"SERVICE_NOT_VISIBLE" => Some(Self::ServiceNotVisible),
-"GCP_SUSPENDED" => Some(Self::GcpSuspended),
-"LOCATION_POLICY_VIOLATED" => Some(Self::LocationPolicyViolated),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ErrorReason::Unspecified => "ERROR_REASON_UNSPECIFIED",
+            ErrorReason::ServiceDisabled => "SERVICE_DISABLED",
+            ErrorReason::BillingDisabled => "BILLING_DISABLED",
+            ErrorReason::ApiKeyInvalid => "API_KEY_INVALID",
+            ErrorReason::ApiKeyServiceBlocked => "API_KEY_SERVICE_BLOCKED",
+            ErrorReason::ApiKeyHttpReferrerBlocked => "API_KEY_HTTP_REFERRER_BLOCKED",
+            ErrorReason::ApiKeyIpAddressBlocked => "API_KEY_IP_ADDRESS_BLOCKED",
+            ErrorReason::ApiKeyAndroidAppBlocked => "API_KEY_ANDROID_APP_BLOCKED",
+            ErrorReason::ApiKeyIosAppBlocked => "API_KEY_IOS_APP_BLOCKED",
+            ErrorReason::RateLimitExceeded => "RATE_LIMIT_EXCEEDED",
+            ErrorReason::ResourceQuotaExceeded => "RESOURCE_QUOTA_EXCEEDED",
+            ErrorReason::LocationTaxPolicyViolated => "LOCATION_TAX_POLICY_VIOLATED",
+            ErrorReason::UserProjectDenied => "USER_PROJECT_DENIED",
+            ErrorReason::ConsumerSuspended => "CONSUMER_SUSPENDED",
+            ErrorReason::ConsumerInvalid => "CONSUMER_INVALID",
+            ErrorReason::SecurityPolicyViolated => "SECURITY_POLICY_VIOLATED",
+            ErrorReason::AccessTokenExpired => "ACCESS_TOKEN_EXPIRED",
+            ErrorReason::AccessTokenScopeInsufficient => "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+            ErrorReason::AccountStateInvalid => "ACCOUNT_STATE_INVALID",
+            ErrorReason::AccessTokenTypeUnsupported => "ACCESS_TOKEN_TYPE_UNSUPPORTED",
+            ErrorReason::CredentialsMissing => "CREDENTIALS_MISSING",
+            ErrorReason::ResourceProjectInvalid => "RESOURCE_PROJECT_INVALID",
+            ErrorReason::SessionCookieInvalid => "SESSION_COOKIE_INVALID",
+            ErrorReason::UserBlockedByAdmin => "USER_BLOCKED_BY_ADMIN",
+            ErrorReason::ResourceUsageRestrictionViolated => "RESOURCE_USAGE_RESTRICTION_VIOLATED",
+            ErrorReason::SystemParameterUnsupported => "SYSTEM_PARAMETER_UNSUPPORTED",
+            ErrorReason::OrgRestrictionViolation => "ORG_RESTRICTION_VIOLATION",
+            ErrorReason::OrgRestrictionHeaderInvalid => "ORG_RESTRICTION_HEADER_INVALID",
+            ErrorReason::ServiceNotVisible => "SERVICE_NOT_VISIBLE",
+            ErrorReason::GcpSuspended => "GCP_SUSPENDED",
+            ErrorReason::LocationPolicyViolated => "LOCATION_POLICY_VIOLATED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ERROR_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+            "SERVICE_DISABLED" => Some(Self::ServiceDisabled),
+            "BILLING_DISABLED" => Some(Self::BillingDisabled),
+            "API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
+            "API_KEY_SERVICE_BLOCKED" => Some(Self::ApiKeyServiceBlocked),
+            "API_KEY_HTTP_REFERRER_BLOCKED" => Some(Self::ApiKeyHttpReferrerBlocked),
+            "API_KEY_IP_ADDRESS_BLOCKED" => Some(Self::ApiKeyIpAddressBlocked),
+            "API_KEY_ANDROID_APP_BLOCKED" => Some(Self::ApiKeyAndroidAppBlocked),
+            "API_KEY_IOS_APP_BLOCKED" => Some(Self::ApiKeyIosAppBlocked),
+            "RATE_LIMIT_EXCEEDED" => Some(Self::RateLimitExceeded),
+            "RESOURCE_QUOTA_EXCEEDED" => Some(Self::ResourceQuotaExceeded),
+            "LOCATION_TAX_POLICY_VIOLATED" => Some(Self::LocationTaxPolicyViolated),
+            "USER_PROJECT_DENIED" => Some(Self::UserProjectDenied),
+            "CONSUMER_SUSPENDED" => Some(Self::ConsumerSuspended),
+            "CONSUMER_INVALID" => Some(Self::ConsumerInvalid),
+            "SECURITY_POLICY_VIOLATED" => Some(Self::SecurityPolicyViolated),
+            "ACCESS_TOKEN_EXPIRED" => Some(Self::AccessTokenExpired),
+            "ACCESS_TOKEN_SCOPE_INSUFFICIENT" => Some(Self::AccessTokenScopeInsufficient),
+            "ACCOUNT_STATE_INVALID" => Some(Self::AccountStateInvalid),
+            "ACCESS_TOKEN_TYPE_UNSUPPORTED" => Some(Self::AccessTokenTypeUnsupported),
+            "CREDENTIALS_MISSING" => Some(Self::CredentialsMissing),
+            "RESOURCE_PROJECT_INVALID" => Some(Self::ResourceProjectInvalid),
+            "SESSION_COOKIE_INVALID" => Some(Self::SessionCookieInvalid),
+            "USER_BLOCKED_BY_ADMIN" => Some(Self::UserBlockedByAdmin),
+            "RESOURCE_USAGE_RESTRICTION_VIOLATED" => Some(Self::ResourceUsageRestrictionViolated),
+            "SYSTEM_PARAMETER_UNSUPPORTED" => Some(Self::SystemParameterUnsupported),
+            "ORG_RESTRICTION_VIOLATION" => Some(Self::OrgRestrictionViolation),
+            "ORG_RESTRICTION_HEADER_INVALID" => Some(Self::OrgRestrictionHeaderInvalid),
+            "SERVICE_NOT_VISIBLE" => Some(Self::ServiceNotVisible),
+            "GCP_SUSPENDED" => Some(Self::GcpSuspended),
+            "LOCATION_POLICY_VIOLATED" => Some(Self::LocationPolicyViolated),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Visibility {
-#[prost(message, repeated, tag = "1")]
-pub rules: ::prost::alloc::vec::Vec<VisibilityRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<VisibilityRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VisibilityRule {
-#[prost(string, tag = "1")]
-pub selector: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub restriction: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub selector: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub restriction: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProjectProperties {
-#[prost(message, repeated, tag = "1")]
-pub properties: ::prost::alloc::vec::Vec<Property>,
+    #[prost(message, repeated, tag = "1")]
+    pub properties: ::prost::alloc::vec::Vec<Property>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Property {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "property::PropertyType", tag = "2")]
-pub r#type: i32,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "property::PropertyType", tag = "2")]
+    pub r#type: i32,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Property`.
 pub mod property {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PropertyType {
-Unspecified = 0,
-Int64 = 1,
-Bool = 2,
-String = 3,
-Double = 4,
-}
-impl PropertyType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PropertyType::Unspecified => "UNSPECIFIED",
-PropertyType::Int64 => "INT64",
-PropertyType::Bool => "BOOL",
-PropertyType::String => "STRING",
-PropertyType::Double => "DOUBLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNSPECIFIED" => Some(Self::Unspecified),
-"INT64" => Some(Self::Int64),
-"BOOL" => Some(Self::Bool),
-"STRING" => Some(Self::String),
-"DOUBLE" => Some(Self::Double),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PropertyType {
+        Unspecified = 0,
+        Int64 = 1,
+        Bool = 2,
+        String = 3,
+        Double = 4,
+    }
+    impl PropertyType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PropertyType::Unspecified => "UNSPECIFIED",
+                PropertyType::Int64 => "INT64",
+                PropertyType::Bool => "BOOL",
+                PropertyType::String => "STRING",
+                PropertyType::Double => "DOUBLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "INT64" => Some(Self::Int64),
+                "BOOL" => Some(Self::Bool),
+                "STRING" => Some(Self::String),
+                "DOUBLE" => Some(Self::Double),
+                _ => None,
+            }
+        }
+    }
 }

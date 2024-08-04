@@ -2,43 +2,43 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisasterRecoveryEvent {
-#[prost(enumeration = "disaster_recovery_event::Severity", optional, tag = "1")]
-pub severity: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "2")]
-pub details: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "disaster_recovery_event::Severity", optional, tag = "1")]
+    pub severity: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "2")]
+    pub details: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `DisasterRecoveryEvent`.
 pub mod disaster_recovery_event {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Severity {
-Unspecified = 0,
-ActionRequired = 1,
-ActionSuggested = 2,
-Notice = 3,
-}
-impl Severity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-Severity::ActionRequired => "ACTION_REQUIRED",
-Severity::ActionSuggested => "ACTION_SUGGESTED",
-Severity::Notice => "NOTICE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-"ACTION_REQUIRED" => Some(Self::ActionRequired),
-"ACTION_SUGGESTED" => Some(Self::ActionSuggested),
-"NOTICE" => Some(Self::Notice),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Severity {
+        Unspecified = 0,
+        ActionRequired = 1,
+        ActionSuggested = 2,
+        Notice = 3,
+    }
+    impl Severity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+                Severity::ActionRequired => "ACTION_REQUIRED",
+                Severity::ActionSuggested => "ACTION_SUGGESTED",
+                Severity::Notice => "NOTICE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTION_REQUIRED" => Some(Self::ActionRequired),
+                "ACTION_SUGGESTED" => Some(Self::ActionSuggested),
+                "NOTICE" => Some(Self::Notice),
+                _ => None,
+            }
+        }
+    }
 }

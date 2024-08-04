@@ -2,340 +2,367 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportAssetsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "3")]
-pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "ContentType", tag = "4")]
-pub content_type: i32,
-#[prost(message, optional, tag = "5")]
-pub output_config: ::core::option::Option<OutputConfig>,
-#[prost(string, repeated, tag = "6")]
-pub relationship_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "3")]
+    pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "ContentType", tag = "4")]
+    pub content_type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub output_config: ::core::option::Option<OutputConfig>,
+    #[prost(string, repeated, tag = "6")]
+    pub relationship_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportAssetsResponse {
-#[prost(message, optional, tag = "1")]
-pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub output_config: ::core::option::Option<OutputConfig>,
-#[prost(message, optional, tag = "3")]
-pub output_result: ::core::option::Option<OutputResult>,
+    #[prost(message, optional, tag = "1")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub output_config: ::core::option::Option<OutputConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub output_result: ::core::option::Option<OutputResult>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-#[prost(oneof = "output_config::Destination", tags = "1, 2")]
-pub destination: ::core::option::Option<output_config::Destination>,
+    #[prost(oneof = "output_config::Destination", tags = "1, 2")]
+    pub destination: ::core::option::Option<output_config::Destination>,
 }
 /// Nested message and enum types in `OutputConfig`.
 pub mod output_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Destination {
-#[prost(message, tag = "1")]
-GcsDestination(super::GcsDestination),
-#[prost(message, tag = "2")]
-BigqueryDestination(super::BigQueryDestination),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Destination {
+        #[prost(message, tag = "1")]
+        GcsDestination(super::GcsDestination),
+        #[prost(message, tag = "2")]
+        BigqueryDestination(super::BigQueryDestination),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputResult {
-#[prost(oneof = "output_result::Result", tags = "1")]
-pub result: ::core::option::Option<output_result::Result>,
+    #[prost(oneof = "output_result::Result", tags = "1")]
+    pub result: ::core::option::Option<output_result::Result>,
 }
 /// Nested message and enum types in `OutputResult`.
 pub mod output_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Result {
-#[prost(message, tag = "1")]
-GcsResult(super::GcsOutputResult),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Result {
+        #[prost(message, tag = "1")]
+        GcsResult(super::GcsOutputResult),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsOutputResult {
-#[prost(string, repeated, tag = "1")]
-pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-#[prost(oneof = "gcs_destination::ObjectUri", tags = "1, 2")]
-pub object_uri: ::core::option::Option<gcs_destination::ObjectUri>,
+    #[prost(oneof = "gcs_destination::ObjectUri", tags = "1, 2")]
+    pub object_uri: ::core::option::Option<gcs_destination::ObjectUri>,
 }
 /// Nested message and enum types in `GcsDestination`.
 pub mod gcs_destination {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ObjectUri {
-#[prost(string, tag = "1")]
-Uri(::prost::alloc::string::String),
-#[prost(string, tag = "2")]
-UriPrefix(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ObjectUri {
+        #[prost(string, tag = "1")]
+        Uri(::prost::alloc::string::String),
+        #[prost(string, tag = "2")]
+        UriPrefix(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryDestination {
-#[prost(string, tag = "1")]
-pub dataset: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub table: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub force: bool,
-#[prost(message, optional, tag = "4")]
-pub partition_spec: ::core::option::Option<PartitionSpec>,
-#[prost(bool, tag = "5")]
-pub separate_tables_per_asset_type: bool,
+    #[prost(string, tag = "1")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub force: bool,
+    #[prost(message, optional, tag = "4")]
+    pub partition_spec: ::core::option::Option<PartitionSpec>,
+    #[prost(bool, tag = "5")]
+    pub separate_tables_per_asset_type: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PartitionSpec {
-#[prost(enumeration = "partition_spec::PartitionKey", tag = "1")]
-pub partition_key: i32,
+    #[prost(enumeration = "partition_spec::PartitionKey", tag = "1")]
+    pub partition_key: i32,
 }
 /// Nested message and enum types in `PartitionSpec`.
 pub mod partition_spec {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PartitionKey {
-Unspecified = 0,
-ReadTime = 1,
-RequestTime = 2,
-}
-impl PartitionKey {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PartitionKey::Unspecified => "PARTITION_KEY_UNSPECIFIED",
-PartitionKey::ReadTime => "READ_TIME",
-PartitionKey::RequestTime => "REQUEST_TIME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PARTITION_KEY_UNSPECIFIED" => Some(Self::Unspecified),
-"READ_TIME" => Some(Self::ReadTime),
-"REQUEST_TIME" => Some(Self::RequestTime),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PartitionKey {
+        Unspecified = 0,
+        ReadTime = 1,
+        RequestTime = 2,
+    }
+    impl PartitionKey {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PartitionKey::Unspecified => "PARTITION_KEY_UNSPECIFIED",
+                PartitionKey::ReadTime => "READ_TIME",
+                PartitionKey::RequestTime => "REQUEST_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PARTITION_KEY_UNSPECIFIED" => Some(Self::Unspecified),
+                "READ_TIME" => Some(Self::ReadTime),
+                "REQUEST_TIME" => Some(Self::RequestTime),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ContentType {
-Unspecified = 0,
-Resource = 1,
-IamPolicy = 2,
-OrgPolicy = 4,
-AccessPolicy = 5,
-Relationship = 7,
+    Unspecified = 0,
+    Resource = 1,
+    IamPolicy = 2,
+    OrgPolicy = 4,
+    AccessPolicy = 5,
+    Relationship = 7,
 }
 impl ContentType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-ContentType::Resource => "RESOURCE",
-ContentType::IamPolicy => "IAM_POLICY",
-ContentType::OrgPolicy => "ORG_POLICY",
-ContentType::AccessPolicy => "ACCESS_POLICY",
-ContentType::Relationship => "RELATIONSHIP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE" => Some(Self::Resource),
-"IAM_POLICY" => Some(Self::IamPolicy),
-"ORG_POLICY" => Some(Self::OrgPolicy),
-"ACCESS_POLICY" => Some(Self::AccessPolicy),
-"RELATIONSHIP" => Some(Self::Relationship),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+            ContentType::Resource => "RESOURCE",
+            ContentType::IamPolicy => "IAM_POLICY",
+            ContentType::OrgPolicy => "ORG_POLICY",
+            ContentType::AccessPolicy => "ACCESS_POLICY",
+            ContentType::Relationship => "RELATIONSHIP",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "RESOURCE" => Some(Self::Resource),
+            "IAM_POLICY" => Some(Self::IamPolicy),
+            "ORG_POLICY" => Some(Self::OrgPolicy),
+            "ACCESS_POLICY" => Some(Self::AccessPolicy),
+            "RELATIONSHIP" => Some(Self::Relationship),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod asset_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Asset service definition.
-#[derive(Debug, Clone)]
-pub struct AssetServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AssetServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AssetServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AssetServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Exports assets with time and resource types to a given Cloud Storage
-/// location/BigQuery table. For Cloud Storage location destinations, the
-/// output format is newline-delimited JSON. Each line represents a
-/// [google.cloud.asset.v1p7beta1.Asset][google.cloud.asset.v1p7beta1.Asset] in
-/// the JSON format; for BigQuery table destinations, the output table stores
-/// the fields in asset proto as columns. This API implements the
-/// [google.longrunning.Operation][google.longrunning.Operation] API , which
-/// allows you to keep track of the export. We recommend intervals of at least
-/// 2 seconds with exponential retry to poll the export operation result. For
-/// regular-size resource parent, the export operation usually finishes within
-/// 5 minutes.
-pub async fn export_assets(&mut self, request: impl tonic::IntoRequest<super::ExportAssetsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p7beta1.AssetService/ExportAssets");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p7beta1.AssetService", "ExportAssets"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Asset service definition.
+    #[derive(Debug, Clone)]
+    pub struct AssetServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AssetServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AssetServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AssetServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Exports assets with time and resource types to a given Cloud Storage
+        /// location/BigQuery table. For Cloud Storage location destinations, the
+        /// output format is newline-delimited JSON. Each line represents a
+        /// [google.cloud.asset.v1p7beta1.Asset][google.cloud.asset.v1p7beta1.Asset] in
+        /// the JSON format; for BigQuery table destinations, the output table stores
+        /// the fields in asset proto as columns. This API implements the
+        /// [google.longrunning.Operation][google.longrunning.Operation] API , which
+        /// allows you to keep track of the export. We recommend intervals of at least
+        /// 2 seconds with exponential retry to poll the export operation result. For
+        /// regular-size resource parent, the export operation usually finishes within
+        /// 5 minutes.
+        pub async fn export_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportAssetsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p7beta1.AssetService/ExportAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p7beta1.AssetService",
+                "ExportAssets",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
-#[prost(message, optional, tag = "11")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub resource: ::core::option::Option<Resource>,
-#[prost(message, optional, tag = "4")]
-pub iam_policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
-#[prost(message, repeated, tag = "6")]
-pub org_policy: ::prost::alloc::vec::Vec<super::super::orgpolicy::v1::Policy>,
-#[prost(message, optional, tag = "13")]
-pub related_assets: ::core::option::Option<RelatedAssets>,
-#[prost(string, repeated, tag = "10")]
-pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(oneof = "asset::AccessContextPolicy", tags = "7, 8, 9")]
-pub access_context_policy: ::core::option::Option<asset::AccessContextPolicy>,
+    #[prost(message, optional, tag = "11")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub resource: ::core::option::Option<Resource>,
+    #[prost(message, optional, tag = "4")]
+    pub iam_policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
+    #[prost(message, repeated, tag = "6")]
+    pub org_policy: ::prost::alloc::vec::Vec<super::super::orgpolicy::v1::Policy>,
+    #[prost(message, optional, tag = "13")]
+    pub related_assets: ::core::option::Option<RelatedAssets>,
+    #[prost(string, repeated, tag = "10")]
+    pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(oneof = "asset::AccessContextPolicy", tags = "7, 8, 9")]
+    pub access_context_policy: ::core::option::Option<asset::AccessContextPolicy>,
 }
 /// Nested message and enum types in `Asset`.
 pub mod asset {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AccessContextPolicy {
-#[prost(message, tag = "7")]
-AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
-#[prost(message, tag = "8")]
-AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
-#[prost(message, tag = "9")]
-ServicePerimeter(super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AccessContextPolicy {
+        #[prost(message, tag = "7")]
+        AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
+        #[prost(message, tag = "8")]
+        AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
+        #[prost(message, tag = "9")]
+        ServicePerimeter(
+            super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter,
+        ),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Resource {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub discovery_document_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub discovery_name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub resource_url: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub data: ::core::option::Option<::prost_types::Struct>,
-#[prost(string, tag = "8")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub discovery_document_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub discovery_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub resource_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub data: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "8")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelatedAssets {
-#[prost(message, optional, tag = "1")]
-pub relationship_attributes: ::core::option::Option<RelationshipAttributes>,
-#[prost(message, repeated, tag = "2")]
-pub assets: ::prost::alloc::vec::Vec<RelatedAsset>,
+    #[prost(message, optional, tag = "1")]
+    pub relationship_attributes: ::core::option::Option<RelationshipAttributes>,
+    #[prost(message, repeated, tag = "2")]
+    pub assets: ::prost::alloc::vec::Vec<RelatedAsset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelationshipAttributes {
-#[prost(string, tag = "4")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub source_resource_type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub target_resource_type: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub action: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub source_resource_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub target_resource_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub action: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelatedAsset {
-#[prost(string, tag = "1")]
-pub asset: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_type: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_type: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }

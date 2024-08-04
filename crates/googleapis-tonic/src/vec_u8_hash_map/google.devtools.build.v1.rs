@@ -2,442 +2,490 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildStatus {
-#[prost(enumeration = "build_status::Result", tag = "1")]
-pub result: i32,
-#[prost(string, tag = "3")]
-pub final_invocation_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub build_tool_exit_code: ::core::option::Option<i32>,
-#[prost(string, tag = "5")]
-pub error_message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub details: ::core::option::Option<::prost_types::Any>,
+    #[prost(enumeration = "build_status::Result", tag = "1")]
+    pub result: i32,
+    #[prost(string, tag = "3")]
+    pub final_invocation_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub build_tool_exit_code: ::core::option::Option<i32>,
+    #[prost(string, tag = "5")]
+    pub error_message: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub details: ::core::option::Option<::prost_types::Any>,
 }
 /// Nested message and enum types in `BuildStatus`.
 pub mod build_status {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Result {
-UnknownStatus = 0,
-CommandSucceeded = 1,
-CommandFailed = 2,
-UserError = 3,
-SystemError = 4,
-ResourceExhausted = 5,
-InvocationDeadlineExceeded = 6,
-RequestDeadlineExceeded = 8,
-Cancelled = 7,
-}
-impl Result {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Result::UnknownStatus => "UNKNOWN_STATUS",
-Result::CommandSucceeded => "COMMAND_SUCCEEDED",
-Result::CommandFailed => "COMMAND_FAILED",
-Result::UserError => "USER_ERROR",
-Result::SystemError => "SYSTEM_ERROR",
-Result::ResourceExhausted => "RESOURCE_EXHAUSTED",
-Result::InvocationDeadlineExceeded => "INVOCATION_DEADLINE_EXCEEDED",
-Result::RequestDeadlineExceeded => "REQUEST_DEADLINE_EXCEEDED",
-Result::Cancelled => "CANCELLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_STATUS" => Some(Self::UnknownStatus),
-"COMMAND_SUCCEEDED" => Some(Self::CommandSucceeded),
-"COMMAND_FAILED" => Some(Self::CommandFailed),
-"USER_ERROR" => Some(Self::UserError),
-"SYSTEM_ERROR" => Some(Self::SystemError),
-"RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
-"INVOCATION_DEADLINE_EXCEEDED" => Some(Self::InvocationDeadlineExceeded),
-"REQUEST_DEADLINE_EXCEEDED" => Some(Self::RequestDeadlineExceeded),
-"CANCELLED" => Some(Self::Cancelled),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Result {
+        UnknownStatus = 0,
+        CommandSucceeded = 1,
+        CommandFailed = 2,
+        UserError = 3,
+        SystemError = 4,
+        ResourceExhausted = 5,
+        InvocationDeadlineExceeded = 6,
+        RequestDeadlineExceeded = 8,
+        Cancelled = 7,
+    }
+    impl Result {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Result::UnknownStatus => "UNKNOWN_STATUS",
+                Result::CommandSucceeded => "COMMAND_SUCCEEDED",
+                Result::CommandFailed => "COMMAND_FAILED",
+                Result::UserError => "USER_ERROR",
+                Result::SystemError => "SYSTEM_ERROR",
+                Result::ResourceExhausted => "RESOURCE_EXHAUSTED",
+                Result::InvocationDeadlineExceeded => "INVOCATION_DEADLINE_EXCEEDED",
+                Result::RequestDeadlineExceeded => "REQUEST_DEADLINE_EXCEEDED",
+                Result::Cancelled => "CANCELLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN_STATUS" => Some(Self::UnknownStatus),
+                "COMMAND_SUCCEEDED" => Some(Self::CommandSucceeded),
+                "COMMAND_FAILED" => Some(Self::CommandFailed),
+                "USER_ERROR" => Some(Self::UserError),
+                "SYSTEM_ERROR" => Some(Self::SystemError),
+                "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
+                "INVOCATION_DEADLINE_EXCEEDED" => Some(Self::InvocationDeadlineExceeded),
+                "REQUEST_DEADLINE_EXCEEDED" => Some(Self::RequestDeadlineExceeded),
+                "CANCELLED" => Some(Self::Cancelled),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildEvent {
-#[prost(message, optional, tag = "1")]
-pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "build_event::Event", tags = "51, 52, 53, 55, 56, 59, 60, 61, 62")]
-pub event: ::core::option::Option<build_event::Event>,
+    #[prost(message, optional, tag = "1")]
+    pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(
+        oneof = "build_event::Event",
+        tags = "51, 52, 53, 55, 56, 59, 60, 61, 62"
+    )]
+    pub event: ::core::option::Option<build_event::Event>,
 }
 /// Nested message and enum types in `BuildEvent`.
 pub mod build_event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InvocationAttemptStarted {
-#[prost(int64, tag = "1")]
-pub attempt_number: i64,
-#[prost(message, optional, tag = "2")]
-pub details: ::core::option::Option<::prost_types::Any>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InvocationAttemptFinished {
-#[prost(message, optional, tag = "3")]
-pub invocation_status: ::core::option::Option<super::BuildStatus>,
-#[prost(message, optional, tag = "4")]
-pub details: ::core::option::Option<::prost_types::Any>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuildEnqueued {
-#[prost(message, optional, tag = "1")]
-pub details: ::core::option::Option<::prost_types::Any>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuildFinished {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::BuildStatus>,
-#[prost(message, optional, tag = "2")]
-pub details: ::core::option::Option<::prost_types::Any>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConsoleOutput {
-#[prost(enumeration = "super::ConsoleOutputStream", tag = "1")]
-pub r#type: i32,
-#[prost(oneof = "console_output::Output", tags = "2, 3")]
-pub output: ::core::option::Option<console_output::Output>,
-}
-/// Nested message and enum types in `ConsoleOutput`.
-pub mod console_output {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Output {
-#[prost(string, tag = "2")]
-TextOutput(::prost::alloc::string::String),
-#[prost(bytes, tag = "3")]
-BinaryOutput(::prost::alloc::vec::Vec<u8>),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BuildComponentStreamFinished {
-#[prost(enumeration = "build_component_stream_finished::FinishType", tag = "1")]
-pub r#type: i32,
-}
-/// Nested message and enum types in `BuildComponentStreamFinished`.
-pub mod build_component_stream_finished {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum FinishType {
-Unspecified = 0,
-Finished = 1,
-Expired = 2,
-}
-impl FinishType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FinishType::Unspecified => "FINISH_TYPE_UNSPECIFIED",
-FinishType::Finished => "FINISHED",
-FinishType::Expired => "EXPIRED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FINISH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FINISHED" => Some(Self::Finished),
-"EXPIRED" => Some(Self::Expired),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Event {
-#[prost(message, tag = "51")]
-InvocationAttemptStarted(InvocationAttemptStarted),
-#[prost(message, tag = "52")]
-InvocationAttemptFinished(InvocationAttemptFinished),
-#[prost(message, tag = "53")]
-BuildEnqueued(BuildEnqueued),
-#[prost(message, tag = "55")]
-BuildFinished(BuildFinished),
-#[prost(message, tag = "56")]
-ConsoleOutput(ConsoleOutput),
-#[prost(message, tag = "59")]
-ComponentStreamFinished(BuildComponentStreamFinished),
-#[prost(message, tag = "60")]
-BazelEvent(::prost_types::Any),
-#[prost(message, tag = "61")]
-BuildExecutionEvent(::prost_types::Any),
-#[prost(message, tag = "62")]
-SourceFetchEvent(::prost_types::Any),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InvocationAttemptStarted {
+        #[prost(int64, tag = "1")]
+        pub attempt_number: i64,
+        #[prost(message, optional, tag = "2")]
+        pub details: ::core::option::Option<::prost_types::Any>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InvocationAttemptFinished {
+        #[prost(message, optional, tag = "3")]
+        pub invocation_status: ::core::option::Option<super::BuildStatus>,
+        #[prost(message, optional, tag = "4")]
+        pub details: ::core::option::Option<::prost_types::Any>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BuildEnqueued {
+        #[prost(message, optional, tag = "1")]
+        pub details: ::core::option::Option<::prost_types::Any>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BuildFinished {
+        #[prost(message, optional, tag = "1")]
+        pub status: ::core::option::Option<super::BuildStatus>,
+        #[prost(message, optional, tag = "2")]
+        pub details: ::core::option::Option<::prost_types::Any>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConsoleOutput {
+        #[prost(enumeration = "super::ConsoleOutputStream", tag = "1")]
+        pub r#type: i32,
+        #[prost(oneof = "console_output::Output", tags = "2, 3")]
+        pub output: ::core::option::Option<console_output::Output>,
+    }
+    /// Nested message and enum types in `ConsoleOutput`.
+    pub mod console_output {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Output {
+            #[prost(string, tag = "2")]
+            TextOutput(::prost::alloc::string::String),
+            #[prost(bytes, tag = "3")]
+            BinaryOutput(::prost::alloc::vec::Vec<u8>),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BuildComponentStreamFinished {
+        #[prost(enumeration = "build_component_stream_finished::FinishType", tag = "1")]
+        pub r#type: i32,
+    }
+    /// Nested message and enum types in `BuildComponentStreamFinished`.
+    pub mod build_component_stream_finished {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum FinishType {
+            Unspecified = 0,
+            Finished = 1,
+            Expired = 2,
+        }
+        impl FinishType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    FinishType::Unspecified => "FINISH_TYPE_UNSPECIFIED",
+                    FinishType::Finished => "FINISHED",
+                    FinishType::Expired => "EXPIRED",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "FINISH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "FINISHED" => Some(Self::Finished),
+                    "EXPIRED" => Some(Self::Expired),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Event {
+        #[prost(message, tag = "51")]
+        InvocationAttemptStarted(InvocationAttemptStarted),
+        #[prost(message, tag = "52")]
+        InvocationAttemptFinished(InvocationAttemptFinished),
+        #[prost(message, tag = "53")]
+        BuildEnqueued(BuildEnqueued),
+        #[prost(message, tag = "55")]
+        BuildFinished(BuildFinished),
+        #[prost(message, tag = "56")]
+        ConsoleOutput(ConsoleOutput),
+        #[prost(message, tag = "59")]
+        ComponentStreamFinished(BuildComponentStreamFinished),
+        #[prost(message, tag = "60")]
+        BazelEvent(::prost_types::Any),
+        #[prost(message, tag = "61")]
+        BuildExecutionEvent(::prost_types::Any),
+        #[prost(message, tag = "62")]
+        SourceFetchEvent(::prost_types::Any),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamId {
-#[prost(string, tag = "1")]
-pub build_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub invocation_id: ::prost::alloc::string::String,
-#[prost(enumeration = "stream_id::BuildComponent", tag = "3")]
-pub component: i32,
+    #[prost(string, tag = "1")]
+    pub build_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub invocation_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "stream_id::BuildComponent", tag = "3")]
+    pub component: i32,
 }
 /// Nested message and enum types in `StreamId`.
 pub mod stream_id {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BuildComponent {
-UnknownComponent = 0,
-Controller = 1,
-Worker = 2,
-Tool = 3,
-}
-impl BuildComponent {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BuildComponent::UnknownComponent => "UNKNOWN_COMPONENT",
-BuildComponent::Controller => "CONTROLLER",
-BuildComponent::Worker => "WORKER",
-BuildComponent::Tool => "TOOL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_COMPONENT" => Some(Self::UnknownComponent),
-"CONTROLLER" => Some(Self::Controller),
-"WORKER" => Some(Self::Worker),
-"TOOL" => Some(Self::Tool),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BuildComponent {
+        UnknownComponent = 0,
+        Controller = 1,
+        Worker = 2,
+        Tool = 3,
+    }
+    impl BuildComponent {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BuildComponent::UnknownComponent => "UNKNOWN_COMPONENT",
+                BuildComponent::Controller => "CONTROLLER",
+                BuildComponent::Worker => "WORKER",
+                BuildComponent::Tool => "TOOL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN_COMPONENT" => Some(Self::UnknownComponent),
+                "CONTROLLER" => Some(Self::Controller),
+                "WORKER" => Some(Self::Worker),
+                "TOOL" => Some(Self::Tool),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ConsoleOutputStream {
-Unknown = 0,
-Stdout = 1,
-Stderr = 2,
+    Unknown = 0,
+    Stdout = 1,
+    Stderr = 2,
 }
 impl ConsoleOutputStream {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ConsoleOutputStream::Unknown => "UNKNOWN",
-ConsoleOutputStream::Stdout => "STDOUT",
-ConsoleOutputStream::Stderr => "STDERR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"STDOUT" => Some(Self::Stdout),
-"STDERR" => Some(Self::Stderr),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ConsoleOutputStream::Unknown => "UNKNOWN",
+            ConsoleOutputStream::Stdout => "STDOUT",
+            ConsoleOutputStream::Stderr => "STDERR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN" => Some(Self::Unknown),
+            "STDOUT" => Some(Self::Stdout),
+            "STDERR" => Some(Self::Stderr),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublishLifecycleEventRequest {
-#[prost(enumeration = "publish_lifecycle_event_request::ServiceLevel", tag = "1")]
-pub service_level: i32,
-#[prost(message, optional, tag = "2")]
-pub build_event: ::core::option::Option<OrderedBuildEvent>,
-#[prost(message, optional, tag = "3")]
-pub stream_timeout: ::core::option::Option<::prost_types::Duration>,
-#[prost(string, repeated, tag = "4")]
-pub notification_keywords: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub check_preceding_lifecycle_events_present: bool,
+    #[prost(
+        enumeration = "publish_lifecycle_event_request::ServiceLevel",
+        tag = "1"
+    )]
+    pub service_level: i32,
+    #[prost(message, optional, tag = "2")]
+    pub build_event: ::core::option::Option<OrderedBuildEvent>,
+    #[prost(message, optional, tag = "3")]
+    pub stream_timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, repeated, tag = "4")]
+    pub notification_keywords: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub check_preceding_lifecycle_events_present: bool,
 }
 /// Nested message and enum types in `PublishLifecycleEventRequest`.
 pub mod publish_lifecycle_event_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ServiceLevel {
-Noninteractive = 0,
-Interactive = 1,
-}
-impl ServiceLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ServiceLevel::Noninteractive => "NONINTERACTIVE",
-ServiceLevel::Interactive => "INTERACTIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NONINTERACTIVE" => Some(Self::Noninteractive),
-"INTERACTIVE" => Some(Self::Interactive),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ServiceLevel {
+        Noninteractive = 0,
+        Interactive = 1,
+    }
+    impl ServiceLevel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ServiceLevel::Noninteractive => "NONINTERACTIVE",
+                ServiceLevel::Interactive => "INTERACTIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NONINTERACTIVE" => Some(Self::Noninteractive),
+                "INTERACTIVE" => Some(Self::Interactive),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublishBuildToolEventStreamResponse {
-#[prost(message, optional, tag = "1")]
-pub stream_id: ::core::option::Option<StreamId>,
-#[prost(int64, tag = "2")]
-pub sequence_number: i64,
+    #[prost(message, optional, tag = "1")]
+    pub stream_id: ::core::option::Option<StreamId>,
+    #[prost(int64, tag = "2")]
+    pub sequence_number: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrderedBuildEvent {
-#[prost(message, optional, tag = "1")]
-pub stream_id: ::core::option::Option<StreamId>,
-#[prost(int64, tag = "2")]
-pub sequence_number: i64,
-#[prost(message, optional, tag = "3")]
-pub event: ::core::option::Option<BuildEvent>,
+    #[prost(message, optional, tag = "1")]
+    pub stream_id: ::core::option::Option<StreamId>,
+    #[prost(int64, tag = "2")]
+    pub sequence_number: i64,
+    #[prost(message, optional, tag = "3")]
+    pub event: ::core::option::Option<BuildEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublishBuildToolEventStreamRequest {
-#[prost(message, optional, tag = "4")]
-pub ordered_build_event: ::core::option::Option<OrderedBuildEvent>,
-#[prost(string, repeated, tag = "5")]
-pub notification_keywords: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub check_preceding_lifecycle_events_present: bool,
+    #[prost(message, optional, tag = "4")]
+    pub ordered_build_event: ::core::option::Option<OrderedBuildEvent>,
+    #[prost(string, repeated, tag = "5")]
+    pub notification_keywords: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub check_preceding_lifecycle_events_present: bool,
 }
 /// Generated client implementations.
 pub mod publish_build_event_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// A service for publishing BuildEvents. BuildEvents are generated by Build
-/// Systems to record actions taken during a Build. Events occur in streams,
-/// are identified by a StreamId, and ordered by sequence number in a stream.
-///
-/// A Build may contain several streams of BuildEvents, depending on the systems
-/// that are involved in the Build. Some BuildEvents are used to declare the
-/// beginning and end of major portions of a Build; these are called
-/// LifecycleEvents, and are used (for example) to indicate the beginning or end
-/// of a Build, and the beginning or end of an Invocation attempt (there can be
-/// more than 1 Invocation in a Build if, for example, a failure occurs somewhere
-/// and it needs to be retried).
-///
-/// Other, build-tool events represent actions taken by the Build tool, such as
-/// target objects produced via compilation, tests run, et cetera. There could be
-/// more than one build tool stream for an invocation attempt of a build.
-#[derive(Debug, Clone)]
-pub struct PublishBuildEventClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> PublishBuildEventClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> PublishBuildEventClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-PublishBuildEventClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Publish a build event stating the new state of a build (typically from the
-/// build queue). The BuildEnqueued event must be published before all other
-/// events for the same build ID.
-///
-/// The backend will persist the event and deliver it to registered frontend
-/// jobs immediately without batching.
-///
-/// The commit status of the request is reported by the RPC's util_status()
-/// function. The error code is the canonical error code defined in
-/// //util/task/codes.proto.
-pub async fn publish_lifecycle_event(&mut self, request: impl tonic::IntoRequest<super::PublishLifecycleEventRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.build.v1.PublishBuildEvent/PublishLifecycleEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.build.v1.PublishBuildEvent", "PublishLifecycleEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Publish build tool events belonging to the same stream to a backend job
-/// using bidirectional streaming.
-pub async fn publish_build_tool_event_stream(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::PublishBuildToolEventStreamRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::PublishBuildToolEventStreamResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.build.v1.PublishBuildEvent/PublishBuildToolEventStream");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.build.v1.PublishBuildEvent", "PublishBuildToolEventStream"));
-self.inner.streaming(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// A service for publishing BuildEvents. BuildEvents are generated by Build
+    /// Systems to record actions taken during a Build. Events occur in streams,
+    /// are identified by a StreamId, and ordered by sequence number in a stream.
+    ///
+    /// A Build may contain several streams of BuildEvents, depending on the systems
+    /// that are involved in the Build. Some BuildEvents are used to declare the
+    /// beginning and end of major portions of a Build; these are called
+    /// LifecycleEvents, and are used (for example) to indicate the beginning or end
+    /// of a Build, and the beginning or end of an Invocation attempt (there can be
+    /// more than 1 Invocation in a Build if, for example, a failure occurs somewhere
+    /// and it needs to be retried).
+    ///
+    /// Other, build-tool events represent actions taken by the Build tool, such as
+    /// target objects produced via compilation, tests run, et cetera. There could be
+    /// more than one build tool stream for an invocation attempt of a build.
+    #[derive(Debug, Clone)]
+    pub struct PublishBuildEventClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> PublishBuildEventClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> PublishBuildEventClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            PublishBuildEventClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Publish a build event stating the new state of a build (typically from the
+        /// build queue). The BuildEnqueued event must be published before all other
+        /// events for the same build ID.
+        ///
+        /// The backend will persist the event and deliver it to registered frontend
+        /// jobs immediately without batching.
+        ///
+        /// The commit status of the request is reported by the RPC's util_status()
+        /// function. The error code is the canonical error code defined in
+        /// //util/task/codes.proto.
+        pub async fn publish_lifecycle_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::PublishLifecycleEventRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.build.v1.PublishBuildEvent/PublishLifecycleEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.build.v1.PublishBuildEvent",
+                "PublishLifecycleEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Publish build tool events belonging to the same stream to a backend job
+        /// using bidirectional streaming.
+        pub async fn publish_build_tool_event_stream(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::PublishBuildToolEventStreamRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::PublishBuildToolEventStreamResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.build.v1.PublishBuildEvent/PublishBuildToolEventStream",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.build.v1.PublishBuildEvent",
+                "PublishBuildToolEventStream",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+    }
 }

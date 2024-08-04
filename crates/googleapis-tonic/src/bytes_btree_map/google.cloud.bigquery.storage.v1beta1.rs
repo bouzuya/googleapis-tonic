@@ -2,437 +2,516 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrowSchema {
-#[prost(bytes = "bytes", tag = "1")]
-pub serialized_schema: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub serialized_schema: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrowRecordBatch {
-#[prost(bytes = "bytes", tag = "1")]
-pub serialized_record_batch: ::prost::bytes::Bytes,
-#[prost(int64, tag = "2")]
-pub row_count: i64,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub serialized_record_batch: ::prost::bytes::Bytes,
+    #[prost(int64, tag = "2")]
+    pub row_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableReference {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub table_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TableModifiers {
-#[prost(message, optional, tag = "1")]
-pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvroSchema {
-#[prost(string, tag = "1")]
-pub schema: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub schema: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvroRows {
-#[prost(bytes = "bytes", tag = "1")]
-pub serialized_binary_rows: ::prost::bytes::Bytes,
-#[prost(int64, tag = "2")]
-pub row_count: i64,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub serialized_binary_rows: ::prost::bytes::Bytes,
+    #[prost(int64, tag = "2")]
+    pub row_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableReadOptions {
-#[prost(string, repeated, tag = "1")]
-pub selected_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub row_restriction: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "1")]
+    pub selected_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub row_restriction: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Stream {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamPosition {
-#[prost(message, optional, tag = "1")]
-pub stream: ::core::option::Option<Stream>,
-#[prost(int64, tag = "2")]
-pub offset: i64,
+    #[prost(message, optional, tag = "1")]
+    pub stream: ::core::option::Option<Stream>,
+    #[prost(int64, tag = "2")]
+    pub offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadSession {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "4")]
-pub streams: ::prost::alloc::vec::Vec<Stream>,
-#[prost(message, optional, tag = "7")]
-pub table_reference: ::core::option::Option<TableReference>,
-#[prost(message, optional, tag = "8")]
-pub table_modifiers: ::core::option::Option<TableModifiers>,
-#[prost(enumeration = "ShardingStrategy", tag = "9")]
-pub sharding_strategy: i32,
-#[prost(oneof = "read_session::Schema", tags = "5, 6")]
-pub schema: ::core::option::Option<read_session::Schema>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "4")]
+    pub streams: ::prost::alloc::vec::Vec<Stream>,
+    #[prost(message, optional, tag = "7")]
+    pub table_reference: ::core::option::Option<TableReference>,
+    #[prost(message, optional, tag = "8")]
+    pub table_modifiers: ::core::option::Option<TableModifiers>,
+    #[prost(enumeration = "ShardingStrategy", tag = "9")]
+    pub sharding_strategy: i32,
+    #[prost(oneof = "read_session::Schema", tags = "5, 6")]
+    pub schema: ::core::option::Option<read_session::Schema>,
 }
 /// Nested message and enum types in `ReadSession`.
 pub mod read_session {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Schema {
-#[prost(message, tag = "5")]
-AvroSchema(super::AvroSchema),
-#[prost(message, tag = "6")]
-ArrowSchema(super::ArrowSchema),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Schema {
+        #[prost(message, tag = "5")]
+        AvroSchema(super::AvroSchema),
+        #[prost(message, tag = "6")]
+        ArrowSchema(super::ArrowSchema),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateReadSessionRequest {
-#[prost(message, optional, tag = "1")]
-pub table_reference: ::core::option::Option<TableReference>,
-#[prost(string, tag = "6")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub table_modifiers: ::core::option::Option<TableModifiers>,
-#[prost(int32, tag = "3")]
-pub requested_streams: i32,
-#[prost(message, optional, tag = "4")]
-pub read_options: ::core::option::Option<TableReadOptions>,
-#[prost(enumeration = "DataFormat", tag = "5")]
-pub format: i32,
-#[prost(enumeration = "ShardingStrategy", tag = "7")]
-pub sharding_strategy: i32,
+    #[prost(message, optional, tag = "1")]
+    pub table_reference: ::core::option::Option<TableReference>,
+    #[prost(string, tag = "6")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub table_modifiers: ::core::option::Option<TableModifiers>,
+    #[prost(int32, tag = "3")]
+    pub requested_streams: i32,
+    #[prost(message, optional, tag = "4")]
+    pub read_options: ::core::option::Option<TableReadOptions>,
+    #[prost(enumeration = "DataFormat", tag = "5")]
+    pub format: i32,
+    #[prost(enumeration = "ShardingStrategy", tag = "7")]
+    pub sharding_strategy: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadRowsRequest {
-#[prost(message, optional, tag = "1")]
-pub read_position: ::core::option::Option<StreamPosition>,
+    #[prost(message, optional, tag = "1")]
+    pub read_position: ::core::option::Option<StreamPosition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StreamStatus {
-#[prost(int64, tag = "1")]
-pub estimated_row_count: i64,
-#[prost(float, tag = "2")]
-pub fraction_consumed: f32,
-#[prost(message, optional, tag = "4")]
-pub progress: ::core::option::Option<Progress>,
-#[prost(bool, tag = "3")]
-pub is_splittable: bool,
+    #[prost(int64, tag = "1")]
+    pub estimated_row_count: i64,
+    #[prost(float, tag = "2")]
+    pub fraction_consumed: f32,
+    #[prost(message, optional, tag = "4")]
+    pub progress: ::core::option::Option<Progress>,
+    #[prost(bool, tag = "3")]
+    pub is_splittable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Progress {
-#[prost(float, tag = "1")]
-pub at_response_start: f32,
-#[prost(float, tag = "2")]
-pub at_response_end: f32,
+    #[prost(float, tag = "1")]
+    pub at_response_start: f32,
+    #[prost(float, tag = "2")]
+    pub at_response_end: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ThrottleStatus {
-#[prost(int32, tag = "1")]
-pub throttle_percent: i32,
+    #[prost(int32, tag = "1")]
+    pub throttle_percent: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadRowsResponse {
-#[prost(int64, tag = "6")]
-pub row_count: i64,
-#[prost(message, optional, tag = "2")]
-pub status: ::core::option::Option<StreamStatus>,
-#[prost(message, optional, tag = "5")]
-pub throttle_status: ::core::option::Option<ThrottleStatus>,
-#[prost(oneof = "read_rows_response::Rows", tags = "3, 4")]
-pub rows: ::core::option::Option<read_rows_response::Rows>,
-#[prost(oneof = "read_rows_response::Schema", tags = "7, 8")]
-pub schema: ::core::option::Option<read_rows_response::Schema>,
+    #[prost(int64, tag = "6")]
+    pub row_count: i64,
+    #[prost(message, optional, tag = "2")]
+    pub status: ::core::option::Option<StreamStatus>,
+    #[prost(message, optional, tag = "5")]
+    pub throttle_status: ::core::option::Option<ThrottleStatus>,
+    #[prost(oneof = "read_rows_response::Rows", tags = "3, 4")]
+    pub rows: ::core::option::Option<read_rows_response::Rows>,
+    #[prost(oneof = "read_rows_response::Schema", tags = "7, 8")]
+    pub schema: ::core::option::Option<read_rows_response::Schema>,
 }
 /// Nested message and enum types in `ReadRowsResponse`.
 pub mod read_rows_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Rows {
-#[prost(message, tag = "3")]
-AvroRows(super::AvroRows),
-#[prost(message, tag = "4")]
-ArrowRecordBatch(super::ArrowRecordBatch),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Schema {
-#[prost(message, tag = "7")]
-AvroSchema(super::AvroSchema),
-#[prost(message, tag = "8")]
-ArrowSchema(super::ArrowSchema),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Rows {
+        #[prost(message, tag = "3")]
+        AvroRows(super::AvroRows),
+        #[prost(message, tag = "4")]
+        ArrowRecordBatch(super::ArrowRecordBatch),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Schema {
+        #[prost(message, tag = "7")]
+        AvroSchema(super::AvroSchema),
+        #[prost(message, tag = "8")]
+        ArrowSchema(super::ArrowSchema),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateReadSessionStreamsRequest {
-#[prost(message, optional, tag = "1")]
-pub session: ::core::option::Option<ReadSession>,
-#[prost(int32, tag = "2")]
-pub requested_streams: i32,
+    #[prost(message, optional, tag = "1")]
+    pub session: ::core::option::Option<ReadSession>,
+    #[prost(int32, tag = "2")]
+    pub requested_streams: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateReadSessionStreamsResponse {
-#[prost(message, repeated, tag = "1")]
-pub streams: ::prost::alloc::vec::Vec<Stream>,
+    #[prost(message, repeated, tag = "1")]
+    pub streams: ::prost::alloc::vec::Vec<Stream>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FinalizeStreamRequest {
-#[prost(message, optional, tag = "2")]
-pub stream: ::core::option::Option<Stream>,
+    #[prost(message, optional, tag = "2")]
+    pub stream: ::core::option::Option<Stream>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamRequest {
-#[prost(message, optional, tag = "1")]
-pub original_stream: ::core::option::Option<Stream>,
-#[prost(float, tag = "2")]
-pub fraction: f32,
+    #[prost(message, optional, tag = "1")]
+    pub original_stream: ::core::option::Option<Stream>,
+    #[prost(float, tag = "2")]
+    pub fraction: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamResponse {
-#[prost(message, optional, tag = "1")]
-pub primary_stream: ::core::option::Option<Stream>,
-#[prost(message, optional, tag = "2")]
-pub remainder_stream: ::core::option::Option<Stream>,
+    #[prost(message, optional, tag = "1")]
+    pub primary_stream: ::core::option::Option<Stream>,
+    #[prost(message, optional, tag = "2")]
+    pub remainder_stream: ::core::option::Option<Stream>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DataFormat {
-Unspecified = 0,
-Avro = 1,
-Arrow = 3,
+    Unspecified = 0,
+    Avro = 1,
+    Arrow = 3,
 }
 impl DataFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
-DataFormat::Avro => "AVRO",
-DataFormat::Arrow => "ARROW",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"AVRO" => Some(Self::Avro),
-"ARROW" => Some(Self::Arrow),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
+            DataFormat::Avro => "AVRO",
+            DataFormat::Arrow => "ARROW",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+            "AVRO" => Some(Self::Avro),
+            "ARROW" => Some(Self::Arrow),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ShardingStrategy {
-Unspecified = 0,
-Liquid = 1,
-Balanced = 2,
+    Unspecified = 0,
+    Liquid = 1,
+    Balanced = 2,
 }
 impl ShardingStrategy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ShardingStrategy::Unspecified => "SHARDING_STRATEGY_UNSPECIFIED",
-ShardingStrategy::Liquid => "LIQUID",
-ShardingStrategy::Balanced => "BALANCED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SHARDING_STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
-"LIQUID" => Some(Self::Liquid),
-"BALANCED" => Some(Self::Balanced),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ShardingStrategy::Unspecified => "SHARDING_STRATEGY_UNSPECIFIED",
+            ShardingStrategy::Liquid => "LIQUID",
+            ShardingStrategy::Balanced => "BALANCED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SHARDING_STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
+            "LIQUID" => Some(Self::Liquid),
+            "BALANCED" => Some(Self::Balanced),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod big_query_storage_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// BigQuery storage API.
-///
-/// The BigQuery storage API can be used to read data stored in BigQuery.
-///
-/// The v1beta1 API is not yet officially deprecated, and will go through a full
-/// deprecation cycle (https://cloud.google.com/products#product-launch-stages)
-/// before the service is turned down. However, new code should use the v1 API
-/// going forward.
-#[derive(Debug, Clone)]
-pub struct BigQueryStorageClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> BigQueryStorageClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> BigQueryStorageClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-BigQueryStorageClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new read session. A read session divides the contents of a
-/// BigQuery table into one or more streams, which can then be used to read
-/// data from the table. The read session also specifies properties of the
-/// data to be read, such as a list of columns or a push-down filter describing
-/// the rows to be returned.
-///
-/// A particular row can be read by at most one stream. When the caller has
-/// reached the end of each stream in the session, then all the data in the
-/// table has been read.
-///
-/// Read sessions automatically expire 6 hours after they are created and do
-/// not require manual clean-up by the caller.
-pub async fn create_read_session(&mut self, request: impl tonic::IntoRequest<super::CreateReadSessionRequest>) -> std::result::Result<tonic::Response<super::ReadSession>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/CreateReadSession");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta1.BigQueryStorage", "CreateReadSession"));
-self.inner.unary(req, path, codec).await
-}
-/// Reads rows from the table in the format prescribed by the read session.
-/// Each response contains one or more table rows, up to a maximum of 10 MiB
-/// per response; read requests which attempt to read individual rows larger
-/// than this will fail.
-///
-/// Each request also returns a set of stream statistics reflecting the
-/// estimated total number of rows in the read stream. This number is computed
-/// based on the total table size and the number of active streams in the read
-/// session, and may change as other streams continue to read data.
-pub async fn read_rows(&mut self, request: impl tonic::IntoRequest<super::ReadRowsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ReadRowsResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/ReadRows");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta1.BigQueryStorage", "ReadRows"));
-self.inner.server_streaming(req, path, codec).await
-}
-/// Creates additional streams for a ReadSession. This API can be used to
-/// dynamically adjust the parallelism of a batch processing task upwards by
-/// adding additional workers.
-pub async fn batch_create_read_session_streams(&mut self, request: impl tonic::IntoRequest<super::BatchCreateReadSessionStreamsRequest>) -> std::result::Result<tonic::Response<super::BatchCreateReadSessionStreamsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/BatchCreateReadSessionStreams");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta1.BigQueryStorage", "BatchCreateReadSessionStreams"));
-self.inner.unary(req, path, codec).await
-}
-/// Causes a single stream in a ReadSession to gracefully stop. This
-/// API can be used to dynamically adjust the parallelism of a batch processing
-/// task downwards without losing data.
-///
-/// This API does not delete the stream -- it remains visible in the
-/// ReadSession, and any data processed by the stream is not released to other
-/// streams. However, no additional data will be assigned to the stream once
-/// this call completes. Callers must continue reading data on the stream until
-/// the end of the stream is reached so that data which has already been
-/// assigned to the stream will be processed.
-///
-/// This method will return an error if there are no other live streams
-/// in the Session, or if SplitReadStream() has been called on the given
-/// Stream.
-pub async fn finalize_stream(&mut self, request: impl tonic::IntoRequest<super::FinalizeStreamRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/FinalizeStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta1.BigQueryStorage", "FinalizeStream"));
-self.inner.unary(req, path, codec).await
-}
-/// Splits a given read stream into two Streams. These streams are referred to
-/// as the primary and the residual of the split. The original stream can still
-/// be read from in the same manner as before. Both of the returned streams can
-/// also be read from, and the total rows return by both child streams will be
-/// the same as the rows read from the original stream.
-///
-/// Moreover, the two child streams will be allocated back to back in the
-/// original Stream. Concretely, it is guaranteed that for streams Original,
-/// Primary, and Residual, that Original[0-j] = Primary[0-j] and
-/// Original[j-n] = Residual[0-m] once the streams have been read to
-/// completion.
-///
-/// This method is guaranteed to be idempotent.
-pub async fn split_read_stream(&mut self, request: impl tonic::IntoRequest<super::SplitReadStreamRequest>) -> std::result::Result<tonic::Response<super::SplitReadStreamResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/SplitReadStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta1.BigQueryStorage", "SplitReadStream"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// BigQuery storage API.
+    ///
+    /// The BigQuery storage API can be used to read data stored in BigQuery.
+    ///
+    /// The v1beta1 API is not yet officially deprecated, and will go through a full
+    /// deprecation cycle (https://cloud.google.com/products#product-launch-stages)
+    /// before the service is turned down. However, new code should use the v1 API
+    /// going forward.
+    #[derive(Debug, Clone)]
+    pub struct BigQueryStorageClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> BigQueryStorageClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BigQueryStorageClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            BigQueryStorageClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new read session. A read session divides the contents of a
+        /// BigQuery table into one or more streams, which can then be used to read
+        /// data from the table. The read session also specifies properties of the
+        /// data to be read, such as a list of columns or a push-down filter describing
+        /// the rows to be returned.
+        ///
+        /// A particular row can be read by at most one stream. When the caller has
+        /// reached the end of each stream in the session, then all the data in the
+        /// table has been read.
+        ///
+        /// Read sessions automatically expire 6 hours after they are created and do
+        /// not require manual clean-up by the caller.
+        pub async fn create_read_session(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateReadSessionRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReadSession>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/CreateReadSession",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.storage.v1beta1.BigQueryStorage",
+                "CreateReadSession",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reads rows from the table in the format prescribed by the read session.
+        /// Each response contains one or more table rows, up to a maximum of 10 MiB
+        /// per response; read requests which attempt to read individual rows larger
+        /// than this will fail.
+        ///
+        /// Each request also returns a set of stream statistics reflecting the
+        /// estimated total number of rows in the read stream. This number is computed
+        /// based on the total table size and the number of active streams in the read
+        /// session, and may change as other streams continue to read data.
+        pub async fn read_rows(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReadRowsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::ReadRowsResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/ReadRows",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.storage.v1beta1.BigQueryStorage",
+                "ReadRows",
+            ));
+            self.inner.server_streaming(req, path, codec).await
+        }
+        /// Creates additional streams for a ReadSession. This API can be used to
+        /// dynamically adjust the parallelism of a batch processing task upwards by
+        /// adding additional workers.
+        pub async fn batch_create_read_session_streams(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateReadSessionStreamsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateReadSessionStreamsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/BatchCreateReadSessionStreams");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.storage.v1beta1.BigQueryStorage",
+                "BatchCreateReadSessionStreams",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Causes a single stream in a ReadSession to gracefully stop. This
+        /// API can be used to dynamically adjust the parallelism of a batch processing
+        /// task downwards without losing data.
+        ///
+        /// This API does not delete the stream -- it remains visible in the
+        /// ReadSession, and any data processed by the stream is not released to other
+        /// streams. However, no additional data will be assigned to the stream once
+        /// this call completes. Callers must continue reading data on the stream until
+        /// the end of the stream is reached so that data which has already been
+        /// assigned to the stream will be processed.
+        ///
+        /// This method will return an error if there are no other live streams
+        /// in the Session, or if SplitReadStream() has been called on the given
+        /// Stream.
+        pub async fn finalize_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FinalizeStreamRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/FinalizeStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.storage.v1beta1.BigQueryStorage",
+                "FinalizeStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Splits a given read stream into two Streams. These streams are referred to
+        /// as the primary and the residual of the split. The original stream can still
+        /// be read from in the same manner as before. Both of the returned streams can
+        /// also be read from, and the total rows return by both child streams will be
+        /// the same as the rows read from the original stream.
+        ///
+        /// Moreover, the two child streams will be allocated back to back in the
+        /// original Stream. Concretely, it is guaranteed that for streams Original,
+        /// Primary, and Residual, that Original[0-j] = Primary[0-j] and
+        /// Original[j-n] = Residual[0-m] once the streams have been read to
+        /// completion.
+        ///
+        /// This method is guaranteed to be idempotent.
+        pub async fn split_read_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SplitReadStreamRequest>,
+        ) -> std::result::Result<tonic::Response<super::SplitReadStreamResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.storage.v1beta1.BigQueryStorage/SplitReadStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.storage.v1beta1.BigQueryStorage",
+                "SplitReadStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

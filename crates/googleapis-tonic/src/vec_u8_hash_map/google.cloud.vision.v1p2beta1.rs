@@ -2,963 +2,1006 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Vertex {
-#[prost(int32, tag = "1")]
-pub x: i32,
-#[prost(int32, tag = "2")]
-pub y: i32,
+    #[prost(int32, tag = "1")]
+    pub x: i32,
+    #[prost(int32, tag = "2")]
+    pub y: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NormalizedVertex {
-#[prost(float, tag = "1")]
-pub x: f32,
-#[prost(float, tag = "2")]
-pub y: f32,
+    #[prost(float, tag = "1")]
+    pub x: f32,
+    #[prost(float, tag = "2")]
+    pub y: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoundingPoly {
-#[prost(message, repeated, tag = "1")]
-pub vertices: ::prost::alloc::vec::Vec<Vertex>,
-#[prost(message, repeated, tag = "2")]
-pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
+    #[prost(message, repeated, tag = "1")]
+    pub vertices: ::prost::alloc::vec::Vec<Vertex>,
+    #[prost(message, repeated, tag = "2")]
+    pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Position {
-#[prost(float, tag = "1")]
-pub x: f32,
-#[prost(float, tag = "2")]
-pub y: f32,
-#[prost(float, tag = "3")]
-pub z: f32,
+    #[prost(float, tag = "1")]
+    pub x: f32,
+    #[prost(float, tag = "2")]
+    pub y: f32,
+    #[prost(float, tag = "3")]
+    pub z: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextAnnotation {
-#[prost(message, repeated, tag = "1")]
-pub pages: ::prost::alloc::vec::Vec<Page>,
-#[prost(string, tag = "2")]
-pub text: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub pages: ::prost::alloc::vec::Vec<Page>,
+    #[prost(string, tag = "2")]
+    pub text: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TextAnnotation`.
 pub mod text_annotation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DetectedLanguage {
-#[prost(string, tag = "1")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub confidence: f32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DetectedBreak {
-#[prost(enumeration = "detected_break::BreakType", tag = "1")]
-pub r#type: i32,
-#[prost(bool, tag = "2")]
-pub is_prefix: bool,
-}
-/// Nested message and enum types in `DetectedBreak`.
-pub mod detected_break {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BreakType {
-Unknown = 0,
-Space = 1,
-SureSpace = 2,
-EolSureSpace = 3,
-Hyphen = 4,
-LineBreak = 5,
-}
-impl BreakType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BreakType::Unknown => "UNKNOWN",
-BreakType::Space => "SPACE",
-BreakType::SureSpace => "SURE_SPACE",
-BreakType::EolSureSpace => "EOL_SURE_SPACE",
-BreakType::Hyphen => "HYPHEN",
-BreakType::LineBreak => "LINE_BREAK",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"SPACE" => Some(Self::Space),
-"SURE_SPACE" => Some(Self::SureSpace),
-"EOL_SURE_SPACE" => Some(Self::EolSureSpace),
-"HYPHEN" => Some(Self::Hyphen),
-"LINE_BREAK" => Some(Self::LineBreak),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TextProperty {
-#[prost(message, repeated, tag = "1")]
-pub detected_languages: ::prost::alloc::vec::Vec<DetectedLanguage>,
-#[prost(message, optional, tag = "2")]
-pub detected_break: ::core::option::Option<DetectedBreak>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DetectedLanguage {
+        #[prost(string, tag = "1")]
+        pub language_code: ::prost::alloc::string::String,
+        #[prost(float, tag = "2")]
+        pub confidence: f32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct DetectedBreak {
+        #[prost(enumeration = "detected_break::BreakType", tag = "1")]
+        pub r#type: i32,
+        #[prost(bool, tag = "2")]
+        pub is_prefix: bool,
+    }
+    /// Nested message and enum types in `DetectedBreak`.
+    pub mod detected_break {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum BreakType {
+            Unknown = 0,
+            Space = 1,
+            SureSpace = 2,
+            EolSureSpace = 3,
+            Hyphen = 4,
+            LineBreak = 5,
+        }
+        impl BreakType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    BreakType::Unknown => "UNKNOWN",
+                    BreakType::Space => "SPACE",
+                    BreakType::SureSpace => "SURE_SPACE",
+                    BreakType::EolSureSpace => "EOL_SURE_SPACE",
+                    BreakType::Hyphen => "HYPHEN",
+                    BreakType::LineBreak => "LINE_BREAK",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNKNOWN" => Some(Self::Unknown),
+                    "SPACE" => Some(Self::Space),
+                    "SURE_SPACE" => Some(Self::SureSpace),
+                    "EOL_SURE_SPACE" => Some(Self::EolSureSpace),
+                    "HYPHEN" => Some(Self::Hyphen),
+                    "LINE_BREAK" => Some(Self::LineBreak),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TextProperty {
+        #[prost(message, repeated, tag = "1")]
+        pub detected_languages: ::prost::alloc::vec::Vec<DetectedLanguage>,
+        #[prost(message, optional, tag = "2")]
+        pub detected_break: ::core::option::Option<DetectedBreak>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Page {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<text_annotation::TextProperty>,
-#[prost(int32, tag = "2")]
-pub width: i32,
-#[prost(int32, tag = "3")]
-pub height: i32,
-#[prost(message, repeated, tag = "4")]
-pub blocks: ::prost::alloc::vec::Vec<Block>,
-#[prost(float, tag = "5")]
-pub confidence: f32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<text_annotation::TextProperty>,
+    #[prost(int32, tag = "2")]
+    pub width: i32,
+    #[prost(int32, tag = "3")]
+    pub height: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub blocks: ::prost::alloc::vec::Vec<Block>,
+    #[prost(float, tag = "5")]
+    pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Block {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<text_annotation::TextProperty>,
-#[prost(message, optional, tag = "2")]
-pub bounding_box: ::core::option::Option<BoundingPoly>,
-#[prost(message, repeated, tag = "3")]
-pub paragraphs: ::prost::alloc::vec::Vec<Paragraph>,
-#[prost(enumeration = "block::BlockType", tag = "4")]
-pub block_type: i32,
-#[prost(float, tag = "5")]
-pub confidence: f32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<text_annotation::TextProperty>,
+    #[prost(message, optional, tag = "2")]
+    pub bounding_box: ::core::option::Option<BoundingPoly>,
+    #[prost(message, repeated, tag = "3")]
+    pub paragraphs: ::prost::alloc::vec::Vec<Paragraph>,
+    #[prost(enumeration = "block::BlockType", tag = "4")]
+    pub block_type: i32,
+    #[prost(float, tag = "5")]
+    pub confidence: f32,
 }
 /// Nested message and enum types in `Block`.
 pub mod block {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BlockType {
-Unknown = 0,
-Text = 1,
-Table = 2,
-Picture = 3,
-Ruler = 4,
-Barcode = 5,
-}
-impl BlockType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BlockType::Unknown => "UNKNOWN",
-BlockType::Text => "TEXT",
-BlockType::Table => "TABLE",
-BlockType::Picture => "PICTURE",
-BlockType::Ruler => "RULER",
-BlockType::Barcode => "BARCODE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"TEXT" => Some(Self::Text),
-"TABLE" => Some(Self::Table),
-"PICTURE" => Some(Self::Picture),
-"RULER" => Some(Self::Ruler),
-"BARCODE" => Some(Self::Barcode),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BlockType {
+        Unknown = 0,
+        Text = 1,
+        Table = 2,
+        Picture = 3,
+        Ruler = 4,
+        Barcode = 5,
+    }
+    impl BlockType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BlockType::Unknown => "UNKNOWN",
+                BlockType::Text => "TEXT",
+                BlockType::Table => "TABLE",
+                BlockType::Picture => "PICTURE",
+                BlockType::Ruler => "RULER",
+                BlockType::Barcode => "BARCODE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "TEXT" => Some(Self::Text),
+                "TABLE" => Some(Self::Table),
+                "PICTURE" => Some(Self::Picture),
+                "RULER" => Some(Self::Ruler),
+                "BARCODE" => Some(Self::Barcode),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Paragraph {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<text_annotation::TextProperty>,
-#[prost(message, optional, tag = "2")]
-pub bounding_box: ::core::option::Option<BoundingPoly>,
-#[prost(message, repeated, tag = "3")]
-pub words: ::prost::alloc::vec::Vec<Word>,
-#[prost(float, tag = "4")]
-pub confidence: f32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<text_annotation::TextProperty>,
+    #[prost(message, optional, tag = "2")]
+    pub bounding_box: ::core::option::Option<BoundingPoly>,
+    #[prost(message, repeated, tag = "3")]
+    pub words: ::prost::alloc::vec::Vec<Word>,
+    #[prost(float, tag = "4")]
+    pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Word {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<text_annotation::TextProperty>,
-#[prost(message, optional, tag = "2")]
-pub bounding_box: ::core::option::Option<BoundingPoly>,
-#[prost(message, repeated, tag = "3")]
-pub symbols: ::prost::alloc::vec::Vec<Symbol>,
-#[prost(float, tag = "4")]
-pub confidence: f32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<text_annotation::TextProperty>,
+    #[prost(message, optional, tag = "2")]
+    pub bounding_box: ::core::option::Option<BoundingPoly>,
+    #[prost(message, repeated, tag = "3")]
+    pub symbols: ::prost::alloc::vec::Vec<Symbol>,
+    #[prost(float, tag = "4")]
+    pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Symbol {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<text_annotation::TextProperty>,
-#[prost(message, optional, tag = "2")]
-pub bounding_box: ::core::option::Option<BoundingPoly>,
-#[prost(string, tag = "3")]
-pub text: ::prost::alloc::string::String,
-#[prost(float, tag = "4")]
-pub confidence: f32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<text_annotation::TextProperty>,
+    #[prost(message, optional, tag = "2")]
+    pub bounding_box: ::core::option::Option<BoundingPoly>,
+    #[prost(string, tag = "3")]
+    pub text: ::prost::alloc::string::String,
+    #[prost(float, tag = "4")]
+    pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebDetection {
-#[prost(message, repeated, tag = "1")]
-pub web_entities: ::prost::alloc::vec::Vec<web_detection::WebEntity>,
-#[prost(message, repeated, tag = "2")]
-pub full_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
-#[prost(message, repeated, tag = "3")]
-pub partial_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
-#[prost(message, repeated, tag = "4")]
-pub pages_with_matching_images: ::prost::alloc::vec::Vec<web_detection::WebPage>,
-#[prost(message, repeated, tag = "6")]
-pub visually_similar_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
-#[prost(message, repeated, tag = "8")]
-pub best_guess_labels: ::prost::alloc::vec::Vec<web_detection::WebLabel>,
+    #[prost(message, repeated, tag = "1")]
+    pub web_entities: ::prost::alloc::vec::Vec<web_detection::WebEntity>,
+    #[prost(message, repeated, tag = "2")]
+    pub full_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
+    #[prost(message, repeated, tag = "3")]
+    pub partial_matching_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
+    #[prost(message, repeated, tag = "4")]
+    pub pages_with_matching_images: ::prost::alloc::vec::Vec<web_detection::WebPage>,
+    #[prost(message, repeated, tag = "6")]
+    pub visually_similar_images: ::prost::alloc::vec::Vec<web_detection::WebImage>,
+    #[prost(message, repeated, tag = "8")]
+    pub best_guess_labels: ::prost::alloc::vec::Vec<web_detection::WebLabel>,
 }
 /// Nested message and enum types in `WebDetection`.
 pub mod web_detection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WebEntity {
-#[prost(string, tag = "1")]
-pub entity_id: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub score: f32,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WebImage {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub score: f32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WebPage {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub score: f32,
-#[prost(string, tag = "3")]
-pub page_title: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub full_matching_images: ::prost::alloc::vec::Vec<WebImage>,
-#[prost(message, repeated, tag = "5")]
-pub partial_matching_images: ::prost::alloc::vec::Vec<WebImage>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WebLabel {
-#[prost(string, tag = "1")]
-pub label: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub language_code: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WebEntity {
+        #[prost(string, tag = "1")]
+        pub entity_id: ::prost::alloc::string::String,
+        #[prost(float, tag = "2")]
+        pub score: f32,
+        #[prost(string, tag = "3")]
+        pub description: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WebImage {
+        #[prost(string, tag = "1")]
+        pub url: ::prost::alloc::string::String,
+        #[prost(float, tag = "2")]
+        pub score: f32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WebPage {
+        #[prost(string, tag = "1")]
+        pub url: ::prost::alloc::string::String,
+        #[prost(float, tag = "2")]
+        pub score: f32,
+        #[prost(string, tag = "3")]
+        pub page_title: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "4")]
+        pub full_matching_images: ::prost::alloc::vec::Vec<WebImage>,
+        #[prost(message, repeated, tag = "5")]
+        pub partial_matching_images: ::prost::alloc::vec::Vec<WebImage>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WebLabel {
+        #[prost(string, tag = "1")]
+        pub label: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub language_code: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Feature {
-#[prost(enumeration = "feature::Type", tag = "1")]
-pub r#type: i32,
-#[prost(int32, tag = "2")]
-pub max_results: i32,
-#[prost(string, tag = "3")]
-pub model: ::prost::alloc::string::String,
+    #[prost(enumeration = "feature::Type", tag = "1")]
+    pub r#type: i32,
+    #[prost(int32, tag = "2")]
+    pub max_results: i32,
+    #[prost(string, tag = "3")]
+    pub model: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Feature`.
 pub mod feature {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-FaceDetection = 1,
-LandmarkDetection = 2,
-LogoDetection = 3,
-LabelDetection = 4,
-TextDetection = 5,
-DocumentTextDetection = 11,
-SafeSearchDetection = 6,
-ImageProperties = 7,
-CropHints = 9,
-WebDetection = 10,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::FaceDetection => "FACE_DETECTION",
-Type::LandmarkDetection => "LANDMARK_DETECTION",
-Type::LogoDetection => "LOGO_DETECTION",
-Type::LabelDetection => "LABEL_DETECTION",
-Type::TextDetection => "TEXT_DETECTION",
-Type::DocumentTextDetection => "DOCUMENT_TEXT_DETECTION",
-Type::SafeSearchDetection => "SAFE_SEARCH_DETECTION",
-Type::ImageProperties => "IMAGE_PROPERTIES",
-Type::CropHints => "CROP_HINTS",
-Type::WebDetection => "WEB_DETECTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FACE_DETECTION" => Some(Self::FaceDetection),
-"LANDMARK_DETECTION" => Some(Self::LandmarkDetection),
-"LOGO_DETECTION" => Some(Self::LogoDetection),
-"LABEL_DETECTION" => Some(Self::LabelDetection),
-"TEXT_DETECTION" => Some(Self::TextDetection),
-"DOCUMENT_TEXT_DETECTION" => Some(Self::DocumentTextDetection),
-"SAFE_SEARCH_DETECTION" => Some(Self::SafeSearchDetection),
-"IMAGE_PROPERTIES" => Some(Self::ImageProperties),
-"CROP_HINTS" => Some(Self::CropHints),
-"WEB_DETECTION" => Some(Self::WebDetection),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        FaceDetection = 1,
+        LandmarkDetection = 2,
+        LogoDetection = 3,
+        LabelDetection = 4,
+        TextDetection = 5,
+        DocumentTextDetection = 11,
+        SafeSearchDetection = 6,
+        ImageProperties = 7,
+        CropHints = 9,
+        WebDetection = 10,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::FaceDetection => "FACE_DETECTION",
+                Type::LandmarkDetection => "LANDMARK_DETECTION",
+                Type::LogoDetection => "LOGO_DETECTION",
+                Type::LabelDetection => "LABEL_DETECTION",
+                Type::TextDetection => "TEXT_DETECTION",
+                Type::DocumentTextDetection => "DOCUMENT_TEXT_DETECTION",
+                Type::SafeSearchDetection => "SAFE_SEARCH_DETECTION",
+                Type::ImageProperties => "IMAGE_PROPERTIES",
+                Type::CropHints => "CROP_HINTS",
+                Type::WebDetection => "WEB_DETECTION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "FACE_DETECTION" => Some(Self::FaceDetection),
+                "LANDMARK_DETECTION" => Some(Self::LandmarkDetection),
+                "LOGO_DETECTION" => Some(Self::LogoDetection),
+                "LABEL_DETECTION" => Some(Self::LabelDetection),
+                "TEXT_DETECTION" => Some(Self::TextDetection),
+                "DOCUMENT_TEXT_DETECTION" => Some(Self::DocumentTextDetection),
+                "SAFE_SEARCH_DETECTION" => Some(Self::SafeSearchDetection),
+                "IMAGE_PROPERTIES" => Some(Self::ImageProperties),
+                "CROP_HINTS" => Some(Self::CropHints),
+                "WEB_DETECTION" => Some(Self::WebDetection),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageSource {
-#[prost(string, tag = "1")]
-pub gcs_image_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub image_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub gcs_image_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub image_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Image {
-#[prost(bytes = "vec", tag = "1")]
-pub content: ::prost::alloc::vec::Vec<u8>,
-#[prost(message, optional, tag = "2")]
-pub source: ::core::option::Option<ImageSource>,
+    #[prost(bytes = "vec", tag = "1")]
+    pub content: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "2")]
+    pub source: ::core::option::Option<ImageSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaceAnnotation {
-#[prost(message, optional, tag = "1")]
-pub bounding_poly: ::core::option::Option<BoundingPoly>,
-#[prost(message, optional, tag = "2")]
-pub fd_bounding_poly: ::core::option::Option<BoundingPoly>,
-#[prost(message, repeated, tag = "3")]
-pub landmarks: ::prost::alloc::vec::Vec<face_annotation::Landmark>,
-#[prost(float, tag = "4")]
-pub roll_angle: f32,
-#[prost(float, tag = "5")]
-pub pan_angle: f32,
-#[prost(float, tag = "6")]
-pub tilt_angle: f32,
-#[prost(float, tag = "7")]
-pub detection_confidence: f32,
-#[prost(float, tag = "8")]
-pub landmarking_confidence: f32,
-#[prost(enumeration = "Likelihood", tag = "9")]
-pub joy_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "10")]
-pub sorrow_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "11")]
-pub anger_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "12")]
-pub surprise_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "13")]
-pub under_exposed_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "14")]
-pub blurred_likelihood: i32,
-#[prost(enumeration = "Likelihood", tag = "15")]
-pub headwear_likelihood: i32,
+    #[prost(message, optional, tag = "1")]
+    pub bounding_poly: ::core::option::Option<BoundingPoly>,
+    #[prost(message, optional, tag = "2")]
+    pub fd_bounding_poly: ::core::option::Option<BoundingPoly>,
+    #[prost(message, repeated, tag = "3")]
+    pub landmarks: ::prost::alloc::vec::Vec<face_annotation::Landmark>,
+    #[prost(float, tag = "4")]
+    pub roll_angle: f32,
+    #[prost(float, tag = "5")]
+    pub pan_angle: f32,
+    #[prost(float, tag = "6")]
+    pub tilt_angle: f32,
+    #[prost(float, tag = "7")]
+    pub detection_confidence: f32,
+    #[prost(float, tag = "8")]
+    pub landmarking_confidence: f32,
+    #[prost(enumeration = "Likelihood", tag = "9")]
+    pub joy_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "10")]
+    pub sorrow_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "11")]
+    pub anger_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "12")]
+    pub surprise_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "13")]
+    pub under_exposed_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "14")]
+    pub blurred_likelihood: i32,
+    #[prost(enumeration = "Likelihood", tag = "15")]
+    pub headwear_likelihood: i32,
 }
 /// Nested message and enum types in `FaceAnnotation`.
 pub mod face_annotation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Landmark {
-#[prost(enumeration = "landmark::Type", tag = "3")]
-pub r#type: i32,
-#[prost(message, optional, tag = "4")]
-pub position: ::core::option::Option<super::Position>,
-}
-/// Nested message and enum types in `Landmark`.
-pub mod landmark {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-UnknownLandmark = 0,
-LeftEye = 1,
-RightEye = 2,
-LeftOfLeftEyebrow = 3,
-RightOfLeftEyebrow = 4,
-LeftOfRightEyebrow = 5,
-RightOfRightEyebrow = 6,
-MidpointBetweenEyes = 7,
-NoseTip = 8,
-UpperLip = 9,
-LowerLip = 10,
-MouthLeft = 11,
-MouthRight = 12,
-MouthCenter = 13,
-NoseBottomRight = 14,
-NoseBottomLeft = 15,
-NoseBottomCenter = 16,
-LeftEyeTopBoundary = 17,
-LeftEyeRightCorner = 18,
-LeftEyeBottomBoundary = 19,
-LeftEyeLeftCorner = 20,
-RightEyeTopBoundary = 21,
-RightEyeRightCorner = 22,
-RightEyeBottomBoundary = 23,
-RightEyeLeftCorner = 24,
-LeftEyebrowUpperMidpoint = 25,
-RightEyebrowUpperMidpoint = 26,
-LeftEarTragion = 27,
-RightEarTragion = 28,
-LeftEyePupil = 29,
-RightEyePupil = 30,
-ForeheadGlabella = 31,
-ChinGnathion = 32,
-ChinLeftGonion = 33,
-ChinRightGonion = 34,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::UnknownLandmark => "UNKNOWN_LANDMARK",
-Type::LeftEye => "LEFT_EYE",
-Type::RightEye => "RIGHT_EYE",
-Type::LeftOfLeftEyebrow => "LEFT_OF_LEFT_EYEBROW",
-Type::RightOfLeftEyebrow => "RIGHT_OF_LEFT_EYEBROW",
-Type::LeftOfRightEyebrow => "LEFT_OF_RIGHT_EYEBROW",
-Type::RightOfRightEyebrow => "RIGHT_OF_RIGHT_EYEBROW",
-Type::MidpointBetweenEyes => "MIDPOINT_BETWEEN_EYES",
-Type::NoseTip => "NOSE_TIP",
-Type::UpperLip => "UPPER_LIP",
-Type::LowerLip => "LOWER_LIP",
-Type::MouthLeft => "MOUTH_LEFT",
-Type::MouthRight => "MOUTH_RIGHT",
-Type::MouthCenter => "MOUTH_CENTER",
-Type::NoseBottomRight => "NOSE_BOTTOM_RIGHT",
-Type::NoseBottomLeft => "NOSE_BOTTOM_LEFT",
-Type::NoseBottomCenter => "NOSE_BOTTOM_CENTER",
-Type::LeftEyeTopBoundary => "LEFT_EYE_TOP_BOUNDARY",
-Type::LeftEyeRightCorner => "LEFT_EYE_RIGHT_CORNER",
-Type::LeftEyeBottomBoundary => "LEFT_EYE_BOTTOM_BOUNDARY",
-Type::LeftEyeLeftCorner => "LEFT_EYE_LEFT_CORNER",
-Type::RightEyeTopBoundary => "RIGHT_EYE_TOP_BOUNDARY",
-Type::RightEyeRightCorner => "RIGHT_EYE_RIGHT_CORNER",
-Type::RightEyeBottomBoundary => "RIGHT_EYE_BOTTOM_BOUNDARY",
-Type::RightEyeLeftCorner => "RIGHT_EYE_LEFT_CORNER",
-Type::LeftEyebrowUpperMidpoint => "LEFT_EYEBROW_UPPER_MIDPOINT",
-Type::RightEyebrowUpperMidpoint => "RIGHT_EYEBROW_UPPER_MIDPOINT",
-Type::LeftEarTragion => "LEFT_EAR_TRAGION",
-Type::RightEarTragion => "RIGHT_EAR_TRAGION",
-Type::LeftEyePupil => "LEFT_EYE_PUPIL",
-Type::RightEyePupil => "RIGHT_EYE_PUPIL",
-Type::ForeheadGlabella => "FOREHEAD_GLABELLA",
-Type::ChinGnathion => "CHIN_GNATHION",
-Type::ChinLeftGonion => "CHIN_LEFT_GONION",
-Type::ChinRightGonion => "CHIN_RIGHT_GONION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_LANDMARK" => Some(Self::UnknownLandmark),
-"LEFT_EYE" => Some(Self::LeftEye),
-"RIGHT_EYE" => Some(Self::RightEye),
-"LEFT_OF_LEFT_EYEBROW" => Some(Self::LeftOfLeftEyebrow),
-"RIGHT_OF_LEFT_EYEBROW" => Some(Self::RightOfLeftEyebrow),
-"LEFT_OF_RIGHT_EYEBROW" => Some(Self::LeftOfRightEyebrow),
-"RIGHT_OF_RIGHT_EYEBROW" => Some(Self::RightOfRightEyebrow),
-"MIDPOINT_BETWEEN_EYES" => Some(Self::MidpointBetweenEyes),
-"NOSE_TIP" => Some(Self::NoseTip),
-"UPPER_LIP" => Some(Self::UpperLip),
-"LOWER_LIP" => Some(Self::LowerLip),
-"MOUTH_LEFT" => Some(Self::MouthLeft),
-"MOUTH_RIGHT" => Some(Self::MouthRight),
-"MOUTH_CENTER" => Some(Self::MouthCenter),
-"NOSE_BOTTOM_RIGHT" => Some(Self::NoseBottomRight),
-"NOSE_BOTTOM_LEFT" => Some(Self::NoseBottomLeft),
-"NOSE_BOTTOM_CENTER" => Some(Self::NoseBottomCenter),
-"LEFT_EYE_TOP_BOUNDARY" => Some(Self::LeftEyeTopBoundary),
-"LEFT_EYE_RIGHT_CORNER" => Some(Self::LeftEyeRightCorner),
-"LEFT_EYE_BOTTOM_BOUNDARY" => Some(Self::LeftEyeBottomBoundary),
-"LEFT_EYE_LEFT_CORNER" => Some(Self::LeftEyeLeftCorner),
-"RIGHT_EYE_TOP_BOUNDARY" => Some(Self::RightEyeTopBoundary),
-"RIGHT_EYE_RIGHT_CORNER" => Some(Self::RightEyeRightCorner),
-"RIGHT_EYE_BOTTOM_BOUNDARY" => Some(Self::RightEyeBottomBoundary),
-"RIGHT_EYE_LEFT_CORNER" => Some(Self::RightEyeLeftCorner),
-"LEFT_EYEBROW_UPPER_MIDPOINT" => Some(Self::LeftEyebrowUpperMidpoint),
-"RIGHT_EYEBROW_UPPER_MIDPOINT" => Some(Self::RightEyebrowUpperMidpoint),
-"LEFT_EAR_TRAGION" => Some(Self::LeftEarTragion),
-"RIGHT_EAR_TRAGION" => Some(Self::RightEarTragion),
-"LEFT_EYE_PUPIL" => Some(Self::LeftEyePupil),
-"RIGHT_EYE_PUPIL" => Some(Self::RightEyePupil),
-"FOREHEAD_GLABELLA" => Some(Self::ForeheadGlabella),
-"CHIN_GNATHION" => Some(Self::ChinGnathion),
-"CHIN_LEFT_GONION" => Some(Self::ChinLeftGonion),
-"CHIN_RIGHT_GONION" => Some(Self::ChinRightGonion),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Landmark {
+        #[prost(enumeration = "landmark::Type", tag = "3")]
+        pub r#type: i32,
+        #[prost(message, optional, tag = "4")]
+        pub position: ::core::option::Option<super::Position>,
+    }
+    /// Nested message and enum types in `Landmark`.
+    pub mod landmark {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Type {
+            UnknownLandmark = 0,
+            LeftEye = 1,
+            RightEye = 2,
+            LeftOfLeftEyebrow = 3,
+            RightOfLeftEyebrow = 4,
+            LeftOfRightEyebrow = 5,
+            RightOfRightEyebrow = 6,
+            MidpointBetweenEyes = 7,
+            NoseTip = 8,
+            UpperLip = 9,
+            LowerLip = 10,
+            MouthLeft = 11,
+            MouthRight = 12,
+            MouthCenter = 13,
+            NoseBottomRight = 14,
+            NoseBottomLeft = 15,
+            NoseBottomCenter = 16,
+            LeftEyeTopBoundary = 17,
+            LeftEyeRightCorner = 18,
+            LeftEyeBottomBoundary = 19,
+            LeftEyeLeftCorner = 20,
+            RightEyeTopBoundary = 21,
+            RightEyeRightCorner = 22,
+            RightEyeBottomBoundary = 23,
+            RightEyeLeftCorner = 24,
+            LeftEyebrowUpperMidpoint = 25,
+            RightEyebrowUpperMidpoint = 26,
+            LeftEarTragion = 27,
+            RightEarTragion = 28,
+            LeftEyePupil = 29,
+            RightEyePupil = 30,
+            ForeheadGlabella = 31,
+            ChinGnathion = 32,
+            ChinLeftGonion = 33,
+            ChinRightGonion = 34,
+        }
+        impl Type {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Type::UnknownLandmark => "UNKNOWN_LANDMARK",
+                    Type::LeftEye => "LEFT_EYE",
+                    Type::RightEye => "RIGHT_EYE",
+                    Type::LeftOfLeftEyebrow => "LEFT_OF_LEFT_EYEBROW",
+                    Type::RightOfLeftEyebrow => "RIGHT_OF_LEFT_EYEBROW",
+                    Type::LeftOfRightEyebrow => "LEFT_OF_RIGHT_EYEBROW",
+                    Type::RightOfRightEyebrow => "RIGHT_OF_RIGHT_EYEBROW",
+                    Type::MidpointBetweenEyes => "MIDPOINT_BETWEEN_EYES",
+                    Type::NoseTip => "NOSE_TIP",
+                    Type::UpperLip => "UPPER_LIP",
+                    Type::LowerLip => "LOWER_LIP",
+                    Type::MouthLeft => "MOUTH_LEFT",
+                    Type::MouthRight => "MOUTH_RIGHT",
+                    Type::MouthCenter => "MOUTH_CENTER",
+                    Type::NoseBottomRight => "NOSE_BOTTOM_RIGHT",
+                    Type::NoseBottomLeft => "NOSE_BOTTOM_LEFT",
+                    Type::NoseBottomCenter => "NOSE_BOTTOM_CENTER",
+                    Type::LeftEyeTopBoundary => "LEFT_EYE_TOP_BOUNDARY",
+                    Type::LeftEyeRightCorner => "LEFT_EYE_RIGHT_CORNER",
+                    Type::LeftEyeBottomBoundary => "LEFT_EYE_BOTTOM_BOUNDARY",
+                    Type::LeftEyeLeftCorner => "LEFT_EYE_LEFT_CORNER",
+                    Type::RightEyeTopBoundary => "RIGHT_EYE_TOP_BOUNDARY",
+                    Type::RightEyeRightCorner => "RIGHT_EYE_RIGHT_CORNER",
+                    Type::RightEyeBottomBoundary => "RIGHT_EYE_BOTTOM_BOUNDARY",
+                    Type::RightEyeLeftCorner => "RIGHT_EYE_LEFT_CORNER",
+                    Type::LeftEyebrowUpperMidpoint => "LEFT_EYEBROW_UPPER_MIDPOINT",
+                    Type::RightEyebrowUpperMidpoint => "RIGHT_EYEBROW_UPPER_MIDPOINT",
+                    Type::LeftEarTragion => "LEFT_EAR_TRAGION",
+                    Type::RightEarTragion => "RIGHT_EAR_TRAGION",
+                    Type::LeftEyePupil => "LEFT_EYE_PUPIL",
+                    Type::RightEyePupil => "RIGHT_EYE_PUPIL",
+                    Type::ForeheadGlabella => "FOREHEAD_GLABELLA",
+                    Type::ChinGnathion => "CHIN_GNATHION",
+                    Type::ChinLeftGonion => "CHIN_LEFT_GONION",
+                    Type::ChinRightGonion => "CHIN_RIGHT_GONION",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNKNOWN_LANDMARK" => Some(Self::UnknownLandmark),
+                    "LEFT_EYE" => Some(Self::LeftEye),
+                    "RIGHT_EYE" => Some(Self::RightEye),
+                    "LEFT_OF_LEFT_EYEBROW" => Some(Self::LeftOfLeftEyebrow),
+                    "RIGHT_OF_LEFT_EYEBROW" => Some(Self::RightOfLeftEyebrow),
+                    "LEFT_OF_RIGHT_EYEBROW" => Some(Self::LeftOfRightEyebrow),
+                    "RIGHT_OF_RIGHT_EYEBROW" => Some(Self::RightOfRightEyebrow),
+                    "MIDPOINT_BETWEEN_EYES" => Some(Self::MidpointBetweenEyes),
+                    "NOSE_TIP" => Some(Self::NoseTip),
+                    "UPPER_LIP" => Some(Self::UpperLip),
+                    "LOWER_LIP" => Some(Self::LowerLip),
+                    "MOUTH_LEFT" => Some(Self::MouthLeft),
+                    "MOUTH_RIGHT" => Some(Self::MouthRight),
+                    "MOUTH_CENTER" => Some(Self::MouthCenter),
+                    "NOSE_BOTTOM_RIGHT" => Some(Self::NoseBottomRight),
+                    "NOSE_BOTTOM_LEFT" => Some(Self::NoseBottomLeft),
+                    "NOSE_BOTTOM_CENTER" => Some(Self::NoseBottomCenter),
+                    "LEFT_EYE_TOP_BOUNDARY" => Some(Self::LeftEyeTopBoundary),
+                    "LEFT_EYE_RIGHT_CORNER" => Some(Self::LeftEyeRightCorner),
+                    "LEFT_EYE_BOTTOM_BOUNDARY" => Some(Self::LeftEyeBottomBoundary),
+                    "LEFT_EYE_LEFT_CORNER" => Some(Self::LeftEyeLeftCorner),
+                    "RIGHT_EYE_TOP_BOUNDARY" => Some(Self::RightEyeTopBoundary),
+                    "RIGHT_EYE_RIGHT_CORNER" => Some(Self::RightEyeRightCorner),
+                    "RIGHT_EYE_BOTTOM_BOUNDARY" => Some(Self::RightEyeBottomBoundary),
+                    "RIGHT_EYE_LEFT_CORNER" => Some(Self::RightEyeLeftCorner),
+                    "LEFT_EYEBROW_UPPER_MIDPOINT" => Some(Self::LeftEyebrowUpperMidpoint),
+                    "RIGHT_EYEBROW_UPPER_MIDPOINT" => Some(Self::RightEyebrowUpperMidpoint),
+                    "LEFT_EAR_TRAGION" => Some(Self::LeftEarTragion),
+                    "RIGHT_EAR_TRAGION" => Some(Self::RightEarTragion),
+                    "LEFT_EYE_PUPIL" => Some(Self::LeftEyePupil),
+                    "RIGHT_EYE_PUPIL" => Some(Self::RightEyePupil),
+                    "FOREHEAD_GLABELLA" => Some(Self::ForeheadGlabella),
+                    "CHIN_GNATHION" => Some(Self::ChinGnathion),
+                    "CHIN_LEFT_GONION" => Some(Self::ChinLeftGonion),
+                    "CHIN_RIGHT_GONION" => Some(Self::ChinRightGonion),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationInfo {
-#[prost(message, optional, tag = "1")]
-pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "1")]
+    pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Property {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-#[prost(uint64, tag = "3")]
-pub uint64_value: u64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "3")]
+    pub uint64_value: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityAnnotation {
-#[prost(string, tag = "1")]
-pub mid: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub locale: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(float, tag = "4")]
-pub score: f32,
-#[prost(float, tag = "5")]
-pub confidence: f32,
-#[prost(float, tag = "6")]
-pub topicality: f32,
-#[prost(message, optional, tag = "7")]
-pub bounding_poly: ::core::option::Option<BoundingPoly>,
-#[prost(message, repeated, tag = "8")]
-pub locations: ::prost::alloc::vec::Vec<LocationInfo>,
-#[prost(message, repeated, tag = "9")]
-pub properties: ::prost::alloc::vec::Vec<Property>,
+    #[prost(string, tag = "1")]
+    pub mid: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub locale: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(float, tag = "4")]
+    pub score: f32,
+    #[prost(float, tag = "5")]
+    pub confidence: f32,
+    #[prost(float, tag = "6")]
+    pub topicality: f32,
+    #[prost(message, optional, tag = "7")]
+    pub bounding_poly: ::core::option::Option<BoundingPoly>,
+    #[prost(message, repeated, tag = "8")]
+    pub locations: ::prost::alloc::vec::Vec<LocationInfo>,
+    #[prost(message, repeated, tag = "9")]
+    pub properties: ::prost::alloc::vec::Vec<Property>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SafeSearchAnnotation {
-#[prost(enumeration = "Likelihood", tag = "1")]
-pub adult: i32,
-#[prost(enumeration = "Likelihood", tag = "2")]
-pub spoof: i32,
-#[prost(enumeration = "Likelihood", tag = "3")]
-pub medical: i32,
-#[prost(enumeration = "Likelihood", tag = "4")]
-pub violence: i32,
-#[prost(enumeration = "Likelihood", tag = "9")]
-pub racy: i32,
+    #[prost(enumeration = "Likelihood", tag = "1")]
+    pub adult: i32,
+    #[prost(enumeration = "Likelihood", tag = "2")]
+    pub spoof: i32,
+    #[prost(enumeration = "Likelihood", tag = "3")]
+    pub medical: i32,
+    #[prost(enumeration = "Likelihood", tag = "4")]
+    pub violence: i32,
+    #[prost(enumeration = "Likelihood", tag = "9")]
+    pub racy: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LatLongRect {
-#[prost(message, optional, tag = "1")]
-pub min_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "2")]
-pub max_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "1")]
+    pub min_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "2")]
+    pub max_lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ColorInfo {
-#[prost(message, optional, tag = "1")]
-pub color: ::core::option::Option<super::super::super::r#type::Color>,
-#[prost(float, tag = "2")]
-pub score: f32,
-#[prost(float, tag = "3")]
-pub pixel_fraction: f32,
+    #[prost(message, optional, tag = "1")]
+    pub color: ::core::option::Option<super::super::super::r#type::Color>,
+    #[prost(float, tag = "2")]
+    pub score: f32,
+    #[prost(float, tag = "3")]
+    pub pixel_fraction: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DominantColorsAnnotation {
-#[prost(message, repeated, tag = "1")]
-pub colors: ::prost::alloc::vec::Vec<ColorInfo>,
+    #[prost(message, repeated, tag = "1")]
+    pub colors: ::prost::alloc::vec::Vec<ColorInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageProperties {
-#[prost(message, optional, tag = "1")]
-pub dominant_colors: ::core::option::Option<DominantColorsAnnotation>,
+    #[prost(message, optional, tag = "1")]
+    pub dominant_colors: ::core::option::Option<DominantColorsAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CropHint {
-#[prost(message, optional, tag = "1")]
-pub bounding_poly: ::core::option::Option<BoundingPoly>,
-#[prost(float, tag = "2")]
-pub confidence: f32,
-#[prost(float, tag = "3")]
-pub importance_fraction: f32,
+    #[prost(message, optional, tag = "1")]
+    pub bounding_poly: ::core::option::Option<BoundingPoly>,
+    #[prost(float, tag = "2")]
+    pub confidence: f32,
+    #[prost(float, tag = "3")]
+    pub importance_fraction: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CropHintsAnnotation {
-#[prost(message, repeated, tag = "1")]
-pub crop_hints: ::prost::alloc::vec::Vec<CropHint>,
+    #[prost(message, repeated, tag = "1")]
+    pub crop_hints: ::prost::alloc::vec::Vec<CropHint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CropHintsParams {
-#[prost(float, repeated, tag = "1")]
-pub aspect_ratios: ::prost::alloc::vec::Vec<f32>,
+    #[prost(float, repeated, tag = "1")]
+    pub aspect_ratios: ::prost::alloc::vec::Vec<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WebDetectionParams {
-#[prost(bool, tag = "2")]
-pub include_geo_results: bool,
+    #[prost(bool, tag = "2")]
+    pub include_geo_results: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextDetectionParams {
-#[prost(bool, tag = "9")]
-pub enable_text_detection_confidence_score: bool,
-#[prost(string, repeated, tag = "11")]
-pub advanced_ocr_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "9")]
+    pub enable_text_detection_confidence_score: bool,
+    #[prost(string, repeated, tag = "11")]
+    pub advanced_ocr_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageContext {
-#[prost(message, optional, tag = "1")]
-pub lat_long_rect: ::core::option::Option<LatLongRect>,
-#[prost(string, repeated, tag = "2")]
-pub language_hints: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub crop_hints_params: ::core::option::Option<CropHintsParams>,
-#[prost(message, optional, tag = "6")]
-pub web_detection_params: ::core::option::Option<WebDetectionParams>,
-#[prost(message, optional, tag = "12")]
-pub text_detection_params: ::core::option::Option<TextDetectionParams>,
+    #[prost(message, optional, tag = "1")]
+    pub lat_long_rect: ::core::option::Option<LatLongRect>,
+    #[prost(string, repeated, tag = "2")]
+    pub language_hints: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub crop_hints_params: ::core::option::Option<CropHintsParams>,
+    #[prost(message, optional, tag = "6")]
+    pub web_detection_params: ::core::option::Option<WebDetectionParams>,
+    #[prost(message, optional, tag = "12")]
+    pub text_detection_params: ::core::option::Option<TextDetectionParams>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateImageRequest {
-#[prost(message, optional, tag = "1")]
-pub image: ::core::option::Option<Image>,
-#[prost(message, repeated, tag = "2")]
-pub features: ::prost::alloc::vec::Vec<Feature>,
-#[prost(message, optional, tag = "3")]
-pub image_context: ::core::option::Option<ImageContext>,
+    #[prost(message, optional, tag = "1")]
+    pub image: ::core::option::Option<Image>,
+    #[prost(message, repeated, tag = "2")]
+    pub features: ::prost::alloc::vec::Vec<Feature>,
+    #[prost(message, optional, tag = "3")]
+    pub image_context: ::core::option::Option<ImageContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageAnnotationContext {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_number: i32,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_number: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateImageResponse {
-#[prost(message, repeated, tag = "1")]
-pub face_annotations: ::prost::alloc::vec::Vec<FaceAnnotation>,
-#[prost(message, repeated, tag = "2")]
-pub landmark_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
-#[prost(message, repeated, tag = "3")]
-pub logo_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
-#[prost(message, repeated, tag = "4")]
-pub label_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
-#[prost(message, repeated, tag = "5")]
-pub text_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
-#[prost(message, optional, tag = "12")]
-pub full_text_annotation: ::core::option::Option<TextAnnotation>,
-#[prost(message, optional, tag = "6")]
-pub safe_search_annotation: ::core::option::Option<SafeSearchAnnotation>,
-#[prost(message, optional, tag = "8")]
-pub image_properties_annotation: ::core::option::Option<ImageProperties>,
-#[prost(message, optional, tag = "11")]
-pub crop_hints_annotation: ::core::option::Option<CropHintsAnnotation>,
-#[prost(message, optional, tag = "13")]
-pub web_detection: ::core::option::Option<WebDetection>,
-#[prost(message, optional, tag = "9")]
-pub error: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(message, optional, tag = "21")]
-pub context: ::core::option::Option<ImageAnnotationContext>,
+    #[prost(message, repeated, tag = "1")]
+    pub face_annotations: ::prost::alloc::vec::Vec<FaceAnnotation>,
+    #[prost(message, repeated, tag = "2")]
+    pub landmark_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
+    #[prost(message, repeated, tag = "3")]
+    pub logo_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
+    #[prost(message, repeated, tag = "4")]
+    pub label_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
+    #[prost(message, repeated, tag = "5")]
+    pub text_annotations: ::prost::alloc::vec::Vec<EntityAnnotation>,
+    #[prost(message, optional, tag = "12")]
+    pub full_text_annotation: ::core::option::Option<TextAnnotation>,
+    #[prost(message, optional, tag = "6")]
+    pub safe_search_annotation: ::core::option::Option<SafeSearchAnnotation>,
+    #[prost(message, optional, tag = "8")]
+    pub image_properties_annotation: ::core::option::Option<ImageProperties>,
+    #[prost(message, optional, tag = "11")]
+    pub crop_hints_annotation: ::core::option::Option<CropHintsAnnotation>,
+    #[prost(message, optional, tag = "13")]
+    pub web_detection: ::core::option::Option<WebDetection>,
+    #[prost(message, optional, tag = "9")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, optional, tag = "21")]
+    pub context: ::core::option::Option<ImageAnnotationContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateFileResponse {
-#[prost(message, optional, tag = "1")]
-pub input_config: ::core::option::Option<InputConfig>,
-#[prost(message, repeated, tag = "2")]
-pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
+    #[prost(message, optional, tag = "1")]
+    pub input_config: ::core::option::Option<InputConfig>,
+    #[prost(message, repeated, tag = "2")]
+    pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchAnnotateImagesRequest {
-#[prost(message, repeated, tag = "1")]
-pub requests: ::prost::alloc::vec::Vec<AnnotateImageRequest>,
+    #[prost(message, repeated, tag = "1")]
+    pub requests: ::prost::alloc::vec::Vec<AnnotateImageRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchAnnotateImagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
+    #[prost(message, repeated, tag = "1")]
+    pub responses: ::prost::alloc::vec::Vec<AnnotateImageResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncAnnotateFileRequest {
-#[prost(message, optional, tag = "1")]
-pub input_config: ::core::option::Option<InputConfig>,
-#[prost(message, repeated, tag = "2")]
-pub features: ::prost::alloc::vec::Vec<Feature>,
-#[prost(message, optional, tag = "3")]
-pub image_context: ::core::option::Option<ImageContext>,
-#[prost(message, optional, tag = "4")]
-pub output_config: ::core::option::Option<OutputConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub input_config: ::core::option::Option<InputConfig>,
+    #[prost(message, repeated, tag = "2")]
+    pub features: ::prost::alloc::vec::Vec<Feature>,
+    #[prost(message, optional, tag = "3")]
+    pub image_context: ::core::option::Option<ImageContext>,
+    #[prost(message, optional, tag = "4")]
+    pub output_config: ::core::option::Option<OutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncAnnotateFileResponse {
-#[prost(message, optional, tag = "1")]
-pub output_config: ::core::option::Option<OutputConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub output_config: ::core::option::Option<OutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncBatchAnnotateFilesRequest {
-#[prost(message, repeated, tag = "1")]
-pub requests: ::prost::alloc::vec::Vec<AsyncAnnotateFileRequest>,
+    #[prost(message, repeated, tag = "1")]
+    pub requests: ::prost::alloc::vec::Vec<AsyncAnnotateFileRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncBatchAnnotateFilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub responses: ::prost::alloc::vec::Vec<AsyncAnnotateFileResponse>,
+    #[prost(message, repeated, tag = "1")]
+    pub responses: ::prost::alloc::vec::Vec<AsyncAnnotateFileResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
-#[prost(message, optional, tag = "1")]
-pub gcs_source: ::core::option::Option<GcsSource>,
-#[prost(string, tag = "2")]
-pub mime_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub gcs_source: ::core::option::Option<GcsSource>,
+    #[prost(string, tag = "2")]
+    pub mime_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-#[prost(message, optional, tag = "1")]
-pub gcs_destination: ::core::option::Option<GcsDestination>,
-#[prost(int32, tag = "2")]
-pub batch_size: i32,
+    #[prost(message, optional, tag = "1")]
+    pub gcs_destination: ::core::option::Option<GcsDestination>,
+    #[prost(int32, tag = "2")]
+    pub batch_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(enumeration = "operation_metadata::State", tag = "1")]
-pub state: i32,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "operation_metadata::State", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Created = 1,
-Running = 2,
-Done = 3,
-Cancelled = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Created => "CREATED",
-State::Running => "RUNNING",
-State::Done => "DONE",
-State::Cancelled => "CANCELLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATED" => Some(Self::Created),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-"CANCELLED" => Some(Self::Cancelled),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Created = 1,
+        Running = 2,
+        Done = 3,
+        Cancelled = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Created => "CREATED",
+                State::Running => "RUNNING",
+                State::Done => "DONE",
+                State::Cancelled => "CANCELLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATED" => Some(Self::Created),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                "CANCELLED" => Some(Self::Cancelled),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Likelihood {
-Unknown = 0,
-VeryUnlikely = 1,
-Unlikely = 2,
-Possible = 3,
-Likely = 4,
-VeryLikely = 5,
+    Unknown = 0,
+    VeryUnlikely = 1,
+    Unlikely = 2,
+    Possible = 3,
+    Likely = 4,
+    VeryLikely = 5,
 }
 impl Likelihood {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Likelihood::Unknown => "UNKNOWN",
-Likelihood::VeryUnlikely => "VERY_UNLIKELY",
-Likelihood::Unlikely => "UNLIKELY",
-Likelihood::Possible => "POSSIBLE",
-Likelihood::Likely => "LIKELY",
-Likelihood::VeryLikely => "VERY_LIKELY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"VERY_UNLIKELY" => Some(Self::VeryUnlikely),
-"UNLIKELY" => Some(Self::Unlikely),
-"POSSIBLE" => Some(Self::Possible),
-"LIKELY" => Some(Self::Likely),
-"VERY_LIKELY" => Some(Self::VeryLikely),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Likelihood::Unknown => "UNKNOWN",
+            Likelihood::VeryUnlikely => "VERY_UNLIKELY",
+            Likelihood::Unlikely => "UNLIKELY",
+            Likelihood::Possible => "POSSIBLE",
+            Likelihood::Likely => "LIKELY",
+            Likelihood::VeryLikely => "VERY_LIKELY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN" => Some(Self::Unknown),
+            "VERY_UNLIKELY" => Some(Self::VeryUnlikely),
+            "UNLIKELY" => Some(Self::Unlikely),
+            "POSSIBLE" => Some(Self::Possible),
+            "LIKELY" => Some(Self::Likely),
+            "VERY_LIKELY" => Some(Self::VeryLikely),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod image_annotator_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that performs Google Cloud Vision API detection tasks over client
-/// images, such as face, landmark, logo, label, and text detection. The
-/// ImageAnnotator service returns detected entities from the images.
-#[derive(Debug, Clone)]
-pub struct ImageAnnotatorClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ImageAnnotatorClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ImageAnnotatorClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ImageAnnotatorClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Run image detection and annotation for a batch of images.
-pub async fn batch_annotate_images(&mut self, request: impl tonic::IntoRequest<super::BatchAnnotateImagesRequest>) -> std::result::Result<tonic::Response<super::BatchAnnotateImagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.vision.v1p2beta1.ImageAnnotator/BatchAnnotateImages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.vision.v1p2beta1.ImageAnnotator", "BatchAnnotateImages"));
-self.inner.unary(req, path, codec).await
-}
-/// Run async image detection and annotation for a list of generic files (e.g.
-/// PDF) which may contain multiple pages and multiple images per page.
-/// Progress and results can be retrieved through the
-/// `google.longrunning.Operations` interface.
-/// `Operation.metadata` contains `OperationMetadata` (metadata).
-/// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
-pub async fn async_batch_annotate_files(&mut self, request: impl tonic::IntoRequest<super::AsyncBatchAnnotateFilesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.vision.v1p2beta1.ImageAnnotator/AsyncBatchAnnotateFiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.vision.v1p2beta1.ImageAnnotator", "AsyncBatchAnnotateFiles"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that performs Google Cloud Vision API detection tasks over client
+    /// images, such as face, landmark, logo, label, and text detection. The
+    /// ImageAnnotator service returns detected entities from the images.
+    #[derive(Debug, Clone)]
+    pub struct ImageAnnotatorClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ImageAnnotatorClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ImageAnnotatorClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ImageAnnotatorClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Run image detection and annotation for a batch of images.
+        pub async fn batch_annotate_images(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchAnnotateImagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchAnnotateImagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.vision.v1p2beta1.ImageAnnotator/BatchAnnotateImages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.vision.v1p2beta1.ImageAnnotator",
+                "BatchAnnotateImages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Run async image detection and annotation for a list of generic files (e.g.
+        /// PDF) which may contain multiple pages and multiple images per page.
+        /// Progress and results can be retrieved through the
+        /// `google.longrunning.Operations` interface.
+        /// `Operation.metadata` contains `OperationMetadata` (metadata).
+        /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+        pub async fn async_batch_annotate_files(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AsyncBatchAnnotateFilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.vision.v1p2beta1.ImageAnnotator/AsyncBatchAnnotateFiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.vision.v1p2beta1.ImageAnnotator",
+                "AsyncBatchAnnotateFiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

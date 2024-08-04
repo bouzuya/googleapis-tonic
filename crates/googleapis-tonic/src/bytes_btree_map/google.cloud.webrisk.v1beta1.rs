@@ -2,333 +2,387 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeThreatListDiffRequest {
-#[prost(enumeration = "ThreatType", tag = "1")]
-pub threat_type: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub version_token: ::prost::bytes::Bytes,
-#[prost(message, optional, tag = "3")]
-pub constraints: ::core::option::Option<compute_threat_list_diff_request::Constraints>,
+    #[prost(enumeration = "ThreatType", tag = "1")]
+    pub threat_type: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub version_token: ::prost::bytes::Bytes,
+    #[prost(message, optional, tag = "3")]
+    pub constraints: ::core::option::Option<compute_threat_list_diff_request::Constraints>,
 }
 /// Nested message and enum types in `ComputeThreatListDiffRequest`.
 pub mod compute_threat_list_diff_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Constraints {
-#[prost(int32, tag = "1")]
-pub max_diff_entries: i32,
-#[prost(int32, tag = "2")]
-pub max_database_entries: i32,
-#[prost(enumeration = "super::CompressionType", repeated, tag = "3")]
-pub supported_compressions: ::prost::alloc::vec::Vec<i32>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Constraints {
+        #[prost(int32, tag = "1")]
+        pub max_diff_entries: i32,
+        #[prost(int32, tag = "2")]
+        pub max_database_entries: i32,
+        #[prost(enumeration = "super::CompressionType", repeated, tag = "3")]
+        pub supported_compressions: ::prost::alloc::vec::Vec<i32>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeThreatListDiffResponse {
-#[prost(enumeration = "compute_threat_list_diff_response::ResponseType", tag = "4")]
-pub response_type: i32,
-#[prost(message, optional, tag = "5")]
-pub additions: ::core::option::Option<ThreatEntryAdditions>,
-#[prost(message, optional, tag = "6")]
-pub removals: ::core::option::Option<ThreatEntryRemovals>,
-#[prost(bytes = "bytes", tag = "7")]
-pub new_version_token: ::prost::bytes::Bytes,
-#[prost(message, optional, tag = "8")]
-pub checksum: ::core::option::Option<compute_threat_list_diff_response::Checksum>,
-#[prost(message, optional, tag = "2")]
-pub recommended_next_diff: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(
+        enumeration = "compute_threat_list_diff_response::ResponseType",
+        tag = "4"
+    )]
+    pub response_type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub additions: ::core::option::Option<ThreatEntryAdditions>,
+    #[prost(message, optional, tag = "6")]
+    pub removals: ::core::option::Option<ThreatEntryRemovals>,
+    #[prost(bytes = "bytes", tag = "7")]
+    pub new_version_token: ::prost::bytes::Bytes,
+    #[prost(message, optional, tag = "8")]
+    pub checksum: ::core::option::Option<compute_threat_list_diff_response::Checksum>,
+    #[prost(message, optional, tag = "2")]
+    pub recommended_next_diff: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `ComputeThreatListDiffResponse`.
 pub mod compute_threat_list_diff_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Checksum {
-#[prost(bytes = "bytes", tag = "1")]
-pub sha256: ::prost::bytes::Bytes,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ResponseType {
-Unspecified = 0,
-Diff = 1,
-Reset = 2,
-}
-impl ResponseType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResponseType::Unspecified => "RESPONSE_TYPE_UNSPECIFIED",
-ResponseType::Diff => "DIFF",
-ResponseType::Reset => "RESET",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESPONSE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"DIFF" => Some(Self::Diff),
-"RESET" => Some(Self::Reset),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Checksum {
+        #[prost(bytes = "bytes", tag = "1")]
+        pub sha256: ::prost::bytes::Bytes,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ResponseType {
+        Unspecified = 0,
+        Diff = 1,
+        Reset = 2,
+    }
+    impl ResponseType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ResponseType::Unspecified => "RESPONSE_TYPE_UNSPECIFIED",
+                ResponseType::Diff => "DIFF",
+                ResponseType::Reset => "RESET",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESPONSE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DIFF" => Some(Self::Diff),
+                "RESET" => Some(Self::Reset),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchUrisRequest {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(enumeration = "ThreatType", repeated, packed = "false", tag = "2")]
-pub threat_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(enumeration = "ThreatType", repeated, packed = "false", tag = "2")]
+    pub threat_types: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchUrisResponse {
-#[prost(message, optional, tag = "1")]
-pub threat: ::core::option::Option<search_uris_response::ThreatUri>,
+    #[prost(message, optional, tag = "1")]
+    pub threat: ::core::option::Option<search_uris_response::ThreatUri>,
 }
 /// Nested message and enum types in `SearchUrisResponse`.
 pub mod search_uris_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ThreatUri {
-#[prost(enumeration = "super::ThreatType", repeated, tag = "1")]
-pub threat_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, optional, tag = "2")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ThreatUri {
+        #[prost(enumeration = "super::ThreatType", repeated, tag = "1")]
+        pub threat_types: ::prost::alloc::vec::Vec<i32>,
+        #[prost(message, optional, tag = "2")]
+        pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchHashesRequest {
-#[prost(bytes = "bytes", tag = "1")]
-pub hash_prefix: ::prost::bytes::Bytes,
-#[prost(enumeration = "ThreatType", repeated, packed = "false", tag = "2")]
-pub threat_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub hash_prefix: ::prost::bytes::Bytes,
+    #[prost(enumeration = "ThreatType", repeated, packed = "false", tag = "2")]
+    pub threat_types: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchHashesResponse {
-#[prost(message, repeated, tag = "1")]
-pub threats: ::prost::alloc::vec::Vec<search_hashes_response::ThreatHash>,
-#[prost(message, optional, tag = "2")]
-pub negative_expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "1")]
+    pub threats: ::prost::alloc::vec::Vec<search_hashes_response::ThreatHash>,
+    #[prost(message, optional, tag = "2")]
+    pub negative_expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `SearchHashesResponse`.
 pub mod search_hashes_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ThreatHash {
-#[prost(enumeration = "super::ThreatType", repeated, tag = "1")]
-pub threat_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(bytes = "bytes", tag = "2")]
-pub hash: ::prost::bytes::Bytes,
-#[prost(message, optional, tag = "3")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ThreatHash {
+        #[prost(enumeration = "super::ThreatType", repeated, tag = "1")]
+        pub threat_types: ::prost::alloc::vec::Vec<i32>,
+        #[prost(bytes = "bytes", tag = "2")]
+        pub hash: ::prost::bytes::Bytes,
+        #[prost(message, optional, tag = "3")]
+        pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThreatEntryAdditions {
-#[prost(message, repeated, tag = "1")]
-pub raw_hashes: ::prost::alloc::vec::Vec<RawHashes>,
-#[prost(message, optional, tag = "2")]
-pub rice_hashes: ::core::option::Option<RiceDeltaEncoding>,
+    #[prost(message, repeated, tag = "1")]
+    pub raw_hashes: ::prost::alloc::vec::Vec<RawHashes>,
+    #[prost(message, optional, tag = "2")]
+    pub rice_hashes: ::core::option::Option<RiceDeltaEncoding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThreatEntryRemovals {
-#[prost(message, optional, tag = "1")]
-pub raw_indices: ::core::option::Option<RawIndices>,
-#[prost(message, optional, tag = "2")]
-pub rice_indices: ::core::option::Option<RiceDeltaEncoding>,
+    #[prost(message, optional, tag = "1")]
+    pub raw_indices: ::core::option::Option<RawIndices>,
+    #[prost(message, optional, tag = "2")]
+    pub rice_indices: ::core::option::Option<RiceDeltaEncoding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RawIndices {
-#[prost(int32, repeated, tag = "1")]
-pub indices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(int32, repeated, tag = "1")]
+    pub indices: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RawHashes {
-#[prost(int32, tag = "1")]
-pub prefix_size: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub raw_hashes: ::prost::bytes::Bytes,
+    #[prost(int32, tag = "1")]
+    pub prefix_size: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub raw_hashes: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RiceDeltaEncoding {
-#[prost(int64, tag = "1")]
-pub first_value: i64,
-#[prost(int32, tag = "2")]
-pub rice_parameter: i32,
-#[prost(int32, tag = "3")]
-pub entry_count: i32,
-#[prost(bytes = "bytes", tag = "4")]
-pub encoded_data: ::prost::bytes::Bytes,
+    #[prost(int64, tag = "1")]
+    pub first_value: i64,
+    #[prost(int32, tag = "2")]
+    pub rice_parameter: i32,
+    #[prost(int32, tag = "3")]
+    pub entry_count: i32,
+    #[prost(bytes = "bytes", tag = "4")]
+    pub encoded_data: ::prost::bytes::Bytes,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ThreatType {
-Unspecified = 0,
-Malware = 1,
-SocialEngineering = 2,
-UnwantedSoftware = 3,
+    Unspecified = 0,
+    Malware = 1,
+    SocialEngineering = 2,
+    UnwantedSoftware = 3,
 }
 impl ThreatType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ThreatType::Unspecified => "THREAT_TYPE_UNSPECIFIED",
-ThreatType::Malware => "MALWARE",
-ThreatType::SocialEngineering => "SOCIAL_ENGINEERING",
-ThreatType::UnwantedSoftware => "UNWANTED_SOFTWARE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"THREAT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"MALWARE" => Some(Self::Malware),
-"SOCIAL_ENGINEERING" => Some(Self::SocialEngineering),
-"UNWANTED_SOFTWARE" => Some(Self::UnwantedSoftware),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ThreatType::Unspecified => "THREAT_TYPE_UNSPECIFIED",
+            ThreatType::Malware => "MALWARE",
+            ThreatType::SocialEngineering => "SOCIAL_ENGINEERING",
+            ThreatType::UnwantedSoftware => "UNWANTED_SOFTWARE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "THREAT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MALWARE" => Some(Self::Malware),
+            "SOCIAL_ENGINEERING" => Some(Self::SocialEngineering),
+            "UNWANTED_SOFTWARE" => Some(Self::UnwantedSoftware),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CompressionType {
-Unspecified = 0,
-Raw = 1,
-Rice = 2,
+    Unspecified = 0,
+    Raw = 1,
+    Rice = 2,
 }
 impl CompressionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CompressionType::Unspecified => "COMPRESSION_TYPE_UNSPECIFIED",
-CompressionType::Raw => "RAW",
-CompressionType::Rice => "RICE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMPRESSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RAW" => Some(Self::Raw),
-"RICE" => Some(Self::Rice),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CompressionType::Unspecified => "COMPRESSION_TYPE_UNSPECIFIED",
+            CompressionType::Raw => "RAW",
+            CompressionType::Rice => "RICE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "COMPRESSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "RAW" => Some(Self::Raw),
+            "RICE" => Some(Self::Rice),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod web_risk_service_v1_beta1_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Web Risk v1beta1 API defines an interface to detect malicious URLs on your
-/// website and in client applications.
-#[derive(Debug, Clone)]
-pub struct WebRiskServiceV1Beta1Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> WebRiskServiceV1Beta1Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> WebRiskServiceV1Beta1Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-WebRiskServiceV1Beta1Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Gets the most recent threat list diffs.
-pub async fn compute_threat_list_diff(&mut self, request: impl tonic::IntoRequest<super::ComputeThreatListDiffRequest>) -> std::result::Result<tonic::Response<super::ComputeThreatListDiffResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/ComputeThreatListDiff");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1", "ComputeThreatListDiff"));
-self.inner.unary(req, path, codec).await
-}
-/// This method is used to check whether a URI is on a given threatList.
-pub async fn search_uris(&mut self, request: impl tonic::IntoRequest<super::SearchUrisRequest>) -> std::result::Result<tonic::Response<super::SearchUrisResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchUris");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1", "SearchUris"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the full hashes that match the requested hash prefix.
-/// This is used after a hash prefix is looked up in a threatList
-/// and there is a match. The client side threatList only holds partial hashes
-/// so the client must query this method to determine if there is a full
-/// hash match of a threat.
-pub async fn search_hashes(&mut self, request: impl tonic::IntoRequest<super::SearchHashesRequest>) -> std::result::Result<tonic::Response<super::SearchHashesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchHashes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1", "SearchHashes"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Web Risk v1beta1 API defines an interface to detect malicious URLs on your
+    /// website and in client applications.
+    #[derive(Debug, Clone)]
+    pub struct WebRiskServiceV1Beta1Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> WebRiskServiceV1Beta1Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> WebRiskServiceV1Beta1Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            WebRiskServiceV1Beta1Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Gets the most recent threat list diffs.
+        pub async fn compute_threat_list_diff(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ComputeThreatListDiffRequest>,
+        ) -> std::result::Result<tonic::Response<super::ComputeThreatListDiffResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/ComputeThreatListDiff",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1",
+                "ComputeThreatListDiff",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// This method is used to check whether a URI is on a given threatList.
+        pub async fn search_uris(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchUrisRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchUrisResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchUris",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1",
+                "SearchUris",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the full hashes that match the requested hash prefix.
+        /// This is used after a hash prefix is looked up in a threatList
+        /// and there is a match. The client side threatList only holds partial hashes
+        /// so the client must query this method to determine if there is a full
+        /// hash match of a threat.
+        pub async fn search_hashes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchHashesRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchHashesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchHashes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1",
+                "SearchHashes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

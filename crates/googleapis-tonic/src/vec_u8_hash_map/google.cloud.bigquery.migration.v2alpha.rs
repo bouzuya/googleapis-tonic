@@ -2,486 +2,526 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceErrorDetail {
-#[prost(message, optional, tag = "1")]
-pub resource_info: ::core::option::Option<super::super::super::super::rpc::ResourceInfo>,
-#[prost(message, repeated, tag = "2")]
-pub error_details: ::prost::alloc::vec::Vec<ErrorDetail>,
-#[prost(int32, tag = "3")]
-pub error_count: i32,
+    #[prost(message, optional, tag = "1")]
+    pub resource_info: ::core::option::Option<super::super::super::super::rpc::ResourceInfo>,
+    #[prost(message, repeated, tag = "2")]
+    pub error_details: ::prost::alloc::vec::Vec<ErrorDetail>,
+    #[prost(int32, tag = "3")]
+    pub error_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorDetail {
-#[prost(message, optional, tag = "1")]
-pub location: ::core::option::Option<ErrorLocation>,
-#[prost(message, optional, tag = "2")]
-pub error_info: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
+    #[prost(message, optional, tag = "1")]
+    pub location: ::core::option::Option<ErrorLocation>,
+    #[prost(message, optional, tag = "2")]
+    pub error_info: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ErrorLocation {
-#[prost(int32, tag = "1")]
-pub line: i32,
-#[prost(int32, tag = "2")]
-pub column: i32,
+    #[prost(int32, tag = "1")]
+    pub line: i32,
+    #[prost(int32, tag = "2")]
+    pub column: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslateQueryRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(enumeration = "translate_query_request::SqlTranslationSourceDialect", tag = "2")]
-pub source_dialect: i32,
-#[prost(string, tag = "3")]
-pub query: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "translate_query_request::SqlTranslationSourceDialect",
+        tag = "2"
+    )]
+    pub source_dialect: i32,
+    #[prost(string, tag = "3")]
+    pub query: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TranslateQueryRequest`.
 pub mod translate_query_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlTranslationSourceDialect {
-Unspecified = 0,
-Teradata = 1,
-}
-impl SqlTranslationSourceDialect {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlTranslationSourceDialect::Unspecified => "SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED",
-SqlTranslationSourceDialect::Teradata => "TERADATA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED" => Some(Self::Unspecified),
-"TERADATA" => Some(Self::Teradata),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlTranslationSourceDialect {
+        Unspecified = 0,
+        Teradata = 1,
+    }
+    impl SqlTranslationSourceDialect {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlTranslationSourceDialect::Unspecified => {
+                    "SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED"
+                }
+                SqlTranslationSourceDialect::Teradata => "TERADATA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED" => Some(Self::Unspecified),
+                "TERADATA" => Some(Self::Teradata),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslateQueryResponse {
-#[prost(string, tag = "4")]
-pub translation_job: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub translated_query: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub errors: ::prost::alloc::vec::Vec<SqlTranslationError>,
-#[prost(message, repeated, tag = "3")]
-pub warnings: ::prost::alloc::vec::Vec<SqlTranslationWarning>,
+    #[prost(string, tag = "4")]
+    pub translation_job: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub translated_query: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub errors: ::prost::alloc::vec::Vec<SqlTranslationError>,
+    #[prost(message, repeated, tag = "3")]
+    pub warnings: ::prost::alloc::vec::Vec<SqlTranslationWarning>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlTranslationErrorDetail {
-#[prost(int64, tag = "1")]
-pub row: i64,
-#[prost(int64, tag = "2")]
-pub column: i64,
-#[prost(string, tag = "3")]
-pub message: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub row: i64,
+    #[prost(int64, tag = "2")]
+    pub column: i64,
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlTranslationError {
-#[prost(enumeration = "sql_translation_error::SqlTranslationErrorType", tag = "1")]
-pub error_type: i32,
-#[prost(message, optional, tag = "2")]
-pub error_detail: ::core::option::Option<SqlTranslationErrorDetail>,
+    #[prost(
+        enumeration = "sql_translation_error::SqlTranslationErrorType",
+        tag = "1"
+    )]
+    pub error_type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub error_detail: ::core::option::Option<SqlTranslationErrorDetail>,
 }
 /// Nested message and enum types in `SqlTranslationError`.
 pub mod sql_translation_error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlTranslationErrorType {
-Unspecified = 0,
-SqlParseError = 1,
-UnsupportedSqlFunction = 2,
-}
-impl SqlTranslationErrorType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlTranslationErrorType::Unspecified => "SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED",
-SqlTranslationErrorType::SqlParseError => "SQL_PARSE_ERROR",
-SqlTranslationErrorType::UnsupportedSqlFunction => "UNSUPPORTED_SQL_FUNCTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SQL_PARSE_ERROR" => Some(Self::SqlParseError),
-"UNSUPPORTED_SQL_FUNCTION" => Some(Self::UnsupportedSqlFunction),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlTranslationErrorType {
+        Unspecified = 0,
+        SqlParseError = 1,
+        UnsupportedSqlFunction = 2,
+    }
+    impl SqlTranslationErrorType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlTranslationErrorType::Unspecified => "SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED",
+                SqlTranslationErrorType::SqlParseError => "SQL_PARSE_ERROR",
+                SqlTranslationErrorType::UnsupportedSqlFunction => "UNSUPPORTED_SQL_FUNCTION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SQL_PARSE_ERROR" => Some(Self::SqlParseError),
+                "UNSUPPORTED_SQL_FUNCTION" => Some(Self::UnsupportedSqlFunction),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlTranslationWarning {
-#[prost(message, optional, tag = "1")]
-pub warning_detail: ::core::option::Option<SqlTranslationErrorDetail>,
+    #[prost(message, optional, tag = "1")]
+    pub warning_detail: ::core::option::Option<SqlTranslationErrorDetail>,
 }
 /// Generated client implementations.
 pub mod sql_translation_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Provides other SQL dialects to GoogleSQL translation operations.
-#[derive(Debug, Clone)]
-pub struct SqlTranslationServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlTranslationServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlTranslationServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlTranslationServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Translates input queries from source dialects to GoogleSQL.
-pub async fn translate_query(&mut self, request: impl tonic::IntoRequest<super::TranslateQueryRequest>) -> std::result::Result<tonic::Response<super::TranslateQueryResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.SqlTranslationService/TranslateQuery");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.SqlTranslationService", "TranslateQuery"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Provides other SQL dialects to GoogleSQL translation operations.
+    #[derive(Debug, Clone)]
+    pub struct SqlTranslationServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlTranslationServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlTranslationServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlTranslationServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Translates input queries from source dialects to GoogleSQL.
+        pub async fn translate_query(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TranslateQueryRequest>,
+        ) -> std::result::Result<tonic::Response<super::TranslateQueryResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.SqlTranslationService/TranslateQuery",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.SqlTranslationService",
+                "TranslateQuery",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssessmentTaskDetails {
-#[prost(string, tag = "1")]
-pub input_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub output_dataset: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub querylogs_path: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub data_source: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub input_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub output_dataset: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub querylogs_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub data_source: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssessmentOrchestrationResultDetails {
-#[prost(string, tag = "1")]
-pub output_tables_schema_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub output_tables_schema_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeries {
-#[prost(string, tag = "1")]
-pub metric: ::prost::alloc::string::String,
-#[prost(enumeration = "super::super::super::super::api::metric_descriptor::ValueType", tag = "2")]
-pub value_type: i32,
-#[prost(enumeration = "super::super::super::super::api::metric_descriptor::MetricKind", tag = "3")]
-pub metric_kind: i32,
-#[prost(message, repeated, tag = "4")]
-pub points: ::prost::alloc::vec::Vec<Point>,
+    #[prost(string, tag = "1")]
+    pub metric: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::super::super::super::api::metric_descriptor::ValueType",
+        tag = "2"
+    )]
+    pub value_type: i32,
+    #[prost(
+        enumeration = "super::super::super::super::api::metric_descriptor::MetricKind",
+        tag = "3"
+    )]
+    pub metric_kind: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub points: ::prost::alloc::vec::Vec<Point>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Point {
-#[prost(message, optional, tag = "1")]
-pub interval: ::core::option::Option<TimeInterval>,
-#[prost(message, optional, tag = "2")]
-pub value: ::core::option::Option<TypedValue>,
+    #[prost(message, optional, tag = "1")]
+    pub interval: ::core::option::Option<TimeInterval>,
+    #[prost(message, optional, tag = "2")]
+    pub value: ::core::option::Option<TypedValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeInterval {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TypedValue {
-#[prost(oneof = "typed_value::Value", tags = "1, 2, 3, 4, 5")]
-pub value: ::core::option::Option<typed_value::Value>,
+    #[prost(oneof = "typed_value::Value", tags = "1, 2, 3, 4, 5")]
+    pub value: ::core::option::Option<typed_value::Value>,
 }
 /// Nested message and enum types in `TypedValue`.
 pub mod typed_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(bool, tag = "1")]
-BoolValue(bool),
-#[prost(int64, tag = "2")]
-Int64Value(i64),
-#[prost(double, tag = "3")]
-DoubleValue(f64),
-#[prost(string, tag = "4")]
-StringValue(::prost::alloc::string::String),
-#[prost(message, tag = "5")]
-DistributionValue(super::super::super::super::super::api::Distribution),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(bool, tag = "1")]
+        BoolValue(bool),
+        #[prost(int64, tag = "2")]
+        Int64Value(i64),
+        #[prost(double, tag = "3")]
+        DoubleValue(f64),
+        #[prost(string, tag = "4")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(message, tag = "5")]
+        DistributionValue(super::super::super::super::super::api::Distribution),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslationFileMapping {
-#[prost(string, tag = "1")]
-pub input_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub output_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub input_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub output_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslationTaskDetails {
-#[prost(string, tag = "1")]
-pub input_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub output_path: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "12")]
-pub file_paths: ::prost::alloc::vec::Vec<TranslationFileMapping>,
-#[prost(string, tag = "3")]
-pub schema_path: ::prost::alloc::string::String,
-#[prost(enumeration = "translation_task_details::FileEncoding", tag = "4")]
-pub file_encoding: i32,
-#[prost(message, optional, tag = "5")]
-pub identifier_settings: ::core::option::Option<IdentifierSettings>,
-#[prost(map = "string, enumeration(translation_task_details::TokenType)", tag = "6")]
-pub special_token_map: ::std::collections::HashMap<::prost::alloc::string::String, i32>,
-#[prost(message, optional, tag = "7")]
-pub filter: ::core::option::Option<Filter>,
-#[prost(string, tag = "13")]
-pub translation_exception_table: ::prost::alloc::string::String,
-#[prost(oneof = "translation_task_details::LanguageOptions", tags = "10, 11")]
-pub language_options: ::core::option::Option<translation_task_details::LanguageOptions>,
+    #[prost(string, tag = "1")]
+    pub input_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub output_path: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "12")]
+    pub file_paths: ::prost::alloc::vec::Vec<TranslationFileMapping>,
+    #[prost(string, tag = "3")]
+    pub schema_path: ::prost::alloc::string::String,
+    #[prost(enumeration = "translation_task_details::FileEncoding", tag = "4")]
+    pub file_encoding: i32,
+    #[prost(message, optional, tag = "5")]
+    pub identifier_settings: ::core::option::Option<IdentifierSettings>,
+    #[prost(
+        map = "string, enumeration(translation_task_details::TokenType)",
+        tag = "6"
+    )]
+    pub special_token_map: ::std::collections::HashMap<::prost::alloc::string::String, i32>,
+    #[prost(message, optional, tag = "7")]
+    pub filter: ::core::option::Option<Filter>,
+    #[prost(string, tag = "13")]
+    pub translation_exception_table: ::prost::alloc::string::String,
+    #[prost(oneof = "translation_task_details::LanguageOptions", tags = "10, 11")]
+    pub language_options: ::core::option::Option<translation_task_details::LanguageOptions>,
 }
 /// Nested message and enum types in `TranslationTaskDetails`.
 pub mod translation_task_details {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum FileEncoding {
-Unspecified = 0,
-Utf8 = 1,
-Iso88591 = 2,
-UsAscii = 3,
-Utf16 = 4,
-Utf16le = 5,
-Utf16be = 6,
-}
-impl FileEncoding {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FileEncoding::Unspecified => "FILE_ENCODING_UNSPECIFIED",
-FileEncoding::Utf8 => "UTF_8",
-FileEncoding::Iso88591 => "ISO_8859_1",
-FileEncoding::UsAscii => "US_ASCII",
-FileEncoding::Utf16 => "UTF_16",
-FileEncoding::Utf16le => "UTF_16LE",
-FileEncoding::Utf16be => "UTF_16BE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FILE_ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-"UTF_8" => Some(Self::Utf8),
-"ISO_8859_1" => Some(Self::Iso88591),
-"US_ASCII" => Some(Self::UsAscii),
-"UTF_16" => Some(Self::Utf16),
-"UTF_16LE" => Some(Self::Utf16le),
-"UTF_16BE" => Some(Self::Utf16be),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TokenType {
-Unspecified = 0,
-String = 1,
-Int64 = 2,
-Numeric = 3,
-Bool = 4,
-Float64 = 5,
-Date = 6,
-Timestamp = 7,
-}
-impl TokenType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TokenType::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
-TokenType::String => "STRING",
-TokenType::Int64 => "INT64",
-TokenType::Numeric => "NUMERIC",
-TokenType::Bool => "BOOL",
-TokenType::Float64 => "FLOAT64",
-TokenType::Date => "DATE",
-TokenType::Timestamp => "TIMESTAMP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TOKEN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"STRING" => Some(Self::String),
-"INT64" => Some(Self::Int64),
-"NUMERIC" => Some(Self::Numeric),
-"BOOL" => Some(Self::Bool),
-"FLOAT64" => Some(Self::Float64),
-"DATE" => Some(Self::Date),
-"TIMESTAMP" => Some(Self::Timestamp),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum LanguageOptions {
-#[prost(message, tag = "10")]
-TeradataOptions(super::TeradataOptions),
-#[prost(message, tag = "11")]
-BteqOptions(super::BteqOptions),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum FileEncoding {
+        Unspecified = 0,
+        Utf8 = 1,
+        Iso88591 = 2,
+        UsAscii = 3,
+        Utf16 = 4,
+        Utf16le = 5,
+        Utf16be = 6,
+    }
+    impl FileEncoding {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                FileEncoding::Unspecified => "FILE_ENCODING_UNSPECIFIED",
+                FileEncoding::Utf8 => "UTF_8",
+                FileEncoding::Iso88591 => "ISO_8859_1",
+                FileEncoding::UsAscii => "US_ASCII",
+                FileEncoding::Utf16 => "UTF_16",
+                FileEncoding::Utf16le => "UTF_16LE",
+                FileEncoding::Utf16be => "UTF_16BE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FILE_ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+                "UTF_8" => Some(Self::Utf8),
+                "ISO_8859_1" => Some(Self::Iso88591),
+                "US_ASCII" => Some(Self::UsAscii),
+                "UTF_16" => Some(Self::Utf16),
+                "UTF_16LE" => Some(Self::Utf16le),
+                "UTF_16BE" => Some(Self::Utf16be),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TokenType {
+        Unspecified = 0,
+        String = 1,
+        Int64 = 2,
+        Numeric = 3,
+        Bool = 4,
+        Float64 = 5,
+        Date = 6,
+        Timestamp = 7,
+    }
+    impl TokenType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TokenType::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
+                TokenType::String => "STRING",
+                TokenType::Int64 => "INT64",
+                TokenType::Numeric => "NUMERIC",
+                TokenType::Bool => "BOOL",
+                TokenType::Float64 => "FLOAT64",
+                TokenType::Date => "DATE",
+                TokenType::Timestamp => "TIMESTAMP",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TOKEN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STRING" => Some(Self::String),
+                "INT64" => Some(Self::Int64),
+                "NUMERIC" => Some(Self::Numeric),
+                "BOOL" => Some(Self::Bool),
+                "FLOAT64" => Some(Self::Float64),
+                "DATE" => Some(Self::Date),
+                "TIMESTAMP" => Some(Self::Timestamp),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum LanguageOptions {
+        #[prost(message, tag = "10")]
+        TeradataOptions(super::TeradataOptions),
+        #[prost(message, tag = "11")]
+        BteqOptions(super::BteqOptions),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
-#[prost(string, repeated, tag = "1")]
-pub input_file_exclusion_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub input_file_exclusion_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct IdentifierSettings {
-#[prost(enumeration = "identifier_settings::IdentifierCase", tag = "1")]
-pub output_identifier_case: i32,
-#[prost(enumeration = "identifier_settings::IdentifierRewriteMode", tag = "2")]
-pub identifier_rewrite_mode: i32,
+    #[prost(enumeration = "identifier_settings::IdentifierCase", tag = "1")]
+    pub output_identifier_case: i32,
+    #[prost(enumeration = "identifier_settings::IdentifierRewriteMode", tag = "2")]
+    pub identifier_rewrite_mode: i32,
 }
 /// Nested message and enum types in `IdentifierSettings`.
 pub mod identifier_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum IdentifierCase {
-Unspecified = 0,
-Original = 1,
-Upper = 2,
-Lower = 3,
-}
-impl IdentifierCase {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-IdentifierCase::Unspecified => "IDENTIFIER_CASE_UNSPECIFIED",
-IdentifierCase::Original => "ORIGINAL",
-IdentifierCase::Upper => "UPPER",
-IdentifierCase::Lower => "LOWER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"IDENTIFIER_CASE_UNSPECIFIED" => Some(Self::Unspecified),
-"ORIGINAL" => Some(Self::Original),
-"UPPER" => Some(Self::Upper),
-"LOWER" => Some(Self::Lower),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum IdentifierRewriteMode {
-Unspecified = 0,
-None = 1,
-RewriteAll = 2,
-}
-impl IdentifierRewriteMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-IdentifierRewriteMode::Unspecified => "IDENTIFIER_REWRITE_MODE_UNSPECIFIED",
-IdentifierRewriteMode::None => "NONE",
-IdentifierRewriteMode::RewriteAll => "REWRITE_ALL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"IDENTIFIER_REWRITE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"NONE" => Some(Self::None),
-"REWRITE_ALL" => Some(Self::RewriteAll),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum IdentifierCase {
+        Unspecified = 0,
+        Original = 1,
+        Upper = 2,
+        Lower = 3,
+    }
+    impl IdentifierCase {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IdentifierCase::Unspecified => "IDENTIFIER_CASE_UNSPECIFIED",
+                IdentifierCase::Original => "ORIGINAL",
+                IdentifierCase::Upper => "UPPER",
+                IdentifierCase::Lower => "LOWER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "IDENTIFIER_CASE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ORIGINAL" => Some(Self::Original),
+                "UPPER" => Some(Self::Upper),
+                "LOWER" => Some(Self::Lower),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum IdentifierRewriteMode {
+        Unspecified = 0,
+        None = 1,
+        RewriteAll = 2,
+    }
+    impl IdentifierRewriteMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IdentifierRewriteMode::Unspecified => "IDENTIFIER_REWRITE_MODE_UNSPECIFIED",
+                IdentifierRewriteMode::None => "NONE",
+                IdentifierRewriteMode::RewriteAll => "REWRITE_ALL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "IDENTIFIER_REWRITE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NONE" => Some(Self::None),
+                "REWRITE_ALL" => Some(Self::RewriteAll),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -489,437 +529,542 @@ pub struct TeradataOptions {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BteqOptions {
-#[prost(message, optional, tag = "1")]
-pub project_dataset: ::core::option::Option<DatasetReference>,
-#[prost(string, tag = "2")]
-pub default_path_uri: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "3")]
-pub file_replacement_map: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub project_dataset: ::core::option::Option<DatasetReference>,
+    #[prost(string, tag = "2")]
+    pub default_path_uri: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "3")]
+    pub file_replacement_map:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetReference {
-#[prost(string, tag = "1")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MigrationWorkflow {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(map = "string, message", tag = "2")]
-pub tasks: ::std::collections::HashMap<::prost::alloc::string::String, MigrationTask>,
-#[prost(enumeration = "migration_workflow::State", tag = "3")]
-pub state: i32,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(map = "string, message", tag = "2")]
+    pub tasks: ::std::collections::HashMap<::prost::alloc::string::String, MigrationTask>,
+    #[prost(enumeration = "migration_workflow::State", tag = "3")]
+    pub state: i32,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `MigrationWorkflow`.
 pub mod migration_workflow {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Draft = 1,
-Running = 2,
-Paused = 3,
-Completed = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Draft => "DRAFT",
-State::Running => "RUNNING",
-State::Paused => "PAUSED",
-State::Completed => "COMPLETED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DRAFT" => Some(Self::Draft),
-"RUNNING" => Some(Self::Running),
-"PAUSED" => Some(Self::Paused),
-"COMPLETED" => Some(Self::Completed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Draft = 1,
+        Running = 2,
+        Paused = 3,
+        Completed = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Draft => "DRAFT",
+                State::Running => "RUNNING",
+                State::Paused => "PAUSED",
+                State::Completed => "COMPLETED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DRAFT" => Some(Self::Draft),
+                "RUNNING" => Some(Self::Running),
+                "PAUSED" => Some(Self::Paused),
+                "COMPLETED" => Some(Self::Completed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MigrationTask {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub details: ::core::option::Option<::prost_types::Any>,
-#[prost(enumeration = "migration_task::State", tag = "4")]
-pub state: i32,
-#[prost(message, optional, tag = "5")]
-pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub orchestration_result: ::core::option::Option<MigrationTaskOrchestrationResult>,
-#[prost(oneof = "migration_task::TaskDetails", tags = "12, 13")]
-pub task_details: ::core::option::Option<migration_task::TaskDetails>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub details: ::core::option::Option<::prost_types::Any>,
+    #[prost(enumeration = "migration_task::State", tag = "4")]
+    pub state: i32,
+    #[prost(message, optional, tag = "5")]
+    pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub orchestration_result: ::core::option::Option<MigrationTaskOrchestrationResult>,
+    #[prost(oneof = "migration_task::TaskDetails", tags = "12, 13")]
+    pub task_details: ::core::option::Option<migration_task::TaskDetails>,
 }
 /// Nested message and enum types in `MigrationTask`.
 pub mod migration_task {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Pending = 1,
-Orchestrating = 2,
-Running = 3,
-Paused = 4,
-Succeeded = 5,
-Failed = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Pending => "PENDING",
-State::Orchestrating => "ORCHESTRATING",
-State::Running => "RUNNING",
-State::Paused => "PAUSED",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"ORCHESTRATING" => Some(Self::Orchestrating),
-"RUNNING" => Some(Self::Running),
-"PAUSED" => Some(Self::Paused),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum TaskDetails {
-#[prost(message, tag = "12")]
-AssessmentTaskDetails(super::AssessmentTaskDetails),
-#[prost(message, tag = "13")]
-TranslationTaskDetails(super::TranslationTaskDetails),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Pending = 1,
+        Orchestrating = 2,
+        Running = 3,
+        Paused = 4,
+        Succeeded = 5,
+        Failed = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Pending => "PENDING",
+                State::Orchestrating => "ORCHESTRATING",
+                State::Running => "RUNNING",
+                State::Paused => "PAUSED",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "ORCHESTRATING" => Some(Self::Orchestrating),
+                "RUNNING" => Some(Self::Running),
+                "PAUSED" => Some(Self::Paused),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TaskDetails {
+        #[prost(message, tag = "12")]
+        AssessmentTaskDetails(super::AssessmentTaskDetails),
+        #[prost(message, tag = "13")]
+        TranslationTaskDetails(super::TranslationTaskDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MigrationSubtask {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub task_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(enumeration = "migration_subtask::State", tag = "5")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
-#[prost(message, repeated, tag = "12")]
-pub resource_error_details: ::prost::alloc::vec::Vec<ResourceErrorDetail>,
-#[prost(int32, tag = "13")]
-pub resource_error_count: i32,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "11")]
-pub metrics: ::prost::alloc::vec::Vec<TimeSeries>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub task_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(enumeration = "migration_subtask::State", tag = "5")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub processing_error: ::core::option::Option<super::super::super::super::rpc::ErrorInfo>,
+    #[prost(message, repeated, tag = "12")]
+    pub resource_error_details: ::prost::alloc::vec::Vec<ResourceErrorDetail>,
+    #[prost(int32, tag = "13")]
+    pub resource_error_count: i32,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "11")]
+    pub metrics: ::prost::alloc::vec::Vec<TimeSeries>,
 }
 /// Nested message and enum types in `MigrationSubtask`.
 pub mod migration_subtask {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Active = 1,
-Running = 2,
-Succeeded = 3,
-Failed = 4,
-Paused = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Active => "ACTIVE",
-State::Running => "RUNNING",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-State::Paused => "PAUSED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"ACTIVE" => Some(Self::Active),
-"RUNNING" => Some(Self::Running),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-"PAUSED" => Some(Self::Paused),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Active = 1,
+        Running = 2,
+        Succeeded = 3,
+        Failed = 4,
+        Paused = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Active => "ACTIVE",
+                State::Running => "RUNNING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+                State::Paused => "PAUSED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "PAUSED" => Some(Self::Paused),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MigrationTaskOrchestrationResult {
-#[prost(oneof = "migration_task_orchestration_result::Details", tags = "1")]
-pub details: ::core::option::Option<migration_task_orchestration_result::Details>,
+    #[prost(oneof = "migration_task_orchestration_result::Details", tags = "1")]
+    pub details: ::core::option::Option<migration_task_orchestration_result::Details>,
 }
 /// Nested message and enum types in `MigrationTaskOrchestrationResult`.
 pub mod migration_task_orchestration_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Details {
-#[prost(message, tag = "1")]
-AssessmentDetails(super::AssessmentOrchestrationResultDetails),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        #[prost(message, tag = "1")]
+        AssessmentDetails(super::AssessmentOrchestrationResultDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateMigrationWorkflowRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub migration_workflow: ::core::option::Option<MigrationWorkflow>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub migration_workflow: ::core::option::Option<MigrationWorkflow>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMigrationWorkflowRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMigrationWorkflowsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMigrationWorkflowsResponse {
-#[prost(message, repeated, tag = "1")]
-pub migration_workflows: ::prost::alloc::vec::Vec<MigrationWorkflow>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub migration_workflows: ::prost::alloc::vec::Vec<MigrationWorkflow>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteMigrationWorkflowRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartMigrationWorkflowRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMigrationSubtaskRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMigrationSubtasksRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMigrationSubtasksResponse {
-#[prost(message, repeated, tag = "1")]
-pub migration_subtasks: ::prost::alloc::vec::Vec<MigrationSubtask>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub migration_subtasks: ::prost::alloc::vec::Vec<MigrationSubtask>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod migration_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to handle EDW migrations.
-#[derive(Debug, Clone)]
-pub struct MigrationServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> MigrationServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> MigrationServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-MigrationServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a migration workflow.
-pub async fn create_migration_workflow(&mut self, request: impl tonic::IntoRequest<super::CreateMigrationWorkflowRequest>) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/CreateMigrationWorkflow");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "CreateMigrationWorkflow"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a previously created migration workflow.
-pub async fn get_migration_workflow(&mut self, request: impl tonic::IntoRequest<super::GetMigrationWorkflowRequest>) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/GetMigrationWorkflow");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "GetMigrationWorkflow"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists previously created migration workflow.
-pub async fn list_migration_workflows(&mut self, request: impl tonic::IntoRequest<super::ListMigrationWorkflowsRequest>) -> std::result::Result<tonic::Response<super::ListMigrationWorkflowsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/ListMigrationWorkflows");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "ListMigrationWorkflows"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a migration workflow by name.
-pub async fn delete_migration_workflow(&mut self, request: impl tonic::IntoRequest<super::DeleteMigrationWorkflowRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/DeleteMigrationWorkflow");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "DeleteMigrationWorkflow"));
-self.inner.unary(req, path, codec).await
-}
-/// Starts a previously created migration workflow. I.e., the state transitions
-/// from DRAFT to RUNNING. This is a no-op if the state is already RUNNING.
-/// An error will be signaled if the state is anything other than DRAFT or
-/// RUNNING.
-pub async fn start_migration_workflow(&mut self, request: impl tonic::IntoRequest<super::StartMigrationWorkflowRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/StartMigrationWorkflow");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "StartMigrationWorkflow"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a previously created migration subtask.
-pub async fn get_migration_subtask(&mut self, request: impl tonic::IntoRequest<super::GetMigrationSubtaskRequest>) -> std::result::Result<tonic::Response<super::MigrationSubtask>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/GetMigrationSubtask");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "GetMigrationSubtask"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists previously created migration subtasks.
-pub async fn list_migration_subtasks(&mut self, request: impl tonic::IntoRequest<super::ListMigrationSubtasksRequest>) -> std::result::Result<tonic::Response<super::ListMigrationSubtasksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.migration.v2alpha.MigrationService/ListMigrationSubtasks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.migration.v2alpha.MigrationService", "ListMigrationSubtasks"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to handle EDW migrations.
+    #[derive(Debug, Clone)]
+    pub struct MigrationServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> MigrationServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> MigrationServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MigrationServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a migration workflow.
+        pub async fn create_migration_workflow(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateMigrationWorkflowRequest>,
+        ) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/CreateMigrationWorkflow",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "CreateMigrationWorkflow",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a previously created migration workflow.
+        pub async fn get_migration_workflow(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetMigrationWorkflowRequest>,
+        ) -> std::result::Result<tonic::Response<super::MigrationWorkflow>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/GetMigrationWorkflow",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "GetMigrationWorkflow",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists previously created migration workflow.
+        pub async fn list_migration_workflows(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListMigrationWorkflowsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListMigrationWorkflowsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/ListMigrationWorkflows",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "ListMigrationWorkflows",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a migration workflow by name.
+        pub async fn delete_migration_workflow(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteMigrationWorkflowRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/DeleteMigrationWorkflow",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "DeleteMigrationWorkflow",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Starts a previously created migration workflow. I.e., the state transitions
+        /// from DRAFT to RUNNING. This is a no-op if the state is already RUNNING.
+        /// An error will be signaled if the state is anything other than DRAFT or
+        /// RUNNING.
+        pub async fn start_migration_workflow(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StartMigrationWorkflowRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/StartMigrationWorkflow",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "StartMigrationWorkflow",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a previously created migration subtask.
+        pub async fn get_migration_subtask(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetMigrationSubtaskRequest>,
+        ) -> std::result::Result<tonic::Response<super::MigrationSubtask>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/GetMigrationSubtask",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "GetMigrationSubtask",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists previously created migration subtasks.
+        pub async fn list_migration_subtasks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListMigrationSubtasksRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListMigrationSubtasksResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.bigquery.migration.v2alpha.MigrationService/ListMigrationSubtasks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.bigquery.migration.v2alpha.MigrationService",
+                "ListMigrationSubtasks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

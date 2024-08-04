@@ -2,365 +2,374 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "3")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub authorized_network: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "5")]
-pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, tag = "6")]
-pub node_count: i32,
-#[prost(message, optional, tag = "7")]
-pub node_config: ::core::option::Option<instance::NodeConfig>,
-#[prost(enumeration = "MemcacheVersion", tag = "9")]
-pub memcache_version: i32,
-#[prost(message, optional, tag = "11")]
-pub parameters: ::core::option::Option<MemcacheParameters>,
-#[prost(message, repeated, tag = "12")]
-pub memcache_nodes: ::prost::alloc::vec::Vec<instance::Node>,
-#[prost(message, optional, tag = "13")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "14")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "instance::State", tag = "15")]
-pub state: i32,
-#[prost(string, tag = "18")]
-pub memcache_full_version: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "19")]
-pub instance_messages: ::prost::alloc::vec::Vec<instance::InstanceMessage>,
-#[prost(string, tag = "20")]
-pub discovery_endpoint: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "21")]
-pub maintenance_policy: ::core::option::Option<MaintenancePolicy>,
-#[prost(message, optional, tag = "22")]
-pub maintenance_schedule: ::core::option::Option<MaintenanceSchedule>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "3")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub authorized_network: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "5")]
+    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, tag = "6")]
+    pub node_count: i32,
+    #[prost(message, optional, tag = "7")]
+    pub node_config: ::core::option::Option<instance::NodeConfig>,
+    #[prost(enumeration = "MemcacheVersion", tag = "9")]
+    pub memcache_version: i32,
+    #[prost(message, optional, tag = "11")]
+    pub parameters: ::core::option::Option<MemcacheParameters>,
+    #[prost(message, repeated, tag = "12")]
+    pub memcache_nodes: ::prost::alloc::vec::Vec<instance::Node>,
+    #[prost(message, optional, tag = "13")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "14")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "instance::State", tag = "15")]
+    pub state: i32,
+    #[prost(string, tag = "18")]
+    pub memcache_full_version: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "19")]
+    pub instance_messages: ::prost::alloc::vec::Vec<instance::InstanceMessage>,
+    #[prost(string, tag = "20")]
+    pub discovery_endpoint: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "21")]
+    pub maintenance_policy: ::core::option::Option<MaintenancePolicy>,
+    #[prost(message, optional, tag = "22")]
+    pub maintenance_schedule: ::core::option::Option<MaintenanceSchedule>,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NodeConfig {
-#[prost(int32, tag = "1")]
-pub cpu_count: i32,
-#[prost(int32, tag = "2")]
-pub memory_size_mb: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Node {
-#[prost(string, tag = "1")]
-pub node_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub zone: ::prost::alloc::string::String,
-#[prost(enumeration = "node::State", tag = "3")]
-pub state: i32,
-#[prost(string, tag = "4")]
-pub host: ::prost::alloc::string::String,
-#[prost(int32, tag = "5")]
-pub port: i32,
-#[prost(message, optional, tag = "6")]
-pub parameters: ::core::option::Option<super::MemcacheParameters>,
-}
-/// Nested message and enum types in `Node`.
-pub mod node {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Ready = 2,
-Deleting = 3,
-Updating = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Ready => "READY",
-State::Deleting => "DELETING",
-State::Updating => "UPDATING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"READY" => Some(Self::Ready),
-"DELETING" => Some(Self::Deleting),
-"UPDATING" => Some(Self::Updating),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstanceMessage {
-#[prost(enumeration = "instance_message::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub message: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `InstanceMessage`.
-pub mod instance_message {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-ZoneDistributionUnbalanced = 1,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::ZoneDistributionUnbalanced => "ZONE_DISTRIBUTION_UNBALANCED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"ZONE_DISTRIBUTION_UNBALANCED" => Some(Self::ZoneDistributionUnbalanced),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Ready = 2,
-Updating = 3,
-Deleting = 4,
-PerformingMaintenance = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Ready => "READY",
-State::Updating => "UPDATING",
-State::Deleting => "DELETING",
-State::PerformingMaintenance => "PERFORMING_MAINTENANCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"READY" => Some(Self::Ready),
-"UPDATING" => Some(Self::Updating),
-"DELETING" => Some(Self::Deleting),
-"PERFORMING_MAINTENANCE" => Some(Self::PerformingMaintenance),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct NodeConfig {
+        #[prost(int32, tag = "1")]
+        pub cpu_count: i32,
+        #[prost(int32, tag = "2")]
+        pub memory_size_mb: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Node {
+        #[prost(string, tag = "1")]
+        pub node_id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub zone: ::prost::alloc::string::String,
+        #[prost(enumeration = "node::State", tag = "3")]
+        pub state: i32,
+        #[prost(string, tag = "4")]
+        pub host: ::prost::alloc::string::String,
+        #[prost(int32, tag = "5")]
+        pub port: i32,
+        #[prost(message, optional, tag = "6")]
+        pub parameters: ::core::option::Option<super::MemcacheParameters>,
+    }
+    /// Nested message and enum types in `Node`.
+    pub mod node {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum State {
+            Unspecified = 0,
+            Creating = 1,
+            Ready = 2,
+            Deleting = 3,
+            Updating = 4,
+        }
+        impl State {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    State::Unspecified => "STATE_UNSPECIFIED",
+                    State::Creating => "CREATING",
+                    State::Ready => "READY",
+                    State::Deleting => "DELETING",
+                    State::Updating => "UPDATING",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "CREATING" => Some(Self::Creating),
+                    "READY" => Some(Self::Ready),
+                    "DELETING" => Some(Self::Deleting),
+                    "UPDATING" => Some(Self::Updating),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstanceMessage {
+        #[prost(enumeration = "instance_message::Code", tag = "1")]
+        pub code: i32,
+        #[prost(string, tag = "2")]
+        pub message: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `InstanceMessage`.
+    pub mod instance_message {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Code {
+            Unspecified = 0,
+            ZoneDistributionUnbalanced = 1,
+        }
+        impl Code {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Code::Unspecified => "CODE_UNSPECIFIED",
+                    Code::ZoneDistributionUnbalanced => "ZONE_DISTRIBUTION_UNBALANCED",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ZONE_DISTRIBUTION_UNBALANCED" => Some(Self::ZoneDistributionUnbalanced),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Ready = 2,
+        Updating = 3,
+        Deleting = 4,
+        PerformingMaintenance = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Ready => "READY",
+                State::Updating => "UPDATING",
+                State::Deleting => "DELETING",
+                State::PerformingMaintenance => "PERFORMING_MAINTENANCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "READY" => Some(Self::Ready),
+                "UPDATING" => Some(Self::Updating),
+                "DELETING" => Some(Self::Deleting),
+                "PERFORMING_MAINTENANCE" => Some(Self::PerformingMaintenance),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaintenancePolicy {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub weekly_maintenance_window: ::prost::alloc::vec::Vec<WeeklyMaintenanceWindow>,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub weekly_maintenance_window: ::prost::alloc::vec::Vec<WeeklyMaintenanceWindow>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WeeklyMaintenanceWindow {
-#[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
-pub day: i32,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-#[prost(message, optional, tag = "3")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
+    pub day: i32,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
+    #[prost(message, optional, tag = "3")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MaintenanceSchedule {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RescheduleMaintenanceRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(enumeration = "reschedule_maintenance_request::RescheduleType", tag = "2")]
-pub reschedule_type: i32,
-#[prost(message, optional, tag = "3")]
-pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "reschedule_maintenance_request::RescheduleType",
+        tag = "2"
+    )]
+    pub reschedule_type: i32,
+    #[prost(message, optional, tag = "3")]
+    pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `RescheduleMaintenanceRequest`.
 pub mod reschedule_maintenance_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RescheduleType {
-Unspecified = 0,
-Immediate = 1,
-NextAvailableWindow = 2,
-SpecificTime = 3,
-}
-impl RescheduleType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
-RescheduleType::Immediate => "IMMEDIATE",
-RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
-RescheduleType::SpecificTime => "SPECIFIC_TIME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"IMMEDIATE" => Some(Self::Immediate),
-"NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
-"SPECIFIC_TIME" => Some(Self::SpecificTime),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RescheduleType {
+        Unspecified = 0,
+        Immediate = 1,
+        NextAvailableWindow = 2,
+        SpecificTime = 3,
+    }
+    impl RescheduleType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
+                RescheduleType::Immediate => "IMMEDIATE",
+                RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
+                RescheduleType::SpecificTime => "SPECIFIC_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IMMEDIATE" => Some(Self::Immediate),
+                "NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
+                "SPECIFIC_TIME" => Some(Self::SpecificTime),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-#[prost(message, repeated, tag = "1")]
-pub instances: ::prost::alloc::vec::Vec<Instance>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub instances: ::prost::alloc::vec::Vec<Instance>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub instance: ::core::option::Option<Instance>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub instance: ::core::option::Option<Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub instance: ::core::option::Option<Instance>,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplyParametersRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub node_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "3")]
-pub apply_all: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub node_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "3")]
+    pub apply_all: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateParametersRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "3")]
-pub parameters: ::core::option::Option<MemcacheParameters>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "3")]
+    pub parameters: ::core::option::Option<MemcacheParameters>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MemcacheParameters {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "3")]
-pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "3")]
+    pub params:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_detail: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub cancel_requested: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_detail: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub cancel_requested: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-#[prost(map = "string, message", tag = "1")]
-pub available_zones: ::std::collections::HashMap<::prost::alloc::string::String, ZoneMetadata>,
+    #[prost(map = "string, message", tag = "1")]
+    pub available_zones: ::std::collections::HashMap<::prost::alloc::string::String, ZoneMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -368,183 +377,315 @@ pub struct ZoneMetadata {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MemcacheVersion {
-Unspecified = 0,
-Memcache15 = 1,
+    Unspecified = 0,
+    Memcache15 = 1,
 }
 impl MemcacheVersion {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MemcacheVersion::Unspecified => "MEMCACHE_VERSION_UNSPECIFIED",
-MemcacheVersion::Memcache15 => "MEMCACHE_1_5",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MEMCACHE_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-"MEMCACHE_1_5" => Some(Self::Memcache15),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MemcacheVersion::Unspecified => "MEMCACHE_VERSION_UNSPECIFIED",
+            MemcacheVersion::Memcache15 => "MEMCACHE_1_5",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MEMCACHE_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+            "MEMCACHE_1_5" => Some(Self::Memcache15),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod cloud_memcache_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Configures and manages Cloud Memorystore for Memcached instances.
-///
-///
-/// The `memcache.googleapis.com` service implements the Google Cloud Memorystore
-/// for Memcached API and defines the following resource model for managing
-/// Memorystore Memcached (also called Memcached below) instances:
-/// * The service works with a collection of cloud projects, named: `/projects/*`
-/// * Each project has a collection of available locations, named: `/locations/*`
-/// * Each location has a collection of Memcached instances, named:
-/// `/instances/*`
-/// * As such, Memcached instances are resources of the form:
-///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-///
-/// Note that location_id must be a GCP `region`; for example:
-/// * `projects/my-memcached-project/locations/us-central1/instances/my-memcached`
-#[derive(Debug, Clone)]
-pub struct CloudMemcacheClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> CloudMemcacheClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> CloudMemcacheClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-CloudMemcacheClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists Instances in a given location.
-pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/ListInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "ListInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Instance.
-pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/GetInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "GetInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Instance in a given location.
-pub async fn create_instance(&mut self, request: impl tonic::IntoRequest<super::CreateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/CreateInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "CreateInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an existing Instance in a given project and location.
-pub async fn update_instance(&mut self, request: impl tonic::IntoRequest<super::UpdateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/UpdateInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "UpdateInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the defined Memcached parameters for an existing instance.
-/// This method only stages the parameters, it must be followed by
-/// `ApplyParameters` to apply the parameters to nodes of the Memcached
-/// instance.
-pub async fn update_parameters(&mut self, request: impl tonic::IntoRequest<super::UpdateParametersRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/UpdateParameters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "UpdateParameters"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Instance.
-pub async fn delete_instance(&mut self, request: impl tonic::IntoRequest<super::DeleteInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/DeleteInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "DeleteInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// `ApplyParameters` restarts the set of specified nodes in order to update
-/// them to the current set of parameters for the Memcached Instance.
-pub async fn apply_parameters(&mut self, request: impl tonic::IntoRequest<super::ApplyParametersRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/ApplyParameters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "ApplyParameters"));
-self.inner.unary(req, path, codec).await
-}
-/// Reschedules upcoming maintenance event.
-pub async fn reschedule_maintenance(&mut self, request: impl tonic::IntoRequest<super::RescheduleMaintenanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.memcache.v1.CloudMemcache/RescheduleMaintenance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.memcache.v1.CloudMemcache", "RescheduleMaintenance"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Configures and manages Cloud Memorystore for Memcached instances.
+    ///
+    ///
+    /// The `memcache.googleapis.com` service implements the Google Cloud Memorystore
+    /// for Memcached API and defines the following resource model for managing
+    /// Memorystore Memcached (also called Memcached below) instances:
+    /// * The service works with a collection of cloud projects, named: `/projects/*`
+    /// * Each project has a collection of available locations, named: `/locations/*`
+    /// * Each location has a collection of Memcached instances, named:
+    /// `/instances/*`
+    /// * As such, Memcached instances are resources of the form:
+    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///
+    /// Note that location_id must be a GCP `region`; for example:
+    /// * `projects/my-memcached-project/locations/us-central1/instances/my-memcached`
+    #[derive(Debug, Clone)]
+    pub struct CloudMemcacheClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CloudMemcacheClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CloudMemcacheClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            CloudMemcacheClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists Instances in a given location.
+        pub async fn list_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/ListInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "ListInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Instance.
+        pub async fn get_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/GetInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "GetInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Instance in a given location.
+        pub async fn create_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/CreateInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "CreateInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an existing Instance in a given project and location.
+        pub async fn update_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/UpdateInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "UpdateInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the defined Memcached parameters for an existing instance.
+        /// This method only stages the parameters, it must be followed by
+        /// `ApplyParameters` to apply the parameters to nodes of the Memcached
+        /// instance.
+        pub async fn update_parameters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateParametersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/UpdateParameters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "UpdateParameters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Instance.
+        pub async fn delete_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/DeleteInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "DeleteInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `ApplyParameters` restarts the set of specified nodes in order to update
+        /// them to the current set of parameters for the Memcached Instance.
+        pub async fn apply_parameters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ApplyParametersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/ApplyParameters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "ApplyParameters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reschedules upcoming maintenance event.
+        pub async fn reschedule_maintenance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RescheduleMaintenanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.memcache.v1.CloudMemcache/RescheduleMaintenance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.memcache.v1.CloudMemcache",
+                "RescheduleMaintenance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

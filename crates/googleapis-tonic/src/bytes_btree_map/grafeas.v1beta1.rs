@@ -2,561 +2,767 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelatedUrl {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub label: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub label: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Signature {
-#[prost(bytes = "bytes", tag = "1")]
-pub signature: ::prost::bytes::Bytes,
-#[prost(string, tag = "2")]
-pub public_key_id: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub signature: ::prost::bytes::Bytes,
+    #[prost(string, tag = "2")]
+    pub public_key_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum NoteKind {
-Unspecified = 0,
-Vulnerability = 1,
-Build = 2,
-Image = 3,
-Package = 4,
-Deployment = 5,
-Discovery = 6,
-Attestation = 7,
+    Unspecified = 0,
+    Vulnerability = 1,
+    Build = 2,
+    Image = 3,
+    Package = 4,
+    Deployment = 5,
+    Discovery = 6,
+    Attestation = 7,
 }
 impl NoteKind {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
-NoteKind::Vulnerability => "VULNERABILITY",
-NoteKind::Build => "BUILD",
-NoteKind::Image => "IMAGE",
-NoteKind::Package => "PACKAGE",
-NoteKind::Deployment => "DEPLOYMENT",
-NoteKind::Discovery => "DISCOVERY",
-NoteKind::Attestation => "ATTESTATION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NOTE_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-"VULNERABILITY" => Some(Self::Vulnerability),
-"BUILD" => Some(Self::Build),
-"IMAGE" => Some(Self::Image),
-"PACKAGE" => Some(Self::Package),
-"DEPLOYMENT" => Some(Self::Deployment),
-"DISCOVERY" => Some(Self::Discovery),
-"ATTESTATION" => Some(Self::Attestation),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
+            NoteKind::Vulnerability => "VULNERABILITY",
+            NoteKind::Build => "BUILD",
+            NoteKind::Image => "IMAGE",
+            NoteKind::Package => "PACKAGE",
+            NoteKind::Deployment => "DEPLOYMENT",
+            NoteKind::Discovery => "DISCOVERY",
+            NoteKind::Attestation => "ATTESTATION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "NOTE_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+            "VULNERABILITY" => Some(Self::Vulnerability),
+            "BUILD" => Some(Self::Build),
+            "IMAGE" => Some(Self::Image),
+            "PACKAGE" => Some(Self::Package),
+            "DEPLOYMENT" => Some(Self::Deployment),
+            "DISCOVERY" => Some(Self::Discovery),
+            "ATTESTATION" => Some(Self::Attestation),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Occurrence {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub resource: ::core::option::Option<Resource>,
-#[prost(string, tag = "3")]
-pub note_name: ::prost::alloc::string::String,
-#[prost(enumeration = "NoteKind", tag = "4")]
-pub kind: i32,
-#[prost(string, tag = "5")]
-pub remediation: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "occurrence::Details", tags = "8, 9, 10, 11, 12, 13, 14")]
-pub details: ::core::option::Option<occurrence::Details>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub resource: ::core::option::Option<Resource>,
+    #[prost(string, tag = "3")]
+    pub note_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "NoteKind", tag = "4")]
+    pub kind: i32,
+    #[prost(string, tag = "5")]
+    pub remediation: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(oneof = "occurrence::Details", tags = "8, 9, 10, 11, 12, 13, 14")]
+    pub details: ::core::option::Option<occurrence::Details>,
 }
 /// Nested message and enum types in `Occurrence`.
 pub mod occurrence {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Details {
-#[prost(message, tag = "8")]
-Vulnerability(super::vulnerability::Details),
-#[prost(message, tag = "9")]
-Build(super::build::Details),
-#[prost(message, tag = "10")]
-DerivedImage(super::image::Details),
-#[prost(message, tag = "11")]
-Installation(super::package::Details),
-#[prost(message, tag = "12")]
-Deployment(super::deployment::Details),
-#[prost(message, tag = "13")]
-Discovered(super::discovery::Details),
-#[prost(message, tag = "14")]
-Attestation(super::attestation::Details),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        #[prost(message, tag = "8")]
+        Vulnerability(super::vulnerability::Details),
+        #[prost(message, tag = "9")]
+        Build(super::build::Details),
+        #[prost(message, tag = "10")]
+        DerivedImage(super::image::Details),
+        #[prost(message, tag = "11")]
+        Installation(super::package::Details),
+        #[prost(message, tag = "12")]
+        Deployment(super::deployment::Details),
+        #[prost(message, tag = "13")]
+        Discovered(super::discovery::Details),
+        #[prost(message, tag = "14")]
+        Attestation(super::attestation::Details),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Resource {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uri: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub content_hash: ::core::option::Option<provenance::Hash>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub content_hash: ::core::option::Option<provenance::Hash>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Note {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub short_description: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub long_description: ::prost::alloc::string::String,
-#[prost(enumeration = "NoteKind", tag = "4")]
-pub kind: i32,
-#[prost(message, repeated, tag = "5")]
-pub related_url: ::prost::alloc::vec::Vec<RelatedUrl>,
-#[prost(message, optional, tag = "6")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "9")]
-pub related_note_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(oneof = "note::Type", tags = "10, 11, 12, 13, 14, 15, 16")]
-pub r#type: ::core::option::Option<note::Type>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub short_description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub long_description: ::prost::alloc::string::String,
+    #[prost(enumeration = "NoteKind", tag = "4")]
+    pub kind: i32,
+    #[prost(message, repeated, tag = "5")]
+    pub related_url: ::prost::alloc::vec::Vec<RelatedUrl>,
+    #[prost(message, optional, tag = "6")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "9")]
+    pub related_note_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(oneof = "note::Type", tags = "10, 11, 12, 13, 14, 15, 16")]
+    pub r#type: ::core::option::Option<note::Type>,
 }
 /// Nested message and enum types in `Note`.
 pub mod note {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "10")]
-Vulnerability(super::vulnerability::Vulnerability),
-#[prost(message, tag = "11")]
-Build(super::build::Build),
-#[prost(message, tag = "12")]
-BaseImage(super::image::Basis),
-#[prost(message, tag = "13")]
-Package(super::package::Package),
-#[prost(message, tag = "14")]
-Deployable(super::deployment::Deployable),
-#[prost(message, tag = "15")]
-Discovery(super::discovery::Discovery),
-#[prost(message, tag = "16")]
-AttestationAuthority(super::attestation::Authority),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "10")]
+        Vulnerability(super::vulnerability::Vulnerability),
+        #[prost(message, tag = "11")]
+        Build(super::build::Build),
+        #[prost(message, tag = "12")]
+        BaseImage(super::image::Basis),
+        #[prost(message, tag = "13")]
+        Package(super::package::Package),
+        #[prost(message, tag = "14")]
+        Deployable(super::deployment::Deployable),
+        #[prost(message, tag = "15")]
+        Discovery(super::discovery::Discovery),
+        #[prost(message, tag = "16")]
+        AttestationAuthority(super::attestation::Authority),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOccurrenceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOccurrencesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOccurrencesResponse {
-#[prost(message, repeated, tag = "1")]
-pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteOccurrenceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateOccurrenceRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub occurrence: ::core::option::Option<Occurrence>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub occurrence: ::core::option::Option<Occurrence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateOccurrenceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub occurrence: ::core::option::Option<Occurrence>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub occurrence: ::core::option::Option<Occurrence>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNoteRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOccurrenceNoteRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotesResponse {
-#[prost(message, repeated, tag = "1")]
-pub notes: ::prost::alloc::vec::Vec<Note>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub notes: ::prost::alloc::vec::Vec<Note>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNoteRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNoteRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub note_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub note: ::core::option::Option<Note>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub note_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub note: ::core::option::Option<Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNoteRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub note: ::core::option::Option<Note>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub note: ::core::option::Option<Note>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNoteOccurrencesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNoteOccurrencesResponse {
-#[prost(message, repeated, tag = "1")]
-pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateNotesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(btree_map = "string, message", tag = "2")]
-pub notes: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Note>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, message", tag = "2")]
+    pub notes: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateNotesResponse {
-#[prost(message, repeated, tag = "1")]
-pub notes: ::prost::alloc::vec::Vec<Note>,
+    #[prost(message, repeated, tag = "1")]
+    pub notes: ::prost::alloc::vec::Vec<Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateOccurrencesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateOccurrencesResponse {
-#[prost(message, repeated, tag = "1")]
-pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+    #[prost(message, repeated, tag = "1")]
+    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVulnerabilityOccurrencesSummaryRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerabilityOccurrencesSummary {
-#[prost(message, repeated, tag = "1")]
-pub counts: ::prost::alloc::vec::Vec<vulnerability_occurrences_summary::FixableTotalByDigest>,
+    #[prost(message, repeated, tag = "1")]
+    pub counts: ::prost::alloc::vec::Vec<vulnerability_occurrences_summary::FixableTotalByDigest>,
 }
 /// Nested message and enum types in `VulnerabilityOccurrencesSummary`.
 pub mod vulnerability_occurrences_summary {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FixableTotalByDigest {
-#[prost(message, optional, tag = "1")]
-pub resource: ::core::option::Option<super::Resource>,
-#[prost(enumeration = "super::vulnerability::Severity", tag = "2")]
-pub severity: i32,
-#[prost(int64, tag = "3")]
-pub fixable_count: i64,
-#[prost(int64, tag = "4")]
-pub total_count: i64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FixableTotalByDigest {
+        #[prost(message, optional, tag = "1")]
+        pub resource: ::core::option::Option<super::Resource>,
+        #[prost(enumeration = "super::vulnerability::Severity", tag = "2")]
+        pub severity: i32,
+        #[prost(int64, tag = "3")]
+        pub fixable_count: i64,
+        #[prost(int64, tag = "4")]
+        pub total_count: i64,
+    }
 }
 /// Generated client implementations.
 pub mod grafeas_v1_beta1_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// [Grafeas](grafeas.io) API.
-///
-/// Retrieves analysis results of Cloud components such as Docker container
-/// images.
-///
-/// Analysis results are stored as a series of occurrences. An `Occurrence`
-/// contains information about a specific analysis instance on a resource. An
-/// occurrence refers to a `Note`. A note contains details describing the
-/// analysis and is generally stored in a separate project, called a `Provider`.
-/// Multiple occurrences can refer to the same note.
-///
-/// For example, an SSL vulnerability could affect multiple images. In this case,
-/// there would be one note for the vulnerability and an occurrence for each
-/// image with the vulnerability referring to that note.
-#[derive(Debug, Clone)]
-pub struct GrafeasV1Beta1Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> GrafeasV1Beta1Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> GrafeasV1Beta1Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-GrafeasV1Beta1Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Gets the specified occurrence.
-pub async fn get_occurrence(&mut self, request: impl tonic::IntoRequest<super::GetOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrence");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetOccurrence"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists occurrences for the specified project.
-pub async fn list_occurrences(&mut self, request: impl tonic::IntoRequest<super::ListOccurrencesRequest>) -> std::result::Result<tonic::Response<super::ListOccurrencesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/ListOccurrences");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "ListOccurrences"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the specified occurrence. For example, use this method to delete an
-/// occurrence when the occurrence is no longer applicable for the given
-/// resource.
-pub async fn delete_occurrence(&mut self, request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/DeleteOccurrence");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "DeleteOccurrence"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new occurrence.
-pub async fn create_occurrence(&mut self, request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/CreateOccurrence");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "CreateOccurrence"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates new occurrences in batch.
-pub async fn batch_create_occurrences(&mut self, request: impl tonic::IntoRequest<super::BatchCreateOccurrencesRequest>) -> std::result::Result<tonic::Response<super::BatchCreateOccurrencesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateOccurrences");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "BatchCreateOccurrences"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the specified occurrence.
-pub async fn update_occurrence(&mut self, request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/UpdateOccurrence");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "UpdateOccurrence"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the note attached to the specified occurrence. Consumer projects can
-/// use this method to get a note that belongs to a provider project.
-pub async fn get_occurrence_note(&mut self, request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrenceNote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetOccurrenceNote"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the specified note.
-pub async fn get_note(&mut self, request: impl tonic::IntoRequest<super::GetNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetNote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetNote"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists notes for the specified project.
-pub async fn list_notes(&mut self, request: impl tonic::IntoRequest<super::ListNotesRequest>) -> std::result::Result<tonic::Response<super::ListNotesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/ListNotes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "ListNotes"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the specified note.
-pub async fn delete_note(&mut self, request: impl tonic::IntoRequest<super::DeleteNoteRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/DeleteNote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "DeleteNote"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new note.
-pub async fn create_note(&mut self, request: impl tonic::IntoRequest<super::CreateNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/CreateNote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "CreateNote"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates new notes in batch.
-pub async fn batch_create_notes(&mut self, request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>) -> std::result::Result<tonic::Response<super::BatchCreateNotesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateNotes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "BatchCreateNotes"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the specified note.
-pub async fn update_note(&mut self, request: impl tonic::IntoRequest<super::UpdateNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/UpdateNote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "UpdateNote"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists occurrences referencing the specified note. Provider projects can use
-/// this method to get all occurrences across consumer projects referencing the
-/// specified note.
-pub async fn list_note_occurrences(&mut self, request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>) -> std::result::Result<tonic::Response<super::ListNoteOccurrencesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/ListNoteOccurrences");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "ListNoteOccurrences"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a summary of the number and severity of occurrences.
-pub async fn get_vulnerability_occurrences_summary(&mut self, request: impl tonic::IntoRequest<super::GetVulnerabilityOccurrencesSummaryRequest>) -> std::result::Result<tonic::Response<super::VulnerabilityOccurrencesSummary>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetVulnerabilityOccurrencesSummary");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetVulnerabilityOccurrencesSummary"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// [Grafeas](grafeas.io) API.
+    ///
+    /// Retrieves analysis results of Cloud components such as Docker container
+    /// images.
+    ///
+    /// Analysis results are stored as a series of occurrences. An `Occurrence`
+    /// contains information about a specific analysis instance on a resource. An
+    /// occurrence refers to a `Note`. A note contains details describing the
+    /// analysis and is generally stored in a separate project, called a `Provider`.
+    /// Multiple occurrences can refer to the same note.
+    ///
+    /// For example, an SSL vulnerability could affect multiple images. In this case,
+    /// there would be one note for the vulnerability and an occurrence for each
+    /// image with the vulnerability referring to that note.
+    #[derive(Debug, Clone)]
+    pub struct GrafeasV1Beta1Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> GrafeasV1Beta1Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> GrafeasV1Beta1Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            GrafeasV1Beta1Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Gets the specified occurrence.
+        pub async fn get_occurrence(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetOccurrenceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrence",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "GetOccurrence",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists occurrences for the specified project.
+        pub async fn list_occurrences(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListOccurrencesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListOccurrencesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/ListOccurrences",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "ListOccurrences",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the specified occurrence. For example, use this method to delete an
+        /// occurrence when the occurrence is no longer applicable for the given
+        /// resource.
+        pub async fn delete_occurrence(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/DeleteOccurrence",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "DeleteOccurrence",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new occurrence.
+        pub async fn create_occurrence(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/CreateOccurrence",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "CreateOccurrence",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates new occurrences in batch.
+        pub async fn batch_create_occurrences(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateOccurrencesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchCreateOccurrencesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateOccurrences",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "BatchCreateOccurrences",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the specified occurrence.
+        pub async fn update_occurrence(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/UpdateOccurrence",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "UpdateOccurrence",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the note attached to the specified occurrence. Consumer projects can
+        /// use this method to get a note that belongs to a provider project.
+        pub async fn get_occurrence_note(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/GetOccurrenceNote",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "GetOccurrenceNote",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the specified note.
+        pub async fn get_note(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNoteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/GetNote");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grafeas.v1beta1.GrafeasV1Beta1", "GetNote"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists notes for the specified project.
+        pub async fn list_notes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNotesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNotesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/ListNotes");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "ListNotes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the specified note.
+        pub async fn delete_note(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteNoteRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/DeleteNote");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "DeleteNote",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new note.
+        pub async fn create_note(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateNoteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/CreateNote");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "CreateNote",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates new notes in batch.
+        pub async fn batch_create_notes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchCreateNotesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/BatchCreateNotes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "BatchCreateNotes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the specified note.
+        pub async fn update_note(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateNoteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/grafeas.v1beta1.GrafeasV1Beta1/UpdateNote");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "UpdateNote",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists occurrences referencing the specified note. Provider projects can use
+        /// this method to get all occurrences across consumer projects referencing the
+        /// specified note.
+        pub async fn list_note_occurrences(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNoteOccurrencesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/ListNoteOccurrences",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "ListNoteOccurrences",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a summary of the number and severity of occurrences.
+        pub async fn get_vulnerability_occurrences_summary(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVulnerabilityOccurrencesSummaryRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::VulnerabilityOccurrencesSummary>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grafeas.v1beta1.GrafeasV1Beta1/GetVulnerabilityOccurrencesSummary",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "grafeas.v1beta1.GrafeasV1Beta1",
+                "GetVulnerabilityOccurrencesSummary",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

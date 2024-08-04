@@ -2,24 +2,33 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActionLog {
-#[prost(string, tag = "1")]
-pub actor: ::prost::alloc::string::String,
-#[prost(enumeration = "super::super::v1::recommendation_state_info::State", tag = "2")]
-pub state: i32,
-#[prost(btree_map = "string, string", tag = "3")]
-pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub recommendation_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub actor: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::super::v1::recommendation_state_info::State",
+        tag = "2"
+    )]
+    pub state: i32,
+    #[prost(btree_map = "string, string", tag = "3")]
+    pub state_metadata: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "4")]
+    pub recommendation_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsightActionLog {
-#[prost(string, tag = "1")]
-pub actor: ::prost::alloc::string::String,
-#[prost(enumeration = "super::super::v1::insight_state_info::State", tag = "2")]
-pub state: i32,
-#[prost(btree_map = "string, string", tag = "3")]
-pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub insight: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub actor: ::prost::alloc::string::String,
+    #[prost(enumeration = "super::super::v1::insight_state_info::State", tag = "2")]
+    pub state: i32,
+    #[prost(btree_map = "string, string", tag = "3")]
+    pub state_metadata: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "4")]
+    pub insight: ::prost::alloc::string::String,
 }

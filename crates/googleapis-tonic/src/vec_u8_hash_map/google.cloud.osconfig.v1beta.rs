@@ -2,405 +2,405 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FixedOrPercent {
-#[prost(oneof = "fixed_or_percent::Mode", tags = "1, 2")]
-pub mode: ::core::option::Option<fixed_or_percent::Mode>,
+    #[prost(oneof = "fixed_or_percent::Mode", tags = "1, 2")]
+    pub mode: ::core::option::Option<fixed_or_percent::Mode>,
 }
 /// Nested message and enum types in `FixedOrPercent`.
 pub mod fixed_or_percent {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Mode {
-#[prost(int32, tag = "1")]
-Fixed(i32),
-#[prost(int32, tag = "2")]
-Percent(i32),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Mode {
+        #[prost(int32, tag = "1")]
+        Fixed(i32),
+        #[prost(int32, tag = "2")]
+        Percent(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutePatchJobRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
-#[prost(message, optional, tag = "4")]
-pub patch_config: ::core::option::Option<PatchConfig>,
-#[prost(message, optional, tag = "5")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(bool, tag = "6")]
-pub dry_run: bool,
-#[prost(string, tag = "8")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub rollout: ::core::option::Option<PatchRollout>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
+    #[prost(message, optional, tag = "4")]
+    pub patch_config: ::core::option::Option<PatchConfig>,
+    #[prost(message, optional, tag = "5")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(bool, tag = "6")]
+    pub dry_run: bool,
+    #[prost(string, tag = "8")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub rollout: ::core::option::Option<PatchRollout>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPatchJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchJobInstanceDetailsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchJobInstanceDetailsResponse {
-#[prost(message, repeated, tag = "1")]
-pub patch_job_instance_details: ::prost::alloc::vec::Vec<PatchJobInstanceDetails>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub patch_job_instance_details: ::prost::alloc::vec::Vec<PatchJobInstanceDetails>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchJobInstanceDetails {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_system_id: ::prost::alloc::string::String,
-#[prost(enumeration = "instance::PatchState", tag = "3")]
-pub state: i32,
-#[prost(string, tag = "4")]
-pub failure_reason: ::prost::alloc::string::String,
-#[prost(int64, tag = "5")]
-pub attempt_count: i64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_system_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "instance::PatchState", tag = "3")]
+    pub state: i32,
+    #[prost(string, tag = "4")]
+    pub failure_reason: ::prost::alloc::string::String,
+    #[prost(int64, tag = "5")]
+    pub attempt_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchJobsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchJobsResponse {
-#[prost(message, repeated, tag = "1")]
-pub patch_jobs: ::prost::alloc::vec::Vec<PatchJob>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub patch_jobs: ::prost::alloc::vec::Vec<PatchJob>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchJob {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "patch_job::State", tag = "5")]
-pub state: i32,
-#[prost(message, optional, tag = "13")]
-pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
-#[prost(message, optional, tag = "7")]
-pub patch_config: ::core::option::Option<PatchConfig>,
-#[prost(message, optional, tag = "8")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "9")]
-pub instance_details_summary: ::core::option::Option<patch_job::InstanceDetailsSummary>,
-#[prost(bool, tag = "10")]
-pub dry_run: bool,
-#[prost(string, tag = "11")]
-pub error_message: ::prost::alloc::string::String,
-#[prost(double, tag = "12")]
-pub percent_complete: f64,
-#[prost(string, tag = "15")]
-pub patch_deployment: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "16")]
-pub rollout: ::core::option::Option<PatchRollout>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "patch_job::State", tag = "5")]
+    pub state: i32,
+    #[prost(message, optional, tag = "13")]
+    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
+    #[prost(message, optional, tag = "7")]
+    pub patch_config: ::core::option::Option<PatchConfig>,
+    #[prost(message, optional, tag = "8")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "9")]
+    pub instance_details_summary: ::core::option::Option<patch_job::InstanceDetailsSummary>,
+    #[prost(bool, tag = "10")]
+    pub dry_run: bool,
+    #[prost(string, tag = "11")]
+    pub error_message: ::prost::alloc::string::String,
+    #[prost(double, tag = "12")]
+    pub percent_complete: f64,
+    #[prost(string, tag = "15")]
+    pub patch_deployment: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "16")]
+    pub rollout: ::core::option::Option<PatchRollout>,
 }
 /// Nested message and enum types in `PatchJob`.
 pub mod patch_job {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct InstanceDetailsSummary {
-#[prost(int64, tag = "1")]
-pub pending_instance_count: i64,
-#[prost(int64, tag = "2")]
-pub inactive_instance_count: i64,
-#[prost(int64, tag = "3")]
-pub notified_instance_count: i64,
-#[prost(int64, tag = "4")]
-pub started_instance_count: i64,
-#[prost(int64, tag = "5")]
-pub downloading_patches_instance_count: i64,
-#[prost(int64, tag = "6")]
-pub applying_patches_instance_count: i64,
-#[prost(int64, tag = "7")]
-pub rebooting_instance_count: i64,
-#[prost(int64, tag = "8")]
-pub succeeded_instance_count: i64,
-#[prost(int64, tag = "9")]
-pub succeeded_reboot_required_instance_count: i64,
-#[prost(int64, tag = "10")]
-pub failed_instance_count: i64,
-#[prost(int64, tag = "11")]
-pub acked_instance_count: i64,
-#[prost(int64, tag = "12")]
-pub timed_out_instance_count: i64,
-#[prost(int64, tag = "13")]
-pub pre_patch_step_instance_count: i64,
-#[prost(int64, tag = "14")]
-pub post_patch_step_instance_count: i64,
-#[prost(int64, tag = "15")]
-pub no_agent_detected_instance_count: i64,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Started = 1,
-InstanceLookup = 2,
-Patching = 3,
-Succeeded = 4,
-CompletedWithErrors = 5,
-Canceled = 6,
-TimedOut = 7,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Started => "STARTED",
-State::InstanceLookup => "INSTANCE_LOOKUP",
-State::Patching => "PATCHING",
-State::Succeeded => "SUCCEEDED",
-State::CompletedWithErrors => "COMPLETED_WITH_ERRORS",
-State::Canceled => "CANCELED",
-State::TimedOut => "TIMED_OUT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"STARTED" => Some(Self::Started),
-"INSTANCE_LOOKUP" => Some(Self::InstanceLookup),
-"PATCHING" => Some(Self::Patching),
-"SUCCEEDED" => Some(Self::Succeeded),
-"COMPLETED_WITH_ERRORS" => Some(Self::CompletedWithErrors),
-"CANCELED" => Some(Self::Canceled),
-"TIMED_OUT" => Some(Self::TimedOut),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct InstanceDetailsSummary {
+        #[prost(int64, tag = "1")]
+        pub pending_instance_count: i64,
+        #[prost(int64, tag = "2")]
+        pub inactive_instance_count: i64,
+        #[prost(int64, tag = "3")]
+        pub notified_instance_count: i64,
+        #[prost(int64, tag = "4")]
+        pub started_instance_count: i64,
+        #[prost(int64, tag = "5")]
+        pub downloading_patches_instance_count: i64,
+        #[prost(int64, tag = "6")]
+        pub applying_patches_instance_count: i64,
+        #[prost(int64, tag = "7")]
+        pub rebooting_instance_count: i64,
+        #[prost(int64, tag = "8")]
+        pub succeeded_instance_count: i64,
+        #[prost(int64, tag = "9")]
+        pub succeeded_reboot_required_instance_count: i64,
+        #[prost(int64, tag = "10")]
+        pub failed_instance_count: i64,
+        #[prost(int64, tag = "11")]
+        pub acked_instance_count: i64,
+        #[prost(int64, tag = "12")]
+        pub timed_out_instance_count: i64,
+        #[prost(int64, tag = "13")]
+        pub pre_patch_step_instance_count: i64,
+        #[prost(int64, tag = "14")]
+        pub post_patch_step_instance_count: i64,
+        #[prost(int64, tag = "15")]
+        pub no_agent_detected_instance_count: i64,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Started = 1,
+        InstanceLookup = 2,
+        Patching = 3,
+        Succeeded = 4,
+        CompletedWithErrors = 5,
+        Canceled = 6,
+        TimedOut = 7,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Started => "STARTED",
+                State::InstanceLookup => "INSTANCE_LOOKUP",
+                State::Patching => "PATCHING",
+                State::Succeeded => "SUCCEEDED",
+                State::CompletedWithErrors => "COMPLETED_WITH_ERRORS",
+                State::Canceled => "CANCELED",
+                State::TimedOut => "TIMED_OUT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STARTED" => Some(Self::Started),
+                "INSTANCE_LOOKUP" => Some(Self::InstanceLookup),
+                "PATCHING" => Some(Self::Patching),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "COMPLETED_WITH_ERRORS" => Some(Self::CompletedWithErrors),
+                "CANCELED" => Some(Self::Canceled),
+                "TIMED_OUT" => Some(Self::TimedOut),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchConfig {
-#[prost(enumeration = "patch_config::RebootConfig", tag = "1")]
-pub reboot_config: i32,
-#[prost(message, optional, tag = "3")]
-pub apt: ::core::option::Option<AptSettings>,
-#[prost(message, optional, tag = "4")]
-pub yum: ::core::option::Option<YumSettings>,
-#[prost(message, optional, tag = "5")]
-pub goo: ::core::option::Option<GooSettings>,
-#[prost(message, optional, tag = "6")]
-pub zypper: ::core::option::Option<ZypperSettings>,
-#[prost(message, optional, tag = "7")]
-pub windows_update: ::core::option::Option<WindowsUpdateSettings>,
-#[prost(message, optional, tag = "8")]
-pub pre_step: ::core::option::Option<ExecStep>,
-#[prost(message, optional, tag = "9")]
-pub post_step: ::core::option::Option<ExecStep>,
-#[prost(bool, tag = "10")]
-pub mig_instances_allowed: bool,
+    #[prost(enumeration = "patch_config::RebootConfig", tag = "1")]
+    pub reboot_config: i32,
+    #[prost(message, optional, tag = "3")]
+    pub apt: ::core::option::Option<AptSettings>,
+    #[prost(message, optional, tag = "4")]
+    pub yum: ::core::option::Option<YumSettings>,
+    #[prost(message, optional, tag = "5")]
+    pub goo: ::core::option::Option<GooSettings>,
+    #[prost(message, optional, tag = "6")]
+    pub zypper: ::core::option::Option<ZypperSettings>,
+    #[prost(message, optional, tag = "7")]
+    pub windows_update: ::core::option::Option<WindowsUpdateSettings>,
+    #[prost(message, optional, tag = "8")]
+    pub pre_step: ::core::option::Option<ExecStep>,
+    #[prost(message, optional, tag = "9")]
+    pub post_step: ::core::option::Option<ExecStep>,
+    #[prost(bool, tag = "10")]
+    pub mig_instances_allowed: bool,
 }
 /// Nested message and enum types in `PatchConfig`.
 pub mod patch_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RebootConfig {
-Unspecified = 0,
-Default = 1,
-Always = 2,
-Never = 3,
-}
-impl RebootConfig {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RebootConfig::Unspecified => "REBOOT_CONFIG_UNSPECIFIED",
-RebootConfig::Default => "DEFAULT",
-RebootConfig::Always => "ALWAYS",
-RebootConfig::Never => "NEVER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REBOOT_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
-"DEFAULT" => Some(Self::Default),
-"ALWAYS" => Some(Self::Always),
-"NEVER" => Some(Self::Never),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RebootConfig {
+        Unspecified = 0,
+        Default = 1,
+        Always = 2,
+        Never = 3,
+    }
+    impl RebootConfig {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RebootConfig::Unspecified => "REBOOT_CONFIG_UNSPECIFIED",
+                RebootConfig::Default => "DEFAULT",
+                RebootConfig::Always => "ALWAYS",
+                RebootConfig::Never => "NEVER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REBOOT_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEFAULT" => Some(Self::Default),
+                "ALWAYS" => Some(Self::Always),
+                "NEVER" => Some(Self::Never),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Instance {}
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PatchState {
-Unspecified = 0,
-Pending = 1,
-Inactive = 2,
-Notified = 3,
-Started = 4,
-DownloadingPatches = 5,
-ApplyingPatches = 6,
-Rebooting = 7,
-Succeeded = 8,
-SucceededRebootRequired = 9,
-Failed = 10,
-Acked = 11,
-TimedOut = 12,
-RunningPrePatchStep = 13,
-RunningPostPatchStep = 14,
-NoAgentDetected = 15,
-}
-impl PatchState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PatchState::Unspecified => "PATCH_STATE_UNSPECIFIED",
-PatchState::Pending => "PENDING",
-PatchState::Inactive => "INACTIVE",
-PatchState::Notified => "NOTIFIED",
-PatchState::Started => "STARTED",
-PatchState::DownloadingPatches => "DOWNLOADING_PATCHES",
-PatchState::ApplyingPatches => "APPLYING_PATCHES",
-PatchState::Rebooting => "REBOOTING",
-PatchState::Succeeded => "SUCCEEDED",
-PatchState::SucceededRebootRequired => "SUCCEEDED_REBOOT_REQUIRED",
-PatchState::Failed => "FAILED",
-PatchState::Acked => "ACKED",
-PatchState::TimedOut => "TIMED_OUT",
-PatchState::RunningPrePatchStep => "RUNNING_PRE_PATCH_STEP",
-PatchState::RunningPostPatchStep => "RUNNING_POST_PATCH_STEP",
-PatchState::NoAgentDetected => "NO_AGENT_DETECTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PATCH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"INACTIVE" => Some(Self::Inactive),
-"NOTIFIED" => Some(Self::Notified),
-"STARTED" => Some(Self::Started),
-"DOWNLOADING_PATCHES" => Some(Self::DownloadingPatches),
-"APPLYING_PATCHES" => Some(Self::ApplyingPatches),
-"REBOOTING" => Some(Self::Rebooting),
-"SUCCEEDED" => Some(Self::Succeeded),
-"SUCCEEDED_REBOOT_REQUIRED" => Some(Self::SucceededRebootRequired),
-"FAILED" => Some(Self::Failed),
-"ACKED" => Some(Self::Acked),
-"TIMED_OUT" => Some(Self::TimedOut),
-"RUNNING_PRE_PATCH_STEP" => Some(Self::RunningPrePatchStep),
-"RUNNING_POST_PATCH_STEP" => Some(Self::RunningPostPatchStep),
-"NO_AGENT_DETECTED" => Some(Self::NoAgentDetected),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PatchState {
+        Unspecified = 0,
+        Pending = 1,
+        Inactive = 2,
+        Notified = 3,
+        Started = 4,
+        DownloadingPatches = 5,
+        ApplyingPatches = 6,
+        Rebooting = 7,
+        Succeeded = 8,
+        SucceededRebootRequired = 9,
+        Failed = 10,
+        Acked = 11,
+        TimedOut = 12,
+        RunningPrePatchStep = 13,
+        RunningPostPatchStep = 14,
+        NoAgentDetected = 15,
+    }
+    impl PatchState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PatchState::Unspecified => "PATCH_STATE_UNSPECIFIED",
+                PatchState::Pending => "PENDING",
+                PatchState::Inactive => "INACTIVE",
+                PatchState::Notified => "NOTIFIED",
+                PatchState::Started => "STARTED",
+                PatchState::DownloadingPatches => "DOWNLOADING_PATCHES",
+                PatchState::ApplyingPatches => "APPLYING_PATCHES",
+                PatchState::Rebooting => "REBOOTING",
+                PatchState::Succeeded => "SUCCEEDED",
+                PatchState::SucceededRebootRequired => "SUCCEEDED_REBOOT_REQUIRED",
+                PatchState::Failed => "FAILED",
+                PatchState::Acked => "ACKED",
+                PatchState::TimedOut => "TIMED_OUT",
+                PatchState::RunningPrePatchStep => "RUNNING_PRE_PATCH_STEP",
+                PatchState::RunningPostPatchStep => "RUNNING_POST_PATCH_STEP",
+                PatchState::NoAgentDetected => "NO_AGENT_DETECTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PATCH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "INACTIVE" => Some(Self::Inactive),
+                "NOTIFIED" => Some(Self::Notified),
+                "STARTED" => Some(Self::Started),
+                "DOWNLOADING_PATCHES" => Some(Self::DownloadingPatches),
+                "APPLYING_PATCHES" => Some(Self::ApplyingPatches),
+                "REBOOTING" => Some(Self::Rebooting),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "SUCCEEDED_REBOOT_REQUIRED" => Some(Self::SucceededRebootRequired),
+                "FAILED" => Some(Self::Failed),
+                "ACKED" => Some(Self::Acked),
+                "TIMED_OUT" => Some(Self::TimedOut),
+                "RUNNING_PRE_PATCH_STEP" => Some(Self::RunningPrePatchStep),
+                "RUNNING_POST_PATCH_STEP" => Some(Self::RunningPostPatchStep),
+                "NO_AGENT_DETECTED" => Some(Self::NoAgentDetected),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelPatchJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AptSettings {
-#[prost(enumeration = "apt_settings::Type", tag = "1")]
-pub r#type: i32,
-#[prost(string, repeated, tag = "2")]
-pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "apt_settings::Type", tag = "1")]
+    pub r#type: i32,
+    #[prost(string, repeated, tag = "2")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `AptSettings`.
 pub mod apt_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Dist = 1,
-Upgrade = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Dist => "DIST",
-Type::Upgrade => "UPGRADE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"DIST" => Some(Self::Dist),
-"UPGRADE" => Some(Self::Upgrade),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Dist = 1,
+        Upgrade = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Dist => "DIST",
+                Type::Upgrade => "UPGRADE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DIST" => Some(Self::Dist),
+                "UPGRADE" => Some(Self::Upgrade),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct YumSettings {
-#[prost(bool, tag = "1")]
-pub security: bool,
-#[prost(bool, tag = "2")]
-pub minimal: bool,
-#[prost(string, repeated, tag = "3")]
-pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "1")]
+    pub security: bool,
+    #[prost(bool, tag = "2")]
+    pub minimal: bool,
+    #[prost(string, repeated, tag = "3")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -408,1245 +408,1510 @@ pub struct GooSettings {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ZypperSettings {
-#[prost(bool, tag = "1")]
-pub with_optional: bool,
-#[prost(bool, tag = "2")]
-pub with_update: bool,
-#[prost(string, repeated, tag = "3")]
-pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub severities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "6")]
-pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "1")]
+    pub with_optional: bool,
+    #[prost(bool, tag = "2")]
+    pub with_update: bool,
+    #[prost(string, repeated, tag = "3")]
+    pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub severities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WindowsUpdateSettings {
-#[prost(enumeration = "windows_update_settings::Classification", repeated, tag = "1")]
-pub classifications: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, repeated, tag = "2")]
-pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "windows_update_settings::Classification",
+        repeated,
+        tag = "1"
+    )]
+    pub classifications: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, repeated, tag = "2")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `WindowsUpdateSettings`.
 pub mod windows_update_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Classification {
-Unspecified = 0,
-Critical = 1,
-Security = 2,
-Definition = 3,
-Driver = 4,
-FeaturePack = 5,
-ServicePack = 6,
-Tool = 7,
-UpdateRollup = 8,
-Update = 9,
-}
-impl Classification {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Classification::Unspecified => "CLASSIFICATION_UNSPECIFIED",
-Classification::Critical => "CRITICAL",
-Classification::Security => "SECURITY",
-Classification::Definition => "DEFINITION",
-Classification::Driver => "DRIVER",
-Classification::FeaturePack => "FEATURE_PACK",
-Classification::ServicePack => "SERVICE_PACK",
-Classification::Tool => "TOOL",
-Classification::UpdateRollup => "UPDATE_ROLLUP",
-Classification::Update => "UPDATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLASSIFICATION_UNSPECIFIED" => Some(Self::Unspecified),
-"CRITICAL" => Some(Self::Critical),
-"SECURITY" => Some(Self::Security),
-"DEFINITION" => Some(Self::Definition),
-"DRIVER" => Some(Self::Driver),
-"FEATURE_PACK" => Some(Self::FeaturePack),
-"SERVICE_PACK" => Some(Self::ServicePack),
-"TOOL" => Some(Self::Tool),
-"UPDATE_ROLLUP" => Some(Self::UpdateRollup),
-"UPDATE" => Some(Self::Update),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Classification {
+        Unspecified = 0,
+        Critical = 1,
+        Security = 2,
+        Definition = 3,
+        Driver = 4,
+        FeaturePack = 5,
+        ServicePack = 6,
+        Tool = 7,
+        UpdateRollup = 8,
+        Update = 9,
+    }
+    impl Classification {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Classification::Unspecified => "CLASSIFICATION_UNSPECIFIED",
+                Classification::Critical => "CRITICAL",
+                Classification::Security => "SECURITY",
+                Classification::Definition => "DEFINITION",
+                Classification::Driver => "DRIVER",
+                Classification::FeaturePack => "FEATURE_PACK",
+                Classification::ServicePack => "SERVICE_PACK",
+                Classification::Tool => "TOOL",
+                Classification::UpdateRollup => "UPDATE_ROLLUP",
+                Classification::Update => "UPDATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLASSIFICATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "CRITICAL" => Some(Self::Critical),
+                "SECURITY" => Some(Self::Security),
+                "DEFINITION" => Some(Self::Definition),
+                "DRIVER" => Some(Self::Driver),
+                "FEATURE_PACK" => Some(Self::FeaturePack),
+                "SERVICE_PACK" => Some(Self::ServicePack),
+                "TOOL" => Some(Self::Tool),
+                "UPDATE_ROLLUP" => Some(Self::UpdateRollup),
+                "UPDATE" => Some(Self::Update),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecStep {
-#[prost(message, optional, tag = "1")]
-pub linux_exec_step_config: ::core::option::Option<ExecStepConfig>,
-#[prost(message, optional, tag = "2")]
-pub windows_exec_step_config: ::core::option::Option<ExecStepConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub linux_exec_step_config: ::core::option::Option<ExecStepConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub windows_exec_step_config: ::core::option::Option<ExecStepConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecStepConfig {
-#[prost(int32, repeated, tag = "3")]
-pub allowed_success_codes: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "exec_step_config::Interpreter", tag = "4")]
-pub interpreter: i32,
-#[prost(oneof = "exec_step_config::Executable", tags = "1, 2")]
-pub executable: ::core::option::Option<exec_step_config::Executable>,
+    #[prost(int32, repeated, tag = "3")]
+    pub allowed_success_codes: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "exec_step_config::Interpreter", tag = "4")]
+    pub interpreter: i32,
+    #[prost(oneof = "exec_step_config::Executable", tags = "1, 2")]
+    pub executable: ::core::option::Option<exec_step_config::Executable>,
 }
 /// Nested message and enum types in `ExecStepConfig`.
 pub mod exec_step_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Interpreter {
-Unspecified = 0,
-Shell = 1,
-Powershell = 2,
-}
-impl Interpreter {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
-Interpreter::Shell => "SHELL",
-Interpreter::Powershell => "POWERSHELL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
-"SHELL" => Some(Self::Shell),
-"POWERSHELL" => Some(Self::Powershell),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Executable {
-#[prost(string, tag = "1")]
-LocalPath(::prost::alloc::string::String),
-#[prost(message, tag = "2")]
-GcsObject(super::GcsObject),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Interpreter {
+        Unspecified = 0,
+        Shell = 1,
+        Powershell = 2,
+    }
+    impl Interpreter {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
+                Interpreter::Shell => "SHELL",
+                Interpreter::Powershell => "POWERSHELL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
+                "SHELL" => Some(Self::Shell),
+                "POWERSHELL" => Some(Self::Powershell),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Executable {
+        #[prost(string, tag = "1")]
+        LocalPath(::prost::alloc::string::String),
+        #[prost(message, tag = "2")]
+        GcsObject(super::GcsObject),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsObject {
-#[prost(string, tag = "1")]
-pub bucket: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub object: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub generation_number: i64,
+    #[prost(string, tag = "1")]
+    pub bucket: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub object: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub generation_number: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchInstanceFilter {
-#[prost(bool, tag = "1")]
-pub all: bool,
-#[prost(message, repeated, tag = "2")]
-pub group_labels: ::prost::alloc::vec::Vec<patch_instance_filter::GroupLabel>,
-#[prost(string, repeated, tag = "3")]
-pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "1")]
+    pub all: bool,
+    #[prost(message, repeated, tag = "2")]
+    pub group_labels: ::prost::alloc::vec::Vec<patch_instance_filter::GroupLabel>,
+    #[prost(string, repeated, tag = "3")]
+    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `PatchInstanceFilter`.
 pub mod patch_instance_filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GroupLabel {
-#[prost(map = "string, string", tag = "1")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GroupLabel {
+        #[prost(map = "string, string", tag = "1")]
+        pub labels: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PatchRollout {
-#[prost(enumeration = "patch_rollout::Mode", tag = "1")]
-pub mode: i32,
-#[prost(message, optional, tag = "2")]
-pub disruption_budget: ::core::option::Option<FixedOrPercent>,
+    #[prost(enumeration = "patch_rollout::Mode", tag = "1")]
+    pub mode: i32,
+    #[prost(message, optional, tag = "2")]
+    pub disruption_budget: ::core::option::Option<FixedOrPercent>,
 }
 /// Nested message and enum types in `PatchRollout`.
 pub mod patch_rollout {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Mode {
-Unspecified = 0,
-ZoneByZone = 1,
-ConcurrentZones = 2,
-}
-impl Mode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Mode::Unspecified => "MODE_UNSPECIFIED",
-Mode::ZoneByZone => "ZONE_BY_ZONE",
-Mode::ConcurrentZones => "CONCURRENT_ZONES",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"ZONE_BY_ZONE" => Some(Self::ZoneByZone),
-"CONCURRENT_ZONES" => Some(Self::ConcurrentZones),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Mode {
+        Unspecified = 0,
+        ZoneByZone = 1,
+        ConcurrentZones = 2,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::ZoneByZone => "ZONE_BY_ZONE",
+                Mode::ConcurrentZones => "CONCURRENT_ZONES",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ZONE_BY_ZONE" => Some(Self::ZoneByZone),
+                "CONCURRENT_ZONES" => Some(Self::ConcurrentZones),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GuestPolicy {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub assignment: ::core::option::Option<Assignment>,
-#[prost(message, repeated, tag = "7")]
-pub packages: ::prost::alloc::vec::Vec<Package>,
-#[prost(message, repeated, tag = "8")]
-pub package_repositories: ::prost::alloc::vec::Vec<PackageRepository>,
-#[prost(message, repeated, tag = "9")]
-pub recipes: ::prost::alloc::vec::Vec<SoftwareRecipe>,
-#[prost(string, tag = "10")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub assignment: ::core::option::Option<Assignment>,
+    #[prost(message, repeated, tag = "7")]
+    pub packages: ::prost::alloc::vec::Vec<Package>,
+    #[prost(message, repeated, tag = "8")]
+    pub package_repositories: ::prost::alloc::vec::Vec<PackageRepository>,
+    #[prost(message, repeated, tag = "9")]
+    pub recipes: ::prost::alloc::vec::Vec<SoftwareRecipe>,
+    #[prost(string, tag = "10")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Assignment {
-#[prost(message, repeated, tag = "1")]
-pub group_labels: ::prost::alloc::vec::Vec<assignment::GroupLabel>,
-#[prost(string, repeated, tag = "2")]
-pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "5")]
-pub os_types: ::prost::alloc::vec::Vec<assignment::OsType>,
+    #[prost(message, repeated, tag = "1")]
+    pub group_labels: ::prost::alloc::vec::Vec<assignment::GroupLabel>,
+    #[prost(string, repeated, tag = "2")]
+    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "5")]
+    pub os_types: ::prost::alloc::vec::Vec<assignment::OsType>,
 }
 /// Nested message and enum types in `Assignment`.
 pub mod assignment {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GroupLabel {
-#[prost(map = "string, string", tag = "1")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OsType {
-#[prost(string, tag = "1")]
-pub os_short_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub os_version: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub os_architecture: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GroupLabel {
+        #[prost(map = "string, string", tag = "1")]
+        pub labels: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OsType {
+        #[prost(string, tag = "1")]
+        pub os_short_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub os_version: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub os_architecture: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Package {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "DesiredState", tag = "2")]
-pub desired_state: i32,
-#[prost(enumeration = "package::Manager", tag = "3")]
-pub manager: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "DesiredState", tag = "2")]
+    pub desired_state: i32,
+    #[prost(enumeration = "package::Manager", tag = "3")]
+    pub manager: i32,
 }
 /// Nested message and enum types in `Package`.
 pub mod package {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Manager {
-Unspecified = 0,
-Any = 1,
-Apt = 2,
-Yum = 3,
-Zypper = 4,
-Goo = 5,
-}
-impl Manager {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Manager::Unspecified => "MANAGER_UNSPECIFIED",
-Manager::Any => "ANY",
-Manager::Apt => "APT",
-Manager::Yum => "YUM",
-Manager::Zypper => "ZYPPER",
-Manager::Goo => "GOO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MANAGER_UNSPECIFIED" => Some(Self::Unspecified),
-"ANY" => Some(Self::Any),
-"APT" => Some(Self::Apt),
-"YUM" => Some(Self::Yum),
-"ZYPPER" => Some(Self::Zypper),
-"GOO" => Some(Self::Goo),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Manager {
+        Unspecified = 0,
+        Any = 1,
+        Apt = 2,
+        Yum = 3,
+        Zypper = 4,
+        Goo = 5,
+    }
+    impl Manager {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Manager::Unspecified => "MANAGER_UNSPECIFIED",
+                Manager::Any => "ANY",
+                Manager::Apt => "APT",
+                Manager::Yum => "YUM",
+                Manager::Zypper => "ZYPPER",
+                Manager::Goo => "GOO",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MANAGER_UNSPECIFIED" => Some(Self::Unspecified),
+                "ANY" => Some(Self::Any),
+                "APT" => Some(Self::Apt),
+                "YUM" => Some(Self::Yum),
+                "ZYPPER" => Some(Self::Zypper),
+                "GOO" => Some(Self::Goo),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AptRepository {
-#[prost(enumeration = "apt_repository::ArchiveType", tag = "1")]
-pub archive_type: i32,
-#[prost(string, tag = "2")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub distribution: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub components: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub gpg_key: ::prost::alloc::string::String,
+    #[prost(enumeration = "apt_repository::ArchiveType", tag = "1")]
+    pub archive_type: i32,
+    #[prost(string, tag = "2")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub distribution: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub components: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub gpg_key: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AptRepository`.
 pub mod apt_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ArchiveType {
-Unspecified = 0,
-Deb = 1,
-DebSrc = 2,
-}
-impl ArchiveType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ArchiveType::Unspecified => "ARCHIVE_TYPE_UNSPECIFIED",
-ArchiveType::Deb => "DEB",
-ArchiveType::DebSrc => "DEB_SRC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ARCHIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"DEB" => Some(Self::Deb),
-"DEB_SRC" => Some(Self::DebSrc),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ArchiveType {
+        Unspecified = 0,
+        Deb = 1,
+        DebSrc = 2,
+    }
+    impl ArchiveType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ArchiveType::Unspecified => "ARCHIVE_TYPE_UNSPECIFIED",
+                ArchiveType::Deb => "DEB",
+                ArchiveType::DebSrc => "DEB_SRC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ARCHIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEB" => Some(Self::Deb),
+                "DEB_SRC" => Some(Self::DebSrc),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct YumRepository {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub base_url: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub gpg_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub base_url: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub gpg_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ZypperRepository {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub base_url: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub gpg_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub base_url: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub gpg_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GooRepository {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PackageRepository {
-#[prost(oneof = "package_repository::Repository", tags = "1, 2, 3, 4")]
-pub repository: ::core::option::Option<package_repository::Repository>,
+    #[prost(oneof = "package_repository::Repository", tags = "1, 2, 3, 4")]
+    pub repository: ::core::option::Option<package_repository::Repository>,
 }
 /// Nested message and enum types in `PackageRepository`.
 pub mod package_repository {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Repository {
-#[prost(message, tag = "1")]
-Apt(super::AptRepository),
-#[prost(message, tag = "2")]
-Yum(super::YumRepository),
-#[prost(message, tag = "3")]
-Zypper(super::ZypperRepository),
-#[prost(message, tag = "4")]
-Goo(super::GooRepository),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Repository {
+        #[prost(message, tag = "1")]
+        Apt(super::AptRepository),
+        #[prost(message, tag = "2")]
+        Yum(super::YumRepository),
+        #[prost(message, tag = "3")]
+        Zypper(super::ZypperRepository),
+        #[prost(message, tag = "4")]
+        Goo(super::GooRepository),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SoftwareRecipe {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub artifacts: ::prost::alloc::vec::Vec<software_recipe::Artifact>,
-#[prost(message, repeated, tag = "4")]
-pub install_steps: ::prost::alloc::vec::Vec<software_recipe::Step>,
-#[prost(message, repeated, tag = "5")]
-pub update_steps: ::prost::alloc::vec::Vec<software_recipe::Step>,
-#[prost(enumeration = "DesiredState", tag = "6")]
-pub desired_state: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub artifacts: ::prost::alloc::vec::Vec<software_recipe::Artifact>,
+    #[prost(message, repeated, tag = "4")]
+    pub install_steps: ::prost::alloc::vec::Vec<software_recipe::Step>,
+    #[prost(message, repeated, tag = "5")]
+    pub update_steps: ::prost::alloc::vec::Vec<software_recipe::Step>,
+    #[prost(enumeration = "DesiredState", tag = "6")]
+    pub desired_state: i32,
 }
 /// Nested message and enum types in `SoftwareRecipe`.
 pub mod software_recipe {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Artifact {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub allow_insecure: bool,
-#[prost(oneof = "artifact::Artifact", tags = "2, 3")]
-pub artifact: ::core::option::Option<artifact::Artifact>,
-}
-/// Nested message and enum types in `Artifact`.
-pub mod artifact {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Remote {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub checksum: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Gcs {
-#[prost(string, tag = "1")]
-pub bucket: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub object: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub generation: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Artifact {
-#[prost(message, tag = "2")]
-Remote(Remote),
-#[prost(message, tag = "3")]
-Gcs(Gcs),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Step {
-#[prost(oneof = "step::Step", tags = "1, 2, 3, 4, 5, 6, 7")]
-pub step: ::core::option::Option<step::Step>,
-}
-/// Nested message and enum types in `Step`.
-pub mod step {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CopyFile {
-#[prost(string, tag = "1")]
-pub artifact_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub destination: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub overwrite: bool,
-#[prost(string, tag = "4")]
-pub permissions: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExtractArchive {
-#[prost(string, tag = "1")]
-pub artifact_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub destination: ::prost::alloc::string::String,
-#[prost(enumeration = "extract_archive::ArchiveType", tag = "3")]
-pub r#type: i32,
-}
-/// Nested message and enum types in `ExtractArchive`.
-pub mod extract_archive {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ArchiveType {
-Unspecified = 0,
-Tar = 1,
-TarGzip = 2,
-TarBzip = 3,
-TarLzma = 4,
-TarXz = 5,
-Zip = 11,
-}
-impl ArchiveType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ArchiveType::Unspecified => "ARCHIVE_TYPE_UNSPECIFIED",
-ArchiveType::Tar => "TAR",
-ArchiveType::TarGzip => "TAR_GZIP",
-ArchiveType::TarBzip => "TAR_BZIP",
-ArchiveType::TarLzma => "TAR_LZMA",
-ArchiveType::TarXz => "TAR_XZ",
-ArchiveType::Zip => "ZIP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ARCHIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"TAR" => Some(Self::Tar),
-"TAR_GZIP" => Some(Self::TarGzip),
-"TAR_BZIP" => Some(Self::TarBzip),
-"TAR_LZMA" => Some(Self::TarLzma),
-"TAR_XZ" => Some(Self::TarXz),
-"ZIP" => Some(Self::Zip),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstallMsi {
-#[prost(string, tag = "1")]
-pub artifact_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub flags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, repeated, tag = "3")]
-pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstallDpkg {
-#[prost(string, tag = "1")]
-pub artifact_id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstallRpm {
-#[prost(string, tag = "1")]
-pub artifact_id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecFile {
-#[prost(string, repeated, tag = "3")]
-pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, repeated, tag = "4")]
-pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
-#[prost(oneof = "exec_file::LocationType", tags = "1, 2")]
-pub location_type: ::core::option::Option<exec_file::LocationType>,
-}
-/// Nested message and enum types in `ExecFile`.
-pub mod exec_file {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum LocationType {
-#[prost(string, tag = "1")]
-ArtifactId(::prost::alloc::string::String),
-#[prost(string, tag = "2")]
-LocalPath(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RunScript {
-#[prost(string, tag = "1")]
-pub script: ::prost::alloc::string::String,
-#[prost(int32, repeated, tag = "2")]
-pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "run_script::Interpreter", tag = "3")]
-pub interpreter: i32,
-}
-/// Nested message and enum types in `RunScript`.
-pub mod run_script {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Interpreter {
-Unspecified = 0,
-Shell = 1,
-Powershell = 3,
-}
-impl Interpreter {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
-Interpreter::Shell => "SHELL",
-Interpreter::Powershell => "POWERSHELL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
-"SHELL" => Some(Self::Shell),
-"POWERSHELL" => Some(Self::Powershell),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Step {
-#[prost(message, tag = "1")]
-FileCopy(CopyFile),
-#[prost(message, tag = "2")]
-ArchiveExtraction(ExtractArchive),
-#[prost(message, tag = "3")]
-MsiInstallation(InstallMsi),
-#[prost(message, tag = "4")]
-DpkgInstallation(InstallDpkg),
-#[prost(message, tag = "5")]
-RpmInstallation(InstallRpm),
-#[prost(message, tag = "6")]
-FileExec(ExecFile),
-#[prost(message, tag = "7")]
-ScriptRun(RunScript),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Artifact {
+        #[prost(string, tag = "1")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(bool, tag = "4")]
+        pub allow_insecure: bool,
+        #[prost(oneof = "artifact::Artifact", tags = "2, 3")]
+        pub artifact: ::core::option::Option<artifact::Artifact>,
+    }
+    /// Nested message and enum types in `Artifact`.
+    pub mod artifact {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Remote {
+            #[prost(string, tag = "1")]
+            pub uri: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub checksum: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Gcs {
+            #[prost(string, tag = "1")]
+            pub bucket: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub object: ::prost::alloc::string::String,
+            #[prost(int64, tag = "3")]
+            pub generation: i64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Artifact {
+            #[prost(message, tag = "2")]
+            Remote(Remote),
+            #[prost(message, tag = "3")]
+            Gcs(Gcs),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Step {
+        #[prost(oneof = "step::Step", tags = "1, 2, 3, 4, 5, 6, 7")]
+        pub step: ::core::option::Option<step::Step>,
+    }
+    /// Nested message and enum types in `Step`.
+    pub mod step {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct CopyFile {
+            #[prost(string, tag = "1")]
+            pub artifact_id: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub destination: ::prost::alloc::string::String,
+            #[prost(bool, tag = "3")]
+            pub overwrite: bool,
+            #[prost(string, tag = "4")]
+            pub permissions: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ExtractArchive {
+            #[prost(string, tag = "1")]
+            pub artifact_id: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub destination: ::prost::alloc::string::String,
+            #[prost(enumeration = "extract_archive::ArchiveType", tag = "3")]
+            pub r#type: i32,
+        }
+        /// Nested message and enum types in `ExtractArchive`.
+        pub mod extract_archive {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum ArchiveType {
+                Unspecified = 0,
+                Tar = 1,
+                TarGzip = 2,
+                TarBzip = 3,
+                TarLzma = 4,
+                TarXz = 5,
+                Zip = 11,
+            }
+            impl ArchiveType {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        ArchiveType::Unspecified => "ARCHIVE_TYPE_UNSPECIFIED",
+                        ArchiveType::Tar => "TAR",
+                        ArchiveType::TarGzip => "TAR_GZIP",
+                        ArchiveType::TarBzip => "TAR_BZIP",
+                        ArchiveType::TarLzma => "TAR_LZMA",
+                        ArchiveType::TarXz => "TAR_XZ",
+                        ArchiveType::Zip => "ZIP",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "ARCHIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                        "TAR" => Some(Self::Tar),
+                        "TAR_GZIP" => Some(Self::TarGzip),
+                        "TAR_BZIP" => Some(Self::TarBzip),
+                        "TAR_LZMA" => Some(Self::TarLzma),
+                        "TAR_XZ" => Some(Self::TarXz),
+                        "ZIP" => Some(Self::Zip),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct InstallMsi {
+            #[prost(string, tag = "1")]
+            pub artifact_id: ::prost::alloc::string::String,
+            #[prost(string, repeated, tag = "2")]
+            pub flags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            #[prost(int32, repeated, tag = "3")]
+            pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct InstallDpkg {
+            #[prost(string, tag = "1")]
+            pub artifact_id: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct InstallRpm {
+            #[prost(string, tag = "1")]
+            pub artifact_id: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ExecFile {
+            #[prost(string, repeated, tag = "3")]
+            pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            #[prost(int32, repeated, tag = "4")]
+            pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
+            #[prost(oneof = "exec_file::LocationType", tags = "1, 2")]
+            pub location_type: ::core::option::Option<exec_file::LocationType>,
+        }
+        /// Nested message and enum types in `ExecFile`.
+        pub mod exec_file {
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum LocationType {
+                #[prost(string, tag = "1")]
+                ArtifactId(::prost::alloc::string::String),
+                #[prost(string, tag = "2")]
+                LocalPath(::prost::alloc::string::String),
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct RunScript {
+            #[prost(string, tag = "1")]
+            pub script: ::prost::alloc::string::String,
+            #[prost(int32, repeated, tag = "2")]
+            pub allowed_exit_codes: ::prost::alloc::vec::Vec<i32>,
+            #[prost(enumeration = "run_script::Interpreter", tag = "3")]
+            pub interpreter: i32,
+        }
+        /// Nested message and enum types in `RunScript`.
+        pub mod run_script {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum Interpreter {
+                Unspecified = 0,
+                Shell = 1,
+                Powershell = 3,
+            }
+            impl Interpreter {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
+                        Interpreter::Shell => "SHELL",
+                        Interpreter::Powershell => "POWERSHELL",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
+                        "SHELL" => Some(Self::Shell),
+                        "POWERSHELL" => Some(Self::Powershell),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Step {
+            #[prost(message, tag = "1")]
+            FileCopy(CopyFile),
+            #[prost(message, tag = "2")]
+            ArchiveExtraction(ExtractArchive),
+            #[prost(message, tag = "3")]
+            MsiInstallation(InstallMsi),
+            #[prost(message, tag = "4")]
+            DpkgInstallation(InstallDpkg),
+            #[prost(message, tag = "5")]
+            RpmInstallation(InstallRpm),
+            #[prost(message, tag = "6")]
+            FileExec(ExecFile),
+            #[prost(message, tag = "7")]
+            ScriptRun(RunScript),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGuestPolicyRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub guest_policy_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub guest_policy: ::core::option::Option<GuestPolicy>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub guest_policy_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub guest_policy: ::core::option::Option<GuestPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGuestPolicyRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGuestPoliciesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGuestPoliciesResponse {
-#[prost(message, repeated, tag = "1")]
-pub guest_policies: ::prost::alloc::vec::Vec<GuestPolicy>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub guest_policies: ::prost::alloc::vec::Vec<GuestPolicy>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGuestPolicyRequest {
-#[prost(message, optional, tag = "1")]
-pub guest_policy: ::core::option::Option<GuestPolicy>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub guest_policy: ::core::option::Option<GuestPolicy>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGuestPolicyRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupEffectiveGuestPolicyRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub os_short_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub os_version: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub os_architecture: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub os_short_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub os_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub os_architecture: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EffectiveGuestPolicy {
-#[prost(message, repeated, tag = "1")]
-pub packages: ::prost::alloc::vec::Vec<effective_guest_policy::SourcedPackage>,
-#[prost(message, repeated, tag = "2")]
-pub package_repositories: ::prost::alloc::vec::Vec<effective_guest_policy::SourcedPackageRepository>,
-#[prost(message, repeated, tag = "3")]
-pub software_recipes: ::prost::alloc::vec::Vec<effective_guest_policy::SourcedSoftwareRecipe>,
+    #[prost(message, repeated, tag = "1")]
+    pub packages: ::prost::alloc::vec::Vec<effective_guest_policy::SourcedPackage>,
+    #[prost(message, repeated, tag = "2")]
+    pub package_repositories:
+        ::prost::alloc::vec::Vec<effective_guest_policy::SourcedPackageRepository>,
+    #[prost(message, repeated, tag = "3")]
+    pub software_recipes: ::prost::alloc::vec::Vec<effective_guest_policy::SourcedSoftwareRecipe>,
 }
 /// Nested message and enum types in `EffectiveGuestPolicy`.
 pub mod effective_guest_policy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SourcedPackage {
-#[prost(string, tag = "1")]
-pub source: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub package: ::core::option::Option<super::Package>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SourcedPackageRepository {
-#[prost(string, tag = "1")]
-pub source: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub package_repository: ::core::option::Option<super::PackageRepository>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SourcedSoftwareRecipe {
-#[prost(string, tag = "1")]
-pub source: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub software_recipe: ::core::option::Option<super::SoftwareRecipe>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SourcedPackage {
+        #[prost(string, tag = "1")]
+        pub source: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub package: ::core::option::Option<super::Package>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SourcedPackageRepository {
+        #[prost(string, tag = "1")]
+        pub source: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub package_repository: ::core::option::Option<super::PackageRepository>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SourcedSoftwareRecipe {
+        #[prost(string, tag = "1")]
+        pub source: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub software_recipe: ::core::option::Option<super::SoftwareRecipe>,
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DesiredState {
-Unspecified = 0,
-Installed = 1,
-Updated = 2,
-Removed = 3,
+    Unspecified = 0,
+    Installed = 1,
+    Updated = 2,
+    Removed = 3,
 }
 impl DesiredState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DesiredState::Unspecified => "DESIRED_STATE_UNSPECIFIED",
-DesiredState::Installed => "INSTALLED",
-DesiredState::Updated => "UPDATED",
-DesiredState::Removed => "REMOVED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DESIRED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"INSTALLED" => Some(Self::Installed),
-"UPDATED" => Some(Self::Updated),
-"REMOVED" => Some(Self::Removed),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DesiredState::Unspecified => "DESIRED_STATE_UNSPECIFIED",
+            DesiredState::Installed => "INSTALLED",
+            DesiredState::Updated => "UPDATED",
+            DesiredState::Removed => "REMOVED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DESIRED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "INSTALLED" => Some(Self::Installed),
+            "UPDATED" => Some(Self::Updated),
+            "REMOVED" => Some(Self::Removed),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchDeployment {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
-#[prost(message, optional, tag = "4")]
-pub patch_config: ::core::option::Option<PatchConfig>,
-#[prost(message, optional, tag = "5")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "8")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "9")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub last_execute_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "11")]
-pub rollout: ::core::option::Option<PatchRollout>,
-#[prost(enumeration = "patch_deployment::State", tag = "12")]
-pub state: i32,
-#[prost(oneof = "patch_deployment::Schedule", tags = "6, 7")]
-pub schedule: ::core::option::Option<patch_deployment::Schedule>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
+    #[prost(message, optional, tag = "4")]
+    pub patch_config: ::core::option::Option<PatchConfig>,
+    #[prost(message, optional, tag = "5")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "8")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "9")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub last_execute_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "11")]
+    pub rollout: ::core::option::Option<PatchRollout>,
+    #[prost(enumeration = "patch_deployment::State", tag = "12")]
+    pub state: i32,
+    #[prost(oneof = "patch_deployment::Schedule", tags = "6, 7")]
+    pub schedule: ::core::option::Option<patch_deployment::Schedule>,
 }
 /// Nested message and enum types in `PatchDeployment`.
 pub mod patch_deployment {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Active = 1,
-Paused = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Active => "ACTIVE",
-State::Paused => "PAUSED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"ACTIVE" => Some(Self::Active),
-"PAUSED" => Some(Self::Paused),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Schedule {
-#[prost(message, tag = "6")]
-OneTimeSchedule(super::OneTimeSchedule),
-#[prost(message, tag = "7")]
-RecurringSchedule(super::RecurringSchedule),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Active = 1,
+        Paused = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Active => "ACTIVE",
+                State::Paused => "PAUSED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "PAUSED" => Some(Self::Paused),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Schedule {
+        #[prost(message, tag = "6")]
+        OneTimeSchedule(super::OneTimeSchedule),
+        #[prost(message, tag = "7")]
+        RecurringSchedule(super::RecurringSchedule),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct OneTimeSchedule {
-#[prost(message, optional, tag = "1")]
-pub execute_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub execute_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecurringSchedule {
-#[prost(message, optional, tag = "1")]
-pub time_zone: ::core::option::Option<super::super::super::r#type::TimeZone>,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub time_of_day: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-#[prost(enumeration = "recurring_schedule::Frequency", tag = "5")]
-pub frequency: i32,
-#[prost(message, optional, tag = "9")]
-pub last_execute_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub next_execute_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "recurring_schedule::ScheduleConfig", tags = "6, 7")]
-pub schedule_config: ::core::option::Option<recurring_schedule::ScheduleConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub time_zone: ::core::option::Option<super::super::super::r#type::TimeZone>,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub time_of_day: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
+    #[prost(enumeration = "recurring_schedule::Frequency", tag = "5")]
+    pub frequency: i32,
+    #[prost(message, optional, tag = "9")]
+    pub last_execute_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub next_execute_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(oneof = "recurring_schedule::ScheduleConfig", tags = "6, 7")]
+    pub schedule_config: ::core::option::Option<recurring_schedule::ScheduleConfig>,
 }
 /// Nested message and enum types in `RecurringSchedule`.
 pub mod recurring_schedule {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Frequency {
-Unspecified = 0,
-Weekly = 1,
-Monthly = 2,
-Daily = 3,
-}
-impl Frequency {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Frequency::Unspecified => "FREQUENCY_UNSPECIFIED",
-Frequency::Weekly => "WEEKLY",
-Frequency::Monthly => "MONTHLY",
-Frequency::Daily => "DAILY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FREQUENCY_UNSPECIFIED" => Some(Self::Unspecified),
-"WEEKLY" => Some(Self::Weekly),
-"MONTHLY" => Some(Self::Monthly),
-"DAILY" => Some(Self::Daily),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ScheduleConfig {
-#[prost(message, tag = "6")]
-Weekly(super::WeeklySchedule),
-#[prost(message, tag = "7")]
-Monthly(super::MonthlySchedule),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Frequency {
+        Unspecified = 0,
+        Weekly = 1,
+        Monthly = 2,
+        Daily = 3,
+    }
+    impl Frequency {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Frequency::Unspecified => "FREQUENCY_UNSPECIFIED",
+                Frequency::Weekly => "WEEKLY",
+                Frequency::Monthly => "MONTHLY",
+                Frequency::Daily => "DAILY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FREQUENCY_UNSPECIFIED" => Some(Self::Unspecified),
+                "WEEKLY" => Some(Self::Weekly),
+                "MONTHLY" => Some(Self::Monthly),
+                "DAILY" => Some(Self::Daily),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ScheduleConfig {
+        #[prost(message, tag = "6")]
+        Weekly(super::WeeklySchedule),
+        #[prost(message, tag = "7")]
+        Monthly(super::MonthlySchedule),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WeeklySchedule {
-#[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
-pub day_of_week: i32,
+    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
+    pub day_of_week: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MonthlySchedule {
-#[prost(oneof = "monthly_schedule::DayOfMonth", tags = "1, 2")]
-pub day_of_month: ::core::option::Option<monthly_schedule::DayOfMonth>,
+    #[prost(oneof = "monthly_schedule::DayOfMonth", tags = "1, 2")]
+    pub day_of_month: ::core::option::Option<monthly_schedule::DayOfMonth>,
 }
 /// Nested message and enum types in `MonthlySchedule`.
 pub mod monthly_schedule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum DayOfMonth {
-#[prost(message, tag = "1")]
-WeekDayOfMonth(super::WeekDayOfMonth),
-#[prost(int32, tag = "2")]
-MonthDay(i32),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum DayOfMonth {
+        #[prost(message, tag = "1")]
+        WeekDayOfMonth(super::WeekDayOfMonth),
+        #[prost(int32, tag = "2")]
+        MonthDay(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WeekDayOfMonth {
-#[prost(int32, tag = "1")]
-pub week_ordinal: i32,
-#[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "2")]
-pub day_of_week: i32,
-#[prost(int32, tag = "3")]
-pub day_offset: i32,
+    #[prost(int32, tag = "1")]
+    pub week_ordinal: i32,
+    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "2")]
+    pub day_of_week: i32,
+    #[prost(int32, tag = "3")]
+    pub day_offset: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePatchDeploymentRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub patch_deployment_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub patch_deployment: ::core::option::Option<PatchDeployment>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub patch_deployment_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub patch_deployment: ::core::option::Option<PatchDeployment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPatchDeploymentRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchDeploymentsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPatchDeploymentsResponse {
-#[prost(message, repeated, tag = "1")]
-pub patch_deployments: ::prost::alloc::vec::Vec<PatchDeployment>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub patch_deployments: ::prost::alloc::vec::Vec<PatchDeployment>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePatchDeploymentRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePatchDeploymentRequest {
-#[prost(message, optional, tag = "1")]
-pub patch_deployment: ::core::option::Option<PatchDeployment>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub patch_deployment: ::core::option::Option<PatchDeployment>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PausePatchDeploymentRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResumePatchDeploymentRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod os_config_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// OS Config API
-///
-/// The OS Config service is a server-side component that you can use to
-/// manage package installations and patch jobs for virtual machine instances.
-#[derive(Debug, Clone)]
-pub struct OsConfigServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> OsConfigServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> OsConfigServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-OsConfigServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Patch VM instances by creating and running a patch job.
-pub async fn execute_patch_job(&mut self, request: impl tonic::IntoRequest<super::ExecutePatchJobRequest>) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ExecutePatchJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ExecutePatchJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Get the patch job. This can be used to track the progress of an
-/// ongoing patch job or review the details of completed jobs.
-pub async fn get_patch_job(&mut self, request: impl tonic::IntoRequest<super::GetPatchJobRequest>) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/GetPatchJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "GetPatchJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Cancel a patch job. The patch job must be active. Canceled patch jobs
-/// cannot be restarted.
-pub async fn cancel_patch_job(&mut self, request: impl tonic::IntoRequest<super::CancelPatchJobRequest>) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/CancelPatchJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "CancelPatchJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a list of patch jobs.
-pub async fn list_patch_jobs(&mut self, request: impl tonic::IntoRequest<super::ListPatchJobsRequest>) -> std::result::Result<tonic::Response<super::ListPatchJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ListPatchJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ListPatchJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a list of instance details for a given patch job.
-pub async fn list_patch_job_instance_details(&mut self, request: impl tonic::IntoRequest<super::ListPatchJobInstanceDetailsRequest>) -> std::result::Result<tonic::Response<super::ListPatchJobInstanceDetailsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ListPatchJobInstanceDetails");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ListPatchJobInstanceDetails"));
-self.inner.unary(req, path, codec).await
-}
-/// Create an OS Config patch deployment.
-pub async fn create_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::CreatePatchDeploymentRequest>) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/CreatePatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "CreatePatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Get an OS Config patch deployment.
-pub async fn get_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::GetPatchDeploymentRequest>) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/GetPatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "GetPatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a page of OS Config patch deployments.
-pub async fn list_patch_deployments(&mut self, request: impl tonic::IntoRequest<super::ListPatchDeploymentsRequest>) -> std::result::Result<tonic::Response<super::ListPatchDeploymentsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ListPatchDeployments");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ListPatchDeployments"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete an OS Config patch deployment.
-pub async fn delete_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::DeletePatchDeploymentRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/DeletePatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "DeletePatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Update an OS Config patch deployment.
-pub async fn update_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::UpdatePatchDeploymentRequest>) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/UpdatePatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "UpdatePatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Change state of patch deployment to "PAUSED".
-/// Patch deployment in paused state doesn't generate patch jobs.
-pub async fn pause_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::PausePatchDeploymentRequest>) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/PausePatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "PausePatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Change state of patch deployment back to "ACTIVE".
-/// Patch deployment in active state continues to generate patch jobs.
-pub async fn resume_patch_deployment(&mut self, request: impl tonic::IntoRequest<super::ResumePatchDeploymentRequest>) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ResumePatchDeployment");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ResumePatchDeployment"));
-self.inner.unary(req, path, codec).await
-}
-/// Create an OS Config guest policy.
-pub async fn create_guest_policy(&mut self, request: impl tonic::IntoRequest<super::CreateGuestPolicyRequest>) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/CreateGuestPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "CreateGuestPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Get an OS Config guest policy.
-pub async fn get_guest_policy(&mut self, request: impl tonic::IntoRequest<super::GetGuestPolicyRequest>) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/GetGuestPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "GetGuestPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a page of OS Config guest policies.
-pub async fn list_guest_policies(&mut self, request: impl tonic::IntoRequest<super::ListGuestPoliciesRequest>) -> std::result::Result<tonic::Response<super::ListGuestPoliciesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/ListGuestPolicies");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "ListGuestPolicies"));
-self.inner.unary(req, path, codec).await
-}
-/// Update an OS Config guest policy.
-pub async fn update_guest_policy(&mut self, request: impl tonic::IntoRequest<super::UpdateGuestPolicyRequest>) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/UpdateGuestPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "UpdateGuestPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete an OS Config guest policy.
-pub async fn delete_guest_policy(&mut self, request: impl tonic::IntoRequest<super::DeleteGuestPolicyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/DeleteGuestPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "DeleteGuestPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Lookup the effective guest policy that applies to a VM instance. This
-/// lookup merges all policies that are assigned to the instance ancestry.
-pub async fn lookup_effective_guest_policy(&mut self, request: impl tonic::IntoRequest<super::LookupEffectiveGuestPolicyRequest>) -> std::result::Result<tonic::Response<super::EffectiveGuestPolicy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.osconfig.v1beta.OsConfigService/LookupEffectiveGuestPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.osconfig.v1beta.OsConfigService", "LookupEffectiveGuestPolicy"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// OS Config API
+    ///
+    /// The OS Config service is a server-side component that you can use to
+    /// manage package installations and patch jobs for virtual machine instances.
+    #[derive(Debug, Clone)]
+    pub struct OsConfigServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> OsConfigServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> OsConfigServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            OsConfigServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Patch VM instances by creating and running a patch job.
+        pub async fn execute_patch_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExecutePatchJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ExecutePatchJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ExecutePatchJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get the patch job. This can be used to track the progress of an
+        /// ongoing patch job or review the details of completed jobs.
+        pub async fn get_patch_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPatchJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/GetPatchJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "GetPatchJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Cancel a patch job. The patch job must be active. Canceled patch jobs
+        /// cannot be restarted.
+        pub async fn cancel_patch_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CancelPatchJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/CancelPatchJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "CancelPatchJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a list of patch jobs.
+        pub async fn list_patch_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPatchJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPatchJobsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ListPatchJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ListPatchJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a list of instance details for a given patch job.
+        pub async fn list_patch_job_instance_details(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPatchJobInstanceDetailsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListPatchJobInstanceDetailsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ListPatchJobInstanceDetails",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ListPatchJobInstanceDetails",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create an OS Config patch deployment.
+        pub async fn create_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreatePatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/CreatePatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "CreatePatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get an OS Config patch deployment.
+        pub async fn get_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/GetPatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "GetPatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a page of OS Config patch deployments.
+        pub async fn list_patch_deployments(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPatchDeploymentsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPatchDeploymentsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ListPatchDeployments",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ListPatchDeployments",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete an OS Config patch deployment.
+        pub async fn delete_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeletePatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/DeletePatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "DeletePatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update an OS Config patch deployment.
+        pub async fn update_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdatePatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/UpdatePatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "UpdatePatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Change state of patch deployment to "PAUSED".
+        /// Patch deployment in paused state doesn't generate patch jobs.
+        pub async fn pause_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::PausePatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/PausePatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "PausePatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Change state of patch deployment back to "ACTIVE".
+        /// Patch deployment in active state continues to generate patch jobs.
+        pub async fn resume_patch_deployment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResumePatchDeploymentRequest>,
+        ) -> std::result::Result<tonic::Response<super::PatchDeployment>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ResumePatchDeployment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ResumePatchDeployment",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create an OS Config guest policy.
+        pub async fn create_guest_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateGuestPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/CreateGuestPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "CreateGuestPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get an OS Config guest policy.
+        pub async fn get_guest_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGuestPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/GetGuestPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "GetGuestPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a page of OS Config guest policies.
+        pub async fn list_guest_policies(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGuestPoliciesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListGuestPoliciesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/ListGuestPolicies",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "ListGuestPolicies",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update an OS Config guest policy.
+        pub async fn update_guest_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateGuestPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::GuestPolicy>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/UpdateGuestPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "UpdateGuestPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete an OS Config guest policy.
+        pub async fn delete_guest_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteGuestPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/DeleteGuestPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "DeleteGuestPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lookup the effective guest policy that applies to a VM instance. This
+        /// lookup merges all policies that are assigned to the instance ancestry.
+        pub async fn lookup_effective_guest_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LookupEffectiveGuestPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::EffectiveGuestPolicy>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.osconfig.v1beta.OsConfigService/LookupEffectiveGuestPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.osconfig.v1beta.OsConfigService",
+                "LookupEffectiveGuestPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

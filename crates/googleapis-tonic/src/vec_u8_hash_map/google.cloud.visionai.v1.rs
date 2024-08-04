@@ -2,171 +2,173 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cluster {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "5")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub dataplane_service_endpoint: ::prost::alloc::string::String,
-#[prost(enumeration = "cluster::State", tag = "7")]
-pub state: i32,
-#[prost(string, tag = "8")]
-pub psc_target: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub dataplane_service_endpoint: ::prost::alloc::string::String,
+    #[prost(enumeration = "cluster::State", tag = "7")]
+    pub state: i32,
+    #[prost(string, tag = "8")]
+    pub psc_target: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Cluster`.
 pub mod cluster {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Stopping = 3,
-Error = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Stopping = 3,
+        Error = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-#[prost(string, repeated, tag = "1")]
-pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAssetRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub asset: ::core::option::Option<Asset>,
-#[prost(string, optional, tag = "3")]
-pub asset_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub asset: ::core::option::Option<Asset>,
+    #[prost(string, optional, tag = "3")]
+    pub asset_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAssetsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAssetsResponse {
-#[prost(message, repeated, tag = "1")]
-pub assets: ::prost::alloc::vec::Vec<Asset>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub assets: ::prost::alloc::vec::Vec<Asset>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAssetRequest {
-#[prost(message, optional, tag = "1")]
-pub asset: ::core::option::Option<Asset>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub asset: ::core::option::Option<Asset>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetSource {
-#[prost(oneof = "asset_source::SourceForm", tags = "1, 2")]
-pub source_form: ::core::option::Option<asset_source::SourceForm>,
+    #[prost(oneof = "asset_source::SourceForm", tags = "1, 2")]
+    pub source_form: ::core::option::Option<asset_source::SourceForm>,
 }
 /// Nested message and enum types in `AssetSource`.
 pub mod asset_source {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AssetGcsSource {
-#[prost(string, tag = "1")]
-pub gcs_uri: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AssetContentData {
-#[prost(bytes = "vec", tag = "1")]
-pub asset_content_data: ::prost::alloc::vec::Vec<u8>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum SourceForm {
-#[prost(message, tag = "1")]
-AssetGcsSource(AssetGcsSource),
-#[prost(message, tag = "2")]
-AssetContentData(AssetContentData),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AssetGcsSource {
+        #[prost(string, tag = "1")]
+        pub gcs_uri: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AssetContentData {
+        #[prost(bytes = "vec", tag = "1")]
+        pub asset_content_data: ::prost::alloc::vec::Vec<u8>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum SourceForm {
+        #[prost(message, tag = "1")]
+        AssetGcsSource(AssetGcsSource),
+        #[prost(message, tag = "2")]
+        AssetContentData(AssetContentData),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub asset_source: ::core::option::Option<AssetSource>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub asset_source: ::core::option::Option<AssetSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -174,96 +176,98 @@ pub struct UploadAssetResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UploadAssetMetadata {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateRetrievalUrlRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateRetrievalUrlResponse {
-#[prost(string, tag = "1")]
-pub signed_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub signed_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub ttl: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "4")]
-pub asset_gcs_source: ::core::option::Option<asset_source::AssetGcsSource>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub ttl: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "4")]
+    pub asset_gcs_source: ::core::option::Option<asset_source::AssetGcsSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeAssetMetadata {
-#[prost(message, repeated, tag = "1")]
-pub analysis_status: ::prost::alloc::vec::Vec<analyze_asset_metadata::AnalysisStatus>,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "1")]
+    pub analysis_status: ::prost::alloc::vec::Vec<analyze_asset_metadata::AnalysisStatus>,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `AnalyzeAssetMetadata`.
 pub mod analyze_asset_metadata {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AnalysisStatus {
-#[prost(enumeration = "analysis_status::State", tag = "2")]
-pub state: i32,
-#[prost(string, tag = "3")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub search_capability: ::core::option::Option<super::SearchCapability>,
-}
-/// Nested message and enum types in `AnalysisStatus`.
-pub mod analysis_status {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-InProgress = 1,
-Succeeded = 2,
-Failed = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::InProgress => "IN_PROGRESS",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"IN_PROGRESS" => Some(Self::InProgress),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AnalysisStatus {
+        #[prost(enumeration = "analysis_status::State", tag = "2")]
+        pub state: i32,
+        #[prost(string, tag = "3")]
+        pub status_message: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "4")]
+        pub search_capability: ::core::option::Option<super::SearchCapability>,
+    }
+    /// Nested message and enum types in `AnalysisStatus`.
+    pub mod analysis_status {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum State {
+            Unspecified = 0,
+            InProgress = 1,
+            Succeeded = 2,
+            Failed = 3,
+        }
+        impl State {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    State::Unspecified => "STATE_UNSPECIFIED",
+                    State::InProgress => "IN_PROGRESS",
+                    State::Succeeded => "SUCCEEDED",
+                    State::Failed => "FAILED",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "IN_PROGRESS" => Some(Self::InProgress),
+                    "SUCCEEDED" => Some(Self::Succeeded),
+                    "FAILED" => Some(Self::Failed),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -271,63 +275,63 @@ pub struct AnalyzeAssetResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexingStatus {
-#[prost(enumeration = "indexing_status::State", tag = "2")]
-pub state: i32,
-#[prost(string, tag = "3")]
-pub status_message: ::prost::alloc::string::String,
+    #[prost(enumeration = "indexing_status::State", tag = "2")]
+    pub state: i32,
+    #[prost(string, tag = "3")]
+    pub status_message: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `IndexingStatus`.
 pub mod indexing_status {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-InProgress = 1,
-Succeeded = 2,
-Failed = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::InProgress => "IN_PROGRESS",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"IN_PROGRESS" => Some(Self::InProgress),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        InProgress = 1,
+        Succeeded = 2,
+        Failed = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::InProgress => "IN_PROGRESS",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IN_PROGRESS" => Some(Self::InProgress),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub index: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub index: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexAssetMetadata {
-#[prost(message, optional, tag = "4")]
-pub status: ::core::option::Option<IndexingStatus>,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub status: ::core::option::Option<IndexingStatus>,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -335,20 +339,20 @@ pub struct IndexAssetResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveIndexAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub index: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub index: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveIndexAssetMetadata {
-#[prost(message, optional, tag = "1")]
-pub indexing_status: ::core::option::Option<IndexingStatus>,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub indexing_status: ::core::option::Option<IndexingStatus>,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -356,302 +360,302 @@ pub struct RemoveIndexAssetResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexedAsset {
-#[prost(string, tag = "1")]
-pub index: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub index: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViewIndexedAssetsRequest {
-#[prost(string, tag = "1")]
-pub index: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub index: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViewIndexedAssetsResponse {
-#[prost(message, repeated, tag = "1")]
-pub indexed_assets: ::prost::alloc::vec::Vec<IndexedAsset>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub indexed_assets: ::prost::alloc::vec::Vec<IndexedAsset>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCorpusRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub corpus: ::core::option::Option<Corpus>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub corpus: ::core::option::Option<Corpus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CreateCorpusMetadata {
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SearchCapability {
-#[prost(enumeration = "search_capability::Type", tag = "1")]
-pub r#type: i32,
+    #[prost(enumeration = "search_capability::Type", tag = "1")]
+    pub r#type: i32,
 }
 /// Nested message and enum types in `SearchCapability`.
 pub mod search_capability {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-EmbeddingSearch = 1,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::EmbeddingSearch => "EMBEDDING_SEARCH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"EMBEDDING_SEARCH" => Some(Self::EmbeddingSearch),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        EmbeddingSearch = 1,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::EmbeddingSearch => "EMBEDDING_SEARCH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "EMBEDDING_SEARCH" => Some(Self::EmbeddingSearch),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCapabilitySetting {
-#[prost(message, repeated, tag = "1")]
-pub search_capabilities: ::prost::alloc::vec::Vec<SearchCapability>,
+    #[prost(message, repeated, tag = "1")]
+    pub search_capabilities: ::prost::alloc::vec::Vec<SearchCapability>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCollectionMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCollectionRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub collection: ::core::option::Option<Collection>,
-#[prost(string, optional, tag = "3")]
-pub collection_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub collection: ::core::option::Option<Collection>,
+    #[prost(string, optional, tag = "3")]
+    pub collection_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCollectionMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCollectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCollectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCollectionRequest {
-#[prost(message, optional, tag = "1")]
-pub collection: ::core::option::Option<Collection>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub collection: ::core::option::Option<Collection>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCollectionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCollectionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub collections: ::prost::alloc::vec::Vec<Collection>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub collections: ::prost::alloc::vec::Vec<Collection>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddCollectionItemRequest {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<CollectionItem>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<CollectionItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddCollectionItemResponse {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<CollectionItem>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<CollectionItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveCollectionItemRequest {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<CollectionItem>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<CollectionItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveCollectionItemResponse {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<CollectionItem>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<CollectionItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViewCollectionItemsRequest {
-#[prost(string, tag = "1")]
-pub collection: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub collection: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViewCollectionItemsResponse {
-#[prost(message, repeated, tag = "1")]
-pub items: ::prost::alloc::vec::Vec<CollectionItem>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub items: ::prost::alloc::vec::Vec<CollectionItem>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Collection {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CollectionItem {
-#[prost(string, tag = "1")]
-pub collection: ::prost::alloc::string::String,
-#[prost(enumeration = "collection_item::Type", tag = "2")]
-pub r#type: i32,
-#[prost(string, tag = "3")]
-pub item_resource: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub collection: ::prost::alloc::string::String,
+    #[prost(enumeration = "collection_item::Type", tag = "2")]
+    pub r#type: i32,
+    #[prost(string, tag = "3")]
+    pub item_resource: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `CollectionItem`.
 pub mod collection_item {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Asset = 1,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Asset => "ASSET",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ASSET" => Some(Self::Asset),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Asset = 1,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Asset => "ASSET",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ASSET" => Some(Self::Asset),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub index_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub index: ::core::option::Option<Index>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub index_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub index: ::core::option::Option<Index>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIndexRequest {
-#[prost(message, optional, tag = "1")]
-pub index: ::core::option::Option<Index>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub index: ::core::option::Option<Index>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIndexMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIndexRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesResponse {
-#[prost(message, repeated, tag = "1")]
-pub indexes: ::prost::alloc::vec::Vec<Index>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub indexes: ::prost::alloc::vec::Vec<Index>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -659,172 +663,172 @@ pub struct DeleteIndexMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Index {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(enumeration = "index::State", tag = "4")]
-pub state: i32,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "8")]
-pub deployed_indexes: ::prost::alloc::vec::Vec<DeployedIndexReference>,
-#[prost(oneof = "index::AssetFilter", tags = "9")]
-pub asset_filter: ::core::option::Option<index::AssetFilter>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(enumeration = "index::State", tag = "4")]
+    pub state: i32,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "8")]
+    pub deployed_indexes: ::prost::alloc::vec::Vec<DeployedIndexReference>,
+    #[prost(oneof = "index::AssetFilter", tags = "9")]
+    pub asset_filter: ::core::option::Option<index::AssetFilter>,
 }
 /// Nested message and enum types in `Index`.
 pub mod index {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Created = 2,
-Updating = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Created => "CREATED",
-State::Updating => "UPDATING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"CREATED" => Some(Self::Created),
-"UPDATING" => Some(Self::Updating),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum AssetFilter {
-#[prost(bool, tag = "9")]
-EntireCorpus(bool),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Created = 2,
+        Updating = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Created => "CREATED",
+                State::Updating => "UPDATING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "CREATED" => Some(Self::Created),
+                "UPDATING" => Some(Self::Updating),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum AssetFilter {
+        #[prost(bool, tag = "9")]
+        EntireCorpus(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployedIndexReference {
-#[prost(string, tag = "1")]
-pub index_endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub index_endpoint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Corpus {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub default_ttl: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "corpus::Type", tag = "7")]
-pub r#type: i32,
-#[prost(message, optional, tag = "8")]
-pub search_capability_setting: ::core::option::Option<SearchCapabilitySetting>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub default_ttl: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "corpus::Type", tag = "7")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "8")]
+    pub search_capability_setting: ::core::option::Option<SearchCapabilitySetting>,
 }
 /// Nested message and enum types in `Corpus`.
 pub mod corpus {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-StreamVideo = 1,
-Image = 2,
-VideoOnDemand = 3,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::StreamVideo => "STREAM_VIDEO",
-Type::Image => "IMAGE",
-Type::VideoOnDemand => "VIDEO_ON_DEMAND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"STREAM_VIDEO" => Some(Self::StreamVideo),
-"IMAGE" => Some(Self::Image),
-"VIDEO_ON_DEMAND" => Some(Self::VideoOnDemand),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        StreamVideo = 1,
+        Image = 2,
+        VideoOnDemand = 3,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::StreamVideo => "STREAM_VIDEO",
+                Type::Image => "IMAGE",
+                Type::VideoOnDemand => "VIDEO_ON_DEMAND",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STREAM_VIDEO" => Some(Self::StreamVideo),
+                "IMAGE" => Some(Self::Image),
+                "VIDEO_ON_DEMAND" => Some(Self::VideoOnDemand),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCorpusRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCorpusRequest {
-#[prost(message, optional, tag = "1")]
-pub corpus: ::core::option::Option<Corpus>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub corpus: ::core::option::Option<Corpus>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCorporaRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCorporaResponse {
-#[prost(message, repeated, tag = "1")]
-pub corpora: ::prost::alloc::vec::Vec<Corpus>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub corpora: ::prost::alloc::vec::Vec<Corpus>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCorpusRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeCorpusRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeCorpusMetadata {
-#[prost(message, optional, tag = "1")]
-pub metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -832,366 +836,380 @@ pub struct AnalyzeCorpusResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDataSchemaRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub data_schema: ::core::option::Option<DataSchema>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub data_schema: ::core::option::Option<DataSchema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSchema {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub key: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub schema_details: ::core::option::Option<DataSchemaDetails>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub schema_details: ::core::option::Option<DataSchemaDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSchemaDetails {
-#[prost(enumeration = "data_schema_details::DataType", optional, tag = "1")]
-pub r#type: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "6")]
-pub proto_any_config: ::core::option::Option<data_schema_details::ProtoAnyConfig>,
-#[prost(message, optional, boxed, tag = "8")]
-pub list_config: ::core::option::Option<::prost::alloc::boxed::Box<data_schema_details::ListConfig>>,
-#[prost(message, optional, tag = "9")]
-pub customized_struct_config: ::core::option::Option<data_schema_details::CustomizedStructConfig>,
-#[prost(enumeration = "data_schema_details::Granularity", optional, tag = "5")]
-pub granularity: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "7")]
-pub search_strategy: ::core::option::Option<data_schema_details::SearchStrategy>,
+    #[prost(enumeration = "data_schema_details::DataType", optional, tag = "1")]
+    pub r#type: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub proto_any_config: ::core::option::Option<data_schema_details::ProtoAnyConfig>,
+    #[prost(message, optional, boxed, tag = "8")]
+    pub list_config:
+        ::core::option::Option<::prost::alloc::boxed::Box<data_schema_details::ListConfig>>,
+    #[prost(message, optional, tag = "9")]
+    pub customized_struct_config:
+        ::core::option::Option<data_schema_details::CustomizedStructConfig>,
+    #[prost(enumeration = "data_schema_details::Granularity", optional, tag = "5")]
+    pub granularity: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "7")]
+    pub search_strategy: ::core::option::Option<data_schema_details::SearchStrategy>,
 }
 /// Nested message and enum types in `DataSchemaDetails`.
 pub mod data_schema_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProtoAnyConfig {
-#[prost(string, tag = "1")]
-pub type_uri: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListConfig {
-#[prost(message, optional, boxed, tag = "1")]
-pub value_schema: ::core::option::Option<::prost::alloc::boxed::Box<super::DataSchemaDetails>>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomizedStructConfig {
-#[prost(map = "string, message", tag = "1")]
-pub field_schemas: ::std::collections::HashMap<::prost::alloc::string::String, super::DataSchemaDetails>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SearchStrategy {
-#[prost(enumeration = "search_strategy::SearchStrategyType", optional, tag = "1")]
-pub search_strategy_type: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "2")]
-pub confidence_score_index_config: ::core::option::Option<search_strategy::ConfidenceScoreIndexConfig>,
-}
-/// Nested message and enum types in `SearchStrategy`.
-pub mod search_strategy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfidenceScoreIndexConfig {
-#[prost(string, tag = "1")]
-pub field_path: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub threshold: f32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SearchStrategyType {
-NoSearch = 0,
-ExactSearch = 1,
-SmartSearch = 2,
-}
-impl SearchStrategyType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SearchStrategyType::NoSearch => "NO_SEARCH",
-SearchStrategyType::ExactSearch => "EXACT_SEARCH",
-SearchStrategyType::SmartSearch => "SMART_SEARCH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NO_SEARCH" => Some(Self::NoSearch),
-"EXACT_SEARCH" => Some(Self::ExactSearch),
-"SMART_SEARCH" => Some(Self::SmartSearch),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DataType {
-Unspecified = 0,
-Integer = 1,
-Float = 2,
-String = 3,
-Datetime = 5,
-GeoCoordinate = 7,
-ProtoAny = 8,
-Boolean = 9,
-List = 10,
-CustomizedStruct = 6,
-}
-impl DataType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-DataType::Integer => "INTEGER",
-DataType::Float => "FLOAT",
-DataType::String => "STRING",
-DataType::Datetime => "DATETIME",
-DataType::GeoCoordinate => "GEO_COORDINATE",
-DataType::ProtoAny => "PROTO_ANY",
-DataType::Boolean => "BOOLEAN",
-DataType::List => "LIST",
-DataType::CustomizedStruct => "CUSTOMIZED_STRUCT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"INTEGER" => Some(Self::Integer),
-"FLOAT" => Some(Self::Float),
-"STRING" => Some(Self::String),
-"DATETIME" => Some(Self::Datetime),
-"GEO_COORDINATE" => Some(Self::GeoCoordinate),
-"PROTO_ANY" => Some(Self::ProtoAny),
-"BOOLEAN" => Some(Self::Boolean),
-"LIST" => Some(Self::List),
-"CUSTOMIZED_STRUCT" => Some(Self::CustomizedStruct),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Granularity {
-Unspecified = 0,
-AssetLevel = 1,
-PartitionLevel = 2,
-}
-impl Granularity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-Granularity::AssetLevel => "GRANULARITY_ASSET_LEVEL",
-Granularity::PartitionLevel => "GRANULARITY_PARTITION_LEVEL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
-"GRANULARITY_ASSET_LEVEL" => Some(Self::AssetLevel),
-"GRANULARITY_PARTITION_LEVEL" => Some(Self::PartitionLevel),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProtoAnyConfig {
+        #[prost(string, tag = "1")]
+        pub type_uri: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ListConfig {
+        #[prost(message, optional, boxed, tag = "1")]
+        pub value_schema:
+            ::core::option::Option<::prost::alloc::boxed::Box<super::DataSchemaDetails>>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CustomizedStructConfig {
+        #[prost(map = "string, message", tag = "1")]
+        pub field_schemas:
+            ::std::collections::HashMap<::prost::alloc::string::String, super::DataSchemaDetails>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SearchStrategy {
+        #[prost(
+            enumeration = "search_strategy::SearchStrategyType",
+            optional,
+            tag = "1"
+        )]
+        pub search_strategy_type: ::core::option::Option<i32>,
+        #[prost(message, optional, tag = "2")]
+        pub confidence_score_index_config:
+            ::core::option::Option<search_strategy::ConfidenceScoreIndexConfig>,
+    }
+    /// Nested message and enum types in `SearchStrategy`.
+    pub mod search_strategy {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ConfidenceScoreIndexConfig {
+            #[prost(string, tag = "1")]
+            pub field_path: ::prost::alloc::string::String,
+            #[prost(float, tag = "2")]
+            pub threshold: f32,
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum SearchStrategyType {
+            NoSearch = 0,
+            ExactSearch = 1,
+            SmartSearch = 2,
+        }
+        impl SearchStrategyType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    SearchStrategyType::NoSearch => "NO_SEARCH",
+                    SearchStrategyType::ExactSearch => "EXACT_SEARCH",
+                    SearchStrategyType::SmartSearch => "SMART_SEARCH",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "NO_SEARCH" => Some(Self::NoSearch),
+                    "EXACT_SEARCH" => Some(Self::ExactSearch),
+                    "SMART_SEARCH" => Some(Self::SmartSearch),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DataType {
+        Unspecified = 0,
+        Integer = 1,
+        Float = 2,
+        String = 3,
+        Datetime = 5,
+        GeoCoordinate = 7,
+        ProtoAny = 8,
+        Boolean = 9,
+        List = 10,
+        CustomizedStruct = 6,
+    }
+    impl DataType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
+                DataType::Integer => "INTEGER",
+                DataType::Float => "FLOAT",
+                DataType::String => "STRING",
+                DataType::Datetime => "DATETIME",
+                DataType::GeoCoordinate => "GEO_COORDINATE",
+                DataType::ProtoAny => "PROTO_ANY",
+                DataType::Boolean => "BOOLEAN",
+                DataType::List => "LIST",
+                DataType::CustomizedStruct => "CUSTOMIZED_STRUCT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INTEGER" => Some(Self::Integer),
+                "FLOAT" => Some(Self::Float),
+                "STRING" => Some(Self::String),
+                "DATETIME" => Some(Self::Datetime),
+                "GEO_COORDINATE" => Some(Self::GeoCoordinate),
+                "PROTO_ANY" => Some(Self::ProtoAny),
+                "BOOLEAN" => Some(Self::Boolean),
+                "LIST" => Some(Self::List),
+                "CUSTOMIZED_STRUCT" => Some(Self::CustomizedStruct),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Granularity {
+        Unspecified = 0,
+        AssetLevel = 1,
+        PartitionLevel = 2,
+    }
+    impl Granularity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
+                Granularity::AssetLevel => "GRANULARITY_ASSET_LEVEL",
+                Granularity::PartitionLevel => "GRANULARITY_PARTITION_LEVEL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "GRANULARITY_ASSET_LEVEL" => Some(Self::AssetLevel),
+                "GRANULARITY_PARTITION_LEVEL" => Some(Self::PartitionLevel),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDataSchemaRequest {
-#[prost(message, optional, tag = "1")]
-pub data_schema: ::core::option::Option<DataSchema>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub data_schema: ::core::option::Option<DataSchema>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataSchemaRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDataSchemaRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSchemasRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSchemasResponse {
-#[prost(message, repeated, tag = "1")]
-pub data_schemas: ::prost::alloc::vec::Vec<DataSchema>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub data_schemas: ::prost::alloc::vec::Vec<DataSchema>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAnnotationRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub annotation: ::core::option::Option<Annotation>,
-#[prost(string, optional, tag = "3")]
-pub annotation_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub annotation: ::core::option::Option<Annotation>,
+    #[prost(string, optional, tag = "3")]
+    pub annotation_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Annotation {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub user_specified_annotation: ::core::option::Option<UserSpecifiedAnnotation>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub user_specified_annotation: ::core::option::Option<UserSpecifiedAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserSpecifiedAnnotation {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub value: ::core::option::Option<AnnotationValue>,
-#[prost(message, optional, tag = "3")]
-pub partition: ::core::option::Option<Partition>,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub value: ::core::option::Option<AnnotationValue>,
+    #[prost(message, optional, tag = "3")]
+    pub partition: ::core::option::Option<Partition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GeoCoordinate {
-#[prost(double, tag = "1")]
-pub latitude: f64,
-#[prost(double, tag = "2")]
-pub longitude: f64,
+    #[prost(double, tag = "1")]
+    pub latitude: f64,
+    #[prost(double, tag = "2")]
+    pub longitude: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationValue {
-#[prost(oneof = "annotation_value::Value", tags = "1, 2, 3, 5, 7, 8, 9, 10, 11, 6")]
-pub value: ::core::option::Option<annotation_value::Value>,
+    #[prost(
+        oneof = "annotation_value::Value",
+        tags = "1, 2, 3, 5, 7, 8, 9, 10, 11, 6"
+    )]
+    pub value: ::core::option::Option<annotation_value::Value>,
 }
 /// Nested message and enum types in `AnnotationValue`.
 pub mod annotation_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(int64, tag = "1")]
-IntValue(i64),
-#[prost(float, tag = "2")]
-FloatValue(f32),
-#[prost(string, tag = "3")]
-StrValue(::prost::alloc::string::String),
-#[prost(string, tag = "5")]
-DatetimeValue(::prost::alloc::string::String),
-#[prost(message, tag = "7")]
-GeoCoordinate(super::GeoCoordinate),
-#[prost(message, tag = "8")]
-ProtoAnyValue(::prost_types::Any),
-#[prost(bool, tag = "9")]
-BoolValue(bool),
-#[prost(message, tag = "10")]
-CustomizedStructDataValue(::prost_types::Struct),
-#[prost(message, tag = "11")]
-ListValue(super::AnnotationList),
-#[prost(message, tag = "6")]
-CustomizedStructValue(super::AnnotationCustomizedStruct),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(int64, tag = "1")]
+        IntValue(i64),
+        #[prost(float, tag = "2")]
+        FloatValue(f32),
+        #[prost(string, tag = "3")]
+        StrValue(::prost::alloc::string::String),
+        #[prost(string, tag = "5")]
+        DatetimeValue(::prost::alloc::string::String),
+        #[prost(message, tag = "7")]
+        GeoCoordinate(super::GeoCoordinate),
+        #[prost(message, tag = "8")]
+        ProtoAnyValue(::prost_types::Any),
+        #[prost(bool, tag = "9")]
+        BoolValue(bool),
+        #[prost(message, tag = "10")]
+        CustomizedStructDataValue(::prost_types::Struct),
+        #[prost(message, tag = "11")]
+        ListValue(super::AnnotationList),
+        #[prost(message, tag = "6")]
+        CustomizedStructValue(super::AnnotationCustomizedStruct),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationList {
-#[prost(message, repeated, tag = "1")]
-pub values: ::prost::alloc::vec::Vec<AnnotationValue>,
+    #[prost(message, repeated, tag = "1")]
+    pub values: ::prost::alloc::vec::Vec<AnnotationValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationCustomizedStruct {
-#[prost(map = "string, message", tag = "2")]
-pub elements: ::std::collections::HashMap<::prost::alloc::string::String, AnnotationValue>,
+    #[prost(map = "string, message", tag = "2")]
+    pub elements: ::std::collections::HashMap<::prost::alloc::string::String, AnnotationValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAnnotationsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAnnotationsResponse {
-#[prost(message, repeated, tag = "1")]
-pub annotations: ::prost::alloc::vec::Vec<Annotation>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub annotations: ::prost::alloc::vec::Vec<Annotation>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAnnotationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAnnotationRequest {
-#[prost(message, optional, tag = "1")]
-pub annotation: ::core::option::Option<Annotation>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub annotation: ::core::option::Option<Annotation>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAnnotationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAssetsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(oneof = "import_assets_request::Source", tags = "2")]
-pub source: ::core::option::Option<import_assets_request::Source>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(oneof = "import_assets_request::Source", tags = "2")]
+    pub source: ::core::option::Option<import_assets_request::Source>,
 }
 /// Nested message and enum types in `ImportAssetsRequest`.
 pub mod import_assets_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(string, tag = "2")]
-AssetsGcsUri(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(string, tag = "2")]
+        AssetsGcsUri(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAssetsMetadata {
-#[prost(message, optional, tag = "1")]
-pub metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1199,194 +1217,195 @@ pub struct ImportAssetsResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSearchConfigRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub search_config: ::core::option::Option<SearchConfig>,
-#[prost(string, tag = "3")]
-pub search_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub search_config: ::core::option::Option<SearchConfig>,
+    #[prost(string, tag = "3")]
+    pub search_config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSearchConfigRequest {
-#[prost(message, optional, tag = "1")]
-pub search_config: ::core::option::Option<SearchConfig>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub search_config: ::core::option::Option<SearchConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSearchConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSearchConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSearchConfigsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSearchConfigsResponse {
-#[prost(message, repeated, tag = "1")]
-pub search_configs: ::prost::alloc::vec::Vec<SearchConfig>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub search_configs: ::prost::alloc::vec::Vec<SearchConfig>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub facet_property: ::core::option::Option<FacetProperty>,
-#[prost(message, optional, tag = "3")]
-pub search_criteria_property: ::core::option::Option<SearchCriteriaProperty>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub facet_property: ::core::option::Option<FacetProperty>,
+    #[prost(message, optional, tag = "3")]
+    pub search_criteria_property: ::core::option::Option<SearchCriteriaProperty>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexEndpoint {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub deployed_index: ::core::option::Option<DeployedIndex>,
-#[prost(enumeration = "index_endpoint::State", tag = "5")]
-pub state: i32,
-#[prost(map = "string, string", tag = "6")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub deployed_index: ::core::option::Option<DeployedIndex>,
+    #[prost(enumeration = "index_endpoint::State", tag = "5")]
+    pub state: i32,
+    #[prost(map = "string, string", tag = "6")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `IndexEndpoint`.
 pub mod index_endpoint {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Created = 2,
-Updating = 3,
-Failed = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Created => "CREATED",
-State::Updating => "UPDATING",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"CREATED" => Some(Self::Created),
-"UPDATING" => Some(Self::Updating),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Created = 2,
+        Updating = 3,
+        Failed = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Created => "CREATED",
+                State::Updating => "UPDATING",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "CREATED" => Some(Self::Created),
+                "UPDATING" => Some(Self::Updating),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexEndpointRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub index_endpoint_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub index_endpoint: ::core::option::Option<IndexEndpoint>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub index_endpoint_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub index_endpoint: ::core::option::Option<IndexEndpoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexEndpointMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIndexEndpointRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexEndpointsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexEndpointsResponse {
-#[prost(message, repeated, tag = "1")]
-pub index_endpoints: ::prost::alloc::vec::Vec<IndexEndpoint>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub index_endpoints: ::prost::alloc::vec::Vec<IndexEndpoint>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIndexEndpointRequest {
-#[prost(message, optional, tag = "1")]
-pub index_endpoint: ::core::option::Option<IndexEndpoint>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub index_endpoint: ::core::option::Option<IndexEndpoint>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIndexEndpointMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexEndpointRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexEndpointMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployIndexRequest {
-#[prost(string, tag = "1")]
-pub index_endpoint: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub deployed_index: ::core::option::Option<DeployedIndex>,
+    #[prost(string, tag = "1")]
+    pub index_endpoint: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub deployed_index: ::core::option::Option<DeployedIndex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1394,24 +1413,24 @@ pub struct DeployIndexResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployIndexMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
-#[prost(string, tag = "2")]
-pub deployed_index: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(string, tag = "2")]
+    pub deployed_index: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeployIndexMetadata {
-#[prost(message, optional, tag = "1")]
-pub operation_metadata: ::core::option::Option<OperationMetadata>,
-#[prost(string, tag = "2")]
-pub deployed_index: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub operation_metadata: ::core::option::Option<OperationMetadata>,
+    #[prost(string, tag = "2")]
+    pub deployed_index: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeployIndexRequest {
-#[prost(string, tag = "1")]
-pub index_endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub index_endpoint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1419,468 +1438,474 @@ pub struct UndeployIndexResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployedIndex {
-#[prost(string, tag = "1")]
-pub index: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub index: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FacetProperty {
-#[prost(string, repeated, tag = "1")]
-pub mapped_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub result_size: i64,
-#[prost(enumeration = "FacetBucketType", tag = "4")]
-pub bucket_type: i32,
-#[prost(oneof = "facet_property::RangeFacetConfig", tags = "5, 6, 7")]
-pub range_facet_config: ::core::option::Option<facet_property::RangeFacetConfig>,
+    #[prost(string, repeated, tag = "1")]
+    pub mapped_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub result_size: i64,
+    #[prost(enumeration = "FacetBucketType", tag = "4")]
+    pub bucket_type: i32,
+    #[prost(oneof = "facet_property::RangeFacetConfig", tags = "5, 6, 7")]
+    pub range_facet_config: ::core::option::Option<facet_property::RangeFacetConfig>,
 }
 /// Nested message and enum types in `FacetProperty`.
 pub mod facet_property {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FixedRangeBucketSpec {
-#[prost(message, optional, tag = "1")]
-pub bucket_start: ::core::option::Option<super::FacetValue>,
-#[prost(message, optional, tag = "2")]
-pub bucket_granularity: ::core::option::Option<super::FacetValue>,
-#[prost(int32, tag = "3")]
-pub bucket_count: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomRangeBucketSpec {
-#[prost(message, repeated, tag = "1")]
-pub endpoints: ::prost::alloc::vec::Vec<super::FacetValue>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DateTimeBucketSpec {
-#[prost(enumeration = "date_time_bucket_spec::Granularity", tag = "1")]
-pub granularity: i32,
-}
-/// Nested message and enum types in `DateTimeBucketSpec`.
-pub mod date_time_bucket_spec {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Granularity {
-Unspecified = 0,
-Year = 1,
-Month = 2,
-Day = 3,
-}
-impl Granularity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-Granularity::Year => "YEAR",
-Granularity::Month => "MONTH",
-Granularity::Day => "DAY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
-"YEAR" => Some(Self::Year),
-"MONTH" => Some(Self::Month),
-"DAY" => Some(Self::Day),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum RangeFacetConfig {
-#[prost(message, tag = "5")]
-FixedRangeBucketSpec(FixedRangeBucketSpec),
-#[prost(message, tag = "6")]
-CustomRangeBucketSpec(CustomRangeBucketSpec),
-#[prost(message, tag = "7")]
-DatetimeBucketSpec(DateTimeBucketSpec),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FixedRangeBucketSpec {
+        #[prost(message, optional, tag = "1")]
+        pub bucket_start: ::core::option::Option<super::FacetValue>,
+        #[prost(message, optional, tag = "2")]
+        pub bucket_granularity: ::core::option::Option<super::FacetValue>,
+        #[prost(int32, tag = "3")]
+        pub bucket_count: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CustomRangeBucketSpec {
+        #[prost(message, repeated, tag = "1")]
+        pub endpoints: ::prost::alloc::vec::Vec<super::FacetValue>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct DateTimeBucketSpec {
+        #[prost(enumeration = "date_time_bucket_spec::Granularity", tag = "1")]
+        pub granularity: i32,
+    }
+    /// Nested message and enum types in `DateTimeBucketSpec`.
+    pub mod date_time_bucket_spec {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Granularity {
+            Unspecified = 0,
+            Year = 1,
+            Month = 2,
+            Day = 3,
+        }
+        impl Granularity {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
+                    Granularity::Year => "YEAR",
+                    Granularity::Month => "MONTH",
+                    Granularity::Day => "DAY",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "YEAR" => Some(Self::Year),
+                    "MONTH" => Some(Self::Month),
+                    "DAY" => Some(Self::Day),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RangeFacetConfig {
+        #[prost(message, tag = "5")]
+        FixedRangeBucketSpec(FixedRangeBucketSpec),
+        #[prost(message, tag = "6")]
+        CustomRangeBucketSpec(CustomRangeBucketSpec),
+        #[prost(message, tag = "7")]
+        DatetimeBucketSpec(DateTimeBucketSpec),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchHypernym {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub hypernym: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub hyponyms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub hypernym: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub hyponyms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSearchHypernymRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub search_hypernym: ::core::option::Option<SearchHypernym>,
-#[prost(string, optional, tag = "3")]
-pub search_hypernym_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub search_hypernym: ::core::option::Option<SearchHypernym>,
+    #[prost(string, optional, tag = "3")]
+    pub search_hypernym_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSearchHypernymRequest {
-#[prost(message, optional, tag = "1")]
-pub search_hypernym: ::core::option::Option<SearchHypernym>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub search_hypernym: ::core::option::Option<SearchHypernym>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSearchHypernymRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSearchHypernymRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSearchHypernymsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSearchHypernymsResponse {
-#[prost(message, repeated, tag = "1")]
-pub search_hypernyms: ::prost::alloc::vec::Vec<SearchHypernym>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub search_hypernyms: ::prost::alloc::vec::Vec<SearchHypernym>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCriteriaProperty {
-#[prost(string, repeated, tag = "1")]
-pub mapped_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub mapped_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FacetValue {
-#[prost(oneof = "facet_value::Value", tags = "1, 2, 3")]
-pub value: ::core::option::Option<facet_value::Value>,
+    #[prost(oneof = "facet_value::Value", tags = "1, 2, 3")]
+    pub value: ::core::option::Option<facet_value::Value>,
 }
 /// Nested message and enum types in `FacetValue`.
 pub mod facet_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(string, tag = "1")]
-StringValue(::prost::alloc::string::String),
-#[prost(int64, tag = "2")]
-IntegerValue(i64),
-#[prost(message, tag = "3")]
-DatetimeValue(super::super::super::super::r#type::DateTime),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(string, tag = "1")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(int64, tag = "2")]
+        IntegerValue(i64),
+        #[prost(message, tag = "3")]
+        DatetimeValue(super::super::super::super::r#type::DateTime),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FacetBucket {
-#[prost(bool, tag = "3")]
-pub selected: bool,
-#[prost(oneof = "facet_bucket::BucketValue", tags = "2, 4")]
-pub bucket_value: ::core::option::Option<facet_bucket::BucketValue>,
+    #[prost(bool, tag = "3")]
+    pub selected: bool,
+    #[prost(oneof = "facet_bucket::BucketValue", tags = "2, 4")]
+    pub bucket_value: ::core::option::Option<facet_bucket::BucketValue>,
 }
 /// Nested message and enum types in `FacetBucket`.
 pub mod facet_bucket {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Range {
-#[prost(message, optional, tag = "1")]
-pub start: ::core::option::Option<super::FacetValue>,
-#[prost(message, optional, tag = "2")]
-pub end: ::core::option::Option<super::FacetValue>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum BucketValue {
-#[prost(message, tag = "2")]
-Value(super::FacetValue),
-#[prost(message, tag = "4")]
-Range(Range),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Range {
+        #[prost(message, optional, tag = "1")]
+        pub start: ::core::option::Option<super::FacetValue>,
+        #[prost(message, optional, tag = "2")]
+        pub end: ::core::option::Option<super::FacetValue>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum BucketValue {
+        #[prost(message, tag = "2")]
+        Value(super::FacetValue),
+        #[prost(message, tag = "4")]
+        Range(Range),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FacetGroup {
-#[prost(string, tag = "1")]
-pub facet_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub buckets: ::prost::alloc::vec::Vec<FacetBucket>,
-#[prost(enumeration = "FacetBucketType", tag = "4")]
-pub bucket_type: i32,
-#[prost(bool, tag = "5")]
-pub fetch_matched_annotations: bool,
+    #[prost(string, tag = "1")]
+    pub facet_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub buckets: ::prost::alloc::vec::Vec<FacetBucket>,
+    #[prost(enumeration = "FacetBucketType", tag = "4")]
+    pub bucket_type: i32,
+    #[prost(bool, tag = "5")]
+    pub fetch_matched_annotations: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IngestAssetRequest {
-#[prost(oneof = "ingest_asset_request::StreamingRequest", tags = "1, 2")]
-pub streaming_request: ::core::option::Option<ingest_asset_request::StreamingRequest>,
+    #[prost(oneof = "ingest_asset_request::StreamingRequest", tags = "1, 2")]
+    pub streaming_request: ::core::option::Option<ingest_asset_request::StreamingRequest>,
 }
 /// Nested message and enum types in `IngestAssetRequest`.
 pub mod ingest_asset_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Config {
-#[prost(string, tag = "1")]
-pub asset: ::prost::alloc::string::String,
-#[prost(oneof = "config::DataType", tags = "2")]
-pub data_type: ::core::option::Option<config::DataType>,
-}
-/// Nested message and enum types in `Config`.
-pub mod config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct VideoType {
-#[prost(enumeration = "video_type::ContainerFormat", tag = "1")]
-pub container_format: i32,
-}
-/// Nested message and enum types in `VideoType`.
-pub mod video_type {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ContainerFormat {
-Unspecified = 0,
-Mp4 = 1,
-}
-impl ContainerFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContainerFormat::Unspecified => "CONTAINER_FORMAT_UNSPECIFIED",
-ContainerFormat::Mp4 => "CONTAINER_FORMAT_MP4",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTAINER_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"CONTAINER_FORMAT_MP4" => Some(Self::Mp4),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum DataType {
-#[prost(message, tag = "2")]
-VideoType(VideoType),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TimeIndexedData {
-#[prost(bytes = "vec", tag = "1")]
-pub data: ::prost::alloc::vec::Vec<u8>,
-#[prost(message, optional, tag = "2")]
-pub temporal_partition: ::core::option::Option<super::partition::TemporalPartition>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum StreamingRequest {
-#[prost(message, tag = "1")]
-Config(Config),
-#[prost(message, tag = "2")]
-TimeIndexedData(TimeIndexedData),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Config {
+        #[prost(string, tag = "1")]
+        pub asset: ::prost::alloc::string::String,
+        #[prost(oneof = "config::DataType", tags = "2")]
+        pub data_type: ::core::option::Option<config::DataType>,
+    }
+    /// Nested message and enum types in `Config`.
+    pub mod config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct VideoType {
+            #[prost(enumeration = "video_type::ContainerFormat", tag = "1")]
+            pub container_format: i32,
+        }
+        /// Nested message and enum types in `VideoType`.
+        pub mod video_type {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum ContainerFormat {
+                Unspecified = 0,
+                Mp4 = 1,
+            }
+            impl ContainerFormat {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        ContainerFormat::Unspecified => "CONTAINER_FORMAT_UNSPECIFIED",
+                        ContainerFormat::Mp4 => "CONTAINER_FORMAT_MP4",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "CONTAINER_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                        "CONTAINER_FORMAT_MP4" => Some(Self::Mp4),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum DataType {
+            #[prost(message, tag = "2")]
+            VideoType(VideoType),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TimeIndexedData {
+        #[prost(bytes = "vec", tag = "1")]
+        pub data: ::prost::alloc::vec::Vec<u8>,
+        #[prost(message, optional, tag = "2")]
+        pub temporal_partition: ::core::option::Option<super::partition::TemporalPartition>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum StreamingRequest {
+        #[prost(message, tag = "1")]
+        Config(Config),
+        #[prost(message, tag = "2")]
+        TimeIndexedData(TimeIndexedData),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct IngestAssetResponse {
-#[prost(message, optional, tag = "1")]
-pub successfully_ingested_partition: ::core::option::Option<partition::TemporalPartition>,
+    #[prost(message, optional, tag = "1")]
+    pub successfully_ingested_partition: ::core::option::Option<partition::TemporalPartition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClipAssetRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub temporal_partition: ::core::option::Option<partition::TemporalPartition>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub temporal_partition: ::core::option::Option<partition::TemporalPartition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClipAssetResponse {
-#[prost(message, repeated, tag = "1")]
-pub time_indexed_uris: ::prost::alloc::vec::Vec<clip_asset_response::TimeIndexedUri>,
+    #[prost(message, repeated, tag = "1")]
+    pub time_indexed_uris: ::prost::alloc::vec::Vec<clip_asset_response::TimeIndexedUri>,
 }
 /// Nested message and enum types in `ClipAssetResponse`.
 pub mod clip_asset_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TimeIndexedUri {
-#[prost(message, optional, tag = "1")]
-pub temporal_partition: ::core::option::Option<super::partition::TemporalPartition>,
-#[prost(string, tag = "2")]
-pub uri: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TimeIndexedUri {
+        #[prost(message, optional, tag = "1")]
+        pub temporal_partition: ::core::option::Option<super::partition::TemporalPartition>,
+        #[prost(string, tag = "2")]
+        pub uri: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateHlsUriRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub temporal_partitions: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
-#[prost(bool, tag = "3")]
-pub live_view_enabled: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub temporal_partitions: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
+    #[prost(bool, tag = "3")]
+    pub live_view_enabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateHlsUriResponse {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub temporal_partitions: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub temporal_partitions: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAssetsRequest {
-#[prost(string, tag = "1")]
-pub corpus: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub content_time_ranges: ::core::option::Option<DateTimeRangeArray>,
-#[prost(message, repeated, tag = "4")]
-pub criteria: ::prost::alloc::vec::Vec<Criteria>,
-#[prost(message, repeated, tag = "6")]
-pub facet_selections: ::prost::alloc::vec::Vec<FacetGroup>,
-#[prost(string, repeated, tag = "8")]
-pub result_annotation_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "10")]
-pub search_query: ::prost::alloc::string::String,
-#[prost(oneof = "search_assets_request::SortSpec", tags = "9")]
-pub sort_spec: ::core::option::Option<search_assets_request::SortSpec>,
+    #[prost(string, tag = "1")]
+    pub corpus: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub content_time_ranges: ::core::option::Option<DateTimeRangeArray>,
+    #[prost(message, repeated, tag = "4")]
+    pub criteria: ::prost::alloc::vec::Vec<Criteria>,
+    #[prost(message, repeated, tag = "6")]
+    pub facet_selections: ::prost::alloc::vec::Vec<FacetGroup>,
+    #[prost(string, repeated, tag = "8")]
+    pub result_annotation_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "10")]
+    pub search_query: ::prost::alloc::string::String,
+    #[prost(oneof = "search_assets_request::SortSpec", tags = "9")]
+    pub sort_spec: ::core::option::Option<search_assets_request::SortSpec>,
 }
 /// Nested message and enum types in `SearchAssetsRequest`.
 pub mod search_assets_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum SortSpec {
-#[prost(message, tag = "9")]
-SchemaKeySortingStrategy(super::SchemaKeySortingStrategy),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum SortSpec {
+        #[prost(message, tag = "9")]
+        SchemaKeySortingStrategy(super::SchemaKeySortingStrategy),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchIndexEndpointRequest {
-#[prost(string, tag = "1")]
-pub index_endpoint: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub criteria: ::prost::alloc::vec::Vec<Criteria>,
-#[prost(message, repeated, tag = "7")]
-pub exclusion_criteria: ::prost::alloc::vec::Vec<Criteria>,
-#[prost(int32, tag = "5")]
-pub page_size: i32,
-#[prost(string, tag = "6")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(oneof = "search_index_endpoint_request::Query", tags = "2, 3")]
-pub query: ::core::option::Option<search_index_endpoint_request::Query>,
+    #[prost(string, tag = "1")]
+    pub index_endpoint: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub criteria: ::prost::alloc::vec::Vec<Criteria>,
+    #[prost(message, repeated, tag = "7")]
+    pub exclusion_criteria: ::prost::alloc::vec::Vec<Criteria>,
+    #[prost(int32, tag = "5")]
+    pub page_size: i32,
+    #[prost(string, tag = "6")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(oneof = "search_index_endpoint_request::Query", tags = "2, 3")]
+    pub query: ::core::option::Option<search_index_endpoint_request::Query>,
 }
 /// Nested message and enum types in `SearchIndexEndpointRequest`.
 pub mod search_index_endpoint_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Query {
-#[prost(message, tag = "2")]
-ImageQuery(super::ImageQuery),
-#[prost(string, tag = "3")]
-TextQuery(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Query {
+        #[prost(message, tag = "2")]
+        ImageQuery(super::ImageQuery),
+        #[prost(string, tag = "3")]
+        TextQuery(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageQuery {
-#[prost(oneof = "image_query::Image", tags = "1, 2")]
-pub image: ::core::option::Option<image_query::Image>,
+    #[prost(oneof = "image_query::Image", tags = "1, 2")]
+    pub image: ::core::option::Option<image_query::Image>,
 }
 /// Nested message and enum types in `ImageQuery`.
 pub mod image_query {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Image {
-#[prost(bytes, tag = "1")]
-InputImage(::prost::alloc::vec::Vec<u8>),
-#[prost(string, tag = "2")]
-Asset(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Image {
+        #[prost(bytes, tag = "1")]
+        InputImage(::prost::alloc::vec::Vec<u8>),
+        #[prost(string, tag = "2")]
+        Asset(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SchemaKeySortingStrategy {
-#[prost(message, repeated, tag = "1")]
-pub options: ::prost::alloc::vec::Vec<schema_key_sorting_strategy::Option>,
+    #[prost(message, repeated, tag = "1")]
+    pub options: ::prost::alloc::vec::Vec<schema_key_sorting_strategy::Option>,
 }
 /// Nested message and enum types in `SchemaKeySortingStrategy`.
 pub mod schema_key_sorting_strategy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Option {
-#[prost(string, tag = "1")]
-pub data_schema_key: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub sort_decreasing: bool,
-#[prost(enumeration = "option::AggregateMethod", optional, tag = "3")]
-pub aggregate_method: ::core::option::Option<i32>,
-}
-/// Nested message and enum types in `Option`.
-pub mod option {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AggregateMethod {
-Unspecified = 0,
-Largest = 1,
-Smallest = 2,
-}
-impl AggregateMethod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AggregateMethod::Unspecified => "AGGREGATE_METHOD_UNSPECIFIED",
-AggregateMethod::Largest => "AGGREGATE_METHOD_LARGEST",
-AggregateMethod::Smallest => "AGGREGATE_METHOD_SMALLEST",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"AGGREGATE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"AGGREGATE_METHOD_LARGEST" => Some(Self::Largest),
-"AGGREGATE_METHOD_SMALLEST" => Some(Self::Smallest),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Option {
+        #[prost(string, tag = "1")]
+        pub data_schema_key: ::prost::alloc::string::String,
+        #[prost(bool, tag = "2")]
+        pub sort_decreasing: bool,
+        #[prost(enumeration = "option::AggregateMethod", optional, tag = "3")]
+        pub aggregate_method: ::core::option::Option<i32>,
+    }
+    /// Nested message and enum types in `Option`.
+    pub mod option {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum AggregateMethod {
+            Unspecified = 0,
+            Largest = 1,
+            Smallest = 2,
+        }
+        impl AggregateMethod {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    AggregateMethod::Unspecified => "AGGREGATE_METHOD_UNSPECIFIED",
+                    AggregateMethod::Largest => "AGGREGATE_METHOD_LARGEST",
+                    AggregateMethod::Smallest => "AGGREGATE_METHOD_SMALLEST",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "AGGREGATE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                    "AGGREGATE_METHOD_LARGEST" => Some(Self::Largest),
+                    "AGGREGATE_METHOD_SMALLEST" => Some(Self::Smallest),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1888,1628 +1913,2543 @@ pub struct DeleteAssetMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationMatchingResult {
-#[prost(message, optional, tag = "1")]
-pub criteria: ::core::option::Option<Criteria>,
-#[prost(message, repeated, tag = "2")]
-pub matched_annotations: ::prost::alloc::vec::Vec<Annotation>,
-#[prost(message, optional, tag = "3")]
-pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, optional, tag = "1")]
+    pub criteria: ::core::option::Option<Criteria>,
+    #[prost(message, repeated, tag = "2")]
+    pub matched_annotations: ::prost::alloc::vec::Vec<Annotation>,
+    #[prost(message, optional, tag = "3")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchResultItem {
-#[prost(string, tag = "1")]
-pub asset: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(message, repeated, tag = "2")]
-pub segments: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
-#[prost(message, optional, tag = "5")]
-pub segment: ::core::option::Option<partition::TemporalPartition>,
-#[prost(double, tag = "6")]
-pub relevance: f64,
-#[prost(message, repeated, tag = "3")]
-pub requested_annotations: ::prost::alloc::vec::Vec<Annotation>,
-#[prost(message, repeated, tag = "4")]
-pub annotation_matching_results: ::prost::alloc::vec::Vec<AnnotationMatchingResult>,
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(message, repeated, tag = "2")]
+    pub segments: ::prost::alloc::vec::Vec<partition::TemporalPartition>,
+    #[prost(message, optional, tag = "5")]
+    pub segment: ::core::option::Option<partition::TemporalPartition>,
+    #[prost(double, tag = "6")]
+    pub relevance: f64,
+    #[prost(message, repeated, tag = "3")]
+    pub requested_annotations: ::prost::alloc::vec::Vec<Annotation>,
+    #[prost(message, repeated, tag = "4")]
+    pub annotation_matching_results: ::prost::alloc::vec::Vec<AnnotationMatchingResult>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAssetsResponse {
-#[prost(message, repeated, tag = "1")]
-pub search_result_items: ::prost::alloc::vec::Vec<SearchResultItem>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub facet_results: ::prost::alloc::vec::Vec<FacetGroup>,
+    #[prost(message, repeated, tag = "1")]
+    pub search_result_items: ::prost::alloc::vec::Vec<SearchResultItem>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub facet_results: ::prost::alloc::vec::Vec<FacetGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchIndexEndpointResponse {
-#[prost(message, repeated, tag = "1")]
-pub search_result_items: ::prost::alloc::vec::Vec<SearchResultItem>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub search_result_items: ::prost::alloc::vec::Vec<SearchResultItem>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct IntRange {
-#[prost(int64, optional, tag = "1")]
-pub start: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "2")]
-pub end: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "1")]
+    pub start: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "2")]
+    pub end: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FloatRange {
-#[prost(float, optional, tag = "1")]
-pub start: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "2")]
-pub end: ::core::option::Option<f32>,
+    #[prost(float, optional, tag = "1")]
+    pub start: ::core::option::Option<f32>,
+    #[prost(float, optional, tag = "2")]
+    pub end: ::core::option::Option<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StringArray {
-#[prost(string, repeated, tag = "1")]
-pub txt_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub txt_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IntRangeArray {
-#[prost(message, repeated, tag = "1")]
-pub int_ranges: ::prost::alloc::vec::Vec<IntRange>,
+    #[prost(message, repeated, tag = "1")]
+    pub int_ranges: ::prost::alloc::vec::Vec<IntRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FloatRangeArray {
-#[prost(message, repeated, tag = "1")]
-pub float_ranges: ::prost::alloc::vec::Vec<FloatRange>,
+    #[prost(message, repeated, tag = "1")]
+    pub float_ranges: ::prost::alloc::vec::Vec<FloatRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateTimeRange {
-#[prost(message, optional, tag = "1")]
-pub start: ::core::option::Option<super::super::super::r#type::DateTime>,
-#[prost(message, optional, tag = "2")]
-pub end: ::core::option::Option<super::super::super::r#type::DateTime>,
+    #[prost(message, optional, tag = "1")]
+    pub start: ::core::option::Option<super::super::super::r#type::DateTime>,
+    #[prost(message, optional, tag = "2")]
+    pub end: ::core::option::Option<super::super::super::r#type::DateTime>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateTimeRangeArray {
-#[prost(message, repeated, tag = "1")]
-pub date_time_ranges: ::prost::alloc::vec::Vec<DateTimeRange>,
+    #[prost(message, repeated, tag = "1")]
+    pub date_time_ranges: ::prost::alloc::vec::Vec<DateTimeRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CircleArea {
-#[prost(double, tag = "1")]
-pub latitude: f64,
-#[prost(double, tag = "2")]
-pub longitude: f64,
-#[prost(double, tag = "3")]
-pub radius_meter: f64,
+    #[prost(double, tag = "1")]
+    pub latitude: f64,
+    #[prost(double, tag = "2")]
+    pub longitude: f64,
+    #[prost(double, tag = "3")]
+    pub radius_meter: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GeoLocationArray {
-#[prost(message, repeated, tag = "1")]
-pub circle_areas: ::prost::alloc::vec::Vec<CircleArea>,
+    #[prost(message, repeated, tag = "1")]
+    pub circle_areas: ::prost::alloc::vec::Vec<CircleArea>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BoolValue {
-#[prost(bool, tag = "1")]
-pub value: bool,
+    #[prost(bool, tag = "1")]
+    pub value: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Criteria {
-#[prost(string, tag = "1")]
-pub field: ::prost::alloc::string::String,
-#[prost(bool, tag = "8")]
-pub fetch_matched_annotations: bool,
-#[prost(oneof = "criteria::Value", tags = "2, 3, 4, 5, 6, 7")]
-pub value: ::core::option::Option<criteria::Value>,
+    #[prost(string, tag = "1")]
+    pub field: ::prost::alloc::string::String,
+    #[prost(bool, tag = "8")]
+    pub fetch_matched_annotations: bool,
+    #[prost(oneof = "criteria::Value", tags = "2, 3, 4, 5, 6, 7")]
+    pub value: ::core::option::Option<criteria::Value>,
 }
 /// Nested message and enum types in `Criteria`.
 pub mod criteria {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(message, tag = "2")]
-TextArray(super::StringArray),
-#[prost(message, tag = "3")]
-IntRangeArray(super::IntRangeArray),
-#[prost(message, tag = "4")]
-FloatRangeArray(super::FloatRangeArray),
-#[prost(message, tag = "5")]
-DateTimeRangeArray(super::DateTimeRangeArray),
-#[prost(message, tag = "6")]
-GeoLocationArray(super::GeoLocationArray),
-#[prost(message, tag = "7")]
-BoolValue(super::BoolValue),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(message, tag = "2")]
+        TextArray(super::StringArray),
+        #[prost(message, tag = "3")]
+        IntRangeArray(super::IntRangeArray),
+        #[prost(message, tag = "4")]
+        FloatRangeArray(super::FloatRangeArray),
+        #[prost(message, tag = "5")]
+        DateTimeRangeArray(super::DateTimeRangeArray),
+        #[prost(message, tag = "6")]
+        GeoLocationArray(super::GeoLocationArray),
+        #[prost(message, tag = "7")]
+        BoolValue(super::BoolValue),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Partition {
-#[prost(message, optional, tag = "1")]
-pub temporal_partition: ::core::option::Option<partition::TemporalPartition>,
-#[prost(message, optional, tag = "2")]
-pub spatial_partition: ::core::option::Option<partition::SpatialPartition>,
-#[prost(message, optional, tag = "3")]
-pub relative_temporal_partition: ::core::option::Option<partition::RelativeTemporalPartition>,
+    #[prost(message, optional, tag = "1")]
+    pub temporal_partition: ::core::option::Option<partition::TemporalPartition>,
+    #[prost(message, optional, tag = "2")]
+    pub spatial_partition: ::core::option::Option<partition::SpatialPartition>,
+    #[prost(message, optional, tag = "3")]
+    pub relative_temporal_partition: ::core::option::Option<partition::RelativeTemporalPartition>,
 }
 /// Nested message and enum types in `Partition`.
 pub mod partition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TemporalPartition {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SpatialPartition {
-#[prost(int64, optional, tag = "1")]
-pub x_min: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "2")]
-pub y_min: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "3")]
-pub x_max: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub y_max: ::core::option::Option<i64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct RelativeTemporalPartition {
-#[prost(message, optional, tag = "1")]
-pub start_offset: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "2")]
-pub end_offset: ::core::option::Option<::prost_types::Duration>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TemporalPartition {
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SpatialPartition {
+        #[prost(int64, optional, tag = "1")]
+        pub x_min: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "2")]
+        pub y_min: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "3")]
+        pub x_max: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "4")]
+        pub y_max: ::core::option::Option<i64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct RelativeTemporalPartition {
+        #[prost(message, optional, tag = "1")]
+        pub start_offset: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "2")]
+        pub end_offset: ::core::option::Option<::prost_types::Duration>,
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FacetBucketType {
-Unspecified = 0,
-Value = 1,
-Datetime = 2,
-FixedRange = 3,
-CustomRange = 4,
+    Unspecified = 0,
+    Value = 1,
+    Datetime = 2,
+    FixedRange = 3,
+    CustomRange = 4,
 }
 impl FacetBucketType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FacetBucketType::Unspecified => "FACET_BUCKET_TYPE_UNSPECIFIED",
-FacetBucketType::Value => "FACET_BUCKET_TYPE_VALUE",
-FacetBucketType::Datetime => "FACET_BUCKET_TYPE_DATETIME",
-FacetBucketType::FixedRange => "FACET_BUCKET_TYPE_FIXED_RANGE",
-FacetBucketType::CustomRange => "FACET_BUCKET_TYPE_CUSTOM_RANGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FACET_BUCKET_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FACET_BUCKET_TYPE_VALUE" => Some(Self::Value),
-"FACET_BUCKET_TYPE_DATETIME" => Some(Self::Datetime),
-"FACET_BUCKET_TYPE_FIXED_RANGE" => Some(Self::FixedRange),
-"FACET_BUCKET_TYPE_CUSTOM_RANGE" => Some(Self::CustomRange),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            FacetBucketType::Unspecified => "FACET_BUCKET_TYPE_UNSPECIFIED",
+            FacetBucketType::Value => "FACET_BUCKET_TYPE_VALUE",
+            FacetBucketType::Datetime => "FACET_BUCKET_TYPE_DATETIME",
+            FacetBucketType::FixedRange => "FACET_BUCKET_TYPE_FIXED_RANGE",
+            FacetBucketType::CustomRange => "FACET_BUCKET_TYPE_CUSTOM_RANGE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FACET_BUCKET_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "FACET_BUCKET_TYPE_VALUE" => Some(Self::Value),
+            "FACET_BUCKET_TYPE_DATETIME" => Some(Self::Datetime),
+            "FACET_BUCKET_TYPE_FIXED_RANGE" => Some(Self::FixedRange),
+            "FACET_BUCKET_TYPE_CUSTOM_RANGE" => Some(Self::CustomRange),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod warehouse_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that manages media content + metadata for streaming.
-#[derive(Debug, Clone)]
-pub struct WarehouseClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> WarehouseClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> WarehouseClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-WarehouseClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates an asset inside corpus.
-pub async fn create_asset(&mut self, request: impl tonic::IntoRequest<super::CreateAssetRequest>) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an asset inside corpus.
-pub async fn update_asset(&mut self, request: impl tonic::IntoRequest<super::UpdateAssetRequest>) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Reads an asset inside corpus.
-pub async fn get_asset(&mut self, request: impl tonic::IntoRequest<super::GetAssetRequest>) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists an list of assets inside corpus.
-pub async fn list_assets(&mut self, request: impl tonic::IntoRequest<super::ListAssetsRequest>) -> std::result::Result<tonic::Response<super::ListAssetsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListAssets");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListAssets"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes asset inside corpus.
-pub async fn delete_asset(&mut self, request: impl tonic::IntoRequest<super::DeleteAssetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Upload asset by specifing the asset Cloud Storage uri.
-/// For video warehouse, it requires users who call this API have read access
-/// to the cloud storage file. Once it is uploaded, it can be retrieved by
-/// GenerateRetrievalUrl API which by default, only can retrieve cloud storage
-/// files from the same project of the warehouse. To allow retrieval cloud
-/// storage files that are in a separate project, it requires to find the
-/// vision ai service account (Go to IAM, check checkbox to show "Include
-/// Google-provided role grants", search for "Cloud Vision AI Service Agent")
-/// and grant the read access of the cloud storage files to that service
-/// account.
-pub async fn upload_asset(&mut self, request: impl tonic::IntoRequest<super::UploadAssetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UploadAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UploadAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a signed url for downloading the asset.
-/// For video warehouse, please see comment of UploadAsset about how to allow
-/// retrieval of cloud storage files in a different project.
-pub async fn generate_retrieval_url(&mut self, request: impl tonic::IntoRequest<super::GenerateRetrievalUrlRequest>) -> std::result::Result<tonic::Response<super::GenerateRetrievalUrlResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GenerateRetrievalUrl");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GenerateRetrievalUrl"));
-self.inner.unary(req, path, codec).await
-}
-/// Analyze asset to power search capability.
-pub async fn analyze_asset(&mut self, request: impl tonic::IntoRequest<super::AnalyzeAssetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/AnalyzeAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "AnalyzeAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Index one asset for search.
-/// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
-pub async fn index_asset(&mut self, request: impl tonic::IntoRequest<super::IndexAssetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/IndexAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "IndexAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Remove one asset's index data for search.
-/// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
-pub async fn remove_index_asset(&mut self, request: impl tonic::IntoRequest<super::RemoveIndexAssetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/RemoveIndexAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "RemoveIndexAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists assets inside an index.
-pub async fn view_indexed_assets(&mut self, request: impl tonic::IntoRequest<super::ViewIndexedAssetsRequest>) -> std::result::Result<tonic::Response<super::ViewIndexedAssetsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ViewIndexedAssets");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ViewIndexedAssets"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates an Index under the corpus.
-pub async fn create_index(&mut self, request: impl tonic::IntoRequest<super::CreateIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an Index under the corpus.
-/// Users can perform a metadata-only update or trigger a full index rebuild
-/// with different update_mask values.
-pub async fn update_index(&mut self, request: impl tonic::IntoRequest<super::UpdateIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the details of a single Index under a Corpus.
-pub async fn get_index(&mut self, request: impl tonic::IntoRequest<super::GetIndexRequest>) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// List all Indexes in a given Corpus.
-pub async fn list_indexes(&mut self, request: impl tonic::IntoRequest<super::ListIndexesRequest>) -> std::result::Result<tonic::Response<super::ListIndexesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListIndexes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListIndexes"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a single Index. In order to delete an index, the caller must
-/// make sure that it is not deployed to any index endpoint.
-pub async fn delete_index(&mut self, request: impl tonic::IntoRequest<super::DeleteIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a corpus inside a project.
-pub async fn create_corpus(&mut self, request: impl tonic::IntoRequest<super::CreateCorpusRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateCorpus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateCorpus"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets corpus details inside a project.
-pub async fn get_corpus(&mut self, request: impl tonic::IntoRequest<super::GetCorpusRequest>) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetCorpus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetCorpus"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a corpus in a project.
-pub async fn update_corpus(&mut self, request: impl tonic::IntoRequest<super::UpdateCorpusRequest>) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateCorpus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateCorpus"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all corpora in a project.
-pub async fn list_corpora(&mut self, request: impl tonic::IntoRequest<super::ListCorporaRequest>) -> std::result::Result<tonic::Response<super::ListCorporaResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListCorpora");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListCorpora"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a corpus only if its empty.
-/// Returns empty response.
-pub async fn delete_corpus(&mut self, request: impl tonic::IntoRequest<super::DeleteCorpusRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteCorpus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteCorpus"));
-self.inner.unary(req, path, codec).await
-}
-/// Analyzes a corpus.
-pub async fn analyze_corpus(&mut self, request: impl tonic::IntoRequest<super::AnalyzeCorpusRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/AnalyzeCorpus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "AnalyzeCorpus"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates data schema inside corpus.
-pub async fn create_data_schema(&mut self, request: impl tonic::IntoRequest<super::CreateDataSchemaRequest>) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateDataSchema");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateDataSchema"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates data schema inside corpus.
-pub async fn update_data_schema(&mut self, request: impl tonic::IntoRequest<super::UpdateDataSchemaRequest>) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateDataSchema");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateDataSchema"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets data schema inside corpus.
-pub async fn get_data_schema(&mut self, request: impl tonic::IntoRequest<super::GetDataSchemaRequest>) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetDataSchema");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetDataSchema"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes data schema inside corpus.
-pub async fn delete_data_schema(&mut self, request: impl tonic::IntoRequest<super::DeleteDataSchemaRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteDataSchema");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteDataSchema"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists a list of data schemas inside corpus.
-pub async fn list_data_schemas(&mut self, request: impl tonic::IntoRequest<super::ListDataSchemasRequest>) -> std::result::Result<tonic::Response<super::ListDataSchemasResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListDataSchemas");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListDataSchemas"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates annotation inside asset.
-pub async fn create_annotation(&mut self, request: impl tonic::IntoRequest<super::CreateAnnotationRequest>) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateAnnotation");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateAnnotation"));
-self.inner.unary(req, path, codec).await
-}
-/// Reads annotation inside asset.
-pub async fn get_annotation(&mut self, request: impl tonic::IntoRequest<super::GetAnnotationRequest>) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetAnnotation");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetAnnotation"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists a list of annotations inside asset.
-pub async fn list_annotations(&mut self, request: impl tonic::IntoRequest<super::ListAnnotationsRequest>) -> std::result::Result<tonic::Response<super::ListAnnotationsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListAnnotations");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListAnnotations"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates annotation inside asset.
-pub async fn update_annotation(&mut self, request: impl tonic::IntoRequest<super::UpdateAnnotationRequest>) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateAnnotation");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateAnnotation"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes annotation inside asset.
-pub async fn delete_annotation(&mut self, request: impl tonic::IntoRequest<super::DeleteAnnotationRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteAnnotation");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteAnnotation"));
-self.inner.unary(req, path, codec).await
-}
-/// Ingests data for the asset. It is not allowed to ingest a data chunk which
-/// is already expired according to TTL.
-/// This method is only available via the gRPC API (not HTTP since
-/// bi-directional streaming is not supported via HTTP).
-pub async fn ingest_asset(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::IngestAssetRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::IngestAssetResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/IngestAsset");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "IngestAsset"));
-self.inner.streaming(req, path, codec).await
-}
-/// Generates clips for downloading. The api takes in a time range, and
-/// generates a clip of the first content available after start_time and
-/// before end_time, which may overflow beyond these bounds.
-/// Returned clips are truncated if the total size of the clips are larger
-/// than 100MB.
-pub async fn clip_asset(&mut self, request: impl tonic::IntoRequest<super::ClipAssetRequest>) -> std::result::Result<tonic::Response<super::ClipAssetResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ClipAsset");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ClipAsset"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a uri for an HLS manifest. The api takes in a collection of time
-/// ranges, and generates a URI for an HLS manifest that covers all the
-/// requested time ranges.
-pub async fn generate_hls_uri(&mut self, request: impl tonic::IntoRequest<super::GenerateHlsUriRequest>) -> std::result::Result<tonic::Response<super::GenerateHlsUriResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GenerateHlsUri");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GenerateHlsUri"));
-self.inner.unary(req, path, codec).await
-}
-/// Imports assets (images plus annotations) from a meta file on cloud storage.
-/// Each row in the meta file is corresponding to an image (specified by a
-/// cloud storage uri) and its annotations.
-pub async fn import_assets(&mut self, request: impl tonic::IntoRequest<super::ImportAssetsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ImportAssets");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ImportAssets"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a search configuration inside a corpus.
-///
-/// Please follow the rules below to create a valid CreateSearchConfigRequest.
-/// --- General Rules ---
-/// 1. Request.search_config_id must not be associated with an existing
-///    SearchConfig.
-/// 2. Request must contain at least one non-empty search_criteria_property or
-///    facet_property.
-/// 3. mapped_fields must not be empty, and must map to existing UGA keys.
-/// 4. All mapped_fields must be of the same type.
-/// 5. All mapped_fields must share the same granularity.
-/// 6. All mapped_fields must share the same semantic SearchConfig match
-///    options.
-/// For property-specific rules, please reference the comments for
-/// FacetProperty and SearchCriteriaProperty.
-pub async fn create_search_config(&mut self, request: impl tonic::IntoRequest<super::CreateSearchConfigRequest>) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateSearchConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateSearchConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a search configuration inside a corpus.
-///
-/// Please follow the rules below to create a valid UpdateSearchConfigRequest.
-/// --- General Rules ---
-/// 1. Request.search_configuration.name must already exist.
-/// 2. Request must contain at least one non-empty search_criteria_property or
-/// facet_property.
-/// 3. mapped_fields must not be empty, and must map to existing UGA keys.
-/// 4. All mapped_fields must be of the same type.
-/// 5. All mapped_fields must share the same granularity.
-/// 6. All mapped_fields must share the same semantic SearchConfig match
-///    options.
-/// For property-specific rules, please reference the comments for
-/// FacetProperty and SearchCriteriaProperty.
-pub async fn update_search_config(&mut self, request: impl tonic::IntoRequest<super::UpdateSearchConfigRequest>) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateSearchConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateSearchConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a search configuration inside a corpus.
-pub async fn get_search_config(&mut self, request: impl tonic::IntoRequest<super::GetSearchConfigRequest>) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetSearchConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetSearchConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a search configuration inside a corpus.
-///
-/// For a DeleteSearchConfigRequest to be valid,
-/// Request.search_configuration.name must already exist.
-pub async fn delete_search_config(&mut self, request: impl tonic::IntoRequest<super::DeleteSearchConfigRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteSearchConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteSearchConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all search configurations inside a corpus.
-pub async fn list_search_configs(&mut self, request: impl tonic::IntoRequest<super::ListSearchConfigsRequest>) -> std::result::Result<tonic::Response<super::ListSearchConfigsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListSearchConfigs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListSearchConfigs"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a SearchHypernym inside a corpus.
-pub async fn create_search_hypernym(&mut self, request: impl tonic::IntoRequest<super::CreateSearchHypernymRequest>) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateSearchHypernym");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateSearchHypernym"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a SearchHypernym inside a corpus.
-pub async fn update_search_hypernym(&mut self, request: impl tonic::IntoRequest<super::UpdateSearchHypernymRequest>) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateSearchHypernym");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateSearchHypernym"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a SearchHypernym inside a corpus.
-pub async fn get_search_hypernym(&mut self, request: impl tonic::IntoRequest<super::GetSearchHypernymRequest>) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetSearchHypernym");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetSearchHypernym"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a SearchHypernym inside a corpus.
-pub async fn delete_search_hypernym(&mut self, request: impl tonic::IntoRequest<super::DeleteSearchHypernymRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteSearchHypernym");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteSearchHypernym"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists SearchHypernyms inside a corpus.
-pub async fn list_search_hypernyms(&mut self, request: impl tonic::IntoRequest<super::ListSearchHypernymsRequest>) -> std::result::Result<tonic::Response<super::ListSearchHypernymsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListSearchHypernyms");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListSearchHypernyms"));
-self.inner.unary(req, path, codec).await
-}
-/// Search media asset.
-pub async fn search_assets(&mut self, request: impl tonic::IntoRequest<super::SearchAssetsRequest>) -> std::result::Result<tonic::Response<super::SearchAssetsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/SearchAssets");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "SearchAssets"));
-self.inner.unary(req, path, codec).await
-}
-/// Search a deployed index endpoint (IMAGE corpus type only).
-pub async fn search_index_endpoint(&mut self, request: impl tonic::IntoRequest<super::SearchIndexEndpointRequest>) -> std::result::Result<tonic::Response<super::SearchIndexEndpointResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/SearchIndexEndpoint");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "SearchIndexEndpoint"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates an IndexEndpoint.
-pub async fn create_index_endpoint(&mut self, request: impl tonic::IntoRequest<super::CreateIndexEndpointRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateIndexEndpoint");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateIndexEndpoint"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets an IndexEndpoint.
-pub async fn get_index_endpoint(&mut self, request: impl tonic::IntoRequest<super::GetIndexEndpointRequest>) -> std::result::Result<tonic::Response<super::IndexEndpoint>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetIndexEndpoint");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetIndexEndpoint"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all IndexEndpoints in a project.
-pub async fn list_index_endpoints(&mut self, request: impl tonic::IntoRequest<super::ListIndexEndpointsRequest>) -> std::result::Result<tonic::Response<super::ListIndexEndpointsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListIndexEndpoints");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListIndexEndpoints"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an IndexEndpoint.
-pub async fn update_index_endpoint(&mut self, request: impl tonic::IntoRequest<super::UpdateIndexEndpointRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateIndexEndpoint");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateIndexEndpoint"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes an IndexEndpoint.
-pub async fn delete_index_endpoint(&mut self, request: impl tonic::IntoRequest<super::DeleteIndexEndpointRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteIndexEndpoint");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteIndexEndpoint"));
-self.inner.unary(req, path, codec).await
-}
-/// Deploys an Index to IndexEndpoint.
-pub async fn deploy_index(&mut self, request: impl tonic::IntoRequest<super::DeployIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeployIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeployIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// Undeploys an Index from IndexEndpoint.
-pub async fn undeploy_index(&mut self, request: impl tonic::IntoRequest<super::UndeployIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UndeployIndex");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UndeployIndex"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a collection.
-pub async fn create_collection(&mut self, request: impl tonic::IntoRequest<super::CreateCollectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/CreateCollection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "CreateCollection"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a collection.
-pub async fn delete_collection(&mut self, request: impl tonic::IntoRequest<super::DeleteCollectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/DeleteCollection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "DeleteCollection"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a collection.
-pub async fn get_collection(&mut self, request: impl tonic::IntoRequest<super::GetCollectionRequest>) -> std::result::Result<tonic::Response<super::Collection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/GetCollection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "GetCollection"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a collection.
-pub async fn update_collection(&mut self, request: impl tonic::IntoRequest<super::UpdateCollectionRequest>) -> std::result::Result<tonic::Response<super::Collection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/UpdateCollection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "UpdateCollection"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists collections inside a corpus.
-pub async fn list_collections(&mut self, request: impl tonic::IntoRequest<super::ListCollectionsRequest>) -> std::result::Result<tonic::Response<super::ListCollectionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ListCollections");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ListCollections"));
-self.inner.unary(req, path, codec).await
-}
-/// Adds an item into a Collection.
-pub async fn add_collection_item(&mut self, request: impl tonic::IntoRequest<super::AddCollectionItemRequest>) -> std::result::Result<tonic::Response<super::AddCollectionItemResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/AddCollectionItem");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "AddCollectionItem"));
-self.inner.unary(req, path, codec).await
-}
-/// Removes an item from a collection.
-pub async fn remove_collection_item(&mut self, request: impl tonic::IntoRequest<super::RemoveCollectionItemRequest>) -> std::result::Result<tonic::Response<super::RemoveCollectionItemResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/RemoveCollectionItem");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "RemoveCollectionItem"));
-self.inner.unary(req, path, codec).await
-}
-/// View items inside a collection.
-pub async fn view_collection_items(&mut self, request: impl tonic::IntoRequest<super::ViewCollectionItemsRequest>) -> std::result::Result<tonic::Response<super::ViewCollectionItemsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.Warehouse/ViewCollectionItems");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.Warehouse", "ViewCollectionItems"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that manages media content + metadata for streaming.
+    #[derive(Debug, Clone)]
+    pub struct WarehouseClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> WarehouseClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> WarehouseClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            WarehouseClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates an asset inside corpus.
+        pub async fn create_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAssetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an asset inside corpus.
+        pub async fn update_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAssetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reads an asset inside corpus.
+        pub async fn get_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAssetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Asset>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists an list of assets inside corpus.
+        pub async fn list_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAssetsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAssetsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListAssets",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes asset inside corpus.
+        pub async fn delete_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Upload asset by specifing the asset Cloud Storage uri.
+        /// For video warehouse, it requires users who call this API have read access
+        /// to the cloud storage file. Once it is uploaded, it can be retrieved by
+        /// GenerateRetrievalUrl API which by default, only can retrieve cloud storage
+        /// files from the same project of the warehouse. To allow retrieval cloud
+        /// storage files that are in a separate project, it requires to find the
+        /// vision ai service account (Go to IAM, check checkbox to show "Include
+        /// Google-provided role grants", search for "Cloud Vision AI Service Agent")
+        /// and grant the read access of the cloud storage files to that service
+        /// account.
+        pub async fn upload_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UploadAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UploadAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UploadAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a signed url for downloading the asset.
+        /// For video warehouse, please see comment of UploadAsset about how to allow
+        /// retrieval of cloud storage files in a different project.
+        pub async fn generate_retrieval_url(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateRetrievalUrlRequest>,
+        ) -> std::result::Result<tonic::Response<super::GenerateRetrievalUrlResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GenerateRetrievalUrl",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GenerateRetrievalUrl",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Analyze asset to power search capability.
+        pub async fn analyze_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AnalyzeAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/AnalyzeAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "AnalyzeAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Index one asset for search.
+        /// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
+        pub async fn index_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::IndexAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/IndexAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "IndexAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Remove one asset's index data for search.
+        /// Supported corpus type: Corpus.Type.VIDEO_ON_DEMAND
+        pub async fn remove_index_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RemoveIndexAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/RemoveIndexAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "RemoveIndexAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists assets inside an index.
+        pub async fn view_indexed_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ViewIndexedAssetsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ViewIndexedAssetsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ViewIndexedAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ViewIndexedAssets",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an Index under the corpus.
+        pub async fn create_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an Index under the corpus.
+        /// Users can perform a metadata-only update or trigger a full index rebuild
+        /// with different update_mask values.
+        pub async fn update_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the details of a single Index under a Corpus.
+        pub async fn get_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetIndexRequest>,
+        ) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List all Indexes in a given Corpus.
+        pub async fn list_indexes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListIndexesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListIndexesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListIndexes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListIndexes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a single Index. In order to delete an index, the caller must
+        /// make sure that it is not deployed to any index endpoint.
+        pub async fn delete_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a corpus inside a project.
+        pub async fn create_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateCorpusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateCorpus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets corpus details inside a project.
+        pub async fn get_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetCorpusRequest>,
+        ) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetCorpus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a corpus in a project.
+        pub async fn update_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateCorpusRequest>,
+        ) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateCorpus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all corpora in a project.
+        pub async fn list_corpora(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListCorporaRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListCorporaResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListCorpora",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListCorpora",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a corpus only if its empty.
+        /// Returns empty response.
+        pub async fn delete_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteCorpusRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteCorpus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Analyzes a corpus.
+        pub async fn analyze_corpus(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AnalyzeCorpusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/AnalyzeCorpus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "AnalyzeCorpus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates data schema inside corpus.
+        pub async fn create_data_schema(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDataSchemaRequest>,
+        ) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateDataSchema",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateDataSchema",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates data schema inside corpus.
+        pub async fn update_data_schema(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDataSchemaRequest>,
+        ) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateDataSchema",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateDataSchema",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets data schema inside corpus.
+        pub async fn get_data_schema(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDataSchemaRequest>,
+        ) -> std::result::Result<tonic::Response<super::DataSchema>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetDataSchema",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetDataSchema",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes data schema inside corpus.
+        pub async fn delete_data_schema(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDataSchemaRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteDataSchema",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteDataSchema",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists a list of data schemas inside corpus.
+        pub async fn list_data_schemas(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDataSchemasRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDataSchemasResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListDataSchemas",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListDataSchemas",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates annotation inside asset.
+        pub async fn create_annotation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAnnotationRequest>,
+        ) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateAnnotation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateAnnotation",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reads annotation inside asset.
+        pub async fn get_annotation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAnnotationRequest>,
+        ) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetAnnotation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetAnnotation",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists a list of annotations inside asset.
+        pub async fn list_annotations(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAnnotationsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAnnotationsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListAnnotations",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListAnnotations",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates annotation inside asset.
+        pub async fn update_annotation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAnnotationRequest>,
+        ) -> std::result::Result<tonic::Response<super::Annotation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateAnnotation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateAnnotation",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes annotation inside asset.
+        pub async fn delete_annotation(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAnnotationRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteAnnotation",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteAnnotation",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Ingests data for the asset. It is not allowed to ingest a data chunk which
+        /// is already expired according to TTL.
+        /// This method is only available via the gRPC API (not HTTP since
+        /// bi-directional streaming is not supported via HTTP).
+        pub async fn ingest_asset(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::IngestAssetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::IngestAssetResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/IngestAsset",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "IngestAsset",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+        /// Generates clips for downloading. The api takes in a time range, and
+        /// generates a clip of the first content available after start_time and
+        /// before end_time, which may overflow beyond these bounds.
+        /// Returned clips are truncated if the total size of the clips are larger
+        /// than 100MB.
+        pub async fn clip_asset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ClipAssetRequest>,
+        ) -> std::result::Result<tonic::Response<super::ClipAssetResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ClipAsset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ClipAsset",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a uri for an HLS manifest. The api takes in a collection of time
+        /// ranges, and generates a URI for an HLS manifest that covers all the
+        /// requested time ranges.
+        pub async fn generate_hls_uri(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateHlsUriRequest>,
+        ) -> std::result::Result<tonic::Response<super::GenerateHlsUriResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GenerateHlsUri",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GenerateHlsUri",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports assets (images plus annotations) from a meta file on cloud storage.
+        /// Each row in the meta file is corresponding to an image (specified by a
+        /// cloud storage uri) and its annotations.
+        pub async fn import_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportAssetsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ImportAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ImportAssets",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a search configuration inside a corpus.
+        ///
+        /// Please follow the rules below to create a valid CreateSearchConfigRequest.
+        /// --- General Rules ---
+        /// 1. Request.search_config_id must not be associated with an existing
+        ///    SearchConfig.
+        /// 2. Request must contain at least one non-empty search_criteria_property or
+        ///    facet_property.
+        /// 3. mapped_fields must not be empty, and must map to existing UGA keys.
+        /// 4. All mapped_fields must be of the same type.
+        /// 5. All mapped_fields must share the same granularity.
+        /// 6. All mapped_fields must share the same semantic SearchConfig match
+        ///    options.
+        /// For property-specific rules, please reference the comments for
+        /// FacetProperty and SearchCriteriaProperty.
+        pub async fn create_search_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSearchConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateSearchConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateSearchConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a search configuration inside a corpus.
+        ///
+        /// Please follow the rules below to create a valid UpdateSearchConfigRequest.
+        /// --- General Rules ---
+        /// 1. Request.search_configuration.name must already exist.
+        /// 2. Request must contain at least one non-empty search_criteria_property or
+        /// facet_property.
+        /// 3. mapped_fields must not be empty, and must map to existing UGA keys.
+        /// 4. All mapped_fields must be of the same type.
+        /// 5. All mapped_fields must share the same granularity.
+        /// 6. All mapped_fields must share the same semantic SearchConfig match
+        ///    options.
+        /// For property-specific rules, please reference the comments for
+        /// FacetProperty and SearchCriteriaProperty.
+        pub async fn update_search_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSearchConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateSearchConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateSearchConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a search configuration inside a corpus.
+        pub async fn get_search_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSearchConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetSearchConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetSearchConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a search configuration inside a corpus.
+        ///
+        /// For a DeleteSearchConfigRequest to be valid,
+        /// Request.search_configuration.name must already exist.
+        pub async fn delete_search_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSearchConfigRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteSearchConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteSearchConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all search configurations inside a corpus.
+        pub async fn list_search_configs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSearchConfigsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListSearchConfigsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListSearchConfigs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListSearchConfigs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a SearchHypernym inside a corpus.
+        pub async fn create_search_hypernym(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSearchHypernymRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateSearchHypernym",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateSearchHypernym",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a SearchHypernym inside a corpus.
+        pub async fn update_search_hypernym(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSearchHypernymRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateSearchHypernym",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateSearchHypernym",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a SearchHypernym inside a corpus.
+        pub async fn get_search_hypernym(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSearchHypernymRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchHypernym>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetSearchHypernym",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetSearchHypernym",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a SearchHypernym inside a corpus.
+        pub async fn delete_search_hypernym(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSearchHypernymRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteSearchHypernym",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteSearchHypernym",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists SearchHypernyms inside a corpus.
+        pub async fn list_search_hypernyms(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSearchHypernymsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListSearchHypernymsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListSearchHypernyms",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListSearchHypernyms",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Search media asset.
+        pub async fn search_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchAssetsRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchAssetsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/SearchAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "SearchAssets",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Search a deployed index endpoint (IMAGE corpus type only).
+        pub async fn search_index_endpoint(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchIndexEndpointRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchIndexEndpointResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/SearchIndexEndpoint",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "SearchIndexEndpoint",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an IndexEndpoint.
+        pub async fn create_index_endpoint(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateIndexEndpointRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateIndexEndpoint",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateIndexEndpoint",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets an IndexEndpoint.
+        pub async fn get_index_endpoint(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetIndexEndpointRequest>,
+        ) -> std::result::Result<tonic::Response<super::IndexEndpoint>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetIndexEndpoint",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetIndexEndpoint",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all IndexEndpoints in a project.
+        pub async fn list_index_endpoints(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListIndexEndpointsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListIndexEndpointsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListIndexEndpoints",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListIndexEndpoints",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an IndexEndpoint.
+        pub async fn update_index_endpoint(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateIndexEndpointRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateIndexEndpoint",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateIndexEndpoint",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an IndexEndpoint.
+        pub async fn delete_index_endpoint(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteIndexEndpointRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteIndexEndpoint",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteIndexEndpoint",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deploys an Index to IndexEndpoint.
+        pub async fn deploy_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeployIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeployIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeployIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Undeploys an Index from IndexEndpoint.
+        pub async fn undeploy_index(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UndeployIndexRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UndeployIndex",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UndeployIndex",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a collection.
+        pub async fn create_collection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateCollectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/CreateCollection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "CreateCollection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a collection.
+        pub async fn delete_collection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteCollectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/DeleteCollection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "DeleteCollection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a collection.
+        pub async fn get_collection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetCollectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Collection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/GetCollection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "GetCollection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a collection.
+        pub async fn update_collection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateCollectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Collection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/UpdateCollection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "UpdateCollection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists collections inside a corpus.
+        pub async fn list_collections(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListCollectionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListCollectionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ListCollections",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ListCollections",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Adds an item into a Collection.
+        pub async fn add_collection_item(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AddCollectionItemRequest>,
+        ) -> std::result::Result<tonic::Response<super::AddCollectionItemResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/AddCollectionItem",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "AddCollectionItem",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Removes an item from a collection.
+        pub async fn remove_collection_item(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RemoveCollectionItemRequest>,
+        ) -> std::result::Result<tonic::Response<super::RemoveCollectionItemResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/RemoveCollectionItem",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "RemoveCollectionItem",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// View items inside a collection.
+        pub async fn view_collection_items(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ViewCollectionItemsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ViewCollectionItemsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.Warehouse/ViewCollectionItems",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.Warehouse",
+                "ViewCollectionItems",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperatorDefinition {
-#[prost(string, tag = "1")]
-pub operator: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub input_args: ::prost::alloc::vec::Vec<operator_definition::ArgumentDefinition>,
-#[prost(message, repeated, tag = "3")]
-pub output_args: ::prost::alloc::vec::Vec<operator_definition::ArgumentDefinition>,
-#[prost(message, repeated, tag = "4")]
-pub attributes: ::prost::alloc::vec::Vec<operator_definition::AttributeDefinition>,
-#[prost(message, optional, tag = "5")]
-pub resources: ::core::option::Option<ResourceSpecification>,
-#[prost(string, tag = "6")]
-pub short_description: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operator: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub input_args: ::prost::alloc::vec::Vec<operator_definition::ArgumentDefinition>,
+    #[prost(message, repeated, tag = "3")]
+    pub output_args: ::prost::alloc::vec::Vec<operator_definition::ArgumentDefinition>,
+    #[prost(message, repeated, tag = "4")]
+    pub attributes: ::prost::alloc::vec::Vec<operator_definition::AttributeDefinition>,
+    #[prost(message, optional, tag = "5")]
+    pub resources: ::core::option::Option<ResourceSpecification>,
+    #[prost(string, tag = "6")]
+    pub short_description: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub description: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `OperatorDefinition`.
 pub mod operator_definition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ArgumentDefinition {
-#[prost(string, tag = "1")]
-pub argument: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub r#type: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AttributeDefinition {
-#[prost(string, tag = "1")]
-pub attribute: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub default_value: ::core::option::Option<super::AttributeValue>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ArgumentDefinition {
+        #[prost(string, tag = "1")]
+        pub argument: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub r#type: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AttributeDefinition {
+        #[prost(string, tag = "1")]
+        pub attribute: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub r#type: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub default_value: ::core::option::Option<super::AttributeValue>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceSpecification {
-#[prost(string, tag = "1")]
-pub cpu: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub cpu_limits: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub memory: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub memory_limits: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub gpus: i32,
-#[prost(int32, tag = "4")]
-pub latency_budget_ms: i32,
+    #[prost(string, tag = "1")]
+    pub cpu: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub cpu_limits: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub memory: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub memory_limits: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub gpus: i32,
+    #[prost(int32, tag = "4")]
+    pub latency_budget_ms: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttributeValue {
-#[prost(oneof = "attribute_value::Value", tags = "1, 2, 3, 4")]
-pub value: ::core::option::Option<attribute_value::Value>,
+    #[prost(oneof = "attribute_value::Value", tags = "1, 2, 3, 4")]
+    pub value: ::core::option::Option<attribute_value::Value>,
 }
 /// Nested message and enum types in `AttributeValue`.
 pub mod attribute_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(int64, tag = "1")]
-I(i64),
-#[prost(float, tag = "2")]
-F(f32),
-#[prost(bool, tag = "3")]
-B(bool),
-#[prost(bytes, tag = "4")]
-S(::prost::alloc::vec::Vec<u8>),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(int64, tag = "1")]
+        I(i64),
+        #[prost(float, tag = "2")]
+        F(f32),
+        #[prost(bool, tag = "3")]
+        B(bool),
+        #[prost(bytes, tag = "4")]
+        S(::prost::alloc::vec::Vec<u8>),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzerDefinition {
-#[prost(string, tag = "1")]
-pub analyzer: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub operator: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub inputs: ::prost::alloc::vec::Vec<analyzer_definition::StreamInput>,
-#[prost(map = "string, message", tag = "4")]
-pub attrs: ::std::collections::HashMap<::prost::alloc::string::String, AttributeValue>,
-#[prost(message, optional, tag = "5")]
-pub debug_options: ::core::option::Option<analyzer_definition::DebugOptions>,
-#[prost(message, optional, tag = "6")]
-pub operator_option: ::core::option::Option<analyzer_definition::OperatorOption>,
+    #[prost(string, tag = "1")]
+    pub analyzer: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub operator: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub inputs: ::prost::alloc::vec::Vec<analyzer_definition::StreamInput>,
+    #[prost(map = "string, message", tag = "4")]
+    pub attrs: ::std::collections::HashMap<::prost::alloc::string::String, AttributeValue>,
+    #[prost(message, optional, tag = "5")]
+    pub debug_options: ::core::option::Option<analyzer_definition::DebugOptions>,
+    #[prost(message, optional, tag = "6")]
+    pub operator_option: ::core::option::Option<analyzer_definition::OperatorOption>,
 }
 /// Nested message and enum types in `AnalyzerDefinition`.
 pub mod analyzer_definition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamInput {
-#[prost(string, tag = "1")]
-pub input: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DebugOptions {
-#[prost(map = "string, string", tag = "1")]
-pub environment_variables: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OperatorOption {
-#[prost(string, tag = "1")]
-pub tag: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub registry: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StreamInput {
+        #[prost(string, tag = "1")]
+        pub input: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DebugOptions {
+        #[prost(map = "string, string", tag = "1")]
+        pub environment_variables: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OperatorOption {
+        #[prost(string, tag = "1")]
+        pub tag: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub registry: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalysisDefinition {
-#[prost(message, repeated, tag = "1")]
-pub analyzers: ::prost::alloc::vec::Vec<AnalyzerDefinition>,
+    #[prost(message, repeated, tag = "1")]
+    pub analyzers: ::prost::alloc::vec::Vec<AnalyzerDefinition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunStatus {
-#[prost(enumeration = "run_status::State", tag = "1")]
-pub state: i32,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
+    #[prost(enumeration = "run_status::State", tag = "1")]
+    pub state: i32,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `RunStatus`.
 pub mod run_status {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Initializing = 1,
-Running = 2,
-Completed = 3,
-Failed = 4,
-Pending = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Initializing => "INITIALIZING",
-State::Running => "RUNNING",
-State::Completed => "COMPLETED",
-State::Failed => "FAILED",
-State::Pending => "PENDING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"INITIALIZING" => Some(Self::Initializing),
-"RUNNING" => Some(Self::Running),
-"COMPLETED" => Some(Self::Completed),
-"FAILED" => Some(Self::Failed),
-"PENDING" => Some(Self::Pending),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Initializing = 1,
+        Running = 2,
+        Completed = 3,
+        Failed = 4,
+        Pending = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Initializing => "INITIALIZING",
+                State::Running => "RUNNING",
+                State::Completed => "COMPLETED",
+                State::Failed => "FAILED",
+                State::Pending => "PENDING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INITIALIZING" => Some(Self::Initializing),
+                "RUNNING" => Some(Self::Running),
+                "COMPLETED" => Some(Self::Completed),
+                "FAILED" => Some(Self::Failed),
+                "PENDING" => Some(Self::Pending),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RunMode {
-Unspecified = 0,
-Live = 1,
-Submission = 2,
+    Unspecified = 0,
+    Live = 1,
+    Submission = 2,
 }
 impl RunMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RunMode::Unspecified => "RUN_MODE_UNSPECIFIED",
-RunMode::Live => "LIVE",
-RunMode::Submission => "SUBMISSION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RUN_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"LIVE" => Some(Self::Live),
-"SUBMISSION" => Some(Self::Submission),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            RunMode::Unspecified => "RUN_MODE_UNSPECIFIED",
+            RunMode::Live => "LIVE",
+            RunMode::Submission => "SUBMISSION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RUN_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+            "LIVE" => Some(Self::Live),
+            "SUBMISSION" => Some(Self::Submission),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PersonalProtectiveEquipmentDetectionOutput {
-#[prost(message, optional, tag = "1")]
-pub current_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "2")]
-pub detected_persons: ::prost::alloc::vec::Vec<personal_protective_equipment_detection_output::DetectedPerson>,
+    #[prost(message, optional, tag = "1")]
+    pub current_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "2")]
+    pub detected_persons:
+        ::prost::alloc::vec::Vec<personal_protective_equipment_detection_output::DetectedPerson>,
 }
 /// Nested message and enum types in `PersonalProtectiveEquipmentDetectionOutput`.
 pub mod personal_protective_equipment_detection_output {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PersonEntity {
-#[prost(int64, tag = "1")]
-pub person_entity_id: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PpeEntity {
-#[prost(int64, tag = "1")]
-pub ppe_label_id: i64,
-#[prost(string, tag = "2")]
-pub ppe_label_string: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub ppe_supercategory_label_string: ::prost::alloc::string::String,
-#[prost(int64, tag = "4")]
-pub ppe_entity_id: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NormalizedBoundingBox {
-#[prost(float, tag = "1")]
-pub xmin: f32,
-#[prost(float, tag = "2")]
-pub ymin: f32,
-#[prost(float, tag = "3")]
-pub width: f32,
-#[prost(float, tag = "4")]
-pub height: f32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PersonIdentifiedBox {
-#[prost(int64, tag = "1")]
-pub box_id: i64,
-#[prost(message, optional, tag = "2")]
-pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
-#[prost(float, tag = "3")]
-pub confidence_score: f32,
-#[prost(message, optional, tag = "4")]
-pub person_entity: ::core::option::Option<PersonEntity>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PpeIdentifiedBox {
-#[prost(int64, tag = "1")]
-pub box_id: i64,
-#[prost(message, optional, tag = "2")]
-pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
-#[prost(float, tag = "3")]
-pub confidence_score: f32,
-#[prost(message, optional, tag = "4")]
-pub ppe_entity: ::core::option::Option<PpeEntity>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DetectedPerson {
-#[prost(int64, tag = "1")]
-pub person_id: i64,
-#[prost(message, optional, tag = "2")]
-pub detected_person_identified_box: ::core::option::Option<PersonIdentifiedBox>,
-#[prost(message, repeated, tag = "3")]
-pub detected_ppe_identified_boxes: ::prost::alloc::vec::Vec<PpeIdentifiedBox>,
-#[prost(float, optional, tag = "4")]
-pub face_coverage_score: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "5")]
-pub eyes_coverage_score: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "6")]
-pub head_coverage_score: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "7")]
-pub hands_coverage_score: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "8")]
-pub body_coverage_score: ::core::option::Option<f32>,
-#[prost(float, optional, tag = "9")]
-pub feet_coverage_score: ::core::option::Option<f32>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PersonEntity {
+        #[prost(int64, tag = "1")]
+        pub person_entity_id: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PpeEntity {
+        #[prost(int64, tag = "1")]
+        pub ppe_label_id: i64,
+        #[prost(string, tag = "2")]
+        pub ppe_label_string: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub ppe_supercategory_label_string: ::prost::alloc::string::String,
+        #[prost(int64, tag = "4")]
+        pub ppe_entity_id: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct NormalizedBoundingBox {
+        #[prost(float, tag = "1")]
+        pub xmin: f32,
+        #[prost(float, tag = "2")]
+        pub ymin: f32,
+        #[prost(float, tag = "3")]
+        pub width: f32,
+        #[prost(float, tag = "4")]
+        pub height: f32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PersonIdentifiedBox {
+        #[prost(int64, tag = "1")]
+        pub box_id: i64,
+        #[prost(message, optional, tag = "2")]
+        pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
+        #[prost(float, tag = "3")]
+        pub confidence_score: f32,
+        #[prost(message, optional, tag = "4")]
+        pub person_entity: ::core::option::Option<PersonEntity>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PpeIdentifiedBox {
+        #[prost(int64, tag = "1")]
+        pub box_id: i64,
+        #[prost(message, optional, tag = "2")]
+        pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
+        #[prost(float, tag = "3")]
+        pub confidence_score: f32,
+        #[prost(message, optional, tag = "4")]
+        pub ppe_entity: ::core::option::Option<PpeEntity>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DetectedPerson {
+        #[prost(int64, tag = "1")]
+        pub person_id: i64,
+        #[prost(message, optional, tag = "2")]
+        pub detected_person_identified_box: ::core::option::Option<PersonIdentifiedBox>,
+        #[prost(message, repeated, tag = "3")]
+        pub detected_ppe_identified_boxes: ::prost::alloc::vec::Vec<PpeIdentifiedBox>,
+        #[prost(float, optional, tag = "4")]
+        pub face_coverage_score: ::core::option::Option<f32>,
+        #[prost(float, optional, tag = "5")]
+        pub eyes_coverage_score: ::core::option::Option<f32>,
+        #[prost(float, optional, tag = "6")]
+        pub head_coverage_score: ::core::option::Option<f32>,
+        #[prost(float, optional, tag = "7")]
+        pub hands_coverage_score: ::core::option::Option<f32>,
+        #[prost(float, optional, tag = "8")]
+        pub body_coverage_score: ::core::option::Option<f32>,
+        #[prost(float, optional, tag = "9")]
+        pub feet_coverage_score: ::core::option::Option<f32>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectDetectionPredictionResult {
-#[prost(message, optional, tag = "1")]
-pub current_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "2")]
-pub identified_boxes: ::prost::alloc::vec::Vec<object_detection_prediction_result::IdentifiedBox>,
+    #[prost(message, optional, tag = "1")]
+    pub current_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "2")]
+    pub identified_boxes:
+        ::prost::alloc::vec::Vec<object_detection_prediction_result::IdentifiedBox>,
 }
 /// Nested message and enum types in `ObjectDetectionPredictionResult`.
 pub mod object_detection_prediction_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Entity {
-#[prost(int64, tag = "1")]
-pub label_id: i64,
-#[prost(string, tag = "2")]
-pub label_string: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IdentifiedBox {
-#[prost(int64, tag = "1")]
-pub box_id: i64,
-#[prost(message, optional, tag = "2")]
-pub normalized_bounding_box: ::core::option::Option<identified_box::NormalizedBoundingBox>,
-#[prost(float, tag = "3")]
-pub confidence_score: f32,
-#[prost(message, optional, tag = "4")]
-pub entity: ::core::option::Option<Entity>,
-}
-/// Nested message and enum types in `IdentifiedBox`.
-pub mod identified_box {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NormalizedBoundingBox {
-#[prost(float, tag = "1")]
-pub xmin: f32,
-#[prost(float, tag = "2")]
-pub ymin: f32,
-#[prost(float, tag = "3")]
-pub width: f32,
-#[prost(float, tag = "4")]
-pub height: f32,
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Entity {
+        #[prost(int64, tag = "1")]
+        pub label_id: i64,
+        #[prost(string, tag = "2")]
+        pub label_string: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct IdentifiedBox {
+        #[prost(int64, tag = "1")]
+        pub box_id: i64,
+        #[prost(message, optional, tag = "2")]
+        pub normalized_bounding_box: ::core::option::Option<identified_box::NormalizedBoundingBox>,
+        #[prost(float, tag = "3")]
+        pub confidence_score: f32,
+        #[prost(message, optional, tag = "4")]
+        pub entity: ::core::option::Option<Entity>,
+    }
+    /// Nested message and enum types in `IdentifiedBox`.
+    pub mod identified_box {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct NormalizedBoundingBox {
+            #[prost(float, tag = "1")]
+            pub xmin: f32,
+            #[prost(float, tag = "2")]
+            pub ymin: f32,
+            #[prost(float, tag = "3")]
+            pub width: f32,
+            #[prost(float, tag = "4")]
+            pub height: f32,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionPredictionResult {
-#[prost(int64, repeated, tag = "1")]
-pub ids: ::prost::alloc::vec::Vec<i64>,
-#[prost(string, repeated, tag = "2")]
-pub display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(float, repeated, tag = "3")]
-pub confidences: ::prost::alloc::vec::Vec<f32>,
-#[prost(message, repeated, tag = "4")]
-pub bboxes: ::prost::alloc::vec::Vec<::prost_types::ListValue>,
+    #[prost(int64, repeated, tag = "1")]
+    pub ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(string, repeated, tag = "2")]
+    pub display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(float, repeated, tag = "3")]
+    pub confidences: ::prost::alloc::vec::Vec<f32>,
+    #[prost(message, repeated, tag = "4")]
+    pub bboxes: ::prost::alloc::vec::Vec<::prost_types::ListValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassificationPredictionResult {
-#[prost(int64, repeated, tag = "1")]
-pub ids: ::prost::alloc::vec::Vec<i64>,
-#[prost(string, repeated, tag = "2")]
-pub display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(float, repeated, tag = "3")]
-pub confidences: ::prost::alloc::vec::Vec<f32>,
+    #[prost(int64, repeated, tag = "1")]
+    pub ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(string, repeated, tag = "2")]
+    pub display_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(float, repeated, tag = "3")]
+    pub confidences: ::prost::alloc::vec::Vec<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageSegmentationPredictionResult {
-#[prost(string, tag = "1")]
-pub category_mask: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub confidence_mask: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub category_mask: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub confidence_mask: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoActionRecognitionPredictionResult {
-#[prost(message, optional, tag = "1")]
-pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "3")]
-pub actions: ::prost::alloc::vec::Vec<video_action_recognition_prediction_result::IdentifiedAction>,
+    #[prost(message, optional, tag = "1")]
+    pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "3")]
+    pub actions:
+        ::prost::alloc::vec::Vec<video_action_recognition_prediction_result::IdentifiedAction>,
 }
 /// Nested message and enum types in `VideoActionRecognitionPredictionResult`.
 pub mod video_action_recognition_prediction_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IdentifiedAction {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(float, tag = "3")]
-pub confidence: f32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct IdentifiedAction {
+        #[prost(string, tag = "1")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub display_name: ::prost::alloc::string::String,
+        #[prost(float, tag = "3")]
+        pub confidence: f32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoObjectTrackingPredictionResult {
-#[prost(message, optional, tag = "1")]
-pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "3")]
-pub objects: ::prost::alloc::vec::Vec<video_object_tracking_prediction_result::DetectedObject>,
+    #[prost(message, optional, tag = "1")]
+    pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "3")]
+    pub objects: ::prost::alloc::vec::Vec<video_object_tracking_prediction_result::DetectedObject>,
 }
 /// Nested message and enum types in `VideoObjectTrackingPredictionResult`.
 pub mod video_object_tracking_prediction_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BoundingBox {
-#[prost(float, tag = "1")]
-pub x_min: f32,
-#[prost(float, tag = "2")]
-pub x_max: f32,
-#[prost(float, tag = "3")]
-pub y_min: f32,
-#[prost(float, tag = "4")]
-pub y_max: f32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DetectedObject {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub bounding_box: ::core::option::Option<BoundingBox>,
-#[prost(float, tag = "4")]
-pub confidence: f32,
-#[prost(int64, tag = "5")]
-pub track_id: i64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BoundingBox {
+        #[prost(float, tag = "1")]
+        pub x_min: f32,
+        #[prost(float, tag = "2")]
+        pub x_max: f32,
+        #[prost(float, tag = "3")]
+        pub y_min: f32,
+        #[prost(float, tag = "4")]
+        pub y_max: f32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DetectedObject {
+        #[prost(string, tag = "1")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub display_name: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub bounding_box: ::core::option::Option<BoundingBox>,
+        #[prost(float, tag = "4")]
+        pub confidence: f32,
+        #[prost(int64, tag = "5")]
+        pub track_id: i64,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoClassificationPredictionResult {
-#[prost(message, optional, tag = "1")]
-pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "3")]
-pub classifications: ::prost::alloc::vec::Vec<video_classification_prediction_result::IdentifiedClassification>,
+    #[prost(message, optional, tag = "1")]
+    pub segment_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub segment_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "3")]
+    pub classifications:
+        ::prost::alloc::vec::Vec<video_classification_prediction_result::IdentifiedClassification>,
 }
 /// Nested message and enum types in `VideoClassificationPredictionResult`.
 pub mod video_classification_prediction_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IdentifiedClassification {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(float, tag = "3")]
-pub confidence: f32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct IdentifiedClassification {
+        #[prost(string, tag = "1")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub display_name: ::prost::alloc::string::String,
+        #[prost(float, tag = "3")]
+        pub confidence: f32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OccupancyCountingPredictionResult {
-#[prost(message, optional, tag = "1")]
-pub current_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "2")]
-pub identified_boxes: ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::IdentifiedBox>,
-#[prost(message, optional, tag = "3")]
-pub stats: ::core::option::Option<occupancy_counting_prediction_result::Stats>,
-#[prost(message, repeated, tag = "4")]
-pub track_info: ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::TrackInfo>,
-#[prost(message, repeated, tag = "5")]
-pub dwell_time_info: ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::DwellTimeInfo>,
-#[prost(int64, optional, tag = "6")]
-pub pts: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "1")]
+    pub current_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "2")]
+    pub identified_boxes:
+        ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::IdentifiedBox>,
+    #[prost(message, optional, tag = "3")]
+    pub stats: ::core::option::Option<occupancy_counting_prediction_result::Stats>,
+    #[prost(message, repeated, tag = "4")]
+    pub track_info: ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::TrackInfo>,
+    #[prost(message, repeated, tag = "5")]
+    pub dwell_time_info:
+        ::prost::alloc::vec::Vec<occupancy_counting_prediction_result::DwellTimeInfo>,
+    #[prost(int64, optional, tag = "6")]
+    pub pts: ::core::option::Option<i64>,
 }
 /// Nested message and enum types in `OccupancyCountingPredictionResult`.
 pub mod occupancy_counting_prediction_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Entity {
-#[prost(int64, tag = "1")]
-pub label_id: i64,
-#[prost(string, tag = "2")]
-pub label_string: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IdentifiedBox {
-#[prost(int64, tag = "1")]
-pub box_id: i64,
-#[prost(message, optional, tag = "2")]
-pub normalized_bounding_box: ::core::option::Option<identified_box::NormalizedBoundingBox>,
-#[prost(float, tag = "3")]
-pub score: f32,
-#[prost(message, optional, tag = "4")]
-pub entity: ::core::option::Option<Entity>,
-#[prost(int64, tag = "5")]
-pub track_id: i64,
-}
-/// Nested message and enum types in `IdentifiedBox`.
-pub mod identified_box {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NormalizedBoundingBox {
-#[prost(float, tag = "1")]
-pub xmin: f32,
-#[prost(float, tag = "2")]
-pub ymin: f32,
-#[prost(float, tag = "3")]
-pub width: f32,
-#[prost(float, tag = "4")]
-pub height: f32,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Stats {
-#[prost(message, repeated, tag = "1")]
-pub full_frame_count: ::prost::alloc::vec::Vec<stats::ObjectCount>,
-#[prost(message, repeated, tag = "2")]
-pub crossing_line_counts: ::prost::alloc::vec::Vec<stats::CrossingLineCount>,
-#[prost(message, repeated, tag = "3")]
-pub active_zone_counts: ::prost::alloc::vec::Vec<stats::ActiveZoneCount>,
-}
-/// Nested message and enum types in `Stats`.
-pub mod stats {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ObjectCount {
-#[prost(message, optional, tag = "1")]
-pub entity: ::core::option::Option<super::Entity>,
-#[prost(int32, tag = "2")]
-pub count: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AccumulatedObjectCount {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub object_count: ::core::option::Option<ObjectCount>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CrossingLineCount {
-#[prost(message, optional, tag = "1")]
-pub annotation: ::core::option::Option<super::super::StreamAnnotation>,
-#[prost(message, repeated, tag = "2")]
-pub positive_direction_counts: ::prost::alloc::vec::Vec<ObjectCount>,
-#[prost(message, repeated, tag = "3")]
-pub negative_direction_counts: ::prost::alloc::vec::Vec<ObjectCount>,
-#[prost(message, repeated, tag = "4")]
-pub accumulated_positive_direction_counts: ::prost::alloc::vec::Vec<AccumulatedObjectCount>,
-#[prost(message, repeated, tag = "5")]
-pub accumulated_negative_direction_counts: ::prost::alloc::vec::Vec<AccumulatedObjectCount>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActiveZoneCount {
-#[prost(message, optional, tag = "1")]
-pub annotation: ::core::option::Option<super::super::StreamAnnotation>,
-#[prost(message, repeated, tag = "2")]
-pub counts: ::prost::alloc::vec::Vec<ObjectCount>,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TrackInfo {
-#[prost(string, tag = "1")]
-pub track_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DwellTimeInfo {
-#[prost(string, tag = "1")]
-pub track_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub zone_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub dwell_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub dwell_end_time: ::core::option::Option<::prost_types::Timestamp>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Entity {
+        #[prost(int64, tag = "1")]
+        pub label_id: i64,
+        #[prost(string, tag = "2")]
+        pub label_string: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct IdentifiedBox {
+        #[prost(int64, tag = "1")]
+        pub box_id: i64,
+        #[prost(message, optional, tag = "2")]
+        pub normalized_bounding_box: ::core::option::Option<identified_box::NormalizedBoundingBox>,
+        #[prost(float, tag = "3")]
+        pub score: f32,
+        #[prost(message, optional, tag = "4")]
+        pub entity: ::core::option::Option<Entity>,
+        #[prost(int64, tag = "5")]
+        pub track_id: i64,
+    }
+    /// Nested message and enum types in `IdentifiedBox`.
+    pub mod identified_box {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct NormalizedBoundingBox {
+            #[prost(float, tag = "1")]
+            pub xmin: f32,
+            #[prost(float, tag = "2")]
+            pub ymin: f32,
+            #[prost(float, tag = "3")]
+            pub width: f32,
+            #[prost(float, tag = "4")]
+            pub height: f32,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Stats {
+        #[prost(message, repeated, tag = "1")]
+        pub full_frame_count: ::prost::alloc::vec::Vec<stats::ObjectCount>,
+        #[prost(message, repeated, tag = "2")]
+        pub crossing_line_counts: ::prost::alloc::vec::Vec<stats::CrossingLineCount>,
+        #[prost(message, repeated, tag = "3")]
+        pub active_zone_counts: ::prost::alloc::vec::Vec<stats::ActiveZoneCount>,
+    }
+    /// Nested message and enum types in `Stats`.
+    pub mod stats {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ObjectCount {
+            #[prost(message, optional, tag = "1")]
+            pub entity: ::core::option::Option<super::Entity>,
+            #[prost(int32, tag = "2")]
+            pub count: i32,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct AccumulatedObjectCount {
+            #[prost(message, optional, tag = "1")]
+            pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+            #[prost(message, optional, tag = "2")]
+            pub object_count: ::core::option::Option<ObjectCount>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct CrossingLineCount {
+            #[prost(message, optional, tag = "1")]
+            pub annotation: ::core::option::Option<super::super::StreamAnnotation>,
+            #[prost(message, repeated, tag = "2")]
+            pub positive_direction_counts: ::prost::alloc::vec::Vec<ObjectCount>,
+            #[prost(message, repeated, tag = "3")]
+            pub negative_direction_counts: ::prost::alloc::vec::Vec<ObjectCount>,
+            #[prost(message, repeated, tag = "4")]
+            pub accumulated_positive_direction_counts:
+                ::prost::alloc::vec::Vec<AccumulatedObjectCount>,
+            #[prost(message, repeated, tag = "5")]
+            pub accumulated_negative_direction_counts:
+                ::prost::alloc::vec::Vec<AccumulatedObjectCount>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ActiveZoneCount {
+            #[prost(message, optional, tag = "1")]
+            pub annotation: ::core::option::Option<super::super::StreamAnnotation>,
+            #[prost(message, repeated, tag = "2")]
+            pub counts: ::prost::alloc::vec::Vec<ObjectCount>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TrackInfo {
+        #[prost(string, tag = "1")]
+        pub track_id: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DwellTimeInfo {
+        #[prost(string, tag = "1")]
+        pub track_id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub zone_id: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub dwell_start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "4")]
+        pub dwell_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamAnnotation {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub source_stream: ::prost::alloc::string::String,
-#[prost(enumeration = "StreamAnnotationType", tag = "4")]
-pub r#type: i32,
-#[prost(oneof = "stream_annotation::AnnotationPayload", tags = "5, 6")]
-pub annotation_payload: ::core::option::Option<stream_annotation::AnnotationPayload>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub source_stream: ::prost::alloc::string::String,
+    #[prost(enumeration = "StreamAnnotationType", tag = "4")]
+    pub r#type: i32,
+    #[prost(oneof = "stream_annotation::AnnotationPayload", tags = "5, 6")]
+    pub annotation_payload: ::core::option::Option<stream_annotation::AnnotationPayload>,
 }
 /// Nested message and enum types in `StreamAnnotation`.
 pub mod stream_annotation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AnnotationPayload {
-#[prost(message, tag = "5")]
-ActiveZone(super::NormalizedPolygon),
-#[prost(message, tag = "6")]
-CrossingLine(super::NormalizedPolyline),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AnnotationPayload {
+        #[prost(message, tag = "5")]
+        ActiveZone(super::NormalizedPolygon),
+        #[prost(message, tag = "6")]
+        CrossingLine(super::NormalizedPolyline),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamAnnotations {
-#[prost(message, repeated, tag = "1")]
-pub stream_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
+    #[prost(message, repeated, tag = "1")]
+    pub stream_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NormalizedPolygon {
-#[prost(message, repeated, tag = "1")]
-pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
+    #[prost(message, repeated, tag = "1")]
+    pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NormalizedPolyline {
-#[prost(message, repeated, tag = "1")]
-pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
+    #[prost(message, repeated, tag = "1")]
+    pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NormalizedVertex {
-#[prost(float, tag = "1")]
-pub x: f32,
-#[prost(float, tag = "2")]
-pub y: f32,
+    #[prost(float, tag = "1")]
+    pub x: f32,
+    #[prost(float, tag = "2")]
+    pub y: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppPlatformMetadata {
-#[prost(string, tag = "1")]
-pub application: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub node: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub processor: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub application: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub node: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub processor: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppPlatformCloudFunctionRequest {
-#[prost(message, optional, tag = "1")]
-pub app_platform_metadata: ::core::option::Option<AppPlatformMetadata>,
-#[prost(message, repeated, tag = "2")]
-pub annotations: ::prost::alloc::vec::Vec<app_platform_cloud_function_request::StructedInputAnnotation>,
+    #[prost(message, optional, tag = "1")]
+    pub app_platform_metadata: ::core::option::Option<AppPlatformMetadata>,
+    #[prost(message, repeated, tag = "2")]
+    pub annotations:
+        ::prost::alloc::vec::Vec<app_platform_cloud_function_request::StructedInputAnnotation>,
 }
 /// Nested message and enum types in `AppPlatformCloudFunctionRequest`.
 pub mod app_platform_cloud_function_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StructedInputAnnotation {
-#[prost(int64, tag = "1")]
-pub ingestion_time_micros: i64,
-#[prost(message, optional, tag = "2")]
-pub annotation: ::core::option::Option<::prost_types::Struct>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StructedInputAnnotation {
+        #[prost(int64, tag = "1")]
+        pub ingestion_time_micros: i64,
+        #[prost(message, optional, tag = "2")]
+        pub annotation: ::core::option::Option<::prost_types::Struct>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppPlatformCloudFunctionResponse {
-#[prost(message, repeated, tag = "2")]
-pub annotations: ::prost::alloc::vec::Vec<app_platform_cloud_function_response::StructedOutputAnnotation>,
-#[prost(bool, tag = "3")]
-pub annotation_passthrough: bool,
-#[prost(message, repeated, tag = "4")]
-pub events: ::prost::alloc::vec::Vec<AppPlatformEventBody>,
+    #[prost(message, repeated, tag = "2")]
+    pub annotations:
+        ::prost::alloc::vec::Vec<app_platform_cloud_function_response::StructedOutputAnnotation>,
+    #[prost(bool, tag = "3")]
+    pub annotation_passthrough: bool,
+    #[prost(message, repeated, tag = "4")]
+    pub events: ::prost::alloc::vec::Vec<AppPlatformEventBody>,
 }
 /// Nested message and enum types in `AppPlatformCloudFunctionResponse`.
 pub mod app_platform_cloud_function_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StructedOutputAnnotation {
-#[prost(message, optional, tag = "1")]
-pub annotation: ::core::option::Option<::prost_types::Struct>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StructedOutputAnnotation {
+        #[prost(message, optional, tag = "1")]
+        pub annotation: ::core::option::Option<::prost_types::Struct>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppPlatformEventBody {
-#[prost(string, tag = "1")]
-pub event_message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub payload: ::core::option::Option<::prost_types::Struct>,
-#[prost(string, tag = "3")]
-pub event_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub event_message: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub payload: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "3")]
+    pub event_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum StreamAnnotationType {
-Unspecified = 0,
-ActiveZone = 1,
-CrossingLine = 2,
+    Unspecified = 0,
+    ActiveZone = 1,
+    CrossingLine = 2,
 }
 impl StreamAnnotationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-StreamAnnotationType::Unspecified => "STREAM_ANNOTATION_TYPE_UNSPECIFIED",
-StreamAnnotationType::ActiveZone => "STREAM_ANNOTATION_TYPE_ACTIVE_ZONE",
-StreamAnnotationType::CrossingLine => "STREAM_ANNOTATION_TYPE_CROSSING_LINE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STREAM_ANNOTATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"STREAM_ANNOTATION_TYPE_ACTIVE_ZONE" => Some(Self::ActiveZone),
-"STREAM_ANNOTATION_TYPE_CROSSING_LINE" => Some(Self::CrossingLine),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            StreamAnnotationType::Unspecified => "STREAM_ANNOTATION_TYPE_UNSPECIFIED",
+            StreamAnnotationType::ActiveZone => "STREAM_ANNOTATION_TYPE_ACTIVE_ZONE",
+            StreamAnnotationType::CrossingLine => "STREAM_ANNOTATION_TYPE_CROSSING_LINE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "STREAM_ANNOTATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "STREAM_ANNOTATION_TYPE_ACTIVE_ZONE" => Some(Self::ActiveZone),
+            "STREAM_ANNOTATION_TYPE_CROSSING_LINE" => Some(Self::CrossingLine),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3523,22 +4463,22 @@ pub struct UpdateApplicationInstancesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApplicationInstancesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub application_instances: ::prost::alloc::vec::Vec<ApplicationInstance>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub application_instances: ::prost::alloc::vec::Vec<ApplicationInstance>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteApplicationInstancesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub instance_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub instance_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3558,1031 +4498,1058 @@ pub struct UpdateApplicationStreamInputResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApplicationsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApplicationsResponse {
-#[prost(message, repeated, tag = "1")]
-pub applications: ::prost::alloc::vec::Vec<Application>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub applications: ::prost::alloc::vec::Vec<Application>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetApplicationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApplicationRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub application_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub application: ::core::option::Option<Application>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub application_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub application: ::core::option::Option<Application>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApplicationRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub application: ::core::option::Option<Application>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub application: ::core::option::Option<Application>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteApplicationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub force: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployApplicationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub enable_monitoring: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub enable_monitoring: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeployApplicationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplicationStreamInput {
-#[prost(message, optional, tag = "1")]
-pub stream_with_annotation: ::core::option::Option<StreamWithAnnotation>,
+    #[prost(message, optional, tag = "1")]
+    pub stream_with_annotation: ::core::option::Option<StreamWithAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddApplicationStreamInputRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub application_stream_inputs: ::prost::alloc::vec::Vec<ApplicationStreamInput>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub application_stream_inputs: ::prost::alloc::vec::Vec<ApplicationStreamInput>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApplicationStreamInputRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub application_stream_inputs: ::prost::alloc::vec::Vec<ApplicationStreamInput>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub allow_missing: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub application_stream_inputs: ::prost::alloc::vec::Vec<ApplicationStreamInput>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveApplicationStreamInputRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub target_stream_inputs: ::prost::alloc::vec::Vec<remove_application_stream_input_request::TargetStreamInput>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub target_stream_inputs:
+        ::prost::alloc::vec::Vec<remove_application_stream_input_request::TargetStreamInput>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `RemoveApplicationStreamInputRequest`.
 pub mod remove_application_stream_input_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TargetStreamInput {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TargetStreamInput {
+        #[prost(string, tag = "1")]
+        pub stream: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-#[prost(message, repeated, tag = "1")]
-pub instances: ::prost::alloc::vec::Vec<Instance>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub instances: ::prost::alloc::vec::Vec<Instance>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDraftsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDraftsResponse {
-#[prost(message, repeated, tag = "1")]
-pub drafts: ::prost::alloc::vec::Vec<Draft>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub drafts: ::prost::alloc::vec::Vec<Draft>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDraftRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDraftRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub draft_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub draft: ::core::option::Option<Draft>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub draft_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub draft: ::core::option::Option<Draft>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDraftRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub draft: ::core::option::Option<Draft>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub allow_missing: bool,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub draft: ::core::option::Option<Draft>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApplicationInstancesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub application_instances: ::prost::alloc::vec::Vec<update_application_instances_request::UpdateApplicationInstance>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub allow_missing: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub application_instances:
+        ::prost::alloc::vec::Vec<update_application_instances_request::UpdateApplicationInstance>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub allow_missing: bool,
 }
 /// Nested message and enum types in `UpdateApplicationInstancesRequest`.
 pub mod update_application_instances_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateApplicationInstance {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub instance: ::core::option::Option<super::Instance>,
-#[prost(string, tag = "3")]
-pub instance_id: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct UpdateApplicationInstance {
+        #[prost(message, optional, tag = "1")]
+        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+        #[prost(message, optional, tag = "2")]
+        pub instance: ::core::option::Option<super::Instance>,
+        #[prost(string, tag = "3")]
+        pub instance_id: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDraftRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessorsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessorsResponse {
-#[prost(message, repeated, tag = "1")]
-pub processors: ::prost::alloc::vec::Vec<Processor>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub processors: ::prost::alloc::vec::Vec<Processor>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrebuiltProcessorsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPrebuiltProcessorsResponse {
-#[prost(message, repeated, tag = "1")]
-pub processors: ::prost::alloc::vec::Vec<Processor>,
+    #[prost(message, repeated, tag = "1")]
+    pub processors: ::prost::alloc::vec::Vec<Processor>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProcessorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProcessorRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub processor_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub processor: ::core::option::Option<Processor>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub processor_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub processor: ::core::option::Option<Processor>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProcessorRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub processor: ::core::option::Option<Processor>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub processor: ::core::option::Option<Processor>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteProcessorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Application {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub application_configs: ::core::option::Option<ApplicationConfigs>,
-#[prost(message, optional, tag = "8")]
-pub runtime_info: ::core::option::Option<application::ApplicationRuntimeInfo>,
-#[prost(enumeration = "application::State", tag = "9")]
-pub state: i32,
-#[prost(enumeration = "application::BillingMode", tag = "12")]
-pub billing_mode: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub application_configs: ::core::option::Option<ApplicationConfigs>,
+    #[prost(message, optional, tag = "8")]
+    pub runtime_info: ::core::option::Option<application::ApplicationRuntimeInfo>,
+    #[prost(enumeration = "application::State", tag = "9")]
+    pub state: i32,
+    #[prost(enumeration = "application::BillingMode", tag = "12")]
+    pub billing_mode: i32,
 }
 /// Nested message and enum types in `Application`.
 pub mod application {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ApplicationRuntimeInfo {
-#[prost(message, optional, tag = "1")]
-pub deploy_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "3")]
-pub global_output_resources: ::prost::alloc::vec::Vec<application_runtime_info::GlobalOutputResource>,
-#[prost(message, optional, tag = "4")]
-pub monitoring_config: ::core::option::Option<application_runtime_info::MonitoringConfig>,
-}
-/// Nested message and enum types in `ApplicationRuntimeInfo`.
-pub mod application_runtime_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GlobalOutputResource {
-#[prost(string, tag = "1")]
-pub output_resource: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub producer_node: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub key: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MonitoringConfig {
-#[prost(bool, tag = "1")]
-pub enabled: bool,
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Created = 1,
-Deploying = 2,
-Deployed = 3,
-Undeploying = 4,
-Deleted = 5,
-Error = 6,
-Creating = 7,
-Updating = 8,
-Deleting = 9,
-Fixing = 10,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Created => "CREATED",
-State::Deploying => "DEPLOYING",
-State::Deployed => "DEPLOYED",
-State::Undeploying => "UNDEPLOYING",
-State::Deleted => "DELETED",
-State::Error => "ERROR",
-State::Creating => "CREATING",
-State::Updating => "UPDATING",
-State::Deleting => "DELETING",
-State::Fixing => "FIXING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATED" => Some(Self::Created),
-"DEPLOYING" => Some(Self::Deploying),
-"DEPLOYED" => Some(Self::Deployed),
-"UNDEPLOYING" => Some(Self::Undeploying),
-"DELETED" => Some(Self::Deleted),
-"ERROR" => Some(Self::Error),
-"CREATING" => Some(Self::Creating),
-"UPDATING" => Some(Self::Updating),
-"DELETING" => Some(Self::Deleting),
-"FIXING" => Some(Self::Fixing),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BillingMode {
-Unspecified = 0,
-Payg = 1,
-Monthly = 2,
-}
-impl BillingMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BillingMode::Unspecified => "BILLING_MODE_UNSPECIFIED",
-BillingMode::Payg => "PAYG",
-BillingMode::Monthly => "MONTHLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BILLING_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"PAYG" => Some(Self::Payg),
-"MONTHLY" => Some(Self::Monthly),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ApplicationRuntimeInfo {
+        #[prost(message, optional, tag = "1")]
+        pub deploy_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, repeated, tag = "3")]
+        pub global_output_resources:
+            ::prost::alloc::vec::Vec<application_runtime_info::GlobalOutputResource>,
+        #[prost(message, optional, tag = "4")]
+        pub monitoring_config: ::core::option::Option<application_runtime_info::MonitoringConfig>,
+    }
+    /// Nested message and enum types in `ApplicationRuntimeInfo`.
+    pub mod application_runtime_info {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct GlobalOutputResource {
+            #[prost(string, tag = "1")]
+            pub output_resource: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub producer_node: ::prost::alloc::string::String,
+            #[prost(string, tag = "3")]
+            pub key: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct MonitoringConfig {
+            #[prost(bool, tag = "1")]
+            pub enabled: bool,
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Created = 1,
+        Deploying = 2,
+        Deployed = 3,
+        Undeploying = 4,
+        Deleted = 5,
+        Error = 6,
+        Creating = 7,
+        Updating = 8,
+        Deleting = 9,
+        Fixing = 10,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Created => "CREATED",
+                State::Deploying => "DEPLOYING",
+                State::Deployed => "DEPLOYED",
+                State::Undeploying => "UNDEPLOYING",
+                State::Deleted => "DELETED",
+                State::Error => "ERROR",
+                State::Creating => "CREATING",
+                State::Updating => "UPDATING",
+                State::Deleting => "DELETING",
+                State::Fixing => "FIXING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATED" => Some(Self::Created),
+                "DEPLOYING" => Some(Self::Deploying),
+                "DEPLOYED" => Some(Self::Deployed),
+                "UNDEPLOYING" => Some(Self::Undeploying),
+                "DELETED" => Some(Self::Deleted),
+                "ERROR" => Some(Self::Error),
+                "CREATING" => Some(Self::Creating),
+                "UPDATING" => Some(Self::Updating),
+                "DELETING" => Some(Self::Deleting),
+                "FIXING" => Some(Self::Fixing),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BillingMode {
+        Unspecified = 0,
+        Payg = 1,
+        Monthly = 2,
+    }
+    impl BillingMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BillingMode::Unspecified => "BILLING_MODE_UNSPECIFIED",
+                BillingMode::Payg => "PAYG",
+                BillingMode::Monthly => "MONTHLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BILLING_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PAYG" => Some(Self::Payg),
+                "MONTHLY" => Some(Self::Monthly),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplicationConfigs {
-#[prost(message, repeated, tag = "1")]
-pub nodes: ::prost::alloc::vec::Vec<Node>,
-#[prost(message, optional, tag = "3")]
-pub event_delivery_config: ::core::option::Option<application_configs::EventDeliveryConfig>,
+    #[prost(message, repeated, tag = "1")]
+    pub nodes: ::prost::alloc::vec::Vec<Node>,
+    #[prost(message, optional, tag = "3")]
+    pub event_delivery_config: ::core::option::Option<application_configs::EventDeliveryConfig>,
 }
 /// Nested message and enum types in `ApplicationConfigs`.
 pub mod application_configs {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EventDeliveryConfig {
-#[prost(string, tag = "1")]
-pub channel: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub minimal_delivery_interval: ::core::option::Option<::prost_types::Duration>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EventDeliveryConfig {
+        #[prost(string, tag = "1")]
+        pub channel: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub minimal_delivery_interval: ::core::option::Option<::prost_types::Duration>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Node {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub node_config: ::core::option::Option<ProcessorConfig>,
-#[prost(string, tag = "4")]
-pub processor: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "5")]
-pub parents: ::prost::alloc::vec::Vec<node::InputEdge>,
-#[prost(oneof = "node::StreamOutputConfig", tags = "6")]
-pub stream_output_config: ::core::option::Option<node::StreamOutputConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub node_config: ::core::option::Option<ProcessorConfig>,
+    #[prost(string, tag = "4")]
+    pub processor: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub parents: ::prost::alloc::vec::Vec<node::InputEdge>,
+    #[prost(oneof = "node::StreamOutputConfig", tags = "6")]
+    pub stream_output_config: ::core::option::Option<node::StreamOutputConfig>,
 }
 /// Nested message and enum types in `Node`.
 pub mod node {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InputEdge {
-#[prost(string, tag = "1")]
-pub parent_node: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub parent_output_channel: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub connected_input_channel: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum StreamOutputConfig {
-#[prost(bool, tag = "6")]
-OutputAllOutputChannelsToStream(bool),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InputEdge {
+        #[prost(string, tag = "1")]
+        pub parent_node: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub parent_output_channel: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub connected_input_channel: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum StreamOutputConfig {
+        #[prost(bool, tag = "6")]
+        OutputAllOutputChannelsToStream(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Draft {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "3")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub draft_application_configs: ::core::option::Option<ApplicationConfigs>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "3")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub draft_application_configs: ::core::option::Option<ApplicationConfigs>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "3")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub description: ::prost::alloc::string::String,
-#[prost(enumeration = "instance::InstanceType", tag = "10")]
-pub instance_type: i32,
-#[prost(message, repeated, tag = "6")]
-pub input_resources: ::prost::alloc::vec::Vec<instance::InputResource>,
-#[prost(message, repeated, tag = "7")]
-pub output_resources: ::prost::alloc::vec::Vec<instance::OutputResource>,
-#[prost(enumeration = "instance::State", tag = "9")]
-pub state: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "3")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(enumeration = "instance::InstanceType", tag = "10")]
+    pub instance_type: i32,
+    #[prost(message, repeated, tag = "6")]
+    pub input_resources: ::prost::alloc::vec::Vec<instance::InputResource>,
+    #[prost(message, repeated, tag = "7")]
+    pub output_resources: ::prost::alloc::vec::Vec<instance::OutputResource>,
+    #[prost(enumeration = "instance::State", tag = "9")]
+    pub state: i32,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InputResource {
-#[prost(enumeration = "super::DataType", tag = "6")]
-pub data_type: i32,
-#[prost(string, tag = "2")]
-pub consumer_node: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub input_resource_binding: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub annotations: ::core::option::Option<super::ResourceAnnotations>,
-#[prost(oneof = "input_resource::InputResourceInformation", tags = "1, 4")]
-pub input_resource_information: ::core::option::Option<input_resource::InputResourceInformation>,
-}
-/// Nested message and enum types in `InputResource`.
-pub mod input_resource {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum InputResourceInformation {
-#[prost(string, tag = "1")]
-InputResource(::prost::alloc::string::String),
-#[prost(message, tag = "4")]
-AnnotatedStream(super::super::StreamWithAnnotation),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OutputResource {
-#[prost(string, tag = "1")]
-pub output_resource: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub producer_node: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub output_resource_binding: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub is_temporary: bool,
-#[prost(bool, tag = "5")]
-pub autogen: bool,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum InstanceType {
-Unspecified = 0,
-StreamingPrediction = 1,
-BatchPrediction = 2,
-OnlinePrediction = 3,
-}
-impl InstanceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-InstanceType::Unspecified => "INSTANCE_TYPE_UNSPECIFIED",
-InstanceType::StreamingPrediction => "STREAMING_PREDICTION",
-InstanceType::BatchPrediction => "BATCH_PREDICTION",
-InstanceType::OnlinePrediction => "ONLINE_PREDICTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INSTANCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"STREAMING_PREDICTION" => Some(Self::StreamingPrediction),
-"BATCH_PREDICTION" => Some(Self::BatchPrediction),
-"ONLINE_PREDICTION" => Some(Self::OnlinePrediction),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Created = 2,
-Deploying = 3,
-Deployed = 4,
-Undeploying = 5,
-Deleted = 6,
-Error = 7,
-Updating = 8,
-Deleting = 9,
-Fixing = 10,
-Finished = 11,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Created => "CREATED",
-State::Deploying => "DEPLOYING",
-State::Deployed => "DEPLOYED",
-State::Undeploying => "UNDEPLOYING",
-State::Deleted => "DELETED",
-State::Error => "ERROR",
-State::Updating => "UPDATING",
-State::Deleting => "DELETING",
-State::Fixing => "FIXING",
-State::Finished => "FINISHED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"CREATED" => Some(Self::Created),
-"DEPLOYING" => Some(Self::Deploying),
-"DEPLOYED" => Some(Self::Deployed),
-"UNDEPLOYING" => Some(Self::Undeploying),
-"DELETED" => Some(Self::Deleted),
-"ERROR" => Some(Self::Error),
-"UPDATING" => Some(Self::Updating),
-"DELETING" => Some(Self::Deleting),
-"FIXING" => Some(Self::Fixing),
-"FINISHED" => Some(Self::Finished),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InputResource {
+        #[prost(enumeration = "super::DataType", tag = "6")]
+        pub data_type: i32,
+        #[prost(string, tag = "2")]
+        pub consumer_node: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub input_resource_binding: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "5")]
+        pub annotations: ::core::option::Option<super::ResourceAnnotations>,
+        #[prost(oneof = "input_resource::InputResourceInformation", tags = "1, 4")]
+        pub input_resource_information:
+            ::core::option::Option<input_resource::InputResourceInformation>,
+    }
+    /// Nested message and enum types in `InputResource`.
+    pub mod input_resource {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum InputResourceInformation {
+            #[prost(string, tag = "1")]
+            InputResource(::prost::alloc::string::String),
+            #[prost(message, tag = "4")]
+            AnnotatedStream(super::super::StreamWithAnnotation),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OutputResource {
+        #[prost(string, tag = "1")]
+        pub output_resource: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub producer_node: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub output_resource_binding: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub is_temporary: bool,
+        #[prost(bool, tag = "5")]
+        pub autogen: bool,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum InstanceType {
+        Unspecified = 0,
+        StreamingPrediction = 1,
+        BatchPrediction = 2,
+        OnlinePrediction = 3,
+    }
+    impl InstanceType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                InstanceType::Unspecified => "INSTANCE_TYPE_UNSPECIFIED",
+                InstanceType::StreamingPrediction => "STREAMING_PREDICTION",
+                InstanceType::BatchPrediction => "BATCH_PREDICTION",
+                InstanceType::OnlinePrediction => "ONLINE_PREDICTION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INSTANCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STREAMING_PREDICTION" => Some(Self::StreamingPrediction),
+                "BATCH_PREDICTION" => Some(Self::BatchPrediction),
+                "ONLINE_PREDICTION" => Some(Self::OnlinePrediction),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Created = 2,
+        Deploying = 3,
+        Deployed = 4,
+        Undeploying = 5,
+        Deleted = 6,
+        Error = 7,
+        Updating = 8,
+        Deleting = 9,
+        Fixing = 10,
+        Finished = 11,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Created => "CREATED",
+                State::Deploying => "DEPLOYING",
+                State::Deployed => "DEPLOYED",
+                State::Undeploying => "UNDEPLOYING",
+                State::Deleted => "DELETED",
+                State::Error => "ERROR",
+                State::Updating => "UPDATING",
+                State::Deleting => "DELETING",
+                State::Fixing => "FIXING",
+                State::Finished => "FINISHED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "CREATED" => Some(Self::Created),
+                "DEPLOYING" => Some(Self::Deploying),
+                "DEPLOYED" => Some(Self::Deployed),
+                "UNDEPLOYING" => Some(Self::Undeploying),
+                "DELETED" => Some(Self::Deleted),
+                "ERROR" => Some(Self::Error),
+                "UPDATING" => Some(Self::Updating),
+                "DELETING" => Some(Self::Deleting),
+                "FIXING" => Some(Self::Fixing),
+                "FINISHED" => Some(Self::Finished),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplicationInstance {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub instance: ::core::option::Option<Instance>,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Processor {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub description: ::prost::alloc::string::String,
-#[prost(enumeration = "processor::ProcessorType", tag = "6")]
-pub processor_type: i32,
-#[prost(enumeration = "ModelType", tag = "13")]
-pub model_type: i32,
-#[prost(message, optional, tag = "7")]
-pub custom_processor_source_info: ::core::option::Option<CustomProcessorSourceInfo>,
-#[prost(enumeration = "processor::ProcessorState", tag = "8")]
-pub state: i32,
-#[prost(message, optional, tag = "11")]
-pub processor_io_spec: ::core::option::Option<ProcessorIoSpec>,
-#[prost(string, tag = "14")]
-pub configuration_typeurl: ::prost::alloc::string::String,
-#[prost(enumeration = "StreamAnnotationType", repeated, packed = "false", tag = "15")]
-pub supported_annotation_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(bool, tag = "17")]
-pub supports_post_processing: bool,
-#[prost(enumeration = "instance::InstanceType", repeated, tag = "18")]
-pub supported_instance_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(enumeration = "processor::ProcessorType", tag = "6")]
+    pub processor_type: i32,
+    #[prost(enumeration = "ModelType", tag = "13")]
+    pub model_type: i32,
+    #[prost(message, optional, tag = "7")]
+    pub custom_processor_source_info: ::core::option::Option<CustomProcessorSourceInfo>,
+    #[prost(enumeration = "processor::ProcessorState", tag = "8")]
+    pub state: i32,
+    #[prost(message, optional, tag = "11")]
+    pub processor_io_spec: ::core::option::Option<ProcessorIoSpec>,
+    #[prost(string, tag = "14")]
+    pub configuration_typeurl: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "StreamAnnotationType",
+        repeated,
+        packed = "false",
+        tag = "15"
+    )]
+    pub supported_annotation_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(bool, tag = "17")]
+    pub supports_post_processing: bool,
+    #[prost(enumeration = "instance::InstanceType", repeated, tag = "18")]
+    pub supported_instance_types: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `Processor`.
 pub mod processor {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ProcessorType {
-Unspecified = 0,
-Pretrained = 1,
-Custom = 2,
-Connector = 3,
-}
-impl ProcessorType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ProcessorType::Unspecified => "PROCESSOR_TYPE_UNSPECIFIED",
-ProcessorType::Pretrained => "PRETRAINED",
-ProcessorType::Custom => "CUSTOM",
-ProcessorType::Connector => "CONNECTOR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROCESSOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PRETRAINED" => Some(Self::Pretrained),
-"CUSTOM" => Some(Self::Custom),
-"CONNECTOR" => Some(Self::Connector),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ProcessorState {
-Unspecified = 0,
-Creating = 1,
-Active = 2,
-Deleting = 3,
-Failed = 4,
-}
-impl ProcessorState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ProcessorState::Unspecified => "PROCESSOR_STATE_UNSPECIFIED",
-ProcessorState::Creating => "CREATING",
-ProcessorState::Active => "ACTIVE",
-ProcessorState::Deleting => "DELETING",
-ProcessorState::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROCESSOR_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"ACTIVE" => Some(Self::Active),
-"DELETING" => Some(Self::Deleting),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ProcessorType {
+        Unspecified = 0,
+        Pretrained = 1,
+        Custom = 2,
+        Connector = 3,
+    }
+    impl ProcessorType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ProcessorType::Unspecified => "PROCESSOR_TYPE_UNSPECIFIED",
+                ProcessorType::Pretrained => "PRETRAINED",
+                ProcessorType::Custom => "CUSTOM",
+                ProcessorType::Connector => "CONNECTOR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROCESSOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PRETRAINED" => Some(Self::Pretrained),
+                "CUSTOM" => Some(Self::Custom),
+                "CONNECTOR" => Some(Self::Connector),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ProcessorState {
+        Unspecified = 0,
+        Creating = 1,
+        Active = 2,
+        Deleting = 3,
+        Failed = 4,
+    }
+    impl ProcessorState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ProcessorState::Unspecified => "PROCESSOR_STATE_UNSPECIFIED",
+                ProcessorState::Creating => "CREATING",
+                ProcessorState::Active => "ACTIVE",
+                ProcessorState::Deleting => "DELETING",
+                ProcessorState::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROCESSOR_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "ACTIVE" => Some(Self::Active),
+                "DELETING" => Some(Self::Deleting),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessorIoSpec {
-#[prost(message, repeated, tag = "3")]
-pub graph_input_channel_specs: ::prost::alloc::vec::Vec<processor_io_spec::GraphInputChannelSpec>,
-#[prost(message, repeated, tag = "4")]
-pub graph_output_channel_specs: ::prost::alloc::vec::Vec<processor_io_spec::GraphOutputChannelSpec>,
-#[prost(message, repeated, tag = "5")]
-pub instance_resource_input_binding_specs: ::prost::alloc::vec::Vec<processor_io_spec::InstanceResourceInputBindingSpec>,
-#[prost(message, repeated, tag = "6")]
-pub instance_resource_output_binding_specs: ::prost::alloc::vec::Vec<processor_io_spec::InstanceResourceOutputBindingSpec>,
+    #[prost(message, repeated, tag = "3")]
+    pub graph_input_channel_specs:
+        ::prost::alloc::vec::Vec<processor_io_spec::GraphInputChannelSpec>,
+    #[prost(message, repeated, tag = "4")]
+    pub graph_output_channel_specs:
+        ::prost::alloc::vec::Vec<processor_io_spec::GraphOutputChannelSpec>,
+    #[prost(message, repeated, tag = "5")]
+    pub instance_resource_input_binding_specs:
+        ::prost::alloc::vec::Vec<processor_io_spec::InstanceResourceInputBindingSpec>,
+    #[prost(message, repeated, tag = "6")]
+    pub instance_resource_output_binding_specs:
+        ::prost::alloc::vec::Vec<processor_io_spec::InstanceResourceOutputBindingSpec>,
 }
 /// Nested message and enum types in `ProcessorIOSpec`.
 pub mod processor_io_spec {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GraphInputChannelSpec {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "super::DataType", tag = "2")]
-pub data_type: i32,
-#[prost(string, repeated, tag = "5")]
-pub accepted_data_type_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "3")]
-pub required: bool,
-#[prost(int64, tag = "4")]
-pub max_connection_allowed: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GraphOutputChannelSpec {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "super::DataType", tag = "2")]
-pub data_type: i32,
-#[prost(string, tag = "3")]
-pub data_type_uri: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstanceResourceInputBindingSpec {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(oneof = "instance_resource_input_binding_spec::ResourceType", tags = "2, 3")]
-pub resource_type: ::core::option::Option<instance_resource_input_binding_spec::ResourceType>,
-}
-/// Nested message and enum types in `InstanceResourceInputBindingSpec`.
-pub mod instance_resource_input_binding_spec {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ResourceType {
-#[prost(string, tag = "2")]
-ConfigTypeUri(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-ResourceTypeUri(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstanceResourceOutputBindingSpec {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource_type_uri: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub explicit: bool,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GraphInputChannelSpec {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(enumeration = "super::DataType", tag = "2")]
+        pub data_type: i32,
+        #[prost(string, repeated, tag = "5")]
+        pub accepted_data_type_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(bool, tag = "3")]
+        pub required: bool,
+        #[prost(int64, tag = "4")]
+        pub max_connection_allowed: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GraphOutputChannelSpec {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(enumeration = "super::DataType", tag = "2")]
+        pub data_type: i32,
+        #[prost(string, tag = "3")]
+        pub data_type_uri: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstanceResourceInputBindingSpec {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(
+            oneof = "instance_resource_input_binding_spec::ResourceType",
+            tags = "2, 3"
+        )]
+        pub resource_type:
+            ::core::option::Option<instance_resource_input_binding_spec::ResourceType>,
+    }
+    /// Nested message and enum types in `InstanceResourceInputBindingSpec`.
+    pub mod instance_resource_input_binding_spec {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum ResourceType {
+            #[prost(string, tag = "2")]
+            ConfigTypeUri(::prost::alloc::string::String),
+            #[prost(string, tag = "3")]
+            ResourceTypeUri(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstanceResourceOutputBindingSpec {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub resource_type_uri: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub explicit: bool,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomProcessorSourceInfo {
-#[prost(enumeration = "custom_processor_source_info::SourceType", tag = "1")]
-pub source_type: i32,
-#[prost(map = "string, string", tag = "4")]
-pub additional_info: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub model_schema: ::core::option::Option<custom_processor_source_info::ModelSchema>,
-#[prost(oneof = "custom_processor_source_info::ArtifactPath", tags = "2, 3")]
-pub artifact_path: ::core::option::Option<custom_processor_source_info::ArtifactPath>,
+    #[prost(enumeration = "custom_processor_source_info::SourceType", tag = "1")]
+    pub source_type: i32,
+    #[prost(map = "string, string", tag = "4")]
+    pub additional_info:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub model_schema: ::core::option::Option<custom_processor_source_info::ModelSchema>,
+    #[prost(oneof = "custom_processor_source_info::ArtifactPath", tags = "2, 3")]
+    pub artifact_path: ::core::option::Option<custom_processor_source_info::ArtifactPath>,
 }
 /// Nested message and enum types in `CustomProcessorSourceInfo`.
 pub mod custom_processor_source_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProductRecognizerArtifact {
-#[prost(string, tag = "1")]
-pub retail_product_recognition_index: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub vertex_model: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ModelSchema {
-#[prost(message, optional, tag = "1")]
-pub instances_schema: ::core::option::Option<super::GcsSource>,
-#[prost(message, optional, tag = "2")]
-pub parameters_schema: ::core::option::Option<super::GcsSource>,
-#[prost(message, optional, tag = "3")]
-pub predictions_schema: ::core::option::Option<super::GcsSource>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SourceType {
-Unspecified = 0,
-VertexAutoml = 1,
-VertexCustom = 2,
-ProductRecognizer = 3,
-}
-impl SourceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
-SourceType::VertexAutoml => "VERTEX_AUTOML",
-SourceType::VertexCustom => "VERTEX_CUSTOM",
-SourceType::ProductRecognizer => "PRODUCT_RECOGNIZER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"VERTEX_AUTOML" => Some(Self::VertexAutoml),
-"VERTEX_CUSTOM" => Some(Self::VertexCustom),
-"PRODUCT_RECOGNIZER" => Some(Self::ProductRecognizer),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ArtifactPath {
-#[prost(string, tag = "2")]
-VertexModel(::prost::alloc::string::String),
-#[prost(message, tag = "3")]
-ProductRecognizerArtifact(ProductRecognizerArtifact),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProductRecognizerArtifact {
+        #[prost(string, tag = "1")]
+        pub retail_product_recognition_index: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub vertex_model: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ModelSchema {
+        #[prost(message, optional, tag = "1")]
+        pub instances_schema: ::core::option::Option<super::GcsSource>,
+        #[prost(message, optional, tag = "2")]
+        pub parameters_schema: ::core::option::Option<super::GcsSource>,
+        #[prost(message, optional, tag = "3")]
+        pub predictions_schema: ::core::option::Option<super::GcsSource>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SourceType {
+        Unspecified = 0,
+        VertexAutoml = 1,
+        VertexCustom = 2,
+        ProductRecognizer = 3,
+    }
+    impl SourceType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
+                SourceType::VertexAutoml => "VERTEX_AUTOML",
+                SourceType::VertexCustom => "VERTEX_CUSTOM",
+                SourceType::ProductRecognizer => "PRODUCT_RECOGNIZER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "VERTEX_AUTOML" => Some(Self::VertexAutoml),
+                "VERTEX_CUSTOM" => Some(Self::VertexCustom),
+                "PRODUCT_RECOGNIZER" => Some(Self::ProductRecognizer),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ArtifactPath {
+        #[prost(string, tag = "2")]
+        VertexModel(::prost::alloc::string::String),
+        #[prost(message, tag = "3")]
+        ProductRecognizerArtifact(ProductRecognizerArtifact),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessorConfig {
-#[prost(message, optional, tag = "26")]
-pub experimental_config: ::core::option::Option<::prost_types::Struct>,
-#[prost(oneof = "processor_config::ProcessorConfig", tags = "9, 20, 10, 11, 12, 15, 13, 14, 17, 18, 19, 27, 21, 22, 25, 28")]
-pub processor_config: ::core::option::Option<processor_config::ProcessorConfig>,
+    #[prost(message, optional, tag = "26")]
+    pub experimental_config: ::core::option::Option<::prost_types::Struct>,
+    #[prost(
+        oneof = "processor_config::ProcessorConfig",
+        tags = "9, 20, 10, 11, 12, 15, 13, 14, 17, 18, 19, 27, 21, 22, 25, 28"
+    )]
+    pub processor_config: ::core::option::Option<processor_config::ProcessorConfig>,
 }
 /// Nested message and enum types in `ProcessorConfig`.
 pub mod processor_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ProcessorConfig {
-#[prost(message, tag = "9")]
-VideoStreamInputConfig(super::VideoStreamInputConfig),
-#[prost(message, tag = "20")]
-AiEnabledDevicesInputConfig(super::AiEnabledDevicesInputConfig),
-#[prost(message, tag = "10")]
-MediaWarehouseConfig(super::MediaWarehouseConfig),
-#[prost(message, tag = "11")]
-PersonBlurConfig(super::PersonBlurConfig),
-#[prost(message, tag = "12")]
-OccupancyCountConfig(super::OccupancyCountConfig),
-#[prost(message, tag = "15")]
-PersonVehicleDetectionConfig(super::PersonVehicleDetectionConfig),
-#[prost(message, tag = "13")]
-VertexAutomlVisionConfig(super::VertexAutoMlVisionConfig),
-#[prost(message, tag = "14")]
-VertexAutomlVideoConfig(super::VertexAutoMlVideoConfig),
-#[prost(message, tag = "17")]
-VertexCustomConfig(super::VertexCustomConfig),
-#[prost(message, tag = "18")]
-GeneralObjectDetectionConfig(super::GeneralObjectDetectionConfig),
-#[prost(message, tag = "19")]
-BigQueryConfig(super::BigQueryConfig),
-#[prost(message, tag = "27")]
-GcsOutputConfig(super::GcsOutputConfig),
-#[prost(message, tag = "21")]
-ProductRecognizerConfig(super::ProductRecognizerConfig),
-#[prost(message, tag = "22")]
-PersonalProtectiveEquipmentDetectionConfig(super::PersonalProtectiveEquipmentDetectionConfig),
-#[prost(message, tag = "25")]
-TagRecognizerConfig(super::TagRecognizerConfig),
-#[prost(message, tag = "28")]
-UniversalInputConfig(super::UniversalInputConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ProcessorConfig {
+        #[prost(message, tag = "9")]
+        VideoStreamInputConfig(super::VideoStreamInputConfig),
+        #[prost(message, tag = "20")]
+        AiEnabledDevicesInputConfig(super::AiEnabledDevicesInputConfig),
+        #[prost(message, tag = "10")]
+        MediaWarehouseConfig(super::MediaWarehouseConfig),
+        #[prost(message, tag = "11")]
+        PersonBlurConfig(super::PersonBlurConfig),
+        #[prost(message, tag = "12")]
+        OccupancyCountConfig(super::OccupancyCountConfig),
+        #[prost(message, tag = "15")]
+        PersonVehicleDetectionConfig(super::PersonVehicleDetectionConfig),
+        #[prost(message, tag = "13")]
+        VertexAutomlVisionConfig(super::VertexAutoMlVisionConfig),
+        #[prost(message, tag = "14")]
+        VertexAutomlVideoConfig(super::VertexAutoMlVideoConfig),
+        #[prost(message, tag = "17")]
+        VertexCustomConfig(super::VertexCustomConfig),
+        #[prost(message, tag = "18")]
+        GeneralObjectDetectionConfig(super::GeneralObjectDetectionConfig),
+        #[prost(message, tag = "19")]
+        BigQueryConfig(super::BigQueryConfig),
+        #[prost(message, tag = "27")]
+        GcsOutputConfig(super::GcsOutputConfig),
+        #[prost(message, tag = "21")]
+        ProductRecognizerConfig(super::ProductRecognizerConfig),
+        #[prost(message, tag = "22")]
+        PersonalProtectiveEquipmentDetectionConfig(
+            super::PersonalProtectiveEquipmentDetectionConfig,
+        ),
+        #[prost(message, tag = "25")]
+        TagRecognizerConfig(super::TagRecognizerConfig),
+        #[prost(message, tag = "28")]
+        UniversalInputConfig(super::UniversalInputConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamWithAnnotation {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub application_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
-#[prost(message, repeated, tag = "3")]
-pub node_annotations: ::prost::alloc::vec::Vec<stream_with_annotation::NodeAnnotation>,
+    #[prost(string, tag = "1")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub application_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
+    #[prost(message, repeated, tag = "3")]
+    pub node_annotations: ::prost::alloc::vec::Vec<stream_with_annotation::NodeAnnotation>,
 }
 /// Nested message and enum types in `StreamWithAnnotation`.
 pub mod stream_with_annotation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NodeAnnotation {
-#[prost(string, tag = "1")]
-pub node: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub annotations: ::prost::alloc::vec::Vec<super::StreamAnnotation>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NodeAnnotation {
+        #[prost(string, tag = "1")]
+        pub node: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "2")]
+        pub annotations: ::prost::alloc::vec::Vec<super::StreamAnnotation>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplicationNodeAnnotation {
-#[prost(string, tag = "1")]
-pub node: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
+    #[prost(string, tag = "1")]
+    pub node: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceAnnotations {
-#[prost(message, repeated, tag = "1")]
-pub application_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
-#[prost(message, repeated, tag = "2")]
-pub node_annotations: ::prost::alloc::vec::Vec<ApplicationNodeAnnotation>,
+    #[prost(message, repeated, tag = "1")]
+    pub application_annotations: ::prost::alloc::vec::Vec<StreamAnnotation>,
+    #[prost(message, repeated, tag = "2")]
+    pub node_annotations: ::prost::alloc::vec::Vec<ApplicationNodeAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoStreamInputConfig {
-#[deprecated]
-#[prost(string, repeated, tag = "1")]
-pub streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[deprecated]
-#[prost(message, repeated, tag = "2")]
-pub streams_with_annotation: ::prost::alloc::vec::Vec<StreamWithAnnotation>,
+    #[deprecated]
+    #[prost(string, repeated, tag = "1")]
+    pub streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "2")]
+    pub streams_with_annotation: ::prost::alloc::vec::Vec<StreamWithAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4590,81 +5557,81 @@ pub struct AiEnabledDevicesInputConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MediaWarehouseConfig {
-#[prost(string, tag = "1")]
-pub corpus: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "2")]
-pub region: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub ttl: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub corpus: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "2")]
+    pub region: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub ttl: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PersonBlurConfig {
-#[prost(enumeration = "person_blur_config::PersonBlurType", tag = "1")]
-pub person_blur_type: i32,
-#[prost(bool, tag = "2")]
-pub faces_only: bool,
+    #[prost(enumeration = "person_blur_config::PersonBlurType", tag = "1")]
+    pub person_blur_type: i32,
+    #[prost(bool, tag = "2")]
+    pub faces_only: bool,
 }
 /// Nested message and enum types in `PersonBlurConfig`.
 pub mod person_blur_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PersonBlurType {
-Unspecified = 0,
-FullOcculusion = 1,
-BlurFilter = 2,
-}
-impl PersonBlurType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PersonBlurType::Unspecified => "PERSON_BLUR_TYPE_UNSPECIFIED",
-PersonBlurType::FullOcculusion => "FULL_OCCULUSION",
-PersonBlurType::BlurFilter => "BLUR_FILTER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PERSON_BLUR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FULL_OCCULUSION" => Some(Self::FullOcculusion),
-"BLUR_FILTER" => Some(Self::BlurFilter),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PersonBlurType {
+        Unspecified = 0,
+        FullOcculusion = 1,
+        BlurFilter = 2,
+    }
+    impl PersonBlurType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PersonBlurType::Unspecified => "PERSON_BLUR_TYPE_UNSPECIFIED",
+                PersonBlurType::FullOcculusion => "FULL_OCCULUSION",
+                PersonBlurType::BlurFilter => "BLUR_FILTER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PERSON_BLUR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "FULL_OCCULUSION" => Some(Self::FullOcculusion),
+                "BLUR_FILTER" => Some(Self::BlurFilter),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct OccupancyCountConfig {
-#[prost(bool, tag = "1")]
-pub enable_people_counting: bool,
-#[prost(bool, tag = "2")]
-pub enable_vehicle_counting: bool,
-#[prost(bool, tag = "3")]
-pub enable_dwelling_time_tracking: bool,
+    #[prost(bool, tag = "1")]
+    pub enable_people_counting: bool,
+    #[prost(bool, tag = "2")]
+    pub enable_vehicle_counting: bool,
+    #[prost(bool, tag = "3")]
+    pub enable_dwelling_time_tracking: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PersonVehicleDetectionConfig {
-#[prost(bool, tag = "1")]
-pub enable_people_counting: bool,
-#[prost(bool, tag = "2")]
-pub enable_vehicle_counting: bool,
+    #[prost(bool, tag = "1")]
+    pub enable_people_counting: bool,
+    #[prost(bool, tag = "2")]
+    pub enable_vehicle_counting: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PersonalProtectiveEquipmentDetectionConfig {
-#[prost(bool, tag = "1")]
-pub enable_face_coverage_detection: bool,
-#[prost(bool, tag = "2")]
-pub enable_head_coverage_detection: bool,
-#[prost(bool, tag = "3")]
-pub enable_hands_coverage_detection: bool,
+    #[prost(bool, tag = "1")]
+    pub enable_face_coverage_detection: bool,
+    #[prost(bool, tag = "2")]
+    pub enable_head_coverage_detection: bool,
+    #[prost(bool, tag = "3")]
+    pub enable_hands_coverage_detection: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4672,52 +5639,53 @@ pub struct GeneralObjectDetectionConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryConfig {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub cloud_function_mapping: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(bool, tag = "3")]
-pub create_default_table_if_not_exists: bool,
+    #[prost(string, tag = "1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub cloud_function_mapping:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(bool, tag = "3")]
+    pub create_default_table_if_not_exists: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VertexAutoMlVisionConfig {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VertexAutoMlVideoConfig {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(string, repeated, tag = "2")]
-pub blocked_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, tag = "3")]
-pub max_predictions: i32,
-#[prost(float, tag = "4")]
-pub bounding_box_size_limit: f32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(string, repeated, tag = "2")]
+    pub blocked_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, tag = "3")]
+    pub max_predictions: i32,
+    #[prost(float, tag = "4")]
+    pub bounding_box_size_limit: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VertexCustomConfig {
-#[prost(int32, tag = "1")]
-pub max_prediction_fps: i32,
-#[prost(message, optional, tag = "2")]
-pub dedicated_resources: ::core::option::Option<DedicatedResources>,
-#[prost(string, tag = "3")]
-pub post_processing_cloud_function: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub attach_application_metadata: bool,
-#[prost(string, optional, tag = "6")]
-pub dynamic_config_input_topic: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, tag = "1")]
+    pub max_prediction_fps: i32,
+    #[prost(message, optional, tag = "2")]
+    pub dedicated_resources: ::core::option::Option<DedicatedResources>,
+    #[prost(string, tag = "3")]
+    pub post_processing_cloud_function: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub attach_application_metadata: bool,
+    #[prost(string, optional, tag = "6")]
+    pub dynamic_config_input_topic: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsOutputConfig {
-#[prost(string, tag = "1")]
-pub gcs_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub gcs_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4725,960 +5693,1410 @@ pub struct UniversalInputConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MachineSpec {
-#[prost(string, tag = "1")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(enumeration = "AcceleratorType", tag = "2")]
-pub accelerator_type: i32,
-#[prost(int32, tag = "3")]
-pub accelerator_count: i32,
+    #[prost(string, tag = "1")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(enumeration = "AcceleratorType", tag = "2")]
+    pub accelerator_type: i32,
+    #[prost(int32, tag = "3")]
+    pub accelerator_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutoscalingMetricSpec {
-#[prost(string, tag = "1")]
-pub metric_name: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub target: i32,
+    #[prost(string, tag = "1")]
+    pub metric_name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub target: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DedicatedResources {
-#[prost(message, optional, tag = "1")]
-pub machine_spec: ::core::option::Option<MachineSpec>,
-#[prost(int32, tag = "2")]
-pub min_replica_count: i32,
-#[prost(int32, tag = "3")]
-pub max_replica_count: i32,
-#[prost(message, repeated, tag = "4")]
-pub autoscaling_metric_specs: ::prost::alloc::vec::Vec<AutoscalingMetricSpec>,
+    #[prost(message, optional, tag = "1")]
+    pub machine_spec: ::core::option::Option<MachineSpec>,
+    #[prost(int32, tag = "2")]
+    pub min_replica_count: i32,
+    #[prost(int32, tag = "3")]
+    pub max_replica_count: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub autoscaling_metric_specs: ::prost::alloc::vec::Vec<AutoscalingMetricSpec>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductRecognizerConfig {
-#[prost(string, tag = "1")]
-pub retail_endpoint: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub recognition_confidence_threshold: f32,
+    #[prost(string, tag = "1")]
+    pub retail_endpoint: ::prost::alloc::string::String,
+    #[prost(float, tag = "2")]
+    pub recognition_confidence_threshold: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagRecognizerConfig {
-#[prost(float, tag = "1")]
-pub entity_detection_confidence_threshold: f32,
-#[prost(message, optional, tag = "2")]
-pub tag_parsing_config: ::core::option::Option<TagParsingConfig>,
+    #[prost(float, tag = "1")]
+    pub entity_detection_confidence_threshold: f32,
+    #[prost(message, optional, tag = "2")]
+    pub tag_parsing_config: ::core::option::Option<TagParsingConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagParsingConfig {
-#[prost(message, repeated, tag = "1")]
-pub entity_parsing_configs: ::prost::alloc::vec::Vec<tag_parsing_config::EntityParsingConfig>,
+    #[prost(message, repeated, tag = "1")]
+    pub entity_parsing_configs: ::prost::alloc::vec::Vec<tag_parsing_config::EntityParsingConfig>,
 }
 /// Nested message and enum types in `TagParsingConfig`.
 pub mod tag_parsing_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EntityParsingConfig {
-#[prost(string, tag = "1")]
-pub entity_class: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub regex: ::prost::alloc::string::String,
-#[prost(enumeration = "entity_parsing_config::EntityMatchingStrategy", tag = "3")]
-pub entity_matching_strategy: i32,
-}
-/// Nested message and enum types in `EntityParsingConfig`.
-pub mod entity_parsing_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EntityMatchingStrategy {
-Unspecified = 0,
-MultiLineMatching = 1,
-MaxOverlapArea = 2,
-}
-impl EntityMatchingStrategy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EntityMatchingStrategy::Unspecified => "ENTITY_MATCHING_STRATEGY_UNSPECIFIED",
-EntityMatchingStrategy::MultiLineMatching => "MULTI_LINE_MATCHING",
-EntityMatchingStrategy::MaxOverlapArea => "MAX_OVERLAP_AREA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENTITY_MATCHING_STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
-"MULTI_LINE_MATCHING" => Some(Self::MultiLineMatching),
-"MAX_OVERLAP_AREA" => Some(Self::MaxOverlapArea),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EntityParsingConfig {
+        #[prost(string, tag = "1")]
+        pub entity_class: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub regex: ::prost::alloc::string::String,
+        #[prost(
+            enumeration = "entity_parsing_config::EntityMatchingStrategy",
+            tag = "3"
+        )]
+        pub entity_matching_strategy: i32,
+    }
+    /// Nested message and enum types in `EntityParsingConfig`.
+    pub mod entity_parsing_config {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum EntityMatchingStrategy {
+            Unspecified = 0,
+            MultiLineMatching = 1,
+            MaxOverlapArea = 2,
+        }
+        impl EntityMatchingStrategy {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    EntityMatchingStrategy::Unspecified => "ENTITY_MATCHING_STRATEGY_UNSPECIFIED",
+                    EntityMatchingStrategy::MultiLineMatching => "MULTI_LINE_MATCHING",
+                    EntityMatchingStrategy::MaxOverlapArea => "MAX_OVERLAP_AREA",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "ENTITY_MATCHING_STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "MULTI_LINE_MATCHING" => Some(Self::MultiLineMatching),
+                    "MAX_OVERLAP_AREA" => Some(Self::MaxOverlapArea),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ModelType {
-Unspecified = 0,
-ImageClassification = 1,
-ObjectDetection = 2,
-VideoClassification = 3,
-VideoObjectTracking = 4,
-VideoActionRecognition = 5,
-OccupancyCounting = 6,
-PersonBlur = 7,
-VertexCustom = 8,
-ProductRecognizer = 9,
-TagRecognizer = 10,
-SynthId = 15,
+    Unspecified = 0,
+    ImageClassification = 1,
+    ObjectDetection = 2,
+    VideoClassification = 3,
+    VideoObjectTracking = 4,
+    VideoActionRecognition = 5,
+    OccupancyCounting = 6,
+    PersonBlur = 7,
+    VertexCustom = 8,
+    ProductRecognizer = 9,
+    TagRecognizer = 10,
+    SynthId = 15,
 }
 impl ModelType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ModelType::Unspecified => "MODEL_TYPE_UNSPECIFIED",
-ModelType::ImageClassification => "IMAGE_CLASSIFICATION",
-ModelType::ObjectDetection => "OBJECT_DETECTION",
-ModelType::VideoClassification => "VIDEO_CLASSIFICATION",
-ModelType::VideoObjectTracking => "VIDEO_OBJECT_TRACKING",
-ModelType::VideoActionRecognition => "VIDEO_ACTION_RECOGNITION",
-ModelType::OccupancyCounting => "OCCUPANCY_COUNTING",
-ModelType::PersonBlur => "PERSON_BLUR",
-ModelType::VertexCustom => "VERTEX_CUSTOM",
-ModelType::ProductRecognizer => "PRODUCT_RECOGNIZER",
-ModelType::TagRecognizer => "TAG_RECOGNIZER",
-ModelType::SynthId => "SYNTH_ID",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"IMAGE_CLASSIFICATION" => Some(Self::ImageClassification),
-"OBJECT_DETECTION" => Some(Self::ObjectDetection),
-"VIDEO_CLASSIFICATION" => Some(Self::VideoClassification),
-"VIDEO_OBJECT_TRACKING" => Some(Self::VideoObjectTracking),
-"VIDEO_ACTION_RECOGNITION" => Some(Self::VideoActionRecognition),
-"OCCUPANCY_COUNTING" => Some(Self::OccupancyCounting),
-"PERSON_BLUR" => Some(Self::PersonBlur),
-"VERTEX_CUSTOM" => Some(Self::VertexCustom),
-"PRODUCT_RECOGNIZER" => Some(Self::ProductRecognizer),
-"TAG_RECOGNIZER" => Some(Self::TagRecognizer),
-"SYNTH_ID" => Some(Self::SynthId),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ModelType::Unspecified => "MODEL_TYPE_UNSPECIFIED",
+            ModelType::ImageClassification => "IMAGE_CLASSIFICATION",
+            ModelType::ObjectDetection => "OBJECT_DETECTION",
+            ModelType::VideoClassification => "VIDEO_CLASSIFICATION",
+            ModelType::VideoObjectTracking => "VIDEO_OBJECT_TRACKING",
+            ModelType::VideoActionRecognition => "VIDEO_ACTION_RECOGNITION",
+            ModelType::OccupancyCounting => "OCCUPANCY_COUNTING",
+            ModelType::PersonBlur => "PERSON_BLUR",
+            ModelType::VertexCustom => "VERTEX_CUSTOM",
+            ModelType::ProductRecognizer => "PRODUCT_RECOGNIZER",
+            ModelType::TagRecognizer => "TAG_RECOGNIZER",
+            ModelType::SynthId => "SYNTH_ID",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MODEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "IMAGE_CLASSIFICATION" => Some(Self::ImageClassification),
+            "OBJECT_DETECTION" => Some(Self::ObjectDetection),
+            "VIDEO_CLASSIFICATION" => Some(Self::VideoClassification),
+            "VIDEO_OBJECT_TRACKING" => Some(Self::VideoObjectTracking),
+            "VIDEO_ACTION_RECOGNITION" => Some(Self::VideoActionRecognition),
+            "OCCUPANCY_COUNTING" => Some(Self::OccupancyCounting),
+            "PERSON_BLUR" => Some(Self::PersonBlur),
+            "VERTEX_CUSTOM" => Some(Self::VertexCustom),
+            "PRODUCT_RECOGNIZER" => Some(Self::ProductRecognizer),
+            "TAG_RECOGNIZER" => Some(Self::TagRecognizer),
+            "SYNTH_ID" => Some(Self::SynthId),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AcceleratorType {
-Unspecified = 0,
-NvidiaTeslaK80 = 1,
-NvidiaTeslaP100 = 2,
-NvidiaTeslaV100 = 3,
-NvidiaTeslaP4 = 4,
-NvidiaTeslaT4 = 5,
-NvidiaTeslaA100 = 8,
-TpuV2 = 6,
-TpuV3 = 7,
+    Unspecified = 0,
+    NvidiaTeslaK80 = 1,
+    NvidiaTeslaP100 = 2,
+    NvidiaTeslaV100 = 3,
+    NvidiaTeslaP4 = 4,
+    NvidiaTeslaT4 = 5,
+    NvidiaTeslaA100 = 8,
+    TpuV2 = 6,
+    TpuV3 = 7,
 }
 impl AcceleratorType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
-AcceleratorType::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
-AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
-AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
-AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
-AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
-AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
-AcceleratorType::TpuV2 => "TPU_V2",
-AcceleratorType::TpuV3 => "TPU_V3",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACCELERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NVIDIA_TESLA_K80" => Some(Self::NvidiaTeslaK80),
-"NVIDIA_TESLA_P100" => Some(Self::NvidiaTeslaP100),
-"NVIDIA_TESLA_V100" => Some(Self::NvidiaTeslaV100),
-"NVIDIA_TESLA_P4" => Some(Self::NvidiaTeslaP4),
-"NVIDIA_TESLA_T4" => Some(Self::NvidiaTeslaT4),
-"NVIDIA_TESLA_A100" => Some(Self::NvidiaTeslaA100),
-"TPU_V2" => Some(Self::TpuV2),
-"TPU_V3" => Some(Self::TpuV3),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
+            AcceleratorType::NvidiaTeslaK80 => "NVIDIA_TESLA_K80",
+            AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
+            AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
+            AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
+            AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
+            AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
+            AcceleratorType::TpuV2 => "TPU_V2",
+            AcceleratorType::TpuV3 => "TPU_V3",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ACCELERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "NVIDIA_TESLA_K80" => Some(Self::NvidiaTeslaK80),
+            "NVIDIA_TESLA_P100" => Some(Self::NvidiaTeslaP100),
+            "NVIDIA_TESLA_V100" => Some(Self::NvidiaTeslaV100),
+            "NVIDIA_TESLA_P4" => Some(Self::NvidiaTeslaP4),
+            "NVIDIA_TESLA_T4" => Some(Self::NvidiaTeslaT4),
+            "NVIDIA_TESLA_A100" => Some(Self::NvidiaTeslaA100),
+            "TPU_V2" => Some(Self::TpuV2),
+            "TPU_V3" => Some(Self::TpuV3),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DataType {
-Unspecified = 0,
-Video = 1,
-Image = 3,
-Proto = 2,
-Placeholder = 4,
+    Unspecified = 0,
+    Video = 1,
+    Image = 3,
+    Proto = 2,
+    Placeholder = 4,
 }
 impl DataType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-DataType::Video => "VIDEO",
-DataType::Image => "IMAGE",
-DataType::Proto => "PROTO",
-DataType::Placeholder => "PLACEHOLDER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"VIDEO" => Some(Self::Video),
-"IMAGE" => Some(Self::Image),
-"PROTO" => Some(Self::Proto),
-"PLACEHOLDER" => Some(Self::Placeholder),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
+            DataType::Video => "VIDEO",
+            DataType::Image => "IMAGE",
+            DataType::Proto => "PROTO",
+            DataType::Placeholder => "PLACEHOLDER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "VIDEO" => Some(Self::Video),
+            "IMAGE" => Some(Self::Image),
+            "PROTO" => Some(Self::Proto),
+            "PLACEHOLDER" => Some(Self::Placeholder),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod app_platform_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service describing handlers for resources
-#[derive(Debug, Clone)]
-pub struct AppPlatformClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AppPlatformClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AppPlatformClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AppPlatformClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists Applications in a given project and location.
-pub async fn list_applications(&mut self, request: impl tonic::IntoRequest<super::ListApplicationsRequest>) -> std::result::Result<tonic::Response<super::ListApplicationsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/ListApplications");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "ListApplications"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Application.
-pub async fn get_application(&mut self, request: impl tonic::IntoRequest<super::GetApplicationRequest>) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/GetApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "GetApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Application in a given project and location.
-pub async fn create_application(&mut self, request: impl tonic::IntoRequest<super::CreateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/CreateApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "CreateApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Application.
-pub async fn update_application(&mut self, request: impl tonic::IntoRequest<super::UpdateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UpdateApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UpdateApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Application.
-pub async fn delete_application(&mut self, request: impl tonic::IntoRequest<super::DeleteApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/DeleteApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "DeleteApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Deploys a single Application.
-pub async fn deploy_application(&mut self, request: impl tonic::IntoRequest<super::DeployApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/DeployApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "DeployApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Undeploys a single Application.
-pub async fn undeploy_application(&mut self, request: impl tonic::IntoRequest<super::UndeployApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UndeployApplication");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UndeployApplication"));
-self.inner.unary(req, path, codec).await
-}
-/// Adds target stream input to the Application.
-/// If the Application is deployed, the corresponding new Application instance
-/// will be created. If the stream has already been in the Application, the RPC
-/// will fail.
-pub async fn add_application_stream_input(&mut self, request: impl tonic::IntoRequest<super::AddApplicationStreamInputRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/AddApplicationStreamInput");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "AddApplicationStreamInput"));
-self.inner.unary(req, path, codec).await
-}
-/// Remove target stream input to the Application, if the Application is
-/// deployed, the corresponding instance based will be deleted. If the stream
-/// is not in the Application, the RPC will fail.
-pub async fn remove_application_stream_input(&mut self, request: impl tonic::IntoRequest<super::RemoveApplicationStreamInputRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/RemoveApplicationStreamInput");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "RemoveApplicationStreamInput"));
-self.inner.unary(req, path, codec).await
-}
-/// Update target stream input to the Application, if the Application is
-/// deployed, the corresponding instance based will be deployed. For
-/// CreateOrUpdate behavior, set allow_missing to true.
-pub async fn update_application_stream_input(&mut self, request: impl tonic::IntoRequest<super::UpdateApplicationStreamInputRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UpdateApplicationStreamInput");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UpdateApplicationStreamInput"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Instances in a given project and location.
-pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/ListInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "ListInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Instance.
-pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/GetInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "GetInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Adds target stream input to the Application.
-/// If the Application is deployed, the corresponding new Application instance
-/// will be created. If the stream has already been in the Application, the RPC
-/// will fail.
-pub async fn create_application_instances(&mut self, request: impl tonic::IntoRequest<super::CreateApplicationInstancesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/CreateApplicationInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "CreateApplicationInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Remove target stream input to the Application, if the Application is
-/// deployed, the corresponding instance based will be deleted. If the stream
-/// is not in the Application, the RPC will fail.
-pub async fn delete_application_instances(&mut self, request: impl tonic::IntoRequest<super::DeleteApplicationInstancesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/DeleteApplicationInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "DeleteApplicationInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Adds target stream input to the Application.
-/// If the Application is deployed, the corresponding new Application instance
-/// will be created. If the stream has already been in the Application, the RPC
-/// will fail.
-pub async fn update_application_instances(&mut self, request: impl tonic::IntoRequest<super::UpdateApplicationInstancesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UpdateApplicationInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UpdateApplicationInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Drafts in a given project and location.
-pub async fn list_drafts(&mut self, request: impl tonic::IntoRequest<super::ListDraftsRequest>) -> std::result::Result<tonic::Response<super::ListDraftsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/ListDrafts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "ListDrafts"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Draft.
-pub async fn get_draft(&mut self, request: impl tonic::IntoRequest<super::GetDraftRequest>) -> std::result::Result<tonic::Response<super::Draft>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/GetDraft");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "GetDraft"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Draft in a given project and location.
-pub async fn create_draft(&mut self, request: impl tonic::IntoRequest<super::CreateDraftRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/CreateDraft");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "CreateDraft"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Draft.
-pub async fn update_draft(&mut self, request: impl tonic::IntoRequest<super::UpdateDraftRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UpdateDraft");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UpdateDraft"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Draft.
-pub async fn delete_draft(&mut self, request: impl tonic::IntoRequest<super::DeleteDraftRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/DeleteDraft");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "DeleteDraft"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Processors in a given project and location.
-pub async fn list_processors(&mut self, request: impl tonic::IntoRequest<super::ListProcessorsRequest>) -> std::result::Result<tonic::Response<super::ListProcessorsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/ListProcessors");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "ListProcessors"));
-self.inner.unary(req, path, codec).await
-}
-/// ListPrebuiltProcessors is a custom pass-through verb that Lists Prebuilt
-/// Processors.
-pub async fn list_prebuilt_processors(&mut self, request: impl tonic::IntoRequest<super::ListPrebuiltProcessorsRequest>) -> std::result::Result<tonic::Response<super::ListPrebuiltProcessorsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/ListPrebuiltProcessors");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "ListPrebuiltProcessors"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Processor.
-pub async fn get_processor(&mut self, request: impl tonic::IntoRequest<super::GetProcessorRequest>) -> std::result::Result<tonic::Response<super::Processor>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/GetProcessor");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "GetProcessor"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Processor in a given project and location.
-pub async fn create_processor(&mut self, request: impl tonic::IntoRequest<super::CreateProcessorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/CreateProcessor");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "CreateProcessor"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Processor.
-pub async fn update_processor(&mut self, request: impl tonic::IntoRequest<super::UpdateProcessorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/UpdateProcessor");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "UpdateProcessor"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Processor.
-pub async fn delete_processor(&mut self, request: impl tonic::IntoRequest<super::DeleteProcessorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.AppPlatform/DeleteProcessor");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.AppPlatform", "DeleteProcessor"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service describing handlers for resources
+    #[derive(Debug, Clone)]
+    pub struct AppPlatformClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AppPlatformClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AppPlatformClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AppPlatformClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists Applications in a given project and location.
+        pub async fn list_applications(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListApplicationsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListApplicationsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/ListApplications",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "ListApplications",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Application.
+        pub async fn get_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetApplicationRequest>,
+        ) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/GetApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "GetApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Application in a given project and location.
+        pub async fn create_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateApplicationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/CreateApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "CreateApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Application.
+        pub async fn update_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateApplicationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UpdateApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UpdateApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Application.
+        pub async fn delete_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteApplicationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/DeleteApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "DeleteApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deploys a single Application.
+        pub async fn deploy_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeployApplicationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/DeployApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "DeployApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Undeploys a single Application.
+        pub async fn undeploy_application(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UndeployApplicationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UndeployApplication",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UndeployApplication",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Adds target stream input to the Application.
+        /// If the Application is deployed, the corresponding new Application instance
+        /// will be created. If the stream has already been in the Application, the RPC
+        /// will fail.
+        pub async fn add_application_stream_input(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AddApplicationStreamInputRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/AddApplicationStreamInput",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "AddApplicationStreamInput",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Remove target stream input to the Application, if the Application is
+        /// deployed, the corresponding instance based will be deleted. If the stream
+        /// is not in the Application, the RPC will fail.
+        pub async fn remove_application_stream_input(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RemoveApplicationStreamInputRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/RemoveApplicationStreamInput",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "RemoveApplicationStreamInput",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update target stream input to the Application, if the Application is
+        /// deployed, the corresponding instance based will be deployed. For
+        /// CreateOrUpdate behavior, set allow_missing to true.
+        pub async fn update_application_stream_input(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateApplicationStreamInputRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UpdateApplicationStreamInput",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UpdateApplicationStreamInput",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Instances in a given project and location.
+        pub async fn list_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/ListInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "ListInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Instance.
+        pub async fn get_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/GetInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "GetInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Adds target stream input to the Application.
+        /// If the Application is deployed, the corresponding new Application instance
+        /// will be created. If the stream has already been in the Application, the RPC
+        /// will fail.
+        pub async fn create_application_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateApplicationInstancesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/CreateApplicationInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "CreateApplicationInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Remove target stream input to the Application, if the Application is
+        /// deployed, the corresponding instance based will be deleted. If the stream
+        /// is not in the Application, the RPC will fail.
+        pub async fn delete_application_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteApplicationInstancesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/DeleteApplicationInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "DeleteApplicationInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Adds target stream input to the Application.
+        /// If the Application is deployed, the corresponding new Application instance
+        /// will be created. If the stream has already been in the Application, the RPC
+        /// will fail.
+        pub async fn update_application_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateApplicationInstancesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UpdateApplicationInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UpdateApplicationInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Drafts in a given project and location.
+        pub async fn list_drafts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDraftsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDraftsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/ListDrafts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "ListDrafts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Draft.
+        pub async fn get_draft(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDraftRequest>,
+        ) -> std::result::Result<tonic::Response<super::Draft>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/GetDraft",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "GetDraft",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Draft in a given project and location.
+        pub async fn create_draft(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDraftRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/CreateDraft",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "CreateDraft",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Draft.
+        pub async fn update_draft(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDraftRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UpdateDraft",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UpdateDraft",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Draft.
+        pub async fn delete_draft(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDraftRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/DeleteDraft",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "DeleteDraft",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Processors in a given project and location.
+        pub async fn list_processors(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProcessorsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListProcessorsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/ListProcessors",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "ListProcessors",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// ListPrebuiltProcessors is a custom pass-through verb that Lists Prebuilt
+        /// Processors.
+        pub async fn list_prebuilt_processors(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPrebuiltProcessorsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListPrebuiltProcessorsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/ListPrebuiltProcessors",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "ListPrebuiltProcessors",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Processor.
+        pub async fn get_processor(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProcessorRequest>,
+        ) -> std::result::Result<tonic::Response<super::Processor>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/GetProcessor",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "GetProcessor",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Processor in a given project and location.
+        pub async fn create_processor(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateProcessorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/CreateProcessor",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "CreateProcessor",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Processor.
+        pub async fn update_processor(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateProcessorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/UpdateProcessor",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "UpdateProcessor",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Processor.
+        pub async fn delete_processor(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteProcessorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.AppPlatform/DeleteProcessor",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.AppPlatform",
+                "DeleteProcessor",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckRequest {
-#[prost(string, tag = "1")]
-pub cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckResponse {
-#[prost(bool, tag = "1")]
-pub healthy: bool,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub cluster_info: ::core::option::Option<ClusterInfo>,
+    #[prost(bool, tag = "1")]
+    pub healthy: bool,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub cluster_info: ::core::option::Option<ClusterInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ClusterInfo {
-#[prost(int32, tag = "1")]
-pub streams_count: i32,
-#[prost(int32, tag = "2")]
-pub processes_count: i32,
+    #[prost(int32, tag = "1")]
+    pub streams_count: i32,
+    #[prost(int32, tag = "2")]
+    pub processes_count: i32,
 }
 /// Generated client implementations.
 pub mod health_check_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// HealthCheckService provides an interface for Vertex AI Vision Cluster Health
-/// Check.
-#[derive(Debug, Clone)]
-pub struct HealthCheckServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> HealthCheckServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> HealthCheckServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-HealthCheckServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// HealthCheck method checks the health status of the cluster.
-pub async fn health_check(&mut self, request: impl tonic::IntoRequest<super::HealthCheckRequest>) -> std::result::Result<tonic::Response<super::HealthCheckResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.HealthCheckService/HealthCheck");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.HealthCheckService", "HealthCheck"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// HealthCheckService provides an interface for Vertex AI Vision Cluster Health
+    /// Check.
+    #[derive(Debug, Clone)]
+    pub struct HealthCheckServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> HealthCheckServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> HealthCheckServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            HealthCheckServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// HealthCheck method checks the health status of the cluster.
+        pub async fn health_check(
+            &mut self,
+            request: impl tonic::IntoRequest<super::HealthCheckRequest>,
+        ) -> std::result::Result<tonic::Response<super::HealthCheckResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.HealthCheckService/HealthCheck",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.HealthCheckService",
+                "HealthCheck",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// A service for online prediction.
-#[derive(Debug, Clone)]
-pub struct PredictionServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> PredictionServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> PredictionServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// A service for online prediction.
+    #[derive(Debug, Clone)]
+    pub struct PredictionServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> PredictionServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> PredictionServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Stream {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "5")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub enable_hls_playback: bool,
-#[prost(string, tag = "8")]
-pub media_warehouse_asset: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub enable_hls_playback: bool,
+    #[prost(string, tag = "8")]
+    pub media_warehouse_asset: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "5")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(enumeration = "event::Clock", tag = "6")]
-pub alignment_clock: i32,
-#[prost(message, optional, tag = "7")]
-pub grace_period: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(enumeration = "event::Clock", tag = "6")]
+    pub alignment_clock: i32,
+    #[prost(message, optional, tag = "7")]
+    pub grace_period: ::core::option::Option<::prost_types::Duration>,
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Clock {
-Unspecified = 0,
-Capture = 1,
-Ingest = 2,
-}
-impl Clock {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Clock::Unspecified => "CLOCK_UNSPECIFIED",
-Clock::Capture => "CAPTURE",
-Clock::Ingest => "INGEST",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLOCK_UNSPECIFIED" => Some(Self::Unspecified),
-"CAPTURE" => Some(Self::Capture),
-"INGEST" => Some(Self::Ingest),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Clock {
+        Unspecified = 0,
+        Capture = 1,
+        Ingest = 2,
+    }
+    impl Clock {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Clock::Unspecified => "CLOCK_UNSPECIFIED",
+                Clock::Capture => "CAPTURE",
+                Clock::Ingest => "INGEST",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLOCK_UNSPECIFIED" => Some(Self::Unspecified),
+                "CAPTURE" => Some(Self::Capture),
+                "INGEST" => Some(Self::Ingest),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Series {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "5")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub event: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub event: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Channel {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "5")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub event: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "6")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub event: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListClustersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListClustersResponse {
-#[prost(message, repeated, tag = "1")]
-pub clusters: ::prost::alloc::vec::Vec<Cluster>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub clusters: ::prost::alloc::vec::Vec<Cluster>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateClusterRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cluster_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub cluster: ::core::option::Option<Cluster>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub cluster_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub cluster: ::core::option::Option<Cluster>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateClusterRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub cluster: ::core::option::Option<Cluster>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub cluster: ::core::option::Option<Cluster>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStreamsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStreamsResponse {
-#[prost(message, repeated, tag = "1")]
-pub streams: ::prost::alloc::vec::Vec<Stream>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub streams: ::prost::alloc::vec::Vec<Stream>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetStreamRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateStreamRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub stream_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub stream: ::core::option::Option<Stream>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub stream_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub stream: ::core::option::Option<Stream>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateStreamRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub stream: ::core::option::Option<Stream>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub stream: ::core::option::Option<Stream>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteStreamRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetStreamThumbnailRequest {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub gcs_object_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub event: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub gcs_object_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub event: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -5686,648 +7104,1005 @@ pub struct GetStreamThumbnailResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateStreamHlsTokenRequest {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub stream: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateStreamHlsTokenResponse {
-#[prost(string, tag = "1")]
-pub token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsResponse {
-#[prost(message, repeated, tag = "1")]
-pub events: ::prost::alloc::vec::Vec<Event>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub events: ::prost::alloc::vec::Vec<Event>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEventRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEventRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub event_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub event: ::core::option::Option<Event>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub event_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub event: ::core::option::Option<Event>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEventRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub event: ::core::option::Option<Event>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub event: ::core::option::Option<Event>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEventRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSeriesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSeriesResponse {
-#[prost(message, repeated, tag = "1")]
-pub series: ::prost::alloc::vec::Vec<Series>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub series: ::prost::alloc::vec::Vec<Series>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSeriesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSeriesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub series_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub series: ::core::option::Option<Series>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub series_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub series: ::core::option::Option<Series>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSeriesRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub series: ::core::option::Option<Series>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub series: ::core::option::Option<Series>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSeriesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaterializeChannelRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub channel_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub channel: ::core::option::Option<Channel>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub channel_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub channel: ::core::option::Option<Channel>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod streams_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service describing handlers for resources.
-/// Vision API and Vision AI API are two independent APIs developed by the same
-/// team. Vision API is for people to annotate their image while Vision AI is an
-/// e2e solution for customer to build their own computer vision application.
-#[derive(Debug, Clone)]
-pub struct StreamsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> StreamsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> StreamsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-StreamsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists Clusters in a given project and location.
-pub async fn list_clusters(&mut self, request: impl tonic::IntoRequest<super::ListClustersRequest>) -> std::result::Result<tonic::Response<super::ListClustersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/ListClusters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "ListClusters"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Cluster.
-pub async fn get_cluster(&mut self, request: impl tonic::IntoRequest<super::GetClusterRequest>) -> std::result::Result<tonic::Response<super::Cluster>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GetCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GetCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Cluster in a given project and location.
-pub async fn create_cluster(&mut self, request: impl tonic::IntoRequest<super::CreateClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/CreateCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "CreateCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Cluster.
-pub async fn update_cluster(&mut self, request: impl tonic::IntoRequest<super::UpdateClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/UpdateCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "UpdateCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Cluster.
-pub async fn delete_cluster(&mut self, request: impl tonic::IntoRequest<super::DeleteClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/DeleteCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "DeleteCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Streams in a given project and location.
-pub async fn list_streams(&mut self, request: impl tonic::IntoRequest<super::ListStreamsRequest>) -> std::result::Result<tonic::Response<super::ListStreamsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/ListStreams");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "ListStreams"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Stream.
-pub async fn get_stream(&mut self, request: impl tonic::IntoRequest<super::GetStreamRequest>) -> std::result::Result<tonic::Response<super::Stream>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GetStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GetStream"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Stream in a given project and location.
-pub async fn create_stream(&mut self, request: impl tonic::IntoRequest<super::CreateStreamRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/CreateStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "CreateStream"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Stream.
-pub async fn update_stream(&mut self, request: impl tonic::IntoRequest<super::UpdateStreamRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/UpdateStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "UpdateStream"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Stream.
-pub async fn delete_stream(&mut self, request: impl tonic::IntoRequest<super::DeleteStreamRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/DeleteStream");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "DeleteStream"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the thumbnail (image snapshot) of a single Stream.
-pub async fn get_stream_thumbnail(&mut self, request: impl tonic::IntoRequest<super::GetStreamThumbnailRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GetStreamThumbnail");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GetStreamThumbnail"));
-self.inner.unary(req, path, codec).await
-}
-/// Generate the JWT auth token required to get the stream HLS contents.
-pub async fn generate_stream_hls_token(&mut self, request: impl tonic::IntoRequest<super::GenerateStreamHlsTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateStreamHlsTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GenerateStreamHlsToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GenerateStreamHlsToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Events in a given project and location.
-pub async fn list_events(&mut self, request: impl tonic::IntoRequest<super::ListEventsRequest>) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/ListEvents");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "ListEvents"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Event.
-pub async fn get_event(&mut self, request: impl tonic::IntoRequest<super::GetEventRequest>) -> std::result::Result<tonic::Response<super::Event>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GetEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GetEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Event in a given project and location.
-pub async fn create_event(&mut self, request: impl tonic::IntoRequest<super::CreateEventRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/CreateEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "CreateEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Event.
-pub async fn update_event(&mut self, request: impl tonic::IntoRequest<super::UpdateEventRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/UpdateEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "UpdateEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Event.
-pub async fn delete_event(&mut self, request: impl tonic::IntoRequest<super::DeleteEventRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/DeleteEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "DeleteEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Series in a given project and location.
-pub async fn list_series(&mut self, request: impl tonic::IntoRequest<super::ListSeriesRequest>) -> std::result::Result<tonic::Response<super::ListSeriesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/ListSeries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "ListSeries"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Series.
-pub async fn get_series(&mut self, request: impl tonic::IntoRequest<super::GetSeriesRequest>) -> std::result::Result<tonic::Response<super::Series>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/GetSeries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "GetSeries"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Series in a given project and location.
-pub async fn create_series(&mut self, request: impl tonic::IntoRequest<super::CreateSeriesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/CreateSeries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "CreateSeries"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Event.
-pub async fn update_series(&mut self, request: impl tonic::IntoRequest<super::UpdateSeriesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/UpdateSeries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "UpdateSeries"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Series.
-pub async fn delete_series(&mut self, request: impl tonic::IntoRequest<super::DeleteSeriesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/DeleteSeries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "DeleteSeries"));
-self.inner.unary(req, path, codec).await
-}
-/// Materialize a channel.
-pub async fn materialize_channel(&mut self, request: impl tonic::IntoRequest<super::MaterializeChannelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamsService/MaterializeChannel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamsService", "MaterializeChannel"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service describing handlers for resources.
+    /// Vision API and Vision AI API are two independent APIs developed by the same
+    /// team. Vision API is for people to annotate their image while Vision AI is an
+    /// e2e solution for customer to build their own computer vision application.
+    #[derive(Debug, Clone)]
+    pub struct StreamsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> StreamsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> StreamsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            StreamsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists Clusters in a given project and location.
+        pub async fn list_clusters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListClustersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListClustersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/ListClusters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "ListClusters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Cluster.
+        pub async fn get_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetClusterRequest>,
+        ) -> std::result::Result<tonic::Response<super::Cluster>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GetCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GetCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Cluster in a given project and location.
+        pub async fn create_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/CreateCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "CreateCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Cluster.
+        pub async fn update_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/UpdateCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "UpdateCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Cluster.
+        pub async fn delete_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/DeleteCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "DeleteCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Streams in a given project and location.
+        pub async fn list_streams(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListStreamsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListStreamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/ListStreams",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "ListStreams",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Stream.
+        pub async fn get_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStreamRequest>,
+        ) -> std::result::Result<tonic::Response<super::Stream>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GetStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GetStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Stream in a given project and location.
+        pub async fn create_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateStreamRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/CreateStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "CreateStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Stream.
+        pub async fn update_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateStreamRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/UpdateStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "UpdateStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Stream.
+        pub async fn delete_stream(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteStreamRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/DeleteStream",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "DeleteStream",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the thumbnail (image snapshot) of a single Stream.
+        pub async fn get_stream_thumbnail(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStreamThumbnailRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GetStreamThumbnail",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GetStreamThumbnail",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generate the JWT auth token required to get the stream HLS contents.
+        pub async fn generate_stream_hls_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateStreamHlsTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateStreamHlsTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GenerateStreamHlsToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GenerateStreamHlsToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Events in a given project and location.
+        pub async fn list_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListEventsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/ListEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "ListEvents",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Event.
+        pub async fn get_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::Event>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GetEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GetEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Event in a given project and location.
+        pub async fn create_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateEventRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/CreateEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "CreateEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Event.
+        pub async fn update_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateEventRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/UpdateEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "UpdateEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Event.
+        pub async fn delete_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteEventRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/DeleteEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "DeleteEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Series in a given project and location.
+        pub async fn list_series(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSeriesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListSeriesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/ListSeries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "ListSeries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Series.
+        pub async fn get_series(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSeriesRequest>,
+        ) -> std::result::Result<tonic::Response<super::Series>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/GetSeries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "GetSeries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Series in a given project and location.
+        pub async fn create_series(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSeriesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/CreateSeries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "CreateSeries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Event.
+        pub async fn update_series(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSeriesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/UpdateSeries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "UpdateSeries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Series.
+        pub async fn delete_series(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSeriesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/DeleteSeries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "DeleteSeries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Materialize a channel.
+        pub async fn materialize_channel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MaterializeChannelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamsService/MaterializeChannel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamsService",
+                "MaterializeChannel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GstreamerBufferDescriptor {
-#[prost(string, tag = "1")]
-pub caps_string: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub is_key_frame: bool,
-#[prost(message, optional, tag = "3")]
-pub pts_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub dts_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub caps_string: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub is_key_frame: bool,
+    #[prost(message, optional, tag = "3")]
+    pub pts_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub dts_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RawImageDescriptor {
-#[prost(string, tag = "1")]
-pub format: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub height: i32,
-#[prost(int32, tag = "3")]
-pub width: i32,
+    #[prost(string, tag = "1")]
+    pub format: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub height: i32,
+    #[prost(int32, tag = "3")]
+    pub width: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PacketType {
-#[prost(string, tag = "1")]
-pub type_class: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub type_descriptor: ::core::option::Option<packet_type::TypeDescriptor>,
+    #[prost(string, tag = "1")]
+    pub type_class: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub type_descriptor: ::core::option::Option<packet_type::TypeDescriptor>,
 }
 /// Nested message and enum types in `PacketType`.
 pub mod packet_type {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TypeDescriptor {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(oneof = "type_descriptor::TypeDetails", tags = "2, 3")]
-pub type_details: ::core::option::Option<type_descriptor::TypeDetails>,
-}
-/// Nested message and enum types in `TypeDescriptor`.
-pub mod type_descriptor {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum TypeDetails {
-#[prost(message, tag = "2")]
-GstreamerBufferDescriptor(super::super::GstreamerBufferDescriptor),
-#[prost(message, tag = "3")]
-RawImageDescriptor(super::super::RawImageDescriptor),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TypeDescriptor {
+        #[prost(string, tag = "1")]
+        pub r#type: ::prost::alloc::string::String,
+        #[prost(oneof = "type_descriptor::TypeDetails", tags = "2, 3")]
+        pub type_details: ::core::option::Option<type_descriptor::TypeDetails>,
+    }
+    /// Nested message and enum types in `TypeDescriptor`.
+    pub mod type_descriptor {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum TypeDetails {
+            #[prost(message, tag = "2")]
+            GstreamerBufferDescriptor(super::super::GstreamerBufferDescriptor),
+            #[prost(message, tag = "3")]
+            RawImageDescriptor(super::super::RawImageDescriptor),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ServerMetadata {
-#[prost(int64, tag = "1")]
-pub offset: i64,
-#[prost(message, optional, tag = "2")]
-pub ingest_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "1")]
+    pub offset: i64,
+    #[prost(message, optional, tag = "2")]
+    pub ingest_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SeriesMetadata {
-#[prost(string, tag = "1")]
-pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub series: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PacketHeader {
-#[prost(message, optional, tag = "1")]
-pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub r#type: ::core::option::Option<PacketType>,
-#[prost(message, optional, tag = "3")]
-pub metadata: ::core::option::Option<::prost_types::Struct>,
-#[prost(message, optional, tag = "4")]
-pub server_metadata: ::core::option::Option<ServerMetadata>,
-#[prost(message, optional, tag = "5")]
-pub series_metadata: ::core::option::Option<SeriesMetadata>,
-#[prost(int32, tag = "6")]
-pub flags: i32,
-#[prost(string, tag = "7")]
-pub trace_context: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub r#type: ::core::option::Option<PacketType>,
+    #[prost(message, optional, tag = "3")]
+    pub metadata: ::core::option::Option<::prost_types::Struct>,
+    #[prost(message, optional, tag = "4")]
+    pub server_metadata: ::core::option::Option<ServerMetadata>,
+    #[prost(message, optional, tag = "5")]
+    pub series_metadata: ::core::option::Option<SeriesMetadata>,
+    #[prost(int32, tag = "6")]
+    pub flags: i32,
+    #[prost(string, tag = "7")]
+    pub trace_context: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Packet {
-#[prost(message, optional, tag = "1")]
-pub header: ::core::option::Option<PacketHeader>,
-#[prost(bytes = "vec", tag = "2")]
-pub payload: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<PacketHeader>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub payload: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReceiveEventsRequest {
-#[prost(oneof = "receive_events_request::Request", tags = "1, 2")]
-pub request: ::core::option::Option<receive_events_request::Request>,
+    #[prost(oneof = "receive_events_request::Request", tags = "1, 2")]
+    pub request: ::core::option::Option<receive_events_request::Request>,
 }
 /// Nested message and enum types in `ReceiveEventsRequest`.
 pub mod receive_events_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SetupRequest {
-#[prost(string, tag = "1")]
-pub cluster: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub receiver: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub controlled_mode: ::core::option::Option<super::ControlledMode>,
-#[prost(message, optional, tag = "5")]
-pub heartbeat_interval: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub writes_done_grace_period: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Request {
-#[prost(message, tag = "1")]
-SetupRequest(SetupRequest),
-#[prost(message, tag = "2")]
-CommitRequest(super::CommitRequest),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SetupRequest {
+        #[prost(string, tag = "1")]
+        pub cluster: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub stream: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub receiver: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "4")]
+        pub controlled_mode: ::core::option::Option<super::ControlledMode>,
+        #[prost(message, optional, tag = "5")]
+        pub heartbeat_interval: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "6")]
+        pub writes_done_grace_period: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Request {
+        #[prost(message, tag = "1")]
+        SetupRequest(SetupRequest),
+        #[prost(message, tag = "2")]
+        CommitRequest(super::CommitRequest),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventUpdate {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub event: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub series: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int64, tag = "5")]
-pub offset: i64,
+    #[prost(string, tag = "1")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub event: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "5")]
+    pub offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReceiveEventsControlResponse {
-#[prost(oneof = "receive_events_control_response::Control", tags = "1, 2")]
-pub control: ::core::option::Option<receive_events_control_response::Control>,
+    #[prost(oneof = "receive_events_control_response::Control", tags = "1, 2")]
+    pub control: ::core::option::Option<receive_events_control_response::Control>,
 }
 /// Nested message and enum types in `ReceiveEventsControlResponse`.
 pub mod receive_events_control_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Control {
-#[prost(bool, tag = "1")]
-Heartbeat(bool),
-#[prost(bool, tag = "2")]
-WritesDoneRequest(bool),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Control {
+        #[prost(bool, tag = "1")]
+        Heartbeat(bool),
+        #[prost(bool, tag = "2")]
+        WritesDoneRequest(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReceiveEventsResponse {
-#[prost(oneof = "receive_events_response::Response", tags = "1, 2")]
-pub response: ::core::option::Option<receive_events_response::Response>,
+    #[prost(oneof = "receive_events_response::Response", tags = "1, 2")]
+    pub response: ::core::option::Option<receive_events_response::Response>,
 }
 /// Nested message and enum types in `ReceiveEventsResponse`.
 pub mod receive_events_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Response {
-#[prost(message, tag = "1")]
-EventUpdate(super::EventUpdate),
-#[prost(message, tag = "2")]
-Control(super::ReceiveEventsControlResponse),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Response {
+        #[prost(message, tag = "1")]
+        EventUpdate(super::EventUpdate),
+        #[prost(message, tag = "2")]
+        Control(super::ReceiveEventsControlResponse),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Lease {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub series: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub owner: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "LeaseType", tag = "5")]
-pub lease_type: i32,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "LeaseType", tag = "5")]
+    pub lease_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcquireLeaseRequest {
-#[prost(string, tag = "1")]
-pub series: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub owner: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub term: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "LeaseType", tag = "4")]
-pub lease_type: i32,
+    #[prost(string, tag = "1")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub term: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "LeaseType", tag = "4")]
+    pub lease_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenewLeaseRequest {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub series: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub owner: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub term: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub term: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReleaseLeaseRequest {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub series: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub owner: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub owner: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -6335,35 +8110,35 @@ pub struct ReleaseLeaseResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestMetadata {
-#[prost(string, tag = "1")]
-pub stream: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub event: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub series: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub lease_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub owner: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub lease_term: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub stream: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub event: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub series: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub lease_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub lease_term: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SendPacketsRequest {
-#[prost(oneof = "send_packets_request::Request", tags = "1, 2")]
-pub request: ::core::option::Option<send_packets_request::Request>,
+    #[prost(oneof = "send_packets_request::Request", tags = "1, 2")]
+    pub request: ::core::option::Option<send_packets_request::Request>,
 }
 /// Nested message and enum types in `SendPacketsRequest`.
 pub mod send_packets_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Request {
-#[prost(message, tag = "1")]
-Packet(super::Packet),
-#[prost(message, tag = "2")]
-Metadata(super::RequestMetadata),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Request {
+        #[prost(message, tag = "1")]
+        Packet(super::Packet),
+        #[prost(message, tag = "2")]
+        Metadata(super::RequestMetadata),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -6371,78 +8146,78 @@ pub struct SendPacketsResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReceivePacketsRequest {
-#[prost(oneof = "receive_packets_request::Request", tags = "6, 7")]
-pub request: ::core::option::Option<receive_packets_request::Request>,
+    #[prost(oneof = "receive_packets_request::Request", tags = "6, 7")]
+    pub request: ::core::option::Option<receive_packets_request::Request>,
 }
 /// Nested message and enum types in `ReceivePacketsRequest`.
 pub mod receive_packets_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SetupRequest {
-#[prost(message, optional, tag = "1")]
-pub metadata: ::core::option::Option<super::RequestMetadata>,
-#[prost(string, tag = "2")]
-pub receiver: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub heartbeat_interval: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub writes_done_grace_period: ::core::option::Option<::prost_types::Duration>,
-#[prost(oneof = "setup_request::ConsumerMode", tags = "3, 4")]
-pub consumer_mode: ::core::option::Option<setup_request::ConsumerMode>,
-}
-/// Nested message and enum types in `SetupRequest`.
-pub mod setup_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConsumerMode {
-#[prost(message, tag = "3")]
-EagerReceiveMode(super::super::EagerMode),
-#[prost(message, tag = "4")]
-ControlledReceiveMode(super::super::ControlledMode),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Request {
-#[prost(message, tag = "6")]
-SetupRequest(SetupRequest),
-#[prost(message, tag = "7")]
-CommitRequest(super::CommitRequest),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SetupRequest {
+        #[prost(message, optional, tag = "1")]
+        pub metadata: ::core::option::Option<super::RequestMetadata>,
+        #[prost(string, tag = "2")]
+        pub receiver: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "5")]
+        pub heartbeat_interval: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "6")]
+        pub writes_done_grace_period: ::core::option::Option<::prost_types::Duration>,
+        #[prost(oneof = "setup_request::ConsumerMode", tags = "3, 4")]
+        pub consumer_mode: ::core::option::Option<setup_request::ConsumerMode>,
+    }
+    /// Nested message and enum types in `SetupRequest`.
+    pub mod setup_request {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum ConsumerMode {
+            #[prost(message, tag = "3")]
+            EagerReceiveMode(super::super::EagerMode),
+            #[prost(message, tag = "4")]
+            ControlledReceiveMode(super::super::ControlledMode),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Request {
+        #[prost(message, tag = "6")]
+        SetupRequest(SetupRequest),
+        #[prost(message, tag = "7")]
+        CommitRequest(super::CommitRequest),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReceivePacketsControlResponse {
-#[prost(oneof = "receive_packets_control_response::Control", tags = "1, 2")]
-pub control: ::core::option::Option<receive_packets_control_response::Control>,
+    #[prost(oneof = "receive_packets_control_response::Control", tags = "1, 2")]
+    pub control: ::core::option::Option<receive_packets_control_response::Control>,
 }
 /// Nested message and enum types in `ReceivePacketsControlResponse`.
 pub mod receive_packets_control_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Control {
-#[prost(bool, tag = "1")]
-Heartbeat(bool),
-#[prost(bool, tag = "2")]
-WritesDoneRequest(bool),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Control {
+        #[prost(bool, tag = "1")]
+        Heartbeat(bool),
+        #[prost(bool, tag = "2")]
+        WritesDoneRequest(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReceivePacketsResponse {
-#[prost(oneof = "receive_packets_response::Response", tags = "1, 3")]
-pub response: ::core::option::Option<receive_packets_response::Response>,
+    #[prost(oneof = "receive_packets_response::Response", tags = "1, 3")]
+    pub response: ::core::option::Option<receive_packets_response::Response>,
 }
 /// Nested message and enum types in `ReceivePacketsResponse`.
 pub mod receive_packets_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Response {
-#[prost(message, tag = "1")]
-Packet(super::Packet),
-#[prost(message, tag = "3")]
-Control(super::ReceivePacketsControlResponse),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Response {
+        #[prost(message, tag = "1")]
+        Packet(super::Packet),
+        #[prost(message, tag = "3")]
+        Control(super::ReceivePacketsControlResponse),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -6450,750 +8225,1129 @@ pub struct EagerMode {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ControlledMode {
-#[prost(string, tag = "2")]
-pub fallback_starting_offset: ::prost::alloc::string::String,
-#[prost(oneof = "controlled_mode::StartingOffset", tags = "1")]
-pub starting_offset: ::core::option::Option<controlled_mode::StartingOffset>,
+    #[prost(string, tag = "2")]
+    pub fallback_starting_offset: ::prost::alloc::string::String,
+    #[prost(oneof = "controlled_mode::StartingOffset", tags = "1")]
+    pub starting_offset: ::core::option::Option<controlled_mode::StartingOffset>,
 }
 /// Nested message and enum types in `ControlledMode`.
 pub mod controlled_mode {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum StartingOffset {
-#[prost(string, tag = "1")]
-StartingLogicalOffset(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum StartingOffset {
+        #[prost(string, tag = "1")]
+        StartingLogicalOffset(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CommitRequest {
-#[prost(int64, tag = "1")]
-pub offset: i64,
+    #[prost(int64, tag = "1")]
+    pub offset: i64,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LeaseType {
-Unspecified = 0,
-Reader = 1,
-Writer = 2,
+    Unspecified = 0,
+    Reader = 1,
+    Writer = 2,
 }
 impl LeaseType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LeaseType::Unspecified => "LEASE_TYPE_UNSPECIFIED",
-LeaseType::Reader => "LEASE_TYPE_READER",
-LeaseType::Writer => "LEASE_TYPE_WRITER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LEASE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LEASE_TYPE_READER" => Some(Self::Reader),
-"LEASE_TYPE_WRITER" => Some(Self::Writer),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LeaseType::Unspecified => "LEASE_TYPE_UNSPECIFIED",
+            LeaseType::Reader => "LEASE_TYPE_READER",
+            LeaseType::Writer => "LEASE_TYPE_WRITER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "LEASE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "LEASE_TYPE_READER" => Some(Self::Reader),
+            "LEASE_TYPE_WRITER" => Some(Self::Writer),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod streaming_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Streaming service for receiving and sending packets.
-#[derive(Debug, Clone)]
-pub struct StreamingServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> StreamingServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> StreamingServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-StreamingServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Send packets to the series.
-pub async fn send_packets(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::SendPacketsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::SendPacketsResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/SendPackets");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "SendPackets"));
-self.inner.streaming(req, path, codec).await
-}
-/// Receive packets from the series.
-pub async fn receive_packets(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::ReceivePacketsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ReceivePacketsResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/ReceivePackets");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "ReceivePackets"));
-self.inner.streaming(req, path, codec).await
-}
-/// Receive events given the stream name.
-pub async fn receive_events(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::ReceiveEventsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ReceiveEventsResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/ReceiveEvents");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "ReceiveEvents"));
-self.inner.streaming(req, path, codec).await
-}
-/// AcquireLease acquires a lease.
-pub async fn acquire_lease(&mut self, request: impl tonic::IntoRequest<super::AcquireLeaseRequest>) -> std::result::Result<tonic::Response<super::Lease>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/AcquireLease");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "AcquireLease"));
-self.inner.unary(req, path, codec).await
-}
-/// RenewLease renews a lease.
-pub async fn renew_lease(&mut self, request: impl tonic::IntoRequest<super::RenewLeaseRequest>) -> std::result::Result<tonic::Response<super::Lease>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/RenewLease");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "RenewLease"));
-self.inner.unary(req, path, codec).await
-}
-/// RleaseLease releases a lease.
-pub async fn release_lease(&mut self, request: impl tonic::IntoRequest<super::ReleaseLeaseRequest>) -> std::result::Result<tonic::Response<super::ReleaseLeaseResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.StreamingService/ReleaseLease");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.StreamingService", "ReleaseLease"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Streaming service for receiving and sending packets.
+    #[derive(Debug, Clone)]
+    pub struct StreamingServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> StreamingServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> StreamingServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            StreamingServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Send packets to the series.
+        pub async fn send_packets(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::SendPacketsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::SendPacketsResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/SendPackets",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "SendPackets",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+        /// Receive packets from the series.
+        pub async fn receive_packets(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::ReceivePacketsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::ReceivePacketsResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/ReceivePackets",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "ReceivePackets",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+        /// Receive events given the stream name.
+        pub async fn receive_events(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::ReceiveEventsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::ReceiveEventsResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/ReceiveEvents",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "ReceiveEvents",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+        /// AcquireLease acquires a lease.
+        pub async fn acquire_lease(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AcquireLeaseRequest>,
+        ) -> std::result::Result<tonic::Response<super::Lease>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/AcquireLease",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "AcquireLease",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RenewLease renews a lease.
+        pub async fn renew_lease(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RenewLeaseRequest>,
+        ) -> std::result::Result<tonic::Response<super::Lease>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/RenewLease",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "RenewLease",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RleaseLease releases a lease.
+        pub async fn release_lease(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReleaseLeaseRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReleaseLeaseResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.StreamingService/ReleaseLease",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.StreamingService",
+                "ReleaseLease",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Operator {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub operator_definition: ::core::option::Option<OperatorDefinition>,
-#[prost(string, tag = "6")]
-pub docker_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub operator_definition: ::core::option::Option<OperatorDefinition>,
+    #[prost(string, tag = "6")]
+    pub docker_image: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Analysis {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub analysis_definition: ::core::option::Option<AnalysisDefinition>,
-#[prost(map = "string, string", tag = "6")]
-pub input_streams_mapping: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "7")]
-pub output_streams_mapping: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(bool, tag = "8")]
-pub disable_event_watch: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub analysis_definition: ::core::option::Option<AnalysisDefinition>,
+    #[prost(map = "string, string", tag = "6")]
+    pub input_streams_mapping:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "7")]
+    pub output_streams_mapping:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(bool, tag = "8")]
+    pub disable_event_watch: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Process {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub analysis: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "5")]
-pub attribute_overrides: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "6")]
-pub run_status: ::core::option::Option<RunStatus>,
-#[prost(enumeration = "RunMode", tag = "7")]
-pub run_mode: i32,
-#[prost(string, tag = "8")]
-pub event_id: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub batch_id: ::prost::alloc::string::String,
-#[prost(int32, tag = "10")]
-pub retry_count: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "4")]
+    pub analysis: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "5")]
+    pub attribute_overrides: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub run_status: ::core::option::Option<RunStatus>,
+    #[prost(enumeration = "RunMode", tag = "7")]
+    pub run_mode: i32,
+    #[prost(string, tag = "8")]
+    pub event_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub batch_id: ::prost::alloc::string::String,
+    #[prost(int32, tag = "10")]
+    pub retry_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOperatorsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOperatorsResponse {
-#[prost(message, repeated, tag = "1")]
-pub operators: ::prost::alloc::vec::Vec<Operator>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub operators: ::prost::alloc::vec::Vec<Operator>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOperatorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateOperatorRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub operator_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub operator: ::core::option::Option<Operator>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub operator_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub operator: ::core::option::Option<Operator>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateOperatorRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub operator: ::core::option::Option<Operator>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub operator: ::core::option::Option<Operator>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteOperatorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAnalysesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAnalysesResponse {
-#[prost(message, repeated, tag = "1")]
-pub analyses: ::prost::alloc::vec::Vec<Analysis>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub analyses: ::prost::alloc::vec::Vec<Analysis>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAnalysisRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAnalysisRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub analysis_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub analysis: ::core::option::Option<Analysis>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub analysis_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub analysis: ::core::option::Option<Analysis>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAnalysisRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub analysis: ::core::option::Option<Analysis>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub analysis: ::core::option::Option<Analysis>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAnalysisRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesResponse {
-#[prost(message, repeated, tag = "1")]
-pub processes: ::prost::alloc::vec::Vec<Process>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub processes: ::prost::alloc::vec::Vec<Process>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProcessRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProcessRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub process_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub process: ::core::option::Option<Process>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub process_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub process: ::core::option::Option<Process>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProcessRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub process: ::core::option::Option<Process>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub process: ::core::option::Option<Process>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteProcessRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunProcessRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub requests: ::prost::alloc::vec::Vec<CreateProcessRequest>,
-#[prost(message, optional, tag = "3")]
-pub options: ::core::option::Option<batch_run_process_request::BatchRunProcessOptions>,
-#[prost(string, tag = "4")]
-pub batch_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<CreateProcessRequest>,
+    #[prost(message, optional, tag = "3")]
+    pub options: ::core::option::Option<batch_run_process_request::BatchRunProcessOptions>,
+    #[prost(string, tag = "4")]
+    pub batch_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `BatchRunProcessRequest`.
 pub mod batch_run_process_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BatchRunProcessOptions {
-#[prost(int32, tag = "1")]
-pub retry_count: i32,
-#[prost(int32, tag = "2")]
-pub batch_size: i32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BatchRunProcessOptions {
+        #[prost(int32, tag = "1")]
+        pub retry_count: i32,
+        #[prost(int32, tag = "2")]
+        pub batch_size: i32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunProcessResponse {
-#[prost(string, tag = "1")]
-pub batch_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub processes: ::prost::alloc::vec::Vec<Process>,
+    #[prost(string, tag = "1")]
+    pub batch_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub processes: ::prost::alloc::vec::Vec<Process>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResolveOperatorInfoRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub queries: ::prost::alloc::vec::Vec<OperatorQuery>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub queries: ::prost::alloc::vec::Vec<OperatorQuery>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperatorQuery {
-#[prost(string, tag = "1")]
-pub operator: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub tag: ::prost::alloc::string::String,
-#[prost(enumeration = "Registry", tag = "3")]
-pub registry: i32,
+    #[prost(string, tag = "1")]
+    pub operator: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub tag: ::prost::alloc::string::String,
+    #[prost(enumeration = "Registry", tag = "3")]
+    pub registry: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResolveOperatorInfoResponse {
-#[prost(message, repeated, tag = "1")]
-pub operators: ::prost::alloc::vec::Vec<Operator>,
+    #[prost(message, repeated, tag = "1")]
+    pub operators: ::prost::alloc::vec::Vec<Operator>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPublicOperatorsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPublicOperatorsResponse {
-#[prost(message, repeated, tag = "1")]
-pub operators: ::prost::alloc::vec::Vec<Operator>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub operators: ::prost::alloc::vec::Vec<Operator>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Registry {
-Unspecified = 0,
-Public = 1,
-Private = 2,
+    Unspecified = 0,
+    Public = 1,
+    Private = 2,
 }
 impl Registry {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Registry::Unspecified => "REGISTRY_UNSPECIFIED",
-Registry::Public => "PUBLIC",
-Registry::Private => "PRIVATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
-"PUBLIC" => Some(Self::Public),
-"PRIVATE" => Some(Self::Private),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Registry::Unspecified => "REGISTRY_UNSPECIFIED",
+            Registry::Public => "PUBLIC",
+            Registry::Private => "PRIVATE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
+            "PUBLIC" => Some(Self::Public),
+            "PRIVATE" => Some(Self::Private),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod live_video_analytics_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service describing handlers for resources. The service enables clients to run
-/// Live Video Analytics (LVA) on the streaming inputs.
-#[derive(Debug, Clone)]
-pub struct LiveVideoAnalyticsClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> LiveVideoAnalyticsClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> LiveVideoAnalyticsClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-LiveVideoAnalyticsClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// ListPublicOperators returns all the operators in public registry.
-pub async fn list_public_operators(&mut self, request: impl tonic::IntoRequest<super::ListPublicOperatorsRequest>) -> std::result::Result<tonic::Response<super::ListPublicOperatorsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/ListPublicOperators");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "ListPublicOperators"));
-self.inner.unary(req, path, codec).await
-}
-/// ResolveOperatorInfo returns the operator information based on the request.
-pub async fn resolve_operator_info(&mut self, request: impl tonic::IntoRequest<super::ResolveOperatorInfoRequest>) -> std::result::Result<tonic::Response<super::ResolveOperatorInfoResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/ResolveOperatorInfo");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "ResolveOperatorInfo"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Operators in a given project and location.
-pub async fn list_operators(&mut self, request: impl tonic::IntoRequest<super::ListOperatorsRequest>) -> std::result::Result<tonic::Response<super::ListOperatorsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/ListOperators");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "ListOperators"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Operator.
-pub async fn get_operator(&mut self, request: impl tonic::IntoRequest<super::GetOperatorRequest>) -> std::result::Result<tonic::Response<super::Operator>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/GetOperator");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "GetOperator"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Operator in a given project and location.
-pub async fn create_operator(&mut self, request: impl tonic::IntoRequest<super::CreateOperatorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/CreateOperator");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "CreateOperator"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Operator.
-pub async fn update_operator(&mut self, request: impl tonic::IntoRequest<super::UpdateOperatorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateOperator");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "UpdateOperator"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Operator.
-pub async fn delete_operator(&mut self, request: impl tonic::IntoRequest<super::DeleteOperatorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteOperator");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "DeleteOperator"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Analyses in a given project and location.
-pub async fn list_analyses(&mut self, request: impl tonic::IntoRequest<super::ListAnalysesRequest>) -> std::result::Result<tonic::Response<super::ListAnalysesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/ListAnalyses");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "ListAnalyses"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Analysis.
-pub async fn get_analysis(&mut self, request: impl tonic::IntoRequest<super::GetAnalysisRequest>) -> std::result::Result<tonic::Response<super::Analysis>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/GetAnalysis");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "GetAnalysis"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Analysis in a given project and location.
-pub async fn create_analysis(&mut self, request: impl tonic::IntoRequest<super::CreateAnalysisRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/CreateAnalysis");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "CreateAnalysis"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Analysis.
-pub async fn update_analysis(&mut self, request: impl tonic::IntoRequest<super::UpdateAnalysisRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateAnalysis");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "UpdateAnalysis"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Analysis.
-pub async fn delete_analysis(&mut self, request: impl tonic::IntoRequest<super::DeleteAnalysisRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteAnalysis");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "DeleteAnalysis"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Processes in a given project and location.
-pub async fn list_processes(&mut self, request: impl tonic::IntoRequest<super::ListProcessesRequest>) -> std::result::Result<tonic::Response<super::ListProcessesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/ListProcesses");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "ListProcesses"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Process.
-pub async fn get_process(&mut self, request: impl tonic::IntoRequest<super::GetProcessRequest>) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/GetProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "GetProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Process in a given project and location.
-pub async fn create_process(&mut self, request: impl tonic::IntoRequest<super::CreateProcessRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/CreateProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "CreateProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Process.
-pub async fn update_process(&mut self, request: impl tonic::IntoRequest<super::UpdateProcessRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "UpdateProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Process.
-pub async fn delete_process(&mut self, request: impl tonic::IntoRequest<super::DeleteProcessRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "DeleteProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Run all of the processes to "completion". Max time for each process is
-/// the LRO time limit.
-pub async fn batch_run_process(&mut self, request: impl tonic::IntoRequest<super::BatchRunProcessRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.visionai.v1.LiveVideoAnalytics/BatchRunProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.visionai.v1.LiveVideoAnalytics", "BatchRunProcess"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service describing handlers for resources. The service enables clients to run
+    /// Live Video Analytics (LVA) on the streaming inputs.
+    #[derive(Debug, Clone)]
+    pub struct LiveVideoAnalyticsClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> LiveVideoAnalyticsClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> LiveVideoAnalyticsClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            LiveVideoAnalyticsClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// ListPublicOperators returns all the operators in public registry.
+        pub async fn list_public_operators(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPublicOperatorsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPublicOperatorsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/ListPublicOperators",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "ListPublicOperators",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// ResolveOperatorInfo returns the operator information based on the request.
+        pub async fn resolve_operator_info(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResolveOperatorInfoRequest>,
+        ) -> std::result::Result<tonic::Response<super::ResolveOperatorInfoResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/ResolveOperatorInfo",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "ResolveOperatorInfo",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Operators in a given project and location.
+        pub async fn list_operators(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListOperatorsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListOperatorsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/ListOperators",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "ListOperators",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Operator.
+        pub async fn get_operator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetOperatorRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operator>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/GetOperator",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "GetOperator",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Operator in a given project and location.
+        pub async fn create_operator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateOperatorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/CreateOperator",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "CreateOperator",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Operator.
+        pub async fn update_operator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateOperatorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateOperator",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "UpdateOperator",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Operator.
+        pub async fn delete_operator(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteOperatorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteOperator",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "DeleteOperator",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Analyses in a given project and location.
+        pub async fn list_analyses(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAnalysesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAnalysesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/ListAnalyses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "ListAnalyses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Analysis.
+        pub async fn get_analysis(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAnalysisRequest>,
+        ) -> std::result::Result<tonic::Response<super::Analysis>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/GetAnalysis",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "GetAnalysis",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Analysis in a given project and location.
+        pub async fn create_analysis(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAnalysisRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/CreateAnalysis",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "CreateAnalysis",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Analysis.
+        pub async fn update_analysis(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAnalysisRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateAnalysis",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "UpdateAnalysis",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Analysis.
+        pub async fn delete_analysis(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAnalysisRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteAnalysis",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "DeleteAnalysis",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Processes in a given project and location.
+        pub async fn list_processes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProcessesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListProcessesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/ListProcesses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "ListProcesses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Process.
+        pub async fn get_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProcessRequest>,
+        ) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/GetProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "GetProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Process in a given project and location.
+        pub async fn create_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateProcessRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/CreateProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "CreateProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Process.
+        pub async fn update_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateProcessRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/UpdateProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "UpdateProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Process.
+        pub async fn delete_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteProcessRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/DeleteProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "DeleteProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Run all of the processes to "completion". Max time for each process is
+        /// the LRO time limit.
+        pub async fn batch_run_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchRunProcessRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.visionai.v1.LiveVideoAnalytics/BatchRunProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.visionai.v1.LiveVideoAnalytics",
+                "BatchRunProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

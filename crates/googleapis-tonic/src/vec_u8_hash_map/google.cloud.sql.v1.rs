@@ -2,5139 +2,6181 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AclEntry {
-#[prost(string, tag = "1")]
-pub value: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApiWarning {
-#[prost(enumeration = "api_warning::SqlApiWarningCode", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub message: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub region: ::prost::alloc::string::String,
+    #[prost(enumeration = "api_warning::SqlApiWarningCode", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub region: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ApiWarning`.
 pub mod api_warning {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlApiWarningCode {
-Unspecified = 0,
-RegionUnreachable = 1,
-MaxResultsExceedsLimit = 2,
-CompromisedCredentials = 3,
-InternalStateFailure = 4,
-}
-impl SqlApiWarningCode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlApiWarningCode::Unspecified => "SQL_API_WARNING_CODE_UNSPECIFIED",
-SqlApiWarningCode::RegionUnreachable => "REGION_UNREACHABLE",
-SqlApiWarningCode::MaxResultsExceedsLimit => "MAX_RESULTS_EXCEEDS_LIMIT",
-SqlApiWarningCode::CompromisedCredentials => "COMPROMISED_CREDENTIALS",
-SqlApiWarningCode::InternalStateFailure => "INTERNAL_STATE_FAILURE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_API_WARNING_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"REGION_UNREACHABLE" => Some(Self::RegionUnreachable),
-"MAX_RESULTS_EXCEEDS_LIMIT" => Some(Self::MaxResultsExceedsLimit),
-"COMPROMISED_CREDENTIALS" => Some(Self::CompromisedCredentials),
-"INTERNAL_STATE_FAILURE" => Some(Self::InternalStateFailure),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlApiWarningCode {
+        Unspecified = 0,
+        RegionUnreachable = 1,
+        MaxResultsExceedsLimit = 2,
+        CompromisedCredentials = 3,
+        InternalStateFailure = 4,
+    }
+    impl SqlApiWarningCode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlApiWarningCode::Unspecified => "SQL_API_WARNING_CODE_UNSPECIFIED",
+                SqlApiWarningCode::RegionUnreachable => "REGION_UNREACHABLE",
+                SqlApiWarningCode::MaxResultsExceedsLimit => "MAX_RESULTS_EXCEEDS_LIMIT",
+                SqlApiWarningCode::CompromisedCredentials => "COMPROMISED_CREDENTIALS",
+                SqlApiWarningCode::InternalStateFailure => "INTERNAL_STATE_FAILURE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_API_WARNING_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "REGION_UNREACHABLE" => Some(Self::RegionUnreachable),
+                "MAX_RESULTS_EXCEEDS_LIMIT" => Some(Self::MaxResultsExceedsLimit),
+                "COMPROMISED_CREDENTIALS" => Some(Self::CompromisedCredentials),
+                "INTERNAL_STATE_FAILURE" => Some(Self::InternalStateFailure),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BackupRetentionSettings {
-#[prost(enumeration = "backup_retention_settings::RetentionUnit", tag = "1")]
-pub retention_unit: i32,
-#[prost(message, optional, tag = "2")]
-pub retained_backups: ::core::option::Option<i32>,
+    #[prost(enumeration = "backup_retention_settings::RetentionUnit", tag = "1")]
+    pub retention_unit: i32,
+    #[prost(message, optional, tag = "2")]
+    pub retained_backups: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `BackupRetentionSettings`.
 pub mod backup_retention_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RetentionUnit {
-Unspecified = 0,
-Count = 1,
-}
-impl RetentionUnit {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RetentionUnit::Unspecified => "RETENTION_UNIT_UNSPECIFIED",
-RetentionUnit::Count => "COUNT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RETENTION_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
-"COUNT" => Some(Self::Count),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RetentionUnit {
+        Unspecified = 0,
+        Count = 1,
+    }
+    impl RetentionUnit {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RetentionUnit::Unspecified => "RETENTION_UNIT_UNSPECIFIED",
+                RetentionUnit::Count => "COUNT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RETENTION_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
+                "COUNT" => Some(Self::Count),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupConfiguration {
-#[prost(string, tag = "1")]
-pub start_time: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub enabled: ::core::option::Option<bool>,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub binary_log_enabled: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "5")]
-pub replication_log_archiving_enabled: ::core::option::Option<bool>,
-#[prost(string, tag = "6")]
-pub location: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub point_in_time_recovery_enabled: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "8")]
-pub backup_retention_settings: ::core::option::Option<BackupRetentionSettings>,
-#[prost(message, optional, tag = "9")]
-pub transaction_log_retention_days: ::core::option::Option<i32>,
-#[prost(enumeration = "backup_configuration::TransactionalLogStorageState", optional, tag = "10")]
-pub transactional_log_storage_state: ::core::option::Option<i32>,
+    #[prost(string, tag = "1")]
+    pub start_time: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub enabled: ::core::option::Option<bool>,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub binary_log_enabled: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "5")]
+    pub replication_log_archiving_enabled: ::core::option::Option<bool>,
+    #[prost(string, tag = "6")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub point_in_time_recovery_enabled: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "8")]
+    pub backup_retention_settings: ::core::option::Option<BackupRetentionSettings>,
+    #[prost(message, optional, tag = "9")]
+    pub transaction_log_retention_days: ::core::option::Option<i32>,
+    #[prost(
+        enumeration = "backup_configuration::TransactionalLogStorageState",
+        optional,
+        tag = "10"
+    )]
+    pub transactional_log_storage_state: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `BackupConfiguration`.
 pub mod backup_configuration {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TransactionalLogStorageState {
-Unspecified = 0,
-Disk = 1,
-SwitchingToCloudStorage = 2,
-SwitchedToCloudStorage = 3,
-CloudStorage = 4,
-}
-impl TransactionalLogStorageState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransactionalLogStorageState::Unspecified => "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
-TransactionalLogStorageState::Disk => "DISK",
-TransactionalLogStorageState::SwitchingToCloudStorage => "SWITCHING_TO_CLOUD_STORAGE",
-TransactionalLogStorageState::SwitchedToCloudStorage => "SWITCHED_TO_CLOUD_STORAGE",
-TransactionalLogStorageState::CloudStorage => "CLOUD_STORAGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DISK" => Some(Self::Disk),
-"SWITCHING_TO_CLOUD_STORAGE" => Some(Self::SwitchingToCloudStorage),
-"SWITCHED_TO_CLOUD_STORAGE" => Some(Self::SwitchedToCloudStorage),
-"CLOUD_STORAGE" => Some(Self::CloudStorage),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TransactionalLogStorageState {
+        Unspecified = 0,
+        Disk = 1,
+        SwitchingToCloudStorage = 2,
+        SwitchedToCloudStorage = 3,
+        CloudStorage = 4,
+    }
+    impl TransactionalLogStorageState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TransactionalLogStorageState::Unspecified => {
+                    "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED"
+                }
+                TransactionalLogStorageState::Disk => "DISK",
+                TransactionalLogStorageState::SwitchingToCloudStorage => {
+                    "SWITCHING_TO_CLOUD_STORAGE"
+                }
+                TransactionalLogStorageState::SwitchedToCloudStorage => "SWITCHED_TO_CLOUD_STORAGE",
+                TransactionalLogStorageState::CloudStorage => "CLOUD_STORAGE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DISK" => Some(Self::Disk),
+                "SWITCHING_TO_CLOUD_STORAGE" => Some(Self::SwitchingToCloudStorage),
+                "SWITCHED_TO_CLOUD_STORAGE" => Some(Self::SwitchedToCloudStorage),
+                "CLOUD_STORAGE" => Some(Self::CloudStorage),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PerformDiskShrinkContext {
-#[prost(int64, tag = "1")]
-pub target_size_gb: i64,
+    #[prost(int64, tag = "1")]
+    pub target_size_gb: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupContext {
-#[prost(int64, tag = "1")]
-pub backup_id: i64,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub backup_id: i64,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Database {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub charset: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub collation: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub self_link: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub project: ::prost::alloc::string::String,
-#[prost(oneof = "database::DatabaseDetails", tags = "9")]
-pub database_details: ::core::option::Option<database::DatabaseDetails>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub charset: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub collation: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub self_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(oneof = "database::DatabaseDetails", tags = "9")]
+    pub database_details: ::core::option::Option<database::DatabaseDetails>,
 }
 /// Nested message and enum types in `Database`.
 pub mod database {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DatabaseDetails {
-#[prost(message, tag = "9")]
-SqlserverDatabaseDetails(super::SqlServerDatabaseDetails),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DatabaseDetails {
+        #[prost(message, tag = "9")]
+        SqlserverDatabaseDetails(super::SqlServerDatabaseDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlServerDatabaseDetails {
-#[prost(int32, tag = "1")]
-pub compatibility_level: i32,
-#[prost(string, tag = "2")]
-pub recovery_model: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub compatibility_level: i32,
+    #[prost(string, tag = "2")]
+    pub recovery_model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseFlags {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MySqlSyncConfig {
-#[prost(message, repeated, tag = "1")]
-pub initial_sync_flags: ::prost::alloc::vec::Vec<SyncFlags>,
+    #[prost(message, repeated, tag = "1")]
+    pub initial_sync_flags: ::prost::alloc::vec::Vec<SyncFlags>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncFlags {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstanceReference {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub region: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub region: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DemoteMasterConfiguration {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub mysql_replica_configuration: ::core::option::Option<DemoteMasterMySqlReplicaConfiguration>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub mysql_replica_configuration: ::core::option::Option<DemoteMasterMySqlReplicaConfiguration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DemoteMasterMySqlReplicaConfiguration {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub password: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub client_key: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub client_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub ca_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub client_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub client_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub ca_certificate: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportContext {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub databases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub sql_export_options: ::core::option::Option<export_context::SqlExportOptions>,
-#[prost(message, optional, tag = "5")]
-pub csv_export_options: ::core::option::Option<export_context::SqlCsvExportOptions>,
-#[prost(enumeration = "SqlFileType", tag = "6")]
-pub file_type: i32,
-#[prost(message, optional, tag = "8")]
-pub offload: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "9")]
-pub bak_export_options: ::core::option::Option<export_context::SqlBakExportOptions>,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub databases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub sql_export_options: ::core::option::Option<export_context::SqlExportOptions>,
+    #[prost(message, optional, tag = "5")]
+    pub csv_export_options: ::core::option::Option<export_context::SqlCsvExportOptions>,
+    #[prost(enumeration = "SqlFileType", tag = "6")]
+    pub file_type: i32,
+    #[prost(message, optional, tag = "8")]
+    pub offload: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "9")]
+    pub bak_export_options: ::core::option::Option<export_context::SqlBakExportOptions>,
 }
 /// Nested message and enum types in `ExportContext`.
 pub mod export_context {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SqlCsvExportOptions {
-#[prost(string, tag = "1")]
-pub select_query: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub escape_character: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub quote_character: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub fields_terminated_by: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub lines_terminated_by: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SqlExportOptions {
-#[prost(string, repeated, tag = "1")]
-pub tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "2")]
-pub schema_only: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "3")]
-pub mysql_export_options: ::core::option::Option<sql_export_options::MysqlExportOptions>,
-#[prost(message, optional, tag = "4")]
-pub threads: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "5")]
-pub parallel: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "6")]
-pub postgres_export_options: ::core::option::Option<sql_export_options::PostgresExportOptions>,
-}
-/// Nested message and enum types in `SqlExportOptions`.
-pub mod sql_export_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MysqlExportOptions {
-#[prost(message, optional, tag = "1")]
-pub master_data: ::core::option::Option<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PostgresExportOptions {
-#[prost(message, optional, tag = "1")]
-pub clean: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "2")]
-pub if_exists: ::core::option::Option<bool>,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SqlBakExportOptions {
-#[prost(message, optional, tag = "1")]
-pub striped: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "2")]
-pub stripe_count: ::core::option::Option<i32>,
-#[prost(enumeration = "super::BakType", tag = "4")]
-pub bak_type: i32,
-#[deprecated]
-#[prost(message, optional, tag = "5")]
-pub copy_only: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "6")]
-pub differential_base: ::core::option::Option<bool>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SqlCsvExportOptions {
+        #[prost(string, tag = "1")]
+        pub select_query: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub escape_character: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub quote_character: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub fields_terminated_by: ::prost::alloc::string::String,
+        #[prost(string, tag = "6")]
+        pub lines_terminated_by: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SqlExportOptions {
+        #[prost(string, repeated, tag = "1")]
+        pub tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, optional, tag = "2")]
+        pub schema_only: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "3")]
+        pub mysql_export_options: ::core::option::Option<sql_export_options::MysqlExportOptions>,
+        #[prost(message, optional, tag = "4")]
+        pub threads: ::core::option::Option<i32>,
+        #[prost(message, optional, tag = "5")]
+        pub parallel: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "6")]
+        pub postgres_export_options:
+            ::core::option::Option<sql_export_options::PostgresExportOptions>,
+    }
+    /// Nested message and enum types in `SqlExportOptions`.
+    pub mod sql_export_options {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct MysqlExportOptions {
+            #[prost(message, optional, tag = "1")]
+            pub master_data: ::core::option::Option<i32>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct PostgresExportOptions {
+            #[prost(message, optional, tag = "1")]
+            pub clean: ::core::option::Option<bool>,
+            #[prost(message, optional, tag = "2")]
+            pub if_exists: ::core::option::Option<bool>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SqlBakExportOptions {
+        #[prost(message, optional, tag = "1")]
+        pub striped: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "2")]
+        pub stripe_count: ::core::option::Option<i32>,
+        #[prost(enumeration = "super::BakType", tag = "4")]
+        pub bak_type: i32,
+        #[deprecated]
+        #[prost(message, optional, tag = "5")]
+        pub copy_only: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "6")]
+        pub differential_base: ::core::option::Option<bool>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportContext {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub database: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
-#[prost(enumeration = "SqlFileType", tag = "4")]
-pub file_type: i32,
-#[prost(message, optional, tag = "5")]
-pub csv_import_options: ::core::option::Option<import_context::SqlCsvImportOptions>,
-#[prost(string, tag = "6")]
-pub import_user: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub bak_import_options: ::core::option::Option<import_context::SqlBakImportOptions>,
-#[prost(message, optional, tag = "8")]
-pub sql_import_options: ::core::option::Option<import_context::SqlImportOptions>,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub database: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(enumeration = "SqlFileType", tag = "4")]
+    pub file_type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub csv_import_options: ::core::option::Option<import_context::SqlCsvImportOptions>,
+    #[prost(string, tag = "6")]
+    pub import_user: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub bak_import_options: ::core::option::Option<import_context::SqlBakImportOptions>,
+    #[prost(message, optional, tag = "8")]
+    pub sql_import_options: ::core::option::Option<import_context::SqlImportOptions>,
 }
 /// Nested message and enum types in `ImportContext`.
 pub mod import_context {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SqlImportOptions {
-#[prost(message, optional, tag = "1")]
-pub threads: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "2")]
-pub parallel: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "3")]
-pub postgres_import_options: ::core::option::Option<sql_import_options::PostgresImportOptions>,
-}
-/// Nested message and enum types in `SqlImportOptions`.
-pub mod sql_import_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PostgresImportOptions {
-#[prost(message, optional, tag = "1")]
-pub clean: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "2")]
-pub if_exists: ::core::option::Option<bool>,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SqlCsvImportOptions {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub escape_character: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub quote_character: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub fields_terminated_by: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub lines_terminated_by: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SqlBakImportOptions {
-#[prost(message, optional, tag = "1")]
-pub encryption_options: ::core::option::Option<sql_bak_import_options::EncryptionOptions>,
-#[prost(message, optional, tag = "2")]
-pub striped: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "4")]
-pub no_recovery: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "5")]
-pub recovery_only: ::core::option::Option<bool>,
-#[prost(enumeration = "super::BakType", tag = "6")]
-pub bak_type: i32,
-#[prost(message, optional, tag = "7")]
-pub stop_at: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "8")]
-pub stop_at_mark: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `SqlBakImportOptions`.
-pub mod sql_bak_import_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncryptionOptions {
-#[prost(string, tag = "1")]
-pub cert_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub pvk_path: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub pvk_password: ::prost::alloc::string::String,
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SqlImportOptions {
+        #[prost(message, optional, tag = "1")]
+        pub threads: ::core::option::Option<i32>,
+        #[prost(message, optional, tag = "2")]
+        pub parallel: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "3")]
+        pub postgres_import_options:
+            ::core::option::Option<sql_import_options::PostgresImportOptions>,
+    }
+    /// Nested message and enum types in `SqlImportOptions`.
+    pub mod sql_import_options {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct PostgresImportOptions {
+            #[prost(message, optional, tag = "1")]
+            pub clean: ::core::option::Option<bool>,
+            #[prost(message, optional, tag = "2")]
+            pub if_exists: ::core::option::Option<bool>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SqlCsvImportOptions {
+        #[prost(string, tag = "1")]
+        pub table: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "4")]
+        pub escape_character: ::prost::alloc::string::String,
+        #[prost(string, tag = "5")]
+        pub quote_character: ::prost::alloc::string::String,
+        #[prost(string, tag = "6")]
+        pub fields_terminated_by: ::prost::alloc::string::String,
+        #[prost(string, tag = "8")]
+        pub lines_terminated_by: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SqlBakImportOptions {
+        #[prost(message, optional, tag = "1")]
+        pub encryption_options: ::core::option::Option<sql_bak_import_options::EncryptionOptions>,
+        #[prost(message, optional, tag = "2")]
+        pub striped: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "4")]
+        pub no_recovery: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "5")]
+        pub recovery_only: ::core::option::Option<bool>,
+        #[prost(enumeration = "super::BakType", tag = "6")]
+        pub bak_type: i32,
+        #[prost(message, optional, tag = "7")]
+        pub stop_at: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(string, tag = "8")]
+        pub stop_at_mark: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `SqlBakImportOptions`.
+    pub mod sql_bak_import_options {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct EncryptionOptions {
+            #[prost(string, tag = "1")]
+            pub cert_path: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub pvk_path: ::prost::alloc::string::String,
+            #[prost(string, tag = "3")]
+            pub pvk_password: ::prost::alloc::string::String,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpConfiguration {
-#[prost(message, optional, tag = "1")]
-pub ipv4_enabled: ::core::option::Option<bool>,
-#[prost(string, tag = "2")]
-pub private_network: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub require_ssl: ::core::option::Option<bool>,
-#[prost(message, repeated, tag = "4")]
-pub authorized_networks: ::prost::alloc::vec::Vec<AclEntry>,
-#[prost(string, tag = "6")]
-pub allocated_ip_range: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub enable_private_path_for_google_cloud_services: ::core::option::Option<bool>,
-#[prost(enumeration = "ip_configuration::SslMode", tag = "8")]
-pub ssl_mode: i32,
-#[prost(message, optional, tag = "9")]
-pub psc_config: ::core::option::Option<PscConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub ipv4_enabled: ::core::option::Option<bool>,
+    #[prost(string, tag = "2")]
+    pub private_network: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub require_ssl: ::core::option::Option<bool>,
+    #[prost(message, repeated, tag = "4")]
+    pub authorized_networks: ::prost::alloc::vec::Vec<AclEntry>,
+    #[prost(string, tag = "6")]
+    pub allocated_ip_range: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub enable_private_path_for_google_cloud_services: ::core::option::Option<bool>,
+    #[prost(enumeration = "ip_configuration::SslMode", tag = "8")]
+    pub ssl_mode: i32,
+    #[prost(message, optional, tag = "9")]
+    pub psc_config: ::core::option::Option<PscConfig>,
 }
 /// Nested message and enum types in `IpConfiguration`.
 pub mod ip_configuration {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SslMode {
-Unspecified = 0,
-AllowUnencryptedAndEncrypted = 1,
-EncryptedOnly = 2,
-TrustedClientCertificateRequired = 3,
-}
-impl SslMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SslMode::Unspecified => "SSL_MODE_UNSPECIFIED",
-SslMode::AllowUnencryptedAndEncrypted => "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
-SslMode::EncryptedOnly => "ENCRYPTED_ONLY",
-SslMode::TrustedClientCertificateRequired => "TRUSTED_CLIENT_CERTIFICATE_REQUIRED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SSL_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALLOW_UNENCRYPTED_AND_ENCRYPTED" => Some(Self::AllowUnencryptedAndEncrypted),
-"ENCRYPTED_ONLY" => Some(Self::EncryptedOnly),
-"TRUSTED_CLIENT_CERTIFICATE_REQUIRED" => Some(Self::TrustedClientCertificateRequired),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SslMode {
+        Unspecified = 0,
+        AllowUnencryptedAndEncrypted = 1,
+        EncryptedOnly = 2,
+        TrustedClientCertificateRequired = 3,
+    }
+    impl SslMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SslMode::Unspecified => "SSL_MODE_UNSPECIFIED",
+                SslMode::AllowUnencryptedAndEncrypted => "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+                SslMode::EncryptedOnly => "ENCRYPTED_ONLY",
+                SslMode::TrustedClientCertificateRequired => "TRUSTED_CLIENT_CERTIFICATE_REQUIRED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SSL_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALLOW_UNENCRYPTED_AND_ENCRYPTED" => Some(Self::AllowUnencryptedAndEncrypted),
+                "ENCRYPTED_ONLY" => Some(Self::EncryptedOnly),
+                "TRUSTED_CLIENT_CERTIFICATE_REQUIRED" => {
+                    Some(Self::TrustedClientCertificateRequired)
+                }
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PscConfig {
-#[prost(bool, optional, tag = "1")]
-pub psc_enabled: ::core::option::Option<bool>,
-#[prost(string, repeated, tag = "2")]
-pub allowed_consumer_projects: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "1")]
+    pub psc_enabled: ::core::option::Option<bool>,
+    #[prost(string, repeated, tag = "2")]
+    pub allowed_consumer_projects: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationPreference {
-#[deprecated]
-#[prost(string, tag = "1")]
-pub follow_gae_application: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub zone: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub secondary_zone: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "1")]
+    pub follow_gae_application: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub secondary_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaintenanceWindow {
-#[prost(message, optional, tag = "1")]
-pub hour: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "2")]
-pub day: ::core::option::Option<i32>,
-#[prost(enumeration = "SqlUpdateTrack", tag = "3")]
-pub update_track: i32,
-#[prost(string, tag = "4")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub hour: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "2")]
+    pub day: ::core::option::Option<i32>,
+    #[prost(enumeration = "SqlUpdateTrack", tag = "3")]
+    pub update_track: i32,
+    #[prost(string, tag = "4")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DenyMaintenancePeriod {
-#[prost(string, tag = "1")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub end_date: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub time: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub end_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub time: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct InsightsConfig {
-#[prost(bool, tag = "1")]
-pub query_insights_enabled: bool,
-#[prost(bool, tag = "2")]
-pub record_client_address: bool,
-#[prost(bool, tag = "3")]
-pub record_application_tags: bool,
-#[prost(message, optional, tag = "4")]
-pub query_string_length: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "5")]
-pub query_plans_per_minute: ::core::option::Option<i32>,
+    #[prost(bool, tag = "1")]
+    pub query_insights_enabled: bool,
+    #[prost(bool, tag = "2")]
+    pub record_client_address: bool,
+    #[prost(bool, tag = "3")]
+    pub record_application_tags: bool,
+    #[prost(message, optional, tag = "4")]
+    pub query_string_length: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "5")]
+    pub query_plans_per_minute: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MySqlReplicaConfiguration {
-#[prost(string, tag = "1")]
-pub dump_file_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub password: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub connect_retry_interval: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "5")]
-pub master_heartbeat_period: ::core::option::Option<i64>,
-#[prost(string, tag = "6")]
-pub ca_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub client_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub client_key: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub ssl_cipher: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub verify_server_certificate: ::core::option::Option<bool>,
-#[prost(string, tag = "11")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub dump_file_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub connect_retry_interval: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "5")]
+    pub master_heartbeat_period: ::core::option::Option<i64>,
+    #[prost(string, tag = "6")]
+    pub ca_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub client_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub client_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub ssl_cipher: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub verify_server_certificate: ::core::option::Option<bool>,
+    #[prost(string, tag = "11")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiskEncryptionConfiguration {
-#[prost(string, tag = "1")]
-pub kms_key_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiskEncryptionStatus {
-#[prost(string, tag = "1")]
-pub kms_key_version_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kms_key_version_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpMapping {
-#[prost(enumeration = "SqlIpAddressType", tag = "1")]
-pub r#type: i32,
-#[prost(string, tag = "2")]
-pub ip_address: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub time_to_retire: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "SqlIpAddressType", tag = "1")]
+    pub r#type: i32,
+    #[prost(string, tag = "2")]
+    pub ip_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub time_to_retire: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Operation {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub target_link: ::prost::alloc::string::String,
-#[prost(enumeration = "operation::SqlOperationStatus", tag = "3")]
-pub status: i32,
-#[prost(string, tag = "4")]
-pub user: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub insert_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub error: ::core::option::Option<OperationErrors>,
-#[prost(message, optional, tag = "19")]
-pub api_warning: ::core::option::Option<ApiWarning>,
-#[prost(enumeration = "operation::SqlOperationType", tag = "9")]
-pub operation_type: i32,
-#[prost(message, optional, tag = "10")]
-pub import_context: ::core::option::Option<ImportContext>,
-#[prost(message, optional, tag = "11")]
-pub export_context: ::core::option::Option<ExportContext>,
-#[prost(message, optional, tag = "17")]
-pub backup_context: ::core::option::Option<BackupContext>,
-#[prost(string, tag = "12")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub target_id: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub self_link: ::prost::alloc::string::String,
-#[prost(string, tag = "15")]
-pub target_project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "20")]
-pub acquire_ssrs_lease_context: ::core::option::Option<AcquireSsrsLeaseContext>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub target_link: ::prost::alloc::string::String,
+    #[prost(enumeration = "operation::SqlOperationStatus", tag = "3")]
+    pub status: i32,
+    #[prost(string, tag = "4")]
+    pub user: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub insert_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub error: ::core::option::Option<OperationErrors>,
+    #[prost(message, optional, tag = "19")]
+    pub api_warning: ::core::option::Option<ApiWarning>,
+    #[prost(enumeration = "operation::SqlOperationType", tag = "9")]
+    pub operation_type: i32,
+    #[prost(message, optional, tag = "10")]
+    pub import_context: ::core::option::Option<ImportContext>,
+    #[prost(message, optional, tag = "11")]
+    pub export_context: ::core::option::Option<ExportContext>,
+    #[prost(message, optional, tag = "17")]
+    pub backup_context: ::core::option::Option<BackupContext>,
+    #[prost(string, tag = "12")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub target_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub self_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub target_project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "20")]
+    pub acquire_ssrs_lease_context: ::core::option::Option<AcquireSsrsLeaseContext>,
 }
 /// Nested message and enum types in `Operation`.
 pub mod operation {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlOperationType {
-Unspecified = 0,
-Import = 1,
-Export = 2,
-Create = 3,
-Update = 4,
-Delete = 5,
-Restart = 6,
-Backup = 7,
-Snapshot = 8,
-BackupVolume = 9,
-DeleteVolume = 10,
-RestoreVolume = 11,
-InjectUser = 12,
-Clone = 14,
-StopReplica = 15,
-StartReplica = 16,
-PromoteReplica = 17,
-CreateReplica = 18,
-CreateUser = 19,
-DeleteUser = 20,
-UpdateUser = 21,
-CreateDatabase = 22,
-DeleteDatabase = 23,
-UpdateDatabase = 24,
-Failover = 25,
-DeleteBackup = 26,
-RecreateReplica = 27,
-TruncateLog = 28,
-DemoteMaster = 29,
-Maintenance = 30,
-EnablePrivateIp = 31,
-DeferMaintenance = 32,
-CreateClone = 33,
-RescheduleMaintenance = 34,
-StartExternalSync = 35,
-LogCleanup = 36,
-AutoRestart = 37,
-Reencrypt = 38,
-Switchover = 39,
-AcquireSsrsLease = 42,
-ReleaseSsrsLease = 43,
-ReconfigureOldPrimary = 44,
-ClusterMaintenance = 45,
-SelfServiceMaintenance = 46,
-SwitchoverToReplica = 47,
-}
-impl SqlOperationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlOperationType::Unspecified => "SQL_OPERATION_TYPE_UNSPECIFIED",
-SqlOperationType::Import => "IMPORT",
-SqlOperationType::Export => "EXPORT",
-SqlOperationType::Create => "CREATE",
-SqlOperationType::Update => "UPDATE",
-SqlOperationType::Delete => "DELETE",
-SqlOperationType::Restart => "RESTART",
-SqlOperationType::Backup => "BACKUP",
-SqlOperationType::Snapshot => "SNAPSHOT",
-SqlOperationType::BackupVolume => "BACKUP_VOLUME",
-SqlOperationType::DeleteVolume => "DELETE_VOLUME",
-SqlOperationType::RestoreVolume => "RESTORE_VOLUME",
-SqlOperationType::InjectUser => "INJECT_USER",
-SqlOperationType::Clone => "CLONE",
-SqlOperationType::StopReplica => "STOP_REPLICA",
-SqlOperationType::StartReplica => "START_REPLICA",
-SqlOperationType::PromoteReplica => "PROMOTE_REPLICA",
-SqlOperationType::CreateReplica => "CREATE_REPLICA",
-SqlOperationType::CreateUser => "CREATE_USER",
-SqlOperationType::DeleteUser => "DELETE_USER",
-SqlOperationType::UpdateUser => "UPDATE_USER",
-SqlOperationType::CreateDatabase => "CREATE_DATABASE",
-SqlOperationType::DeleteDatabase => "DELETE_DATABASE",
-SqlOperationType::UpdateDatabase => "UPDATE_DATABASE",
-SqlOperationType::Failover => "FAILOVER",
-SqlOperationType::DeleteBackup => "DELETE_BACKUP",
-SqlOperationType::RecreateReplica => "RECREATE_REPLICA",
-SqlOperationType::TruncateLog => "TRUNCATE_LOG",
-SqlOperationType::DemoteMaster => "DEMOTE_MASTER",
-SqlOperationType::Maintenance => "MAINTENANCE",
-SqlOperationType::EnablePrivateIp => "ENABLE_PRIVATE_IP",
-SqlOperationType::DeferMaintenance => "DEFER_MAINTENANCE",
-SqlOperationType::CreateClone => "CREATE_CLONE",
-SqlOperationType::RescheduleMaintenance => "RESCHEDULE_MAINTENANCE",
-SqlOperationType::StartExternalSync => "START_EXTERNAL_SYNC",
-SqlOperationType::LogCleanup => "LOG_CLEANUP",
-SqlOperationType::AutoRestart => "AUTO_RESTART",
-SqlOperationType::Reencrypt => "REENCRYPT",
-SqlOperationType::Switchover => "SWITCHOVER",
-SqlOperationType::AcquireSsrsLease => "ACQUIRE_SSRS_LEASE",
-SqlOperationType::ReleaseSsrsLease => "RELEASE_SSRS_LEASE",
-SqlOperationType::ReconfigureOldPrimary => "RECONFIGURE_OLD_PRIMARY",
-SqlOperationType::ClusterMaintenance => "CLUSTER_MAINTENANCE",
-SqlOperationType::SelfServiceMaintenance => "SELF_SERVICE_MAINTENANCE",
-SqlOperationType::SwitchoverToReplica => "SWITCHOVER_TO_REPLICA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_OPERATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"IMPORT" => Some(Self::Import),
-"EXPORT" => Some(Self::Export),
-"CREATE" => Some(Self::Create),
-"UPDATE" => Some(Self::Update),
-"DELETE" => Some(Self::Delete),
-"RESTART" => Some(Self::Restart),
-"BACKUP" => Some(Self::Backup),
-"SNAPSHOT" => Some(Self::Snapshot),
-"BACKUP_VOLUME" => Some(Self::BackupVolume),
-"DELETE_VOLUME" => Some(Self::DeleteVolume),
-"RESTORE_VOLUME" => Some(Self::RestoreVolume),
-"INJECT_USER" => Some(Self::InjectUser),
-"CLONE" => Some(Self::Clone),
-"STOP_REPLICA" => Some(Self::StopReplica),
-"START_REPLICA" => Some(Self::StartReplica),
-"PROMOTE_REPLICA" => Some(Self::PromoteReplica),
-"CREATE_REPLICA" => Some(Self::CreateReplica),
-"CREATE_USER" => Some(Self::CreateUser),
-"DELETE_USER" => Some(Self::DeleteUser),
-"UPDATE_USER" => Some(Self::UpdateUser),
-"CREATE_DATABASE" => Some(Self::CreateDatabase),
-"DELETE_DATABASE" => Some(Self::DeleteDatabase),
-"UPDATE_DATABASE" => Some(Self::UpdateDatabase),
-"FAILOVER" => Some(Self::Failover),
-"DELETE_BACKUP" => Some(Self::DeleteBackup),
-"RECREATE_REPLICA" => Some(Self::RecreateReplica),
-"TRUNCATE_LOG" => Some(Self::TruncateLog),
-"DEMOTE_MASTER" => Some(Self::DemoteMaster),
-"MAINTENANCE" => Some(Self::Maintenance),
-"ENABLE_PRIVATE_IP" => Some(Self::EnablePrivateIp),
-"DEFER_MAINTENANCE" => Some(Self::DeferMaintenance),
-"CREATE_CLONE" => Some(Self::CreateClone),
-"RESCHEDULE_MAINTENANCE" => Some(Self::RescheduleMaintenance),
-"START_EXTERNAL_SYNC" => Some(Self::StartExternalSync),
-"LOG_CLEANUP" => Some(Self::LogCleanup),
-"AUTO_RESTART" => Some(Self::AutoRestart),
-"REENCRYPT" => Some(Self::Reencrypt),
-"SWITCHOVER" => Some(Self::Switchover),
-"ACQUIRE_SSRS_LEASE" => Some(Self::AcquireSsrsLease),
-"RELEASE_SSRS_LEASE" => Some(Self::ReleaseSsrsLease),
-"RECONFIGURE_OLD_PRIMARY" => Some(Self::ReconfigureOldPrimary),
-"CLUSTER_MAINTENANCE" => Some(Self::ClusterMaintenance),
-"SELF_SERVICE_MAINTENANCE" => Some(Self::SelfServiceMaintenance),
-"SWITCHOVER_TO_REPLICA" => Some(Self::SwitchoverToReplica),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlOperationStatus {
-Unspecified = 0,
-Pending = 1,
-Running = 2,
-Done = 3,
-}
-impl SqlOperationStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlOperationStatus::Unspecified => "SQL_OPERATION_STATUS_UNSPECIFIED",
-SqlOperationStatus::Pending => "PENDING",
-SqlOperationStatus::Running => "RUNNING",
-SqlOperationStatus::Done => "DONE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_OPERATION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlOperationType {
+        Unspecified = 0,
+        Import = 1,
+        Export = 2,
+        Create = 3,
+        Update = 4,
+        Delete = 5,
+        Restart = 6,
+        Backup = 7,
+        Snapshot = 8,
+        BackupVolume = 9,
+        DeleteVolume = 10,
+        RestoreVolume = 11,
+        InjectUser = 12,
+        Clone = 14,
+        StopReplica = 15,
+        StartReplica = 16,
+        PromoteReplica = 17,
+        CreateReplica = 18,
+        CreateUser = 19,
+        DeleteUser = 20,
+        UpdateUser = 21,
+        CreateDatabase = 22,
+        DeleteDatabase = 23,
+        UpdateDatabase = 24,
+        Failover = 25,
+        DeleteBackup = 26,
+        RecreateReplica = 27,
+        TruncateLog = 28,
+        DemoteMaster = 29,
+        Maintenance = 30,
+        EnablePrivateIp = 31,
+        DeferMaintenance = 32,
+        CreateClone = 33,
+        RescheduleMaintenance = 34,
+        StartExternalSync = 35,
+        LogCleanup = 36,
+        AutoRestart = 37,
+        Reencrypt = 38,
+        Switchover = 39,
+        AcquireSsrsLease = 42,
+        ReleaseSsrsLease = 43,
+        ReconfigureOldPrimary = 44,
+        ClusterMaintenance = 45,
+        SelfServiceMaintenance = 46,
+        SwitchoverToReplica = 47,
+    }
+    impl SqlOperationType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlOperationType::Unspecified => "SQL_OPERATION_TYPE_UNSPECIFIED",
+                SqlOperationType::Import => "IMPORT",
+                SqlOperationType::Export => "EXPORT",
+                SqlOperationType::Create => "CREATE",
+                SqlOperationType::Update => "UPDATE",
+                SqlOperationType::Delete => "DELETE",
+                SqlOperationType::Restart => "RESTART",
+                SqlOperationType::Backup => "BACKUP",
+                SqlOperationType::Snapshot => "SNAPSHOT",
+                SqlOperationType::BackupVolume => "BACKUP_VOLUME",
+                SqlOperationType::DeleteVolume => "DELETE_VOLUME",
+                SqlOperationType::RestoreVolume => "RESTORE_VOLUME",
+                SqlOperationType::InjectUser => "INJECT_USER",
+                SqlOperationType::Clone => "CLONE",
+                SqlOperationType::StopReplica => "STOP_REPLICA",
+                SqlOperationType::StartReplica => "START_REPLICA",
+                SqlOperationType::PromoteReplica => "PROMOTE_REPLICA",
+                SqlOperationType::CreateReplica => "CREATE_REPLICA",
+                SqlOperationType::CreateUser => "CREATE_USER",
+                SqlOperationType::DeleteUser => "DELETE_USER",
+                SqlOperationType::UpdateUser => "UPDATE_USER",
+                SqlOperationType::CreateDatabase => "CREATE_DATABASE",
+                SqlOperationType::DeleteDatabase => "DELETE_DATABASE",
+                SqlOperationType::UpdateDatabase => "UPDATE_DATABASE",
+                SqlOperationType::Failover => "FAILOVER",
+                SqlOperationType::DeleteBackup => "DELETE_BACKUP",
+                SqlOperationType::RecreateReplica => "RECREATE_REPLICA",
+                SqlOperationType::TruncateLog => "TRUNCATE_LOG",
+                SqlOperationType::DemoteMaster => "DEMOTE_MASTER",
+                SqlOperationType::Maintenance => "MAINTENANCE",
+                SqlOperationType::EnablePrivateIp => "ENABLE_PRIVATE_IP",
+                SqlOperationType::DeferMaintenance => "DEFER_MAINTENANCE",
+                SqlOperationType::CreateClone => "CREATE_CLONE",
+                SqlOperationType::RescheduleMaintenance => "RESCHEDULE_MAINTENANCE",
+                SqlOperationType::StartExternalSync => "START_EXTERNAL_SYNC",
+                SqlOperationType::LogCleanup => "LOG_CLEANUP",
+                SqlOperationType::AutoRestart => "AUTO_RESTART",
+                SqlOperationType::Reencrypt => "REENCRYPT",
+                SqlOperationType::Switchover => "SWITCHOVER",
+                SqlOperationType::AcquireSsrsLease => "ACQUIRE_SSRS_LEASE",
+                SqlOperationType::ReleaseSsrsLease => "RELEASE_SSRS_LEASE",
+                SqlOperationType::ReconfigureOldPrimary => "RECONFIGURE_OLD_PRIMARY",
+                SqlOperationType::ClusterMaintenance => "CLUSTER_MAINTENANCE",
+                SqlOperationType::SelfServiceMaintenance => "SELF_SERVICE_MAINTENANCE",
+                SqlOperationType::SwitchoverToReplica => "SWITCHOVER_TO_REPLICA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_OPERATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IMPORT" => Some(Self::Import),
+                "EXPORT" => Some(Self::Export),
+                "CREATE" => Some(Self::Create),
+                "UPDATE" => Some(Self::Update),
+                "DELETE" => Some(Self::Delete),
+                "RESTART" => Some(Self::Restart),
+                "BACKUP" => Some(Self::Backup),
+                "SNAPSHOT" => Some(Self::Snapshot),
+                "BACKUP_VOLUME" => Some(Self::BackupVolume),
+                "DELETE_VOLUME" => Some(Self::DeleteVolume),
+                "RESTORE_VOLUME" => Some(Self::RestoreVolume),
+                "INJECT_USER" => Some(Self::InjectUser),
+                "CLONE" => Some(Self::Clone),
+                "STOP_REPLICA" => Some(Self::StopReplica),
+                "START_REPLICA" => Some(Self::StartReplica),
+                "PROMOTE_REPLICA" => Some(Self::PromoteReplica),
+                "CREATE_REPLICA" => Some(Self::CreateReplica),
+                "CREATE_USER" => Some(Self::CreateUser),
+                "DELETE_USER" => Some(Self::DeleteUser),
+                "UPDATE_USER" => Some(Self::UpdateUser),
+                "CREATE_DATABASE" => Some(Self::CreateDatabase),
+                "DELETE_DATABASE" => Some(Self::DeleteDatabase),
+                "UPDATE_DATABASE" => Some(Self::UpdateDatabase),
+                "FAILOVER" => Some(Self::Failover),
+                "DELETE_BACKUP" => Some(Self::DeleteBackup),
+                "RECREATE_REPLICA" => Some(Self::RecreateReplica),
+                "TRUNCATE_LOG" => Some(Self::TruncateLog),
+                "DEMOTE_MASTER" => Some(Self::DemoteMaster),
+                "MAINTENANCE" => Some(Self::Maintenance),
+                "ENABLE_PRIVATE_IP" => Some(Self::EnablePrivateIp),
+                "DEFER_MAINTENANCE" => Some(Self::DeferMaintenance),
+                "CREATE_CLONE" => Some(Self::CreateClone),
+                "RESCHEDULE_MAINTENANCE" => Some(Self::RescheduleMaintenance),
+                "START_EXTERNAL_SYNC" => Some(Self::StartExternalSync),
+                "LOG_CLEANUP" => Some(Self::LogCleanup),
+                "AUTO_RESTART" => Some(Self::AutoRestart),
+                "REENCRYPT" => Some(Self::Reencrypt),
+                "SWITCHOVER" => Some(Self::Switchover),
+                "ACQUIRE_SSRS_LEASE" => Some(Self::AcquireSsrsLease),
+                "RELEASE_SSRS_LEASE" => Some(Self::ReleaseSsrsLease),
+                "RECONFIGURE_OLD_PRIMARY" => Some(Self::ReconfigureOldPrimary),
+                "CLUSTER_MAINTENANCE" => Some(Self::ClusterMaintenance),
+                "SELF_SERVICE_MAINTENANCE" => Some(Self::SelfServiceMaintenance),
+                "SWITCHOVER_TO_REPLICA" => Some(Self::SwitchoverToReplica),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlOperationStatus {
+        Unspecified = 0,
+        Pending = 1,
+        Running = 2,
+        Done = 3,
+    }
+    impl SqlOperationStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlOperationStatus::Unspecified => "SQL_OPERATION_STATUS_UNSPECIFIED",
+                SqlOperationStatus::Pending => "PENDING",
+                SqlOperationStatus::Running => "RUNNING",
+                SqlOperationStatus::Done => "DONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_OPERATION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationError {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub code: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub code: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationErrors {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub errors: ::prost::alloc::vec::Vec<OperationError>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub errors: ::prost::alloc::vec::Vec<OperationError>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PasswordValidationPolicy {
-#[prost(message, optional, tag = "1")]
-pub min_length: ::core::option::Option<i32>,
-#[prost(enumeration = "password_validation_policy::Complexity", tag = "2")]
-pub complexity: i32,
-#[prost(message, optional, tag = "3")]
-pub reuse_interval: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "4")]
-pub disallow_username_substring: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "5")]
-pub password_change_interval: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub enable_password_policy: ::core::option::Option<bool>,
-#[deprecated]
-#[prost(message, optional, tag = "7")]
-pub disallow_compromised_credentials: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "1")]
+    pub min_length: ::core::option::Option<i32>,
+    #[prost(enumeration = "password_validation_policy::Complexity", tag = "2")]
+    pub complexity: i32,
+    #[prost(message, optional, tag = "3")]
+    pub reuse_interval: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "4")]
+    pub disallow_username_substring: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "5")]
+    pub password_change_interval: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "6")]
+    pub enable_password_policy: ::core::option::Option<bool>,
+    #[deprecated]
+    #[prost(message, optional, tag = "7")]
+    pub disallow_compromised_credentials: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `PasswordValidationPolicy`.
 pub mod password_validation_policy {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Complexity {
-Unspecified = 0,
-Default = 1,
-}
-impl Complexity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Complexity::Unspecified => "COMPLEXITY_UNSPECIFIED",
-Complexity::Default => "COMPLEXITY_DEFAULT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
-"COMPLEXITY_DEFAULT" => Some(Self::Default),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Complexity {
+        Unspecified = 0,
+        Default = 1,
+    }
+    impl Complexity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Complexity::Unspecified => "COMPLEXITY_UNSPECIFIED",
+                Complexity::Default => "COMPLEXITY_DEFAULT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "COMPLEXITY_DEFAULT" => Some(Self::Default),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataCacheConfig {
-#[prost(bool, tag = "1")]
-pub data_cache_enabled: bool,
+    #[prost(bool, tag = "1")]
+    pub data_cache_enabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Settings {
-#[prost(message, optional, tag = "1")]
-pub settings_version: ::core::option::Option<i64>,
-#[deprecated]
-#[prost(string, repeated, tag = "2")]
-pub authorized_gae_applications: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub tier: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub kind: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "5")]
-pub user_labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(enumeration = "SqlAvailabilityType", tag = "6")]
-pub availability_type: i32,
-#[prost(enumeration = "SqlPricingPlan", tag = "7")]
-pub pricing_plan: i32,
-#[deprecated]
-#[prost(enumeration = "SqlReplicationType", tag = "8")]
-pub replication_type: i32,
-#[prost(message, optional, tag = "9")]
-pub storage_auto_resize_limit: ::core::option::Option<i64>,
-#[prost(enumeration = "settings::SqlActivationPolicy", tag = "10")]
-pub activation_policy: i32,
-#[prost(message, optional, tag = "11")]
-pub ip_configuration: ::core::option::Option<IpConfiguration>,
-#[prost(message, optional, tag = "12")]
-pub storage_auto_resize: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "13")]
-pub location_preference: ::core::option::Option<LocationPreference>,
-#[prost(message, repeated, tag = "14")]
-pub database_flags: ::prost::alloc::vec::Vec<DatabaseFlags>,
-#[prost(enumeration = "SqlDataDiskType", tag = "15")]
-pub data_disk_type: i32,
-#[prost(message, optional, tag = "16")]
-pub maintenance_window: ::core::option::Option<MaintenanceWindow>,
-#[prost(message, optional, tag = "17")]
-pub backup_configuration: ::core::option::Option<BackupConfiguration>,
-#[prost(message, optional, tag = "18")]
-pub database_replication_enabled: ::core::option::Option<bool>,
-#[deprecated]
-#[prost(message, optional, tag = "19")]
-pub crash_safe_replication_enabled: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "20")]
-pub data_disk_size_gb: ::core::option::Option<i64>,
-#[prost(message, optional, tag = "22")]
-pub active_directory_config: ::core::option::Option<SqlActiveDirectoryConfig>,
-#[prost(string, tag = "23")]
-pub collation: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "24")]
-pub deny_maintenance_periods: ::prost::alloc::vec::Vec<DenyMaintenancePeriod>,
-#[prost(message, optional, tag = "25")]
-pub insights_config: ::core::option::Option<InsightsConfig>,
-#[prost(message, optional, tag = "27")]
-pub password_validation_policy: ::core::option::Option<PasswordValidationPolicy>,
-#[prost(message, optional, tag = "29")]
-pub sql_server_audit_config: ::core::option::Option<SqlServerAuditConfig>,
-#[prost(enumeration = "settings::Edition", tag = "38")]
-pub edition: i32,
-#[prost(enumeration = "settings::ConnectorEnforcement", tag = "32")]
-pub connector_enforcement: i32,
-#[prost(message, optional, tag = "33")]
-pub deletion_protection_enabled: ::core::option::Option<bool>,
-#[prost(string, tag = "34")]
-pub time_zone: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "35")]
-pub advanced_machine_features: ::core::option::Option<AdvancedMachineFeatures>,
-#[prost(message, optional, tag = "37")]
-pub data_cache_config: ::core::option::Option<DataCacheConfig>,
-#[prost(message, optional, tag = "40")]
-pub enable_google_ml_integration: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "41")]
-pub enable_dataplex_integration: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "1")]
+    pub settings_version: ::core::option::Option<i64>,
+    #[deprecated]
+    #[prost(string, repeated, tag = "2")]
+    pub authorized_gae_applications: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub tier: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "5")]
+    pub user_labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(enumeration = "SqlAvailabilityType", tag = "6")]
+    pub availability_type: i32,
+    #[prost(enumeration = "SqlPricingPlan", tag = "7")]
+    pub pricing_plan: i32,
+    #[deprecated]
+    #[prost(enumeration = "SqlReplicationType", tag = "8")]
+    pub replication_type: i32,
+    #[prost(message, optional, tag = "9")]
+    pub storage_auto_resize_limit: ::core::option::Option<i64>,
+    #[prost(enumeration = "settings::SqlActivationPolicy", tag = "10")]
+    pub activation_policy: i32,
+    #[prost(message, optional, tag = "11")]
+    pub ip_configuration: ::core::option::Option<IpConfiguration>,
+    #[prost(message, optional, tag = "12")]
+    pub storage_auto_resize: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "13")]
+    pub location_preference: ::core::option::Option<LocationPreference>,
+    #[prost(message, repeated, tag = "14")]
+    pub database_flags: ::prost::alloc::vec::Vec<DatabaseFlags>,
+    #[prost(enumeration = "SqlDataDiskType", tag = "15")]
+    pub data_disk_type: i32,
+    #[prost(message, optional, tag = "16")]
+    pub maintenance_window: ::core::option::Option<MaintenanceWindow>,
+    #[prost(message, optional, tag = "17")]
+    pub backup_configuration: ::core::option::Option<BackupConfiguration>,
+    #[prost(message, optional, tag = "18")]
+    pub database_replication_enabled: ::core::option::Option<bool>,
+    #[deprecated]
+    #[prost(message, optional, tag = "19")]
+    pub crash_safe_replication_enabled: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "20")]
+    pub data_disk_size_gb: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "22")]
+    pub active_directory_config: ::core::option::Option<SqlActiveDirectoryConfig>,
+    #[prost(string, tag = "23")]
+    pub collation: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "24")]
+    pub deny_maintenance_periods: ::prost::alloc::vec::Vec<DenyMaintenancePeriod>,
+    #[prost(message, optional, tag = "25")]
+    pub insights_config: ::core::option::Option<InsightsConfig>,
+    #[prost(message, optional, tag = "27")]
+    pub password_validation_policy: ::core::option::Option<PasswordValidationPolicy>,
+    #[prost(message, optional, tag = "29")]
+    pub sql_server_audit_config: ::core::option::Option<SqlServerAuditConfig>,
+    #[prost(enumeration = "settings::Edition", tag = "38")]
+    pub edition: i32,
+    #[prost(enumeration = "settings::ConnectorEnforcement", tag = "32")]
+    pub connector_enforcement: i32,
+    #[prost(message, optional, tag = "33")]
+    pub deletion_protection_enabled: ::core::option::Option<bool>,
+    #[prost(string, tag = "34")]
+    pub time_zone: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "35")]
+    pub advanced_machine_features: ::core::option::Option<AdvancedMachineFeatures>,
+    #[prost(message, optional, tag = "37")]
+    pub data_cache_config: ::core::option::Option<DataCacheConfig>,
+    #[prost(message, optional, tag = "40")]
+    pub enable_google_ml_integration: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "41")]
+    pub enable_dataplex_integration: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `Settings`.
 pub mod settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlActivationPolicy {
-Unspecified = 0,
-Always = 1,
-Never = 2,
-OnDemand = 3,
-}
-impl SqlActivationPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlActivationPolicy::Unspecified => "SQL_ACTIVATION_POLICY_UNSPECIFIED",
-SqlActivationPolicy::Always => "ALWAYS",
-SqlActivationPolicy::Never => "NEVER",
-SqlActivationPolicy::OnDemand => "ON_DEMAND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_ACTIVATION_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"ALWAYS" => Some(Self::Always),
-"NEVER" => Some(Self::Never),
-"ON_DEMAND" => Some(Self::OnDemand),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Edition {
-Unspecified = 0,
-Enterprise = 2,
-EnterprisePlus = 3,
-}
-impl Edition {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Edition::Unspecified => "EDITION_UNSPECIFIED",
-Edition::Enterprise => "ENTERPRISE",
-Edition::EnterprisePlus => "ENTERPRISE_PLUS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EDITION_UNSPECIFIED" => Some(Self::Unspecified),
-"ENTERPRISE" => Some(Self::Enterprise),
-"ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ConnectorEnforcement {
-Unspecified = 0,
-NotRequired = 1,
-Required = 2,
-}
-impl ConnectorEnforcement {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ConnectorEnforcement::Unspecified => "CONNECTOR_ENFORCEMENT_UNSPECIFIED",
-ConnectorEnforcement::NotRequired => "NOT_REQUIRED",
-ConnectorEnforcement::Required => "REQUIRED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONNECTOR_ENFORCEMENT_UNSPECIFIED" => Some(Self::Unspecified),
-"NOT_REQUIRED" => Some(Self::NotRequired),
-"REQUIRED" => Some(Self::Required),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlActivationPolicy {
+        Unspecified = 0,
+        Always = 1,
+        Never = 2,
+        OnDemand = 3,
+    }
+    impl SqlActivationPolicy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlActivationPolicy::Unspecified => "SQL_ACTIVATION_POLICY_UNSPECIFIED",
+                SqlActivationPolicy::Always => "ALWAYS",
+                SqlActivationPolicy::Never => "NEVER",
+                SqlActivationPolicy::OnDemand => "ON_DEMAND",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_ACTIVATION_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALWAYS" => Some(Self::Always),
+                "NEVER" => Some(Self::Never),
+                "ON_DEMAND" => Some(Self::OnDemand),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Edition {
+        Unspecified = 0,
+        Enterprise = 2,
+        EnterprisePlus = 3,
+    }
+    impl Edition {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Edition::Unspecified => "EDITION_UNSPECIFIED",
+                Edition::Enterprise => "ENTERPRISE",
+                Edition::EnterprisePlus => "ENTERPRISE_PLUS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EDITION_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENTERPRISE" => Some(Self::Enterprise),
+                "ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ConnectorEnforcement {
+        Unspecified = 0,
+        NotRequired = 1,
+        Required = 2,
+    }
+    impl ConnectorEnforcement {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ConnectorEnforcement::Unspecified => "CONNECTOR_ENFORCEMENT_UNSPECIFIED",
+                ConnectorEnforcement::NotRequired => "NOT_REQUIRED",
+                ConnectorEnforcement::Required => "REQUIRED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CONNECTOR_ENFORCEMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "NOT_REQUIRED" => Some(Self::NotRequired),
+                "REQUIRED" => Some(Self::Required),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AdvancedMachineFeatures {
-#[prost(int32, tag = "1")]
-pub threads_per_core: i32,
+    #[prost(int32, tag = "1")]
+    pub threads_per_core: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCert {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cert_serial_number: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub cert: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "5")]
-pub common_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub sha1_fingerprint: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub self_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub cert_serial_number: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub cert: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "5")]
+    pub common_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub sha1_fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub self_link: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCertDetail {
-#[prost(message, optional, tag = "1")]
-pub cert_info: ::core::option::Option<SslCert>,
-#[prost(string, tag = "2")]
-pub cert_private_key: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub cert_info: ::core::option::Option<SslCert>,
+    #[prost(string, tag = "2")]
+    pub cert_private_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlActiveDirectoryConfig {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub domain: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub domain: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlServerAuditConfig {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub bucket: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub retention_interval: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "4")]
-pub upload_interval: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub bucket: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub retention_interval: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "4")]
+    pub upload_interval: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcquireSsrsLeaseContext {
-#[prost(string, optional, tag = "1")]
-pub setup_login: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub service_login: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "3")]
-pub report_database: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, optional, tag = "1")]
+    pub setup_login: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub service_login: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub report_database: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlFileType {
-Unspecified = 0,
-Sql = 1,
-Csv = 2,
-Bak = 4,
+    Unspecified = 0,
+    Sql = 1,
+    Csv = 2,
+    Bak = 4,
 }
 impl SqlFileType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlFileType::Unspecified => "SQL_FILE_TYPE_UNSPECIFIED",
-SqlFileType::Sql => "SQL",
-SqlFileType::Csv => "CSV",
-SqlFileType::Bak => "BAK",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_FILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SQL" => Some(Self::Sql),
-"CSV" => Some(Self::Csv),
-"BAK" => Some(Self::Bak),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlFileType::Unspecified => "SQL_FILE_TYPE_UNSPECIFIED",
+            SqlFileType::Sql => "SQL",
+            SqlFileType::Csv => "CSV",
+            SqlFileType::Bak => "BAK",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_FILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "SQL" => Some(Self::Sql),
+            "CSV" => Some(Self::Csv),
+            "BAK" => Some(Self::Bak),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BakType {
-Unspecified = 0,
-Full = 1,
-Diff = 2,
-Tlog = 3,
+    Unspecified = 0,
+    Full = 1,
+    Diff = 2,
+    Tlog = 3,
 }
 impl BakType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BakType::Unspecified => "BAK_TYPE_UNSPECIFIED",
-BakType::Full => "FULL",
-BakType::Diff => "DIFF",
-BakType::Tlog => "TLOG",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BAK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FULL" => Some(Self::Full),
-"DIFF" => Some(Self::Diff),
-"TLOG" => Some(Self::Tlog),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BakType::Unspecified => "BAK_TYPE_UNSPECIFIED",
+            BakType::Full => "FULL",
+            BakType::Diff => "DIFF",
+            BakType::Tlog => "TLOG",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "BAK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "FULL" => Some(Self::Full),
+            "DIFF" => Some(Self::Diff),
+            "TLOG" => Some(Self::Tlog),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlBackendType {
-Unspecified = 0,
-FirstGen = 1,
-SecondGen = 2,
-External = 3,
+    Unspecified = 0,
+    FirstGen = 1,
+    SecondGen = 2,
+    External = 3,
 }
 impl SqlBackendType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlBackendType::Unspecified => "SQL_BACKEND_TYPE_UNSPECIFIED",
-SqlBackendType::FirstGen => "FIRST_GEN",
-SqlBackendType::SecondGen => "SECOND_GEN",
-SqlBackendType::External => "EXTERNAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_BACKEND_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FIRST_GEN" => Some(Self::FirstGen),
-"SECOND_GEN" => Some(Self::SecondGen),
-"EXTERNAL" => Some(Self::External),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlBackendType::Unspecified => "SQL_BACKEND_TYPE_UNSPECIFIED",
+            SqlBackendType::FirstGen => "FIRST_GEN",
+            SqlBackendType::SecondGen => "SECOND_GEN",
+            SqlBackendType::External => "EXTERNAL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_BACKEND_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "FIRST_GEN" => Some(Self::FirstGen),
+            "SECOND_GEN" => Some(Self::SecondGen),
+            "EXTERNAL" => Some(Self::External),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlIpAddressType {
-Unspecified = 0,
-Primary = 1,
-Outgoing = 2,
-Private = 3,
-Migrated1stGen = 4,
+    Unspecified = 0,
+    Primary = 1,
+    Outgoing = 2,
+    Private = 3,
+    Migrated1stGen = 4,
 }
 impl SqlIpAddressType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlIpAddressType::Unspecified => "SQL_IP_ADDRESS_TYPE_UNSPECIFIED",
-SqlIpAddressType::Primary => "PRIMARY",
-SqlIpAddressType::Outgoing => "OUTGOING",
-SqlIpAddressType::Private => "PRIVATE",
-SqlIpAddressType::Migrated1stGen => "MIGRATED_1ST_GEN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_IP_ADDRESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PRIMARY" => Some(Self::Primary),
-"OUTGOING" => Some(Self::Outgoing),
-"PRIVATE" => Some(Self::Private),
-"MIGRATED_1ST_GEN" => Some(Self::Migrated1stGen),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlIpAddressType::Unspecified => "SQL_IP_ADDRESS_TYPE_UNSPECIFIED",
+            SqlIpAddressType::Primary => "PRIMARY",
+            SqlIpAddressType::Outgoing => "OUTGOING",
+            SqlIpAddressType::Private => "PRIVATE",
+            SqlIpAddressType::Migrated1stGen => "MIGRATED_1ST_GEN",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_IP_ADDRESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "PRIMARY" => Some(Self::Primary),
+            "OUTGOING" => Some(Self::Outgoing),
+            "PRIVATE" => Some(Self::Private),
+            "MIGRATED_1ST_GEN" => Some(Self::Migrated1stGen),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlDatabaseVersion {
-Unspecified = 0,
-Mysql51 = 2,
-Mysql55 = 3,
-Mysql56 = 5,
-Mysql57 = 6,
-Sqlserver2017Standard = 11,
-Sqlserver2017Enterprise = 14,
-Sqlserver2017Express = 15,
-Sqlserver2017Web = 16,
-Postgres96 = 9,
-Postgres10 = 18,
-Postgres11 = 10,
-Postgres12 = 19,
-Postgres13 = 23,
-Postgres14 = 110,
-Postgres15 = 172,
-Postgres16 = 272,
-Mysql80 = 20,
-Mysql8018 = 41,
-Mysql8026 = 85,
-Mysql8027 = 111,
-Mysql8028 = 132,
-Mysql8029 = 148,
-Mysql8030 = 174,
-Mysql8031 = 197,
-Mysql8032 = 213,
-Mysql8033 = 238,
-Mysql8034 = 239,
-Mysql8035 = 240,
-Mysql8036 = 241,
-Mysql8037 = 355,
-Mysql8038 = 356,
-Mysql8039 = 357,
-Mysql8040 = 358,
-Mysql84 = 398,
-Mysql840 = 399,
-Sqlserver2019Standard = 26,
-Sqlserver2019Enterprise = 27,
-Sqlserver2019Express = 28,
-Sqlserver2019Web = 29,
-Sqlserver2022Standard = 199,
-Sqlserver2022Enterprise = 200,
-Sqlserver2022Express = 201,
-Sqlserver2022Web = 202,
+    Unspecified = 0,
+    Mysql51 = 2,
+    Mysql55 = 3,
+    Mysql56 = 5,
+    Mysql57 = 6,
+    Sqlserver2017Standard = 11,
+    Sqlserver2017Enterprise = 14,
+    Sqlserver2017Express = 15,
+    Sqlserver2017Web = 16,
+    Postgres96 = 9,
+    Postgres10 = 18,
+    Postgres11 = 10,
+    Postgres12 = 19,
+    Postgres13 = 23,
+    Postgres14 = 110,
+    Postgres15 = 172,
+    Postgres16 = 272,
+    Mysql80 = 20,
+    Mysql8018 = 41,
+    Mysql8026 = 85,
+    Mysql8027 = 111,
+    Mysql8028 = 132,
+    Mysql8029 = 148,
+    Mysql8030 = 174,
+    Mysql8031 = 197,
+    Mysql8032 = 213,
+    Mysql8033 = 238,
+    Mysql8034 = 239,
+    Mysql8035 = 240,
+    Mysql8036 = 241,
+    Mysql8037 = 355,
+    Mysql8038 = 356,
+    Mysql8039 = 357,
+    Mysql8040 = 358,
+    Mysql84 = 398,
+    Mysql840 = 399,
+    Sqlserver2019Standard = 26,
+    Sqlserver2019Enterprise = 27,
+    Sqlserver2019Express = 28,
+    Sqlserver2019Web = 29,
+    Sqlserver2022Standard = 199,
+    Sqlserver2022Enterprise = 200,
+    Sqlserver2022Express = 201,
+    Sqlserver2022Web = 202,
 }
 impl SqlDatabaseVersion {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlDatabaseVersion::Unspecified => "SQL_DATABASE_VERSION_UNSPECIFIED",
-SqlDatabaseVersion::Mysql51 => "MYSQL_5_1",
-SqlDatabaseVersion::Mysql55 => "MYSQL_5_5",
-SqlDatabaseVersion::Mysql56 => "MYSQL_5_6",
-SqlDatabaseVersion::Mysql57 => "MYSQL_5_7",
-SqlDatabaseVersion::Sqlserver2017Standard => "SQLSERVER_2017_STANDARD",
-SqlDatabaseVersion::Sqlserver2017Enterprise => "SQLSERVER_2017_ENTERPRISE",
-SqlDatabaseVersion::Sqlserver2017Express => "SQLSERVER_2017_EXPRESS",
-SqlDatabaseVersion::Sqlserver2017Web => "SQLSERVER_2017_WEB",
-SqlDatabaseVersion::Postgres96 => "POSTGRES_9_6",
-SqlDatabaseVersion::Postgres10 => "POSTGRES_10",
-SqlDatabaseVersion::Postgres11 => "POSTGRES_11",
-SqlDatabaseVersion::Postgres12 => "POSTGRES_12",
-SqlDatabaseVersion::Postgres13 => "POSTGRES_13",
-SqlDatabaseVersion::Postgres14 => "POSTGRES_14",
-SqlDatabaseVersion::Postgres15 => "POSTGRES_15",
-SqlDatabaseVersion::Postgres16 => "POSTGRES_16",
-SqlDatabaseVersion::Mysql80 => "MYSQL_8_0",
-SqlDatabaseVersion::Mysql8018 => "MYSQL_8_0_18",
-SqlDatabaseVersion::Mysql8026 => "MYSQL_8_0_26",
-SqlDatabaseVersion::Mysql8027 => "MYSQL_8_0_27",
-SqlDatabaseVersion::Mysql8028 => "MYSQL_8_0_28",
-SqlDatabaseVersion::Mysql8029 => "MYSQL_8_0_29",
-SqlDatabaseVersion::Mysql8030 => "MYSQL_8_0_30",
-SqlDatabaseVersion::Mysql8031 => "MYSQL_8_0_31",
-SqlDatabaseVersion::Mysql8032 => "MYSQL_8_0_32",
-SqlDatabaseVersion::Mysql8033 => "MYSQL_8_0_33",
-SqlDatabaseVersion::Mysql8034 => "MYSQL_8_0_34",
-SqlDatabaseVersion::Mysql8035 => "MYSQL_8_0_35",
-SqlDatabaseVersion::Mysql8036 => "MYSQL_8_0_36",
-SqlDatabaseVersion::Mysql8037 => "MYSQL_8_0_37",
-SqlDatabaseVersion::Mysql8038 => "MYSQL_8_0_38",
-SqlDatabaseVersion::Mysql8039 => "MYSQL_8_0_39",
-SqlDatabaseVersion::Mysql8040 => "MYSQL_8_0_40",
-SqlDatabaseVersion::Mysql84 => "MYSQL_8_4",
-SqlDatabaseVersion::Mysql840 => "MYSQL_8_4_0",
-SqlDatabaseVersion::Sqlserver2019Standard => "SQLSERVER_2019_STANDARD",
-SqlDatabaseVersion::Sqlserver2019Enterprise => "SQLSERVER_2019_ENTERPRISE",
-SqlDatabaseVersion::Sqlserver2019Express => "SQLSERVER_2019_EXPRESS",
-SqlDatabaseVersion::Sqlserver2019Web => "SQLSERVER_2019_WEB",
-SqlDatabaseVersion::Sqlserver2022Standard => "SQLSERVER_2022_STANDARD",
-SqlDatabaseVersion::Sqlserver2022Enterprise => "SQLSERVER_2022_ENTERPRISE",
-SqlDatabaseVersion::Sqlserver2022Express => "SQLSERVER_2022_EXPRESS",
-SqlDatabaseVersion::Sqlserver2022Web => "SQLSERVER_2022_WEB",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_DATABASE_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-"MYSQL_5_1" => Some(Self::Mysql51),
-"MYSQL_5_5" => Some(Self::Mysql55),
-"MYSQL_5_6" => Some(Self::Mysql56),
-"MYSQL_5_7" => Some(Self::Mysql57),
-"SQLSERVER_2017_STANDARD" => Some(Self::Sqlserver2017Standard),
-"SQLSERVER_2017_ENTERPRISE" => Some(Self::Sqlserver2017Enterprise),
-"SQLSERVER_2017_EXPRESS" => Some(Self::Sqlserver2017Express),
-"SQLSERVER_2017_WEB" => Some(Self::Sqlserver2017Web),
-"POSTGRES_9_6" => Some(Self::Postgres96),
-"POSTGRES_10" => Some(Self::Postgres10),
-"POSTGRES_11" => Some(Self::Postgres11),
-"POSTGRES_12" => Some(Self::Postgres12),
-"POSTGRES_13" => Some(Self::Postgres13),
-"POSTGRES_14" => Some(Self::Postgres14),
-"POSTGRES_15" => Some(Self::Postgres15),
-"POSTGRES_16" => Some(Self::Postgres16),
-"MYSQL_8_0" => Some(Self::Mysql80),
-"MYSQL_8_0_18" => Some(Self::Mysql8018),
-"MYSQL_8_0_26" => Some(Self::Mysql8026),
-"MYSQL_8_0_27" => Some(Self::Mysql8027),
-"MYSQL_8_0_28" => Some(Self::Mysql8028),
-"MYSQL_8_0_29" => Some(Self::Mysql8029),
-"MYSQL_8_0_30" => Some(Self::Mysql8030),
-"MYSQL_8_0_31" => Some(Self::Mysql8031),
-"MYSQL_8_0_32" => Some(Self::Mysql8032),
-"MYSQL_8_0_33" => Some(Self::Mysql8033),
-"MYSQL_8_0_34" => Some(Self::Mysql8034),
-"MYSQL_8_0_35" => Some(Self::Mysql8035),
-"MYSQL_8_0_36" => Some(Self::Mysql8036),
-"MYSQL_8_0_37" => Some(Self::Mysql8037),
-"MYSQL_8_0_38" => Some(Self::Mysql8038),
-"MYSQL_8_0_39" => Some(Self::Mysql8039),
-"MYSQL_8_0_40" => Some(Self::Mysql8040),
-"MYSQL_8_4" => Some(Self::Mysql84),
-"MYSQL_8_4_0" => Some(Self::Mysql840),
-"SQLSERVER_2019_STANDARD" => Some(Self::Sqlserver2019Standard),
-"SQLSERVER_2019_ENTERPRISE" => Some(Self::Sqlserver2019Enterprise),
-"SQLSERVER_2019_EXPRESS" => Some(Self::Sqlserver2019Express),
-"SQLSERVER_2019_WEB" => Some(Self::Sqlserver2019Web),
-"SQLSERVER_2022_STANDARD" => Some(Self::Sqlserver2022Standard),
-"SQLSERVER_2022_ENTERPRISE" => Some(Self::Sqlserver2022Enterprise),
-"SQLSERVER_2022_EXPRESS" => Some(Self::Sqlserver2022Express),
-"SQLSERVER_2022_WEB" => Some(Self::Sqlserver2022Web),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlDatabaseVersion::Unspecified => "SQL_DATABASE_VERSION_UNSPECIFIED",
+            SqlDatabaseVersion::Mysql51 => "MYSQL_5_1",
+            SqlDatabaseVersion::Mysql55 => "MYSQL_5_5",
+            SqlDatabaseVersion::Mysql56 => "MYSQL_5_6",
+            SqlDatabaseVersion::Mysql57 => "MYSQL_5_7",
+            SqlDatabaseVersion::Sqlserver2017Standard => "SQLSERVER_2017_STANDARD",
+            SqlDatabaseVersion::Sqlserver2017Enterprise => "SQLSERVER_2017_ENTERPRISE",
+            SqlDatabaseVersion::Sqlserver2017Express => "SQLSERVER_2017_EXPRESS",
+            SqlDatabaseVersion::Sqlserver2017Web => "SQLSERVER_2017_WEB",
+            SqlDatabaseVersion::Postgres96 => "POSTGRES_9_6",
+            SqlDatabaseVersion::Postgres10 => "POSTGRES_10",
+            SqlDatabaseVersion::Postgres11 => "POSTGRES_11",
+            SqlDatabaseVersion::Postgres12 => "POSTGRES_12",
+            SqlDatabaseVersion::Postgres13 => "POSTGRES_13",
+            SqlDatabaseVersion::Postgres14 => "POSTGRES_14",
+            SqlDatabaseVersion::Postgres15 => "POSTGRES_15",
+            SqlDatabaseVersion::Postgres16 => "POSTGRES_16",
+            SqlDatabaseVersion::Mysql80 => "MYSQL_8_0",
+            SqlDatabaseVersion::Mysql8018 => "MYSQL_8_0_18",
+            SqlDatabaseVersion::Mysql8026 => "MYSQL_8_0_26",
+            SqlDatabaseVersion::Mysql8027 => "MYSQL_8_0_27",
+            SqlDatabaseVersion::Mysql8028 => "MYSQL_8_0_28",
+            SqlDatabaseVersion::Mysql8029 => "MYSQL_8_0_29",
+            SqlDatabaseVersion::Mysql8030 => "MYSQL_8_0_30",
+            SqlDatabaseVersion::Mysql8031 => "MYSQL_8_0_31",
+            SqlDatabaseVersion::Mysql8032 => "MYSQL_8_0_32",
+            SqlDatabaseVersion::Mysql8033 => "MYSQL_8_0_33",
+            SqlDatabaseVersion::Mysql8034 => "MYSQL_8_0_34",
+            SqlDatabaseVersion::Mysql8035 => "MYSQL_8_0_35",
+            SqlDatabaseVersion::Mysql8036 => "MYSQL_8_0_36",
+            SqlDatabaseVersion::Mysql8037 => "MYSQL_8_0_37",
+            SqlDatabaseVersion::Mysql8038 => "MYSQL_8_0_38",
+            SqlDatabaseVersion::Mysql8039 => "MYSQL_8_0_39",
+            SqlDatabaseVersion::Mysql8040 => "MYSQL_8_0_40",
+            SqlDatabaseVersion::Mysql84 => "MYSQL_8_4",
+            SqlDatabaseVersion::Mysql840 => "MYSQL_8_4_0",
+            SqlDatabaseVersion::Sqlserver2019Standard => "SQLSERVER_2019_STANDARD",
+            SqlDatabaseVersion::Sqlserver2019Enterprise => "SQLSERVER_2019_ENTERPRISE",
+            SqlDatabaseVersion::Sqlserver2019Express => "SQLSERVER_2019_EXPRESS",
+            SqlDatabaseVersion::Sqlserver2019Web => "SQLSERVER_2019_WEB",
+            SqlDatabaseVersion::Sqlserver2022Standard => "SQLSERVER_2022_STANDARD",
+            SqlDatabaseVersion::Sqlserver2022Enterprise => "SQLSERVER_2022_ENTERPRISE",
+            SqlDatabaseVersion::Sqlserver2022Express => "SQLSERVER_2022_EXPRESS",
+            SqlDatabaseVersion::Sqlserver2022Web => "SQLSERVER_2022_WEB",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_DATABASE_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+            "MYSQL_5_1" => Some(Self::Mysql51),
+            "MYSQL_5_5" => Some(Self::Mysql55),
+            "MYSQL_5_6" => Some(Self::Mysql56),
+            "MYSQL_5_7" => Some(Self::Mysql57),
+            "SQLSERVER_2017_STANDARD" => Some(Self::Sqlserver2017Standard),
+            "SQLSERVER_2017_ENTERPRISE" => Some(Self::Sqlserver2017Enterprise),
+            "SQLSERVER_2017_EXPRESS" => Some(Self::Sqlserver2017Express),
+            "SQLSERVER_2017_WEB" => Some(Self::Sqlserver2017Web),
+            "POSTGRES_9_6" => Some(Self::Postgres96),
+            "POSTGRES_10" => Some(Self::Postgres10),
+            "POSTGRES_11" => Some(Self::Postgres11),
+            "POSTGRES_12" => Some(Self::Postgres12),
+            "POSTGRES_13" => Some(Self::Postgres13),
+            "POSTGRES_14" => Some(Self::Postgres14),
+            "POSTGRES_15" => Some(Self::Postgres15),
+            "POSTGRES_16" => Some(Self::Postgres16),
+            "MYSQL_8_0" => Some(Self::Mysql80),
+            "MYSQL_8_0_18" => Some(Self::Mysql8018),
+            "MYSQL_8_0_26" => Some(Self::Mysql8026),
+            "MYSQL_8_0_27" => Some(Self::Mysql8027),
+            "MYSQL_8_0_28" => Some(Self::Mysql8028),
+            "MYSQL_8_0_29" => Some(Self::Mysql8029),
+            "MYSQL_8_0_30" => Some(Self::Mysql8030),
+            "MYSQL_8_0_31" => Some(Self::Mysql8031),
+            "MYSQL_8_0_32" => Some(Self::Mysql8032),
+            "MYSQL_8_0_33" => Some(Self::Mysql8033),
+            "MYSQL_8_0_34" => Some(Self::Mysql8034),
+            "MYSQL_8_0_35" => Some(Self::Mysql8035),
+            "MYSQL_8_0_36" => Some(Self::Mysql8036),
+            "MYSQL_8_0_37" => Some(Self::Mysql8037),
+            "MYSQL_8_0_38" => Some(Self::Mysql8038),
+            "MYSQL_8_0_39" => Some(Self::Mysql8039),
+            "MYSQL_8_0_40" => Some(Self::Mysql8040),
+            "MYSQL_8_4" => Some(Self::Mysql84),
+            "MYSQL_8_4_0" => Some(Self::Mysql840),
+            "SQLSERVER_2019_STANDARD" => Some(Self::Sqlserver2019Standard),
+            "SQLSERVER_2019_ENTERPRISE" => Some(Self::Sqlserver2019Enterprise),
+            "SQLSERVER_2019_EXPRESS" => Some(Self::Sqlserver2019Express),
+            "SQLSERVER_2019_WEB" => Some(Self::Sqlserver2019Web),
+            "SQLSERVER_2022_STANDARD" => Some(Self::Sqlserver2022Standard),
+            "SQLSERVER_2022_ENTERPRISE" => Some(Self::Sqlserver2022Enterprise),
+            "SQLSERVER_2022_EXPRESS" => Some(Self::Sqlserver2022Express),
+            "SQLSERVER_2022_WEB" => Some(Self::Sqlserver2022Web),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlPricingPlan {
-Unspecified = 0,
-Package = 1,
-PerUse = 2,
+    Unspecified = 0,
+    Package = 1,
+    PerUse = 2,
 }
 impl SqlPricingPlan {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlPricingPlan::Unspecified => "SQL_PRICING_PLAN_UNSPECIFIED",
-SqlPricingPlan::Package => "PACKAGE",
-SqlPricingPlan::PerUse => "PER_USE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_PRICING_PLAN_UNSPECIFIED" => Some(Self::Unspecified),
-"PACKAGE" => Some(Self::Package),
-"PER_USE" => Some(Self::PerUse),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlPricingPlan::Unspecified => "SQL_PRICING_PLAN_UNSPECIFIED",
+            SqlPricingPlan::Package => "PACKAGE",
+            SqlPricingPlan::PerUse => "PER_USE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_PRICING_PLAN_UNSPECIFIED" => Some(Self::Unspecified),
+            "PACKAGE" => Some(Self::Package),
+            "PER_USE" => Some(Self::PerUse),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlReplicationType {
-Unspecified = 0,
-Synchronous = 1,
-Asynchronous = 2,
+    Unspecified = 0,
+    Synchronous = 1,
+    Asynchronous = 2,
 }
 impl SqlReplicationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlReplicationType::Unspecified => "SQL_REPLICATION_TYPE_UNSPECIFIED",
-SqlReplicationType::Synchronous => "SYNCHRONOUS",
-SqlReplicationType::Asynchronous => "ASYNCHRONOUS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_REPLICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SYNCHRONOUS" => Some(Self::Synchronous),
-"ASYNCHRONOUS" => Some(Self::Asynchronous),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlReplicationType::Unspecified => "SQL_REPLICATION_TYPE_UNSPECIFIED",
+            SqlReplicationType::Synchronous => "SYNCHRONOUS",
+            SqlReplicationType::Asynchronous => "ASYNCHRONOUS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_REPLICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "SYNCHRONOUS" => Some(Self::Synchronous),
+            "ASYNCHRONOUS" => Some(Self::Asynchronous),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlDataDiskType {
-Unspecified = 0,
-PdSsd = 1,
-PdHdd = 2,
-ObsoleteLocalSsd = 3,
+    Unspecified = 0,
+    PdSsd = 1,
+    PdHdd = 2,
+    ObsoleteLocalSsd = 3,
 }
 impl SqlDataDiskType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlDataDiskType::Unspecified => "SQL_DATA_DISK_TYPE_UNSPECIFIED",
-SqlDataDiskType::PdSsd => "PD_SSD",
-SqlDataDiskType::PdHdd => "PD_HDD",
-SqlDataDiskType::ObsoleteLocalSsd => "OBSOLETE_LOCAL_SSD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_DATA_DISK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PD_SSD" => Some(Self::PdSsd),
-"PD_HDD" => Some(Self::PdHdd),
-"OBSOLETE_LOCAL_SSD" => Some(Self::ObsoleteLocalSsd),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlDataDiskType::Unspecified => "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+            SqlDataDiskType::PdSsd => "PD_SSD",
+            SqlDataDiskType::PdHdd => "PD_HDD",
+            SqlDataDiskType::ObsoleteLocalSsd => "OBSOLETE_LOCAL_SSD",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_DATA_DISK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "PD_SSD" => Some(Self::PdSsd),
+            "PD_HDD" => Some(Self::PdHdd),
+            "OBSOLETE_LOCAL_SSD" => Some(Self::ObsoleteLocalSsd),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlAvailabilityType {
-Unspecified = 0,
-Zonal = 1,
-Regional = 2,
+    Unspecified = 0,
+    Zonal = 1,
+    Regional = 2,
 }
 impl SqlAvailabilityType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlAvailabilityType::Unspecified => "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
-SqlAvailabilityType::Zonal => "ZONAL",
-SqlAvailabilityType::Regional => "REGIONAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_AVAILABILITY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ZONAL" => Some(Self::Zonal),
-"REGIONAL" => Some(Self::Regional),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlAvailabilityType::Unspecified => "SQL_AVAILABILITY_TYPE_UNSPECIFIED",
+            SqlAvailabilityType::Zonal => "ZONAL",
+            SqlAvailabilityType::Regional => "REGIONAL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_AVAILABILITY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ZONAL" => Some(Self::Zonal),
+            "REGIONAL" => Some(Self::Regional),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlUpdateTrack {
-Unspecified = 0,
-Canary = 1,
-Stable = 2,
-Week5 = 3,
+    Unspecified = 0,
+    Canary = 1,
+    Stable = 2,
+    Week5 = 3,
 }
 impl SqlUpdateTrack {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlUpdateTrack::Unspecified => "SQL_UPDATE_TRACK_UNSPECIFIED",
-SqlUpdateTrack::Canary => "canary",
-SqlUpdateTrack::Stable => "stable",
-SqlUpdateTrack::Week5 => "week5",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_UPDATE_TRACK_UNSPECIFIED" => Some(Self::Unspecified),
-"canary" => Some(Self::Canary),
-"stable" => Some(Self::Stable),
-"week5" => Some(Self::Week5),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlUpdateTrack::Unspecified => "SQL_UPDATE_TRACK_UNSPECIFIED",
+            SqlUpdateTrack::Canary => "canary",
+            SqlUpdateTrack::Stable => "stable",
+            SqlUpdateTrack::Week5 => "week5",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_UPDATE_TRACK_UNSPECIFIED" => Some(Self::Unspecified),
+            "canary" => Some(Self::Canary),
+            "stable" => Some(Self::Stable),
+            "week5" => Some(Self::Week5),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlDatabasesDeleteRequest {
-#[prost(string, tag = "1")]
-pub database: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub database: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlDatabasesGetRequest {
-#[prost(string, tag = "1")]
-pub database: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub database: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlDatabasesInsertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<Database>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<Database>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlDatabasesListRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlDatabasesUpdateRequest {
-#[prost(string, tag = "1")]
-pub database: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<Database>,
+    #[prost(string, tag = "1")]
+    pub database: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<Database>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabasesListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<Database>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<Database>,
 }
 /// Generated client implementations.
 pub mod sql_databases_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to manage databases.
-#[derive(Debug, Clone)]
-pub struct SqlDatabasesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlDatabasesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlDatabasesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlDatabasesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Deletes a database from a Cloud SQL instance.
-pub async fn delete(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesDeleteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/Delete");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "Delete"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a resource containing information about a database inside a Cloud
-/// SQL instance.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesGetRequest>) -> std::result::Result<tonic::Response<super::Database>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Inserts a resource containing information about a database inside a Cloud
-/// SQL instance.
-///
-/// **Note:** You can't modify the default character set and collation.
-pub async fn insert(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesInsertRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/Insert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "Insert"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists databases in the specified Cloud SQL instance.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesListRequest>) -> std::result::Result<tonic::Response<super::DatabasesListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "List"));
-self.inner.unary(req, path, codec).await
-}
-/// Partially updates a resource containing information about a database inside
-/// a Cloud SQL instance. This method supports patch semantics.
-pub async fn patch(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesUpdateRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/Patch");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "Patch"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a resource containing information about a database inside a Cloud
-/// SQL instance.
-pub async fn update(&mut self, request: impl tonic::IntoRequest<super::SqlDatabasesUpdateRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlDatabasesService/Update");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlDatabasesService", "Update"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to manage databases.
+    #[derive(Debug, Clone)]
+    pub struct SqlDatabasesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlDatabasesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlDatabasesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlDatabasesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Deletes a database from a Cloud SQL instance.
+        pub async fn delete(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesDeleteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/Delete",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "Delete",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a resource containing information about a database inside a Cloud
+        /// SQL instance.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Database>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/Get",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Inserts a resource containing information about a database inside a Cloud
+        /// SQL instance.
+        ///
+        /// **Note:** You can't modify the default character set and collation.
+        pub async fn insert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesInsertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/Insert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "Insert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists databases in the specified Cloud SQL instance.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesListRequest>,
+        ) -> std::result::Result<tonic::Response<super::DatabasesListResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/List",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Partially updates a resource containing information about a database inside
+        /// a Cloud SQL instance. This method supports patch semantics.
+        pub async fn patch(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesUpdateRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/Patch",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "Patch",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a resource containing information about a database inside a Cloud
+        /// SQL instance.
+        pub async fn update(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlDatabasesUpdateRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlDatabasesService/Update",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlDatabasesService",
+                "Update",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesAddServerCaRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesCloneRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesCloneRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesCloneRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesDeleteRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesDemoteMasterRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesDemoteMasterRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesDemoteMasterRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesDemoteRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesDemoteRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesDemoteRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesExportRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesExportRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesExportRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesFailoverRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesFailoverRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesFailoverRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesGetRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesImportRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesImportRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesImportRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesInsertRequest {
-#[prost(string, tag = "1")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<DatabaseInstance>,
+    #[prost(string, tag = "1")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<DatabaseInstance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesListRequest {
-#[prost(string, tag = "1")]
-pub filter: ::prost::alloc::string::String,
-#[prost(uint32, tag = "2")]
-pub max_results: u32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "2")]
+    pub max_results: u32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesListServerCasRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesPatchRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<DatabaseInstance>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<DatabaseInstance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesPromoteReplicaRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub failover: bool,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub failover: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesSwitchoverRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub db_timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub db_timeout: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesResetSslConfigRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesRestartRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesRestoreBackupRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesRestoreBackupRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesRestoreBackupRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesRotateServerCaRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesRotateServerCaRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesRotateServerCaRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesStartReplicaRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesStopReplicaRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesTruncateLogRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesTruncateLogRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesTruncateLogRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesPerformDiskShrinkRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<PerformDiskShrinkContext>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<PerformDiskShrinkContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesUpdateRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<DatabaseInstance>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<DatabaseInstance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesRescheduleMaintenanceRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<SqlInstancesRescheduleMaintenanceRequestBody>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<SqlInstancesRescheduleMaintenanceRequestBody>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesReencryptRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub body: ::core::option::Option<InstancesReencryptRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub body: ::core::option::Option<InstancesReencryptRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct InstancesReencryptRequest {
-#[prost(message, optional, tag = "1")]
-pub backup_reencryption_config: ::core::option::Option<BackupReencryptionConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub backup_reencryption_config: ::core::option::Option<BackupReencryptionConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BackupReencryptionConfig {
-#[prost(int32, optional, tag = "1")]
-pub backup_limit: ::core::option::Option<i32>,
-#[prost(enumeration = "backup_reencryption_config::BackupType", optional, tag = "2")]
-pub backup_type: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "1")]
+    pub backup_limit: ::core::option::Option<i32>,
+    #[prost(
+        enumeration = "backup_reencryption_config::BackupType",
+        optional,
+        tag = "2"
+    )]
+    pub backup_type: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `BackupReencryptionConfig`.
 pub mod backup_reencryption_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BackupType {
-Unspecified = 0,
-Automated = 1,
-OnDemand = 2,
-}
-impl BackupType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BackupType::Unspecified => "BACKUP_TYPE_UNSPECIFIED",
-BackupType::Automated => "AUTOMATED",
-BackupType::OnDemand => "ON_DEMAND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BACKUP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"AUTOMATED" => Some(Self::Automated),
-"ON_DEMAND" => Some(Self::OnDemand),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BackupType {
+        Unspecified = 0,
+        Automated = 1,
+        OnDemand = 2,
+    }
+    impl BackupType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BackupType::Unspecified => "BACKUP_TYPE_UNSPECIFIED",
+                BackupType::Automated => "AUTOMATED",
+                BackupType::OnDemand => "ON_DEMAND",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BACKUP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "AUTOMATED" => Some(Self::Automated),
+                "ON_DEMAND" => Some(Self::OnDemand),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesGetDiskShrinkConfigRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesVerifyExternalSyncSettingsRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub verify_connection_only: bool,
-#[prost(enumeration = "sql_instances_verify_external_sync_settings_request::ExternalSyncMode", tag = "4")]
-pub sync_mode: i32,
-#[prost(bool, tag = "5")]
-pub verify_replication_only: bool,
-#[prost(enumeration = "sql_instances_verify_external_sync_settings_request::MigrationType", tag = "7")]
-pub migration_type: i32,
-#[prost(enumeration = "ExternalSyncParallelLevel", tag = "8")]
-pub sync_parallel_level: i32,
-#[prost(oneof = "sql_instances_verify_external_sync_settings_request::SyncConfig", tags = "6")]
-pub sync_config: ::core::option::Option<sql_instances_verify_external_sync_settings_request::SyncConfig>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub verify_connection_only: bool,
+    #[prost(
+        enumeration = "sql_instances_verify_external_sync_settings_request::ExternalSyncMode",
+        tag = "4"
+    )]
+    pub sync_mode: i32,
+    #[prost(bool, tag = "5")]
+    pub verify_replication_only: bool,
+    #[prost(
+        enumeration = "sql_instances_verify_external_sync_settings_request::MigrationType",
+        tag = "7"
+    )]
+    pub migration_type: i32,
+    #[prost(enumeration = "ExternalSyncParallelLevel", tag = "8")]
+    pub sync_parallel_level: i32,
+    #[prost(
+        oneof = "sql_instances_verify_external_sync_settings_request::SyncConfig",
+        tags = "6"
+    )]
+    pub sync_config:
+        ::core::option::Option<sql_instances_verify_external_sync_settings_request::SyncConfig>,
 }
 /// Nested message and enum types in `SqlInstancesVerifyExternalSyncSettingsRequest`.
 pub mod sql_instances_verify_external_sync_settings_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ExternalSyncMode {
-Unspecified = 0,
-Online = 1,
-Offline = 2,
-}
-impl ExternalSyncMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExternalSyncMode::Unspecified => "EXTERNAL_SYNC_MODE_UNSPECIFIED",
-ExternalSyncMode::Online => "ONLINE",
-ExternalSyncMode::Offline => "OFFLINE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXTERNAL_SYNC_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"ONLINE" => Some(Self::Online),
-"OFFLINE" => Some(Self::Offline),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MigrationType {
-Unspecified = 0,
-Logical = 1,
-Physical = 2,
-}
-impl MigrationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MigrationType::Unspecified => "MIGRATION_TYPE_UNSPECIFIED",
-MigrationType::Logical => "LOGICAL",
-MigrationType::Physical => "PHYSICAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MIGRATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LOGICAL" => Some(Self::Logical),
-"PHYSICAL" => Some(Self::Physical),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum SyncConfig {
-#[prost(message, tag = "6")]
-MysqlSyncConfig(super::MySqlSyncConfig),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ExternalSyncMode {
+        Unspecified = 0,
+        Online = 1,
+        Offline = 2,
+    }
+    impl ExternalSyncMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ExternalSyncMode::Unspecified => "EXTERNAL_SYNC_MODE_UNSPECIFIED",
+                ExternalSyncMode::Online => "ONLINE",
+                ExternalSyncMode::Offline => "OFFLINE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXTERNAL_SYNC_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ONLINE" => Some(Self::Online),
+                "OFFLINE" => Some(Self::Offline),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MigrationType {
+        Unspecified = 0,
+        Logical = 1,
+        Physical = 2,
+    }
+    impl MigrationType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MigrationType::Unspecified => "MIGRATION_TYPE_UNSPECIFIED",
+                MigrationType::Logical => "LOGICAL",
+                MigrationType::Physical => "PHYSICAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MIGRATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "LOGICAL" => Some(Self::Logical),
+                "PHYSICAL" => Some(Self::Physical),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum SyncConfig {
+        #[prost(message, tag = "6")]
+        MysqlSyncConfig(super::MySqlSyncConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesStartExternalSyncRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(enumeration = "sql_instances_verify_external_sync_settings_request::ExternalSyncMode", tag = "3")]
-pub sync_mode: i32,
-#[prost(bool, tag = "4")]
-pub skip_verification: bool,
-#[prost(enumeration = "ExternalSyncParallelLevel", tag = "7")]
-pub sync_parallel_level: i32,
-#[prost(enumeration = "sql_instances_verify_external_sync_settings_request::MigrationType", tag = "8")]
-pub migration_type: i32,
-#[prost(oneof = "sql_instances_start_external_sync_request::SyncConfig", tags = "6")]
-pub sync_config: ::core::option::Option<sql_instances_start_external_sync_request::SyncConfig>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "sql_instances_verify_external_sync_settings_request::ExternalSyncMode",
+        tag = "3"
+    )]
+    pub sync_mode: i32,
+    #[prost(bool, tag = "4")]
+    pub skip_verification: bool,
+    #[prost(enumeration = "ExternalSyncParallelLevel", tag = "7")]
+    pub sync_parallel_level: i32,
+    #[prost(
+        enumeration = "sql_instances_verify_external_sync_settings_request::MigrationType",
+        tag = "8"
+    )]
+    pub migration_type: i32,
+    #[prost(
+        oneof = "sql_instances_start_external_sync_request::SyncConfig",
+        tags = "6"
+    )]
+    pub sync_config: ::core::option::Option<sql_instances_start_external_sync_request::SyncConfig>,
 }
 /// Nested message and enum types in `SqlInstancesStartExternalSyncRequest`.
 pub mod sql_instances_start_external_sync_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum SyncConfig {
-#[prost(message, tag = "6")]
-MysqlSyncConfig(super::MySqlSyncConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum SyncConfig {
+        #[prost(message, tag = "6")]
+        MysqlSyncConfig(super::MySqlSyncConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesResetReplicaSizeRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesCreateEphemeralCertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<SslCertsCreateEphemeralRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<SslCertsCreateEphemeralRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesCloneRequest {
-#[prost(message, optional, tag = "1")]
-pub clone_context: ::core::option::Option<CloneContext>,
+    #[prost(message, optional, tag = "1")]
+    pub clone_context: ::core::option::Option<CloneContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesDemoteMasterRequest {
-#[prost(message, optional, tag = "1")]
-pub demote_master_context: ::core::option::Option<DemoteMasterContext>,
+    #[prost(message, optional, tag = "1")]
+    pub demote_master_context: ::core::option::Option<DemoteMasterContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesDemoteRequest {
-#[prost(message, optional, tag = "1")]
-pub demote_context: ::core::option::Option<DemoteContext>,
+    #[prost(message, optional, tag = "1")]
+    pub demote_context: ::core::option::Option<DemoteContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesExportRequest {
-#[prost(message, optional, tag = "1")]
-pub export_context: ::core::option::Option<ExportContext>,
+    #[prost(message, optional, tag = "1")]
+    pub export_context: ::core::option::Option<ExportContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesFailoverRequest {
-#[prost(message, optional, tag = "1")]
-pub failover_context: ::core::option::Option<FailoverContext>,
+    #[prost(message, optional, tag = "1")]
+    pub failover_context: ::core::option::Option<FailoverContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCertsCreateEphemeralRequest {
-#[prost(string, tag = "1")]
-pub public_key: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub access_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub access_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesImportRequest {
-#[prost(message, optional, tag = "1")]
-pub import_context: ::core::option::Option<ImportContext>,
+    #[prost(message, optional, tag = "1")]
+    pub import_context: ::core::option::Option<ImportContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub warnings: ::prost::alloc::vec::Vec<ApiWarning>,
-#[prost(message, repeated, tag = "3")]
-pub items: ::prost::alloc::vec::Vec<DatabaseInstance>,
-#[prost(string, tag = "4")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub warnings: ::prost::alloc::vec::Vec<ApiWarning>,
+    #[prost(message, repeated, tag = "3")]
+    pub items: ::prost::alloc::vec::Vec<DatabaseInstance>,
+    #[prost(string, tag = "4")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesListServerCasResponse {
-#[prost(message, repeated, tag = "1")]
-pub certs: ::prost::alloc::vec::Vec<SslCert>,
-#[prost(string, tag = "2")]
-pub active_version: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub certs: ::prost::alloc::vec::Vec<SslCert>,
+    #[prost(string, tag = "2")]
+    pub active_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesRestoreBackupRequest {
-#[prost(message, optional, tag = "1")]
-pub restore_backup_context: ::core::option::Option<RestoreBackupContext>,
+    #[prost(message, optional, tag = "1")]
+    pub restore_backup_context: ::core::option::Option<RestoreBackupContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesRotateServerCaRequest {
-#[prost(message, optional, tag = "1")]
-pub rotate_server_ca_context: ::core::option::Option<RotateServerCaContext>,
+    #[prost(message, optional, tag = "1")]
+    pub rotate_server_ca_context: ::core::option::Option<RotateServerCaContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesTruncateLogRequest {
-#[prost(message, optional, tag = "1")]
-pub truncate_log_context: ::core::option::Option<TruncateLogContext>,
+    #[prost(message, optional, tag = "1")]
+    pub truncate_log_context: ::core::option::Option<TruncateLogContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstancesAcquireSsrsLeaseRequest {
-#[prost(message, optional, tag = "1")]
-pub acquire_ssrs_lease_context: ::core::option::Option<AcquireSsrsLeaseContext>,
+    #[prost(message, optional, tag = "1")]
+    pub acquire_ssrs_lease_context: ::core::option::Option<AcquireSsrsLeaseContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesVerifyExternalSyncSettingsResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub errors: ::prost::alloc::vec::Vec<SqlExternalSyncSettingError>,
-#[prost(message, repeated, tag = "3")]
-pub warnings: ::prost::alloc::vec::Vec<SqlExternalSyncSettingError>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub errors: ::prost::alloc::vec::Vec<SqlExternalSyncSettingError>,
+    #[prost(message, repeated, tag = "3")]
+    pub warnings: ::prost::alloc::vec::Vec<SqlExternalSyncSettingError>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesGetDiskShrinkConfigResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub minimal_target_size_gb: i64,
-#[prost(string, tag = "3")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub minimal_target_size_gb: i64,
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesGetLatestRecoveryTimeRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesGetLatestRecoveryTimeResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub latest_recovery_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub latest_recovery_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloneContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub pitr_timestamp_ms: i64,
-#[prost(string, tag = "3")]
-pub destination_instance_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub bin_log_coordinates: ::core::option::Option<BinLogCoordinates>,
-#[prost(message, optional, tag = "5")]
-pub point_in_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "6")]
-pub allocated_ip_range: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "9")]
-pub database_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "10")]
-pub preferred_zone: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub pitr_timestamp_ms: i64,
+    #[prost(string, tag = "3")]
+    pub destination_instance_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub bin_log_coordinates: ::core::option::Option<BinLogCoordinates>,
+    #[prost(message, optional, tag = "5")]
+    pub point_in_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "6")]
+    pub allocated_ip_range: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "9")]
+    pub database_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "10")]
+    pub preferred_zone: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BinLogCoordinates {
-#[prost(string, tag = "1")]
-pub bin_log_file_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub bin_log_position: i64,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub bin_log_file_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub bin_log_position: i64,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseInstance {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(enumeration = "database_instance::SqlInstanceState", tag = "2")]
-pub state: i32,
-#[prost(enumeration = "SqlDatabaseVersion", tag = "3")]
-pub database_version: i32,
-#[prost(message, optional, tag = "4")]
-pub settings: ::core::option::Option<Settings>,
-#[prost(string, tag = "5")]
-pub etag: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub failover_replica: ::core::option::Option<database_instance::SqlFailoverReplica>,
-#[prost(string, tag = "7")]
-pub master_instance_name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "8")]
-pub replica_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[deprecated]
-#[prost(message, optional, tag = "9")]
-pub max_disk_size: ::core::option::Option<i64>,
-#[deprecated]
-#[prost(message, optional, tag = "10")]
-pub current_disk_size: ::core::option::Option<i64>,
-#[prost(message, repeated, tag = "11")]
-pub ip_addresses: ::prost::alloc::vec::Vec<IpMapping>,
-#[prost(message, optional, tag = "12")]
-pub server_ca_cert: ::core::option::Option<SslCert>,
-#[prost(enumeration = "SqlInstanceType", tag = "13")]
-pub instance_type: i32,
-#[prost(string, tag = "14")]
-pub project: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "15")]
-pub ipv6_address: ::prost::alloc::string::String,
-#[prost(string, tag = "16")]
-pub service_account_email_address: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "17")]
-pub on_premises_configuration: ::core::option::Option<OnPremisesConfiguration>,
-#[prost(message, optional, tag = "18")]
-pub replica_configuration: ::core::option::Option<ReplicaConfiguration>,
-#[prost(enumeration = "SqlBackendType", tag = "19")]
-pub backend_type: i32,
-#[prost(string, tag = "20")]
-pub self_link: ::prost::alloc::string::String,
-#[prost(enumeration = "SqlSuspensionReason", repeated, tag = "21")]
-pub suspension_reason: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, tag = "22")]
-pub connection_name: ::prost::alloc::string::String,
-#[prost(string, tag = "23")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "24")]
-pub region: ::prost::alloc::string::String,
-#[prost(string, tag = "25")]
-pub gce_zone: ::prost::alloc::string::String,
-#[prost(string, tag = "34")]
-pub secondary_gce_zone: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "26")]
-pub disk_encryption_configuration: ::core::option::Option<DiskEncryptionConfiguration>,
-#[prost(message, optional, tag = "27")]
-pub disk_encryption_status: ::core::option::Option<DiskEncryptionStatus>,
-#[prost(string, tag = "29")]
-pub root_password: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "30")]
-pub scheduled_maintenance: ::core::option::Option<database_instance::SqlScheduledMaintenance>,
-#[prost(message, optional, tag = "35")]
-pub satisfies_pzs: ::core::option::Option<bool>,
-#[prost(string, tag = "40")]
-pub database_installed_version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "38")]
-pub out_of_disk_report: ::core::option::Option<database_instance::SqlOutOfDiskReport>,
-#[prost(message, optional, tag = "39")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "41")]
-pub available_maintenance_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "42")]
-pub maintenance_version: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "45")]
-pub upgradable_database_versions: ::prost::alloc::vec::Vec<AvailableDatabaseVersion>,
-#[prost(enumeration = "database_instance::SqlNetworkArchitecture", optional, tag = "47")]
-pub sql_network_architecture: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "48")]
-pub psc_service_attachment_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "49")]
-pub dns_name: ::core::option::Option<::prost::alloc::string::String>,
-#[deprecated]
-#[prost(string, optional, tag = "51")]
-pub primary_dns_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "52")]
-pub write_endpoint: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "54")]
-pub replication_cluster: ::core::option::Option<ReplicationCluster>,
-#[prost(message, optional, tag = "55")]
-pub gemini_config: ::core::option::Option<GeminiInstanceConfig>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(enumeration = "database_instance::SqlInstanceState", tag = "2")]
+    pub state: i32,
+    #[prost(enumeration = "SqlDatabaseVersion", tag = "3")]
+    pub database_version: i32,
+    #[prost(message, optional, tag = "4")]
+    pub settings: ::core::option::Option<Settings>,
+    #[prost(string, tag = "5")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub failover_replica: ::core::option::Option<database_instance::SqlFailoverReplica>,
+    #[prost(string, tag = "7")]
+    pub master_instance_name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "8")]
+    pub replica_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[deprecated]
+    #[prost(message, optional, tag = "9")]
+    pub max_disk_size: ::core::option::Option<i64>,
+    #[deprecated]
+    #[prost(message, optional, tag = "10")]
+    pub current_disk_size: ::core::option::Option<i64>,
+    #[prost(message, repeated, tag = "11")]
+    pub ip_addresses: ::prost::alloc::vec::Vec<IpMapping>,
+    #[prost(message, optional, tag = "12")]
+    pub server_ca_cert: ::core::option::Option<SslCert>,
+    #[prost(enumeration = "SqlInstanceType", tag = "13")]
+    pub instance_type: i32,
+    #[prost(string, tag = "14")]
+    pub project: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "15")]
+    pub ipv6_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "16")]
+    pub service_account_email_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "17")]
+    pub on_premises_configuration: ::core::option::Option<OnPremisesConfiguration>,
+    #[prost(message, optional, tag = "18")]
+    pub replica_configuration: ::core::option::Option<ReplicaConfiguration>,
+    #[prost(enumeration = "SqlBackendType", tag = "19")]
+    pub backend_type: i32,
+    #[prost(string, tag = "20")]
+    pub self_link: ::prost::alloc::string::String,
+    #[prost(enumeration = "SqlSuspensionReason", repeated, tag = "21")]
+    pub suspension_reason: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "22")]
+    pub connection_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "23")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "24")]
+    pub region: ::prost::alloc::string::String,
+    #[prost(string, tag = "25")]
+    pub gce_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "34")]
+    pub secondary_gce_zone: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "26")]
+    pub disk_encryption_configuration: ::core::option::Option<DiskEncryptionConfiguration>,
+    #[prost(message, optional, tag = "27")]
+    pub disk_encryption_status: ::core::option::Option<DiskEncryptionStatus>,
+    #[prost(string, tag = "29")]
+    pub root_password: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "30")]
+    pub scheduled_maintenance: ::core::option::Option<database_instance::SqlScheduledMaintenance>,
+    #[prost(message, optional, tag = "35")]
+    pub satisfies_pzs: ::core::option::Option<bool>,
+    #[prost(string, tag = "40")]
+    pub database_installed_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "38")]
+    pub out_of_disk_report: ::core::option::Option<database_instance::SqlOutOfDiskReport>,
+    #[prost(message, optional, tag = "39")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "41")]
+    pub available_maintenance_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "42")]
+    pub maintenance_version: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "45")]
+    pub upgradable_database_versions: ::prost::alloc::vec::Vec<AvailableDatabaseVersion>,
+    #[prost(
+        enumeration = "database_instance::SqlNetworkArchitecture",
+        optional,
+        tag = "47"
+    )]
+    pub sql_network_architecture: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "48")]
+    pub psc_service_attachment_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "49")]
+    pub dns_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[deprecated]
+    #[prost(string, optional, tag = "51")]
+    pub primary_dns_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "52")]
+    pub write_endpoint: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "54")]
+    pub replication_cluster: ::core::option::Option<ReplicationCluster>,
+    #[prost(message, optional, tag = "55")]
+    pub gemini_config: ::core::option::Option<GeminiInstanceConfig>,
 }
 /// Nested message and enum types in `DatabaseInstance`.
 pub mod database_instance {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SqlFailoverReplica {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub available: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SqlScheduledMaintenance {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[deprecated]
-#[prost(bool, tag = "2")]
-pub can_defer: bool,
-#[prost(bool, tag = "3")]
-pub can_reschedule: bool,
-#[prost(message, optional, tag = "4")]
-pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SqlOutOfDiskReport {
-#[prost(enumeration = "sql_out_of_disk_report::SqlOutOfDiskState", optional, tag = "1")]
-pub sql_out_of_disk_state: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "2")]
-pub sql_min_recommended_increase_size_gb: ::core::option::Option<i32>,
-}
-/// Nested message and enum types in `SqlOutOfDiskReport`.
-pub mod sql_out_of_disk_report {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlOutOfDiskState {
-Unspecified = 0,
-Normal = 1,
-SoftShutdown = 2,
-}
-impl SqlOutOfDiskState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlOutOfDiskState::Unspecified => "SQL_OUT_OF_DISK_STATE_UNSPECIFIED",
-SqlOutOfDiskState::Normal => "NORMAL",
-SqlOutOfDiskState::SoftShutdown => "SOFT_SHUTDOWN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_OUT_OF_DISK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"NORMAL" => Some(Self::Normal),
-"SOFT_SHUTDOWN" => Some(Self::SoftShutdown),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlInstanceState {
-Unspecified = 0,
-Runnable = 1,
-Suspended = 2,
-PendingDelete = 3,
-PendingCreate = 4,
-Maintenance = 5,
-Failed = 6,
-OnlineMaintenance = 7,
-}
-impl SqlInstanceState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlInstanceState::Unspecified => "SQL_INSTANCE_STATE_UNSPECIFIED",
-SqlInstanceState::Runnable => "RUNNABLE",
-SqlInstanceState::Suspended => "SUSPENDED",
-SqlInstanceState::PendingDelete => "PENDING_DELETE",
-SqlInstanceState::PendingCreate => "PENDING_CREATE",
-SqlInstanceState::Maintenance => "MAINTENANCE",
-SqlInstanceState::Failed => "FAILED",
-SqlInstanceState::OnlineMaintenance => "ONLINE_MAINTENANCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_INSTANCE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNABLE" => Some(Self::Runnable),
-"SUSPENDED" => Some(Self::Suspended),
-"PENDING_DELETE" => Some(Self::PendingDelete),
-"PENDING_CREATE" => Some(Self::PendingCreate),
-"MAINTENANCE" => Some(Self::Maintenance),
-"FAILED" => Some(Self::Failed),
-"ONLINE_MAINTENANCE" => Some(Self::OnlineMaintenance),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlNetworkArchitecture {
-Unspecified = 0,
-NewNetworkArchitecture = 1,
-OldNetworkArchitecture = 2,
-}
-impl SqlNetworkArchitecture {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlNetworkArchitecture::Unspecified => "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
-SqlNetworkArchitecture::NewNetworkArchitecture => "NEW_NETWORK_ARCHITECTURE",
-SqlNetworkArchitecture::OldNetworkArchitecture => "OLD_NETWORK_ARCHITECTURE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_NETWORK_ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
-"NEW_NETWORK_ARCHITECTURE" => Some(Self::NewNetworkArchitecture),
-"OLD_NETWORK_ARCHITECTURE" => Some(Self::OldNetworkArchitecture),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SqlFailoverReplica {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub available: ::core::option::Option<bool>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SqlScheduledMaintenance {
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[deprecated]
+        #[prost(bool, tag = "2")]
+        pub can_defer: bool,
+        #[prost(bool, tag = "3")]
+        pub can_reschedule: bool,
+        #[prost(message, optional, tag = "4")]
+        pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SqlOutOfDiskReport {
+        #[prost(
+            enumeration = "sql_out_of_disk_report::SqlOutOfDiskState",
+            optional,
+            tag = "1"
+        )]
+        pub sql_out_of_disk_state: ::core::option::Option<i32>,
+        #[prost(int32, optional, tag = "2")]
+        pub sql_min_recommended_increase_size_gb: ::core::option::Option<i32>,
+    }
+    /// Nested message and enum types in `SqlOutOfDiskReport`.
+    pub mod sql_out_of_disk_report {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum SqlOutOfDiskState {
+            Unspecified = 0,
+            Normal = 1,
+            SoftShutdown = 2,
+        }
+        impl SqlOutOfDiskState {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    SqlOutOfDiskState::Unspecified => "SQL_OUT_OF_DISK_STATE_UNSPECIFIED",
+                    SqlOutOfDiskState::Normal => "NORMAL",
+                    SqlOutOfDiskState::SoftShutdown => "SOFT_SHUTDOWN",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SQL_OUT_OF_DISK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "NORMAL" => Some(Self::Normal),
+                    "SOFT_SHUTDOWN" => Some(Self::SoftShutdown),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlInstanceState {
+        Unspecified = 0,
+        Runnable = 1,
+        Suspended = 2,
+        PendingDelete = 3,
+        PendingCreate = 4,
+        Maintenance = 5,
+        Failed = 6,
+        OnlineMaintenance = 7,
+    }
+    impl SqlInstanceState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlInstanceState::Unspecified => "SQL_INSTANCE_STATE_UNSPECIFIED",
+                SqlInstanceState::Runnable => "RUNNABLE",
+                SqlInstanceState::Suspended => "SUSPENDED",
+                SqlInstanceState::PendingDelete => "PENDING_DELETE",
+                SqlInstanceState::PendingCreate => "PENDING_CREATE",
+                SqlInstanceState::Maintenance => "MAINTENANCE",
+                SqlInstanceState::Failed => "FAILED",
+                SqlInstanceState::OnlineMaintenance => "ONLINE_MAINTENANCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_INSTANCE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNABLE" => Some(Self::Runnable),
+                "SUSPENDED" => Some(Self::Suspended),
+                "PENDING_DELETE" => Some(Self::PendingDelete),
+                "PENDING_CREATE" => Some(Self::PendingCreate),
+                "MAINTENANCE" => Some(Self::Maintenance),
+                "FAILED" => Some(Self::Failed),
+                "ONLINE_MAINTENANCE" => Some(Self::OnlineMaintenance),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlNetworkArchitecture {
+        Unspecified = 0,
+        NewNetworkArchitecture = 1,
+        OldNetworkArchitecture = 2,
+    }
+    impl SqlNetworkArchitecture {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlNetworkArchitecture::Unspecified => "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
+                SqlNetworkArchitecture::NewNetworkArchitecture => "NEW_NETWORK_ARCHITECTURE",
+                SqlNetworkArchitecture::OldNetworkArchitecture => "OLD_NETWORK_ARCHITECTURE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NEW_NETWORK_ARCHITECTURE" => Some(Self::NewNetworkArchitecture),
+                "OLD_NETWORK_ARCHITECTURE" => Some(Self::OldNetworkArchitecture),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GeminiInstanceConfig {
-#[prost(bool, optional, tag = "1")]
-pub entitled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "2")]
-pub google_vacuum_mgmt_enabled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "3")]
-pub oom_session_cancel_enabled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "4")]
-pub active_query_enabled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "5")]
-pub index_advisor_enabled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "6")]
-pub flag_recommender_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "1")]
+    pub entitled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "2")]
+    pub google_vacuum_mgmt_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "3")]
+    pub oom_session_cancel_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "4")]
+    pub active_query_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "5")]
+    pub index_advisor_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "6")]
+    pub flag_recommender_enabled: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplicationCluster {
-#[prost(string, tag = "1")]
-pub psa_write_endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub failover_dr_replica_name: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub dr_replica: bool,
+    #[prost(string, tag = "1")]
+    pub psa_write_endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub failover_dr_replica_name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub dr_replica: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvailableDatabaseVersion {
-#[prost(string, optional, tag = "3")]
-pub major_version: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "8")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "9")]
-pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub major_version: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "8")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "9")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SqlInstancesRescheduleMaintenanceRequestBody {
-#[prost(message, optional, tag = "3")]
-pub reschedule: ::core::option::Option<sql_instances_reschedule_maintenance_request_body::Reschedule>,
+    #[prost(message, optional, tag = "3")]
+    pub reschedule:
+        ::core::option::Option<sql_instances_reschedule_maintenance_request_body::Reschedule>,
 }
 /// Nested message and enum types in `SqlInstancesRescheduleMaintenanceRequestBody`.
 pub mod sql_instances_reschedule_maintenance_request_body {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Reschedule {
-#[prost(enumeration = "RescheduleType", tag = "1")]
-pub reschedule_type: i32,
-#[prost(message, optional, tag = "2")]
-pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RescheduleType {
-Unspecified = 0,
-Immediate = 1,
-NextAvailableWindow = 2,
-SpecificTime = 3,
-}
-impl RescheduleType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
-RescheduleType::Immediate => "IMMEDIATE",
-RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
-RescheduleType::SpecificTime => "SPECIFIC_TIME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"IMMEDIATE" => Some(Self::Immediate),
-"NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
-"SPECIFIC_TIME" => Some(Self::SpecificTime),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Reschedule {
+        #[prost(enumeration = "RescheduleType", tag = "1")]
+        pub reschedule_type: i32,
+        #[prost(message, optional, tag = "2")]
+        pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RescheduleType {
+        Unspecified = 0,
+        Immediate = 1,
+        NextAvailableWindow = 2,
+        SpecificTime = 3,
+    }
+    impl RescheduleType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
+                RescheduleType::Immediate => "IMMEDIATE",
+                RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
+                RescheduleType::SpecificTime => "SPECIFIC_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IMMEDIATE" => Some(Self::Immediate),
+                "NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
+                "SPECIFIC_TIME" => Some(Self::SpecificTime),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DemoteMasterContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub verify_gtid_consistency: ::core::option::Option<bool>,
-#[prost(string, tag = "3")]
-pub master_instance_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub replica_configuration: ::core::option::Option<DemoteMasterConfiguration>,
-#[prost(bool, tag = "5")]
-pub skip_replication_setup: bool,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub verify_gtid_consistency: ::core::option::Option<bool>,
+    #[prost(string, tag = "3")]
+    pub master_instance_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub replica_configuration: ::core::option::Option<DemoteMasterConfiguration>,
+    #[prost(bool, tag = "5")]
+    pub skip_replication_setup: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DemoteContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub source_representative_instance_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub source_representative_instance_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FailoverContext {
-#[prost(int64, tag = "1")]
-pub settings_version: i64,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub settings_version: i64,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreBackupContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub backup_run_id: i64,
-#[prost(string, tag = "3")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub backup_run_id: i64,
+    #[prost(string, tag = "3")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RotateServerCaContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub next_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub next_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TruncateLogContext {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub log_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub log_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlExternalSyncSettingError {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(enumeration = "sql_external_sync_setting_error::SqlExternalSyncSettingErrorType", tag = "2")]
-pub r#type: i32,
-#[prost(string, tag = "3")]
-pub detail: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "sql_external_sync_setting_error::SqlExternalSyncSettingErrorType",
+        tag = "2"
+    )]
+    pub r#type: i32,
+    #[prost(string, tag = "3")]
+    pub detail: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SqlExternalSyncSettingError`.
 pub mod sql_external_sync_setting_error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlExternalSyncSettingErrorType {
-Unspecified = 0,
-ConnectionFailure = 1,
-BinlogNotEnabled = 2,
-IncompatibleDatabaseVersion = 3,
-ReplicaAlreadySetup = 4,
-InsufficientPrivilege = 5,
-UnsupportedMigrationType = 6,
-NoPglogicalInstalled = 7,
-PglogicalNodeAlreadyExists = 8,
-InvalidWalLevel = 9,
-InvalidSharedPreloadLibrary = 10,
-InsufficientMaxReplicationSlots = 11,
-InsufficientMaxWalSenders = 12,
-InsufficientMaxWorkerProcesses = 13,
-UnsupportedExtensions = 14,
-InvalidRdsLogicalReplication = 15,
-InvalidLoggingSetup = 16,
-InvalidDbParam = 17,
-UnsupportedGtidMode = 18,
-SqlserverAgentNotRunning = 19,
-UnsupportedTableDefinition = 20,
-UnsupportedDefiner = 21,
-SqlserverServernameMismatch = 22,
-PrimaryAlreadySetup = 23,
-UnsupportedBinlogFormat = 24,
-BinlogRetentionSetting = 25,
-UnsupportedStorageEngine = 26,
-LimitedSupportTables = 27,
-ExistingDataInReplica = 28,
-MissingOptionalPrivileges = 29,
-RiskyBackupAdminPrivilege = 30,
-InsufficientGcsPermissions = 31,
-InvalidFileInfo = 32,
-UnsupportedDatabaseSettings = 33,
-MysqlParallelImportInsufficientPrivilege = 34,
-LocalInfileOff = 35,
-TurnOnPitrAfterPromote = 36,
-IncompatibleDatabaseMinorVersion = 37,
-SourceMaxSubscriptions = 38,
-UnableToVerifyDefiners = 39,
-SubscriptionCalculationStatus = 40,
-PgSubscriptionCount = 41,
-PgSyncParallelLevel = 42,
-InsufficientDiskSize = 43,
-InsufficientMachineTier = 44,
-UnsupportedExtensionsNotMigrated = 45,
-ExtensionsNotMigrated = 46,
-PgCronFlagEnabledInReplica = 47,
-ExtensionsNotEnabledInReplica = 48,
-}
-impl SqlExternalSyncSettingErrorType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlExternalSyncSettingErrorType::Unspecified => "SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED",
-SqlExternalSyncSettingErrorType::ConnectionFailure => "CONNECTION_FAILURE",
-SqlExternalSyncSettingErrorType::BinlogNotEnabled => "BINLOG_NOT_ENABLED",
-SqlExternalSyncSettingErrorType::IncompatibleDatabaseVersion => "INCOMPATIBLE_DATABASE_VERSION",
-SqlExternalSyncSettingErrorType::ReplicaAlreadySetup => "REPLICA_ALREADY_SETUP",
-SqlExternalSyncSettingErrorType::InsufficientPrivilege => "INSUFFICIENT_PRIVILEGE",
-SqlExternalSyncSettingErrorType::UnsupportedMigrationType => "UNSUPPORTED_MIGRATION_TYPE",
-SqlExternalSyncSettingErrorType::NoPglogicalInstalled => "NO_PGLOGICAL_INSTALLED",
-SqlExternalSyncSettingErrorType::PglogicalNodeAlreadyExists => "PGLOGICAL_NODE_ALREADY_EXISTS",
-SqlExternalSyncSettingErrorType::InvalidWalLevel => "INVALID_WAL_LEVEL",
-SqlExternalSyncSettingErrorType::InvalidSharedPreloadLibrary => "INVALID_SHARED_PRELOAD_LIBRARY",
-SqlExternalSyncSettingErrorType::InsufficientMaxReplicationSlots => "INSUFFICIENT_MAX_REPLICATION_SLOTS",
-SqlExternalSyncSettingErrorType::InsufficientMaxWalSenders => "INSUFFICIENT_MAX_WAL_SENDERS",
-SqlExternalSyncSettingErrorType::InsufficientMaxWorkerProcesses => "INSUFFICIENT_MAX_WORKER_PROCESSES",
-SqlExternalSyncSettingErrorType::UnsupportedExtensions => "UNSUPPORTED_EXTENSIONS",
-SqlExternalSyncSettingErrorType::InvalidRdsLogicalReplication => "INVALID_RDS_LOGICAL_REPLICATION",
-SqlExternalSyncSettingErrorType::InvalidLoggingSetup => "INVALID_LOGGING_SETUP",
-SqlExternalSyncSettingErrorType::InvalidDbParam => "INVALID_DB_PARAM",
-SqlExternalSyncSettingErrorType::UnsupportedGtidMode => "UNSUPPORTED_GTID_MODE",
-SqlExternalSyncSettingErrorType::SqlserverAgentNotRunning => "SQLSERVER_AGENT_NOT_RUNNING",
-SqlExternalSyncSettingErrorType::UnsupportedTableDefinition => "UNSUPPORTED_TABLE_DEFINITION",
-SqlExternalSyncSettingErrorType::UnsupportedDefiner => "UNSUPPORTED_DEFINER",
-SqlExternalSyncSettingErrorType::SqlserverServernameMismatch => "SQLSERVER_SERVERNAME_MISMATCH",
-SqlExternalSyncSettingErrorType::PrimaryAlreadySetup => "PRIMARY_ALREADY_SETUP",
-SqlExternalSyncSettingErrorType::UnsupportedBinlogFormat => "UNSUPPORTED_BINLOG_FORMAT",
-SqlExternalSyncSettingErrorType::BinlogRetentionSetting => "BINLOG_RETENTION_SETTING",
-SqlExternalSyncSettingErrorType::UnsupportedStorageEngine => "UNSUPPORTED_STORAGE_ENGINE",
-SqlExternalSyncSettingErrorType::LimitedSupportTables => "LIMITED_SUPPORT_TABLES",
-SqlExternalSyncSettingErrorType::ExistingDataInReplica => "EXISTING_DATA_IN_REPLICA",
-SqlExternalSyncSettingErrorType::MissingOptionalPrivileges => "MISSING_OPTIONAL_PRIVILEGES",
-SqlExternalSyncSettingErrorType::RiskyBackupAdminPrivilege => "RISKY_BACKUP_ADMIN_PRIVILEGE",
-SqlExternalSyncSettingErrorType::InsufficientGcsPermissions => "INSUFFICIENT_GCS_PERMISSIONS",
-SqlExternalSyncSettingErrorType::InvalidFileInfo => "INVALID_FILE_INFO",
-SqlExternalSyncSettingErrorType::UnsupportedDatabaseSettings => "UNSUPPORTED_DATABASE_SETTINGS",
-SqlExternalSyncSettingErrorType::MysqlParallelImportInsufficientPrivilege => "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
-SqlExternalSyncSettingErrorType::LocalInfileOff => "LOCAL_INFILE_OFF",
-SqlExternalSyncSettingErrorType::TurnOnPitrAfterPromote => "TURN_ON_PITR_AFTER_PROMOTE",
-SqlExternalSyncSettingErrorType::IncompatibleDatabaseMinorVersion => "INCOMPATIBLE_DATABASE_MINOR_VERSION",
-SqlExternalSyncSettingErrorType::SourceMaxSubscriptions => "SOURCE_MAX_SUBSCRIPTIONS",
-SqlExternalSyncSettingErrorType::UnableToVerifyDefiners => "UNABLE_TO_VERIFY_DEFINERS",
-SqlExternalSyncSettingErrorType::SubscriptionCalculationStatus => "SUBSCRIPTION_CALCULATION_STATUS",
-SqlExternalSyncSettingErrorType::PgSubscriptionCount => "PG_SUBSCRIPTION_COUNT",
-SqlExternalSyncSettingErrorType::PgSyncParallelLevel => "PG_SYNC_PARALLEL_LEVEL",
-SqlExternalSyncSettingErrorType::InsufficientDiskSize => "INSUFFICIENT_DISK_SIZE",
-SqlExternalSyncSettingErrorType::InsufficientMachineTier => "INSUFFICIENT_MACHINE_TIER",
-SqlExternalSyncSettingErrorType::UnsupportedExtensionsNotMigrated => "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED",
-SqlExternalSyncSettingErrorType::ExtensionsNotMigrated => "EXTENSIONS_NOT_MIGRATED",
-SqlExternalSyncSettingErrorType::PgCronFlagEnabledInReplica => "PG_CRON_FLAG_ENABLED_IN_REPLICA",
-SqlExternalSyncSettingErrorType::ExtensionsNotEnabledInReplica => "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CONNECTION_FAILURE" => Some(Self::ConnectionFailure),
-"BINLOG_NOT_ENABLED" => Some(Self::BinlogNotEnabled),
-"INCOMPATIBLE_DATABASE_VERSION" => Some(Self::IncompatibleDatabaseVersion),
-"REPLICA_ALREADY_SETUP" => Some(Self::ReplicaAlreadySetup),
-"INSUFFICIENT_PRIVILEGE" => Some(Self::InsufficientPrivilege),
-"UNSUPPORTED_MIGRATION_TYPE" => Some(Self::UnsupportedMigrationType),
-"NO_PGLOGICAL_INSTALLED" => Some(Self::NoPglogicalInstalled),
-"PGLOGICAL_NODE_ALREADY_EXISTS" => Some(Self::PglogicalNodeAlreadyExists),
-"INVALID_WAL_LEVEL" => Some(Self::InvalidWalLevel),
-"INVALID_SHARED_PRELOAD_LIBRARY" => Some(Self::InvalidSharedPreloadLibrary),
-"INSUFFICIENT_MAX_REPLICATION_SLOTS" => Some(Self::InsufficientMaxReplicationSlots),
-"INSUFFICIENT_MAX_WAL_SENDERS" => Some(Self::InsufficientMaxWalSenders),
-"INSUFFICIENT_MAX_WORKER_PROCESSES" => Some(Self::InsufficientMaxWorkerProcesses),
-"UNSUPPORTED_EXTENSIONS" => Some(Self::UnsupportedExtensions),
-"INVALID_RDS_LOGICAL_REPLICATION" => Some(Self::InvalidRdsLogicalReplication),
-"INVALID_LOGGING_SETUP" => Some(Self::InvalidLoggingSetup),
-"INVALID_DB_PARAM" => Some(Self::InvalidDbParam),
-"UNSUPPORTED_GTID_MODE" => Some(Self::UnsupportedGtidMode),
-"SQLSERVER_AGENT_NOT_RUNNING" => Some(Self::SqlserverAgentNotRunning),
-"UNSUPPORTED_TABLE_DEFINITION" => Some(Self::UnsupportedTableDefinition),
-"UNSUPPORTED_DEFINER" => Some(Self::UnsupportedDefiner),
-"SQLSERVER_SERVERNAME_MISMATCH" => Some(Self::SqlserverServernameMismatch),
-"PRIMARY_ALREADY_SETUP" => Some(Self::PrimaryAlreadySetup),
-"UNSUPPORTED_BINLOG_FORMAT" => Some(Self::UnsupportedBinlogFormat),
-"BINLOG_RETENTION_SETTING" => Some(Self::BinlogRetentionSetting),
-"UNSUPPORTED_STORAGE_ENGINE" => Some(Self::UnsupportedStorageEngine),
-"LIMITED_SUPPORT_TABLES" => Some(Self::LimitedSupportTables),
-"EXISTING_DATA_IN_REPLICA" => Some(Self::ExistingDataInReplica),
-"MISSING_OPTIONAL_PRIVILEGES" => Some(Self::MissingOptionalPrivileges),
-"RISKY_BACKUP_ADMIN_PRIVILEGE" => Some(Self::RiskyBackupAdminPrivilege),
-"INSUFFICIENT_GCS_PERMISSIONS" => Some(Self::InsufficientGcsPermissions),
-"INVALID_FILE_INFO" => Some(Self::InvalidFileInfo),
-"UNSUPPORTED_DATABASE_SETTINGS" => Some(Self::UnsupportedDatabaseSettings),
-"MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE" => Some(Self::MysqlParallelImportInsufficientPrivilege),
-"LOCAL_INFILE_OFF" => Some(Self::LocalInfileOff),
-"TURN_ON_PITR_AFTER_PROMOTE" => Some(Self::TurnOnPitrAfterPromote),
-"INCOMPATIBLE_DATABASE_MINOR_VERSION" => Some(Self::IncompatibleDatabaseMinorVersion),
-"SOURCE_MAX_SUBSCRIPTIONS" => Some(Self::SourceMaxSubscriptions),
-"UNABLE_TO_VERIFY_DEFINERS" => Some(Self::UnableToVerifyDefiners),
-"SUBSCRIPTION_CALCULATION_STATUS" => Some(Self::SubscriptionCalculationStatus),
-"PG_SUBSCRIPTION_COUNT" => Some(Self::PgSubscriptionCount),
-"PG_SYNC_PARALLEL_LEVEL" => Some(Self::PgSyncParallelLevel),
-"INSUFFICIENT_DISK_SIZE" => Some(Self::InsufficientDiskSize),
-"INSUFFICIENT_MACHINE_TIER" => Some(Self::InsufficientMachineTier),
-"UNSUPPORTED_EXTENSIONS_NOT_MIGRATED" => Some(Self::UnsupportedExtensionsNotMigrated),
-"EXTENSIONS_NOT_MIGRATED" => Some(Self::ExtensionsNotMigrated),
-"PG_CRON_FLAG_ENABLED_IN_REPLICA" => Some(Self::PgCronFlagEnabledInReplica),
-"EXTENSIONS_NOT_ENABLED_IN_REPLICA" => Some(Self::ExtensionsNotEnabledInReplica),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlExternalSyncSettingErrorType {
+        Unspecified = 0,
+        ConnectionFailure = 1,
+        BinlogNotEnabled = 2,
+        IncompatibleDatabaseVersion = 3,
+        ReplicaAlreadySetup = 4,
+        InsufficientPrivilege = 5,
+        UnsupportedMigrationType = 6,
+        NoPglogicalInstalled = 7,
+        PglogicalNodeAlreadyExists = 8,
+        InvalidWalLevel = 9,
+        InvalidSharedPreloadLibrary = 10,
+        InsufficientMaxReplicationSlots = 11,
+        InsufficientMaxWalSenders = 12,
+        InsufficientMaxWorkerProcesses = 13,
+        UnsupportedExtensions = 14,
+        InvalidRdsLogicalReplication = 15,
+        InvalidLoggingSetup = 16,
+        InvalidDbParam = 17,
+        UnsupportedGtidMode = 18,
+        SqlserverAgentNotRunning = 19,
+        UnsupportedTableDefinition = 20,
+        UnsupportedDefiner = 21,
+        SqlserverServernameMismatch = 22,
+        PrimaryAlreadySetup = 23,
+        UnsupportedBinlogFormat = 24,
+        BinlogRetentionSetting = 25,
+        UnsupportedStorageEngine = 26,
+        LimitedSupportTables = 27,
+        ExistingDataInReplica = 28,
+        MissingOptionalPrivileges = 29,
+        RiskyBackupAdminPrivilege = 30,
+        InsufficientGcsPermissions = 31,
+        InvalidFileInfo = 32,
+        UnsupportedDatabaseSettings = 33,
+        MysqlParallelImportInsufficientPrivilege = 34,
+        LocalInfileOff = 35,
+        TurnOnPitrAfterPromote = 36,
+        IncompatibleDatabaseMinorVersion = 37,
+        SourceMaxSubscriptions = 38,
+        UnableToVerifyDefiners = 39,
+        SubscriptionCalculationStatus = 40,
+        PgSubscriptionCount = 41,
+        PgSyncParallelLevel = 42,
+        InsufficientDiskSize = 43,
+        InsufficientMachineTier = 44,
+        UnsupportedExtensionsNotMigrated = 45,
+        ExtensionsNotMigrated = 46,
+        PgCronFlagEnabledInReplica = 47,
+        ExtensionsNotEnabledInReplica = 48,
+    }
+    impl SqlExternalSyncSettingErrorType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlExternalSyncSettingErrorType::Unspecified => {
+                    "SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED"
+                }
+                SqlExternalSyncSettingErrorType::ConnectionFailure => "CONNECTION_FAILURE",
+                SqlExternalSyncSettingErrorType::BinlogNotEnabled => "BINLOG_NOT_ENABLED",
+                SqlExternalSyncSettingErrorType::IncompatibleDatabaseVersion => {
+                    "INCOMPATIBLE_DATABASE_VERSION"
+                }
+                SqlExternalSyncSettingErrorType::ReplicaAlreadySetup => "REPLICA_ALREADY_SETUP",
+                SqlExternalSyncSettingErrorType::InsufficientPrivilege => "INSUFFICIENT_PRIVILEGE",
+                SqlExternalSyncSettingErrorType::UnsupportedMigrationType => {
+                    "UNSUPPORTED_MIGRATION_TYPE"
+                }
+                SqlExternalSyncSettingErrorType::NoPglogicalInstalled => "NO_PGLOGICAL_INSTALLED",
+                SqlExternalSyncSettingErrorType::PglogicalNodeAlreadyExists => {
+                    "PGLOGICAL_NODE_ALREADY_EXISTS"
+                }
+                SqlExternalSyncSettingErrorType::InvalidWalLevel => "INVALID_WAL_LEVEL",
+                SqlExternalSyncSettingErrorType::InvalidSharedPreloadLibrary => {
+                    "INVALID_SHARED_PRELOAD_LIBRARY"
+                }
+                SqlExternalSyncSettingErrorType::InsufficientMaxReplicationSlots => {
+                    "INSUFFICIENT_MAX_REPLICATION_SLOTS"
+                }
+                SqlExternalSyncSettingErrorType::InsufficientMaxWalSenders => {
+                    "INSUFFICIENT_MAX_WAL_SENDERS"
+                }
+                SqlExternalSyncSettingErrorType::InsufficientMaxWorkerProcesses => {
+                    "INSUFFICIENT_MAX_WORKER_PROCESSES"
+                }
+                SqlExternalSyncSettingErrorType::UnsupportedExtensions => "UNSUPPORTED_EXTENSIONS",
+                SqlExternalSyncSettingErrorType::InvalidRdsLogicalReplication => {
+                    "INVALID_RDS_LOGICAL_REPLICATION"
+                }
+                SqlExternalSyncSettingErrorType::InvalidLoggingSetup => "INVALID_LOGGING_SETUP",
+                SqlExternalSyncSettingErrorType::InvalidDbParam => "INVALID_DB_PARAM",
+                SqlExternalSyncSettingErrorType::UnsupportedGtidMode => "UNSUPPORTED_GTID_MODE",
+                SqlExternalSyncSettingErrorType::SqlserverAgentNotRunning => {
+                    "SQLSERVER_AGENT_NOT_RUNNING"
+                }
+                SqlExternalSyncSettingErrorType::UnsupportedTableDefinition => {
+                    "UNSUPPORTED_TABLE_DEFINITION"
+                }
+                SqlExternalSyncSettingErrorType::UnsupportedDefiner => "UNSUPPORTED_DEFINER",
+                SqlExternalSyncSettingErrorType::SqlserverServernameMismatch => {
+                    "SQLSERVER_SERVERNAME_MISMATCH"
+                }
+                SqlExternalSyncSettingErrorType::PrimaryAlreadySetup => "PRIMARY_ALREADY_SETUP",
+                SqlExternalSyncSettingErrorType::UnsupportedBinlogFormat => {
+                    "UNSUPPORTED_BINLOG_FORMAT"
+                }
+                SqlExternalSyncSettingErrorType::BinlogRetentionSetting => {
+                    "BINLOG_RETENTION_SETTING"
+                }
+                SqlExternalSyncSettingErrorType::UnsupportedStorageEngine => {
+                    "UNSUPPORTED_STORAGE_ENGINE"
+                }
+                SqlExternalSyncSettingErrorType::LimitedSupportTables => "LIMITED_SUPPORT_TABLES",
+                SqlExternalSyncSettingErrorType::ExistingDataInReplica => {
+                    "EXISTING_DATA_IN_REPLICA"
+                }
+                SqlExternalSyncSettingErrorType::MissingOptionalPrivileges => {
+                    "MISSING_OPTIONAL_PRIVILEGES"
+                }
+                SqlExternalSyncSettingErrorType::RiskyBackupAdminPrivilege => {
+                    "RISKY_BACKUP_ADMIN_PRIVILEGE"
+                }
+                SqlExternalSyncSettingErrorType::InsufficientGcsPermissions => {
+                    "INSUFFICIENT_GCS_PERMISSIONS"
+                }
+                SqlExternalSyncSettingErrorType::InvalidFileInfo => "INVALID_FILE_INFO",
+                SqlExternalSyncSettingErrorType::UnsupportedDatabaseSettings => {
+                    "UNSUPPORTED_DATABASE_SETTINGS"
+                }
+                SqlExternalSyncSettingErrorType::MysqlParallelImportInsufficientPrivilege => {
+                    "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
+                }
+                SqlExternalSyncSettingErrorType::LocalInfileOff => "LOCAL_INFILE_OFF",
+                SqlExternalSyncSettingErrorType::TurnOnPitrAfterPromote => {
+                    "TURN_ON_PITR_AFTER_PROMOTE"
+                }
+                SqlExternalSyncSettingErrorType::IncompatibleDatabaseMinorVersion => {
+                    "INCOMPATIBLE_DATABASE_MINOR_VERSION"
+                }
+                SqlExternalSyncSettingErrorType::SourceMaxSubscriptions => {
+                    "SOURCE_MAX_SUBSCRIPTIONS"
+                }
+                SqlExternalSyncSettingErrorType::UnableToVerifyDefiners => {
+                    "UNABLE_TO_VERIFY_DEFINERS"
+                }
+                SqlExternalSyncSettingErrorType::SubscriptionCalculationStatus => {
+                    "SUBSCRIPTION_CALCULATION_STATUS"
+                }
+                SqlExternalSyncSettingErrorType::PgSubscriptionCount => "PG_SUBSCRIPTION_COUNT",
+                SqlExternalSyncSettingErrorType::PgSyncParallelLevel => "PG_SYNC_PARALLEL_LEVEL",
+                SqlExternalSyncSettingErrorType::InsufficientDiskSize => "INSUFFICIENT_DISK_SIZE",
+                SqlExternalSyncSettingErrorType::InsufficientMachineTier => {
+                    "INSUFFICIENT_MACHINE_TIER"
+                }
+                SqlExternalSyncSettingErrorType::UnsupportedExtensionsNotMigrated => {
+                    "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED"
+                }
+                SqlExternalSyncSettingErrorType::ExtensionsNotMigrated => "EXTENSIONS_NOT_MIGRATED",
+                SqlExternalSyncSettingErrorType::PgCronFlagEnabledInReplica => {
+                    "PG_CRON_FLAG_ENABLED_IN_REPLICA"
+                }
+                SqlExternalSyncSettingErrorType::ExtensionsNotEnabledInReplica => {
+                    "EXTENSIONS_NOT_ENABLED_IN_REPLICA"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONNECTION_FAILURE" => Some(Self::ConnectionFailure),
+                "BINLOG_NOT_ENABLED" => Some(Self::BinlogNotEnabled),
+                "INCOMPATIBLE_DATABASE_VERSION" => Some(Self::IncompatibleDatabaseVersion),
+                "REPLICA_ALREADY_SETUP" => Some(Self::ReplicaAlreadySetup),
+                "INSUFFICIENT_PRIVILEGE" => Some(Self::InsufficientPrivilege),
+                "UNSUPPORTED_MIGRATION_TYPE" => Some(Self::UnsupportedMigrationType),
+                "NO_PGLOGICAL_INSTALLED" => Some(Self::NoPglogicalInstalled),
+                "PGLOGICAL_NODE_ALREADY_EXISTS" => Some(Self::PglogicalNodeAlreadyExists),
+                "INVALID_WAL_LEVEL" => Some(Self::InvalidWalLevel),
+                "INVALID_SHARED_PRELOAD_LIBRARY" => Some(Self::InvalidSharedPreloadLibrary),
+                "INSUFFICIENT_MAX_REPLICATION_SLOTS" => Some(Self::InsufficientMaxReplicationSlots),
+                "INSUFFICIENT_MAX_WAL_SENDERS" => Some(Self::InsufficientMaxWalSenders),
+                "INSUFFICIENT_MAX_WORKER_PROCESSES" => Some(Self::InsufficientMaxWorkerProcesses),
+                "UNSUPPORTED_EXTENSIONS" => Some(Self::UnsupportedExtensions),
+                "INVALID_RDS_LOGICAL_REPLICATION" => Some(Self::InvalidRdsLogicalReplication),
+                "INVALID_LOGGING_SETUP" => Some(Self::InvalidLoggingSetup),
+                "INVALID_DB_PARAM" => Some(Self::InvalidDbParam),
+                "UNSUPPORTED_GTID_MODE" => Some(Self::UnsupportedGtidMode),
+                "SQLSERVER_AGENT_NOT_RUNNING" => Some(Self::SqlserverAgentNotRunning),
+                "UNSUPPORTED_TABLE_DEFINITION" => Some(Self::UnsupportedTableDefinition),
+                "UNSUPPORTED_DEFINER" => Some(Self::UnsupportedDefiner),
+                "SQLSERVER_SERVERNAME_MISMATCH" => Some(Self::SqlserverServernameMismatch),
+                "PRIMARY_ALREADY_SETUP" => Some(Self::PrimaryAlreadySetup),
+                "UNSUPPORTED_BINLOG_FORMAT" => Some(Self::UnsupportedBinlogFormat),
+                "BINLOG_RETENTION_SETTING" => Some(Self::BinlogRetentionSetting),
+                "UNSUPPORTED_STORAGE_ENGINE" => Some(Self::UnsupportedStorageEngine),
+                "LIMITED_SUPPORT_TABLES" => Some(Self::LimitedSupportTables),
+                "EXISTING_DATA_IN_REPLICA" => Some(Self::ExistingDataInReplica),
+                "MISSING_OPTIONAL_PRIVILEGES" => Some(Self::MissingOptionalPrivileges),
+                "RISKY_BACKUP_ADMIN_PRIVILEGE" => Some(Self::RiskyBackupAdminPrivilege),
+                "INSUFFICIENT_GCS_PERMISSIONS" => Some(Self::InsufficientGcsPermissions),
+                "INVALID_FILE_INFO" => Some(Self::InvalidFileInfo),
+                "UNSUPPORTED_DATABASE_SETTINGS" => Some(Self::UnsupportedDatabaseSettings),
+                "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE" => {
+                    Some(Self::MysqlParallelImportInsufficientPrivilege)
+                }
+                "LOCAL_INFILE_OFF" => Some(Self::LocalInfileOff),
+                "TURN_ON_PITR_AFTER_PROMOTE" => Some(Self::TurnOnPitrAfterPromote),
+                "INCOMPATIBLE_DATABASE_MINOR_VERSION" => {
+                    Some(Self::IncompatibleDatabaseMinorVersion)
+                }
+                "SOURCE_MAX_SUBSCRIPTIONS" => Some(Self::SourceMaxSubscriptions),
+                "UNABLE_TO_VERIFY_DEFINERS" => Some(Self::UnableToVerifyDefiners),
+                "SUBSCRIPTION_CALCULATION_STATUS" => Some(Self::SubscriptionCalculationStatus),
+                "PG_SUBSCRIPTION_COUNT" => Some(Self::PgSubscriptionCount),
+                "PG_SYNC_PARALLEL_LEVEL" => Some(Self::PgSyncParallelLevel),
+                "INSUFFICIENT_DISK_SIZE" => Some(Self::InsufficientDiskSize),
+                "INSUFFICIENT_MACHINE_TIER" => Some(Self::InsufficientMachineTier),
+                "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED" => {
+                    Some(Self::UnsupportedExtensionsNotMigrated)
+                }
+                "EXTENSIONS_NOT_MIGRATED" => Some(Self::ExtensionsNotMigrated),
+                "PG_CRON_FLAG_ENABLED_IN_REPLICA" => Some(Self::PgCronFlagEnabledInReplica),
+                "EXTENSIONS_NOT_ENABLED_IN_REPLICA" => Some(Self::ExtensionsNotEnabledInReplica),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OnPremisesConfiguration {
-#[prost(string, tag = "1")]
-pub host_port: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub password: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub ca_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub client_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub client_key: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub dump_file_path: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "15")]
-pub source_instance: ::core::option::Option<InstanceReference>,
+    #[prost(string, tag = "1")]
+    pub host_port: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub ca_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub client_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub client_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub dump_file_path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "15")]
+    pub source_instance: ::core::option::Option<InstanceReference>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplicaConfiguration {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub mysql_replica_configuration: ::core::option::Option<MySqlReplicaConfiguration>,
-#[prost(message, optional, tag = "3")]
-pub failover_target: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "5")]
-pub cascadable_replica: ::core::option::Option<bool>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub mysql_replica_configuration: ::core::option::Option<MySqlReplicaConfiguration>,
+    #[prost(message, optional, tag = "3")]
+    pub failover_target: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "5")]
+    pub cascadable_replica: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesAcquireSsrsLeaseRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<InstancesAcquireSsrsLeaseRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<InstancesAcquireSsrsLeaseRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesAcquireSsrsLeaseResponse {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesReleaseSsrsLeaseRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlInstancesReleaseSsrsLeaseResponse {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExternalSyncParallelLevel {
-Unspecified = 0,
-Min = 1,
-Optimal = 2,
-Max = 3,
+    Unspecified = 0,
+    Min = 1,
+    Optimal = 2,
+    Max = 3,
 }
 impl ExternalSyncParallelLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExternalSyncParallelLevel::Unspecified => "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED",
-ExternalSyncParallelLevel::Min => "MIN",
-ExternalSyncParallelLevel::Optimal => "OPTIMAL",
-ExternalSyncParallelLevel::Max => "MAX",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"MIN" => Some(Self::Min),
-"OPTIMAL" => Some(Self::Optimal),
-"MAX" => Some(Self::Max),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ExternalSyncParallelLevel::Unspecified => "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED",
+            ExternalSyncParallelLevel::Min => "MIN",
+            ExternalSyncParallelLevel::Optimal => "OPTIMAL",
+            ExternalSyncParallelLevel::Max => "MAX",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "MIN" => Some(Self::Min),
+            "OPTIMAL" => Some(Self::Optimal),
+            "MAX" => Some(Self::Max),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlInstanceType {
-Unspecified = 0,
-CloudSqlInstance = 1,
-OnPremisesInstance = 2,
-ReadReplicaInstance = 3,
+    Unspecified = 0,
+    CloudSqlInstance = 1,
+    OnPremisesInstance = 2,
+    ReadReplicaInstance = 3,
 }
 impl SqlInstanceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlInstanceType::Unspecified => "SQL_INSTANCE_TYPE_UNSPECIFIED",
-SqlInstanceType::CloudSqlInstance => "CLOUD_SQL_INSTANCE",
-SqlInstanceType::OnPremisesInstance => "ON_PREMISES_INSTANCE",
-SqlInstanceType::ReadReplicaInstance => "READ_REPLICA_INSTANCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_INSTANCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOUD_SQL_INSTANCE" => Some(Self::CloudSqlInstance),
-"ON_PREMISES_INSTANCE" => Some(Self::OnPremisesInstance),
-"READ_REPLICA_INSTANCE" => Some(Self::ReadReplicaInstance),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlInstanceType::Unspecified => "SQL_INSTANCE_TYPE_UNSPECIFIED",
+            SqlInstanceType::CloudSqlInstance => "CLOUD_SQL_INSTANCE",
+            SqlInstanceType::OnPremisesInstance => "ON_PREMISES_INSTANCE",
+            SqlInstanceType::ReadReplicaInstance => "READ_REPLICA_INSTANCE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_INSTANCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "CLOUD_SQL_INSTANCE" => Some(Self::CloudSqlInstance),
+            "ON_PREMISES_INSTANCE" => Some(Self::OnPremisesInstance),
+            "READ_REPLICA_INSTANCE" => Some(Self::ReadReplicaInstance),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlSuspensionReason {
-Unspecified = 0,
-BillingIssue = 2,
-LegalIssue = 3,
-OperationalIssue = 4,
-KmsKeyIssue = 5,
+    Unspecified = 0,
+    BillingIssue = 2,
+    LegalIssue = 3,
+    OperationalIssue = 4,
+    KmsKeyIssue = 5,
 }
 impl SqlSuspensionReason {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlSuspensionReason::Unspecified => "SQL_SUSPENSION_REASON_UNSPECIFIED",
-SqlSuspensionReason::BillingIssue => "BILLING_ISSUE",
-SqlSuspensionReason::LegalIssue => "LEGAL_ISSUE",
-SqlSuspensionReason::OperationalIssue => "OPERATIONAL_ISSUE",
-SqlSuspensionReason::KmsKeyIssue => "KMS_KEY_ISSUE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_SUSPENSION_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-"BILLING_ISSUE" => Some(Self::BillingIssue),
-"LEGAL_ISSUE" => Some(Self::LegalIssue),
-"OPERATIONAL_ISSUE" => Some(Self::OperationalIssue),
-"KMS_KEY_ISSUE" => Some(Self::KmsKeyIssue),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlSuspensionReason::Unspecified => "SQL_SUSPENSION_REASON_UNSPECIFIED",
+            SqlSuspensionReason::BillingIssue => "BILLING_ISSUE",
+            SqlSuspensionReason::LegalIssue => "LEGAL_ISSUE",
+            SqlSuspensionReason::OperationalIssue => "OPERATIONAL_ISSUE",
+            SqlSuspensionReason::KmsKeyIssue => "KMS_KEY_ISSUE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_SUSPENSION_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+            "BILLING_ISSUE" => Some(Self::BillingIssue),
+            "LEGAL_ISSUE" => Some(Self::LegalIssue),
+            "OPERATIONAL_ISSUE" => Some(Self::OperationalIssue),
+            "KMS_KEY_ISSUE" => Some(Self::KmsKeyIssue),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_instances_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to manage Cloud SQL instances.
-#[derive(Debug, Clone)]
-pub struct SqlInstancesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlInstancesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlInstancesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlInstancesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Adds a new trusted Certificate Authority (CA) version for the specified
-/// instance. Required to prepare for a certificate rotation. If a CA version
-/// was previously added but never used in a certificate rotation, this
-/// operation replaces that version. There cannot be more than one CA version
-/// waiting to be rotated in.
-pub async fn add_server_ca(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesAddServerCaRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/AddServerCa");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "AddServerCa"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a Cloud SQL instance as a clone of the source instance. Using this
-/// operation might cause your instance to restart.
-pub async fn clone(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesCloneRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Clone");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Clone"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a Cloud SQL instance.
-pub async fn delete(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesDeleteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Delete");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Delete"));
-self.inner.unary(req, path, codec).await
-}
-/// Demotes the stand-alone instance to be a Cloud SQL read replica for an
-/// external database server.
-pub async fn demote_master(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesDemoteMasterRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/DemoteMaster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "DemoteMaster"));
-self.inner.unary(req, path, codec).await
-}
-/// Demotes an existing standalone instance to be a Cloud SQL read replica
-/// for an external database server.
-pub async fn demote(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesDemoteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Demote");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Demote"));
-self.inner.unary(req, path, codec).await
-}
-/// Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL
-/// dump or CSV file.
-pub async fn export(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesExportRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Export");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Export"));
-self.inner.unary(req, path, codec).await
-}
-/// Initiates a manual failover of a high availability (HA) primary instance
-/// to a standby instance, which becomes the primary instance. Users are
-/// then rerouted to the new primary. For more information, see the
-/// [Overview of high
-/// availability](https://cloud.google.com/sql/docs/mysql/high-availability)
-/// page in the Cloud SQL documentation.
-/// If using Legacy HA (MySQL only), this causes the instance to failover to
-/// its failover replica instance.
-pub async fn failover(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesFailoverRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Failover");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Failover"));
-self.inner.unary(req, path, codec).await
-}
-/// Reencrypt CMEK instance with latest key version.
-pub async fn reencrypt(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesReencryptRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Reencrypt");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Reencrypt"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a resource containing information about a Cloud SQL instance.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesGetRequest>) -> std::result::Result<tonic::Response<super::DatabaseInstance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
-/// Cloud Storage.
-pub async fn import(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesImportRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Import");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Import"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Cloud SQL instance.
-pub async fn insert(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesInsertRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Insert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Insert"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists instances under a given project.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesListRequest>) -> std::result::Result<tonic::Response<super::InstancesListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "List"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all of the trusted Certificate Authorities (CAs) for the specified
-/// instance. There can be up to three CAs listed: the CA that was used to sign
-/// the certificate that is currently in use, a CA that has been added but not
-/// yet used to sign a certificate, and a CA used to sign a certificate that
-/// has previously rotated out.
-pub async fn list_server_cas(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesListServerCasRequest>) -> std::result::Result<tonic::Response<super::InstancesListServerCasResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/ListServerCas");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "ListServerCas"));
-self.inner.unary(req, path, codec).await
-}
-/// Partially updates settings of a Cloud SQL instance by merging the request
-/// with the current configuration. This method supports patch semantics.
-pub async fn patch(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesPatchRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Patch");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Patch"));
-self.inner.unary(req, path, codec).await
-}
-/// Promotes the read replica instance to be an independent Cloud SQL
-/// primary instance.
-/// Using this operation might cause your instance to restart.
-pub async fn promote_replica(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesPromoteReplicaRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/PromoteReplica");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "PromoteReplica"));
-self.inner.unary(req, path, codec).await
-}
-/// Switches over from the primary instance to the designated DR replica
-/// instance.
-pub async fn switchover(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesSwitchoverRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Switchover");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Switchover"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes all client certificates and generates a new server SSL certificate
-/// for the instance.
-pub async fn reset_ssl_config(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesResetSslConfigRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/ResetSslConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "ResetSslConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Restarts a Cloud SQL instance.
-pub async fn restart(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesRestartRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Restart");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Restart"));
-self.inner.unary(req, path, codec).await
-}
-/// Restores a backup of a Cloud SQL instance. Using this operation might cause
-/// your instance to restart.
-pub async fn restore_backup(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesRestoreBackupRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/RestoreBackup");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "RestoreBackup"));
-self.inner.unary(req, path, codec).await
-}
-/// Rotates the server certificate to one signed by the Certificate Authority
-/// (CA) version previously added with the addServerCA method.
-pub async fn rotate_server_ca(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesRotateServerCaRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/RotateServerCa");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "RotateServerCa"));
-self.inner.unary(req, path, codec).await
-}
-/// Starts the replication in the read replica instance.
-pub async fn start_replica(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesStartReplicaRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/StartReplica");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "StartReplica"));
-self.inner.unary(req, path, codec).await
-}
-/// Stops the replication in the read replica instance.
-pub async fn stop_replica(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesStopReplicaRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/StopReplica");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "StopReplica"));
-self.inner.unary(req, path, codec).await
-}
-/// Truncate MySQL general and slow query log tables
-/// MySQL only.
-pub async fn truncate_log(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesTruncateLogRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/TruncateLog");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "TruncateLog"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates settings of a Cloud SQL instance. Using this operation might cause
-/// your instance to restart.
-pub async fn update(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesUpdateRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/Update");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "Update"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a short-lived X509 certificate containing the provided public key
-/// and signed by a private key specific to the target instance. Users may use
-/// the certificate to authenticate as themselves when connecting to the
-/// database.
-pub async fn create_ephemeral(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesCreateEphemeralCertRequest>) -> std::result::Result<tonic::Response<super::SslCert>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/CreateEphemeral");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "CreateEphemeral"));
-self.inner.unary(req, path, codec).await
-}
-/// Reschedules the maintenance on the given instance.
-pub async fn reschedule_maintenance(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesRescheduleMaintenanceRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/RescheduleMaintenance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "RescheduleMaintenance"));
-self.inner.unary(req, path, codec).await
-}
-/// Verify External primary instance external sync settings.
-pub async fn verify_external_sync_settings(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesVerifyExternalSyncSettingsRequest>) -> std::result::Result<tonic::Response<super::SqlInstancesVerifyExternalSyncSettingsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/VerifyExternalSyncSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "VerifyExternalSyncSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Start External primary instance migration.
-pub async fn start_external_sync(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesStartExternalSyncRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/StartExternalSync");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "StartExternalSync"));
-self.inner.unary(req, path, codec).await
-}
-/// Perform Disk Shrink on primary instance.
-pub async fn perform_disk_shrink(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesPerformDiskShrinkRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/PerformDiskShrink");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "PerformDiskShrink"));
-self.inner.unary(req, path, codec).await
-}
-/// Get Disk Shrink Config for a given instance.
-pub async fn get_disk_shrink_config(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesGetDiskShrinkConfigRequest>) -> std::result::Result<tonic::Response<super::SqlInstancesGetDiskShrinkConfigResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/GetDiskShrinkConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "GetDiskShrinkConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Reset Replica Size to primary instance disk size.
-pub async fn reset_replica_size(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesResetReplicaSizeRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/ResetReplicaSize");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "ResetReplicaSize"));
-self.inner.unary(req, path, codec).await
-}
-/// Get Latest Recovery Time for a given instance.
-pub async fn get_latest_recovery_time(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesGetLatestRecoveryTimeRequest>) -> std::result::Result<tonic::Response<super::SqlInstancesGetLatestRecoveryTimeResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/GetLatestRecoveryTime");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "GetLatestRecoveryTime"));
-self.inner.unary(req, path, codec).await
-}
-/// Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
-pub async fn acquire_ssrs_lease(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesAcquireSsrsLeaseRequest>) -> std::result::Result<tonic::Response<super::SqlInstancesAcquireSsrsLeaseResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/AcquireSsrsLease");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "AcquireSsrsLease"));
-self.inner.unary(req, path, codec).await
-}
-/// Release a lease for the setup of SQL Server Reporting Services (SSRS).
-pub async fn release_ssrs_lease(&mut self, request: impl tonic::IntoRequest<super::SqlInstancesReleaseSsrsLeaseRequest>) -> std::result::Result<tonic::Response<super::SqlInstancesReleaseSsrsLeaseResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlInstancesService/ReleaseSsrsLease");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlInstancesService", "ReleaseSsrsLease"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to manage Cloud SQL instances.
+    #[derive(Debug, Clone)]
+    pub struct SqlInstancesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlInstancesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlInstancesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlInstancesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Adds a new trusted Certificate Authority (CA) version for the specified
+        /// instance. Required to prepare for a certificate rotation. If a CA version
+        /// was previously added but never used in a certificate rotation, this
+        /// operation replaces that version. There cannot be more than one CA version
+        /// waiting to be rotated in.
+        pub async fn add_server_ca(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesAddServerCaRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/AddServerCa",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "AddServerCa",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a Cloud SQL instance as a clone of the source instance. Using this
+        /// operation might cause your instance to restart.
+        pub async fn clone(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesCloneRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Clone",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Clone",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a Cloud SQL instance.
+        pub async fn delete(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesDeleteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Delete",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Delete",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Demotes the stand-alone instance to be a Cloud SQL read replica for an
+        /// external database server.
+        pub async fn demote_master(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesDemoteMasterRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/DemoteMaster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "DemoteMaster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Demotes an existing standalone instance to be a Cloud SQL read replica
+        /// for an external database server.
+        pub async fn demote(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesDemoteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Demote",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Demote",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL
+        /// dump or CSV file.
+        pub async fn export(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesExportRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Export",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Export",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Initiates a manual failover of a high availability (HA) primary instance
+        /// to a standby instance, which becomes the primary instance. Users are
+        /// then rerouted to the new primary. For more information, see the
+        /// [Overview of high
+        /// availability](https://cloud.google.com/sql/docs/mysql/high-availability)
+        /// page in the Cloud SQL documentation.
+        /// If using Legacy HA (MySQL only), this causes the instance to failover to
+        /// its failover replica instance.
+        pub async fn failover(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesFailoverRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Failover",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Failover",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reencrypt CMEK instance with latest key version.
+        pub async fn reencrypt(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesReencryptRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Reencrypt",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Reencrypt",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a resource containing information about a Cloud SQL instance.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::DatabaseInstance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Get",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
+        /// Cloud Storage.
+        pub async fn import(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesImportRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Import",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Import",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Cloud SQL instance.
+        pub async fn insert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesInsertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Insert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Insert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists instances under a given project.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesListRequest>,
+        ) -> std::result::Result<tonic::Response<super::InstancesListResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/List",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all of the trusted Certificate Authorities (CAs) for the specified
+        /// instance. There can be up to three CAs listed: the CA that was used to sign
+        /// the certificate that is currently in use, a CA that has been added but not
+        /// yet used to sign a certificate, and a CA used to sign a certificate that
+        /// has previously rotated out.
+        pub async fn list_server_cas(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesListServerCasRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::InstancesListServerCasResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/ListServerCas",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "ListServerCas",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Partially updates settings of a Cloud SQL instance by merging the request
+        /// with the current configuration. This method supports patch semantics.
+        pub async fn patch(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesPatchRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Patch",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Patch",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Promotes the read replica instance to be an independent Cloud SQL
+        /// primary instance.
+        /// Using this operation might cause your instance to restart.
+        pub async fn promote_replica(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesPromoteReplicaRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/PromoteReplica",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "PromoteReplica",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Switches over from the primary instance to the designated DR replica
+        /// instance.
+        pub async fn switchover(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesSwitchoverRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Switchover",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Switchover",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes all client certificates and generates a new server SSL certificate
+        /// for the instance.
+        pub async fn reset_ssl_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesResetSslConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/ResetSslConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "ResetSslConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Restarts a Cloud SQL instance.
+        pub async fn restart(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesRestartRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Restart",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Restart",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Restores a backup of a Cloud SQL instance. Using this operation might cause
+        /// your instance to restart.
+        pub async fn restore_backup(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesRestoreBackupRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/RestoreBackup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "RestoreBackup",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Rotates the server certificate to one signed by the Certificate Authority
+        /// (CA) version previously added with the addServerCA method.
+        pub async fn rotate_server_ca(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesRotateServerCaRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/RotateServerCa",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "RotateServerCa",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Starts the replication in the read replica instance.
+        pub async fn start_replica(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesStartReplicaRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/StartReplica",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "StartReplica",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Stops the replication in the read replica instance.
+        pub async fn stop_replica(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesStopReplicaRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/StopReplica",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "StopReplica",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Truncate MySQL general and slow query log tables
+        /// MySQL only.
+        pub async fn truncate_log(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesTruncateLogRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/TruncateLog",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "TruncateLog",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates settings of a Cloud SQL instance. Using this operation might cause
+        /// your instance to restart.
+        pub async fn update(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesUpdateRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/Update",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "Update",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a short-lived X509 certificate containing the provided public key
+        /// and signed by a private key specific to the target instance. Users may use
+        /// the certificate to authenticate as themselves when connecting to the
+        /// database.
+        pub async fn create_ephemeral(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesCreateEphemeralCertRequest>,
+        ) -> std::result::Result<tonic::Response<super::SslCert>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/CreateEphemeral",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "CreateEphemeral",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reschedules the maintenance on the given instance.
+        pub async fn reschedule_maintenance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesRescheduleMaintenanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/RescheduleMaintenance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "RescheduleMaintenance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Verify External primary instance external sync settings.
+        pub async fn verify_external_sync_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesVerifyExternalSyncSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SqlInstancesVerifyExternalSyncSettingsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/VerifyExternalSyncSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "VerifyExternalSyncSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Start External primary instance migration.
+        pub async fn start_external_sync(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesStartExternalSyncRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/StartExternalSync",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "StartExternalSync",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Perform Disk Shrink on primary instance.
+        pub async fn perform_disk_shrink(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesPerformDiskShrinkRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/PerformDiskShrink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "PerformDiskShrink",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get Disk Shrink Config for a given instance.
+        pub async fn get_disk_shrink_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesGetDiskShrinkConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SqlInstancesGetDiskShrinkConfigResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/GetDiskShrinkConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "GetDiskShrinkConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reset Replica Size to primary instance disk size.
+        pub async fn reset_replica_size(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesResetReplicaSizeRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/ResetReplicaSize",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "ResetReplicaSize",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get Latest Recovery Time for a given instance.
+        pub async fn get_latest_recovery_time(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesGetLatestRecoveryTimeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SqlInstancesGetLatestRecoveryTimeResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/GetLatestRecoveryTime",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "GetLatestRecoveryTime",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+        pub async fn acquire_ssrs_lease(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesAcquireSsrsLeaseRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SqlInstancesAcquireSsrsLeaseResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/AcquireSsrsLease",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "AcquireSsrsLease",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Release a lease for the setup of SQL Server Reporting Services (SSRS).
+        pub async fn release_ssrs_lease(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlInstancesReleaseSsrsLeaseRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SqlInstancesReleaseSsrsLeaseResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlInstancesService/ReleaseSsrsLease",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlInstancesService",
+                "ReleaseSsrsLease",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlBackupRunsDeleteRequest {
-#[prost(int64, tag = "1")]
-pub id: i64,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub id: i64,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlBackupRunsGetRequest {
-#[prost(int64, tag = "1")]
-pub id: i64,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub id: i64,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlBackupRunsInsertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<BackupRun>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<BackupRun>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlBackupRunsListRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub max_results: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub max_results: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupRun {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(enumeration = "SqlBackupRunStatus", tag = "2")]
-pub status: i32,
-#[prost(message, optional, tag = "3")]
-pub enqueued_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int64, tag = "4")]
-pub id: i64,
-#[prost(message, optional, tag = "5")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub error: ::core::option::Option<OperationError>,
-#[prost(enumeration = "SqlBackupRunType", tag = "8")]
-pub r#type: i32,
-#[prost(string, tag = "9")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub window_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "11")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub self_link: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub location: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "16")]
-pub disk_encryption_configuration: ::core::option::Option<DiskEncryptionConfiguration>,
-#[prost(message, optional, tag = "17")]
-pub disk_encryption_status: ::core::option::Option<DiskEncryptionStatus>,
-#[prost(enumeration = "SqlBackupKind", tag = "19")]
-pub backup_kind: i32,
-#[prost(string, tag = "23")]
-pub time_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(enumeration = "SqlBackupRunStatus", tag = "2")]
+    pub status: i32,
+    #[prost(message, optional, tag = "3")]
+    pub enqueued_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "4")]
+    pub id: i64,
+    #[prost(message, optional, tag = "5")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub error: ::core::option::Option<OperationError>,
+    #[prost(enumeration = "SqlBackupRunType", tag = "8")]
+    pub r#type: i32,
+    #[prost(string, tag = "9")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub window_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "11")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub self_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "16")]
+    pub disk_encryption_configuration: ::core::option::Option<DiskEncryptionConfiguration>,
+    #[prost(message, optional, tag = "17")]
+    pub disk_encryption_status: ::core::option::Option<DiskEncryptionStatus>,
+    #[prost(enumeration = "SqlBackupKind", tag = "19")]
+    pub backup_kind: i32,
+    #[prost(string, tag = "23")]
+    pub time_zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupRunsListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<BackupRun>,
-#[prost(string, tag = "3")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<BackupRun>,
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlBackupRunStatus {
-Unspecified = 0,
-Enqueued = 1,
-Overdue = 2,
-Running = 3,
-Failed = 4,
-Successful = 5,
-Skipped = 6,
-DeletionPending = 7,
-DeletionFailed = 8,
-Deleted = 9,
+    Unspecified = 0,
+    Enqueued = 1,
+    Overdue = 2,
+    Running = 3,
+    Failed = 4,
+    Successful = 5,
+    Skipped = 6,
+    DeletionPending = 7,
+    DeletionFailed = 8,
+    Deleted = 9,
 }
 impl SqlBackupRunStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlBackupRunStatus::Unspecified => "SQL_BACKUP_RUN_STATUS_UNSPECIFIED",
-SqlBackupRunStatus::Enqueued => "ENQUEUED",
-SqlBackupRunStatus::Overdue => "OVERDUE",
-SqlBackupRunStatus::Running => "RUNNING",
-SqlBackupRunStatus::Failed => "FAILED",
-SqlBackupRunStatus::Successful => "SUCCESSFUL",
-SqlBackupRunStatus::Skipped => "SKIPPED",
-SqlBackupRunStatus::DeletionPending => "DELETION_PENDING",
-SqlBackupRunStatus::DeletionFailed => "DELETION_FAILED",
-SqlBackupRunStatus::Deleted => "DELETED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_BACKUP_RUN_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"ENQUEUED" => Some(Self::Enqueued),
-"OVERDUE" => Some(Self::Overdue),
-"RUNNING" => Some(Self::Running),
-"FAILED" => Some(Self::Failed),
-"SUCCESSFUL" => Some(Self::Successful),
-"SKIPPED" => Some(Self::Skipped),
-"DELETION_PENDING" => Some(Self::DeletionPending),
-"DELETION_FAILED" => Some(Self::DeletionFailed),
-"DELETED" => Some(Self::Deleted),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlBackupRunStatus::Unspecified => "SQL_BACKUP_RUN_STATUS_UNSPECIFIED",
+            SqlBackupRunStatus::Enqueued => "ENQUEUED",
+            SqlBackupRunStatus::Overdue => "OVERDUE",
+            SqlBackupRunStatus::Running => "RUNNING",
+            SqlBackupRunStatus::Failed => "FAILED",
+            SqlBackupRunStatus::Successful => "SUCCESSFUL",
+            SqlBackupRunStatus::Skipped => "SKIPPED",
+            SqlBackupRunStatus::DeletionPending => "DELETION_PENDING",
+            SqlBackupRunStatus::DeletionFailed => "DELETION_FAILED",
+            SqlBackupRunStatus::Deleted => "DELETED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_BACKUP_RUN_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+            "ENQUEUED" => Some(Self::Enqueued),
+            "OVERDUE" => Some(Self::Overdue),
+            "RUNNING" => Some(Self::Running),
+            "FAILED" => Some(Self::Failed),
+            "SUCCESSFUL" => Some(Self::Successful),
+            "SKIPPED" => Some(Self::Skipped),
+            "DELETION_PENDING" => Some(Self::DeletionPending),
+            "DELETION_FAILED" => Some(Self::DeletionFailed),
+            "DELETED" => Some(Self::Deleted),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlBackupKind {
-Unspecified = 0,
-Snapshot = 1,
-Physical = 2,
+    Unspecified = 0,
+    Snapshot = 1,
+    Physical = 2,
 }
 impl SqlBackupKind {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlBackupKind::Unspecified => "SQL_BACKUP_KIND_UNSPECIFIED",
-SqlBackupKind::Snapshot => "SNAPSHOT",
-SqlBackupKind::Physical => "PHYSICAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_BACKUP_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-"SNAPSHOT" => Some(Self::Snapshot),
-"PHYSICAL" => Some(Self::Physical),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlBackupKind::Unspecified => "SQL_BACKUP_KIND_UNSPECIFIED",
+            SqlBackupKind::Snapshot => "SNAPSHOT",
+            SqlBackupKind::Physical => "PHYSICAL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_BACKUP_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+            "SNAPSHOT" => Some(Self::Snapshot),
+            "PHYSICAL" => Some(Self::Physical),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlBackupRunType {
-Unspecified = 0,
-Automated = 1,
-OnDemand = 2,
+    Unspecified = 0,
+    Automated = 1,
+    OnDemand = 2,
 }
 impl SqlBackupRunType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlBackupRunType::Unspecified => "SQL_BACKUP_RUN_TYPE_UNSPECIFIED",
-SqlBackupRunType::Automated => "AUTOMATED",
-SqlBackupRunType::OnDemand => "ON_DEMAND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_BACKUP_RUN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"AUTOMATED" => Some(Self::Automated),
-"ON_DEMAND" => Some(Self::OnDemand),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlBackupRunType::Unspecified => "SQL_BACKUP_RUN_TYPE_UNSPECIFIED",
+            SqlBackupRunType::Automated => "AUTOMATED",
+            SqlBackupRunType::OnDemand => "ON_DEMAND",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_BACKUP_RUN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "AUTOMATED" => Some(Self::Automated),
+            "ON_DEMAND" => Some(Self::OnDemand),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_backup_runs_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for managing database backups.
-#[derive(Debug, Clone)]
-pub struct SqlBackupRunsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlBackupRunsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlBackupRunsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlBackupRunsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Deletes the backup taken by a backup run.
-pub async fn delete(&mut self, request: impl tonic::IntoRequest<super::SqlBackupRunsDeleteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlBackupRunsService/Delete");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlBackupRunsService", "Delete"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a resource containing information about a backup run.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlBackupRunsGetRequest>) -> std::result::Result<tonic::Response<super::BackupRun>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlBackupRunsService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlBackupRunsService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new backup run on demand.
-pub async fn insert(&mut self, request: impl tonic::IntoRequest<super::SqlBackupRunsInsertRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlBackupRunsService/Insert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlBackupRunsService", "Insert"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all backup runs associated with the project or a given instance
-/// and configuration in the reverse chronological order of the backup
-/// initiation time.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlBackupRunsListRequest>) -> std::result::Result<tonic::Response<super::BackupRunsListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlBackupRunsService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlBackupRunsService", "List"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for managing database backups.
+    #[derive(Debug, Clone)]
+    pub struct SqlBackupRunsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlBackupRunsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlBackupRunsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlBackupRunsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Deletes the backup taken by a backup run.
+        pub async fn delete(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlBackupRunsDeleteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlBackupRunsService/Delete",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlBackupRunsService",
+                "Delete",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a resource containing information about a backup run.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlBackupRunsGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::BackupRun>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlBackupRunsService/Get",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlBackupRunsService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new backup run on demand.
+        pub async fn insert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlBackupRunsInsertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlBackupRunsService/Insert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlBackupRunsService",
+                "Insert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all backup runs associated with the project or a given instance
+        /// and configuration in the reverse chronological order of the backup
+        /// initiation time.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlBackupRunsListRequest>,
+        ) -> std::result::Result<tonic::Response<super::BackupRunsListResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlBackupRunsService/List",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlBackupRunsService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_iam_policies_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for providing IAM Meta APIs for Cloud SQL.
-#[derive(Debug, Clone)]
-pub struct SqlIamPoliciesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlIamPoliciesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlIamPoliciesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlIamPoliciesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for providing IAM Meta APIs for Cloud SQL.
+    #[derive(Debug, Clone)]
+    pub struct SqlIamPoliciesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlIamPoliciesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlIamPoliciesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlIamPoliciesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlFlagsListRequest {
-#[prost(string, tag = "1")]
-pub database_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub database_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FlagsListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<Flag>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<Flag>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Flag {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "SqlFlagType", tag = "2")]
-pub r#type: i32,
-#[prost(enumeration = "SqlDatabaseVersion", repeated, tag = "3")]
-pub applies_to: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, repeated, tag = "4")]
-pub allowed_string_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub min_value: ::core::option::Option<i64>,
-#[prost(message, optional, tag = "6")]
-pub max_value: ::core::option::Option<i64>,
-#[prost(message, optional, tag = "7")]
-pub requires_restart: ::core::option::Option<bool>,
-#[prost(string, tag = "8")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub in_beta: ::core::option::Option<bool>,
-#[prost(int64, repeated, tag = "10")]
-pub allowed_int_values: ::prost::alloc::vec::Vec<i64>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "SqlFlagType", tag = "2")]
+    pub r#type: i32,
+    #[prost(enumeration = "SqlDatabaseVersion", repeated, tag = "3")]
+    pub applies_to: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, repeated, tag = "4")]
+    pub allowed_string_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub min_value: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "6")]
+    pub max_value: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "7")]
+    pub requires_restart: ::core::option::Option<bool>,
+    #[prost(string, tag = "8")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub in_beta: ::core::option::Option<bool>,
+    #[prost(int64, repeated, tag = "10")]
+    pub allowed_int_values: ::prost::alloc::vec::Vec<i64>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SqlFlagType {
-Unspecified = 0,
-Boolean = 1,
-String = 2,
-Integer = 3,
-None = 4,
-MysqlTimezoneOffset = 5,
-Float = 6,
-RepeatedString = 7,
+    Unspecified = 0,
+    Boolean = 1,
+    String = 2,
+    Integer = 3,
+    None = 4,
+    MysqlTimezoneOffset = 5,
+    Float = 6,
+    RepeatedString = 7,
 }
 impl SqlFlagType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlFlagType::Unspecified => "SQL_FLAG_TYPE_UNSPECIFIED",
-SqlFlagType::Boolean => "BOOLEAN",
-SqlFlagType::String => "STRING",
-SqlFlagType::Integer => "INTEGER",
-SqlFlagType::None => "NONE",
-SqlFlagType::MysqlTimezoneOffset => "MYSQL_TIMEZONE_OFFSET",
-SqlFlagType::Float => "FLOAT",
-SqlFlagType::RepeatedString => "REPEATED_STRING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_FLAG_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BOOLEAN" => Some(Self::Boolean),
-"STRING" => Some(Self::String),
-"INTEGER" => Some(Self::Integer),
-"NONE" => Some(Self::None),
-"MYSQL_TIMEZONE_OFFSET" => Some(Self::MysqlTimezoneOffset),
-"FLOAT" => Some(Self::Float),
-"REPEATED_STRING" => Some(Self::RepeatedString),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SqlFlagType::Unspecified => "SQL_FLAG_TYPE_UNSPECIFIED",
+            SqlFlagType::Boolean => "BOOLEAN",
+            SqlFlagType::String => "STRING",
+            SqlFlagType::Integer => "INTEGER",
+            SqlFlagType::None => "NONE",
+            SqlFlagType::MysqlTimezoneOffset => "MYSQL_TIMEZONE_OFFSET",
+            SqlFlagType::Float => "FLOAT",
+            SqlFlagType::RepeatedString => "REPEATED_STRING",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SQL_FLAG_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "BOOLEAN" => Some(Self::Boolean),
+            "STRING" => Some(Self::String),
+            "INTEGER" => Some(Self::Integer),
+            "NONE" => Some(Self::None),
+            "MYSQL_TIMEZONE_OFFSET" => Some(Self::MysqlTimezoneOffset),
+            "FLOAT" => Some(Self::Float),
+            "REPEATED_STRING" => Some(Self::RepeatedString),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_flags_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to manage database flags for Cloud SQL instances.
-#[derive(Debug, Clone)]
-pub struct SqlFlagsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlFlagsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlFlagsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlFlagsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists all available database flags for Cloud SQL instances.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlFlagsListRequest>) -> std::result::Result<tonic::Response<super::FlagsListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlFlagsService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlFlagsService", "List"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to manage database flags for Cloud SQL instances.
+    #[derive(Debug, Clone)]
+    pub struct SqlFlagsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlFlagsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlFlagsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlFlagsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists all available database flags for Cloud SQL instances.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlFlagsListRequest>,
+        ) -> std::result::Result<tonic::Response<super::FlagsListResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlFlagsService/List");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlFlagsService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlSslCertsDeleteRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub sha1_fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub sha1_fingerprint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlSslCertsGetRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub sha1_fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub sha1_fingerprint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlSslCertsInsertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<SslCertsInsertRequest>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<SslCertsInsertRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlSslCertsListRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCertsInsertRequest {
-#[prost(string, tag = "1")]
-pub common_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub common_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCertsInsertResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub operation: ::core::option::Option<Operation>,
-#[prost(message, optional, tag = "3")]
-pub server_ca_cert: ::core::option::Option<SslCert>,
-#[prost(message, optional, tag = "4")]
-pub client_cert: ::core::option::Option<SslCertDetail>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub operation: ::core::option::Option<Operation>,
+    #[prost(message, optional, tag = "3")]
+    pub server_ca_cert: ::core::option::Option<SslCert>,
+    #[prost(message, optional, tag = "4")]
+    pub client_cert: ::core::option::Option<SslCertDetail>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SslCertsListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<SslCert>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<SslCert>,
 }
 /// Generated client implementations.
 pub mod sql_ssl_certs_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to manage SSL certs for Cloud SQL instances.
-#[derive(Debug, Clone)]
-pub struct SqlSslCertsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlSslCertsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlSslCertsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlSslCertsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Deletes the SSL certificate. For First Generation instances, the
-/// certificate remains valid until the instance is restarted.
-pub async fn delete(&mut self, request: impl tonic::IntoRequest<super::SqlSslCertsDeleteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlSslCertsService/Delete");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlSslCertsService", "Delete"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a particular SSL certificate.  Does not include the private key
-/// (required for usage).  The private key must be saved from the response to
-/// initial creation.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlSslCertsGetRequest>) -> std::result::Result<tonic::Response<super::SslCert>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlSslCertsService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlSslCertsService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates an SSL certificate and returns it along with the private key and
-/// server certificate authority.  The new certificate will not be usable until
-/// the instance is restarted.
-pub async fn insert(&mut self, request: impl tonic::IntoRequest<super::SqlSslCertsInsertRequest>) -> std::result::Result<tonic::Response<super::SslCertsInsertResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlSslCertsService/Insert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlSslCertsService", "Insert"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all of the current SSL certificates for the instance.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlSslCertsListRequest>) -> std::result::Result<tonic::Response<super::SslCertsListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlSslCertsService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlSslCertsService", "List"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to manage SSL certs for Cloud SQL instances.
+    #[derive(Debug, Clone)]
+    pub struct SqlSslCertsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlSslCertsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlSslCertsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlSslCertsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Deletes the SSL certificate. For First Generation instances, the
+        /// certificate remains valid until the instance is restarted.
+        pub async fn delete(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlSslCertsDeleteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlSslCertsService/Delete",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlSslCertsService",
+                "Delete",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a particular SSL certificate.  Does not include the private key
+        /// (required for usage).  The private key must be saved from the response to
+        /// initial creation.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlSslCertsGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::SslCert>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlSslCertsService/Get");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlSslCertsService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an SSL certificate and returns it along with the private key and
+        /// server certificate authority.  The new certificate will not be usable until
+        /// the instance is restarted.
+        pub async fn insert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlSslCertsInsertRequest>,
+        ) -> std::result::Result<tonic::Response<super::SslCertsInsertResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlSslCertsService/Insert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlSslCertsService",
+                "Insert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all of the current SSL certificates for the instance.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlSslCertsListRequest>,
+        ) -> std::result::Result<tonic::Response<super::SslCertsListResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlSslCertsService/List",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlSslCertsService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_regions_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that exposes Cloud SQL region information. This service is only used
-/// internally and does not follow the same patterns as the other v1 RPCs.
-#[derive(Debug, Clone)]
-pub struct SqlRegionsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlRegionsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlRegionsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlRegionsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that exposes Cloud SQL region information. This service is only used
+    /// internally and does not follow the same patterns as the other v1 RPCs.
+    #[derive(Debug, Clone)]
+    pub struct SqlRegionsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlRegionsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlRegionsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlRegionsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_available_database_versions_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that exposes Cloud SQL database versions information. This
-/// service is only used internally.
-#[derive(Debug, Clone)]
-pub struct SqlAvailableDatabaseVersionsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlAvailableDatabaseVersionsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlAvailableDatabaseVersionsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlAvailableDatabaseVersionsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that exposes Cloud SQL database versions information. This
+    /// service is only used internally.
+    #[derive(Debug, Clone)]
+    pub struct SqlAvailableDatabaseVersionsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlAvailableDatabaseVersionsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlAvailableDatabaseVersionsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlAvailableDatabaseVersionsServiceClient::new(InterceptedService::new(
+                inner,
+                interceptor,
+            ))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlUsersDeleteRequest {
-#[prost(string, tag = "1")]
-pub host: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub host: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlUsersGetRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub host: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub host: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlUsersInsertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<User>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<User>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlUsersListRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlUsersUpdateRequest {
-#[prost(string, tag = "1")]
-pub host: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "100")]
-pub body: ::core::option::Option<User>,
+    #[prost(string, tag = "1")]
+    pub host: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "100")]
+    pub body: ::core::option::Option<User>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UserPasswordValidationPolicy {
-#[prost(int32, tag = "1")]
-pub allowed_failed_attempts: i32,
-#[prost(message, optional, tag = "2")]
-pub password_expiration_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(bool, tag = "3")]
-pub enable_failed_attempts_check: bool,
-#[prost(message, optional, tag = "4")]
-pub status: ::core::option::Option<PasswordStatus>,
-#[prost(bool, tag = "5")]
-pub enable_password_verification: bool,
+    #[prost(int32, tag = "1")]
+    pub allowed_failed_attempts: i32,
+    #[prost(message, optional, tag = "2")]
+    pub password_expiration_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(bool, tag = "3")]
+    pub enable_failed_attempts_check: bool,
+    #[prost(message, optional, tag = "4")]
+    pub status: ::core::option::Option<PasswordStatus>,
+    #[prost(bool, tag = "5")]
+    pub enable_password_verification: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PasswordStatus {
-#[prost(bool, tag = "1")]
-pub locked: bool,
-#[prost(message, optional, tag = "2")]
-pub password_expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(bool, tag = "1")]
+    pub locked: bool,
+    #[prost(message, optional, tag = "2")]
+    pub password_expiration_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct User {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub password: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub etag: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub host: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub project: ::prost::alloc::string::String,
-#[prost(enumeration = "user::SqlUserType", tag = "8")]
-pub r#type: i32,
-#[prost(message, optional, tag = "12")]
-pub password_policy: ::core::option::Option<UserPasswordValidationPolicy>,
-#[prost(enumeration = "user::DualPasswordType", optional, tag = "13")]
-pub dual_password_type: ::core::option::Option<i32>,
-#[prost(oneof = "user::UserDetails", tags = "9")]
-pub user_details: ::core::option::Option<user::UserDetails>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub password: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub host: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(enumeration = "user::SqlUserType", tag = "8")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "12")]
+    pub password_policy: ::core::option::Option<UserPasswordValidationPolicy>,
+    #[prost(enumeration = "user::DualPasswordType", optional, tag = "13")]
+    pub dual_password_type: ::core::option::Option<i32>,
+    #[prost(oneof = "user::UserDetails", tags = "9")]
+    pub user_details: ::core::option::Option<user::UserDetails>,
 }
 /// Nested message and enum types in `User`.
 pub mod user {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SqlUserType {
-BuiltIn = 0,
-CloudIamUser = 1,
-CloudIamServiceAccount = 2,
-CloudIamGroup = 3,
-CloudIamGroupUser = 4,
-CloudIamGroupServiceAccount = 5,
-}
-impl SqlUserType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SqlUserType::BuiltIn => "BUILT_IN",
-SqlUserType::CloudIamUser => "CLOUD_IAM_USER",
-SqlUserType::CloudIamServiceAccount => "CLOUD_IAM_SERVICE_ACCOUNT",
-SqlUserType::CloudIamGroup => "CLOUD_IAM_GROUP",
-SqlUserType::CloudIamGroupUser => "CLOUD_IAM_GROUP_USER",
-SqlUserType::CloudIamGroupServiceAccount => "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BUILT_IN" => Some(Self::BuiltIn),
-"CLOUD_IAM_USER" => Some(Self::CloudIamUser),
-"CLOUD_IAM_SERVICE_ACCOUNT" => Some(Self::CloudIamServiceAccount),
-"CLOUD_IAM_GROUP" => Some(Self::CloudIamGroup),
-"CLOUD_IAM_GROUP_USER" => Some(Self::CloudIamGroupUser),
-"CLOUD_IAM_GROUP_SERVICE_ACCOUNT" => Some(Self::CloudIamGroupServiceAccount),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DualPasswordType {
-Unspecified = 0,
-NoModifyDualPassword = 1,
-NoDualPassword = 2,
-DualPassword = 3,
-}
-impl DualPasswordType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DualPasswordType::Unspecified => "DUAL_PASSWORD_TYPE_UNSPECIFIED",
-DualPasswordType::NoModifyDualPassword => "NO_MODIFY_DUAL_PASSWORD",
-DualPasswordType::NoDualPassword => "NO_DUAL_PASSWORD",
-DualPasswordType::DualPassword => "DUAL_PASSWORD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DUAL_PASSWORD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NO_MODIFY_DUAL_PASSWORD" => Some(Self::NoModifyDualPassword),
-"NO_DUAL_PASSWORD" => Some(Self::NoDualPassword),
-"DUAL_PASSWORD" => Some(Self::DualPassword),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum UserDetails {
-#[prost(message, tag = "9")]
-SqlserverUserDetails(super::SqlServerUserDetails),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SqlUserType {
+        BuiltIn = 0,
+        CloudIamUser = 1,
+        CloudIamServiceAccount = 2,
+        CloudIamGroup = 3,
+        CloudIamGroupUser = 4,
+        CloudIamGroupServiceAccount = 5,
+    }
+    impl SqlUserType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SqlUserType::BuiltIn => "BUILT_IN",
+                SqlUserType::CloudIamUser => "CLOUD_IAM_USER",
+                SqlUserType::CloudIamServiceAccount => "CLOUD_IAM_SERVICE_ACCOUNT",
+                SqlUserType::CloudIamGroup => "CLOUD_IAM_GROUP",
+                SqlUserType::CloudIamGroupUser => "CLOUD_IAM_GROUP_USER",
+                SqlUserType::CloudIamGroupServiceAccount => "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BUILT_IN" => Some(Self::BuiltIn),
+                "CLOUD_IAM_USER" => Some(Self::CloudIamUser),
+                "CLOUD_IAM_SERVICE_ACCOUNT" => Some(Self::CloudIamServiceAccount),
+                "CLOUD_IAM_GROUP" => Some(Self::CloudIamGroup),
+                "CLOUD_IAM_GROUP_USER" => Some(Self::CloudIamGroupUser),
+                "CLOUD_IAM_GROUP_SERVICE_ACCOUNT" => Some(Self::CloudIamGroupServiceAccount),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DualPasswordType {
+        Unspecified = 0,
+        NoModifyDualPassword = 1,
+        NoDualPassword = 2,
+        DualPassword = 3,
+    }
+    impl DualPasswordType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DualPasswordType::Unspecified => "DUAL_PASSWORD_TYPE_UNSPECIFIED",
+                DualPasswordType::NoModifyDualPassword => "NO_MODIFY_DUAL_PASSWORD",
+                DualPasswordType::NoDualPassword => "NO_DUAL_PASSWORD",
+                DualPasswordType::DualPassword => "DUAL_PASSWORD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DUAL_PASSWORD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NO_MODIFY_DUAL_PASSWORD" => Some(Self::NoModifyDualPassword),
+                "NO_DUAL_PASSWORD" => Some(Self::NoDualPassword),
+                "DUAL_PASSWORD" => Some(Self::DualPassword),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum UserDetails {
+        #[prost(message, tag = "9")]
+        SqlserverUserDetails(super::SqlServerUserDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlServerUserDetails {
-#[prost(bool, tag = "1")]
-pub disabled: bool,
-#[prost(string, repeated, tag = "2")]
-pub server_roles: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "1")]
+    pub disabled: bool,
+    #[prost(string, repeated, tag = "2")]
+    pub server_roles: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsersListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<User>,
-#[deprecated]
-#[prost(string, tag = "3")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<User>,
+    #[deprecated]
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod sql_users_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Cloud SQL users service.
-#[derive(Debug, Clone)]
-pub struct SqlUsersServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlUsersServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlUsersServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlUsersServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Deletes a user from a Cloud SQL instance.
-pub async fn delete(&mut self, request: impl tonic::IntoRequest<super::SqlUsersDeleteRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Delete");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlUsersService", "Delete"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a resource containing information about a user.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlUsersGetRequest>) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlUsersService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new user in a Cloud SQL instance.
-pub async fn insert(&mut self, request: impl tonic::IntoRequest<super::SqlUsersInsertRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Insert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlUsersService", "Insert"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists users in the specified Cloud SQL instance.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlUsersListRequest>) -> std::result::Result<tonic::Response<super::UsersListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlUsersService", "List"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an existing user in a Cloud SQL instance.
-pub async fn update(&mut self, request: impl tonic::IntoRequest<super::SqlUsersUpdateRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Update");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlUsersService", "Update"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Cloud SQL users service.
+    #[derive(Debug, Clone)]
+    pub struct SqlUsersServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlUsersServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlUsersServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlUsersServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Deletes a user from a Cloud SQL instance.
+        pub async fn delete(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlUsersDeleteRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Delete");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlUsersService",
+                "Delete",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a resource containing information about a user.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlUsersGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::User>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Get");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlUsersService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new user in a Cloud SQL instance.
+        pub async fn insert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlUsersInsertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Insert");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlUsersService",
+                "Insert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists users in the specified Cloud SQL instance.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlUsersListRequest>,
+        ) -> std::result::Result<tonic::Response<super::UsersListResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/List");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlUsersService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an existing user in a Cloud SQL instance.
+        pub async fn update(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlUsersUpdateRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlUsersService/Update");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlUsersService",
+                "Update",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlOperationsGetRequest {
-#[prost(string, tag = "1")]
-pub operation: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlOperationsListRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(uint32, tag = "2")]
-pub max_results: u32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "2")]
+    pub max_results: u32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationsListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<Operation>,
-#[prost(string, tag = "3")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<Operation>,
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlOperationsCancelRequest {
-#[prost(string, tag = "1")]
-pub operation: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod sql_operations_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to fetch operations for database instances.
-#[derive(Debug, Clone)]
-pub struct SqlOperationsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlOperationsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlOperationsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlOperationsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Retrieves an instance operation that has been performed on an instance.
-pub async fn get(&mut self, request: impl tonic::IntoRequest<super::SqlOperationsGetRequest>) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlOperationsService/Get");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlOperationsService", "Get"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all instance operations that have been performed on the given Cloud
-/// SQL instance in the reverse chronological order of the start time.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlOperationsListRequest>) -> std::result::Result<tonic::Response<super::OperationsListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlOperationsService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlOperationsService", "List"));
-self.inner.unary(req, path, codec).await
-}
-/// Cancels an instance operation that has been performed on an instance.
-pub async fn cancel(&mut self, request: impl tonic::IntoRequest<super::SqlOperationsCancelRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlOperationsService/Cancel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlOperationsService", "Cancel"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to fetch operations for database instances.
+    #[derive(Debug, Clone)]
+    pub struct SqlOperationsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlOperationsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlOperationsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlOperationsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves an instance operation that has been performed on an instance.
+        pub async fn get(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlOperationsGetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Operation>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlOperationsService/Get",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlOperationsService",
+                "Get",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all instance operations that have been performed on the given Cloud
+        /// SQL instance in the reverse chronological order of the start time.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlOperationsListRequest>,
+        ) -> std::result::Result<tonic::Response<super::OperationsListResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlOperationsService/List",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlOperationsService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Cancels an instance operation that has been performed on an instance.
+        pub async fn cancel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlOperationsCancelRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlOperationsService/Cancel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlOperationsService",
+                "Cancel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConnectSettingsRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConnectSettings {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub server_ca_cert: ::core::option::Option<SslCert>,
-#[prost(message, repeated, tag = "3")]
-pub ip_addresses: ::prost::alloc::vec::Vec<IpMapping>,
-#[prost(string, tag = "4")]
-pub region: ::prost::alloc::string::String,
-#[prost(enumeration = "SqlDatabaseVersion", tag = "31")]
-pub database_version: i32,
-#[prost(enumeration = "SqlBackendType", tag = "32")]
-pub backend_type: i32,
-#[prost(bool, tag = "33")]
-pub psc_enabled: bool,
-#[prost(string, tag = "34")]
-pub dns_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub server_ca_cert: ::core::option::Option<SslCert>,
+    #[prost(message, repeated, tag = "3")]
+    pub ip_addresses: ::prost::alloc::vec::Vec<IpMapping>,
+    #[prost(string, tag = "4")]
+    pub region: ::prost::alloc::string::String,
+    #[prost(enumeration = "SqlDatabaseVersion", tag = "31")]
+    pub database_version: i32,
+    #[prost(enumeration = "SqlBackendType", tag = "32")]
+    pub backend_type: i32,
+    #[prost(bool, tag = "33")]
+    pub psc_enabled: bool,
+    #[prost(string, tag = "34")]
+    pub dns_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateEphemeralCertRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub public_key: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "12")]
-pub valid_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "12")]
+    pub valid_duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateEphemeralCertResponse {
-#[prost(message, optional, tag = "1")]
-pub ephemeral_cert: ::core::option::Option<SslCert>,
+    #[prost(message, optional, tag = "1")]
+    pub ephemeral_cert: ::core::option::Option<SslCert>,
 }
 /// Generated client implementations.
 pub mod sql_connect_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Cloud SQL connect service.
-#[derive(Debug, Clone)]
-pub struct SqlConnectServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlConnectServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlConnectServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlConnectServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Retrieves connect settings about a Cloud SQL instance.
-pub async fn get_connect_settings(&mut self, request: impl tonic::IntoRequest<super::GetConnectSettingsRequest>) -> std::result::Result<tonic::Response<super::ConnectSettings>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlConnectService/GetConnectSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlConnectService", "GetConnectSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a short-lived X509 certificate containing the provided public key
-/// and signed by a private key specific to the target instance. Users may use
-/// the certificate to authenticate as themselves when connecting to the
-/// database.
-pub async fn generate_ephemeral_cert(&mut self, request: impl tonic::IntoRequest<super::GenerateEphemeralCertRequest>) -> std::result::Result<tonic::Response<super::GenerateEphemeralCertResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlConnectService/GenerateEphemeralCert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlConnectService", "GenerateEphemeralCert"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Cloud SQL connect service.
+    #[derive(Debug, Clone)]
+    pub struct SqlConnectServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlConnectServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlConnectServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlConnectServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves connect settings about a Cloud SQL instance.
+        pub async fn get_connect_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetConnectSettingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ConnectSettings>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlConnectService/GetConnectSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlConnectService",
+                "GetConnectSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a short-lived X509 certificate containing the provided public key
+        /// and signed by a private key specific to the target instance. Users may use
+        /// the certificate to authenticate as themselves when connecting to the
+        /// database.
+        pub async fn generate_ephemeral_cert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateEphemeralCertRequest>,
+        ) -> std::result::Result<tonic::Response<super::GenerateEphemeralCertResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.sql.v1.SqlConnectService/GenerateEphemeralCert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlConnectService",
+                "GenerateEphemeralCert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SqlTiersListRequest {
-#[prost(string, tag = "1")]
-pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TiersListResponse {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub items: ::prost::alloc::vec::Vec<Tier>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<Tier>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tier {
-#[prost(string, tag = "1")]
-pub tier: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub ram: i64,
-#[prost(string, tag = "3")]
-pub kind: ::prost::alloc::string::String,
-#[prost(int64, tag = "4")]
-pub disk_quota: i64,
-#[prost(string, repeated, tag = "5")]
-pub region: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub tier: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub ram: i64,
+    #[prost(string, tag = "3")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(int64, tag = "4")]
+    pub disk_quota: i64,
+    #[prost(string, repeated, tag = "5")]
+    pub region: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Generated client implementations.
 pub mod sql_tiers_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for providing machine types (tiers) for Cloud SQL instances.
-#[derive(Debug, Clone)]
-pub struct SqlTiersServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlTiersServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlTiersServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlTiersServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists all available machine types (tiers) for Cloud SQL, for example,
-/// `db-custom-1-3840`. For more information, see
-/// https://cloud.google.com/sql/pricing.
-pub async fn list(&mut self, request: impl tonic::IntoRequest<super::SqlTiersListRequest>) -> std::result::Result<tonic::Response<super::TiersListResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlTiersService/List");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.sql.v1.SqlTiersService", "List"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for providing machine types (tiers) for Cloud SQL instances.
+    #[derive(Debug, Clone)]
+    pub struct SqlTiersServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlTiersServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlTiersServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlTiersServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists all available machine types (tiers) for Cloud SQL, for example,
+        /// `db-custom-1-3840`. For more information, see
+        /// https://cloud.google.com/sql/pricing.
+        pub async fn list(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SqlTiersListRequest>,
+        ) -> std::result::Result<tonic::Response<super::TiersListResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.cloud.sql.v1.SqlTiersService/List");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.sql.v1.SqlTiersService",
+                "List",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_instance_names_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Cloud SQL instance names service.
-#[derive(Debug, Clone)]
-pub struct SqlInstanceNamesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlInstanceNamesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlInstanceNamesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlInstanceNamesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Cloud SQL instance names service.
+    #[derive(Debug, Clone)]
+    pub struct SqlInstanceNamesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlInstanceNamesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlInstanceNamesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlInstanceNamesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }
 /// Generated client implementations.
 pub mod sql_events_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that exposes Cloud SQL event information. This
-/// service is only used internally.
-#[derive(Debug, Clone)]
-pub struct SqlEventsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SqlEventsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SqlEventsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SqlEventsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that exposes Cloud SQL event information. This
+    /// service is only used internally.
+    #[derive(Debug, Clone)]
+    pub struct SqlEventsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SqlEventsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SqlEventsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SqlEventsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+    }
 }

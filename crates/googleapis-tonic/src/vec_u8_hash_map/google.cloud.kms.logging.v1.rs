@@ -2,56 +2,56 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoKeyEvent {
-#[prost(message, optional, tag = "1")]
-pub rotation_event: ::core::option::Option<crypto_key_event::RotationEvent>,
+    #[prost(message, optional, tag = "1")]
+    pub rotation_event: ::core::option::Option<crypto_key_event::RotationEvent>,
 }
 /// Nested message and enum types in `CryptoKeyEvent`.
 pub mod crypto_key_event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RotationEvent {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RotationEvent {
+        #[prost(message, optional, tag = "1")]
+        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoKeyVersionEvent {
-#[prost(oneof = "crypto_key_version_event::Event", tags = "1, 2, 3")]
-pub event: ::core::option::Option<crypto_key_version_event::Event>,
+    #[prost(oneof = "crypto_key_version_event::Event", tags = "1, 2, 3")]
+    pub event: ::core::option::Option<crypto_key_version_event::Event>,
 }
 /// Nested message and enum types in `CryptoKeyVersionEvent`.
 pub mod crypto_key_version_event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ScheduledDestructionEvent {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
-#[prost(string, tag = "2")]
-pub key_access_justification_reason: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeyGenerationEvent {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
-#[prost(string, tag = "2")]
-pub key_access_justification_reason: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImportEvent {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Event {
-#[prost(message, tag = "1")]
-ScheduledDestructionEvent(ScheduledDestructionEvent),
-#[prost(message, tag = "2")]
-KeyGenerationEvent(KeyGenerationEvent),
-#[prost(message, tag = "3")]
-ImportEvent(ImportEvent),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ScheduledDestructionEvent {
+        #[prost(message, optional, tag = "1")]
+        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        #[prost(string, tag = "2")]
+        pub key_access_justification_reason: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KeyGenerationEvent {
+        #[prost(message, optional, tag = "1")]
+        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+        #[prost(string, tag = "2")]
+        pub key_access_justification_reason: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ImportEvent {
+        #[prost(message, optional, tag = "1")]
+        pub status: ::core::option::Option<super::super::super::super::super::rpc::Status>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Event {
+        #[prost(message, tag = "1")]
+        ScheduledDestructionEvent(ScheduledDestructionEvent),
+        #[prost(message, tag = "2")]
+        KeyGenerationEvent(KeyGenerationEvent),
+        #[prost(message, tag = "3")]
+        ImportEvent(ImportEvent),
+    }
 }

@@ -2,639 +2,862 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Connection {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "11")]
-pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "6")]
-pub installation_state: ::core::option::Option<InstallationState>,
-#[prost(bool, tag = "7")]
-pub disabled: bool,
-#[prost(bool, tag = "8")]
-pub reconciling: bool,
-#[prost(map = "string, string", tag = "9")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "10")]
-pub etag: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub uid: ::prost::alloc::string::String,
-#[prost(oneof = "connection::ConnectionConfig", tags = "5")]
-pub connection_config: ::core::option::Option<connection::ConnectionConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "11")]
+    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub installation_state: ::core::option::Option<InstallationState>,
+    #[prost(bool, tag = "7")]
+    pub disabled: bool,
+    #[prost(bool, tag = "8")]
+    pub reconciling: bool,
+    #[prost(map = "string, string", tag = "9")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "10")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(oneof = "connection::ConnectionConfig", tags = "5")]
+    pub connection_config: ::core::option::Option<connection::ConnectionConfig>,
 }
 /// Nested message and enum types in `Connection`.
 pub mod connection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConnectionConfig {
-#[prost(message, tag = "5")]
-GithubConfig(super::GitHubConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ConnectionConfig {
+        #[prost(message, tag = "5")]
+        GithubConfig(super::GitHubConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstallationState {
-#[prost(enumeration = "installation_state::Stage", tag = "1")]
-pub stage: i32,
-#[prost(string, tag = "2")]
-pub message: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub action_uri: ::prost::alloc::string::String,
+    #[prost(enumeration = "installation_state::Stage", tag = "1")]
+    pub stage: i32,
+    #[prost(string, tag = "2")]
+    pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub action_uri: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `InstallationState`.
 pub mod installation_state {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Stage {
-Unspecified = 0,
-PendingCreateApp = 1,
-PendingUserOauth = 2,
-PendingInstallApp = 3,
-Complete = 10,
-}
-impl Stage {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Stage::Unspecified => "STAGE_UNSPECIFIED",
-Stage::PendingCreateApp => "PENDING_CREATE_APP",
-Stage::PendingUserOauth => "PENDING_USER_OAUTH",
-Stage::PendingInstallApp => "PENDING_INSTALL_APP",
-Stage::Complete => "COMPLETE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STAGE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING_CREATE_APP" => Some(Self::PendingCreateApp),
-"PENDING_USER_OAUTH" => Some(Self::PendingUserOauth),
-"PENDING_INSTALL_APP" => Some(Self::PendingInstallApp),
-"COMPLETE" => Some(Self::Complete),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Stage {
+        Unspecified = 0,
+        PendingCreateApp = 1,
+        PendingUserOauth = 2,
+        PendingInstallApp = 3,
+        Complete = 10,
+    }
+    impl Stage {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Stage::Unspecified => "STAGE_UNSPECIFIED",
+                Stage::PendingCreateApp => "PENDING_CREATE_APP",
+                Stage::PendingUserOauth => "PENDING_USER_OAUTH",
+                Stage::PendingInstallApp => "PENDING_INSTALL_APP",
+                Stage::Complete => "COMPLETE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STAGE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING_CREATE_APP" => Some(Self::PendingCreateApp),
+                "PENDING_USER_OAUTH" => Some(Self::PendingUserOauth),
+                "PENDING_INSTALL_APP" => Some(Self::PendingInstallApp),
+                "COMPLETE" => Some(Self::Complete),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GitHubConfig {
-#[prost(enumeration = "git_hub_config::GitHubApp", tag = "1")]
-pub github_app: i32,
-#[prost(message, optional, tag = "2")]
-pub authorizer_credential: ::core::option::Option<OAuthCredential>,
-#[prost(int64, tag = "3")]
-pub app_installation_id: i64,
-#[prost(string, tag = "4")]
-pub installation_uri: ::prost::alloc::string::String,
+    #[prost(enumeration = "git_hub_config::GitHubApp", tag = "1")]
+    pub github_app: i32,
+    #[prost(message, optional, tag = "2")]
+    pub authorizer_credential: ::core::option::Option<OAuthCredential>,
+    #[prost(int64, tag = "3")]
+    pub app_installation_id: i64,
+    #[prost(string, tag = "4")]
+    pub installation_uri: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `GitHubConfig`.
 pub mod git_hub_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum GitHubApp {
-Unspecified = 0,
-DeveloperConnect = 1,
-Firebase = 2,
-}
-impl GitHubApp {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-GitHubApp::Unspecified => "GIT_HUB_APP_UNSPECIFIED",
-GitHubApp::DeveloperConnect => "DEVELOPER_CONNECT",
-GitHubApp::Firebase => "FIREBASE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GIT_HUB_APP_UNSPECIFIED" => Some(Self::Unspecified),
-"DEVELOPER_CONNECT" => Some(Self::DeveloperConnect),
-"FIREBASE" => Some(Self::Firebase),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum GitHubApp {
+        Unspecified = 0,
+        DeveloperConnect = 1,
+        Firebase = 2,
+    }
+    impl GitHubApp {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                GitHubApp::Unspecified => "GIT_HUB_APP_UNSPECIFIED",
+                GitHubApp::DeveloperConnect => "DEVELOPER_CONNECT",
+                GitHubApp::Firebase => "FIREBASE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "GIT_HUB_APP_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEVELOPER_CONNECT" => Some(Self::DeveloperConnect),
+                "FIREBASE" => Some(Self::Firebase),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OAuthCredential {
-#[prost(string, tag = "1")]
-pub oauth_token_secret_version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub oauth_token_secret_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConnectionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConnectionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub connections: ::prost::alloc::vec::Vec<Connection>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub connections: ::prost::alloc::vec::Vec<Connection>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateConnectionRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub connection_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub connection: ::core::option::Option<Connection>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub connection_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub connection: ::core::option::Option<Connection>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateConnectionRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub connection: ::core::option::Option<Connection>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub allow_missing: bool,
-#[prost(bool, tag = "5")]
-pub validate_only: bool,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub connection: ::core::option::Option<Connection>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "5")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GitRepositoryLink {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub clone_uri: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "6")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "7")]
-pub etag: ::prost::alloc::string::String,
-#[prost(bool, tag = "8")]
-pub reconciling: bool,
-#[prost(map = "string, string", tag = "9")]
-pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "10")]
-pub uid: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub clone_uri: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "6")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "7")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(bool, tag = "8")]
+    pub reconciling: bool,
+    #[prost(map = "string, string", tag = "9")]
+    pub annotations:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "10")]
+    pub uid: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGitRepositoryLinkRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub git_repository_link: ::core::option::Option<GitRepositoryLink>,
-#[prost(string, tag = "3")]
-pub git_repository_link_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub git_repository_link: ::core::option::Option<GitRepositoryLink>,
+    #[prost(string, tag = "3")]
+    pub git_repository_link_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGitRepositoryLinkRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGitRepositoryLinksRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGitRepositoryLinksResponse {
-#[prost(message, repeated, tag = "1")]
-pub git_repository_links: ::prost::alloc::vec::Vec<GitRepositoryLink>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub git_repository_links: ::prost::alloc::vec::Vec<GitRepositoryLink>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGitRepositoryLinkRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReadWriteTokenRequest {
-#[prost(string, tag = "1")]
-pub git_repository_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub git_repository_link: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReadTokenRequest {
-#[prost(string, tag = "1")]
-pub git_repository_link: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub git_repository_link: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReadTokenResponse {
-#[prost(string, tag = "1")]
-pub token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub git_username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub git_username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchReadWriteTokenResponse {
-#[prost(string, tag = "1")]
-pub token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub git_username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub git_username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchLinkableGitRepositoriesRequest {
-#[prost(string, tag = "1")]
-pub connection: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub connection: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchLinkableGitRepositoriesResponse {
-#[prost(message, repeated, tag = "1")]
-pub linkable_git_repositories: ::prost::alloc::vec::Vec<LinkableGitRepository>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub linkable_git_repositories: ::prost::alloc::vec::Vec<LinkableGitRepository>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkableGitRepository {
-#[prost(string, tag = "1")]
-pub clone_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub clone_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchGitHubInstallationsRequest {
-#[prost(string, tag = "1")]
-pub connection: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub connection: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchGitHubInstallationsResponse {
-#[prost(message, repeated, tag = "1")]
-pub installations: ::prost::alloc::vec::Vec<fetch_git_hub_installations_response::Installation>,
+    #[prost(message, repeated, tag = "1")]
+    pub installations: ::prost::alloc::vec::Vec<fetch_git_hub_installations_response::Installation>,
 }
 /// Nested message and enum types in `FetchGitHubInstallationsResponse`.
 pub mod fetch_git_hub_installations_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Installation {
-#[prost(int64, tag = "1")]
-pub id: i64,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Installation {
+        #[prost(int64, tag = "1")]
+        pub id: i64,
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub r#type: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchGitRefsRequest {
-#[prost(string, tag = "1")]
-pub git_repository_link: ::prost::alloc::string::String,
-#[prost(enumeration = "fetch_git_refs_request::RefType", tag = "2")]
-pub ref_type: i32,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub git_repository_link: ::prost::alloc::string::String,
+    #[prost(enumeration = "fetch_git_refs_request::RefType", tag = "2")]
+    pub ref_type: i32,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `FetchGitRefsRequest`.
 pub mod fetch_git_refs_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RefType {
-Unspecified = 0,
-Tag = 1,
-Branch = 2,
-}
-impl RefType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RefType::Unspecified => "REF_TYPE_UNSPECIFIED",
-RefType::Tag => "TAG",
-RefType::Branch => "BRANCH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REF_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"TAG" => Some(Self::Tag),
-"BRANCH" => Some(Self::Branch),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RefType {
+        Unspecified = 0,
+        Tag = 1,
+        Branch = 2,
+    }
+    impl RefType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RefType::Unspecified => "REF_TYPE_UNSPECIFIED",
+                RefType::Tag => "TAG",
+                RefType::Branch => "BRANCH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REF_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "TAG" => Some(Self::Tag),
+                "BRANCH" => Some(Self::Branch),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchGitRefsResponse {
-#[prost(string, repeated, tag = "1")]
-pub ref_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "1")]
+    pub ref_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod developer_connect_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service describing handlers for resources
-#[derive(Debug, Clone)]
-pub struct DeveloperConnectClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DeveloperConnectClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DeveloperConnectClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DeveloperConnectClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists Connections in a given project and location.
-pub async fn list_connections(&mut self, request: impl tonic::IntoRequest<super::ListConnectionsRequest>) -> std::result::Result<tonic::Response<super::ListConnectionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/ListConnections");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "ListConnections"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single Connection.
-pub async fn get_connection(&mut self, request: impl tonic::IntoRequest<super::GetConnectionRequest>) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/GetConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "GetConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new Connection in a given project and location.
-pub async fn create_connection(&mut self, request: impl tonic::IntoRequest<super::CreateConnectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/CreateConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "CreateConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single Connection.
-pub async fn update_connection(&mut self, request: impl tonic::IntoRequest<super::UpdateConnectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/UpdateConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "UpdateConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single Connection.
-pub async fn delete_connection(&mut self, request: impl tonic::IntoRequest<super::DeleteConnectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/DeleteConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "DeleteConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a GitRepositoryLink. Upon linking a Git Repository, Developer
-/// Connect will configure the Git Repository to send webhook events to
-/// Developer Connect. Connections that use Firebase GitHub Application will
-/// have events forwarded to the Firebase service. All other Connections will
-/// have events forwarded to Cloud Build.
-pub async fn create_git_repository_link(&mut self, request: impl tonic::IntoRequest<super::CreateGitRepositoryLinkRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/CreateGitRepositoryLink");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "CreateGitRepositoryLink"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single GitRepositoryLink.
-pub async fn delete_git_repository_link(&mut self, request: impl tonic::IntoRequest<super::DeleteGitRepositoryLinkRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/DeleteGitRepositoryLink");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "DeleteGitRepositoryLink"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists GitRepositoryLinks in a given project, location, and connection.
-pub async fn list_git_repository_links(&mut self, request: impl tonic::IntoRequest<super::ListGitRepositoryLinksRequest>) -> std::result::Result<tonic::Response<super::ListGitRepositoryLinksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/ListGitRepositoryLinks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "ListGitRepositoryLinks"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single GitRepositoryLink.
-pub async fn get_git_repository_link(&mut self, request: impl tonic::IntoRequest<super::GetGitRepositoryLinkRequest>) -> std::result::Result<tonic::Response<super::GitRepositoryLink>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/GetGitRepositoryLink");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "GetGitRepositoryLink"));
-self.inner.unary(req, path, codec).await
-}
-/// Fetches read/write token of a given gitRepositoryLink.
-pub async fn fetch_read_write_token(&mut self, request: impl tonic::IntoRequest<super::FetchReadWriteTokenRequest>) -> std::result::Result<tonic::Response<super::FetchReadWriteTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/FetchReadWriteToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "FetchReadWriteToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Fetches read token of a given gitRepositoryLink.
-pub async fn fetch_read_token(&mut self, request: impl tonic::IntoRequest<super::FetchReadTokenRequest>) -> std::result::Result<tonic::Response<super::FetchReadTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/FetchReadToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "FetchReadToken"));
-self.inner.unary(req, path, codec).await
-}
-/// FetchLinkableGitRepositories returns a list of git repositories from an SCM
-/// that are available to be added to a Connection.
-pub async fn fetch_linkable_git_repositories(&mut self, request: impl tonic::IntoRequest<super::FetchLinkableGitRepositoriesRequest>) -> std::result::Result<tonic::Response<super::FetchLinkableGitRepositoriesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/FetchLinkableGitRepositories");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "FetchLinkableGitRepositories"));
-self.inner.unary(req, path, codec).await
-}
-/// FetchGitHubInstallations returns the list of GitHub Installations that
-/// are available to be added to a Connection.
-/// For github.com, only installations accessible to the authorizer token
-/// are returned. For GitHub Enterprise, all installations are returned.
-pub async fn fetch_git_hub_installations(&mut self, request: impl tonic::IntoRequest<super::FetchGitHubInstallationsRequest>) -> std::result::Result<tonic::Response<super::FetchGitHubInstallationsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitHubInstallations");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "FetchGitHubInstallations"));
-self.inner.unary(req, path, codec).await
-}
-/// Fetch the list of branches or tags for a given repository.
-pub async fn fetch_git_refs(&mut self, request: impl tonic::IntoRequest<super::FetchGitRefsRequest>) -> std::result::Result<tonic::Response<super::FetchGitRefsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRefs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.developerconnect.v1.DeveloperConnect", "FetchGitRefs"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service describing handlers for resources
+    #[derive(Debug, Clone)]
+    pub struct DeveloperConnectClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DeveloperConnectClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DeveloperConnectClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DeveloperConnectClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists Connections in a given project and location.
+        pub async fn list_connections(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListConnectionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListConnectionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/ListConnections",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "ListConnections",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single Connection.
+        pub async fn get_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/GetConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "GetConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new Connection in a given project and location.
+        pub async fn create_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateConnectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/CreateConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "CreateConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single Connection.
+        pub async fn update_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateConnectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/UpdateConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "UpdateConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single Connection.
+        pub async fn delete_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteConnectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/DeleteConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "DeleteConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a GitRepositoryLink. Upon linking a Git Repository, Developer
+        /// Connect will configure the Git Repository to send webhook events to
+        /// Developer Connect. Connections that use Firebase GitHub Application will
+        /// have events forwarded to the Firebase service. All other Connections will
+        /// have events forwarded to Cloud Build.
+        pub async fn create_git_repository_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateGitRepositoryLinkRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/CreateGitRepositoryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "CreateGitRepositoryLink",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single GitRepositoryLink.
+        pub async fn delete_git_repository_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteGitRepositoryLinkRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/DeleteGitRepositoryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "DeleteGitRepositoryLink",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists GitRepositoryLinks in a given project, location, and connection.
+        pub async fn list_git_repository_links(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGitRepositoryLinksRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListGitRepositoryLinksResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/ListGitRepositoryLinks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "ListGitRepositoryLinks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single GitRepositoryLink.
+        pub async fn get_git_repository_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGitRepositoryLinkRequest>,
+        ) -> std::result::Result<tonic::Response<super::GitRepositoryLink>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/GetGitRepositoryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "GetGitRepositoryLink",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetches read/write token of a given gitRepositoryLink.
+        pub async fn fetch_read_write_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchReadWriteTokenRequest>,
+        ) -> std::result::Result<tonic::Response<super::FetchReadWriteTokenResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/FetchReadWriteToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "FetchReadWriteToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetches read token of a given gitRepositoryLink.
+        pub async fn fetch_read_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchReadTokenRequest>,
+        ) -> std::result::Result<tonic::Response<super::FetchReadTokenResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/FetchReadToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "FetchReadToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// FetchLinkableGitRepositories returns a list of git repositories from an SCM
+        /// that are available to be added to a Connection.
+        pub async fn fetch_linkable_git_repositories(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchLinkableGitRepositoriesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::FetchLinkableGitRepositoriesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/FetchLinkableGitRepositories",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "FetchLinkableGitRepositories",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// FetchGitHubInstallations returns the list of GitHub Installations that
+        /// are available to be added to a Connection.
+        /// For github.com, only installations accessible to the authorizer token
+        /// are returned. For GitHub Enterprise, all installations are returned.
+        pub async fn fetch_git_hub_installations(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchGitHubInstallationsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::FetchGitHubInstallationsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitHubInstallations",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "FetchGitHubInstallations",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetch the list of branches or tags for a given repository.
+        pub async fn fetch_git_refs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchGitRefsRequest>,
+        ) -> std::result::Result<tonic::Response<super::FetchGitRefsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRefs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.developerconnect.v1.DeveloperConnect",
+                "FetchGitRefs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

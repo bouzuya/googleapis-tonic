@@ -2,8 +2,8 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Viewport {
-#[prost(message, optional, tag = "1")]
-pub low: ::core::option::Option<super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "2")]
-pub high: ::core::option::Option<super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "1")]
+    pub low: ::core::option::Option<super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "2")]
+    pub high: ::core::option::Option<super::super::r#type::LatLng>,
 }

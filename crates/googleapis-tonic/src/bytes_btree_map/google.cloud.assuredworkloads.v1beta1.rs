@@ -2,60 +2,63 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkloadRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub workload: ::core::option::Option<Workload>,
-#[prost(string, tag = "3")]
-pub external_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub workload: ::core::option::Option<Workload>,
+    #[prost(string, tag = "3")]
+    pub external_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkloadRequest {
-#[prost(message, optional, tag = "1")]
-pub workload: ::core::option::Option<Workload>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub workload: ::core::option::Option<Workload>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestrictAllowedResourcesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "restrict_allowed_resources_request::RestrictionType", tag = "2")]
-pub restriction_type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "restrict_allowed_resources_request::RestrictionType",
+        tag = "2"
+    )]
+    pub restriction_type: i32,
 }
 /// Nested message and enum types in `RestrictAllowedResourcesRequest`.
 pub mod restrict_allowed_resources_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RestrictionType {
-Unspecified = 0,
-AllowAllGcpResources = 1,
-AllowCompliantResources = 2,
-}
-impl RestrictionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RestrictionType::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
-RestrictionType::AllowAllGcpResources => "ALLOW_ALL_GCP_RESOURCES",
-RestrictionType::AllowCompliantResources => "ALLOW_COMPLIANT_RESOURCES",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESTRICTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALLOW_ALL_GCP_RESOURCES" => Some(Self::AllowAllGcpResources),
-"ALLOW_COMPLIANT_RESOURCES" => Some(Self::AllowCompliantResources),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RestrictionType {
+        Unspecified = 0,
+        AllowAllGcpResources = 1,
+        AllowCompliantResources = 2,
+    }
+    impl RestrictionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RestrictionType::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
+                RestrictionType::AllowAllGcpResources => "ALLOW_ALL_GCP_RESOURCES",
+                RestrictionType::AllowCompliantResources => "ALLOW_COMPLIANT_RESOURCES",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESTRICTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALLOW_ALL_GCP_RESOURCES" => Some(Self::AllowAllGcpResources),
+                "ALLOW_COMPLIANT_RESOURCES" => Some(Self::AllowCompliantResources),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -63,517 +66,646 @@ pub struct RestrictAllowedResourcesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkloadRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkloadRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeWorkloadMoveRequest {
-#[prost(string, tag = "2")]
-pub target: ::prost::alloc::string::String,
-#[prost(oneof = "analyze_workload_move_request::ProjectOrWorkloadResource", tags = "1, 3")]
-pub project_or_workload_resource: ::core::option::Option<analyze_workload_move_request::ProjectOrWorkloadResource>,
+    #[prost(string, tag = "2")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "analyze_workload_move_request::ProjectOrWorkloadResource",
+        tags = "1, 3"
+    )]
+    pub project_or_workload_resource:
+        ::core::option::Option<analyze_workload_move_request::ProjectOrWorkloadResource>,
 }
 /// Nested message and enum types in `AnalyzeWorkloadMoveRequest`.
 pub mod analyze_workload_move_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ProjectOrWorkloadResource {
-#[prost(string, tag = "1")]
-Source(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-Project(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ProjectOrWorkloadResource {
+        #[prost(string, tag = "1")]
+        Source(::prost::alloc::string::String),
+        #[prost(string, tag = "3")]
+        Project(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeWorkloadMoveResponse {
-#[prost(string, repeated, tag = "1")]
-pub blockers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub blockers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsResponse {
-#[prost(message, repeated, tag = "1")]
-pub workloads: ::prost::alloc::vec::Vec<Workload>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub workloads: ::prost::alloc::vec::Vec<Workload>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workload {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub resources: ::prost::alloc::vec::Vec<workload::ResourceInfo>,
-#[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
-pub compliance_regime: i32,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "6")]
-pub billing_account: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub etag: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "10")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "13")]
-pub provisioned_resources_parent: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(message, optional, tag = "14")]
-pub kms_settings: ::core::option::Option<workload::KmsSettings>,
-#[prost(message, repeated, tag = "15")]
-pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
-#[prost(enumeration = "workload::KajEnrollmentState", tag = "17")]
-pub kaj_enrollment_state: i32,
-#[prost(bool, tag = "18")]
-pub enable_sovereign_controls: bool,
-#[prost(message, optional, tag = "20")]
-pub saa_enrollment_response: ::core::option::Option<workload::SaaEnrollmentResponse>,
-#[prost(string, repeated, tag = "24")]
-pub compliant_but_disallowed_services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(oneof = "workload::ComplianceRegimeSettings", tags = "7, 8, 11, 12")]
-pub compliance_regime_settings: ::core::option::Option<workload::ComplianceRegimeSettings>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub resources: ::prost::alloc::vec::Vec<workload::ResourceInfo>,
+    #[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
+    pub compliance_regime: i32,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "6")]
+    pub billing_account: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "10")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "13")]
+    pub provisioned_resources_parent: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(message, optional, tag = "14")]
+    pub kms_settings: ::core::option::Option<workload::KmsSettings>,
+    #[prost(message, repeated, tag = "15")]
+    pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
+    #[prost(enumeration = "workload::KajEnrollmentState", tag = "17")]
+    pub kaj_enrollment_state: i32,
+    #[prost(bool, tag = "18")]
+    pub enable_sovereign_controls: bool,
+    #[prost(message, optional, tag = "20")]
+    pub saa_enrollment_response: ::core::option::Option<workload::SaaEnrollmentResponse>,
+    #[prost(string, repeated, tag = "24")]
+    pub compliant_but_disallowed_services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(oneof = "workload::ComplianceRegimeSettings", tags = "7, 8, 11, 12")]
+    pub compliance_regime_settings: ::core::option::Option<workload::ComplianceRegimeSettings>,
 }
 /// Nested message and enum types in `Workload`.
 pub mod workload {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ResourceInfo {
-#[prost(int64, tag = "1")]
-pub resource_id: i64,
-#[prost(enumeration = "resource_info::ResourceType", tag = "2")]
-pub resource_type: i32,
-}
-/// Nested message and enum types in `ResourceInfo`.
-pub mod resource_info {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ResourceType {
-Unspecified = 0,
-ConsumerProject = 1,
-ConsumerFolder = 4,
-EncryptionKeysProject = 2,
-Keyring = 3,
-}
-impl ResourceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResourceType::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
-ResourceType::ConsumerProject => "CONSUMER_PROJECT",
-ResourceType::ConsumerFolder => "CONSUMER_FOLDER",
-ResourceType::EncryptionKeysProject => "ENCRYPTION_KEYS_PROJECT",
-ResourceType::Keyring => "KEYRING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CONSUMER_PROJECT" => Some(Self::ConsumerProject),
-"CONSUMER_FOLDER" => Some(Self::ConsumerFolder),
-"ENCRYPTION_KEYS_PROJECT" => Some(Self::EncryptionKeysProject),
-"KEYRING" => Some(Self::Keyring),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct KmsSettings {
-#[prost(message, optional, tag = "1")]
-pub next_rotation_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub rotation_period: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Il4Settings {
-#[prost(message, optional, tag = "1")]
-pub kms_settings: ::core::option::Option<KmsSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct CjisSettings {
-#[prost(message, optional, tag = "1")]
-pub kms_settings: ::core::option::Option<KmsSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FedrampHighSettings {
-#[prost(message, optional, tag = "1")]
-pub kms_settings: ::core::option::Option<KmsSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FedrampModerateSettings {
-#[prost(message, optional, tag = "1")]
-pub kms_settings: ::core::option::Option<KmsSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ResourceSettings {
-#[prost(string, tag = "1")]
-pub resource_id: ::prost::alloc::string::String,
-#[prost(enumeration = "resource_info::ResourceType", tag = "2")]
-pub resource_type: i32,
-#[prost(string, tag = "3")]
-pub display_name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SaaEnrollmentResponse {
-#[prost(enumeration = "saa_enrollment_response::SetupState", optional, tag = "1")]
-pub setup_status: ::core::option::Option<i32>,
-#[prost(enumeration = "saa_enrollment_response::SetupError", repeated, tag = "2")]
-pub setup_errors: ::prost::alloc::vec::Vec<i32>,
-}
-/// Nested message and enum types in `SaaEnrollmentResponse`.
-pub mod saa_enrollment_response {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SetupState {
-Unspecified = 0,
-StatusPending = 1,
-StatusComplete = 2,
-}
-impl SetupState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SetupState::Unspecified => "SETUP_STATE_UNSPECIFIED",
-SetupState::StatusPending => "STATUS_PENDING",
-SetupState::StatusComplete => "STATUS_COMPLETE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SETUP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"STATUS_PENDING" => Some(Self::StatusPending),
-"STATUS_COMPLETE" => Some(Self::StatusComplete),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SetupError {
-Unspecified = 0,
-ErrorInvalidBaseSetup = 1,
-ErrorMissingExternalSigningKey = 2,
-ErrorNotAllServicesEnrolled = 3,
-ErrorSetupCheckFailed = 4,
-}
-impl SetupError {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SetupError::Unspecified => "SETUP_ERROR_UNSPECIFIED",
-SetupError::ErrorInvalidBaseSetup => "ERROR_INVALID_BASE_SETUP",
-SetupError::ErrorMissingExternalSigningKey => "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
-SetupError::ErrorNotAllServicesEnrolled => "ERROR_NOT_ALL_SERVICES_ENROLLED",
-SetupError::ErrorSetupCheckFailed => "ERROR_SETUP_CHECK_FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SETUP_ERROR_UNSPECIFIED" => Some(Self::Unspecified),
-"ERROR_INVALID_BASE_SETUP" => Some(Self::ErrorInvalidBaseSetup),
-"ERROR_MISSING_EXTERNAL_SIGNING_KEY" => Some(Self::ErrorMissingExternalSigningKey),
-"ERROR_NOT_ALL_SERVICES_ENROLLED" => Some(Self::ErrorNotAllServicesEnrolled),
-"ERROR_SETUP_CHECK_FAILED" => Some(Self::ErrorSetupCheckFailed),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ComplianceRegime {
-Unspecified = 0,
-Il4 = 1,
-Cjis = 2,
-FedrampHigh = 3,
-FedrampModerate = 4,
-UsRegionalAccess = 5,
-Hipaa = 6,
-Hitrust = 7,
-EuRegionsAndSupport = 8,
-CaRegionsAndSupport = 9,
-Itar = 10,
-AuRegionsAndUsSupport = 11,
-}
-impl ComplianceRegime {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ComplianceRegime::Unspecified => "COMPLIANCE_REGIME_UNSPECIFIED",
-ComplianceRegime::Il4 => "IL4",
-ComplianceRegime::Cjis => "CJIS",
-ComplianceRegime::FedrampHigh => "FEDRAMP_HIGH",
-ComplianceRegime::FedrampModerate => "FEDRAMP_MODERATE",
-ComplianceRegime::UsRegionalAccess => "US_REGIONAL_ACCESS",
-ComplianceRegime::Hipaa => "HIPAA",
-ComplianceRegime::Hitrust => "HITRUST",
-ComplianceRegime::EuRegionsAndSupport => "EU_REGIONS_AND_SUPPORT",
-ComplianceRegime::CaRegionsAndSupport => "CA_REGIONS_AND_SUPPORT",
-ComplianceRegime::Itar => "ITAR",
-ComplianceRegime::AuRegionsAndUsSupport => "AU_REGIONS_AND_US_SUPPORT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMPLIANCE_REGIME_UNSPECIFIED" => Some(Self::Unspecified),
-"IL4" => Some(Self::Il4),
-"CJIS" => Some(Self::Cjis),
-"FEDRAMP_HIGH" => Some(Self::FedrampHigh),
-"FEDRAMP_MODERATE" => Some(Self::FedrampModerate),
-"US_REGIONAL_ACCESS" => Some(Self::UsRegionalAccess),
-"HIPAA" => Some(Self::Hipaa),
-"HITRUST" => Some(Self::Hitrust),
-"EU_REGIONS_AND_SUPPORT" => Some(Self::EuRegionsAndSupport),
-"CA_REGIONS_AND_SUPPORT" => Some(Self::CaRegionsAndSupport),
-"ITAR" => Some(Self::Itar),
-"AU_REGIONS_AND_US_SUPPORT" => Some(Self::AuRegionsAndUsSupport),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum KajEnrollmentState {
-Unspecified = 0,
-Pending = 1,
-Complete = 2,
-}
-impl KajEnrollmentState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-KajEnrollmentState::Unspecified => "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
-KajEnrollmentState::Pending => "KAJ_ENROLLMENT_STATE_PENDING",
-KajEnrollmentState::Complete => "KAJ_ENROLLMENT_STATE_COMPLETE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"KAJ_ENROLLMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"KAJ_ENROLLMENT_STATE_PENDING" => Some(Self::Pending),
-"KAJ_ENROLLMENT_STATE_COMPLETE" => Some(Self::Complete),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ComplianceRegimeSettings {
-#[prost(message, tag = "7")]
-Il4Settings(Il4Settings),
-#[prost(message, tag = "8")]
-CjisSettings(CjisSettings),
-#[prost(message, tag = "11")]
-FedrampHighSettings(FedrampHighSettings),
-#[prost(message, tag = "12")]
-FedrampModerateSettings(FedrampModerateSettings),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ResourceInfo {
+        #[prost(int64, tag = "1")]
+        pub resource_id: i64,
+        #[prost(enumeration = "resource_info::ResourceType", tag = "2")]
+        pub resource_type: i32,
+    }
+    /// Nested message and enum types in `ResourceInfo`.
+    pub mod resource_info {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum ResourceType {
+            Unspecified = 0,
+            ConsumerProject = 1,
+            ConsumerFolder = 4,
+            EncryptionKeysProject = 2,
+            Keyring = 3,
+        }
+        impl ResourceType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ResourceType::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
+                    ResourceType::ConsumerProject => "CONSUMER_PROJECT",
+                    ResourceType::ConsumerFolder => "CONSUMER_FOLDER",
+                    ResourceType::EncryptionKeysProject => "ENCRYPTION_KEYS_PROJECT",
+                    ResourceType::Keyring => "KEYRING",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "CONSUMER_PROJECT" => Some(Self::ConsumerProject),
+                    "CONSUMER_FOLDER" => Some(Self::ConsumerFolder),
+                    "ENCRYPTION_KEYS_PROJECT" => Some(Self::EncryptionKeysProject),
+                    "KEYRING" => Some(Self::Keyring),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct KmsSettings {
+        #[prost(message, optional, tag = "1")]
+        pub next_rotation_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub rotation_period: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Il4Settings {
+        #[prost(message, optional, tag = "1")]
+        pub kms_settings: ::core::option::Option<KmsSettings>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct CjisSettings {
+        #[prost(message, optional, tag = "1")]
+        pub kms_settings: ::core::option::Option<KmsSettings>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FedrampHighSettings {
+        #[prost(message, optional, tag = "1")]
+        pub kms_settings: ::core::option::Option<KmsSettings>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FedrampModerateSettings {
+        #[prost(message, optional, tag = "1")]
+        pub kms_settings: ::core::option::Option<KmsSettings>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ResourceSettings {
+        #[prost(string, tag = "1")]
+        pub resource_id: ::prost::alloc::string::String,
+        #[prost(enumeration = "resource_info::ResourceType", tag = "2")]
+        pub resource_type: i32,
+        #[prost(string, tag = "3")]
+        pub display_name: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SaaEnrollmentResponse {
+        #[prost(
+            enumeration = "saa_enrollment_response::SetupState",
+            optional,
+            tag = "1"
+        )]
+        pub setup_status: ::core::option::Option<i32>,
+        #[prost(
+            enumeration = "saa_enrollment_response::SetupError",
+            repeated,
+            tag = "2"
+        )]
+        pub setup_errors: ::prost::alloc::vec::Vec<i32>,
+    }
+    /// Nested message and enum types in `SaaEnrollmentResponse`.
+    pub mod saa_enrollment_response {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum SetupState {
+            Unspecified = 0,
+            StatusPending = 1,
+            StatusComplete = 2,
+        }
+        impl SetupState {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    SetupState::Unspecified => "SETUP_STATE_UNSPECIFIED",
+                    SetupState::StatusPending => "STATUS_PENDING",
+                    SetupState::StatusComplete => "STATUS_COMPLETE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SETUP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "STATUS_PENDING" => Some(Self::StatusPending),
+                    "STATUS_COMPLETE" => Some(Self::StatusComplete),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum SetupError {
+            Unspecified = 0,
+            ErrorInvalidBaseSetup = 1,
+            ErrorMissingExternalSigningKey = 2,
+            ErrorNotAllServicesEnrolled = 3,
+            ErrorSetupCheckFailed = 4,
+        }
+        impl SetupError {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    SetupError::Unspecified => "SETUP_ERROR_UNSPECIFIED",
+                    SetupError::ErrorInvalidBaseSetup => "ERROR_INVALID_BASE_SETUP",
+                    SetupError::ErrorMissingExternalSigningKey => {
+                        "ERROR_MISSING_EXTERNAL_SIGNING_KEY"
+                    }
+                    SetupError::ErrorNotAllServicesEnrolled => "ERROR_NOT_ALL_SERVICES_ENROLLED",
+                    SetupError::ErrorSetupCheckFailed => "ERROR_SETUP_CHECK_FAILED",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SETUP_ERROR_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ERROR_INVALID_BASE_SETUP" => Some(Self::ErrorInvalidBaseSetup),
+                    "ERROR_MISSING_EXTERNAL_SIGNING_KEY" => {
+                        Some(Self::ErrorMissingExternalSigningKey)
+                    }
+                    "ERROR_NOT_ALL_SERVICES_ENROLLED" => Some(Self::ErrorNotAllServicesEnrolled),
+                    "ERROR_SETUP_CHECK_FAILED" => Some(Self::ErrorSetupCheckFailed),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ComplianceRegime {
+        Unspecified = 0,
+        Il4 = 1,
+        Cjis = 2,
+        FedrampHigh = 3,
+        FedrampModerate = 4,
+        UsRegionalAccess = 5,
+        Hipaa = 6,
+        Hitrust = 7,
+        EuRegionsAndSupport = 8,
+        CaRegionsAndSupport = 9,
+        Itar = 10,
+        AuRegionsAndUsSupport = 11,
+    }
+    impl ComplianceRegime {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ComplianceRegime::Unspecified => "COMPLIANCE_REGIME_UNSPECIFIED",
+                ComplianceRegime::Il4 => "IL4",
+                ComplianceRegime::Cjis => "CJIS",
+                ComplianceRegime::FedrampHigh => "FEDRAMP_HIGH",
+                ComplianceRegime::FedrampModerate => "FEDRAMP_MODERATE",
+                ComplianceRegime::UsRegionalAccess => "US_REGIONAL_ACCESS",
+                ComplianceRegime::Hipaa => "HIPAA",
+                ComplianceRegime::Hitrust => "HITRUST",
+                ComplianceRegime::EuRegionsAndSupport => "EU_REGIONS_AND_SUPPORT",
+                ComplianceRegime::CaRegionsAndSupport => "CA_REGIONS_AND_SUPPORT",
+                ComplianceRegime::Itar => "ITAR",
+                ComplianceRegime::AuRegionsAndUsSupport => "AU_REGIONS_AND_US_SUPPORT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMPLIANCE_REGIME_UNSPECIFIED" => Some(Self::Unspecified),
+                "IL4" => Some(Self::Il4),
+                "CJIS" => Some(Self::Cjis),
+                "FEDRAMP_HIGH" => Some(Self::FedrampHigh),
+                "FEDRAMP_MODERATE" => Some(Self::FedrampModerate),
+                "US_REGIONAL_ACCESS" => Some(Self::UsRegionalAccess),
+                "HIPAA" => Some(Self::Hipaa),
+                "HITRUST" => Some(Self::Hitrust),
+                "EU_REGIONS_AND_SUPPORT" => Some(Self::EuRegionsAndSupport),
+                "CA_REGIONS_AND_SUPPORT" => Some(Self::CaRegionsAndSupport),
+                "ITAR" => Some(Self::Itar),
+                "AU_REGIONS_AND_US_SUPPORT" => Some(Self::AuRegionsAndUsSupport),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum KajEnrollmentState {
+        Unspecified = 0,
+        Pending = 1,
+        Complete = 2,
+    }
+    impl KajEnrollmentState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                KajEnrollmentState::Unspecified => "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+                KajEnrollmentState::Pending => "KAJ_ENROLLMENT_STATE_PENDING",
+                KajEnrollmentState::Complete => "KAJ_ENROLLMENT_STATE_COMPLETE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "KAJ_ENROLLMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "KAJ_ENROLLMENT_STATE_PENDING" => Some(Self::Pending),
+                "KAJ_ENROLLMENT_STATE_COMPLETE" => Some(Self::Complete),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ComplianceRegimeSettings {
+        #[prost(message, tag = "7")]
+        Il4Settings(Il4Settings),
+        #[prost(message, tag = "8")]
+        CjisSettings(CjisSettings),
+        #[prost(message, tag = "11")]
+        FedrampHighSettings(FedrampHighSettings),
+        #[prost(message, tag = "12")]
+        FedrampModerateSettings(FedrampModerateSettings),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkloadOperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub parent: ::prost::alloc::string::String,
-#[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
-pub compliance_regime: i32,
-#[prost(message, repeated, tag = "5")]
-pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
+    pub compliance_regime: i32,
+    #[prost(message, repeated, tag = "5")]
+    pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
 }
 /// Generated client implementations.
 pub mod assured_workloads_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to manage AssuredWorkloads.
-#[derive(Debug, Clone)]
-pub struct AssuredWorkloadsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AssuredWorkloadsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AssuredWorkloadsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AssuredWorkloadsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates Assured Workload.
-pub async fn create_workload(&mut self, request: impl tonic::IntoRequest<super::CreateWorkloadRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/CreateWorkload");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "CreateWorkload"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an existing workload.
-/// Currently allows updating of workload display_name and labels.
-/// For force updates don't set etag field in the Workload.
-/// Only one update operation per workload can be in progress.
-pub async fn update_workload(&mut self, request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/UpdateWorkload");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "UpdateWorkload"));
-self.inner.unary(req, path, codec).await
-}
-/// Restrict the list of resources allowed in the Workload environment.
-/// The current list of allowed products can be found at
-/// https://cloud.google.com/assured-workloads/docs/supported-products
-/// In addition to assuredworkloads.workload.update permission, the user should
-/// also have orgpolicy.policy.set permission on the folder resource
-/// to use this functionality.
-pub async fn restrict_allowed_resources(&mut self, request: impl tonic::IntoRequest<super::RestrictAllowedResourcesRequest>) -> std::result::Result<tonic::Response<super::RestrictAllowedResourcesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedResources");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "RestrictAllowedResources"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the workload. Make sure that workload's direct children are already
-/// in a deleted state, otherwise the request will fail with a
-/// FAILED_PRECONDITION error.
-/// In addition to assuredworkloads.workload.delete permission, the user should
-/// also have orgpolicy.policy.set permission on the deleted folder to remove
-/// Assured Workloads OrgPolicies.
-pub async fn delete_workload(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/DeleteWorkload");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "DeleteWorkload"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets Assured Workload associated with a CRM Node
-pub async fn get_workload(&mut self, request: impl tonic::IntoRequest<super::GetWorkloadRequest>) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/GetWorkload");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "GetWorkload"));
-self.inner.unary(req, path, codec).await
-}
-/// Analyze if the source Assured Workloads can be moved to the target Assured
-/// Workload
-pub async fn analyze_workload_move(&mut self, request: impl tonic::IntoRequest<super::AnalyzeWorkloadMoveRequest>) -> std::result::Result<tonic::Response<super::AnalyzeWorkloadMoveResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/AnalyzeWorkloadMove");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "AnalyzeWorkloadMove"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Assured Workloads under a CRM Node.
-pub async fn list_workloads(&mut self, request: impl tonic::IntoRequest<super::ListWorkloadsRequest>) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/ListWorkloads");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService", "ListWorkloads"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to manage AssuredWorkloads.
+    #[derive(Debug, Clone)]
+    pub struct AssuredWorkloadsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AssuredWorkloadsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AssuredWorkloadsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AssuredWorkloadsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates Assured Workload.
+        pub async fn create_workload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateWorkloadRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/CreateWorkload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "CreateWorkload",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an existing workload.
+        /// Currently allows updating of workload display_name and labels.
+        /// For force updates don't set etag field in the Workload.
+        /// Only one update operation per workload can be in progress.
+        pub async fn update_workload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>,
+        ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/UpdateWorkload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "UpdateWorkload",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Restrict the list of resources allowed in the Workload environment.
+        /// The current list of allowed products can be found at
+        /// https://cloud.google.com/assured-workloads/docs/supported-products
+        /// In addition to assuredworkloads.workload.update permission, the user should
+        /// also have orgpolicy.policy.set permission on the folder resource
+        /// to use this functionality.
+        pub async fn restrict_allowed_resources(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RestrictAllowedResourcesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RestrictAllowedResourcesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedResources");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "RestrictAllowedResources",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the workload. Make sure that workload's direct children are already
+        /// in a deleted state, otherwise the request will fail with a
+        /// FAILED_PRECONDITION error.
+        /// In addition to assuredworkloads.workload.delete permission, the user should
+        /// also have orgpolicy.policy.set permission on the deleted folder to remove
+        /// Assured Workloads OrgPolicies.
+        pub async fn delete_workload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/DeleteWorkload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "DeleteWorkload",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets Assured Workload associated with a CRM Node
+        pub async fn get_workload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetWorkloadRequest>,
+        ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/GetWorkload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "GetWorkload",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Analyze if the source Assured Workloads can be moved to the target Assured
+        /// Workload
+        pub async fn analyze_workload_move(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AnalyzeWorkloadMoveRequest>,
+        ) -> std::result::Result<tonic::Response<super::AnalyzeWorkloadMoveResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/AnalyzeWorkloadMove");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "AnalyzeWorkloadMove",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Assured Workloads under a CRM Node.
+        pub async fn list_workloads(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/ListWorkloads",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService",
+                "ListWorkloads",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

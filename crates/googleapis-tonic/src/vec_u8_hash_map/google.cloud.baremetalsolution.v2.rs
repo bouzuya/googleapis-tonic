@@ -2,931 +2,937 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Lun {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "lun::State", tag = "2")]
-pub state: i32,
-#[prost(int64, tag = "3")]
-pub size_gb: i64,
-#[prost(enumeration = "lun::MultiprotocolType", tag = "4")]
-pub multiprotocol_type: i32,
-#[prost(string, tag = "5")]
-pub storage_volume: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub shareable: bool,
-#[prost(bool, tag = "7")]
-pub boot_lun: bool,
-#[prost(enumeration = "lun::StorageType", tag = "8")]
-pub storage_type: i32,
-#[prost(string, tag = "9")]
-pub wwid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "11")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "12")]
-pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "lun::State", tag = "2")]
+    pub state: i32,
+    #[prost(int64, tag = "3")]
+    pub size_gb: i64,
+    #[prost(enumeration = "lun::MultiprotocolType", tag = "4")]
+    pub multiprotocol_type: i32,
+    #[prost(string, tag = "5")]
+    pub storage_volume: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub shareable: bool,
+    #[prost(bool, tag = "7")]
+    pub boot_lun: bool,
+    #[prost(enumeration = "lun::StorageType", tag = "8")]
+    pub storage_type: i32,
+    #[prost(string, tag = "9")]
+    pub wwid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "11")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "12")]
+    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Lun`.
 pub mod lun {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Updating = 2,
-Ready = 3,
-Deleting = 4,
-CoolOff = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Updating => "UPDATING",
-State::Ready => "READY",
-State::Deleting => "DELETING",
-State::CoolOff => "COOL_OFF",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"UPDATING" => Some(Self::Updating),
-"READY" => Some(Self::Ready),
-"DELETING" => Some(Self::Deleting),
-"COOL_OFF" => Some(Self::CoolOff),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MultiprotocolType {
-Unspecified = 0,
-Linux = 1,
-}
-impl MultiprotocolType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MultiprotocolType::Unspecified => "MULTIPROTOCOL_TYPE_UNSPECIFIED",
-MultiprotocolType::Linux => "LINUX",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MULTIPROTOCOL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LINUX" => Some(Self::Linux),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum StorageType {
-Unspecified = 0,
-Ssd = 1,
-Hdd = 2,
-}
-impl StorageType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
-StorageType::Ssd => "SSD",
-StorageType::Hdd => "HDD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SSD" => Some(Self::Ssd),
-"HDD" => Some(Self::Hdd),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Updating = 2,
+        Ready = 3,
+        Deleting = 4,
+        CoolOff = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Updating => "UPDATING",
+                State::Ready => "READY",
+                State::Deleting => "DELETING",
+                State::CoolOff => "COOL_OFF",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "UPDATING" => Some(Self::Updating),
+                "READY" => Some(Self::Ready),
+                "DELETING" => Some(Self::Deleting),
+                "COOL_OFF" => Some(Self::CoolOff),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MultiprotocolType {
+        Unspecified = 0,
+        Linux = 1,
+    }
+    impl MultiprotocolType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MultiprotocolType::Unspecified => "MULTIPROTOCOL_TYPE_UNSPECIFIED",
+                MultiprotocolType::Linux => "LINUX",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MULTIPROTOCOL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "LINUX" => Some(Self::Linux),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum StorageType {
+        Unspecified = 0,
+        Ssd = 1,
+        Hdd = 2,
+    }
+    impl StorageType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
+                StorageType::Ssd => "SSD",
+                StorageType::Hdd => "HDD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SSD" => Some(Self::Ssd),
+                "HDD" => Some(Self::Hdd),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLunsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLunsResponse {
-#[prost(message, repeated, tag = "1")]
-pub luns: ::prost::alloc::vec::Vec<Lun>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub luns: ::prost::alloc::vec::Vec<Lun>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvictLunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum VolumePerformanceTier {
-Unspecified = 0,
-Shared = 1,
-Assigned = 2,
-Ht = 3,
+    Unspecified = 0,
+    Shared = 1,
+    Assigned = 2,
+    Ht = 3,
 }
 impl VolumePerformanceTier {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VolumePerformanceTier::Unspecified => "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
-VolumePerformanceTier::Shared => "VOLUME_PERFORMANCE_TIER_SHARED",
-VolumePerformanceTier::Assigned => "VOLUME_PERFORMANCE_TIER_ASSIGNED",
-VolumePerformanceTier::Ht => "VOLUME_PERFORMANCE_TIER_HT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VOLUME_PERFORMANCE_TIER_UNSPECIFIED" => Some(Self::Unspecified),
-"VOLUME_PERFORMANCE_TIER_SHARED" => Some(Self::Shared),
-"VOLUME_PERFORMANCE_TIER_ASSIGNED" => Some(Self::Assigned),
-"VOLUME_PERFORMANCE_TIER_HT" => Some(Self::Ht),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            VolumePerformanceTier::Unspecified => "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
+            VolumePerformanceTier::Shared => "VOLUME_PERFORMANCE_TIER_SHARED",
+            VolumePerformanceTier::Assigned => "VOLUME_PERFORMANCE_TIER_ASSIGNED",
+            VolumePerformanceTier::Ht => "VOLUME_PERFORMANCE_TIER_HT",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "VOLUME_PERFORMANCE_TIER_UNSPECIFIED" => Some(Self::Unspecified),
+            "VOLUME_PERFORMANCE_TIER_SHARED" => Some(Self::Shared),
+            "VOLUME_PERFORMANCE_TIER_ASSIGNED" => Some(Self::Assigned),
+            "VOLUME_PERFORMANCE_TIER_HT" => Some(Self::Ht),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum WorkloadProfile {
-Unspecified = 0,
-Generic = 1,
-Hana = 2,
+    Unspecified = 0,
+    Generic = 1,
+    Hana = 2,
 }
 impl WorkloadProfile {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-WorkloadProfile::Unspecified => "WORKLOAD_PROFILE_UNSPECIFIED",
-WorkloadProfile::Generic => "WORKLOAD_PROFILE_GENERIC",
-WorkloadProfile::Hana => "WORKLOAD_PROFILE_HANA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"WORKLOAD_PROFILE_UNSPECIFIED" => Some(Self::Unspecified),
-"WORKLOAD_PROFILE_GENERIC" => Some(Self::Generic),
-"WORKLOAD_PROFILE_HANA" => Some(Self::Hana),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            WorkloadProfile::Unspecified => "WORKLOAD_PROFILE_UNSPECIFIED",
+            WorkloadProfile::Generic => "WORKLOAD_PROFILE_GENERIC",
+            WorkloadProfile::Hana => "WORKLOAD_PROFILE_HANA",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "WORKLOAD_PROFILE_UNSPECIFIED" => Some(Self::Unspecified),
+            "WORKLOAD_PROFILE_GENERIC" => Some(Self::Generic),
+            "WORKLOAD_PROFILE_HANA" => Some(Self::Hana),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Network {
-#[prost(string, tag = "5")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "network::Type", tag = "2")]
-pub r#type: i32,
-#[prost(string, tag = "3")]
-pub ip_address: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub mac_address: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "network::State", tag = "6")]
-pub state: i32,
-#[prost(string, tag = "7")]
-pub vlan_id: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub cidr: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub vrf: ::core::option::Option<Vrf>,
-#[prost(map = "string, string", tag = "11")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "12")]
-pub services_cidr: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "13")]
-pub reservations: ::prost::alloc::vec::Vec<NetworkAddressReservation>,
-#[prost(string, tag = "14")]
-pub pod: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "15")]
-pub mount_points: ::prost::alloc::vec::Vec<NetworkMountPoint>,
-#[prost(bool, tag = "16")]
-pub jumbo_frames_enabled: bool,
-#[prost(string, tag = "17")]
-pub gateway_ip: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "network::Type", tag = "2")]
+    pub r#type: i32,
+    #[prost(string, tag = "3")]
+    pub ip_address: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub mac_address: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "network::State", tag = "6")]
+    pub state: i32,
+    #[prost(string, tag = "7")]
+    pub vlan_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub cidr: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub vrf: ::core::option::Option<Vrf>,
+    #[prost(map = "string, string", tag = "11")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "12")]
+    pub services_cidr: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "13")]
+    pub reservations: ::prost::alloc::vec::Vec<NetworkAddressReservation>,
+    #[prost(string, tag = "14")]
+    pub pod: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "15")]
+    pub mount_points: ::prost::alloc::vec::Vec<NetworkMountPoint>,
+    #[prost(bool, tag = "16")]
+    pub jumbo_frames_enabled: bool,
+    #[prost(string, tag = "17")]
+    pub gateway_ip: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Network`.
 pub mod network {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Client = 1,
-Private = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Client => "CLIENT",
-Type::Private => "PRIVATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLIENT" => Some(Self::Client),
-"PRIVATE" => Some(Self::Private),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Provisioned = 2,
-Deprovisioning = 3,
-Updating = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Provisioned => "PROVISIONED",
-State::Deprovisioning => "DEPROVISIONING",
-State::Updating => "UPDATING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"PROVISIONED" => Some(Self::Provisioned),
-"DEPROVISIONING" => Some(Self::Deprovisioning),
-"UPDATING" => Some(Self::Updating),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Client = 1,
+        Private = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Client => "CLIENT",
+                Type::Private => "PRIVATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLIENT" => Some(Self::Client),
+                "PRIVATE" => Some(Self::Private),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Provisioned = 2,
+        Deprovisioning = 3,
+        Updating = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Provisioned => "PROVISIONED",
+                State::Deprovisioning => "DEPROVISIONING",
+                State::Updating => "UPDATING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "PROVISIONED" => Some(Self::Provisioned),
+                "DEPROVISIONING" => Some(Self::Deprovisioning),
+                "UPDATING" => Some(Self::Updating),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkAddressReservation {
-#[prost(string, tag = "1")]
-pub start_address: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub end_address: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub note: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub start_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub end_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub note: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vrf {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "vrf::State", tag = "5")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub qos_policy: ::core::option::Option<vrf::QosPolicy>,
-#[prost(message, repeated, tag = "7")]
-pub vlan_attachments: ::prost::alloc::vec::Vec<vrf::VlanAttachment>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "vrf::State", tag = "5")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub qos_policy: ::core::option::Option<vrf::QosPolicy>,
+    #[prost(message, repeated, tag = "7")]
+    pub vlan_attachments: ::prost::alloc::vec::Vec<vrf::VlanAttachment>,
 }
 /// Nested message and enum types in `VRF`.
 pub mod vrf {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct QosPolicy {
-#[prost(double, tag = "1")]
-pub bandwidth_gbps: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VlanAttachment {
-#[prost(int64, tag = "1")]
-pub peer_vlan_id: i64,
-#[prost(string, tag = "2")]
-pub peer_ip: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub router_ip: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub pairing_key: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub qos_policy: ::core::option::Option<QosPolicy>,
-#[prost(string, tag = "6")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub interconnect_attachment: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Provisioned = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Provisioned => "PROVISIONED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"PROVISIONED" => Some(Self::Provisioned),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct QosPolicy {
+        #[prost(double, tag = "1")]
+        pub bandwidth_gbps: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VlanAttachment {
+        #[prost(int64, tag = "1")]
+        pub peer_vlan_id: i64,
+        #[prost(string, tag = "2")]
+        pub peer_ip: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub router_ip: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub pairing_key: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "5")]
+        pub qos_policy: ::core::option::Option<QosPolicy>,
+        #[prost(string, tag = "6")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(string, tag = "7")]
+        pub interconnect_attachment: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Provisioned = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Provisioned => "PROVISIONED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "PROVISIONED" => Some(Self::Provisioned),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogicalInterface {
-#[prost(message, repeated, tag = "1")]
-pub logical_network_interfaces: ::prost::alloc::vec::Vec<logical_interface::LogicalNetworkInterface>,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(int32, tag = "3")]
-pub interface_index: i32,
+    #[prost(message, repeated, tag = "1")]
+    pub logical_network_interfaces:
+        ::prost::alloc::vec::Vec<logical_interface::LogicalNetworkInterface>,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(int32, tag = "3")]
+    pub interface_index: i32,
 }
 /// Nested message and enum types in `LogicalInterface`.
 pub mod logical_interface {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LogicalNetworkInterface {
-#[prost(string, tag = "1")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub ip_address: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub default_gateway: bool,
-#[prost(enumeration = "super::network::Type", tag = "4")]
-pub network_type: i32,
-#[prost(string, tag = "5")]
-pub id: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LogicalNetworkInterface {
+        #[prost(string, tag = "1")]
+        pub network: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub ip_address: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub default_gateway: bool,
+        #[prost(enumeration = "super::network::Type", tag = "4")]
+        pub network_type: i32,
+        #[prost(string, tag = "5")]
+        pub id: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNetworkRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworksRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworksResponse {
-#[prost(message, repeated, tag = "1")]
-pub networks: ::prost::alloc::vec::Vec<Network>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub networks: ::prost::alloc::vec::Vec<Network>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNetworkRequest {
-#[prost(message, optional, tag = "1")]
-pub network: ::core::option::Option<Network>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub network: ::core::option::Option<Network>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkUsage {
-#[prost(message, optional, tag = "1")]
-pub network: ::core::option::Option<Network>,
-#[prost(string, repeated, tag = "2")]
-pub used_ips: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub network: ::core::option::Option<Network>,
+    #[prost(string, repeated, tag = "2")]
+    pub used_ips: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkUsageRequest {
-#[prost(string, tag = "1")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNetworkUsageResponse {
-#[prost(message, repeated, tag = "1")]
-pub networks: ::prost::alloc::vec::Vec<NetworkUsage>,
+    #[prost(message, repeated, tag = "1")]
+    pub networks: ::prost::alloc::vec::Vec<NetworkUsage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkMountPoint {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub logical_interface: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub default_gateway: bool,
-#[prost(string, tag = "4")]
-pub ip_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub logical_interface: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub default_gateway: bool,
+    #[prost(string, tag = "4")]
+    pub ip_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameNetworkRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub new_network_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub new_network_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "volume::StorageType", tag = "2")]
-pub storage_type: i32,
-#[prost(enumeration = "volume::State", tag = "3")]
-pub state: i32,
-#[prost(int64, tag = "4")]
-pub requested_size_gib: i64,
-#[prost(int64, tag = "16")]
-pub originally_requested_size_gib: i64,
-#[prost(int64, tag = "5")]
-pub current_size_gib: i64,
-#[prost(int64, tag = "14")]
-pub emergency_size_gib: i64,
-#[prost(int64, tag = "17")]
-pub max_size_gib: i64,
-#[prost(int64, tag = "6")]
-pub auto_grown_size_gib: i64,
-#[prost(int64, tag = "7")]
-pub remaining_space_gib: i64,
-#[prost(message, optional, tag = "8")]
-pub snapshot_reservation_detail: ::core::option::Option<volume::SnapshotReservationDetail>,
-#[prost(enumeration = "volume::SnapshotAutoDeleteBehavior", tag = "9")]
-pub snapshot_auto_delete_behavior: i32,
-#[prost(map = "string, string", tag = "12")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(bool, tag = "13")]
-pub snapshot_enabled: bool,
-#[prost(string, tag = "15")]
-pub pod: ::prost::alloc::string::String,
-#[prost(enumeration = "volume::Protocol", tag = "18")]
-pub protocol: i32,
-#[prost(bool, tag = "19")]
-pub boot_volume: bool,
-#[prost(enumeration = "VolumePerformanceTier", tag = "20")]
-pub performance_tier: i32,
-#[prost(string, tag = "21")]
-pub notes: ::prost::alloc::string::String,
-#[prost(enumeration = "volume::WorkloadProfile", tag = "22")]
-pub workload_profile: i32,
-#[prost(message, optional, tag = "24")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "25")]
-pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "26")]
-pub attached: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "volume::StorageType", tag = "2")]
+    pub storage_type: i32,
+    #[prost(enumeration = "volume::State", tag = "3")]
+    pub state: i32,
+    #[prost(int64, tag = "4")]
+    pub requested_size_gib: i64,
+    #[prost(int64, tag = "16")]
+    pub originally_requested_size_gib: i64,
+    #[prost(int64, tag = "5")]
+    pub current_size_gib: i64,
+    #[prost(int64, tag = "14")]
+    pub emergency_size_gib: i64,
+    #[prost(int64, tag = "17")]
+    pub max_size_gib: i64,
+    #[prost(int64, tag = "6")]
+    pub auto_grown_size_gib: i64,
+    #[prost(int64, tag = "7")]
+    pub remaining_space_gib: i64,
+    #[prost(message, optional, tag = "8")]
+    pub snapshot_reservation_detail: ::core::option::Option<volume::SnapshotReservationDetail>,
+    #[prost(enumeration = "volume::SnapshotAutoDeleteBehavior", tag = "9")]
+    pub snapshot_auto_delete_behavior: i32,
+    #[prost(map = "string, string", tag = "12")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(bool, tag = "13")]
+    pub snapshot_enabled: bool,
+    #[prost(string, tag = "15")]
+    pub pod: ::prost::alloc::string::String,
+    #[prost(enumeration = "volume::Protocol", tag = "18")]
+    pub protocol: i32,
+    #[prost(bool, tag = "19")]
+    pub boot_volume: bool,
+    #[prost(enumeration = "VolumePerformanceTier", tag = "20")]
+    pub performance_tier: i32,
+    #[prost(string, tag = "21")]
+    pub notes: ::prost::alloc::string::String,
+    #[prost(enumeration = "volume::WorkloadProfile", tag = "22")]
+    pub workload_profile: i32,
+    #[prost(message, optional, tag = "24")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "25")]
+    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "26")]
+    pub attached: bool,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SnapshotReservationDetail {
-#[prost(int64, tag = "1")]
-pub reserved_space_gib: i64,
-#[prost(int32, tag = "2")]
-pub reserved_space_used_percent: i32,
-#[prost(int64, tag = "3")]
-pub reserved_space_remaining_gib: i64,
-#[prost(int32, tag = "4")]
-pub reserved_space_percent: i32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum StorageType {
-Unspecified = 0,
-Ssd = 1,
-Hdd = 2,
-}
-impl StorageType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
-StorageType::Ssd => "SSD",
-StorageType::Hdd => "HDD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SSD" => Some(Self::Ssd),
-"HDD" => Some(Self::Hdd),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Ready = 2,
-Deleting = 3,
-Updating = 4,
-CoolOff = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Ready => "READY",
-State::Deleting => "DELETING",
-State::Updating => "UPDATING",
-State::CoolOff => "COOL_OFF",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"READY" => Some(Self::Ready),
-"DELETING" => Some(Self::Deleting),
-"UPDATING" => Some(Self::Updating),
-"COOL_OFF" => Some(Self::CoolOff),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SnapshotAutoDeleteBehavior {
-Unspecified = 0,
-Disabled = 1,
-OldestFirst = 2,
-NewestFirst = 3,
-}
-impl SnapshotAutoDeleteBehavior {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SnapshotAutoDeleteBehavior::Unspecified => "SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED",
-SnapshotAutoDeleteBehavior::Disabled => "DISABLED",
-SnapshotAutoDeleteBehavior::OldestFirst => "OLDEST_FIRST",
-SnapshotAutoDeleteBehavior::NewestFirst => "NEWEST_FIRST",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED" => Some(Self::Unspecified),
-"DISABLED" => Some(Self::Disabled),
-"OLDEST_FIRST" => Some(Self::OldestFirst),
-"NEWEST_FIRST" => Some(Self::NewestFirst),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Protocol {
-Unspecified = 0,
-FibreChannel = 1,
-Nfs = 2,
-}
-impl Protocol {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
-Protocol::FibreChannel => "FIBRE_CHANNEL",
-Protocol::Nfs => "NFS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROTOCOL_UNSPECIFIED" => Some(Self::Unspecified),
-"FIBRE_CHANNEL" => Some(Self::FibreChannel),
-"NFS" => Some(Self::Nfs),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum WorkloadProfile {
-Unspecified = 0,
-Generic = 1,
-Hana = 2,
-}
-impl WorkloadProfile {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-WorkloadProfile::Unspecified => "WORKLOAD_PROFILE_UNSPECIFIED",
-WorkloadProfile::Generic => "GENERIC",
-WorkloadProfile::Hana => "HANA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"WORKLOAD_PROFILE_UNSPECIFIED" => Some(Self::Unspecified),
-"GENERIC" => Some(Self::Generic),
-"HANA" => Some(Self::Hana),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SnapshotReservationDetail {
+        #[prost(int64, tag = "1")]
+        pub reserved_space_gib: i64,
+        #[prost(int32, tag = "2")]
+        pub reserved_space_used_percent: i32,
+        #[prost(int64, tag = "3")]
+        pub reserved_space_remaining_gib: i64,
+        #[prost(int32, tag = "4")]
+        pub reserved_space_percent: i32,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum StorageType {
+        Unspecified = 0,
+        Ssd = 1,
+        Hdd = 2,
+    }
+    impl StorageType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
+                StorageType::Ssd => "SSD",
+                StorageType::Hdd => "HDD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SSD" => Some(Self::Ssd),
+                "HDD" => Some(Self::Hdd),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Ready = 2,
+        Deleting = 3,
+        Updating = 4,
+        CoolOff = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Ready => "READY",
+                State::Deleting => "DELETING",
+                State::Updating => "UPDATING",
+                State::CoolOff => "COOL_OFF",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "READY" => Some(Self::Ready),
+                "DELETING" => Some(Self::Deleting),
+                "UPDATING" => Some(Self::Updating),
+                "COOL_OFF" => Some(Self::CoolOff),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SnapshotAutoDeleteBehavior {
+        Unspecified = 0,
+        Disabled = 1,
+        OldestFirst = 2,
+        NewestFirst = 3,
+    }
+    impl SnapshotAutoDeleteBehavior {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SnapshotAutoDeleteBehavior::Unspecified => {
+                    "SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED"
+                }
+                SnapshotAutoDeleteBehavior::Disabled => "DISABLED",
+                SnapshotAutoDeleteBehavior::OldestFirst => "OLDEST_FIRST",
+                SnapshotAutoDeleteBehavior::NewestFirst => "NEWEST_FIRST",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED" => Some(Self::Unspecified),
+                "DISABLED" => Some(Self::Disabled),
+                "OLDEST_FIRST" => Some(Self::OldestFirst),
+                "NEWEST_FIRST" => Some(Self::NewestFirst),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Protocol {
+        Unspecified = 0,
+        FibreChannel = 1,
+        Nfs = 2,
+    }
+    impl Protocol {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
+                Protocol::FibreChannel => "FIBRE_CHANNEL",
+                Protocol::Nfs => "NFS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROTOCOL_UNSPECIFIED" => Some(Self::Unspecified),
+                "FIBRE_CHANNEL" => Some(Self::FibreChannel),
+                "NFS" => Some(Self::Nfs),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum WorkloadProfile {
+        Unspecified = 0,
+        Generic = 1,
+        Hana = 2,
+    }
+    impl WorkloadProfile {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                WorkloadProfile::Unspecified => "WORKLOAD_PROFILE_UNSPECIFIED",
+                WorkloadProfile::Generic => "GENERIC",
+                WorkloadProfile::Hana => "HANA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "WORKLOAD_PROFILE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GENERIC" => Some(Self::Generic),
+                "HANA" => Some(Self::Hana),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVolumeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumesResponse {
-#[prost(message, repeated, tag = "1")]
-pub volumes: ::prost::alloc::vec::Vec<Volume>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub volumes: ::prost::alloc::vec::Vec<Volume>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVolumeRequest {
-#[prost(message, optional, tag = "1")]
-pub volume: ::core::option::Option<Volume>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub volume: ::core::option::Option<Volume>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameVolumeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub new_volume_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub new_volume_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvictVolumeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResizeVolumeRequest {
-#[prost(string, tag = "1")]
-pub volume: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub size_gib: i64,
+    #[prost(string, tag = "1")]
+    pub volume: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub size_gib: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(enumeration = "instance::State", tag = "5")]
-pub state: i32,
-#[prost(bool, tag = "6")]
-pub hyperthreading_enabled: bool,
-#[prost(map = "string, string", tag = "7")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "8")]
-pub luns: ::prost::alloc::vec::Vec<Lun>,
-#[prost(message, repeated, tag = "16")]
-pub volumes: ::prost::alloc::vec::Vec<Volume>,
-#[prost(message, repeated, tag = "9")]
-pub networks: ::prost::alloc::vec::Vec<Network>,
-#[prost(bool, tag = "10")]
-pub interactive_serial_console_enabled: bool,
-#[prost(string, tag = "12")]
-pub os_image: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub pod: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub network_template: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "15")]
-pub logical_interfaces: ::prost::alloc::vec::Vec<LogicalInterface>,
-#[prost(string, tag = "17")]
-pub login_info: ::prost::alloc::string::String,
-#[prost(enumeration = "WorkloadProfile", tag = "18")]
-pub workload_profile: i32,
-#[prost(string, tag = "19")]
-pub firmware_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "4")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(enumeration = "instance::State", tag = "5")]
+    pub state: i32,
+    #[prost(bool, tag = "6")]
+    pub hyperthreading_enabled: bool,
+    #[prost(map = "string, string", tag = "7")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "8")]
+    pub luns: ::prost::alloc::vec::Vec<Lun>,
+    #[prost(message, repeated, tag = "16")]
+    pub volumes: ::prost::alloc::vec::Vec<Volume>,
+    #[prost(message, repeated, tag = "9")]
+    pub networks: ::prost::alloc::vec::Vec<Network>,
+    #[prost(bool, tag = "10")]
+    pub interactive_serial_console_enabled: bool,
+    #[prost(string, tag = "12")]
+    pub os_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub pod: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub network_template: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "15")]
+    pub logical_interfaces: ::prost::alloc::vec::Vec<LogicalInterface>,
+    #[prost(string, tag = "17")]
+    pub login_info: ::prost::alloc::string::String,
+    #[prost(enumeration = "WorkloadProfile", tag = "18")]
+    pub workload_profile: i32,
+    #[prost(string, tag = "19")]
+    pub firmware_version: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Deleted = 3,
-Updating = 4,
-Starting = 5,
-Stopping = 6,
-Shutdown = 7,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Deleted => "DELETED",
-State::Updating => "UPDATING",
-State::Starting => "STARTING",
-State::Stopping => "STOPPING",
-State::Shutdown => "SHUTDOWN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"DELETED" => Some(Self::Deleted),
-"UPDATING" => Some(Self::Updating),
-"STARTING" => Some(Self::Starting),
-"STOPPING" => Some(Self::Stopping),
-"SHUTDOWN" => Some(Self::Shutdown),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Deleted = 3,
+        Updating = 4,
+        Starting = 5,
+        Stopping = 6,
+        Shutdown = 7,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Deleted => "DELETED",
+                State::Updating => "UPDATING",
+                State::Starting => "STARTING",
+                State::Stopping => "STOPPING",
+                State::Shutdown => "SHUTDOWN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "DELETED" => Some(Self::Deleted),
+                "UPDATING" => Some(Self::Updating),
+                "STARTING" => Some(Self::Starting),
+                "STOPPING" => Some(Self::Stopping),
+                "SHUTDOWN" => Some(Self::Shutdown),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-#[prost(message, repeated, tag = "1")]
-pub instances: ::prost::alloc::vec::Vec<Instance>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub instances: ::prost::alloc::vec::Vec<Instance>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceRequest {
-#[prost(message, optional, tag = "1")]
-pub instance: ::core::option::Option<Instance>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub instance: ::core::option::Option<Instance>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub new_instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub new_instance_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -934,8 +940,8 @@ pub struct StartInstanceResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopInstanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -943,8 +949,8 @@ pub struct StopInstanceResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableInteractiveSerialConsoleRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -952,8 +958,8 @@ pub struct EnableInteractiveSerialConsoleResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableInteractiveSerialConsoleRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -961,1523 +967,2170 @@ pub struct DisableInteractiveSerialConsoleResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DetachLunRequest {
-#[prost(string, tag = "1")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub lun: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub skip_reboot: bool,
+    #[prost(string, tag = "1")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub lun: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub skip_reboot: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServerNetworkTemplate {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub applicable_instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "3")]
-pub logical_interfaces: ::prost::alloc::vec::Vec<server_network_template::LogicalInterface>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub applicable_instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub logical_interfaces: ::prost::alloc::vec::Vec<server_network_template::LogicalInterface>,
 }
 /// Nested message and enum types in `ServerNetworkTemplate`.
 pub mod server_network_template {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LogicalInterface {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "logical_interface::InterfaceType", tag = "2")]
-pub r#type: i32,
-#[prost(bool, tag = "3")]
-pub required: bool,
-}
-/// Nested message and enum types in `LogicalInterface`.
-pub mod logical_interface {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum InterfaceType {
-Unspecified = 0,
-Bond = 1,
-Nic = 2,
-}
-impl InterfaceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-InterfaceType::Unspecified => "INTERFACE_TYPE_UNSPECIFIED",
-InterfaceType::Bond => "BOND",
-InterfaceType::Nic => "NIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INTERFACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BOND" => Some(Self::Bond),
-"NIC" => Some(Self::Nic),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LogicalInterface {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(enumeration = "logical_interface::InterfaceType", tag = "2")]
+        pub r#type: i32,
+        #[prost(bool, tag = "3")]
+        pub required: bool,
+    }
+    /// Nested message and enum types in `LogicalInterface`.
+    pub mod logical_interface {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum InterfaceType {
+            Unspecified = 0,
+            Bond = 1,
+            Nic = 2,
+        }
+        impl InterfaceType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    InterfaceType::Unspecified => "INTERFACE_TYPE_UNSPECIFIED",
+                    InterfaceType::Bond => "BOND",
+                    InterfaceType::Nic => "NIC",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "INTERFACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "BOND" => Some(Self::Bond),
+                    "NIC" => Some(Self::Nic),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NfsShare {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub nfs_share_id: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "nfs_share::State", tag = "3")]
-pub state: i32,
-#[prost(string, tag = "4")]
-pub volume: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "5")]
-pub allowed_clients: ::prost::alloc::vec::Vec<nfs_share::AllowedClient>,
-#[prost(map = "string, string", tag = "6")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(int64, tag = "7")]
-pub requested_size_gib: i64,
-#[prost(enumeration = "nfs_share::StorageType", tag = "9")]
-pub storage_type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub nfs_share_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "nfs_share::State", tag = "3")]
+    pub state: i32,
+    #[prost(string, tag = "4")]
+    pub volume: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub allowed_clients: ::prost::alloc::vec::Vec<nfs_share::AllowedClient>,
+    #[prost(map = "string, string", tag = "6")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(int64, tag = "7")]
+    pub requested_size_gib: i64,
+    #[prost(enumeration = "nfs_share::StorageType", tag = "9")]
+    pub storage_type: i32,
 }
 /// Nested message and enum types in `NfsShare`.
 pub mod nfs_share {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AllowedClient {
-#[prost(string, tag = "1")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub share_ip: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub allowed_clients_cidr: ::prost::alloc::string::String,
-#[prost(enumeration = "MountPermissions", tag = "4")]
-pub mount_permissions: i32,
-#[prost(bool, tag = "5")]
-pub allow_dev: bool,
-#[prost(bool, tag = "6")]
-pub allow_suid: bool,
-#[prost(bool, tag = "7")]
-pub no_root_squash: bool,
-#[prost(string, tag = "8")]
-pub nfs_path: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioned = 1,
-Creating = 2,
-Updating = 3,
-Deleting = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioned => "PROVISIONED",
-State::Creating => "CREATING",
-State::Updating => "UPDATING",
-State::Deleting => "DELETING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONED" => Some(Self::Provisioned),
-"CREATING" => Some(Self::Creating),
-"UPDATING" => Some(Self::Updating),
-"DELETING" => Some(Self::Deleting),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MountPermissions {
-Unspecified = 0,
-Read = 1,
-ReadWrite = 2,
-}
-impl MountPermissions {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MountPermissions::Unspecified => "MOUNT_PERMISSIONS_UNSPECIFIED",
-MountPermissions::Read => "READ",
-MountPermissions::ReadWrite => "READ_WRITE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MOUNT_PERMISSIONS_UNSPECIFIED" => Some(Self::Unspecified),
-"READ" => Some(Self::Read),
-"READ_WRITE" => Some(Self::ReadWrite),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum StorageType {
-Unspecified = 0,
-Ssd = 1,
-Hdd = 2,
-}
-impl StorageType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
-StorageType::Ssd => "SSD",
-StorageType::Hdd => "HDD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SSD" => Some(Self::Ssd),
-"HDD" => Some(Self::Hdd),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AllowedClient {
+        #[prost(string, tag = "1")]
+        pub network: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub share_ip: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub allowed_clients_cidr: ::prost::alloc::string::String,
+        #[prost(enumeration = "MountPermissions", tag = "4")]
+        pub mount_permissions: i32,
+        #[prost(bool, tag = "5")]
+        pub allow_dev: bool,
+        #[prost(bool, tag = "6")]
+        pub allow_suid: bool,
+        #[prost(bool, tag = "7")]
+        pub no_root_squash: bool,
+        #[prost(string, tag = "8")]
+        pub nfs_path: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioned = 1,
+        Creating = 2,
+        Updating = 3,
+        Deleting = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioned => "PROVISIONED",
+                State::Creating => "CREATING",
+                State::Updating => "UPDATING",
+                State::Deleting => "DELETING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONED" => Some(Self::Provisioned),
+                "CREATING" => Some(Self::Creating),
+                "UPDATING" => Some(Self::Updating),
+                "DELETING" => Some(Self::Deleting),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MountPermissions {
+        Unspecified = 0,
+        Read = 1,
+        ReadWrite = 2,
+    }
+    impl MountPermissions {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MountPermissions::Unspecified => "MOUNT_PERMISSIONS_UNSPECIFIED",
+                MountPermissions::Read => "READ",
+                MountPermissions::ReadWrite => "READ_WRITE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MOUNT_PERMISSIONS_UNSPECIFIED" => Some(Self::Unspecified),
+                "READ" => Some(Self::Read),
+                "READ_WRITE" => Some(Self::ReadWrite),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum StorageType {
+        Unspecified = 0,
+        Ssd = 1,
+        Hdd = 2,
+    }
+    impl StorageType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                StorageType::Unspecified => "STORAGE_TYPE_UNSPECIFIED",
+                StorageType::Ssd => "SSD",
+                StorageType::Hdd => "HDD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STORAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SSD" => Some(Self::Ssd),
+                "HDD" => Some(Self::Hdd),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNfsShareRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNfsSharesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNfsSharesResponse {
-#[prost(message, repeated, tag = "1")]
-pub nfs_shares: ::prost::alloc::vec::Vec<NfsShare>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub nfs_shares: ::prost::alloc::vec::Vec<NfsShare>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNfsShareRequest {
-#[prost(message, optional, tag = "1")]
-pub nfs_share: ::core::option::Option<NfsShare>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub nfs_share: ::core::option::Option<NfsShare>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameNfsShareRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub new_nfsshare_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub new_nfsshare_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNfsShareRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub nfs_share: ::core::option::Option<NfsShare>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub nfs_share: ::core::option::Option<NfsShare>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNfsShareRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OsImage {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub code: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub applicable_instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub supported_network_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub code: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub applicable_instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub supported_network_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOsImagesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOsImagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub os_images: ::prost::alloc::vec::Vec<OsImage>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub os_images: ::prost::alloc::vec::Vec<OsImage>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisioningConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub instances: ::prost::alloc::vec::Vec<InstanceConfig>,
-#[prost(message, repeated, tag = "3")]
-pub networks: ::prost::alloc::vec::Vec<NetworkConfig>,
-#[prost(message, repeated, tag = "4")]
-pub volumes: ::prost::alloc::vec::Vec<VolumeConfig>,
-#[prost(string, tag = "5")]
-pub ticket_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub handover_service_account: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "7")]
-pub email: ::prost::alloc::string::String,
-#[prost(enumeration = "provisioning_config::State", tag = "8")]
-pub state: i32,
-#[prost(string, tag = "9")]
-pub location: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "11")]
-pub cloud_console_uri: ::prost::alloc::string::String,
-#[prost(bool, tag = "12")]
-pub vpc_sc_enabled: bool,
-#[prost(string, tag = "13")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub custom_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub instances: ::prost::alloc::vec::Vec<InstanceConfig>,
+    #[prost(message, repeated, tag = "3")]
+    pub networks: ::prost::alloc::vec::Vec<NetworkConfig>,
+    #[prost(message, repeated, tag = "4")]
+    pub volumes: ::prost::alloc::vec::Vec<VolumeConfig>,
+    #[prost(string, tag = "5")]
+    pub ticket_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub handover_service_account: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "7")]
+    pub email: ::prost::alloc::string::String,
+    #[prost(enumeration = "provisioning_config::State", tag = "8")]
+    pub state: i32,
+    #[prost(string, tag = "9")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "11")]
+    pub cloud_console_uri: ::prost::alloc::string::String,
+    #[prost(bool, tag = "12")]
+    pub vpc_sc_enabled: bool,
+    #[prost(string, tag = "13")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub custom_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ProvisioningConfig`.
 pub mod provisioning_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Draft = 1,
-Submitted = 2,
-Provisioning = 3,
-Provisioned = 4,
-Validated = 5,
-Cancelled = 6,
-Failed = 7,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Draft => "DRAFT",
-State::Submitted => "SUBMITTED",
-State::Provisioning => "PROVISIONING",
-State::Provisioned => "PROVISIONED",
-State::Validated => "VALIDATED",
-State::Cancelled => "CANCELLED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DRAFT" => Some(Self::Draft),
-"SUBMITTED" => Some(Self::Submitted),
-"PROVISIONING" => Some(Self::Provisioning),
-"PROVISIONED" => Some(Self::Provisioned),
-"VALIDATED" => Some(Self::Validated),
-"CANCELLED" => Some(Self::Cancelled),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Draft = 1,
+        Submitted = 2,
+        Provisioning = 3,
+        Provisioned = 4,
+        Validated = 5,
+        Cancelled = 6,
+        Failed = 7,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Draft => "DRAFT",
+                State::Submitted => "SUBMITTED",
+                State::Provisioning => "PROVISIONING",
+                State::Provisioned => "PROVISIONED",
+                State::Validated => "VALIDATED",
+                State::Cancelled => "CANCELLED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DRAFT" => Some(Self::Draft),
+                "SUBMITTED" => Some(Self::Submitted),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "PROVISIONED" => Some(Self::Provisioned),
+                "VALIDATED" => Some(Self::Validated),
+                "CANCELLED" => Some(Self::Cancelled),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubmitProvisioningConfigRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
-#[prost(string, tag = "3")]
-pub email: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
+    #[prost(string, tag = "3")]
+    pub email: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubmitProvisioningConfigResponse {
-#[prost(message, optional, tag = "1")]
-pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisioningQuota {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "provisioning_quota::AssetType", tag = "2")]
-pub asset_type: i32,
-#[prost(string, tag = "3")]
-pub gcp_service: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
-#[prost(int32, tag = "5")]
-pub available_count: i32,
-#[prost(oneof = "provisioning_quota::Quota", tags = "6")]
-pub quota: ::core::option::Option<provisioning_quota::Quota>,
-#[prost(oneof = "provisioning_quota::Availability", tags = "7, 8, 9")]
-pub availability: ::core::option::Option<provisioning_quota::Availability>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "provisioning_quota::AssetType", tag = "2")]
+    pub asset_type: i32,
+    #[prost(string, tag = "3")]
+    pub gcp_service: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(int32, tag = "5")]
+    pub available_count: i32,
+    #[prost(oneof = "provisioning_quota::Quota", tags = "6")]
+    pub quota: ::core::option::Option<provisioning_quota::Quota>,
+    #[prost(oneof = "provisioning_quota::Availability", tags = "7, 8, 9")]
+    pub availability: ::core::option::Option<provisioning_quota::Availability>,
 }
 /// Nested message and enum types in `ProvisioningQuota`.
 pub mod provisioning_quota {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AssetType {
-Unspecified = 0,
-Server = 1,
-Storage = 2,
-Network = 3,
-}
-impl AssetType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AssetType::Unspecified => "ASSET_TYPE_UNSPECIFIED",
-AssetType::Server => "ASSET_TYPE_SERVER",
-AssetType::Storage => "ASSET_TYPE_STORAGE",
-AssetType::Network => "ASSET_TYPE_NETWORK",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ASSET_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ASSET_TYPE_SERVER" => Some(Self::Server),
-"ASSET_TYPE_STORAGE" => Some(Self::Storage),
-"ASSET_TYPE_NETWORK" => Some(Self::Network),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Quota {
-#[prost(message, tag = "6")]
-InstanceQuota(super::InstanceQuota),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Availability {
-#[prost(int64, tag = "7")]
-ServerCount(i64),
-#[prost(int64, tag = "8")]
-NetworkBandwidth(i64),
-#[prost(int64, tag = "9")]
-StorageGib(i64),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum AssetType {
+        Unspecified = 0,
+        Server = 1,
+        Storage = 2,
+        Network = 3,
+    }
+    impl AssetType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AssetType::Unspecified => "ASSET_TYPE_UNSPECIFIED",
+                AssetType::Server => "ASSET_TYPE_SERVER",
+                AssetType::Storage => "ASSET_TYPE_STORAGE",
+                AssetType::Network => "ASSET_TYPE_NETWORK",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ASSET_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ASSET_TYPE_SERVER" => Some(Self::Server),
+                "ASSET_TYPE_STORAGE" => Some(Self::Storage),
+                "ASSET_TYPE_NETWORK" => Some(Self::Network),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Quota {
+        #[prost(message, tag = "6")]
+        InstanceQuota(super::InstanceQuota),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Availability {
+        #[prost(int64, tag = "7")]
+        ServerCount(i64),
+        #[prost(int64, tag = "8")]
+        NetworkBandwidth(i64),
+        #[prost(int64, tag = "9")]
+        StorageGib(i64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProvisioningQuotasRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProvisioningQuotasResponse {
-#[prost(message, repeated, tag = "1")]
-pub provisioning_quotas: ::prost::alloc::vec::Vec<ProvisioningQuota>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub provisioning_quotas: ::prost::alloc::vec::Vec<ProvisioningQuota>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstanceConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub instance_type: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub hyperthreading: bool,
-#[prost(string, tag = "5")]
-pub os_image: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(message, optional, tag = "6")]
-pub client_network: ::core::option::Option<instance_config::NetworkAddress>,
-#[deprecated]
-#[prost(message, optional, tag = "7")]
-pub private_network: ::core::option::Option<instance_config::NetworkAddress>,
-#[prost(string, tag = "8")]
-pub user_note: ::prost::alloc::string::String,
-#[prost(bool, tag = "9")]
-pub account_networks_enabled: bool,
-#[prost(enumeration = "instance_config::NetworkConfig", tag = "10")]
-pub network_config: i32,
-#[prost(string, tag = "11")]
-pub network_template: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "12")]
-pub logical_interfaces: ::prost::alloc::vec::Vec<LogicalInterface>,
-#[prost(string, repeated, tag = "13")]
-pub ssh_key_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub instance_type: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub hyperthreading: bool,
+    #[prost(string, tag = "5")]
+    pub os_image: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(message, optional, tag = "6")]
+    pub client_network: ::core::option::Option<instance_config::NetworkAddress>,
+    #[deprecated]
+    #[prost(message, optional, tag = "7")]
+    pub private_network: ::core::option::Option<instance_config::NetworkAddress>,
+    #[prost(string, tag = "8")]
+    pub user_note: ::prost::alloc::string::String,
+    #[prost(bool, tag = "9")]
+    pub account_networks_enabled: bool,
+    #[prost(enumeration = "instance_config::NetworkConfig", tag = "10")]
+    pub network_config: i32,
+    #[prost(string, tag = "11")]
+    pub network_template: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "12")]
+    pub logical_interfaces: ::prost::alloc::vec::Vec<LogicalInterface>,
+    #[prost(string, repeated, tag = "13")]
+    pub ssh_key_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `InstanceConfig`.
 pub mod instance_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NetworkAddress {
-#[prost(string, tag = "1")]
-pub network_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub address: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub existing_network_id: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum NetworkConfig {
-NetworkconfigUnspecified = 0,
-SingleVlan = 1,
-MultiVlan = 2,
-}
-impl NetworkConfig {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-NetworkConfig::NetworkconfigUnspecified => "NETWORKCONFIG_UNSPECIFIED",
-NetworkConfig::SingleVlan => "SINGLE_VLAN",
-NetworkConfig::MultiVlan => "MULTI_VLAN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NETWORKCONFIG_UNSPECIFIED" => Some(Self::NetworkconfigUnspecified),
-"SINGLE_VLAN" => Some(Self::SingleVlan),
-"MULTI_VLAN" => Some(Self::MultiVlan),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NetworkAddress {
+        #[prost(string, tag = "1")]
+        pub network_id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub address: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub existing_network_id: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum NetworkConfig {
+        NetworkconfigUnspecified = 0,
+        SingleVlan = 1,
+        MultiVlan = 2,
+    }
+    impl NetworkConfig {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                NetworkConfig::NetworkconfigUnspecified => "NETWORKCONFIG_UNSPECIFIED",
+                NetworkConfig::SingleVlan => "SINGLE_VLAN",
+                NetworkConfig::MultiVlan => "MULTI_VLAN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NETWORKCONFIG_UNSPECIFIED" => Some(Self::NetworkconfigUnspecified),
+                "SINGLE_VLAN" => Some(Self::SingleVlan),
+                "MULTI_VLAN" => Some(Self::MultiVlan),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VolumeConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub snapshots_enabled: bool,
-#[prost(enumeration = "volume_config::Type", tag = "4")]
-pub r#type: i32,
-#[prost(enumeration = "volume_config::Protocol", tag = "5")]
-pub protocol: i32,
-#[prost(int32, tag = "6")]
-pub size_gb: i32,
-#[prost(message, repeated, tag = "7")]
-pub lun_ranges: ::prost::alloc::vec::Vec<volume_config::LunRange>,
-#[prost(string, repeated, tag = "8")]
-pub machine_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "9")]
-pub nfs_exports: ::prost::alloc::vec::Vec<volume_config::NfsExport>,
-#[prost(string, tag = "10")]
-pub user_note: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub gcp_service: ::prost::alloc::string::String,
-#[prost(enumeration = "VolumePerformanceTier", tag = "12")]
-pub performance_tier: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub snapshots_enabled: bool,
+    #[prost(enumeration = "volume_config::Type", tag = "4")]
+    pub r#type: i32,
+    #[prost(enumeration = "volume_config::Protocol", tag = "5")]
+    pub protocol: i32,
+    #[prost(int32, tag = "6")]
+    pub size_gb: i32,
+    #[prost(message, repeated, tag = "7")]
+    pub lun_ranges: ::prost::alloc::vec::Vec<volume_config::LunRange>,
+    #[prost(string, repeated, tag = "8")]
+    pub machine_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "9")]
+    pub nfs_exports: ::prost::alloc::vec::Vec<volume_config::NfsExport>,
+    #[prost(string, tag = "10")]
+    pub user_note: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub gcp_service: ::prost::alloc::string::String,
+    #[prost(enumeration = "VolumePerformanceTier", tag = "12")]
+    pub performance_tier: i32,
 }
 /// Nested message and enum types in `VolumeConfig`.
 pub mod volume_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LunRange {
-#[prost(int32, tag = "1")]
-pub quantity: i32,
-#[prost(int32, tag = "2")]
-pub size_gb: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NfsExport {
-#[prost(string, tag = "1")]
-pub network_id: ::prost::alloc::string::String,
-#[prost(enumeration = "nfs_export::Permissions", tag = "4")]
-pub permissions: i32,
-#[prost(bool, tag = "5")]
-pub no_root_squash: bool,
-#[prost(bool, tag = "6")]
-pub allow_suid: bool,
-#[prost(bool, tag = "7")]
-pub allow_dev: bool,
-#[prost(oneof = "nfs_export::Client", tags = "2, 3")]
-pub client: ::core::option::Option<nfs_export::Client>,
-}
-/// Nested message and enum types in `NfsExport`.
-pub mod nfs_export {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Permissions {
-Unspecified = 0,
-ReadOnly = 1,
-ReadWrite = 2,
-}
-impl Permissions {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Permissions::Unspecified => "PERMISSIONS_UNSPECIFIED",
-Permissions::ReadOnly => "READ_ONLY",
-Permissions::ReadWrite => "READ_WRITE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PERMISSIONS_UNSPECIFIED" => Some(Self::Unspecified),
-"READ_ONLY" => Some(Self::ReadOnly),
-"READ_WRITE" => Some(Self::ReadWrite),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Client {
-#[prost(string, tag = "2")]
-MachineId(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-Cidr(::prost::alloc::string::String),
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Flash = 1,
-Disk = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Flash => "FLASH",
-Type::Disk => "DISK",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FLASH" => Some(Self::Flash),
-"DISK" => Some(Self::Disk),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Protocol {
-Unspecified = 0,
-Fc = 1,
-Nfs = 2,
-}
-impl Protocol {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
-Protocol::Fc => "PROTOCOL_FC",
-Protocol::Nfs => "PROTOCOL_NFS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROTOCOL_UNSPECIFIED" => Some(Self::Unspecified),
-"PROTOCOL_FC" => Some(Self::Fc),
-"PROTOCOL_NFS" => Some(Self::Nfs),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LunRange {
+        #[prost(int32, tag = "1")]
+        pub quantity: i32,
+        #[prost(int32, tag = "2")]
+        pub size_gb: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NfsExport {
+        #[prost(string, tag = "1")]
+        pub network_id: ::prost::alloc::string::String,
+        #[prost(enumeration = "nfs_export::Permissions", tag = "4")]
+        pub permissions: i32,
+        #[prost(bool, tag = "5")]
+        pub no_root_squash: bool,
+        #[prost(bool, tag = "6")]
+        pub allow_suid: bool,
+        #[prost(bool, tag = "7")]
+        pub allow_dev: bool,
+        #[prost(oneof = "nfs_export::Client", tags = "2, 3")]
+        pub client: ::core::option::Option<nfs_export::Client>,
+    }
+    /// Nested message and enum types in `NfsExport`.
+    pub mod nfs_export {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Permissions {
+            Unspecified = 0,
+            ReadOnly = 1,
+            ReadWrite = 2,
+        }
+        impl Permissions {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Permissions::Unspecified => "PERMISSIONS_UNSPECIFIED",
+                    Permissions::ReadOnly => "READ_ONLY",
+                    Permissions::ReadWrite => "READ_WRITE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PERMISSIONS_UNSPECIFIED" => Some(Self::Unspecified),
+                    "READ_ONLY" => Some(Self::ReadOnly),
+                    "READ_WRITE" => Some(Self::ReadWrite),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Client {
+            #[prost(string, tag = "2")]
+            MachineId(::prost::alloc::string::String),
+            #[prost(string, tag = "3")]
+            Cidr(::prost::alloc::string::String),
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Flash = 1,
+        Disk = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Flash => "FLASH",
+                Type::Disk => "DISK",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "FLASH" => Some(Self::Flash),
+                "DISK" => Some(Self::Disk),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Protocol {
+        Unspecified = 0,
+        Fc = 1,
+        Nfs = 2,
+    }
+    impl Protocol {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Protocol::Unspecified => "PROTOCOL_UNSPECIFIED",
+                Protocol::Fc => "PROTOCOL_FC",
+                Protocol::Nfs => "PROTOCOL_NFS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROTOCOL_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROTOCOL_FC" => Some(Self::Fc),
+                "PROTOCOL_NFS" => Some(Self::Nfs),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "network_config::Type", tag = "3")]
-pub r#type: i32,
-#[prost(enumeration = "network_config::Bandwidth", tag = "4")]
-pub bandwidth: i32,
-#[prost(message, repeated, tag = "5")]
-pub vlan_attachments: ::prost::alloc::vec::Vec<network_config::IntakeVlanAttachment>,
-#[prost(string, tag = "6")]
-pub cidr: ::prost::alloc::string::String,
-#[prost(enumeration = "network_config::ServiceCidr", tag = "7")]
-pub service_cidr: i32,
-#[prost(string, tag = "8")]
-pub user_note: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub gcp_service: ::prost::alloc::string::String,
-#[prost(bool, tag = "10")]
-pub vlan_same_project: bool,
-#[prost(bool, tag = "11")]
-pub jumbo_frames_enabled: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "network_config::Type", tag = "3")]
+    pub r#type: i32,
+    #[prost(enumeration = "network_config::Bandwidth", tag = "4")]
+    pub bandwidth: i32,
+    #[prost(message, repeated, tag = "5")]
+    pub vlan_attachments: ::prost::alloc::vec::Vec<network_config::IntakeVlanAttachment>,
+    #[prost(string, tag = "6")]
+    pub cidr: ::prost::alloc::string::String,
+    #[prost(enumeration = "network_config::ServiceCidr", tag = "7")]
+    pub service_cidr: i32,
+    #[prost(string, tag = "8")]
+    pub user_note: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub gcp_service: ::prost::alloc::string::String,
+    #[prost(bool, tag = "10")]
+    pub vlan_same_project: bool,
+    #[prost(bool, tag = "11")]
+    pub jumbo_frames_enabled: bool,
 }
 /// Nested message and enum types in `NetworkConfig`.
 pub mod network_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IntakeVlanAttachment {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub pairing_key: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Client = 1,
-Private = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Client => "CLIENT",
-Type::Private => "PRIVATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLIENT" => Some(Self::Client),
-"PRIVATE" => Some(Self::Private),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Bandwidth {
-Unspecified = 0,
-Bw1Gbps = 1,
-Bw2Gbps = 2,
-Bw5Gbps = 3,
-Bw10Gbps = 4,
-}
-impl Bandwidth {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Bandwidth::Unspecified => "BANDWIDTH_UNSPECIFIED",
-Bandwidth::Bw1Gbps => "BW_1_GBPS",
-Bandwidth::Bw2Gbps => "BW_2_GBPS",
-Bandwidth::Bw5Gbps => "BW_5_GBPS",
-Bandwidth::Bw10Gbps => "BW_10_GBPS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BANDWIDTH_UNSPECIFIED" => Some(Self::Unspecified),
-"BW_1_GBPS" => Some(Self::Bw1Gbps),
-"BW_2_GBPS" => Some(Self::Bw2Gbps),
-"BW_5_GBPS" => Some(Self::Bw5Gbps),
-"BW_10_GBPS" => Some(Self::Bw10Gbps),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ServiceCidr {
-Unspecified = 0,
-Disabled = 1,
-High26 = 2,
-High27 = 3,
-High28 = 4,
-}
-impl ServiceCidr {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ServiceCidr::Unspecified => "SERVICE_CIDR_UNSPECIFIED",
-ServiceCidr::Disabled => "DISABLED",
-ServiceCidr::High26 => "HIGH_26",
-ServiceCidr::High27 => "HIGH_27",
-ServiceCidr::High28 => "HIGH_28",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SERVICE_CIDR_UNSPECIFIED" => Some(Self::Unspecified),
-"DISABLED" => Some(Self::Disabled),
-"HIGH_26" => Some(Self::High26),
-"HIGH_27" => Some(Self::High27),
-"HIGH_28" => Some(Self::High28),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct IntakeVlanAttachment {
+        #[prost(string, tag = "1")]
+        pub id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub pairing_key: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Client = 1,
+        Private = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Client => "CLIENT",
+                Type::Private => "PRIVATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLIENT" => Some(Self::Client),
+                "PRIVATE" => Some(Self::Private),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Bandwidth {
+        Unspecified = 0,
+        Bw1Gbps = 1,
+        Bw2Gbps = 2,
+        Bw5Gbps = 3,
+        Bw10Gbps = 4,
+    }
+    impl Bandwidth {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Bandwidth::Unspecified => "BANDWIDTH_UNSPECIFIED",
+                Bandwidth::Bw1Gbps => "BW_1_GBPS",
+                Bandwidth::Bw2Gbps => "BW_2_GBPS",
+                Bandwidth::Bw5Gbps => "BW_5_GBPS",
+                Bandwidth::Bw10Gbps => "BW_10_GBPS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BANDWIDTH_UNSPECIFIED" => Some(Self::Unspecified),
+                "BW_1_GBPS" => Some(Self::Bw1Gbps),
+                "BW_2_GBPS" => Some(Self::Bw2Gbps),
+                "BW_5_GBPS" => Some(Self::Bw5Gbps),
+                "BW_10_GBPS" => Some(Self::Bw10Gbps),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ServiceCidr {
+        Unspecified = 0,
+        Disabled = 1,
+        High26 = 2,
+        High27 = 3,
+        High28 = 4,
+    }
+    impl ServiceCidr {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ServiceCidr::Unspecified => "SERVICE_CIDR_UNSPECIFIED",
+                ServiceCidr::Disabled => "DISABLED",
+                ServiceCidr::High26 => "HIGH_26",
+                ServiceCidr::High27 => "HIGH_27",
+                ServiceCidr::High28 => "HIGH_28",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SERVICE_CIDR_UNSPECIFIED" => Some(Self::Unspecified),
+                "DISABLED" => Some(Self::Disabled),
+                "HIGH_26" => Some(Self::High26),
+                "HIGH_27" => Some(Self::High27),
+                "HIGH_28" => Some(Self::High28),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstanceQuota {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "2")]
-pub instance_type: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub gcp_service: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub available_machine_count: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "2")]
+    pub instance_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub gcp_service: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub available_machine_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProvisioningConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProvisioningConfigRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
-#[prost(string, tag = "3")]
-pub email: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
+    #[prost(string, tag = "3")]
+    pub email: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProvisioningConfigRequest {
-#[prost(message, optional, tag = "1")]
-pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(string, tag = "3")]
-pub email: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub provisioning_config: ::core::option::Option<ProvisioningConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "3")]
+    pub email: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SshKey {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub public_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSshKeysRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSshKeysResponse {
-#[prost(message, repeated, tag = "1")]
-pub ssh_keys: ::prost::alloc::vec::Vec<SshKey>,
-#[prost(string, tag = "90")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub ssh_keys: ::prost::alloc::vec::Vec<SshKey>,
+    #[prost(string, tag = "90")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSshKeyRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub ssh_key: ::core::option::Option<SshKey>,
-#[prost(string, tag = "3")]
-pub ssh_key_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub ssh_key: ::core::option::Option<SshKey>,
+    #[prost(string, tag = "3")]
+    pub ssh_key_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSshKeyRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VolumeSnapshot {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "5")]
-pub storage_volume: ::prost::alloc::string::String,
-#[prost(enumeration = "volume_snapshot::SnapshotType", tag = "7")]
-pub r#type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "5")]
+    pub storage_volume: ::prost::alloc::string::String,
+    #[prost(enumeration = "volume_snapshot::SnapshotType", tag = "7")]
+    pub r#type: i32,
 }
 /// Nested message and enum types in `VolumeSnapshot`.
 pub mod volume_snapshot {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SnapshotType {
-Unspecified = 0,
-AdHoc = 1,
-Scheduled = 2,
-}
-impl SnapshotType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SnapshotType::Unspecified => "SNAPSHOT_TYPE_UNSPECIFIED",
-SnapshotType::AdHoc => "AD_HOC",
-SnapshotType::Scheduled => "SCHEDULED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SNAPSHOT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"AD_HOC" => Some(Self::AdHoc),
-"SCHEDULED" => Some(Self::Scheduled),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SnapshotType {
+        Unspecified = 0,
+        AdHoc = 1,
+        Scheduled = 2,
+    }
+    impl SnapshotType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SnapshotType::Unspecified => "SNAPSHOT_TYPE_UNSPECIFIED",
+                SnapshotType::AdHoc => "AD_HOC",
+                SnapshotType::Scheduled => "SCHEDULED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SNAPSHOT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "AD_HOC" => Some(Self::AdHoc),
+                "SCHEDULED" => Some(Self::Scheduled),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVolumeSnapshotRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumeSnapshotsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumeSnapshotsResponse {
-#[prost(message, repeated, tag = "1")]
-pub volume_snapshots: ::prost::alloc::vec::Vec<VolumeSnapshot>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub volume_snapshots: ::prost::alloc::vec::Vec<VolumeSnapshot>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteVolumeSnapshotRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVolumeSnapshotRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub volume_snapshot: ::core::option::Option<VolumeSnapshot>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub volume_snapshot: ::core::option::Option<VolumeSnapshot>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreVolumeSnapshotRequest {
-#[prost(string, tag = "1")]
-pub volume_snapshot: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub volume_snapshot: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ResetInstanceResponse {}
 /// Generated client implementations.
 pub mod bare_metal_solution_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Performs management operations on Bare Metal Solution servers.
-///
-/// The `baremetalsolution.googleapis.com` service provides management
-/// capabilities for Bare Metal Solution servers. To access the API methods, you
-/// must assign Bare Metal Solution IAM roles containing the desired permissions
-/// to your staff in your Google Cloud project. You must also enable the Bare
-/// Metal Solution API. Once enabled, the methods act
-/// upon specific servers in your Bare Metal Solution environment.
-#[derive(Debug, Clone)]
-pub struct BareMetalSolutionClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> BareMetalSolutionClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> BareMetalSolutionClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-BareMetalSolutionClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// List servers in a given project and location.
-pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListInstances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListInstances"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details about a single server.
-pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Update details of a single server.
-pub async fn update_instance(&mut self, request: impl tonic::IntoRequest<super::UpdateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "UpdateInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// RenameInstance sets a new name for an instance.
-/// Use with caution, previous names become immediately invalidated.
-pub async fn rename_instance(&mut self, request: impl tonic::IntoRequest<super::RenameInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "RenameInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Perform an ungraceful, hard reset on a server. Equivalent to shutting the
-/// power off and then turning it back on.
-pub async fn reset_instance(&mut self, request: impl tonic::IntoRequest<super::ResetInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ResetInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ResetInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Starts a server that was shutdown.
-pub async fn start_instance(&mut self, request: impl tonic::IntoRequest<super::StartInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/StartInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "StartInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Stop a running server.
-pub async fn stop_instance(&mut self, request: impl tonic::IntoRequest<super::StopInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/StopInstance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "StopInstance"));
-self.inner.unary(req, path, codec).await
-}
-/// Enable the interactive serial console feature on an instance.
-pub async fn enable_interactive_serial_console(&mut self, request: impl tonic::IntoRequest<super::EnableInteractiveSerialConsoleRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/EnableInteractiveSerialConsole");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "EnableInteractiveSerialConsole"));
-self.inner.unary(req, path, codec).await
-}
-/// Disable the interactive serial console feature on an instance.
-pub async fn disable_interactive_serial_console(&mut self, request: impl tonic::IntoRequest<super::DisableInteractiveSerialConsoleRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DisableInteractiveSerialConsole");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "DisableInteractiveSerialConsole"));
-self.inner.unary(req, path, codec).await
-}
-/// Detach LUN from Instance.
-pub async fn detach_lun(&mut self, request: impl tonic::IntoRequest<super::DetachLunRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DetachLun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "DetachLun"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the public SSH keys registered for the specified project.
-/// These SSH keys are used only for the interactive serial console feature.
-pub async fn list_ssh_keys(&mut self, request: impl tonic::IntoRequest<super::ListSshKeysRequest>) -> std::result::Result<tonic::Response<super::ListSshKeysResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListSSHKeys");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListSSHKeys"));
-self.inner.unary(req, path, codec).await
-}
-/// Register a public SSH key in the specified project for use with the
-/// interactive serial console feature.
-pub async fn create_ssh_key(&mut self, request: impl tonic::IntoRequest<super::CreateSshKeyRequest>) -> std::result::Result<tonic::Response<super::SshKey>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateSSHKey");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "CreateSSHKey"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a public SSH key registered in the specified project.
-pub async fn delete_ssh_key(&mut self, request: impl tonic::IntoRequest<super::DeleteSshKeyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteSSHKey");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "DeleteSSHKey"));
-self.inner.unary(req, path, codec).await
-}
-/// List storage volumes in a given project and location.
-pub async fn list_volumes(&mut self, request: impl tonic::IntoRequest<super::ListVolumesRequest>) -> std::result::Result<tonic::Response<super::ListVolumesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListVolumes"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details of a single storage volume.
-pub async fn get_volume(&mut self, request: impl tonic::IntoRequest<super::GetVolumeRequest>) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolume");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetVolume"));
-self.inner.unary(req, path, codec).await
-}
-/// Update details of a single storage volume.
-pub async fn update_volume(&mut self, request: impl tonic::IntoRequest<super::UpdateVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateVolume");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "UpdateVolume"));
-self.inner.unary(req, path, codec).await
-}
-/// RenameVolume sets a new name for a volume.
-/// Use with caution, previous names become immediately invalidated.
-pub async fn rename_volume(&mut self, request: impl tonic::IntoRequest<super::RenameVolumeRequest>) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameVolume");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "RenameVolume"));
-self.inner.unary(req, path, codec).await
-}
-/// Skips volume's cooloff and deletes it now.
-/// Volume must be in cooloff state.
-pub async fn evict_volume(&mut self, request: impl tonic::IntoRequest<super::EvictVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictVolume");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "EvictVolume"));
-self.inner.unary(req, path, codec).await
-}
-/// Emergency Volume resize.
-pub async fn resize_volume(&mut self, request: impl tonic::IntoRequest<super::ResizeVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ResizeVolume");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ResizeVolume"));
-self.inner.unary(req, path, codec).await
-}
-/// List network in a given project and location.
-pub async fn list_networks(&mut self, request: impl tonic::IntoRequest<super::ListNetworksRequest>) -> std::result::Result<tonic::Response<super::ListNetworksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListNetworks"));
-self.inner.unary(req, path, codec).await
-}
-/// List all Networks (and used IPs for each Network) in the vendor account
-/// associated with the specified project.
-pub async fn list_network_usage(&mut self, request: impl tonic::IntoRequest<super::ListNetworkUsageRequest>) -> std::result::Result<tonic::Response<super::ListNetworkUsageResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworkUsage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListNetworkUsage"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details of a single network.
-pub async fn get_network(&mut self, request: impl tonic::IntoRequest<super::GetNetworkRequest>) -> std::result::Result<tonic::Response<super::Network>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNetwork");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetNetwork"));
-self.inner.unary(req, path, codec).await
-}
-/// Update details of a single network.
-pub async fn update_network(&mut self, request: impl tonic::IntoRequest<super::UpdateNetworkRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNetwork");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "UpdateNetwork"));
-self.inner.unary(req, path, codec).await
-}
-/// Takes a snapshot of a boot volume.
-/// Returns INVALID_ARGUMENT if called for a non-boot volume.
-pub async fn create_volume_snapshot(&mut self, request: impl tonic::IntoRequest<super::CreateVolumeSnapshotRequest>) -> std::result::Result<tonic::Response<super::VolumeSnapshot>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateVolumeSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "CreateVolumeSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Uses the specified snapshot to restore its parent volume.
-/// Returns INVALID_ARGUMENT if called for a non-boot volume.
-pub async fn restore_volume_snapshot(&mut self, request: impl tonic::IntoRequest<super::RestoreVolumeSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "RestoreVolumeSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a volume snapshot.
-/// Returns INVALID_ARGUMENT if called for a non-boot volume.
-pub async fn delete_volume_snapshot(&mut self, request: impl tonic::IntoRequest<super::DeleteVolumeSnapshotRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteVolumeSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "DeleteVolumeSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns the specified snapshot resource.
-/// Returns INVALID_ARGUMENT if called for a non-boot volume.
-pub async fn get_volume_snapshot(&mut self, request: impl tonic::IntoRequest<super::GetVolumeSnapshotRequest>) -> std::result::Result<tonic::Response<super::VolumeSnapshot>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolumeSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetVolumeSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves the list of snapshots for the specified volume.
-/// Returns a response with an empty list of snapshots if called
-/// for a non-boot volume.
-pub async fn list_volume_snapshots(&mut self, request: impl tonic::IntoRequest<super::ListVolumeSnapshotsRequest>) -> std::result::Result<tonic::Response<super::ListVolumeSnapshotsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumeSnapshots");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListVolumeSnapshots"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details of a single storage logical unit number(LUN).
-pub async fn get_lun(&mut self, request: impl tonic::IntoRequest<super::GetLunRequest>) -> std::result::Result<tonic::Response<super::Lun>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetLun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetLun"));
-self.inner.unary(req, path, codec).await
-}
-/// List storage volume luns for given storage volume.
-pub async fn list_luns(&mut self, request: impl tonic::IntoRequest<super::ListLunsRequest>) -> std::result::Result<tonic::Response<super::ListLunsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListLuns");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListLuns"));
-self.inner.unary(req, path, codec).await
-}
-/// Skips lun's cooloff and deletes it now.
-/// Lun must be in cooloff state.
-pub async fn evict_lun(&mut self, request: impl tonic::IntoRequest<super::EvictLunRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictLun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "EvictLun"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details of a single NFS share.
-pub async fn get_nfs_share(&mut self, request: impl tonic::IntoRequest<super::GetNfsShareRequest>) -> std::result::Result<tonic::Response<super::NfsShare>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNfsShare");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetNfsShare"));
-self.inner.unary(req, path, codec).await
-}
-/// List NFS shares.
-pub async fn list_nfs_shares(&mut self, request: impl tonic::IntoRequest<super::ListNfsSharesRequest>) -> std::result::Result<tonic::Response<super::ListNfsSharesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNfsShares");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListNfsShares"));
-self.inner.unary(req, path, codec).await
-}
-/// Update details of a single NFS share.
-pub async fn update_nfs_share(&mut self, request: impl tonic::IntoRequest<super::UpdateNfsShareRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNfsShare");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "UpdateNfsShare"));
-self.inner.unary(req, path, codec).await
-}
-/// Create an NFS share.
-pub async fn create_nfs_share(&mut self, request: impl tonic::IntoRequest<super::CreateNfsShareRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateNfsShare");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "CreateNfsShare"));
-self.inner.unary(req, path, codec).await
-}
-/// RenameNfsShare sets a new name for an nfsshare.
-/// Use with caution, previous names become immediately invalidated.
-pub async fn rename_nfs_share(&mut self, request: impl tonic::IntoRequest<super::RenameNfsShareRequest>) -> std::result::Result<tonic::Response<super::NfsShare>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNfsShare");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "RenameNfsShare"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete an NFS share. The underlying volume is automatically deleted.
-pub async fn delete_nfs_share(&mut self, request: impl tonic::IntoRequest<super::DeleteNfsShareRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteNfsShare");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "DeleteNfsShare"));
-self.inner.unary(req, path, codec).await
-}
-/// List the budget details to provision resources on a given project.
-pub async fn list_provisioning_quotas(&mut self, request: impl tonic::IntoRequest<super::ListProvisioningQuotasRequest>) -> std::result::Result<tonic::Response<super::ListProvisioningQuotasResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListProvisioningQuotas");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListProvisioningQuotas"));
-self.inner.unary(req, path, codec).await
-}
-/// Submit a provisiong configuration for a given project.
-pub async fn submit_provisioning_config(&mut self, request: impl tonic::IntoRequest<super::SubmitProvisioningConfigRequest>) -> std::result::Result<tonic::Response<super::SubmitProvisioningConfigResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/SubmitProvisioningConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "SubmitProvisioningConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Get ProvisioningConfig by name.
-pub async fn get_provisioning_config(&mut self, request: impl tonic::IntoRequest<super::GetProvisioningConfigRequest>) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/GetProvisioningConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "GetProvisioningConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Create new ProvisioningConfig.
-pub async fn create_provisioning_config(&mut self, request: impl tonic::IntoRequest<super::CreateProvisioningConfigRequest>) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateProvisioningConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "CreateProvisioningConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Update existing ProvisioningConfig.
-pub async fn update_provisioning_config(&mut self, request: impl tonic::IntoRequest<super::UpdateProvisioningConfigRequest>) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateProvisioningConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "UpdateProvisioningConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// RenameNetwork sets a new name for a network.
-/// Use with caution, previous names become immediately invalidated.
-pub async fn rename_network(&mut self, request: impl tonic::IntoRequest<super::RenameNetworkRequest>) -> std::result::Result<tonic::Response<super::Network>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNetwork");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "RenameNetwork"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves the list of OS images which are currently approved.
-pub async fn list_os_images(&mut self, request: impl tonic::IntoRequest<super::ListOsImagesRequest>) -> std::result::Result<tonic::Response<super::ListOsImagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/ListOSImages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.baremetalsolution.v2.BareMetalSolution", "ListOSImages"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Performs management operations on Bare Metal Solution servers.
+    ///
+    /// The `baremetalsolution.googleapis.com` service provides management
+    /// capabilities for Bare Metal Solution servers. To access the API methods, you
+    /// must assign Bare Metal Solution IAM roles containing the desired permissions
+    /// to your staff in your Google Cloud project. You must also enable the Bare
+    /// Metal Solution API. Once enabled, the methods act
+    /// upon specific servers in your Bare Metal Solution environment.
+    #[derive(Debug, Clone)]
+    pub struct BareMetalSolutionClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> BareMetalSolutionClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BareMetalSolutionClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            BareMetalSolutionClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// List servers in a given project and location.
+        pub async fn list_instances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListInstances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListInstances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details about a single server.
+        pub async fn get_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update details of a single server.
+        pub async fn update_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "UpdateInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RenameInstance sets a new name for an instance.
+        /// Use with caution, previous names become immediately invalidated.
+        pub async fn rename_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RenameInstanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "RenameInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Perform an ungraceful, hard reset on a server. Equivalent to shutting the
+        /// power off and then turning it back on.
+        pub async fn reset_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResetInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ResetInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ResetInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Starts a server that was shutdown.
+        pub async fn start_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StartInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/StartInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "StartInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Stop a running server.
+        pub async fn stop_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StopInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/StopInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "StopInstance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Enable the interactive serial console feature on an instance.
+        pub async fn enable_interactive_serial_console(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EnableInteractiveSerialConsoleRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/EnableInteractiveSerialConsole");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "EnableInteractiveSerialConsole",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Disable the interactive serial console feature on an instance.
+        pub async fn disable_interactive_serial_console(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DisableInteractiveSerialConsoleRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.baremetalsolution.v2.BareMetalSolution/DisableInteractiveSerialConsole");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "DisableInteractiveSerialConsole",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Detach LUN from Instance.
+        pub async fn detach_lun(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DetachLunRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/DetachLun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "DetachLun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the public SSH keys registered for the specified project.
+        /// These SSH keys are used only for the interactive serial console feature.
+        pub async fn list_ssh_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSshKeysRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListSshKeysResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListSSHKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListSSHKeys",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Register a public SSH key in the specified project for use with the
+        /// interactive serial console feature.
+        pub async fn create_ssh_key(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateSshKeyRequest>,
+        ) -> std::result::Result<tonic::Response<super::SshKey>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateSSHKey",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "CreateSSHKey",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a public SSH key registered in the specified project.
+        pub async fn delete_ssh_key(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSshKeyRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteSSHKey",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "DeleteSSHKey",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List storage volumes in a given project and location.
+        pub async fn list_volumes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListVolumesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListVolumesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListVolumes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details of a single storage volume.
+        pub async fn get_volume(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVolumeRequest>,
+        ) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolume",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetVolume",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update details of a single storage volume.
+        pub async fn update_volume(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateVolumeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateVolume",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "UpdateVolume",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RenameVolume sets a new name for a volume.
+        /// Use with caution, previous names become immediately invalidated.
+        pub async fn rename_volume(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RenameVolumeRequest>,
+        ) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameVolume",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "RenameVolume",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Skips volume's cooloff and deletes it now.
+        /// Volume must be in cooloff state.
+        pub async fn evict_volume(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EvictVolumeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictVolume",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "EvictVolume",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Emergency Volume resize.
+        pub async fn resize_volume(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResizeVolumeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ResizeVolume",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ResizeVolume",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List network in a given project and location.
+        pub async fn list_networks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNetworksRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNetworksResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListNetworks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List all Networks (and used IPs for each Network) in the vendor account
+        /// associated with the specified project.
+        pub async fn list_network_usage(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNetworkUsageRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNetworkUsageResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworkUsage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListNetworkUsage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details of a single network.
+        pub async fn get_network(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNetworkRequest>,
+        ) -> std::result::Result<tonic::Response<super::Network>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNetwork",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetNetwork",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update details of a single network.
+        pub async fn update_network(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateNetworkRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNetwork",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "UpdateNetwork",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Takes a snapshot of a boot volume.
+        /// Returns INVALID_ARGUMENT if called for a non-boot volume.
+        pub async fn create_volume_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateVolumeSnapshotRequest>,
+        ) -> std::result::Result<tonic::Response<super::VolumeSnapshot>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateVolumeSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "CreateVolumeSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Uses the specified snapshot to restore its parent volume.
+        /// Returns INVALID_ARGUMENT if called for a non-boot volume.
+        pub async fn restore_volume_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RestoreVolumeSnapshotRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "RestoreVolumeSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a volume snapshot.
+        /// Returns INVALID_ARGUMENT if called for a non-boot volume.
+        pub async fn delete_volume_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteVolumeSnapshotRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteVolumeSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "DeleteVolumeSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns the specified snapshot resource.
+        /// Returns INVALID_ARGUMENT if called for a non-boot volume.
+        pub async fn get_volume_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVolumeSnapshotRequest>,
+        ) -> std::result::Result<tonic::Response<super::VolumeSnapshot>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolumeSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetVolumeSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the list of snapshots for the specified volume.
+        /// Returns a response with an empty list of snapshots if called
+        /// for a non-boot volume.
+        pub async fn list_volume_snapshots(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListVolumeSnapshotsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListVolumeSnapshotsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumeSnapshots",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListVolumeSnapshots",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details of a single storage logical unit number(LUN).
+        pub async fn get_lun(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetLunRequest>,
+        ) -> std::result::Result<tonic::Response<super::Lun>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetLun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetLun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List storage volume luns for given storage volume.
+        pub async fn list_luns(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListLunsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListLunsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListLuns",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListLuns",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Skips lun's cooloff and deletes it now.
+        /// Lun must be in cooloff state.
+        pub async fn evict_lun(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EvictLunRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictLun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "EvictLun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details of a single NFS share.
+        pub async fn get_nfs_share(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNfsShareRequest>,
+        ) -> std::result::Result<tonic::Response<super::NfsShare>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNfsShare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetNfsShare",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List NFS shares.
+        pub async fn list_nfs_shares(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNfsSharesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNfsSharesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNfsShares",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListNfsShares",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update details of a single NFS share.
+        pub async fn update_nfs_share(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateNfsShareRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNfsShare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "UpdateNfsShare",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create an NFS share.
+        pub async fn create_nfs_share(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateNfsShareRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateNfsShare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "CreateNfsShare",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RenameNfsShare sets a new name for an nfsshare.
+        /// Use with caution, previous names become immediately invalidated.
+        pub async fn rename_nfs_share(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RenameNfsShareRequest>,
+        ) -> std::result::Result<tonic::Response<super::NfsShare>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNfsShare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "RenameNfsShare",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete an NFS share. The underlying volume is automatically deleted.
+        pub async fn delete_nfs_share(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteNfsShareRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteNfsShare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "DeleteNfsShare",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List the budget details to provision resources on a given project.
+        pub async fn list_provisioning_quotas(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProvisioningQuotasRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListProvisioningQuotasResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListProvisioningQuotas",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListProvisioningQuotas",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Submit a provisiong configuration for a given project.
+        pub async fn submit_provisioning_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SubmitProvisioningConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SubmitProvisioningConfigResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/SubmitProvisioningConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "SubmitProvisioningConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get ProvisioningConfig by name.
+        pub async fn get_provisioning_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProvisioningConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/GetProvisioningConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "GetProvisioningConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create new ProvisioningConfig.
+        pub async fn create_provisioning_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateProvisioningConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateProvisioningConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "CreateProvisioningConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update existing ProvisioningConfig.
+        pub async fn update_provisioning_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateProvisioningConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProvisioningConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateProvisioningConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "UpdateProvisioningConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// RenameNetwork sets a new name for a network.
+        /// Use with caution, previous names become immediately invalidated.
+        pub async fn rename_network(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RenameNetworkRequest>,
+        ) -> std::result::Result<tonic::Response<super::Network>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNetwork",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "RenameNetwork",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the list of OS images which are currently approved.
+        pub async fn list_os_images(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListOsImagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListOsImagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.baremetalsolution.v2.BareMetalSolution/ListOSImages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.baremetalsolution.v2.BareMetalSolution",
+                "ListOSImages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

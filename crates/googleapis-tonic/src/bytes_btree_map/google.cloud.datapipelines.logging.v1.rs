@@ -2,149 +2,161 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestLogEntry {
-#[prost(enumeration = "request_log_entry::RequestType", tag = "1")]
-pub request_type: i32,
-#[prost(message, optional, tag = "2")]
-pub status: ::core::option::Option<super::super::super::super::rpc::Status>,
-#[prost(enumeration = "request_log_entry::ErrorCause", tag = "3")]
-pub error_cause: i32,
+    #[prost(enumeration = "request_log_entry::RequestType", tag = "1")]
+    pub request_type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub status: ::core::option::Option<super::super::super::super::rpc::Status>,
+    #[prost(enumeration = "request_log_entry::ErrorCause", tag = "3")]
+    pub error_cause: i32,
 }
 /// Nested message and enum types in `RequestLogEntry`.
 pub mod request_log_entry {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RequestType {
-Unspecified = 0,
-CreatePipeline = 1,
-UpdatePipeline = 2,
-DeletePipeline = 3,
-ListPipelines = 4,
-GetPipeline = 5,
-StopPipeline = 6,
-RunPipeline = 7,
-ListJobs = 8,
-}
-impl RequestType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RequestType::Unspecified => "REQUEST_TYPE_UNSPECIFIED",
-RequestType::CreatePipeline => "CREATE_PIPELINE",
-RequestType::UpdatePipeline => "UPDATE_PIPELINE",
-RequestType::DeletePipeline => "DELETE_PIPELINE",
-RequestType::ListPipelines => "LIST_PIPELINES",
-RequestType::GetPipeline => "GET_PIPELINE",
-RequestType::StopPipeline => "STOP_PIPELINE",
-RequestType::RunPipeline => "RUN_PIPELINE",
-RequestType::ListJobs => "LIST_JOBS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REQUEST_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATE_PIPELINE" => Some(Self::CreatePipeline),
-"UPDATE_PIPELINE" => Some(Self::UpdatePipeline),
-"DELETE_PIPELINE" => Some(Self::DeletePipeline),
-"LIST_PIPELINES" => Some(Self::ListPipelines),
-"GET_PIPELINE" => Some(Self::GetPipeline),
-"STOP_PIPELINE" => Some(Self::StopPipeline),
-"RUN_PIPELINE" => Some(Self::RunPipeline),
-"LIST_JOBS" => Some(Self::ListJobs),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ErrorCause {
-Unspecified = 0,
-InvalidRequest = 1,
-ProjectNumberNotFound = 2,
-PipelineIdAlreadyExists = 3,
-PipelineQuotaAllocationFailed = 4,
-PipelineNotFound = 5,
-InvalidPipelineWorkload = 6,
-DataflowWorkerServiceAccountPermissionDenied = 7,
-CloudSchedulerServiceAccountPermissionDenied = 8,
-InternalDataPipelinesServiceAccountIssue = 9,
-CloudSchedulerInvalidArgument = 10,
-CloudSchedulerResourceExhausted = 11,
-CloudSchedulerJobNotFound = 12,
-OtherCloudSchedulerIssue = 13,
-DataflowJobAlreadyExists = 14,
-DataflowInvalidArgument = 15,
-DataflowResourceExhausted = 16,
-DataflowJobNotFound = 17,
-OtherDataflowIssue = 18,
-DatabaseError = 19,
-WrongPipelineType = 20,
-InternalError = 21,
-PipelineOrProjectNotFound = 22,
-}
-impl ErrorCause {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ErrorCause::Unspecified => "ERROR_CAUSE_UNSPECIFIED",
-ErrorCause::InvalidRequest => "INVALID_REQUEST",
-ErrorCause::ProjectNumberNotFound => "PROJECT_NUMBER_NOT_FOUND",
-ErrorCause::PipelineIdAlreadyExists => "PIPELINE_ID_ALREADY_EXISTS",
-ErrorCause::PipelineQuotaAllocationFailed => "PIPELINE_QUOTA_ALLOCATION_FAILED",
-ErrorCause::PipelineNotFound => "PIPELINE_NOT_FOUND",
-ErrorCause::InvalidPipelineWorkload => "INVALID_PIPELINE_WORKLOAD",
-ErrorCause::DataflowWorkerServiceAccountPermissionDenied => "DATAFLOW_WORKER_SERVICE_ACCOUNT_PERMISSION_DENIED",
-ErrorCause::CloudSchedulerServiceAccountPermissionDenied => "CLOUD_SCHEDULER_SERVICE_ACCOUNT_PERMISSION_DENIED",
-ErrorCause::InternalDataPipelinesServiceAccountIssue => "INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE",
-ErrorCause::CloudSchedulerInvalidArgument => "CLOUD_SCHEDULER_INVALID_ARGUMENT",
-ErrorCause::CloudSchedulerResourceExhausted => "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED",
-ErrorCause::CloudSchedulerJobNotFound => "CLOUD_SCHEDULER_JOB_NOT_FOUND",
-ErrorCause::OtherCloudSchedulerIssue => "OTHER_CLOUD_SCHEDULER_ISSUE",
-ErrorCause::DataflowJobAlreadyExists => "DATAFLOW_JOB_ALREADY_EXISTS",
-ErrorCause::DataflowInvalidArgument => "DATAFLOW_INVALID_ARGUMENT",
-ErrorCause::DataflowResourceExhausted => "DATAFLOW_RESOURCE_EXHAUSTED",
-ErrorCause::DataflowJobNotFound => "DATAFLOW_JOB_NOT_FOUND",
-ErrorCause::OtherDataflowIssue => "OTHER_DATAFLOW_ISSUE",
-ErrorCause::DatabaseError => "DATABASE_ERROR",
-ErrorCause::WrongPipelineType => "WRONG_PIPELINE_TYPE",
-ErrorCause::InternalError => "INTERNAL_ERROR",
-ErrorCause::PipelineOrProjectNotFound => "PIPELINE_OR_PROJECT_NOT_FOUND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ERROR_CAUSE_UNSPECIFIED" => Some(Self::Unspecified),
-"INVALID_REQUEST" => Some(Self::InvalidRequest),
-"PROJECT_NUMBER_NOT_FOUND" => Some(Self::ProjectNumberNotFound),
-"PIPELINE_ID_ALREADY_EXISTS" => Some(Self::PipelineIdAlreadyExists),
-"PIPELINE_QUOTA_ALLOCATION_FAILED" => Some(Self::PipelineQuotaAllocationFailed),
-"PIPELINE_NOT_FOUND" => Some(Self::PipelineNotFound),
-"INVALID_PIPELINE_WORKLOAD" => Some(Self::InvalidPipelineWorkload),
-"DATAFLOW_WORKER_SERVICE_ACCOUNT_PERMISSION_DENIED" => Some(Self::DataflowWorkerServiceAccountPermissionDenied),
-"CLOUD_SCHEDULER_SERVICE_ACCOUNT_PERMISSION_DENIED" => Some(Self::CloudSchedulerServiceAccountPermissionDenied),
-"INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE" => Some(Self::InternalDataPipelinesServiceAccountIssue),
-"CLOUD_SCHEDULER_INVALID_ARGUMENT" => Some(Self::CloudSchedulerInvalidArgument),
-"CLOUD_SCHEDULER_RESOURCE_EXHAUSTED" => Some(Self::CloudSchedulerResourceExhausted),
-"CLOUD_SCHEDULER_JOB_NOT_FOUND" => Some(Self::CloudSchedulerJobNotFound),
-"OTHER_CLOUD_SCHEDULER_ISSUE" => Some(Self::OtherCloudSchedulerIssue),
-"DATAFLOW_JOB_ALREADY_EXISTS" => Some(Self::DataflowJobAlreadyExists),
-"DATAFLOW_INVALID_ARGUMENT" => Some(Self::DataflowInvalidArgument),
-"DATAFLOW_RESOURCE_EXHAUSTED" => Some(Self::DataflowResourceExhausted),
-"DATAFLOW_JOB_NOT_FOUND" => Some(Self::DataflowJobNotFound),
-"OTHER_DATAFLOW_ISSUE" => Some(Self::OtherDataflowIssue),
-"DATABASE_ERROR" => Some(Self::DatabaseError),
-"WRONG_PIPELINE_TYPE" => Some(Self::WrongPipelineType),
-"INTERNAL_ERROR" => Some(Self::InternalError),
-"PIPELINE_OR_PROJECT_NOT_FOUND" => Some(Self::PipelineOrProjectNotFound),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RequestType {
+        Unspecified = 0,
+        CreatePipeline = 1,
+        UpdatePipeline = 2,
+        DeletePipeline = 3,
+        ListPipelines = 4,
+        GetPipeline = 5,
+        StopPipeline = 6,
+        RunPipeline = 7,
+        ListJobs = 8,
+    }
+    impl RequestType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RequestType::Unspecified => "REQUEST_TYPE_UNSPECIFIED",
+                RequestType::CreatePipeline => "CREATE_PIPELINE",
+                RequestType::UpdatePipeline => "UPDATE_PIPELINE",
+                RequestType::DeletePipeline => "DELETE_PIPELINE",
+                RequestType::ListPipelines => "LIST_PIPELINES",
+                RequestType::GetPipeline => "GET_PIPELINE",
+                RequestType::StopPipeline => "STOP_PIPELINE",
+                RequestType::RunPipeline => "RUN_PIPELINE",
+                RequestType::ListJobs => "LIST_JOBS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REQUEST_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATE_PIPELINE" => Some(Self::CreatePipeline),
+                "UPDATE_PIPELINE" => Some(Self::UpdatePipeline),
+                "DELETE_PIPELINE" => Some(Self::DeletePipeline),
+                "LIST_PIPELINES" => Some(Self::ListPipelines),
+                "GET_PIPELINE" => Some(Self::GetPipeline),
+                "STOP_PIPELINE" => Some(Self::StopPipeline),
+                "RUN_PIPELINE" => Some(Self::RunPipeline),
+                "LIST_JOBS" => Some(Self::ListJobs),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ErrorCause {
+        Unspecified = 0,
+        InvalidRequest = 1,
+        ProjectNumberNotFound = 2,
+        PipelineIdAlreadyExists = 3,
+        PipelineQuotaAllocationFailed = 4,
+        PipelineNotFound = 5,
+        InvalidPipelineWorkload = 6,
+        DataflowWorkerServiceAccountPermissionDenied = 7,
+        CloudSchedulerServiceAccountPermissionDenied = 8,
+        InternalDataPipelinesServiceAccountIssue = 9,
+        CloudSchedulerInvalidArgument = 10,
+        CloudSchedulerResourceExhausted = 11,
+        CloudSchedulerJobNotFound = 12,
+        OtherCloudSchedulerIssue = 13,
+        DataflowJobAlreadyExists = 14,
+        DataflowInvalidArgument = 15,
+        DataflowResourceExhausted = 16,
+        DataflowJobNotFound = 17,
+        OtherDataflowIssue = 18,
+        DatabaseError = 19,
+        WrongPipelineType = 20,
+        InternalError = 21,
+        PipelineOrProjectNotFound = 22,
+    }
+    impl ErrorCause {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ErrorCause::Unspecified => "ERROR_CAUSE_UNSPECIFIED",
+                ErrorCause::InvalidRequest => "INVALID_REQUEST",
+                ErrorCause::ProjectNumberNotFound => "PROJECT_NUMBER_NOT_FOUND",
+                ErrorCause::PipelineIdAlreadyExists => "PIPELINE_ID_ALREADY_EXISTS",
+                ErrorCause::PipelineQuotaAllocationFailed => "PIPELINE_QUOTA_ALLOCATION_FAILED",
+                ErrorCause::PipelineNotFound => "PIPELINE_NOT_FOUND",
+                ErrorCause::InvalidPipelineWorkload => "INVALID_PIPELINE_WORKLOAD",
+                ErrorCause::DataflowWorkerServiceAccountPermissionDenied => {
+                    "DATAFLOW_WORKER_SERVICE_ACCOUNT_PERMISSION_DENIED"
+                }
+                ErrorCause::CloudSchedulerServiceAccountPermissionDenied => {
+                    "CLOUD_SCHEDULER_SERVICE_ACCOUNT_PERMISSION_DENIED"
+                }
+                ErrorCause::InternalDataPipelinesServiceAccountIssue => {
+                    "INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE"
+                }
+                ErrorCause::CloudSchedulerInvalidArgument => "CLOUD_SCHEDULER_INVALID_ARGUMENT",
+                ErrorCause::CloudSchedulerResourceExhausted => "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED",
+                ErrorCause::CloudSchedulerJobNotFound => "CLOUD_SCHEDULER_JOB_NOT_FOUND",
+                ErrorCause::OtherCloudSchedulerIssue => "OTHER_CLOUD_SCHEDULER_ISSUE",
+                ErrorCause::DataflowJobAlreadyExists => "DATAFLOW_JOB_ALREADY_EXISTS",
+                ErrorCause::DataflowInvalidArgument => "DATAFLOW_INVALID_ARGUMENT",
+                ErrorCause::DataflowResourceExhausted => "DATAFLOW_RESOURCE_EXHAUSTED",
+                ErrorCause::DataflowJobNotFound => "DATAFLOW_JOB_NOT_FOUND",
+                ErrorCause::OtherDataflowIssue => "OTHER_DATAFLOW_ISSUE",
+                ErrorCause::DatabaseError => "DATABASE_ERROR",
+                ErrorCause::WrongPipelineType => "WRONG_PIPELINE_TYPE",
+                ErrorCause::InternalError => "INTERNAL_ERROR",
+                ErrorCause::PipelineOrProjectNotFound => "PIPELINE_OR_PROJECT_NOT_FOUND",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ERROR_CAUSE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INVALID_REQUEST" => Some(Self::InvalidRequest),
+                "PROJECT_NUMBER_NOT_FOUND" => Some(Self::ProjectNumberNotFound),
+                "PIPELINE_ID_ALREADY_EXISTS" => Some(Self::PipelineIdAlreadyExists),
+                "PIPELINE_QUOTA_ALLOCATION_FAILED" => Some(Self::PipelineQuotaAllocationFailed),
+                "PIPELINE_NOT_FOUND" => Some(Self::PipelineNotFound),
+                "INVALID_PIPELINE_WORKLOAD" => Some(Self::InvalidPipelineWorkload),
+                "DATAFLOW_WORKER_SERVICE_ACCOUNT_PERMISSION_DENIED" => {
+                    Some(Self::DataflowWorkerServiceAccountPermissionDenied)
+                }
+                "CLOUD_SCHEDULER_SERVICE_ACCOUNT_PERMISSION_DENIED" => {
+                    Some(Self::CloudSchedulerServiceAccountPermissionDenied)
+                }
+                "INTERNAL_DATA_PIPELINES_SERVICE_ACCOUNT_ISSUE" => {
+                    Some(Self::InternalDataPipelinesServiceAccountIssue)
+                }
+                "CLOUD_SCHEDULER_INVALID_ARGUMENT" => Some(Self::CloudSchedulerInvalidArgument),
+                "CLOUD_SCHEDULER_RESOURCE_EXHAUSTED" => Some(Self::CloudSchedulerResourceExhausted),
+                "CLOUD_SCHEDULER_JOB_NOT_FOUND" => Some(Self::CloudSchedulerJobNotFound),
+                "OTHER_CLOUD_SCHEDULER_ISSUE" => Some(Self::OtherCloudSchedulerIssue),
+                "DATAFLOW_JOB_ALREADY_EXISTS" => Some(Self::DataflowJobAlreadyExists),
+                "DATAFLOW_INVALID_ARGUMENT" => Some(Self::DataflowInvalidArgument),
+                "DATAFLOW_RESOURCE_EXHAUSTED" => Some(Self::DataflowResourceExhausted),
+                "DATAFLOW_JOB_NOT_FOUND" => Some(Self::DataflowJobNotFound),
+                "OTHER_DATAFLOW_ISSUE" => Some(Self::OtherDataflowIssue),
+                "DATABASE_ERROR" => Some(Self::DatabaseError),
+                "WRONG_PIPELINE_TYPE" => Some(Self::WrongPipelineType),
+                "INTERNAL_ERROR" => Some(Self::InternalError),
+                "PIPELINE_OR_PROJECT_NOT_FOUND" => Some(Self::PipelineOrProjectNotFound),
+                _ => None,
+            }
+        }
+    }
 }

@@ -2,141 +2,162 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Request {
-#[prost(string, tag = "1")]
-pub target: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "2")]
-pub resume_marker: ::prost::bytes::Bytes,
+    #[prost(string, tag = "1")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub resume_marker: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeBatch {
-#[prost(message, repeated, tag = "1")]
-pub changes: ::prost::alloc::vec::Vec<Change>,
+    #[prost(message, repeated, tag = "1")]
+    pub changes: ::prost::alloc::vec::Vec<Change>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Change {
-#[prost(string, tag = "1")]
-pub element: ::prost::alloc::string::String,
-#[prost(enumeration = "change::State", tag = "2")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub data: ::core::option::Option<::prost_types::Any>,
-#[prost(bytes = "bytes", tag = "4")]
-pub resume_marker: ::prost::bytes::Bytes,
-#[prost(bool, tag = "5")]
-pub continued: bool,
+    #[prost(string, tag = "1")]
+    pub element: ::prost::alloc::string::String,
+    #[prost(enumeration = "change::State", tag = "2")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub data: ::core::option::Option<::prost_types::Any>,
+    #[prost(bytes = "bytes", tag = "4")]
+    pub resume_marker: ::prost::bytes::Bytes,
+    #[prost(bool, tag = "5")]
+    pub continued: bool,
 }
 /// Nested message and enum types in `Change`.
 pub mod change {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Exists = 0,
-DoesNotExist = 1,
-InitialStateSkipped = 2,
-Error = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Exists => "EXISTS",
-State::DoesNotExist => "DOES_NOT_EXIST",
-State::InitialStateSkipped => "INITIAL_STATE_SKIPPED",
-State::Error => "ERROR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXISTS" => Some(Self::Exists),
-"DOES_NOT_EXIST" => Some(Self::DoesNotExist),
-"INITIAL_STATE_SKIPPED" => Some(Self::InitialStateSkipped),
-"ERROR" => Some(Self::Error),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Exists = 0,
+        DoesNotExist = 1,
+        InitialStateSkipped = 2,
+        Error = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Exists => "EXISTS",
+                State::DoesNotExist => "DOES_NOT_EXIST",
+                State::InitialStateSkipped => "INITIAL_STATE_SKIPPED",
+                State::Error => "ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXISTS" => Some(Self::Exists),
+                "DOES_NOT_EXIST" => Some(Self::DoesNotExist),
+                "INITIAL_STATE_SKIPPED" => Some(Self::InitialStateSkipped),
+                "ERROR" => Some(Self::Error),
+                _ => None,
+            }
+        }
+    }
 }
 /// Generated client implementations.
 pub mod watcher_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The service that a client uses to connect to the watcher system.
-/// The errors returned by the service are in the canonical error space,
-/// see [google.rpc.Code][].
-#[derive(Debug, Clone)]
-pub struct WatcherClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> WatcherClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> WatcherClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-WatcherClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Start a streaming RPC to get watch information from the server.
-pub async fn watch(&mut self, request: impl tonic::IntoRequest<super::Request>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ChangeBatch>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.watcher.v1.Watcher/Watch");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.watcher.v1.Watcher", "Watch"));
-self.inner.server_streaming(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The service that a client uses to connect to the watcher system.
+    /// The errors returned by the service are in the canonical error space,
+    /// see [google.rpc.Code][].
+    #[derive(Debug, Clone)]
+    pub struct WatcherClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> WatcherClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> WatcherClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            WatcherClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Start a streaming RPC to get watch information from the server.
+        pub async fn watch(
+            &mut self,
+            request: impl tonic::IntoRequest<super::Request>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::ChangeBatch>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.watcher.v1.Watcher/Watch");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("google.watcher.v1.Watcher", "Watch"));
+            self.inner.server_streaming(req, path, codec).await
+        }
+    }
 }

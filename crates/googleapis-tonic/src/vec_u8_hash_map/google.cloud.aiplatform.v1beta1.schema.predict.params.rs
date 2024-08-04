@@ -2,54 +2,54 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageSegmentationPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VideoActionRecognitionPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageClassificationPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VideoObjectTrackingPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
-#[prost(float, tag = "3")]
-pub min_bounding_box_size: f32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
+    #[prost(float, tag = "3")]
+    pub min_bounding_box_size: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VideoClassificationPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
-#[prost(bool, tag = "3")]
-pub segment_classification: bool,
-#[prost(bool, tag = "4")]
-pub shot_classification: bool,
-#[prost(bool, tag = "5")]
-pub one_sec_interval_classification: bool,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
+    #[prost(bool, tag = "3")]
+    pub segment_classification: bool,
+    #[prost(bool, tag = "4")]
+    pub shot_classification: bool,
+    #[prost(bool, tag = "5")]
+    pub one_sec_interval_classification: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionPredictionParams {
-#[prost(float, tag = "1")]
-pub confidence_threshold: f32,
-#[prost(int32, tag = "2")]
-pub max_predictions: i32,
+    #[prost(float, tag = "1")]
+    pub confidence_threshold: f32,
+    #[prost(int32, tag = "2")]
+    pub max_predictions: i32,
 }

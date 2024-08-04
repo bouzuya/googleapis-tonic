@@ -2,915 +2,1126 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckOnboardingStatusRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckOnboardingStatusResponse {
-#[prost(string, tag = "1")]
-pub service_account: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub findings: ::prost::alloc::vec::Vec<check_onboarding_status_response::Finding>,
+    #[prost(string, tag = "1")]
+    pub service_account: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub findings: ::prost::alloc::vec::Vec<check_onboarding_status_response::Finding>,
 }
 /// Nested message and enum types in `CheckOnboardingStatusResponse`.
 pub mod check_onboarding_status_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Finding {
-#[prost(oneof = "finding::FindingType", tags = "1")]
-pub finding_type: ::core::option::Option<finding::FindingType>,
-}
-/// Nested message and enum types in `Finding`.
-pub mod finding {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IamAccessDenied {
-#[prost(string, repeated, tag = "1")]
-pub missing_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum FindingType {
-#[prost(message, tag = "1")]
-IamAccessDenied(IamAccessDenied),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Finding {
+        #[prost(oneof = "finding::FindingType", tags = "1")]
+        pub finding_type: ::core::option::Option<finding::FindingType>,
+    }
+    /// Nested message and enum types in `Finding`.
+    pub mod finding {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct IamAccessDenied {
+            #[prost(string, repeated, tag = "1")]
+            pub missing_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum FindingType {
+            #[prost(message, tag = "1")]
+            IamAccessDenied(IamAccessDenied),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entitlement {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "5")]
-pub eligible_users: ::prost::alloc::vec::Vec<AccessControlEntry>,
-#[prost(message, optional, tag = "6")]
-pub approval_workflow: ::core::option::Option<ApprovalWorkflow>,
-#[prost(message, optional, tag = "7")]
-pub privileged_access: ::core::option::Option<PrivilegedAccess>,
-#[prost(message, optional, tag = "8")]
-pub max_request_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "entitlement::State", tag = "9")]
-pub state: i32,
-#[prost(message, optional, tag = "10")]
-pub requester_justification_config: ::core::option::Option<entitlement::RequesterJustificationConfig>,
-#[prost(message, optional, tag = "11")]
-pub additional_notification_targets: ::core::option::Option<entitlement::AdditionalNotificationTargets>,
-#[prost(string, tag = "12")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "5")]
+    pub eligible_users: ::prost::alloc::vec::Vec<AccessControlEntry>,
+    #[prost(message, optional, tag = "6")]
+    pub approval_workflow: ::core::option::Option<ApprovalWorkflow>,
+    #[prost(message, optional, tag = "7")]
+    pub privileged_access: ::core::option::Option<PrivilegedAccess>,
+    #[prost(message, optional, tag = "8")]
+    pub max_request_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "entitlement::State", tag = "9")]
+    pub state: i32,
+    #[prost(message, optional, tag = "10")]
+    pub requester_justification_config:
+        ::core::option::Option<entitlement::RequesterJustificationConfig>,
+    #[prost(message, optional, tag = "11")]
+    pub additional_notification_targets:
+        ::core::option::Option<entitlement::AdditionalNotificationTargets>,
+    #[prost(string, tag = "12")]
+    pub etag: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Entitlement`.
 pub mod entitlement {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct RequesterJustificationConfig {
-#[prost(oneof = "requester_justification_config::JustificationType", tags = "1, 2")]
-pub justification_type: ::core::option::Option<requester_justification_config::JustificationType>,
-}
-/// Nested message and enum types in `RequesterJustificationConfig`.
-pub mod requester_justification_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NotMandatory {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Unstructured {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum JustificationType {
-#[prost(message, tag = "1")]
-NotMandatory(NotMandatory),
-#[prost(message, tag = "2")]
-Unstructured(Unstructured),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdditionalNotificationTargets {
-#[prost(string, repeated, tag = "1")]
-pub admin_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "2")]
-pub requester_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Available = 2,
-Deleting = 3,
-Deleted = 4,
-Updating = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Available => "AVAILABLE",
-State::Deleting => "DELETING",
-State::Deleted => "DELETED",
-State::Updating => "UPDATING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"AVAILABLE" => Some(Self::Available),
-"DELETING" => Some(Self::Deleting),
-"DELETED" => Some(Self::Deleted),
-"UPDATING" => Some(Self::Updating),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct RequesterJustificationConfig {
+        #[prost(
+            oneof = "requester_justification_config::JustificationType",
+            tags = "1, 2"
+        )]
+        pub justification_type:
+            ::core::option::Option<requester_justification_config::JustificationType>,
+    }
+    /// Nested message and enum types in `RequesterJustificationConfig`.
+    pub mod requester_justification_config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct NotMandatory {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Unstructured {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum JustificationType {
+            #[prost(message, tag = "1")]
+            NotMandatory(NotMandatory),
+            #[prost(message, tag = "2")]
+            Unstructured(Unstructured),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AdditionalNotificationTargets {
+        #[prost(string, repeated, tag = "1")]
+        pub admin_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "2")]
+        pub requester_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Available = 2,
+        Deleting = 3,
+        Deleted = 4,
+        Updating = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Available => "AVAILABLE",
+                State::Deleting => "DELETING",
+                State::Deleted => "DELETED",
+                State::Updating => "UPDATING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "AVAILABLE" => Some(Self::Available),
+                "DELETING" => Some(Self::Deleting),
+                "DELETED" => Some(Self::Deleted),
+                "UPDATING" => Some(Self::Updating),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessControlEntry {
-#[prost(string, repeated, tag = "1")]
-pub principals: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub principals: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApprovalWorkflow {
-#[prost(oneof = "approval_workflow::ApprovalWorkflow", tags = "1")]
-pub approval_workflow: ::core::option::Option<approval_workflow::ApprovalWorkflow>,
+    #[prost(oneof = "approval_workflow::ApprovalWorkflow", tags = "1")]
+    pub approval_workflow: ::core::option::Option<approval_workflow::ApprovalWorkflow>,
 }
 /// Nested message and enum types in `ApprovalWorkflow`.
 pub mod approval_workflow {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ApprovalWorkflow {
-#[prost(message, tag = "1")]
-ManualApprovals(super::ManualApprovals),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ApprovalWorkflow {
+        #[prost(message, tag = "1")]
+        ManualApprovals(super::ManualApprovals),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ManualApprovals {
-#[prost(bool, tag = "1")]
-pub require_approver_justification: bool,
-#[prost(message, repeated, tag = "2")]
-pub steps: ::prost::alloc::vec::Vec<manual_approvals::Step>,
+    #[prost(bool, tag = "1")]
+    pub require_approver_justification: bool,
+    #[prost(message, repeated, tag = "2")]
+    pub steps: ::prost::alloc::vec::Vec<manual_approvals::Step>,
 }
 /// Nested message and enum types in `ManualApprovals`.
 pub mod manual_approvals {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Step {
-#[prost(message, repeated, tag = "1")]
-pub approvers: ::prost::alloc::vec::Vec<super::AccessControlEntry>,
-#[prost(int32, tag = "2")]
-pub approvals_needed: i32,
-#[prost(string, repeated, tag = "3")]
-pub approver_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Step {
+        #[prost(message, repeated, tag = "1")]
+        pub approvers: ::prost::alloc::vec::Vec<super::AccessControlEntry>,
+        #[prost(int32, tag = "2")]
+        pub approvals_needed: i32,
+        #[prost(string, repeated, tag = "3")]
+        pub approver_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivilegedAccess {
-#[prost(oneof = "privileged_access::AccessType", tags = "1")]
-pub access_type: ::core::option::Option<privileged_access::AccessType>,
+    #[prost(oneof = "privileged_access::AccessType", tags = "1")]
+    pub access_type: ::core::option::Option<privileged_access::AccessType>,
 }
 /// Nested message and enum types in `PrivilegedAccess`.
 pub mod privileged_access {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GcpIamAccess {
-#[prost(string, tag = "1")]
-pub resource_type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub role_bindings: ::prost::alloc::vec::Vec<gcp_iam_access::RoleBinding>,
-}
-/// Nested message and enum types in `GcpIamAccess`.
-pub mod gcp_iam_access {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RoleBinding {
-#[prost(string, tag = "1")]
-pub role: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub condition_expression: ::prost::alloc::string::String,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AccessType {
-#[prost(message, tag = "1")]
-GcpIamAccess(GcpIamAccess),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GcpIamAccess {
+        #[prost(string, tag = "1")]
+        pub resource_type: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub resource: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "4")]
+        pub role_bindings: ::prost::alloc::vec::Vec<gcp_iam_access::RoleBinding>,
+    }
+    /// Nested message and enum types in `GcpIamAccess`.
+    pub mod gcp_iam_access {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct RoleBinding {
+            #[prost(string, tag = "1")]
+            pub role: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub condition_expression: ::prost::alloc::string::String,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AccessType {
+        #[prost(message, tag = "1")]
+        GcpIamAccess(GcpIamAccess),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntitlementsResponse {
-#[prost(message, repeated, tag = "1")]
-pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchEntitlementsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(enumeration = "search_entitlements_request::CallerAccessType", tag = "2")]
-pub caller_access_type: i32,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "search_entitlements_request::CallerAccessType",
+        tag = "2"
+    )]
+    pub caller_access_type: i32,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SearchEntitlementsRequest`.
 pub mod search_entitlements_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CallerAccessType {
-Unspecified = 0,
-GrantRequester = 1,
-GrantApprover = 2,
-}
-impl CallerAccessType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CallerAccessType::Unspecified => "CALLER_ACCESS_TYPE_UNSPECIFIED",
-CallerAccessType::GrantRequester => "GRANT_REQUESTER",
-CallerAccessType::GrantApprover => "GRANT_APPROVER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CALLER_ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"GRANT_REQUESTER" => Some(Self::GrantRequester),
-"GRANT_APPROVER" => Some(Self::GrantApprover),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum CallerAccessType {
+        Unspecified = 0,
+        GrantRequester = 1,
+        GrantApprover = 2,
+    }
+    impl CallerAccessType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CallerAccessType::Unspecified => "CALLER_ACCESS_TYPE_UNSPECIFIED",
+                CallerAccessType::GrantRequester => "GRANT_REQUESTER",
+                CallerAccessType::GrantApprover => "GRANT_APPROVER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CALLER_ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GRANT_REQUESTER" => Some(Self::GrantRequester),
+                "GRANT_APPROVER" => Some(Self::GrantApprover),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchEntitlementsResponse {
-#[prost(message, repeated, tag = "1")]
-pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub entitlements: ::prost::alloc::vec::Vec<Entitlement>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntitlementRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntitlementRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub entitlement_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub entitlement: ::core::option::Option<Entitlement>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub entitlement_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub entitlement: ::core::option::Option<Entitlement>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntitlementRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub force: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEntitlementRequest {
-#[prost(message, optional, tag = "1")]
-pub entitlement: ::core::option::Option<Entitlement>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub entitlement: ::core::option::Option<Entitlement>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Grant {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub requester: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub requested_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub justification: ::core::option::Option<Justification>,
-#[prost(enumeration = "grant::State", tag = "7")]
-pub state: i32,
-#[prost(message, optional, tag = "8")]
-pub timeline: ::core::option::Option<grant::Timeline>,
-#[prost(message, optional, tag = "9")]
-pub privileged_access: ::core::option::Option<PrivilegedAccess>,
-#[prost(message, optional, tag = "10")]
-pub audit_trail: ::core::option::Option<grant::AuditTrail>,
-#[prost(string, repeated, tag = "11")]
-pub additional_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "12")]
-pub externally_modified: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "4")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub requested_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "6")]
+    pub justification: ::core::option::Option<Justification>,
+    #[prost(enumeration = "grant::State", tag = "7")]
+    pub state: i32,
+    #[prost(message, optional, tag = "8")]
+    pub timeline: ::core::option::Option<grant::Timeline>,
+    #[prost(message, optional, tag = "9")]
+    pub privileged_access: ::core::option::Option<PrivilegedAccess>,
+    #[prost(message, optional, tag = "10")]
+    pub audit_trail: ::core::option::Option<grant::AuditTrail>,
+    #[prost(string, repeated, tag = "11")]
+    pub additional_email_recipients: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "12")]
+    pub externally_modified: bool,
 }
 /// Nested message and enum types in `Grant`.
 pub mod grant {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Timeline {
-#[prost(message, repeated, tag = "1")]
-pub events: ::prost::alloc::vec::Vec<timeline::Event>,
-}
-/// Nested message and enum types in `Timeline`.
-pub mod timeline {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Event {
-#[prost(message, optional, tag = "1")]
-pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "event::Event", tags = "2, 3, 4, 5, 6, 7, 8, 10, 11, 12")]
-pub event: ::core::option::Option<event::Event>,
-}
-/// Nested message and enum types in `Event`.
-pub mod event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Requested {
-#[prost(message, optional, tag = "1")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Approved {
-#[prost(string, tag = "1")]
-pub reason: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub actor: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Denied {
-#[prost(string, tag = "1")]
-pub reason: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub actor: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Revoked {
-#[prost(string, tag = "1")]
-pub reason: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub actor: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Scheduled {
-#[prost(message, optional, tag = "1")]
-pub scheduled_activation_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Activated {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActivationFailed {
-#[prost(message, optional, tag = "1")]
-pub error: ::core::option::Option<super::super::super::super::super::super::rpc::Status>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Expired {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Ended {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ExternallyModified {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Event {
-#[prost(message, tag = "2")]
-Requested(Requested),
-#[prost(message, tag = "3")]
-Approved(Approved),
-#[prost(message, tag = "4")]
-Denied(Denied),
-#[prost(message, tag = "5")]
-Revoked(Revoked),
-#[prost(message, tag = "6")]
-Scheduled(Scheduled),
-#[prost(message, tag = "7")]
-Activated(Activated),
-#[prost(message, tag = "8")]
-ActivationFailed(ActivationFailed),
-#[prost(message, tag = "10")]
-Expired(Expired),
-#[prost(message, tag = "11")]
-Ended(Ended),
-#[prost(message, tag = "12")]
-ExternallyModified(ExternallyModified),
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AuditTrail {
-#[prost(message, optional, tag = "1")]
-pub access_grant_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub access_remove_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-ApprovalAwaited = 1,
-Denied = 3,
-Scheduled = 4,
-Activating = 5,
-Active = 6,
-ActivationFailed = 7,
-Expired = 8,
-Revoking = 9,
-Revoked = 10,
-Ended = 11,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::ApprovalAwaited => "APPROVAL_AWAITED",
-State::Denied => "DENIED",
-State::Scheduled => "SCHEDULED",
-State::Activating => "ACTIVATING",
-State::Active => "ACTIVE",
-State::ActivationFailed => "ACTIVATION_FAILED",
-State::Expired => "EXPIRED",
-State::Revoking => "REVOKING",
-State::Revoked => "REVOKED",
-State::Ended => "ENDED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"APPROVAL_AWAITED" => Some(Self::ApprovalAwaited),
-"DENIED" => Some(Self::Denied),
-"SCHEDULED" => Some(Self::Scheduled),
-"ACTIVATING" => Some(Self::Activating),
-"ACTIVE" => Some(Self::Active),
-"ACTIVATION_FAILED" => Some(Self::ActivationFailed),
-"EXPIRED" => Some(Self::Expired),
-"REVOKING" => Some(Self::Revoking),
-"REVOKED" => Some(Self::Revoked),
-"ENDED" => Some(Self::Ended),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Timeline {
+        #[prost(message, repeated, tag = "1")]
+        pub events: ::prost::alloc::vec::Vec<timeline::Event>,
+    }
+    /// Nested message and enum types in `Timeline`.
+    pub mod timeline {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Event {
+            #[prost(message, optional, tag = "1")]
+            pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+            #[prost(oneof = "event::Event", tags = "2, 3, 4, 5, 6, 7, 8, 10, 11, 12")]
+            pub event: ::core::option::Option<event::Event>,
+        }
+        /// Nested message and enum types in `Event`.
+        pub mod event {
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Requested {
+                #[prost(message, optional, tag = "1")]
+                pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct Approved {
+                #[prost(string, tag = "1")]
+                pub reason: ::prost::alloc::string::String,
+                #[prost(string, tag = "2")]
+                pub actor: ::prost::alloc::string::String,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct Denied {
+                #[prost(string, tag = "1")]
+                pub reason: ::prost::alloc::string::String,
+                #[prost(string, tag = "2")]
+                pub actor: ::prost::alloc::string::String,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct Revoked {
+                #[prost(string, tag = "1")]
+                pub reason: ::prost::alloc::string::String,
+                #[prost(string, tag = "2")]
+                pub actor: ::prost::alloc::string::String,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Scheduled {
+                #[prost(message, optional, tag = "1")]
+                pub scheduled_activation_time: ::core::option::Option<::prost_types::Timestamp>,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Activated {}
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct ActivationFailed {
+                #[prost(message, optional, tag = "1")]
+                pub error:
+                    ::core::option::Option<super::super::super::super::super::super::rpc::Status>,
+            }
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Expired {}
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct Ended {}
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+            pub struct ExternallyModified {}
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum Event {
+                #[prost(message, tag = "2")]
+                Requested(Requested),
+                #[prost(message, tag = "3")]
+                Approved(Approved),
+                #[prost(message, tag = "4")]
+                Denied(Denied),
+                #[prost(message, tag = "5")]
+                Revoked(Revoked),
+                #[prost(message, tag = "6")]
+                Scheduled(Scheduled),
+                #[prost(message, tag = "7")]
+                Activated(Activated),
+                #[prost(message, tag = "8")]
+                ActivationFailed(ActivationFailed),
+                #[prost(message, tag = "10")]
+                Expired(Expired),
+                #[prost(message, tag = "11")]
+                Ended(Ended),
+                #[prost(message, tag = "12")]
+                ExternallyModified(ExternallyModified),
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AuditTrail {
+        #[prost(message, optional, tag = "1")]
+        pub access_grant_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub access_remove_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        ApprovalAwaited = 1,
+        Denied = 3,
+        Scheduled = 4,
+        Activating = 5,
+        Active = 6,
+        ActivationFailed = 7,
+        Expired = 8,
+        Revoking = 9,
+        Revoked = 10,
+        Ended = 11,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::ApprovalAwaited => "APPROVAL_AWAITED",
+                State::Denied => "DENIED",
+                State::Scheduled => "SCHEDULED",
+                State::Activating => "ACTIVATING",
+                State::Active => "ACTIVE",
+                State::ActivationFailed => "ACTIVATION_FAILED",
+                State::Expired => "EXPIRED",
+                State::Revoking => "REVOKING",
+                State::Revoked => "REVOKED",
+                State::Ended => "ENDED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "APPROVAL_AWAITED" => Some(Self::ApprovalAwaited),
+                "DENIED" => Some(Self::Denied),
+                "SCHEDULED" => Some(Self::Scheduled),
+                "ACTIVATING" => Some(Self::Activating),
+                "ACTIVE" => Some(Self::Active),
+                "ACTIVATION_FAILED" => Some(Self::ActivationFailed),
+                "EXPIRED" => Some(Self::Expired),
+                "REVOKING" => Some(Self::Revoking),
+                "REVOKED" => Some(Self::Revoked),
+                "ENDED" => Some(Self::Ended),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Justification {
-#[prost(oneof = "justification::Justification", tags = "1")]
-pub justification: ::core::option::Option<justification::Justification>,
+    #[prost(oneof = "justification::Justification", tags = "1")]
+    pub justification: ::core::option::Option<justification::Justification>,
 }
 /// Nested message and enum types in `Justification`.
 pub mod justification {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Justification {
-#[prost(string, tag = "1")]
-UnstructuredJustification(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Justification {
+        #[prost(string, tag = "1")]
+        UnstructuredJustification(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGrantsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGrantsResponse {
-#[prost(message, repeated, tag = "1")]
-pub grants: ::prost::alloc::vec::Vec<Grant>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub grants: ::prost::alloc::vec::Vec<Grant>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchGrantsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(enumeration = "search_grants_request::CallerRelationshipType", tag = "2")]
-pub caller_relationship: i32,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "search_grants_request::CallerRelationshipType",
+        tag = "2"
+    )]
+    pub caller_relationship: i32,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SearchGrantsRequest`.
 pub mod search_grants_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CallerRelationshipType {
-Unspecified = 0,
-HadCreated = 1,
-CanApprove = 2,
-HadApproved = 3,
-}
-impl CallerRelationshipType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CallerRelationshipType::Unspecified => "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED",
-CallerRelationshipType::HadCreated => "HAD_CREATED",
-CallerRelationshipType::CanApprove => "CAN_APPROVE",
-CallerRelationshipType::HadApproved => "HAD_APPROVED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CALLER_RELATIONSHIP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"HAD_CREATED" => Some(Self::HadCreated),
-"CAN_APPROVE" => Some(Self::CanApprove),
-"HAD_APPROVED" => Some(Self::HadApproved),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum CallerRelationshipType {
+        Unspecified = 0,
+        HadCreated = 1,
+        CanApprove = 2,
+        HadApproved = 3,
+    }
+    impl CallerRelationshipType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CallerRelationshipType::Unspecified => "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED",
+                CallerRelationshipType::HadCreated => "HAD_CREATED",
+                CallerRelationshipType::CanApprove => "CAN_APPROVE",
+                CallerRelationshipType::HadApproved => "HAD_APPROVED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CALLER_RELATIONSHIP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "HAD_CREATED" => Some(Self::HadCreated),
+                "CAN_APPROVE" => Some(Self::CanApprove),
+                "HAD_APPROVED" => Some(Self::HadApproved),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchGrantsResponse {
-#[prost(message, repeated, tag = "1")]
-pub grants: ::prost::alloc::vec::Vec<Grant>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub grants: ::prost::alloc::vec::Vec<Grant>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGrantRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApproveGrantRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DenyGrantRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevokeGrantRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGrantRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub grant: ::core::option::Option<Grant>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub grant: ::core::option::Option<Grant>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod privileged_access_manager_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// This API allows customers to manage temporary, request based privileged
-/// access to their resources.
-///
-/// It defines the following resource model:
-///
-/// * A collection of `Entitlement` resources. An entitlement allows configuring
-///   (among other things):
-///
-///   * Some kind of privileged access that users can request.
-///   * A set of users called _requesters_ who can request this access.
-///   * A maximum duration for which the access can be requested.
-///   * An optional approval workflow which must be satisfied before access is
-///     granted.
-///
-/// * A collection of `Grant` resources. A grant is a request by a requester to
-///   get the privileged access specified in an entitlement for some duration.
-///
-///   After the approval workflow as specified in the entitlement is satisfied,
-///   the specified access is given to the requester. The access is automatically
-///   taken back after the requested duration is over.
-#[derive(Debug, Clone)]
-pub struct PrivilegedAccessManagerClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> PrivilegedAccessManagerClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> PrivilegedAccessManagerClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-PrivilegedAccessManagerClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// CheckOnboardingStatus reports the onboarding status for a
-/// project/folder/organization. Any findings reported by this API need to be
-/// fixed before PAM can be used on the resource.
-pub async fn check_onboarding_status(&mut self, request: impl tonic::IntoRequest<super::CheckOnboardingStatusRequest>) -> std::result::Result<tonic::Response<super::CheckOnboardingStatusResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CheckOnboardingStatus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "CheckOnboardingStatus"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists entitlements in a given project/folder/organization and location.
-pub async fn list_entitlements(&mut self, request: impl tonic::IntoRequest<super::ListEntitlementsRequest>) -> std::result::Result<tonic::Response<super::ListEntitlementsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListEntitlements");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "ListEntitlements"));
-self.inner.unary(req, path, codec).await
-}
-/// `SearchEntitlements` returns entitlements on which the caller has the
-/// specified access.
-pub async fn search_entitlements(&mut self, request: impl tonic::IntoRequest<super::SearchEntitlementsRequest>) -> std::result::Result<tonic::Response<super::SearchEntitlementsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchEntitlements");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "SearchEntitlements"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single entitlement.
-pub async fn get_entitlement(&mut self, request: impl tonic::IntoRequest<super::GetEntitlementRequest>) -> std::result::Result<tonic::Response<super::Entitlement>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetEntitlement");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "GetEntitlement"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new entitlement in a given project/folder/organization and
-/// location.
-pub async fn create_entitlement(&mut self, request: impl tonic::IntoRequest<super::CreateEntitlementRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateEntitlement");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "CreateEntitlement"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single entitlement. This method can only be called when there
-/// are no in-progress (ACTIVE/ACTIVATING/REVOKING) grants under the
-/// entitlement.
-pub async fn delete_entitlement(&mut self, request: impl tonic::IntoRequest<super::DeleteEntitlementRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DeleteEntitlement");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "DeleteEntitlement"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the entitlement specified in the request. Updated fields in the
-/// entitlement need to be specified in an update mask. The changes made to an
-/// entitlement are applicable only on future grants of the entitlement.
-/// However, if new approvers are added or existing approvers are removed from
-/// the approval workflow, the changes are effective on existing grants.
-///
-/// The following fields are not supported for updates:
-///
-///  * All immutable fields
-///  * Entitlement name
-///  * Resource name
-///  * Resource type
-///  * Adding an approval workflow in an entitlement which previously had no
-///    approval workflow.
-///  * Deleting the approval workflow from an entitlement.
-///  * Adding or deleting a step in the approval workflow (only one step is
-///    supported)
-///
-/// Note that updates are allowed on the list of approvers in an approval
-/// workflow step.
-pub async fn update_entitlement(&mut self, request: impl tonic::IntoRequest<super::UpdateEntitlementRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/UpdateEntitlement");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "UpdateEntitlement"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists grants for a given entitlement.
-pub async fn list_grants(&mut self, request: impl tonic::IntoRequest<super::ListGrantsRequest>) -> std::result::Result<tonic::Response<super::ListGrantsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListGrants");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "ListGrants"));
-self.inner.unary(req, path, codec).await
-}
-/// `SearchGrants` returns grants that are related to the calling user in the
-/// specified way.
-pub async fn search_grants(&mut self, request: impl tonic::IntoRequest<super::SearchGrantsRequest>) -> std::result::Result<tonic::Response<super::SearchGrantsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchGrants");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "SearchGrants"));
-self.inner.unary(req, path, codec).await
-}
-/// Get details of a single grant.
-pub async fn get_grant(&mut self, request: impl tonic::IntoRequest<super::GetGrantRequest>) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetGrant");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "GetGrant"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new grant in a given project and location.
-pub async fn create_grant(&mut self, request: impl tonic::IntoRequest<super::CreateGrantRequest>) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateGrant");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "CreateGrant"));
-self.inner.unary(req, path, codec).await
-}
-/// `ApproveGrant` is used to approve a grant. This method can only be called
-/// on a grant when it's in the `APPROVAL_AWAITED` state. This operation can't
-/// be undone.
-pub async fn approve_grant(&mut self, request: impl tonic::IntoRequest<super::ApproveGrantRequest>) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ApproveGrant");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "ApproveGrant"));
-self.inner.unary(req, path, codec).await
-}
-/// `DenyGrant` is used to deny a grant. This method can only be called on a
-/// grant when it's in the `APPROVAL_AWAITED` state. This operation can't be
-/// undone.
-pub async fn deny_grant(&mut self, request: impl tonic::IntoRequest<super::DenyGrantRequest>) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DenyGrant");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "DenyGrant"));
-self.inner.unary(req, path, codec).await
-}
-/// `RevokeGrant` is used to immediately revoke access for a grant. This method
-/// can be called when the grant is in a non-terminal state.
-pub async fn revoke_grant(&mut self, request: impl tonic::IntoRequest<super::RevokeGrantRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/RevokeGrant");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager", "RevokeGrant"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// This API allows customers to manage temporary, request based privileged
+    /// access to their resources.
+    ///
+    /// It defines the following resource model:
+    ///
+    /// * A collection of `Entitlement` resources. An entitlement allows configuring
+    ///   (among other things):
+    ///
+    ///   * Some kind of privileged access that users can request.
+    ///   * A set of users called _requesters_ who can request this access.
+    ///   * A maximum duration for which the access can be requested.
+    ///   * An optional approval workflow which must be satisfied before access is
+    ///     granted.
+    ///
+    /// * A collection of `Grant` resources. A grant is a request by a requester to
+    ///   get the privileged access specified in an entitlement for some duration.
+    ///
+    ///   After the approval workflow as specified in the entitlement is satisfied,
+    ///   the specified access is given to the requester. The access is automatically
+    ///   taken back after the requested duration is over.
+    #[derive(Debug, Clone)]
+    pub struct PrivilegedAccessManagerClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> PrivilegedAccessManagerClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> PrivilegedAccessManagerClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            PrivilegedAccessManagerClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// CheckOnboardingStatus reports the onboarding status for a
+        /// project/folder/organization. Any findings reported by this API need to be
+        /// fixed before PAM can be used on the resource.
+        pub async fn check_onboarding_status(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CheckOnboardingStatusRequest>,
+        ) -> std::result::Result<tonic::Response<super::CheckOnboardingStatusResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CheckOnboardingStatus");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "CheckOnboardingStatus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists entitlements in a given project/folder/organization and location.
+        pub async fn list_entitlements(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListEntitlementsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListEntitlementsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListEntitlements",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "ListEntitlements",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `SearchEntitlements` returns entitlements on which the caller has the
+        /// specified access.
+        pub async fn search_entitlements(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchEntitlementsRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchEntitlementsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchEntitlements");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "SearchEntitlements",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single entitlement.
+        pub async fn get_entitlement(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetEntitlementRequest>,
+        ) -> std::result::Result<tonic::Response<super::Entitlement>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetEntitlement",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "GetEntitlement",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new entitlement in a given project/folder/organization and
+        /// location.
+        pub async fn create_entitlement(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateEntitlementRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateEntitlement");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "CreateEntitlement",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single entitlement. This method can only be called when there
+        /// are no in-progress (ACTIVE/ACTIVATING/REVOKING) grants under the
+        /// entitlement.
+        pub async fn delete_entitlement(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteEntitlementRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DeleteEntitlement");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "DeleteEntitlement",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the entitlement specified in the request. Updated fields in the
+        /// entitlement need to be specified in an update mask. The changes made to an
+        /// entitlement are applicable only on future grants of the entitlement.
+        /// However, if new approvers are added or existing approvers are removed from
+        /// the approval workflow, the changes are effective on existing grants.
+        ///
+        /// The following fields are not supported for updates:
+        ///
+        ///  * All immutable fields
+        ///  * Entitlement name
+        ///  * Resource name
+        ///  * Resource type
+        ///  * Adding an approval workflow in an entitlement which previously had no
+        ///    approval workflow.
+        ///  * Deleting the approval workflow from an entitlement.
+        ///  * Adding or deleting a step in the approval workflow (only one step is
+        ///    supported)
+        ///
+        /// Note that updates are allowed on the list of approvers in an approval
+        /// workflow step.
+        pub async fn update_entitlement(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateEntitlementRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/UpdateEntitlement");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "UpdateEntitlement",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists grants for a given entitlement.
+        pub async fn list_grants(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGrantsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListGrantsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ListGrants",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "ListGrants",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `SearchGrants` returns grants that are related to the calling user in the
+        /// specified way.
+        pub async fn search_grants(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchGrantsRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchGrantsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/SearchGrants",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "SearchGrants",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get details of a single grant.
+        pub async fn get_grant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGrantRequest>,
+        ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/GetGrant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "GetGrant",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new grant in a given project and location.
+        pub async fn create_grant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateGrantRequest>,
+        ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/CreateGrant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "CreateGrant",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `ApproveGrant` is used to approve a grant. This method can only be called
+        /// on a grant when it's in the `APPROVAL_AWAITED` state. This operation can't
+        /// be undone.
+        pub async fn approve_grant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ApproveGrantRequest>,
+        ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/ApproveGrant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "ApproveGrant",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `DenyGrant` is used to deny a grant. This method can only be called on a
+        /// grant when it's in the `APPROVAL_AWAITED` state. This operation can't be
+        /// undone.
+        pub async fn deny_grant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DenyGrantRequest>,
+        ) -> std::result::Result<tonic::Response<super::Grant>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/DenyGrant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "DenyGrant",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// `RevokeGrant` is used to immediately revoke access for a grant. This method
+        /// can be called when the grant is in a non-terminal state.
+        pub async fn revoke_grant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RevokeGrantRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager/RevokeGrant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.privilegedaccessmanager.v1.PrivilegedAccessManager",
+                "RevokeGrant",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

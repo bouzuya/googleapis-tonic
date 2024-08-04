@@ -2,294 +2,333 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetUsage {
-#[prost(string, tag = "1")]
-pub asset: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType", tag = "2")]
-pub served_asset_field_type: i32,
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType",
+        tag = "2"
+    )]
+    pub served_asset_field_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeywordInfo {
-#[prost(string, optional, tag = "3")]
-pub text: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::keyword_match_type_enum::KeywordMatchType", tag = "2")]
-pub match_type: i32,
+    #[prost(string, optional, tag = "3")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::keyword_match_type_enum::KeywordMatchType",
+        tag = "2"
+    )]
+    pub match_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationInfo {
-#[prost(string, optional, tag = "2")]
-pub geo_target_constant: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub geo_target_constant: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeviceInfo {
-#[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
-pub r#type: i32,
+    #[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ListingGroupInfo {
-#[prost(enumeration = "super::enums::listing_group_type_enum::ListingGroupType", tag = "1")]
-pub r#type: i32,
+    #[prost(
+        enumeration = "super::enums::listing_group_type_enum::ListingGroupType",
+        tag = "1"
+    )]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AdScheduleInfo {
-#[prost(enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour", tag = "1")]
-pub start_minute: i32,
-#[prost(enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour", tag = "2")]
-pub end_minute: i32,
-#[prost(int32, optional, tag = "6")]
-pub start_hour: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "7")]
-pub end_hour: ::core::option::Option<i32>,
-#[prost(enumeration = "super::enums::day_of_week_enum::DayOfWeek", tag = "5")]
-pub day_of_week: i32,
+    #[prost(
+        enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour",
+        tag = "1"
+    )]
+    pub start_minute: i32,
+    #[prost(
+        enumeration = "super::enums::minute_of_hour_enum::MinuteOfHour",
+        tag = "2"
+    )]
+    pub end_minute: i32,
+    #[prost(int32, optional, tag = "6")]
+    pub start_hour: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "7")]
+    pub end_hour: ::core::option::Option<i32>,
+    #[prost(enumeration = "super::enums::day_of_week_enum::DayOfWeek", tag = "5")]
+    pub day_of_week: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AgeRangeInfo {
-#[prost(enumeration = "super::enums::age_range_type_enum::AgeRangeType", tag = "1")]
-pub r#type: i32,
+    #[prost(
+        enumeration = "super::enums::age_range_type_enum::AgeRangeType",
+        tag = "1"
+    )]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GenderInfo {
-#[prost(enumeration = "super::enums::gender_type_enum::GenderType", tag = "1")]
-pub r#type: i32,
+    #[prost(enumeration = "super::enums::gender_type_enum::GenderType", tag = "1")]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserListInfo {
-#[prost(string, optional, tag = "2")]
-pub user_list: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub user_list: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LanguageInfo {
-#[prost(string, optional, tag = "2")]
-pub language_constant: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub language_constant: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebpageInfo {
-#[prost(string, optional, tag = "3")]
-pub criterion_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "2")]
-pub conditions: ::prost::alloc::vec::Vec<WebpageConditionInfo>,
-#[prost(double, tag = "4")]
-pub coverage_percentage: f64,
+    #[prost(string, optional, tag = "3")]
+    pub criterion_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "2")]
+    pub conditions: ::prost::alloc::vec::Vec<WebpageConditionInfo>,
+    #[prost(double, tag = "4")]
+    pub coverage_percentage: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebpageConditionInfo {
-#[prost(enumeration = "super::enums::webpage_condition_operand_enum::WebpageConditionOperand", tag = "1")]
-pub operand: i32,
-#[prost(enumeration = "super::enums::webpage_condition_operator_enum::WebpageConditionOperator", tag = "2")]
-pub operator: i32,
-#[prost(string, optional, tag = "4")]
-pub argument: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::webpage_condition_operand_enum::WebpageConditionOperand",
+        tag = "1"
+    )]
+    pub operand: i32,
+    #[prost(
+        enumeration = "super::enums::webpage_condition_operator_enum::WebpageConditionOperator",
+        tag = "2"
+    )]
+    pub operator: i32,
+    #[prost(string, optional, tag = "4")]
+    pub argument: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationGroupInfo {
-#[prost(string, repeated, tag = "6")]
-pub geo_target_constants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "7")]
-pub radius: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::location_group_radius_units_enum::LocationGroupRadiusUnits", tag = "4")]
-pub radius_units: i32,
-#[prost(string, repeated, tag = "8")]
-pub feed_item_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub geo_target_constants: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "7")]
+    pub radius: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::location_group_radius_units_enum::LocationGroupRadiusUnits",
+        tag = "4"
+    )]
+    pub radius_units: i32,
+    #[prost(string, repeated, tag = "8")]
+    pub feed_item_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudienceInfo {
-#[prost(string, tag = "1")]
-pub audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub audience: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct YoutubeVideoAsset {
-#[prost(string, optional, tag = "2")]
-pub youtube_video_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub youtube_video_title: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub youtube_video_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub youtube_video_title: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageAsset {
-#[prost(int64, optional, tag = "6")]
-pub file_size: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::mime_type_enum::MimeType", tag = "3")]
-pub mime_type: i32,
-#[prost(message, optional, tag = "4")]
-pub full_size: ::core::option::Option<ImageDimension>,
+    #[prost(int64, optional, tag = "6")]
+    pub file_size: ::core::option::Option<i64>,
+    #[prost(enumeration = "super::enums::mime_type_enum::MimeType", tag = "3")]
+    pub mime_type: i32,
+    #[prost(message, optional, tag = "4")]
+    pub full_size: ::core::option::Option<ImageDimension>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageDimension {
-#[prost(int64, optional, tag = "4")]
-pub height_pixels: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "5")]
-pub width_pixels: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "6")]
-pub url: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "4")]
+    pub height_pixels: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "5")]
+    pub width_pixels: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "6")]
+    pub url: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextAsset {
-#[prost(string, optional, tag = "2")]
-pub text: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnifiedCalloutAsset {
-#[prost(string, tag = "1")]
-pub callout_text: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub end_date: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
-#[prost(bool, tag = "5")]
-pub use_searcher_time_zone: bool,
+    #[prost(string, tag = "1")]
+    pub callout_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub end_date: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
+    #[prost(bool, tag = "5")]
+    pub use_searcher_time_zone: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnifiedSitelinkAsset {
-#[prost(string, tag = "1")]
-pub link_text: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description1: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description2: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub end_date: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "6")]
-pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
-#[prost(int64, tag = "7")]
-pub tracking_id: i64,
-#[prost(bool, tag = "8")]
-pub use_searcher_time_zone: bool,
-#[prost(bool, tag = "9")]
-pub mobile_preferred: bool,
+    #[prost(string, tag = "1")]
+    pub link_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description1: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description2: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub end_date: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "6")]
+    pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
+    #[prost(int64, tag = "7")]
+    pub tracking_id: i64,
+    #[prost(bool, tag = "8")]
+    pub use_searcher_time_zone: bool,
+    #[prost(bool, tag = "9")]
+    pub mobile_preferred: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnifiedPageFeedAsset {
-#[prost(string, tag = "1")]
-pub page_url: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub page_url: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MobileAppAsset {
-#[prost(string, tag = "1")]
-pub app_id: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::mobile_app_vendor_enum::MobileAppVendor", tag = "2")]
-pub app_store: i32,
+    #[prost(string, tag = "1")]
+    pub app_id: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::mobile_app_vendor_enum::MobileAppVendor",
+        tag = "2"
+    )]
+    pub app_store: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnifiedCallAsset {
-#[prost(string, tag = "1")]
-pub country_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub phone_number: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState", tag = "3")]
-pub call_conversion_reporting_state: i32,
-#[prost(string, tag = "4")]
-pub call_conversion_action: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "5")]
-pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
-#[prost(bool, tag = "7")]
-pub call_only: bool,
-#[prost(bool, tag = "8")]
-pub call_tracking_enabled: bool,
-#[prost(bool, tag = "9")]
-pub use_searcher_time_zone: bool,
-#[prost(string, tag = "10")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub end_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub country_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub phone_number: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState",
+        tag = "3"
+    )]
+    pub call_conversion_reporting_state: i32,
+    #[prost(string, tag = "4")]
+    pub call_conversion_action: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub ad_schedule_targets: ::prost::alloc::vec::Vec<AdScheduleInfo>,
+    #[prost(bool, tag = "7")]
+    pub call_only: bool,
+    #[prost(bool, tag = "8")]
+    pub call_tracking_enabled: bool,
+    #[prost(bool, tag = "9")]
+    pub use_searcher_time_zone: bool,
+    #[prost(string, tag = "10")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub end_date: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CallToActionAsset {
-#[prost(enumeration = "super::enums::call_to_action_type_enum::CallToActionType", tag = "1")]
-pub call_to_action: i32,
+    #[prost(
+        enumeration = "super::enums::call_to_action_type_enum::CallToActionType",
+        tag = "1"
+    )]
+    pub call_to_action: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnifiedLocationAsset {
-#[prost(string, tag = "1")]
-pub place_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub business_profile_locations: ::prost::alloc::vec::Vec<BusinessProfileLocation>,
-#[prost(enumeration = "super::enums::location_ownership_type_enum::LocationOwnershipType", tag = "3")]
-pub location_ownership_type: i32,
+    #[prost(string, tag = "1")]
+    pub place_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub business_profile_locations: ::prost::alloc::vec::Vec<BusinessProfileLocation>,
+    #[prost(
+        enumeration = "super::enums::location_ownership_type_enum::LocationOwnershipType",
+        tag = "3"
+    )]
+    pub location_ownership_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BusinessProfileLocation {
-#[prost(string, repeated, tag = "1")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub store_code: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub listing_id: i64,
+    #[prost(string, repeated, tag = "1")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub store_code: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub listing_id: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360TextAdInfo {
-#[prost(string, optional, tag = "1")]
-pub headline: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub description1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "3")]
-pub description2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub display_url: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub display_mobile_url: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "6")]
-pub ad_tracking_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "1")]
+    pub headline: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub description1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub display_url: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub display_mobile_url: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "6")]
+    pub ad_tracking_id: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360ExpandedTextAdInfo {
-#[prost(string, optional, tag = "1")]
-pub headline: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub headline2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "3")]
-pub headline3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub description1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub description2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "6")]
-pub path1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "7")]
-pub path2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "8")]
-pub ad_tracking_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "1")]
+    pub headline: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub headline2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub headline3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub description1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "6")]
+    pub path1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "7")]
+    pub path2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "8")]
+    pub ad_tracking_id: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360ExpandedDynamicSearchAdInfo {
-#[prost(string, optional, tag = "1")]
-pub description1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub description2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "3")]
-pub ad_tracking_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "1")]
+    pub description1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "3")]
+    pub ad_tracking_id: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -297,34 +336,37 @@ pub struct SearchAds360ProductAdInfo {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360ResponsiveSearchAdInfo {
-#[prost(string, optional, tag = "1")]
-pub path1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub path2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "3")]
-pub ad_tracking_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "1")]
+    pub path1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub path2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "3")]
+    pub ad_tracking_id: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TargetingSetting {
-#[prost(message, repeated, tag = "1")]
-pub target_restrictions: ::prost::alloc::vec::Vec<TargetRestriction>,
+    #[prost(message, repeated, tag = "1")]
+    pub target_restrictions: ::prost::alloc::vec::Vec<TargetRestriction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetRestriction {
-#[prost(enumeration = "super::enums::targeting_dimension_enum::TargetingDimension", tag = "1")]
-pub targeting_dimension: i32,
-#[prost(bool, optional, tag = "3")]
-pub bid_only: ::core::option::Option<bool>,
+    #[prost(
+        enumeration = "super::enums::targeting_dimension_enum::TargetingDimension",
+        tag = "1"
+    )]
+    pub targeting_dimension: i32,
+    #[prost(bool, optional, tag = "3")]
+    pub bid_only: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextLabel {
-#[prost(string, optional, tag = "3")]
-pub background_color: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub description: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub background_color: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -335,8 +377,8 @@ pub struct ManualCpa {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ManualCpc {
-#[prost(bool, optional, tag = "2")]
-pub enhanced_cpc_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "2")]
+    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -344,32 +386,32 @@ pub struct ManualCpm {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MaximizeConversions {
-#[prost(int64, tag = "2")]
-pub cpc_bid_ceiling_micros: i64,
-#[prost(int64, tag = "3")]
-pub cpc_bid_floor_micros: i64,
-#[prost(int64, tag = "4")]
-pub target_cpa_micros: i64,
+    #[prost(int64, tag = "2")]
+    pub cpc_bid_ceiling_micros: i64,
+    #[prost(int64, tag = "3")]
+    pub cpc_bid_floor_micros: i64,
+    #[prost(int64, tag = "4")]
+    pub target_cpa_micros: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MaximizeConversionValue {
-#[prost(double, optional, tag = "2")]
-pub target_roas: ::core::option::Option<f64>,
-#[prost(int64, tag = "3")]
-pub cpc_bid_ceiling_micros: i64,
-#[prost(int64, tag = "4")]
-pub cpc_bid_floor_micros: i64,
+    #[prost(double, optional, tag = "2")]
+    pub target_roas: ::core::option::Option<f64>,
+    #[prost(int64, tag = "3")]
+    pub cpc_bid_ceiling_micros: i64,
+    #[prost(int64, tag = "4")]
+    pub cpc_bid_floor_micros: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetCpa {
-#[prost(int64, optional, tag = "4")]
-pub target_cpa_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "5")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "6")]
-pub cpc_bid_floor_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub target_cpa_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "6")]
+    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -377,53 +419,56 @@ pub struct TargetCpm {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetImpressionShare {
-#[prost(enumeration = "super::enums::target_impression_share_location_enum::TargetImpressionShareLocation", tag = "1")]
-pub location: i32,
-#[prost(int64, optional, tag = "4")]
-pub location_fraction_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "5")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::target_impression_share_location_enum::TargetImpressionShareLocation",
+        tag = "1"
+    )]
+    pub location: i32,
+    #[prost(int64, optional, tag = "4")]
+    pub location_fraction_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetOutrankShare {
-#[prost(message, optional, tag = "3")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "3")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetRoas {
-#[prost(double, optional, tag = "4")]
-pub target_roas: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "5")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "6")]
-pub cpc_bid_floor_micros: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "4")]
+    pub target_roas: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "6")]
+    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetSpend {
-#[deprecated]
-#[prost(int64, optional, tag = "3")]
-pub target_spend_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[deprecated]
+    #[prost(int64, optional, tag = "3")]
+    pub target_spend_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PercentCpc {
-#[prost(int64, optional, tag = "3")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-#[prost(bool, optional, tag = "4")]
-pub enhanced_cpc_enabled: ::core::option::Option<bool>,
+    #[prost(int64, optional, tag = "3")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    #[prost(bool, optional, tag = "4")]
+    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomParameter {
-#[prost(string, optional, tag = "3")]
-pub key: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub value: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "3")]
+    pub key: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -431,339 +476,375 @@ pub struct FrequencyCapEntry {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RealTimeBiddingSetting {
-#[prost(bool, optional, tag = "2")]
-pub opt_in: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "2")]
+    pub opt_in: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-#[prost(oneof = "value::Value", tags = "1, 2, 3, 4, 5")]
-pub value: ::core::option::Option<value::Value>,
+    #[prost(oneof = "value::Value", tags = "1, 2, 3, 4, 5")]
+    pub value: ::core::option::Option<value::Value>,
 }
 /// Nested message and enum types in `Value`.
 pub mod value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(bool, tag = "1")]
-BooleanValue(bool),
-#[prost(int64, tag = "2")]
-Int64Value(i64),
-#[prost(float, tag = "3")]
-FloatValue(f32),
-#[prost(double, tag = "4")]
-DoubleValue(f64),
-#[prost(string, tag = "5")]
-StringValue(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(bool, tag = "1")]
+        BooleanValue(bool),
+        #[prost(int64, tag = "2")]
+        Int64Value(i64),
+        #[prost(float, tag = "3")]
+        FloatValue(f32),
+        #[prost(double, tag = "4")]
+        DoubleValue(f64),
+        #[prost(string, tag = "5")]
+        StringValue(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metrics {
-#[prost(double, optional, tag = "183")]
-pub absolute_top_impression_percentage: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "191")]
-pub all_conversions_from_interactions_rate: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "192")]
-pub all_conversions_value: ::core::option::Option<f64>,
-#[prost(double, tag = "240")]
-pub all_conversions_value_by_conversion_date: f64,
-#[prost(double, optional, tag = "193")]
-pub all_conversions: ::core::option::Option<f64>,
-#[prost(double, tag = "241")]
-pub all_conversions_by_conversion_date: f64,
-#[prost(double, optional, tag = "194")]
-pub all_conversions_value_per_cost: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "195")]
-pub all_conversions_from_click_to_call: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "196")]
-pub all_conversions_from_directions: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "197")]
-pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "198")]
-pub all_conversions_from_menu: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "199")]
-pub all_conversions_from_order: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "200")]
-pub all_conversions_from_other_engagement: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "201")]
-pub all_conversions_from_store_visit: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "289")]
-pub visits: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "202")]
-pub all_conversions_from_store_website: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "203")]
-pub average_cost: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "317")]
-pub average_cpc: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "318")]
-pub average_cpm: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "131")]
-pub clicks: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "159")]
-pub content_budget_lost_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "160")]
-pub content_impression_share: ::core::option::Option<f64>,
-#[prost(message, repeated, tag = "336")]
-pub conversion_custom_metrics: ::prost::alloc::vec::Vec<Value>,
-#[prost(double, optional, tag = "163")]
-pub content_rank_lost_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "284")]
-pub conversions_from_interactions_rate: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "165")]
-pub client_account_conversions_value: ::core::option::Option<f64>,
-#[prost(double, tag = "283")]
-pub conversions_value_by_conversion_date: f64,
-#[prost(double, optional, tag = "288")]
-pub conversions_value_per_cost: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "167")]
-pub conversions_from_interactions_value_per_interaction: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "168")]
-pub client_account_conversions: ::core::option::Option<f64>,
-#[prost(double, tag = "282")]
-pub conversions_by_conversion_date: f64,
-#[prost(int64, optional, tag = "316")]
-pub cost_micros: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "170")]
-pub cost_per_all_conversions: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "286")]
-pub cost_per_conversion: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "172")]
-pub cost_per_current_model_attributed_conversion: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "173")]
-pub cross_device_conversions: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "253")]
-pub cross_device_conversions_value: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "174")]
-pub ctr: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "251")]
-pub conversions: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "252")]
-pub conversions_value: ::core::option::Option<f64>,
-#[prost(enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket", tag = "80")]
-pub historical_creative_quality_score: i32,
-#[prost(enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket", tag = "81")]
-pub historical_landing_page_quality_score: i32,
-#[prost(int64, optional, tag = "216")]
-pub historical_quality_score: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket", tag = "83")]
-pub historical_search_predicted_ctr: i32,
-#[prost(int64, optional, tag = "221")]
-pub impressions: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "222")]
-pub interaction_rate: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "223")]
-pub interactions: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::interaction_event_type_enum::InteractionEventType", repeated, tag = "100")]
-pub interaction_event_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(double, optional, tag = "224")]
-pub invalid_click_rate: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "225")]
-pub invalid_clicks: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "229")]
-pub mobile_friendly_clicks_percentage: ::core::option::Option<f64>,
-#[prost(message, repeated, tag = "337")]
-pub raw_event_conversion_metrics: ::prost::alloc::vec::Vec<Value>,
-#[prost(double, optional, tag = "136")]
-pub search_absolute_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "137")]
-pub search_budget_lost_absolute_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "138")]
-pub search_budget_lost_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "139")]
-pub search_budget_lost_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "140")]
-pub search_click_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "141")]
-pub search_exact_match_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "142")]
-pub search_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "143")]
-pub search_rank_lost_absolute_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "144")]
-pub search_rank_lost_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "145")]
-pub search_rank_lost_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "146")]
-pub search_top_impression_share: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "148")]
-pub top_impression_percentage: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "150")]
-pub value_per_all_conversions: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "244")]
-pub value_per_all_conversions_by_conversion_date: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "287")]
-pub value_per_conversion: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "285")]
-pub value_per_conversions_by_conversion_date: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "155")]
-pub client_account_view_through_conversions: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "321")]
-pub client_account_cross_sell_cost_of_goods_sold_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "327")]
-pub cross_sell_cost_of_goods_sold_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "322")]
-pub client_account_cross_sell_gross_profit_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "328")]
-pub cross_sell_gross_profit_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "323")]
-pub client_account_cross_sell_revenue_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "329")]
-pub cross_sell_revenue_micros: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "307")]
-pub client_account_cross_sell_units_sold: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "330")]
-pub cross_sell_units_sold: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "324")]
-pub client_account_lead_cost_of_goods_sold_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "332")]
-pub lead_cost_of_goods_sold_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "325")]
-pub client_account_lead_gross_profit_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "333")]
-pub lead_gross_profit_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "326")]
-pub client_account_lead_revenue_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "334")]
-pub lead_revenue_micros: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "311")]
-pub client_account_lead_units_sold: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "335")]
-pub lead_units_sold: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "183")]
+    pub absolute_top_impression_percentage: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "191")]
+    pub all_conversions_from_interactions_rate: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "192")]
+    pub all_conversions_value: ::core::option::Option<f64>,
+    #[prost(double, tag = "240")]
+    pub all_conversions_value_by_conversion_date: f64,
+    #[prost(double, optional, tag = "193")]
+    pub all_conversions: ::core::option::Option<f64>,
+    #[prost(double, tag = "241")]
+    pub all_conversions_by_conversion_date: f64,
+    #[prost(double, optional, tag = "194")]
+    pub all_conversions_value_per_cost: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "195")]
+    pub all_conversions_from_click_to_call: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "196")]
+    pub all_conversions_from_directions: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "197")]
+    pub all_conversions_from_interactions_value_per_interaction: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "198")]
+    pub all_conversions_from_menu: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "199")]
+    pub all_conversions_from_order: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "200")]
+    pub all_conversions_from_other_engagement: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "201")]
+    pub all_conversions_from_store_visit: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "289")]
+    pub visits: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "202")]
+    pub all_conversions_from_store_website: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "203")]
+    pub average_cost: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "317")]
+    pub average_cpc: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "318")]
+    pub average_cpm: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "131")]
+    pub clicks: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "159")]
+    pub content_budget_lost_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "160")]
+    pub content_impression_share: ::core::option::Option<f64>,
+    #[prost(message, repeated, tag = "336")]
+    pub conversion_custom_metrics: ::prost::alloc::vec::Vec<Value>,
+    #[prost(double, optional, tag = "163")]
+    pub content_rank_lost_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "284")]
+    pub conversions_from_interactions_rate: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "165")]
+    pub client_account_conversions_value: ::core::option::Option<f64>,
+    #[prost(double, tag = "283")]
+    pub conversions_value_by_conversion_date: f64,
+    #[prost(double, optional, tag = "288")]
+    pub conversions_value_per_cost: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "167")]
+    pub conversions_from_interactions_value_per_interaction: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "168")]
+    pub client_account_conversions: ::core::option::Option<f64>,
+    #[prost(double, tag = "282")]
+    pub conversions_by_conversion_date: f64,
+    #[prost(int64, optional, tag = "316")]
+    pub cost_micros: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "170")]
+    pub cost_per_all_conversions: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "286")]
+    pub cost_per_conversion: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "172")]
+    pub cost_per_current_model_attributed_conversion: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "173")]
+    pub cross_device_conversions: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "253")]
+    pub cross_device_conversions_value: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "174")]
+    pub ctr: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "251")]
+    pub conversions: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "252")]
+    pub conversions_value: ::core::option::Option<f64>,
+    #[prost(
+        enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket",
+        tag = "80"
+    )]
+    pub historical_creative_quality_score: i32,
+    #[prost(
+        enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket",
+        tag = "81"
+    )]
+    pub historical_landing_page_quality_score: i32,
+    #[prost(int64, optional, tag = "216")]
+    pub historical_quality_score: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket",
+        tag = "83"
+    )]
+    pub historical_search_predicted_ctr: i32,
+    #[prost(int64, optional, tag = "221")]
+    pub impressions: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "222")]
+    pub interaction_rate: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "223")]
+    pub interactions: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::interaction_event_type_enum::InteractionEventType",
+        repeated,
+        tag = "100"
+    )]
+    pub interaction_event_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(double, optional, tag = "224")]
+    pub invalid_click_rate: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "225")]
+    pub invalid_clicks: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "229")]
+    pub mobile_friendly_clicks_percentage: ::core::option::Option<f64>,
+    #[prost(message, repeated, tag = "337")]
+    pub raw_event_conversion_metrics: ::prost::alloc::vec::Vec<Value>,
+    #[prost(double, optional, tag = "136")]
+    pub search_absolute_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "137")]
+    pub search_budget_lost_absolute_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "138")]
+    pub search_budget_lost_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "139")]
+    pub search_budget_lost_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "140")]
+    pub search_click_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "141")]
+    pub search_exact_match_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "142")]
+    pub search_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "143")]
+    pub search_rank_lost_absolute_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "144")]
+    pub search_rank_lost_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "145")]
+    pub search_rank_lost_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "146")]
+    pub search_top_impression_share: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "148")]
+    pub top_impression_percentage: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "150")]
+    pub value_per_all_conversions: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "244")]
+    pub value_per_all_conversions_by_conversion_date: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "287")]
+    pub value_per_conversion: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "285")]
+    pub value_per_conversions_by_conversion_date: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "155")]
+    pub client_account_view_through_conversions: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "321")]
+    pub client_account_cross_sell_cost_of_goods_sold_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "327")]
+    pub cross_sell_cost_of_goods_sold_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "322")]
+    pub client_account_cross_sell_gross_profit_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "328")]
+    pub cross_sell_gross_profit_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "323")]
+    pub client_account_cross_sell_revenue_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "329")]
+    pub cross_sell_revenue_micros: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "307")]
+    pub client_account_cross_sell_units_sold: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "330")]
+    pub cross_sell_units_sold: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "324")]
+    pub client_account_lead_cost_of_goods_sold_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "332")]
+    pub lead_cost_of_goods_sold_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "325")]
+    pub client_account_lead_gross_profit_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "333")]
+    pub lead_gross_profit_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "326")]
+    pub client_account_lead_revenue_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "334")]
+    pub lead_revenue_micros: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "311")]
+    pub client_account_lead_units_sold: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "335")]
+    pub lead_units_sold: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Segments {
-#[prost(enumeration = "super::enums::ad_network_type_enum::AdNetworkType", tag = "3")]
-pub ad_network_type: i32,
-#[prost(string, optional, tag = "146")]
-pub conversion_action: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::conversion_action_category_enum::ConversionActionCategory", tag = "53")]
-pub conversion_action_category: i32,
-#[prost(string, optional, tag = "114")]
-pub conversion_action_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "188")]
-pub conversion_custom_dimensions: ::prost::alloc::vec::Vec<Value>,
-#[prost(string, optional, tag = "79")]
-pub date: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::day_of_week_enum::DayOfWeek", tag = "5")]
-pub day_of_week: i32,
-#[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
-pub device: i32,
-#[prost(message, optional, tag = "61")]
-pub keyword: ::core::option::Option<Keyword>,
-#[prost(string, optional, tag = "90")]
-pub month: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "92")]
-pub product_bidding_category_level1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "93")]
-pub product_bidding_category_level2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "94")]
-pub product_bidding_category_level3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "95")]
-pub product_bidding_category_level4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "96")]
-pub product_bidding_category_level5: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "97")]
-pub product_brand: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::product_channel_enum::ProductChannel", tag = "30")]
-pub product_channel: i32,
-#[prost(enumeration = "super::enums::product_channel_exclusivity_enum::ProductChannelExclusivity", tag = "31")]
-pub product_channel_exclusivity: i32,
-#[prost(enumeration = "super::enums::product_condition_enum::ProductCondition", tag = "32")]
-pub product_condition: i32,
-#[prost(string, optional, tag = "98")]
-pub product_country: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "99")]
-pub product_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "100")]
-pub product_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "101")]
-pub product_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "102")]
-pub product_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "103")]
-pub product_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "104")]
-pub product_item_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "105")]
-pub product_language: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "166")]
-pub product_sold_bidding_category_level1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "167")]
-pub product_sold_bidding_category_level2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "168")]
-pub product_sold_bidding_category_level3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "169")]
-pub product_sold_bidding_category_level4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "170")]
-pub product_sold_bidding_category_level5: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "171")]
-pub product_sold_brand: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::product_condition_enum::ProductCondition", tag = "172")]
-pub product_sold_condition: i32,
-#[prost(string, optional, tag = "173")]
-pub product_sold_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "174")]
-pub product_sold_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "175")]
-pub product_sold_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "176")]
-pub product_sold_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "177")]
-pub product_sold_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "178")]
-pub product_sold_item_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "179")]
-pub product_sold_title: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "180")]
-pub product_sold_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "181")]
-pub product_sold_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "182")]
-pub product_sold_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "183")]
-pub product_sold_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "184")]
-pub product_sold_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "106")]
-pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "107")]
-pub product_title: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "108")]
-pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "109")]
-pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "110")]
-pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "111")]
-pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "112")]
-pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "128")]
-pub quarter: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "189")]
-pub raw_event_conversion_dimensions: ::prost::alloc::vec::Vec<Value>,
-#[prost(string, optional, tag = "130")]
-pub week: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "131")]
-pub year: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "139")]
-pub asset_interaction_target: ::core::option::Option<AssetInteractionTarget>,
+    #[prost(
+        enumeration = "super::enums::ad_network_type_enum::AdNetworkType",
+        tag = "3"
+    )]
+    pub ad_network_type: i32,
+    #[prost(string, optional, tag = "146")]
+    pub conversion_action: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::conversion_action_category_enum::ConversionActionCategory",
+        tag = "53"
+    )]
+    pub conversion_action_category: i32,
+    #[prost(string, optional, tag = "114")]
+    pub conversion_action_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "188")]
+    pub conversion_custom_dimensions: ::prost::alloc::vec::Vec<Value>,
+    #[prost(string, optional, tag = "79")]
+    pub date: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "super::enums::day_of_week_enum::DayOfWeek", tag = "5")]
+    pub day_of_week: i32,
+    #[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
+    pub device: i32,
+    #[prost(message, optional, tag = "61")]
+    pub keyword: ::core::option::Option<Keyword>,
+    #[prost(string, optional, tag = "90")]
+    pub month: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "92")]
+    pub product_bidding_category_level1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "93")]
+    pub product_bidding_category_level2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "94")]
+    pub product_bidding_category_level3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "95")]
+    pub product_bidding_category_level4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "96")]
+    pub product_bidding_category_level5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "97")]
+    pub product_brand: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::product_channel_enum::ProductChannel",
+        tag = "30"
+    )]
+    pub product_channel: i32,
+    #[prost(
+        enumeration = "super::enums::product_channel_exclusivity_enum::ProductChannelExclusivity",
+        tag = "31"
+    )]
+    pub product_channel_exclusivity: i32,
+    #[prost(
+        enumeration = "super::enums::product_condition_enum::ProductCondition",
+        tag = "32"
+    )]
+    pub product_condition: i32,
+    #[prost(string, optional, tag = "98")]
+    pub product_country: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "99")]
+    pub product_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "100")]
+    pub product_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "101")]
+    pub product_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "102")]
+    pub product_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "103")]
+    pub product_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "104")]
+    pub product_item_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "105")]
+    pub product_language: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "166")]
+    pub product_sold_bidding_category_level1:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "167")]
+    pub product_sold_bidding_category_level2:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "168")]
+    pub product_sold_bidding_category_level3:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "169")]
+    pub product_sold_bidding_category_level4:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "170")]
+    pub product_sold_bidding_category_level5:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "171")]
+    pub product_sold_brand: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::product_condition_enum::ProductCondition",
+        tag = "172"
+    )]
+    pub product_sold_condition: i32,
+    #[prost(string, optional, tag = "173")]
+    pub product_sold_custom_attribute0: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "174")]
+    pub product_sold_custom_attribute1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "175")]
+    pub product_sold_custom_attribute2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "176")]
+    pub product_sold_custom_attribute3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "177")]
+    pub product_sold_custom_attribute4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "178")]
+    pub product_sold_item_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "179")]
+    pub product_sold_title: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "180")]
+    pub product_sold_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "181")]
+    pub product_sold_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "182")]
+    pub product_sold_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "183")]
+    pub product_sold_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "184")]
+    pub product_sold_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "106")]
+    pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "107")]
+    pub product_title: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "108")]
+    pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "109")]
+    pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "110")]
+    pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "111")]
+    pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "112")]
+    pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "128")]
+    pub quarter: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "189")]
+    pub raw_event_conversion_dimensions: ::prost::alloc::vec::Vec<Value>,
+    #[prost(string, optional, tag = "130")]
+    pub week: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "131")]
+    pub year: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "139")]
+    pub asset_interaction_target: ::core::option::Option<AssetInteractionTarget>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Keyword {
-#[prost(string, optional, tag = "3")]
-pub ad_group_criterion: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "2")]
-pub info: ::core::option::Option<KeywordInfo>,
+    #[prost(string, optional, tag = "3")]
+    pub ad_group_criterion: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<KeywordInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetInteractionTarget {
-#[prost(string, tag = "1")]
-pub asset: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub interaction_on_this_asset: bool,
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub interaction_on_this_asset: bool,
 }

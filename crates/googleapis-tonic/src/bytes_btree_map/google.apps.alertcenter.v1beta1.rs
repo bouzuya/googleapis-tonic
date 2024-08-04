@@ -2,460 +2,624 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Alert {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "6")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub source: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "8")]
-pub data: ::core::option::Option<::prost_types::Any>,
-#[prost(string, tag = "9")]
-pub security_investigation_tool_link: ::prost::alloc::string::String,
-#[prost(bool, tag = "11")]
-pub deleted: bool,
-#[prost(message, optional, tag = "12")]
-pub metadata: ::core::option::Option<AlertMetadata>,
-#[prost(message, optional, tag = "13")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "14")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "6")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub source: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "8")]
+    pub data: ::core::option::Option<::prost_types::Any>,
+    #[prost(string, tag = "9")]
+    pub security_investigation_tool_link: ::prost::alloc::string::String,
+    #[prost(bool, tag = "11")]
+    pub deleted: bool,
+    #[prost(message, optional, tag = "12")]
+    pub metadata: ::core::option::Option<AlertMetadata>,
+    #[prost(message, optional, tag = "13")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "14")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AlertFeedback {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub feedback_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "AlertFeedbackType", tag = "5")]
-pub r#type: i32,
-#[prost(string, tag = "6")]
-pub email: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub feedback_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "AlertFeedbackType", tag = "5")]
+    pub r#type: i32,
+    #[prost(string, tag = "6")]
+    pub email: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AlertMetadata {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub status: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub assignee: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub severity: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub status: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub assignee: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub severity: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Settings {
-#[prost(message, repeated, tag = "1")]
-pub notifications: ::prost::alloc::vec::Vec<settings::Notification>,
+    #[prost(message, repeated, tag = "1")]
+    pub notifications: ::prost::alloc::vec::Vec<settings::Notification>,
 }
 /// Nested message and enum types in `Settings`.
 pub mod settings {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Notification {
-#[prost(oneof = "notification::Destination", tags = "1")]
-pub destination: ::core::option::Option<notification::Destination>,
-}
-/// Nested message and enum types in `Notification`.
-pub mod notification {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CloudPubsubTopic {
-#[prost(string, tag = "1")]
-pub topic_name: ::prost::alloc::string::String,
-#[prost(enumeration = "PayloadFormat", tag = "2")]
-pub payload_format: i32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PayloadFormat {
-Unspecified = 0,
-Json = 1,
-}
-impl PayloadFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PayloadFormat::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
-PayloadFormat::Json => "JSON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PAYLOAD_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"JSON" => Some(Self::Json),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Destination {
-#[prost(message, tag = "1")]
-CloudPubsubTopic(CloudPubsubTopic),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Notification {
+        #[prost(oneof = "notification::Destination", tags = "1")]
+        pub destination: ::core::option::Option<notification::Destination>,
+    }
+    /// Nested message and enum types in `Notification`.
+    pub mod notification {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct CloudPubsubTopic {
+            #[prost(string, tag = "1")]
+            pub topic_name: ::prost::alloc::string::String,
+            #[prost(enumeration = "PayloadFormat", tag = "2")]
+            pub payload_format: i32,
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PayloadFormat {
+            Unspecified = 0,
+            Json = 1,
+        }
+        impl PayloadFormat {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PayloadFormat::Unspecified => "PAYLOAD_FORMAT_UNSPECIFIED",
+                    PayloadFormat::Json => "JSON",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PAYLOAD_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "JSON" => Some(Self::Json),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Destination {
+            #[prost(message, tag = "1")]
+            CloudPubsubTopic(CloudPubsubTopic),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteAlertsRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub alert_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub alert_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteAlertsResponse {
-#[prost(string, repeated, tag = "1")]
-pub success_alert_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(btree_map = "string, message", tag = "2")]
-pub failed_alert_status: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, super::super::super::rpc::Status>,
+    #[prost(string, repeated, tag = "1")]
+    pub success_alert_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(btree_map = "string, message", tag = "2")]
+    pub failed_alert_status: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUndeleteAlertsRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub alert_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub alert_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUndeleteAlertsResponse {
-#[prost(string, repeated, tag = "1")]
-pub success_alert_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(btree_map = "string, message", tag = "2")]
-pub failed_alert_status: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, super::super::super::rpc::Status>,
+    #[prost(string, repeated, tag = "1")]
+    pub success_alert_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(btree_map = "string, message", tag = "2")]
+    pub failed_alert_status: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        super::super::super::rpc::Status,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAlertsRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAlertsResponse {
-#[prost(message, repeated, tag = "1")]
-pub alerts: ::prost::alloc::vec::Vec<Alert>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub alerts: ::prost::alloc::vec::Vec<Alert>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAlertRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAlertRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteAlertRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAlertFeedbackRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub feedback: ::core::option::Option<AlertFeedback>,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub feedback: ::core::option::Option<AlertFeedback>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAlertFeedbackRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAlertFeedbackResponse {
-#[prost(message, repeated, tag = "1")]
-pub feedback: ::prost::alloc::vec::Vec<AlertFeedback>,
+    #[prost(message, repeated, tag = "1")]
+    pub feedback: ::prost::alloc::vec::Vec<AlertFeedback>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAlertMetadataRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alert_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alert_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSettingsRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSettingsRequest {
-#[prost(string, tag = "1")]
-pub customer_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub settings: ::core::option::Option<Settings>,
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub settings: ::core::option::Option<Settings>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AlertFeedbackType {
-Unspecified = 0,
-NotUseful = 1,
-SomewhatUseful = 2,
-VeryUseful = 3,
+    Unspecified = 0,
+    NotUseful = 1,
+    SomewhatUseful = 2,
+    VeryUseful = 3,
 }
 impl AlertFeedbackType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AlertFeedbackType::Unspecified => "ALERT_FEEDBACK_TYPE_UNSPECIFIED",
-AlertFeedbackType::NotUseful => "NOT_USEFUL",
-AlertFeedbackType::SomewhatUseful => "SOMEWHAT_USEFUL",
-AlertFeedbackType::VeryUseful => "VERY_USEFUL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ALERT_FEEDBACK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NOT_USEFUL" => Some(Self::NotUseful),
-"SOMEWHAT_USEFUL" => Some(Self::SomewhatUseful),
-"VERY_USEFUL" => Some(Self::VeryUseful),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AlertFeedbackType::Unspecified => "ALERT_FEEDBACK_TYPE_UNSPECIFIED",
+            AlertFeedbackType::NotUseful => "NOT_USEFUL",
+            AlertFeedbackType::SomewhatUseful => "SOMEWHAT_USEFUL",
+            AlertFeedbackType::VeryUseful => "VERY_USEFUL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ALERT_FEEDBACK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "NOT_USEFUL" => Some(Self::NotUseful),
+            "SOMEWHAT_USEFUL" => Some(Self::SomewhatUseful),
+            "VERY_USEFUL" => Some(Self::VeryUseful),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod alert_center_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Google Workspace Alert Center API (beta).
-#[derive(Debug, Clone)]
-pub struct AlertCenterServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AlertCenterServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AlertCenterServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AlertCenterServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists the alerts.
-pub async fn list_alerts(&mut self, request: impl tonic::IntoRequest<super::ListAlertsRequest>) -> std::result::Result<tonic::Response<super::ListAlertsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/ListAlerts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "ListAlerts"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the specified alert. Attempting to get a nonexistent alert returns
-/// `NOT_FOUND` error.
-pub async fn get_alert(&mut self, request: impl tonic::IntoRequest<super::GetAlertRequest>) -> std::result::Result<tonic::Response<super::Alert>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/GetAlert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "GetAlert"));
-self.inner.unary(req, path, codec).await
-}
-/// Marks the specified alert for deletion. An alert that has been marked for
-/// deletion is removed from Alert Center after 30 days.
-/// Marking an alert for deletion has no effect on an alert which has
-/// already been marked for deletion. Attempting to mark a nonexistent alert
-/// for deletion results in a `NOT_FOUND` error.
-pub async fn delete_alert(&mut self, request: impl tonic::IntoRequest<super::DeleteAlertRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/DeleteAlert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "DeleteAlert"));
-self.inner.unary(req, path, codec).await
-}
-/// Restores, or "undeletes", an alert that was marked for deletion within the
-/// past 30 days. Attempting to undelete an alert which was marked for deletion
-/// over 30 days ago (which has been removed from the Alert Center database) or
-/// a nonexistent alert returns a `NOT_FOUND` error. Attempting to
-/// undelete an alert which has not been marked for deletion has no effect.
-pub async fn undelete_alert(&mut self, request: impl tonic::IntoRequest<super::UndeleteAlertRequest>) -> std::result::Result<tonic::Response<super::Alert>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/UndeleteAlert");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "UndeleteAlert"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates new feedback for an alert. Attempting to create a feedback for
-/// a non-existent alert returns `NOT_FOUND` error. Attempting to create a
-/// feedback for an alert that is marked for deletion returns
-/// `FAILED_PRECONDITION' error.
-pub async fn create_alert_feedback(&mut self, request: impl tonic::IntoRequest<super::CreateAlertFeedbackRequest>) -> std::result::Result<tonic::Response<super::AlertFeedback>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/CreateAlertFeedback");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "CreateAlertFeedback"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all the feedback for an alert. Attempting to list feedbacks for
-/// a non-existent alert returns `NOT_FOUND` error.
-pub async fn list_alert_feedback(&mut self, request: impl tonic::IntoRequest<super::ListAlertFeedbackRequest>) -> std::result::Result<tonic::Response<super::ListAlertFeedbackResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/ListAlertFeedback");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "ListAlertFeedback"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns the metadata of an alert. Attempting to get metadata for
-/// a non-existent alert returns `NOT_FOUND` error.
-pub async fn get_alert_metadata(&mut self, request: impl tonic::IntoRequest<super::GetAlertMetadataRequest>) -> std::result::Result<tonic::Response<super::AlertMetadata>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/GetAlertMetadata");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "GetAlertMetadata"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns customer-level settings.
-pub async fn get_settings(&mut self, request: impl tonic::IntoRequest<super::GetSettingsRequest>) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/GetSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "GetSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the customer-level settings.
-pub async fn update_settings(&mut self, request: impl tonic::IntoRequest<super::UpdateSettingsRequest>) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/UpdateSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "UpdateSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Performs batch delete operation on alerts.
-pub async fn batch_delete_alerts(&mut self, request: impl tonic::IntoRequest<super::BatchDeleteAlertsRequest>) -> std::result::Result<tonic::Response<super::BatchDeleteAlertsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/BatchDeleteAlerts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "BatchDeleteAlerts"));
-self.inner.unary(req, path, codec).await
-}
-/// Performs batch undelete operation on alerts.
-pub async fn batch_undelete_alerts(&mut self, request: impl tonic::IntoRequest<super::BatchUndeleteAlertsRequest>) -> std::result::Result<tonic::Response<super::BatchUndeleteAlertsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.apps.alertcenter.v1beta1.AlertCenterService/BatchUndeleteAlerts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.apps.alertcenter.v1beta1.AlertCenterService", "BatchUndeleteAlerts"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Google Workspace Alert Center API (beta).
+    #[derive(Debug, Clone)]
+    pub struct AlertCenterServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AlertCenterServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AlertCenterServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AlertCenterServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists the alerts.
+        pub async fn list_alerts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAlertsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAlertsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/ListAlerts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "ListAlerts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the specified alert. Attempting to get a nonexistent alert returns
+        /// `NOT_FOUND` error.
+        pub async fn get_alert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAlertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Alert>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/GetAlert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "GetAlert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Marks the specified alert for deletion. An alert that has been marked for
+        /// deletion is removed from Alert Center after 30 days.
+        /// Marking an alert for deletion has no effect on an alert which has
+        /// already been marked for deletion. Attempting to mark a nonexistent alert
+        /// for deletion results in a `NOT_FOUND` error.
+        pub async fn delete_alert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAlertRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/DeleteAlert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "DeleteAlert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Restores, or "undeletes", an alert that was marked for deletion within the
+        /// past 30 days. Attempting to undelete an alert which was marked for deletion
+        /// over 30 days ago (which has been removed from the Alert Center database) or
+        /// a nonexistent alert returns a `NOT_FOUND` error. Attempting to
+        /// undelete an alert which has not been marked for deletion has no effect.
+        pub async fn undelete_alert(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UndeleteAlertRequest>,
+        ) -> std::result::Result<tonic::Response<super::Alert>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/UndeleteAlert",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "UndeleteAlert",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates new feedback for an alert. Attempting to create a feedback for
+        /// a non-existent alert returns `NOT_FOUND` error. Attempting to create a
+        /// feedback for an alert that is marked for deletion returns
+        /// `FAILED_PRECONDITION' error.
+        pub async fn create_alert_feedback(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAlertFeedbackRequest>,
+        ) -> std::result::Result<tonic::Response<super::AlertFeedback>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/CreateAlertFeedback",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "CreateAlertFeedback",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all the feedback for an alert. Attempting to list feedbacks for
+        /// a non-existent alert returns `NOT_FOUND` error.
+        pub async fn list_alert_feedback(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAlertFeedbackRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAlertFeedbackResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/ListAlertFeedback",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "ListAlertFeedback",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns the metadata of an alert. Attempting to get metadata for
+        /// a non-existent alert returns `NOT_FOUND` error.
+        pub async fn get_alert_metadata(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAlertMetadataRequest>,
+        ) -> std::result::Result<tonic::Response<super::AlertMetadata>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/GetAlertMetadata",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "GetAlertMetadata",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns customer-level settings.
+        pub async fn get_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSettingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/GetSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "GetSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the customer-level settings.
+        pub async fn update_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateSettingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/UpdateSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "UpdateSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Performs batch delete operation on alerts.
+        pub async fn batch_delete_alerts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchDeleteAlertsRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchDeleteAlertsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/BatchDeleteAlerts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "BatchDeleteAlerts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Performs batch undelete operation on alerts.
+        pub async fn batch_undelete_alerts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchUndeleteAlertsRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchUndeleteAlertsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.apps.alertcenter.v1beta1.AlertCenterService/BatchUndeleteAlerts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.apps.alertcenter.v1beta1.AlertCenterService",
+                "BatchUndeleteAlerts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

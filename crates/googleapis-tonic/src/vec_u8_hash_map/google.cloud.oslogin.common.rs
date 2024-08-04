@@ -2,67 +2,67 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PosixAccount {
-#[prost(bool, tag = "1")]
-pub primary: bool,
-#[prost(string, tag = "2")]
-pub username: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub uid: i64,
-#[prost(int64, tag = "4")]
-pub gid: i64,
-#[prost(string, tag = "5")]
-pub home_directory: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub shell: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub gecos: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub system_id: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub account_id: ::prost::alloc::string::String,
-#[prost(enumeration = "OperatingSystemType", tag = "10")]
-pub operating_system_type: i32,
-#[prost(string, tag = "11")]
-pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "1")]
+    pub primary: bool,
+    #[prost(string, tag = "2")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub uid: i64,
+    #[prost(int64, tag = "4")]
+    pub gid: i64,
+    #[prost(string, tag = "5")]
+    pub home_directory: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub shell: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub gecos: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub system_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub account_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "OperatingSystemType", tag = "10")]
+    pub operating_system_type: i32,
+    #[prost(string, tag = "11")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SshPublicKey {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub expiration_time_usec: i64,
-#[prost(string, tag = "3")]
-pub fingerprint: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub expiration_time_usec: i64,
+    #[prost(string, tag = "3")]
+    pub fingerprint: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OperatingSystemType {
-Unspecified = 0,
-Linux = 1,
-Windows = 2,
+    Unspecified = 0,
+    Linux = 1,
+    Windows = 2,
 }
 impl OperatingSystemType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-OperatingSystemType::Unspecified => "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
-OperatingSystemType::Linux => "LINUX",
-OperatingSystemType::Windows => "WINDOWS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OPERATING_SYSTEM_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LINUX" => Some(Self::Linux),
-"WINDOWS" => Some(Self::Windows),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            OperatingSystemType::Unspecified => "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
+            OperatingSystemType::Linux => "LINUX",
+            OperatingSystemType::Windows => "WINDOWS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATING_SYSTEM_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "LINUX" => Some(Self::Linux),
+            "WINDOWS" => Some(Self::Windows),
+            _ => None,
+        }
+    }
 }

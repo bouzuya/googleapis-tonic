@@ -2,14 +2,14 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SlidesAddOnManifest {
-#[prost(message, optional, tag = "1")]
-pub homepage_trigger: ::core::option::Option<super::HomepageExtensionPoint>,
-#[prost(message, optional, tag = "2")]
-pub on_file_scope_granted_trigger: ::core::option::Option<SlidesExtensionPoint>,
+    #[prost(message, optional, tag = "1")]
+    pub homepage_trigger: ::core::option::Option<super::HomepageExtensionPoint>,
+    #[prost(message, optional, tag = "2")]
+    pub on_file_scope_granted_trigger: ::core::option::Option<SlidesExtensionPoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SlidesExtensionPoint {
-#[prost(string, tag = "1")]
-pub run_function: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub run_function: ::prost::alloc::string::String,
 }

@@ -2,14 +2,15 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunPipelineRequest {
-#[prost(string, tag = "4")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "1")]
-pub pipeline: ::core::option::Option<Pipeline>,
-#[prost(map = "string, string", tag = "2")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub pub_sub_topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub pipeline: ::core::option::Option<Pipeline>,
+    #[prost(map = "string, string", tag = "2")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub pub_sub_topic: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -17,430 +18,463 @@ pub struct RunPipelineResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pipeline {
-#[prost(message, repeated, tag = "1")]
-pub actions: ::prost::alloc::vec::Vec<Action>,
-#[prost(message, optional, tag = "2")]
-pub resources: ::core::option::Option<Resources>,
-#[prost(map = "string, string", tag = "3")]
-pub environment: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub encrypted_environment: ::core::option::Option<Secret>,
-#[prost(message, optional, tag = "4")]
-pub timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, repeated, tag = "1")]
+    pub actions: ::prost::alloc::vec::Vec<Action>,
+    #[prost(message, optional, tag = "2")]
+    pub resources: ::core::option::Option<Resources>,
+    #[prost(map = "string, string", tag = "3")]
+    pub environment:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub encrypted_environment: ::core::option::Option<Secret>,
+    #[prost(message, optional, tag = "4")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Action {
-#[prost(string, tag = "1")]
-pub container_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub image_uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub entrypoint: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "5")]
-pub environment: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "21")]
-pub encrypted_environment: ::core::option::Option<Secret>,
-#[prost(string, tag = "6")]
-pub pid_namespace: ::prost::alloc::string::String,
-#[prost(map = "int32, int32", tag = "8")]
-pub port_mappings: ::std::collections::HashMap<i32, i32>,
-#[prost(message, repeated, tag = "9")]
-pub mounts: ::prost::alloc::vec::Vec<Mount>,
-#[prost(map = "string, string", tag = "10")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "11")]
-pub credentials: ::core::option::Option<Secret>,
-#[prost(message, optional, tag = "12")]
-pub timeout: ::core::option::Option<::prost_types::Duration>,
-#[prost(bool, tag = "13")]
-pub ignore_exit_status: bool,
-#[prost(bool, tag = "14")]
-pub run_in_background: bool,
-#[prost(bool, tag = "15")]
-pub always_run: bool,
-#[prost(bool, tag = "16")]
-pub enable_fuse: bool,
-#[prost(bool, tag = "17")]
-pub publish_exposed_ports: bool,
-#[prost(bool, tag = "18")]
-pub disable_image_prefetch: bool,
-#[prost(bool, tag = "19")]
-pub disable_standard_error_capture: bool,
-#[prost(bool, tag = "20")]
-pub block_external_network: bool,
+    #[prost(string, tag = "1")]
+    pub container_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub image_uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub entrypoint: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "5")]
+    pub environment:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "21")]
+    pub encrypted_environment: ::core::option::Option<Secret>,
+    #[prost(string, tag = "6")]
+    pub pid_namespace: ::prost::alloc::string::String,
+    #[prost(map = "int32, int32", tag = "8")]
+    pub port_mappings: ::std::collections::HashMap<i32, i32>,
+    #[prost(message, repeated, tag = "9")]
+    pub mounts: ::prost::alloc::vec::Vec<Mount>,
+    #[prost(map = "string, string", tag = "10")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub credentials: ::core::option::Option<Secret>,
+    #[prost(message, optional, tag = "12")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(bool, tag = "13")]
+    pub ignore_exit_status: bool,
+    #[prost(bool, tag = "14")]
+    pub run_in_background: bool,
+    #[prost(bool, tag = "15")]
+    pub always_run: bool,
+    #[prost(bool, tag = "16")]
+    pub enable_fuse: bool,
+    #[prost(bool, tag = "17")]
+    pub publish_exposed_ports: bool,
+    #[prost(bool, tag = "18")]
+    pub disable_image_prefetch: bool,
+    #[prost(bool, tag = "19")]
+    pub disable_standard_error_capture: bool,
+    #[prost(bool, tag = "20")]
+    pub block_external_network: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Secret {
-#[prost(string, tag = "1")]
-pub key_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cipher_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub key_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub cipher_text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Mount {
-#[prost(string, tag = "1")]
-pub disk: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub path: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub read_only: bool,
+    #[prost(string, tag = "1")]
+    pub disk: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub read_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Resources {
-#[prost(string, repeated, tag = "2")]
-pub regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub virtual_machine: ::core::option::Option<VirtualMachine>,
+    #[prost(string, repeated, tag = "2")]
+    pub regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub virtual_machine: ::core::option::Option<VirtualMachine>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VirtualMachine {
-#[prost(string, tag = "1")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub preemptible: bool,
-#[prost(map = "string, string", tag = "3")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "4")]
-pub disks: ::prost::alloc::vec::Vec<Disk>,
-#[prost(message, optional, tag = "5")]
-pub network: ::core::option::Option<Network>,
-#[prost(message, repeated, tag = "6")]
-pub accelerators: ::prost::alloc::vec::Vec<Accelerator>,
-#[prost(message, optional, tag = "7")]
-pub service_account: ::core::option::Option<ServiceAccount>,
-#[prost(int32, tag = "8")]
-pub boot_disk_size_gb: i32,
-#[prost(string, tag = "9")]
-pub cpu_platform: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub boot_image: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "11")]
-pub nvidia_driver_version: ::prost::alloc::string::String,
-#[prost(bool, tag = "12")]
-pub enable_stackdriver_monitoring: bool,
-#[prost(string, repeated, tag = "13")]
-pub docker_cache_images: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "14")]
-pub volumes: ::prost::alloc::vec::Vec<Volume>,
-#[prost(string, tag = "15")]
-pub reservation: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub preemptible: bool,
+    #[prost(map = "string, string", tag = "3")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "4")]
+    pub disks: ::prost::alloc::vec::Vec<Disk>,
+    #[prost(message, optional, tag = "5")]
+    pub network: ::core::option::Option<Network>,
+    #[prost(message, repeated, tag = "6")]
+    pub accelerators: ::prost::alloc::vec::Vec<Accelerator>,
+    #[prost(message, optional, tag = "7")]
+    pub service_account: ::core::option::Option<ServiceAccount>,
+    #[prost(int32, tag = "8")]
+    pub boot_disk_size_gb: i32,
+    #[prost(string, tag = "9")]
+    pub cpu_platform: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub boot_image: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "11")]
+    pub nvidia_driver_version: ::prost::alloc::string::String,
+    #[prost(bool, tag = "12")]
+    pub enable_stackdriver_monitoring: bool,
+    #[prost(string, repeated, tag = "13")]
+    pub docker_cache_images: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "14")]
+    pub volumes: ::prost::alloc::vec::Vec<Volume>,
+    #[prost(string, tag = "15")]
+    pub reservation: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccount {
-#[prost(string, tag = "1")]
-pub email: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub email: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Accelerator {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub count: i64,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Network {
-#[prost(string, tag = "1")]
-pub network: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub use_private_address: bool,
-#[prost(string, tag = "3")]
-pub subnetwork: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub network: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub use_private_address: bool,
+    #[prost(string, tag = "3")]
+    pub subnetwork: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Disk {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub size_gb: i32,
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub source_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub size_gb: i32,
+    #[prost(string, tag = "3")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub source_image: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
-#[prost(string, tag = "1")]
-pub volume: ::prost::alloc::string::String,
-#[prost(oneof = "volume::Storage", tags = "2, 3, 4")]
-pub storage: ::core::option::Option<volume::Storage>,
+    #[prost(string, tag = "1")]
+    pub volume: ::prost::alloc::string::String,
+    #[prost(oneof = "volume::Storage", tags = "2, 3, 4")]
+    pub storage: ::core::option::Option<volume::Storage>,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Storage {
-#[prost(message, tag = "2")]
-PersistentDisk(super::PersistentDisk),
-#[prost(message, tag = "3")]
-ExistingDisk(super::ExistingDisk),
-#[prost(message, tag = "4")]
-NfsMount(super::NfsMount),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Storage {
+        #[prost(message, tag = "2")]
+        PersistentDisk(super::PersistentDisk),
+        #[prost(message, tag = "3")]
+        ExistingDisk(super::ExistingDisk),
+        #[prost(message, tag = "4")]
+        NfsMount(super::NfsMount),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PersistentDisk {
-#[prost(int32, tag = "1")]
-pub size_gb: i32,
-#[prost(string, tag = "2")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub source_image: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub size_gb: i32,
+    #[prost(string, tag = "2")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub source_image: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExistingDisk {
-#[prost(string, tag = "1")]
-pub disk: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub disk: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NfsMount {
-#[prost(string, tag = "1")]
-pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub target: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metadata {
-#[prost(message, optional, tag = "1")]
-pub pipeline: ::core::option::Option<Pipeline>,
-#[prost(map = "string, string", tag = "2")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "3")]
-pub events: ::prost::alloc::vec::Vec<Event>,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub pub_sub_topic: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub pipeline: ::core::option::Option<Pipeline>,
+    #[prost(map = "string, string", tag = "2")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub events: ::prost::alloc::vec::Vec<Event>,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub pub_sub_topic: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
-#[prost(message, optional, tag = "1")]
-pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(oneof = "event::Details", tags = "17, 18, 19, 20, 21, 22, 23, 24, 25, 26")]
-pub details: ::core::option::Option<event::Details>,
+    #[prost(message, optional, tag = "1")]
+    pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "event::Details",
+        tags = "17, 18, 19, 20, 21, 22, 23, 24, 25, 26"
+    )]
+    pub details: ::core::option::Option<event::Details>,
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Details {
-#[prost(message, tag = "17")]
-Delayed(super::DelayedEvent),
-#[prost(message, tag = "18")]
-WorkerAssigned(super::WorkerAssignedEvent),
-#[prost(message, tag = "19")]
-WorkerReleased(super::WorkerReleasedEvent),
-#[prost(message, tag = "20")]
-PullStarted(super::PullStartedEvent),
-#[prost(message, tag = "21")]
-PullStopped(super::PullStoppedEvent),
-#[prost(message, tag = "22")]
-ContainerStarted(super::ContainerStartedEvent),
-#[prost(message, tag = "23")]
-ContainerStopped(super::ContainerStoppedEvent),
-#[prost(message, tag = "24")]
-ContainerKilled(super::ContainerKilledEvent),
-#[prost(message, tag = "25")]
-UnexpectedExitStatus(super::UnexpectedExitStatusEvent),
-#[prost(message, tag = "26")]
-Failed(super::FailedEvent),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        #[prost(message, tag = "17")]
+        Delayed(super::DelayedEvent),
+        #[prost(message, tag = "18")]
+        WorkerAssigned(super::WorkerAssignedEvent),
+        #[prost(message, tag = "19")]
+        WorkerReleased(super::WorkerReleasedEvent),
+        #[prost(message, tag = "20")]
+        PullStarted(super::PullStartedEvent),
+        #[prost(message, tag = "21")]
+        PullStopped(super::PullStoppedEvent),
+        #[prost(message, tag = "22")]
+        ContainerStarted(super::ContainerStartedEvent),
+        #[prost(message, tag = "23")]
+        ContainerStopped(super::ContainerStoppedEvent),
+        #[prost(message, tag = "24")]
+        ContainerKilled(super::ContainerKilledEvent),
+        #[prost(message, tag = "25")]
+        UnexpectedExitStatus(super::UnexpectedExitStatusEvent),
+        #[prost(message, tag = "26")]
+        Failed(super::FailedEvent),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DelayedEvent {
-#[prost(string, tag = "1")]
-pub cause: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub cause: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkerAssignedEvent {
-#[prost(string, tag = "1")]
-pub zone: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub machine_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub machine_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkerReleasedEvent {
-#[prost(string, tag = "1")]
-pub zone: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PullStartedEvent {
-#[prost(string, tag = "1")]
-pub image_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub image_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PullStoppedEvent {
-#[prost(string, tag = "1")]
-pub image_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub image_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerStartedEvent {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
-#[prost(map = "int32, int32", tag = "2")]
-pub port_mappings: ::std::collections::HashMap<i32, i32>,
-#[prost(string, tag = "3")]
-pub ip_address: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
+    #[prost(map = "int32, int32", tag = "2")]
+    pub port_mappings: ::std::collections::HashMap<i32, i32>,
+    #[prost(string, tag = "3")]
+    pub ip_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerStoppedEvent {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
-#[prost(int32, tag = "2")]
-pub exit_status: i32,
-#[prost(string, tag = "3")]
-pub stderr: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
+    #[prost(int32, tag = "2")]
+    pub exit_status: i32,
+    #[prost(string, tag = "3")]
+    pub stderr: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UnexpectedExitStatusEvent {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
-#[prost(int32, tag = "2")]
-pub exit_status: i32,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
+    #[prost(int32, tag = "2")]
+    pub exit_status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ContainerKilledEvent {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FailedEvent {
-#[prost(enumeration = "super::super::super::rpc::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub cause: ::prost::alloc::string::String,
+    #[prost(enumeration = "super::super::super::rpc::Code", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub cause: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod workflows_service_v2_beta_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// A service for running workflows, such as pipelines consisting of Docker
-/// containers.
-#[derive(Debug, Clone)]
-pub struct WorkflowsServiceV2BetaClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> WorkflowsServiceV2BetaClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> WorkflowsServiceV2BetaClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-WorkflowsServiceV2BetaClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Runs a pipeline.  The returned Operation's [metadata]
-/// [google.longrunning.Operation.metadata] field will contain a
-/// [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata]
-/// object describing the status of the pipeline execution. The
-/// [response][google.longrunning.Operation.response] field will contain a
-/// [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse]
-/// object if the pipeline completes successfully.
-///
-/// **Note:** Before you can use this method, the *Life Sciences Service Agent*
-/// must have access to your project. This is done automatically when the
-/// Cloud Life Sciences API is first enabled, but if you delete this permission
-/// you must disable and re-enable the API to grant the Life Sciences
-/// Service Agent the required permissions.
-/// Authorization requires the following [Google
-/// IAM](https://cloud.google.com/iam/) permission:
-///
-/// * `lifesciences.workflows.run`
-pub async fn run_pipeline(&mut self, request: impl tonic::IntoRequest<super::RunPipelineRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta", "RunPipeline"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// A service for running workflows, such as pipelines consisting of Docker
+    /// containers.
+    #[derive(Debug, Clone)]
+    pub struct WorkflowsServiceV2BetaClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> WorkflowsServiceV2BetaClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> WorkflowsServiceV2BetaClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            WorkflowsServiceV2BetaClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Runs a pipeline.  The returned Operation's [metadata]
+        /// [google.longrunning.Operation.metadata] field will contain a
+        /// [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata]
+        /// object describing the status of the pipeline execution. The
+        /// [response][google.longrunning.Operation.response] field will contain a
+        /// [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse]
+        /// object if the pipeline completes successfully.
+        ///
+        /// **Note:** Before you can use this method, the *Life Sciences Service Agent*
+        /// must have access to your project. This is done automatically when the
+        /// Cloud Life Sciences API is first enabled, but if you delete this permission
+        /// you must disable and re-enable the API to grant the Life Sciences
+        /// Service Agent the required permissions.
+        /// Authorization requires the following [Google
+        /// IAM](https://cloud.google.com/iam/) permission:
+        ///
+        /// * `lifesciences.workflows.run`
+        pub async fn run_pipeline(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunPipelineRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta",
+                "RunPipeline",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

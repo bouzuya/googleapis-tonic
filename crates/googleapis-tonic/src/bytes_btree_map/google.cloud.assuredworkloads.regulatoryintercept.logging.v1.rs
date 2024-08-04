@@ -2,8 +2,8 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegulatoryInterceptAckLogEntry {
-#[prost(string, tag = "1")]
-pub user_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub assured_workload_resource_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub user_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub assured_workload_resource_id: ::prost::alloc::string::String,
 }

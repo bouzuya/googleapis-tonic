@@ -2,39 +2,43 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GapicMetadata {
-#[prost(string, tag = "1")]
-pub schema: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub comment: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub language: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub proto_package: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub library_package: ::prost::alloc::string::String,
-#[prost(btree_map = "string, message", tag = "6")]
-pub services: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, gapic_metadata::ServiceForTransport>,
+    #[prost(string, tag = "1")]
+    pub schema: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub comment: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub language: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub proto_package: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub library_package: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, message", tag = "6")]
+    pub services: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        gapic_metadata::ServiceForTransport,
+    >,
 }
 /// Nested message and enum types in `GapicMetadata`.
 pub mod gapic_metadata {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ServiceForTransport {
-#[prost(btree_map = "string, message", tag = "1")]
-pub clients: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ServiceAsClient>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ServiceAsClient {
-#[prost(string, tag = "1")]
-pub library_client: ::prost::alloc::string::String,
-#[prost(btree_map = "string, message", tag = "2")]
-pub rpcs: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, MethodList>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MethodList {
-#[prost(string, repeated, tag = "1")]
-pub methods: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ServiceForTransport {
+        #[prost(btree_map = "string, message", tag = "1")]
+        pub clients:
+            ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ServiceAsClient>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ServiceAsClient {
+        #[prost(string, tag = "1")]
+        pub library_client: ::prost::alloc::string::String,
+        #[prost(btree_map = "string, message", tag = "2")]
+        pub rpcs: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, MethodList>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MethodList {
+        #[prost(string, repeated, tag = "1")]
+        pub methods: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }

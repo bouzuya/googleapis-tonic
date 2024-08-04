@@ -2,333 +2,358 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConverseConfig {
-#[prost(message, optional, tag = "1")]
-pub audio_in_config: ::core::option::Option<AudioInConfig>,
-#[prost(message, optional, tag = "2")]
-pub audio_out_config: ::core::option::Option<AudioOutConfig>,
-#[prost(message, optional, tag = "3")]
-pub converse_state: ::core::option::Option<ConverseState>,
+    #[prost(message, optional, tag = "1")]
+    pub audio_in_config: ::core::option::Option<AudioInConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub audio_out_config: ::core::option::Option<AudioOutConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub converse_state: ::core::option::Option<ConverseState>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AudioInConfig {
-#[prost(enumeration = "audio_in_config::Encoding", tag = "1")]
-pub encoding: i32,
-#[prost(int32, tag = "2")]
-pub sample_rate_hertz: i32,
+    #[prost(enumeration = "audio_in_config::Encoding", tag = "1")]
+    pub encoding: i32,
+    #[prost(int32, tag = "2")]
+    pub sample_rate_hertz: i32,
 }
 /// Nested message and enum types in `AudioInConfig`.
 pub mod audio_in_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Encoding {
-Unspecified = 0,
-Linear16 = 1,
-Flac = 2,
-}
-impl Encoding {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-Encoding::Linear16 => "LINEAR16",
-Encoding::Flac => "FLAC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-"LINEAR16" => Some(Self::Linear16),
-"FLAC" => Some(Self::Flac),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Encoding {
+        Unspecified = 0,
+        Linear16 = 1,
+        Flac = 2,
+    }
+    impl Encoding {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
+                Encoding::Linear16 => "LINEAR16",
+                Encoding::Flac => "FLAC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+                "LINEAR16" => Some(Self::Linear16),
+                "FLAC" => Some(Self::Flac),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AudioOutConfig {
-#[prost(enumeration = "audio_out_config::Encoding", tag = "1")]
-pub encoding: i32,
-#[prost(int32, tag = "2")]
-pub sample_rate_hertz: i32,
-#[prost(int32, tag = "3")]
-pub volume_percentage: i32,
+    #[prost(enumeration = "audio_out_config::Encoding", tag = "1")]
+    pub encoding: i32,
+    #[prost(int32, tag = "2")]
+    pub sample_rate_hertz: i32,
+    #[prost(int32, tag = "3")]
+    pub volume_percentage: i32,
 }
 /// Nested message and enum types in `AudioOutConfig`.
 pub mod audio_out_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Encoding {
-Unspecified = 0,
-Linear16 = 1,
-Mp3 = 2,
-OpusInOgg = 3,
-}
-impl Encoding {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-Encoding::Linear16 => "LINEAR16",
-Encoding::Mp3 => "MP3",
-Encoding::OpusInOgg => "OPUS_IN_OGG",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-"LINEAR16" => Some(Self::Linear16),
-"MP3" => Some(Self::Mp3),
-"OPUS_IN_OGG" => Some(Self::OpusInOgg),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Encoding {
+        Unspecified = 0,
+        Linear16 = 1,
+        Mp3 = 2,
+        OpusInOgg = 3,
+    }
+    impl Encoding {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
+                Encoding::Linear16 => "LINEAR16",
+                Encoding::Mp3 => "MP3",
+                Encoding::OpusInOgg => "OPUS_IN_OGG",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+                "LINEAR16" => Some(Self::Linear16),
+                "MP3" => Some(Self::Mp3),
+                "OPUS_IN_OGG" => Some(Self::OpusInOgg),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConverseState {
-#[prost(bytes = "bytes", tag = "1")]
-pub conversation_state: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub conversation_state: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudioOut {
-#[prost(bytes = "bytes", tag = "1")]
-pub audio_data: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub audio_data: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConverseResult {
-#[prost(string, tag = "1")]
-pub spoken_request_text: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub spoken_response_text: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "3")]
-pub conversation_state: ::prost::bytes::Bytes,
-#[prost(enumeration = "converse_result::MicrophoneMode", tag = "4")]
-pub microphone_mode: i32,
-#[prost(int32, tag = "5")]
-pub volume_percentage: i32,
+    #[prost(string, tag = "1")]
+    pub spoken_request_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub spoken_response_text: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "3")]
+    pub conversation_state: ::prost::bytes::Bytes,
+    #[prost(enumeration = "converse_result::MicrophoneMode", tag = "4")]
+    pub microphone_mode: i32,
+    #[prost(int32, tag = "5")]
+    pub volume_percentage: i32,
 }
 /// Nested message and enum types in `ConverseResult`.
 pub mod converse_result {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MicrophoneMode {
-Unspecified = 0,
-CloseMicrophone = 1,
-DialogFollowOn = 2,
-}
-impl MicrophoneMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
-MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
-MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MICROPHONE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOSE_MICROPHONE" => Some(Self::CloseMicrophone),
-"DIALOG_FOLLOW_ON" => Some(Self::DialogFollowOn),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MicrophoneMode {
+        Unspecified = 0,
+        CloseMicrophone = 1,
+        DialogFollowOn = 2,
+    }
+    impl MicrophoneMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
+                MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
+                MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MICROPHONE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLOSE_MICROPHONE" => Some(Self::CloseMicrophone),
+                "DIALOG_FOLLOW_ON" => Some(Self::DialogFollowOn),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConverseRequest {
-#[prost(oneof = "converse_request::ConverseRequest", tags = "1, 2")]
-pub converse_request: ::core::option::Option<converse_request::ConverseRequest>,
+    #[prost(oneof = "converse_request::ConverseRequest", tags = "1, 2")]
+    pub converse_request: ::core::option::Option<converse_request::ConverseRequest>,
 }
 /// Nested message and enum types in `ConverseRequest`.
 pub mod converse_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConverseRequest {
-#[prost(message, tag = "1")]
-Config(super::ConverseConfig),
-#[prost(bytes, tag = "2")]
-AudioIn(::prost::bytes::Bytes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ConverseRequest {
+        #[prost(message, tag = "1")]
+        Config(super::ConverseConfig),
+        #[prost(bytes, tag = "2")]
+        AudioIn(::prost::bytes::Bytes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConverseResponse {
-#[prost(oneof = "converse_response::ConverseResponse", tags = "1, 2, 3, 5")]
-pub converse_response: ::core::option::Option<converse_response::ConverseResponse>,
+    #[prost(oneof = "converse_response::ConverseResponse", tags = "1, 2, 3, 5")]
+    pub converse_response: ::core::option::Option<converse_response::ConverseResponse>,
 }
 /// Nested message and enum types in `ConverseResponse`.
 pub mod converse_response {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EventType {
-Unspecified = 0,
-EndOfUtterance = 1,
-}
-impl EventType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-EventType::EndOfUtterance => "END_OF_UTTERANCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"END_OF_UTTERANCE" => Some(Self::EndOfUtterance),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConverseResponse {
-#[prost(message, tag = "1")]
-Error(super::super::super::super::rpc::Status),
-#[prost(enumeration = "EventType", tag = "2")]
-EventType(i32),
-#[prost(message, tag = "3")]
-AudioOut(super::AudioOut),
-#[prost(message, tag = "5")]
-Result(super::ConverseResult),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum EventType {
+        Unspecified = 0,
+        EndOfUtterance = 1,
+    }
+    impl EventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                EventType::EndOfUtterance => "END_OF_UTTERANCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "END_OF_UTTERANCE" => Some(Self::EndOfUtterance),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ConverseResponse {
+        #[prost(message, tag = "1")]
+        Error(super::super::super::super::rpc::Status),
+        #[prost(enumeration = "EventType", tag = "2")]
+        EventType(i32),
+        #[prost(message, tag = "3")]
+        AudioOut(super::AudioOut),
+        #[prost(message, tag = "5")]
+        Result(super::ConverseResult),
+    }
 }
 /// Generated client implementations.
 pub mod embedded_assistant_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that implements Google Assistant API.
-#[derive(Debug, Clone)]
-pub struct EmbeddedAssistantClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> EmbeddedAssistantClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> EmbeddedAssistantClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-EmbeddedAssistantClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Initiates or continues a conversation with the embedded assistant service.
-/// Each call performs one round-trip, sending an audio request to the service
-/// and receiving the audio response. Uses bidirectional streaming to receive
-/// results, such as the `END_OF_UTTERANCE` event, while sending audio.
-///
-/// A conversation is one or more gRPC connections, each consisting of several
-/// streamed requests and responses.
-/// For example, the user says *Add to my shopping list* and the assistant
-/// responds *What do you want to add?*. The sequence of streamed requests and
-/// responses in the first gRPC message could be:
-///
-/// *   ConverseRequest.config
-/// *   ConverseRequest.audio_in
-/// *   ConverseRequest.audio_in
-/// *   ConverseRequest.audio_in
-/// *   ConverseRequest.audio_in
-/// *   ConverseResponse.event_type.END_OF_UTTERANCE
-/// *   ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
-/// *   ConverseResponse.audio_out
-/// *   ConverseResponse.audio_out
-/// *   ConverseResponse.audio_out
-///
-/// The user then says *bagels* and the assistant responds
-/// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
-/// connection call to the `Converse` method, again with streamed requests and
-/// responses, such as:
-///
-/// *   ConverseRequest.config
-/// *   ConverseRequest.audio_in
-/// *   ConverseRequest.audio_in
-/// *   ConverseRequest.audio_in
-/// *   ConverseResponse.event_type.END_OF_UTTERANCE
-/// *   ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
-/// *   ConverseResponse.audio_out
-/// *   ConverseResponse.audio_out
-/// *   ConverseResponse.audio_out
-/// *   ConverseResponse.audio_out
-///
-/// Although the precise order of responses is not guaranteed, sequential
-/// ConverseResponse.audio_out messages will always contain sequential portions
-/// of audio.
-pub async fn converse(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::ConverseRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ConverseResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.assistant.embedded.v1alpha1.EmbeddedAssistant/Converse");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.assistant.embedded.v1alpha1.EmbeddedAssistant", "Converse"));
-self.inner.streaming(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that implements Google Assistant API.
+    #[derive(Debug, Clone)]
+    pub struct EmbeddedAssistantClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> EmbeddedAssistantClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> EmbeddedAssistantClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            EmbeddedAssistantClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Initiates or continues a conversation with the embedded assistant service.
+        /// Each call performs one round-trip, sending an audio request to the service
+        /// and receiving the audio response. Uses bidirectional streaming to receive
+        /// results, such as the `END_OF_UTTERANCE` event, while sending audio.
+        ///
+        /// A conversation is one or more gRPC connections, each consisting of several
+        /// streamed requests and responses.
+        /// For example, the user says *Add to my shopping list* and the assistant
+        /// responds *What do you want to add?*. The sequence of streamed requests and
+        /// responses in the first gRPC message could be:
+        ///
+        /// *   ConverseRequest.config
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
+        /// *   ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        ///
+        /// The user then says *bagels* and the assistant responds
+        /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
+        /// connection call to the `Converse` method, again with streamed requests and
+        /// responses, such as:
+        ///
+        /// *   ConverseRequest.config
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseRequest.audio_in
+        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
+        /// *   ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        /// *   ConverseResponse.audio_out
+        ///
+        /// Although the precise order of responses is not guaranteed, sequential
+        /// ConverseResponse.audio_out messages will always contain sequential portions
+        /// of audio.
+        pub async fn converse(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::ConverseRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::ConverseResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.assistant.embedded.v1alpha1.EmbeddedAssistant/Converse",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.assistant.embedded.v1alpha1.EmbeddedAssistant",
+                "Converse",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+    }
 }

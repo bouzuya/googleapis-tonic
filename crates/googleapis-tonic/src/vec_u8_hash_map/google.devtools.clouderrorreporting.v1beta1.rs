@@ -2,121 +2,121 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorGroup {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub group_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub tracking_issues: ::prost::alloc::vec::Vec<TrackingIssue>,
-#[prost(enumeration = "ResolutionStatus", tag = "5")]
-pub resolution_status: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub group_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub tracking_issues: ::prost::alloc::vec::Vec<TrackingIssue>,
+    #[prost(enumeration = "ResolutionStatus", tag = "5")]
+    pub resolution_status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrackingIssue {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorEvent {
-#[prost(message, optional, tag = "1")]
-pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub service_context: ::core::option::Option<ServiceContext>,
-#[prost(string, tag = "3")]
-pub message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub context: ::core::option::Option<ErrorContext>,
+    #[prost(message, optional, tag = "1")]
+    pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub service_context: ::core::option::Option<ServiceContext>,
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub context: ::core::option::Option<ErrorContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceContext {
-#[prost(string, tag = "2")]
-pub service: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub resource_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub resource_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorContext {
-#[prost(message, optional, tag = "1")]
-pub http_request: ::core::option::Option<HttpRequestContext>,
-#[prost(string, tag = "2")]
-pub user: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub report_location: ::core::option::Option<SourceLocation>,
+    #[prost(message, optional, tag = "1")]
+    pub http_request: ::core::option::Option<HttpRequestContext>,
+    #[prost(string, tag = "2")]
+    pub user: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub report_location: ::core::option::Option<SourceLocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequestContext {
-#[prost(string, tag = "1")]
-pub method: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub user_agent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub referrer: ::prost::alloc::string::String,
-#[prost(int32, tag = "5")]
-pub response_status_code: i32,
-#[prost(string, tag = "6")]
-pub remote_ip: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub method: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub user_agent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub referrer: ::prost::alloc::string::String,
+    #[prost(int32, tag = "5")]
+    pub response_status_code: i32,
+    #[prost(string, tag = "6")]
+    pub remote_ip: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceLocation {
-#[prost(string, tag = "1")]
-pub file_path: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub line_number: i32,
-#[prost(string, tag = "4")]
-pub function_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub file_path: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub line_number: i32,
+    #[prost(string, tag = "4")]
+    pub function_name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ResolutionStatus {
-Unspecified = 0,
-Open = 1,
-Acknowledged = 2,
-Resolved = 3,
-Muted = 4,
+    Unspecified = 0,
+    Open = 1,
+    Acknowledged = 2,
+    Resolved = 3,
+    Muted = 4,
 }
 impl ResolutionStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResolutionStatus::Unspecified => "RESOLUTION_STATUS_UNSPECIFIED",
-ResolutionStatus::Open => "OPEN",
-ResolutionStatus::Acknowledged => "ACKNOWLEDGED",
-ResolutionStatus::Resolved => "RESOLVED",
-ResolutionStatus::Muted => "MUTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESOLUTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"OPEN" => Some(Self::Open),
-"ACKNOWLEDGED" => Some(Self::Acknowledged),
-"RESOLVED" => Some(Self::Resolved),
-"MUTED" => Some(Self::Muted),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ResolutionStatus::Unspecified => "RESOLUTION_STATUS_UNSPECIFIED",
+            ResolutionStatus::Open => "OPEN",
+            ResolutionStatus::Acknowledged => "ACKNOWLEDGED",
+            ResolutionStatus::Resolved => "RESOLVED",
+            ResolutionStatus::Muted => "MUTED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESOLUTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+            "OPEN" => Some(Self::Open),
+            "ACKNOWLEDGED" => Some(Self::Acknowledged),
+            "RESOLVED" => Some(Self::Resolved),
+            "MUTED" => Some(Self::Muted),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportErrorEventRequest {
-#[prost(string, tag = "1")]
-pub project_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub event: ::core::option::Option<ReportedErrorEvent>,
+    #[prost(string, tag = "1")]
+    pub project_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub event: ::core::option::Option<ReportedErrorEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -124,362 +124,420 @@ pub struct ReportErrorEventResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportedErrorEvent {
-#[prost(message, optional, tag = "1")]
-pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub service_context: ::core::option::Option<ServiceContext>,
-#[prost(string, tag = "3")]
-pub message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub context: ::core::option::Option<ErrorContext>,
+    #[prost(message, optional, tag = "1")]
+    pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub service_context: ::core::option::Option<ServiceContext>,
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub context: ::core::option::Option<ErrorContext>,
 }
 /// Generated client implementations.
 pub mod report_errors_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// An API for reporting error events.
-#[derive(Debug, Clone)]
-pub struct ReportErrorsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ReportErrorsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ReportErrorsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ReportErrorsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Report an individual error event and record the event to a log.
-///
-/// This endpoint accepts **either** an OAuth token,
-/// **or** an [API key](https://support.google.com/cloud/answer/6158862)
-/// for authentication. To use an API key, append it to the URL as the value of
-/// a `key` parameter. For example:
-///
-/// `POST
-/// https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
-///
-/// **Note:** [Error Reporting] (https://cloud.google.com/error-reporting)
-/// is a service built on Cloud Logging and can analyze log entries when all of
-/// the following are true:
-///
-/// * Customer-managed encryption keys (CMEK) are disabled on the log bucket.
-/// * The log bucket satisfies one of the following:
-///     * The log bucket is stored in the same project where the logs
-///     originated.
-///     * The logs were routed to a project, and then that project stored those
-///     logs in a log bucket that it owns.
-pub async fn report_error_event(&mut self, request: impl tonic::IntoRequest<super::ReportErrorEventRequest>) -> std::result::Result<tonic::Response<super::ReportErrorEventResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ReportErrorsService", "ReportErrorEvent"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// An API for reporting error events.
+    #[derive(Debug, Clone)]
+    pub struct ReportErrorsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ReportErrorsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ReportErrorsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ReportErrorsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Report an individual error event and record the event to a log.
+        ///
+        /// This endpoint accepts **either** an OAuth token,
+        /// **or** an [API key](https://support.google.com/cloud/answer/6158862)
+        /// for authentication. To use an API key, append it to the URL as the value of
+        /// a `key` parameter. For example:
+        ///
+        /// `POST
+        /// https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
+        ///
+        /// **Note:** [Error Reporting] (https://cloud.google.com/error-reporting)
+        /// is a service built on Cloud Logging and can analyze log entries when all of
+        /// the following are true:
+        ///
+        /// * Customer-managed encryption keys (CMEK) are disabled on the log bucket.
+        /// * The log bucket satisfies one of the following:
+        ///     * The log bucket is stored in the same project where the logs
+        ///     originated.
+        ///     * The logs were routed to a project, and then that project stored those
+        ///     logs in a log bucket that it owns.
+        pub async fn report_error_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReportErrorEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReportErrorEventResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ReportErrorsService",
+                "ReportErrorEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGroupRequest {
-#[prost(string, tag = "1")]
-pub group_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub group_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGroupRequest {
-#[prost(message, optional, tag = "1")]
-pub group: ::core::option::Option<ErrorGroup>,
+    #[prost(message, optional, tag = "1")]
+    pub group: ::core::option::Option<ErrorGroup>,
 }
 /// Generated client implementations.
 pub mod error_group_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for retrieving and updating individual error groups.
-#[derive(Debug, Clone)]
-pub struct ErrorGroupServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ErrorGroupServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ErrorGroupServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ErrorGroupServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Get the specified group.
-pub async fn get_group(&mut self, request: impl tonic::IntoRequest<super::GetGroupRequest>) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "GetGroup"));
-self.inner.unary(req, path, codec).await
-}
-/// Replace the data for the specified group.
-/// Fails if the group does not exist.
-pub async fn update_group(&mut self, request: impl tonic::IntoRequest<super::UpdateGroupRequest>) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ErrorGroupService", "UpdateGroup"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for retrieving and updating individual error groups.
+    #[derive(Debug, Clone)]
+    pub struct ErrorGroupServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ErrorGroupServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ErrorGroupServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ErrorGroupServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Get the specified group.
+        pub async fn get_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGroupRequest>,
+        ) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
+                "GetGroup",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Replace the data for the specified group.
+        /// Fails if the group does not exist.
+        pub async fn update_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateGroupRequest>,
+        ) -> std::result::Result<tonic::Response<super::ErrorGroup>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ErrorGroupService",
+                "UpdateGroup",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupStatsRequest {
-#[prost(string, tag = "1")]
-pub project_name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub group_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "3")]
-pub service_filter: ::core::option::Option<ServiceContextFilter>,
-#[prost(message, optional, tag = "5")]
-pub time_range: ::core::option::Option<QueryTimeRange>,
-#[prost(message, optional, tag = "6")]
-pub timed_count_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "TimedCountAlignment", tag = "7")]
-pub alignment: i32,
-#[prost(message, optional, tag = "8")]
-pub alignment_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "ErrorGroupOrder", tag = "9")]
-pub order: i32,
-#[prost(int32, tag = "11")]
-pub page_size: i32,
-#[prost(string, tag = "12")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub group_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub service_filter: ::core::option::Option<ServiceContextFilter>,
+    #[prost(message, optional, tag = "5")]
+    pub time_range: ::core::option::Option<QueryTimeRange>,
+    #[prost(message, optional, tag = "6")]
+    pub timed_count_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "TimedCountAlignment", tag = "7")]
+    pub alignment: i32,
+    #[prost(message, optional, tag = "8")]
+    pub alignment_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "ErrorGroupOrder", tag = "9")]
+    pub order: i32,
+    #[prost(int32, tag = "11")]
+    pub page_size: i32,
+    #[prost(string, tag = "12")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupStatsResponse {
-#[prost(message, repeated, tag = "1")]
-pub error_group_stats: ::prost::alloc::vec::Vec<ErrorGroupStats>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub time_range_begin: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "1")]
+    pub error_group_stats: ::prost::alloc::vec::Vec<ErrorGroupStats>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub time_range_begin: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorGroupStats {
-#[prost(message, optional, tag = "1")]
-pub group: ::core::option::Option<ErrorGroup>,
-#[prost(int64, tag = "2")]
-pub count: i64,
-#[prost(int64, tag = "3")]
-pub affected_users_count: i64,
-#[prost(message, repeated, tag = "4")]
-pub timed_counts: ::prost::alloc::vec::Vec<TimedCount>,
-#[prost(message, optional, tag = "5")]
-pub first_seen_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub last_seen_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "7")]
-pub affected_services: ::prost::alloc::vec::Vec<ServiceContext>,
-#[prost(int32, tag = "8")]
-pub num_affected_services: i32,
-#[prost(message, optional, tag = "9")]
-pub representative: ::core::option::Option<ErrorEvent>,
+    #[prost(message, optional, tag = "1")]
+    pub group: ::core::option::Option<ErrorGroup>,
+    #[prost(int64, tag = "2")]
+    pub count: i64,
+    #[prost(int64, tag = "3")]
+    pub affected_users_count: i64,
+    #[prost(message, repeated, tag = "4")]
+    pub timed_counts: ::prost::alloc::vec::Vec<TimedCount>,
+    #[prost(message, optional, tag = "5")]
+    pub first_seen_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub last_seen_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "7")]
+    pub affected_services: ::prost::alloc::vec::Vec<ServiceContext>,
+    #[prost(int32, tag = "8")]
+    pub num_affected_services: i32,
+    #[prost(message, optional, tag = "9")]
+    pub representative: ::core::option::Option<ErrorEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimedCount {
-#[prost(int64, tag = "1")]
-pub count: i64,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "1")]
+    pub count: i64,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsRequest {
-#[prost(string, tag = "1")]
-pub project_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub group_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub service_filter: ::core::option::Option<ServiceContextFilter>,
-#[prost(message, optional, tag = "4")]
-pub time_range: ::core::option::Option<QueryTimeRange>,
-#[prost(int32, tag = "6")]
-pub page_size: i32,
-#[prost(string, tag = "7")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub group_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub service_filter: ::core::option::Option<ServiceContextFilter>,
+    #[prost(message, optional, tag = "4")]
+    pub time_range: ::core::option::Option<QueryTimeRange>,
+    #[prost(int32, tag = "6")]
+    pub page_size: i32,
+    #[prost(string, tag = "7")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsResponse {
-#[prost(message, repeated, tag = "1")]
-pub error_events: ::prost::alloc::vec::Vec<ErrorEvent>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub time_range_begin: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "1")]
+    pub error_events: ::prost::alloc::vec::Vec<ErrorEvent>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub time_range_begin: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct QueryTimeRange {
-#[prost(enumeration = "query_time_range::Period", tag = "1")]
-pub period: i32,
+    #[prost(enumeration = "query_time_range::Period", tag = "1")]
+    pub period: i32,
 }
 /// Nested message and enum types in `QueryTimeRange`.
 pub mod query_time_range {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Period {
-Unspecified = 0,
-Period1Hour = 1,
-Period6Hours = 2,
-Period1Day = 3,
-Period1Week = 4,
-Period30Days = 5,
-}
-impl Period {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Period::Unspecified => "PERIOD_UNSPECIFIED",
-Period::Period1Hour => "PERIOD_1_HOUR",
-Period::Period6Hours => "PERIOD_6_HOURS",
-Period::Period1Day => "PERIOD_1_DAY",
-Period::Period1Week => "PERIOD_1_WEEK",
-Period::Period30Days => "PERIOD_30_DAYS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
-"PERIOD_1_HOUR" => Some(Self::Period1Hour),
-"PERIOD_6_HOURS" => Some(Self::Period6Hours),
-"PERIOD_1_DAY" => Some(Self::Period1Day),
-"PERIOD_1_WEEK" => Some(Self::Period1Week),
-"PERIOD_30_DAYS" => Some(Self::Period30Days),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Period {
+        Unspecified = 0,
+        Period1Hour = 1,
+        Period6Hours = 2,
+        Period1Day = 3,
+        Period1Week = 4,
+        Period30Days = 5,
+    }
+    impl Period {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Period::Unspecified => "PERIOD_UNSPECIFIED",
+                Period::Period1Hour => "PERIOD_1_HOUR",
+                Period::Period6Hours => "PERIOD_6_HOURS",
+                Period::Period1Day => "PERIOD_1_DAY",
+                Period::Period1Week => "PERIOD_1_WEEK",
+                Period::Period30Days => "PERIOD_30_DAYS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "PERIOD_1_HOUR" => Some(Self::Period1Hour),
+                "PERIOD_6_HOURS" => Some(Self::Period6Hours),
+                "PERIOD_1_DAY" => Some(Self::Period1Day),
+                "PERIOD_1_WEEK" => Some(Self::Period1Week),
+                "PERIOD_30_DAYS" => Some(Self::Period30Days),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceContextFilter {
-#[prost(string, tag = "2")]
-pub service: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub resource_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub resource_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEventsRequest {
-#[prost(string, tag = "1")]
-pub project_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -487,159 +545,212 @@ pub struct DeleteEventsResponse {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TimedCountAlignment {
-ErrorCountAlignmentUnspecified = 0,
-AlignmentEqualRounded = 1,
-AlignmentEqualAtEnd = 2,
+    ErrorCountAlignmentUnspecified = 0,
+    AlignmentEqualRounded = 1,
+    AlignmentEqualAtEnd = 2,
 }
 impl TimedCountAlignment {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TimedCountAlignment::ErrorCountAlignmentUnspecified => "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
-TimedCountAlignment::AlignmentEqualRounded => "ALIGNMENT_EQUAL_ROUNDED",
-TimedCountAlignment::AlignmentEqualAtEnd => "ALIGNMENT_EQUAL_AT_END",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ERROR_COUNT_ALIGNMENT_UNSPECIFIED" => Some(Self::ErrorCountAlignmentUnspecified),
-"ALIGNMENT_EQUAL_ROUNDED" => Some(Self::AlignmentEqualRounded),
-"ALIGNMENT_EQUAL_AT_END" => Some(Self::AlignmentEqualAtEnd),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TimedCountAlignment::ErrorCountAlignmentUnspecified => {
+                "ERROR_COUNT_ALIGNMENT_UNSPECIFIED"
+            }
+            TimedCountAlignment::AlignmentEqualRounded => "ALIGNMENT_EQUAL_ROUNDED",
+            TimedCountAlignment::AlignmentEqualAtEnd => "ALIGNMENT_EQUAL_AT_END",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ERROR_COUNT_ALIGNMENT_UNSPECIFIED" => Some(Self::ErrorCountAlignmentUnspecified),
+            "ALIGNMENT_EQUAL_ROUNDED" => Some(Self::AlignmentEqualRounded),
+            "ALIGNMENT_EQUAL_AT_END" => Some(Self::AlignmentEqualAtEnd),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ErrorGroupOrder {
-GroupOrderUnspecified = 0,
-CountDesc = 1,
-LastSeenDesc = 2,
-CreatedDesc = 3,
-AffectedUsersDesc = 4,
+    GroupOrderUnspecified = 0,
+    CountDesc = 1,
+    LastSeenDesc = 2,
+    CreatedDesc = 3,
+    AffectedUsersDesc = 4,
 }
 impl ErrorGroupOrder {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ErrorGroupOrder::GroupOrderUnspecified => "GROUP_ORDER_UNSPECIFIED",
-ErrorGroupOrder::CountDesc => "COUNT_DESC",
-ErrorGroupOrder::LastSeenDesc => "LAST_SEEN_DESC",
-ErrorGroupOrder::CreatedDesc => "CREATED_DESC",
-ErrorGroupOrder::AffectedUsersDesc => "AFFECTED_USERS_DESC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GROUP_ORDER_UNSPECIFIED" => Some(Self::GroupOrderUnspecified),
-"COUNT_DESC" => Some(Self::CountDesc),
-"LAST_SEEN_DESC" => Some(Self::LastSeenDesc),
-"CREATED_DESC" => Some(Self::CreatedDesc),
-"AFFECTED_USERS_DESC" => Some(Self::AffectedUsersDesc),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ErrorGroupOrder::GroupOrderUnspecified => "GROUP_ORDER_UNSPECIFIED",
+            ErrorGroupOrder::CountDesc => "COUNT_DESC",
+            ErrorGroupOrder::LastSeenDesc => "LAST_SEEN_DESC",
+            ErrorGroupOrder::CreatedDesc => "CREATED_DESC",
+            ErrorGroupOrder::AffectedUsersDesc => "AFFECTED_USERS_DESC",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "GROUP_ORDER_UNSPECIFIED" => Some(Self::GroupOrderUnspecified),
+            "COUNT_DESC" => Some(Self::CountDesc),
+            "LAST_SEEN_DESC" => Some(Self::LastSeenDesc),
+            "CREATED_DESC" => Some(Self::CreatedDesc),
+            "AFFECTED_USERS_DESC" => Some(Self::AffectedUsersDesc),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod error_stats_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// An API for retrieving and managing error statistics as well as data for
-/// individual events.
-#[derive(Debug, Clone)]
-pub struct ErrorStatsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ErrorStatsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ErrorStatsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ErrorStatsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists the specified groups.
-pub async fn list_group_stats(&mut self, request: impl tonic::IntoRequest<super::ListGroupStatsRequest>) -> std::result::Result<tonic::Response<super::ListGroupStatsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ErrorStatsService", "ListGroupStats"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the specified events.
-pub async fn list_events(&mut self, request: impl tonic::IntoRequest<super::ListEventsRequest>) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ErrorStatsService", "ListEvents"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes all error events of a given project.
-pub async fn delete_events(&mut self, request: impl tonic::IntoRequest<super::DeleteEventsRequest>) -> std::result::Result<tonic::Response<super::DeleteEventsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouderrorreporting.v1beta1.ErrorStatsService", "DeleteEvents"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// An API for retrieving and managing error statistics as well as data for
+    /// individual events.
+    #[derive(Debug, Clone)]
+    pub struct ErrorStatsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ErrorStatsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ErrorStatsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ErrorStatsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists the specified groups.
+        pub async fn list_group_stats(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGroupStatsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListGroupStatsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                "ListGroupStats",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the specified events.
+        pub async fn list_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListEventsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                "ListEvents",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes all error events of a given project.
+        pub async fn delete_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteEventsRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeleteEventsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.clouderrorreporting.v1beta1.ErrorStatsService",
+                "DeleteEvents",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

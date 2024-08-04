@@ -2,1382 +2,1593 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Notification {
-#[prost(string, tag = "1")]
-pub pubsub_topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub pubsub_topic: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceAllowance {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(btree_map = "string, string", tag = "5")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "6")]
-pub notifications: ::prost::alloc::vec::Vec<Notification>,
-#[prost(oneof = "resource_allowance::ResourceAllowance", tags = "4")]
-pub resource_allowance: ::core::option::Option<resource_allowance::ResourceAllowance>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(btree_map = "string, string", tag = "5")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "6")]
+    pub notifications: ::prost::alloc::vec::Vec<Notification>,
+    #[prost(oneof = "resource_allowance::ResourceAllowance", tags = "4")]
+    pub resource_allowance: ::core::option::Option<resource_allowance::ResourceAllowance>,
 }
 /// Nested message and enum types in `ResourceAllowance`.
 pub mod resource_allowance {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ResourceAllowance {
-#[prost(message, tag = "4")]
-UsageResourceAllowance(super::UsageResourceAllowance),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ResourceAllowance {
+        #[prost(message, tag = "4")]
+        UsageResourceAllowance(super::UsageResourceAllowance),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsageResourceAllowance {
-#[prost(message, optional, tag = "1")]
-pub spec: ::core::option::Option<UsageResourceAllowanceSpec>,
-#[prost(message, optional, tag = "2")]
-pub status: ::core::option::Option<UsageResourceAllowanceStatus>,
+    #[prost(message, optional, tag = "1")]
+    pub spec: ::core::option::Option<UsageResourceAllowanceSpec>,
+    #[prost(message, optional, tag = "2")]
+    pub status: ::core::option::Option<UsageResourceAllowanceStatus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsageResourceAllowanceSpec {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub limit: ::core::option::Option<usage_resource_allowance_spec::Limit>,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub limit: ::core::option::Option<usage_resource_allowance_spec::Limit>,
 }
 /// Nested message and enum types in `UsageResourceAllowanceSpec`.
 pub mod usage_resource_allowance_spec {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Limit {
-#[prost(double, optional, tag = "2")]
-pub limit: ::core::option::Option<f64>,
-#[prost(oneof = "limit::Duration", tags = "1")]
-pub duration: ::core::option::Option<limit::Duration>,
-}
-/// Nested message and enum types in `Limit`.
-pub mod limit {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Duration {
-#[prost(enumeration = "super::super::CalendarPeriod", tag = "1")]
-CalendarPeriod(i32),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Limit {
+        #[prost(double, optional, tag = "2")]
+        pub limit: ::core::option::Option<f64>,
+        #[prost(oneof = "limit::Duration", tags = "1")]
+        pub duration: ::core::option::Option<limit::Duration>,
+    }
+    /// Nested message and enum types in `Limit`.
+    pub mod limit {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Duration {
+            #[prost(enumeration = "super::super::CalendarPeriod", tag = "1")]
+            CalendarPeriod(i32),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsageResourceAllowanceStatus {
-#[prost(enumeration = "ResourceAllowanceState", tag = "1")]
-pub state: i32,
-#[prost(message, optional, tag = "2")]
-pub limit_status: ::core::option::Option<usage_resource_allowance_status::LimitStatus>,
-#[prost(message, optional, tag = "3")]
-pub report: ::core::option::Option<usage_resource_allowance_status::ConsumptionReport>,
+    #[prost(enumeration = "ResourceAllowanceState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub limit_status: ::core::option::Option<usage_resource_allowance_status::LimitStatus>,
+    #[prost(message, optional, tag = "3")]
+    pub report: ::core::option::Option<usage_resource_allowance_status::ConsumptionReport>,
 }
 /// Nested message and enum types in `UsageResourceAllowanceStatus`.
 pub mod usage_resource_allowance_status {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LimitStatus {
-#[prost(message, optional, tag = "1")]
-pub consumption_interval: ::core::option::Option<super::super::super::super::r#type::Interval>,
-#[prost(double, optional, tag = "2")]
-pub limit: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "3")]
-pub consumed: ::core::option::Option<f64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PeriodConsumption {
-#[prost(message, optional, tag = "1")]
-pub consumption_interval: ::core::option::Option<super::super::super::super::r#type::Interval>,
-#[prost(double, optional, tag = "2")]
-pub consumed: ::core::option::Option<f64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConsumptionReport {
-#[prost(btree_map = "string, message", tag = "1")]
-pub latest_period_consumptions: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, PeriodConsumption>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LimitStatus {
+        #[prost(message, optional, tag = "1")]
+        pub consumption_interval:
+            ::core::option::Option<super::super::super::super::r#type::Interval>,
+        #[prost(double, optional, tag = "2")]
+        pub limit: ::core::option::Option<f64>,
+        #[prost(double, optional, tag = "3")]
+        pub consumed: ::core::option::Option<f64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PeriodConsumption {
+        #[prost(message, optional, tag = "1")]
+        pub consumption_interval:
+            ::core::option::Option<super::super::super::super::r#type::Interval>,
+        #[prost(double, optional, tag = "2")]
+        pub consumed: ::core::option::Option<f64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConsumptionReport {
+        #[prost(btree_map = "string, message", tag = "1")]
+        pub latest_period_consumptions: ::prost::alloc::collections::BTreeMap<
+            ::prost::alloc::string::String,
+            PeriodConsumption,
+        >,
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CalendarPeriod {
-Unspecified = 0,
-Month = 1,
-Quarter = 2,
-Year = 3,
-Week = 4,
-Day = 5,
+    Unspecified = 0,
+    Month = 1,
+    Quarter = 2,
+    Year = 3,
+    Week = 4,
+    Day = 5,
 }
 impl CalendarPeriod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CalendarPeriod::Unspecified => "CALENDAR_PERIOD_UNSPECIFIED",
-CalendarPeriod::Month => "MONTH",
-CalendarPeriod::Quarter => "QUARTER",
-CalendarPeriod::Year => "YEAR",
-CalendarPeriod::Week => "WEEK",
-CalendarPeriod::Day => "DAY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CALENDAR_PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
-"MONTH" => Some(Self::Month),
-"QUARTER" => Some(Self::Quarter),
-"YEAR" => Some(Self::Year),
-"WEEK" => Some(Self::Week),
-"DAY" => Some(Self::Day),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CalendarPeriod::Unspecified => "CALENDAR_PERIOD_UNSPECIFIED",
+            CalendarPeriod::Month => "MONTH",
+            CalendarPeriod::Quarter => "QUARTER",
+            CalendarPeriod::Year => "YEAR",
+            CalendarPeriod::Week => "WEEK",
+            CalendarPeriod::Day => "DAY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CALENDAR_PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
+            "MONTH" => Some(Self::Month),
+            "QUARTER" => Some(Self::Quarter),
+            "YEAR" => Some(Self::Year),
+            "WEEK" => Some(Self::Week),
+            "DAY" => Some(Self::Day),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ResourceAllowanceState {
-Unspecified = 0,
-ResourceAllowanceActive = 1,
-ResourceAllowanceDepleted = 2,
+    Unspecified = 0,
+    ResourceAllowanceActive = 1,
+    ResourceAllowanceDepleted = 2,
 }
 impl ResourceAllowanceState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResourceAllowanceState::Unspecified => "RESOURCE_ALLOWANCE_STATE_UNSPECIFIED",
-ResourceAllowanceState::ResourceAllowanceActive => "RESOURCE_ALLOWANCE_ACTIVE",
-ResourceAllowanceState::ResourceAllowanceDepleted => "RESOURCE_ALLOWANCE_DEPLETED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESOURCE_ALLOWANCE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE_ALLOWANCE_ACTIVE" => Some(Self::ResourceAllowanceActive),
-"RESOURCE_ALLOWANCE_DEPLETED" => Some(Self::ResourceAllowanceDepleted),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ResourceAllowanceState::Unspecified => "RESOURCE_ALLOWANCE_STATE_UNSPECIFIED",
+            ResourceAllowanceState::ResourceAllowanceActive => "RESOURCE_ALLOWANCE_ACTIVE",
+            ResourceAllowanceState::ResourceAllowanceDepleted => "RESOURCE_ALLOWANCE_DEPLETED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESOURCE_ALLOWANCE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "RESOURCE_ALLOWANCE_ACTIVE" => Some(Self::ResourceAllowanceActive),
+            "RESOURCE_ALLOWANCE_DEPLETED" => Some(Self::ResourceAllowanceDepleted),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
-#[prost(string, tag = "4")]
-pub mount_path: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "5")]
-pub mount_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(oneof = "volume::Source", tags = "1, 2, 3, 6")]
-pub source: ::core::option::Option<volume::Source>,
+    #[prost(string, tag = "4")]
+    pub mount_path: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "5")]
+    pub mount_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(oneof = "volume::Source", tags = "1, 2, 3, 6")]
+    pub source: ::core::option::Option<volume::Source>,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-Nfs(super::Nfs),
-#[prost(message, tag = "2")]
-Pd(super::Pd),
-#[prost(message, tag = "3")]
-Gcs(super::Gcs),
-#[prost(string, tag = "6")]
-DeviceName(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        Nfs(super::Nfs),
+        #[prost(message, tag = "2")]
+        Pd(super::Pd),
+        #[prost(message, tag = "3")]
+        Gcs(super::Gcs),
+        #[prost(string, tag = "6")]
+        DeviceName(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Nfs {
-#[prost(string, tag = "1")]
-pub server: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub remote_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub server: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub remote_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pd {
-#[prost(string, tag = "1")]
-pub disk: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub device: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(bool, tag = "3")]
-pub existing: bool,
+    #[prost(string, tag = "1")]
+    pub disk: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub device: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(bool, tag = "3")]
+    pub existing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gcs {
-#[prost(string, tag = "1")]
-pub remote_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub remote_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ComputeResource {
-#[prost(int64, tag = "1")]
-pub cpu_milli: i64,
-#[prost(int64, tag = "2")]
-pub memory_mib: i64,
-#[prost(int64, tag = "3")]
-pub gpu_count: i64,
-#[prost(int64, tag = "4")]
-pub boot_disk_mib: i64,
+    #[prost(int64, tag = "1")]
+    pub cpu_milli: i64,
+    #[prost(int64, tag = "2")]
+    pub memory_mib: i64,
+    #[prost(int64, tag = "3")]
+    pub gpu_count: i64,
+    #[prost(int64, tag = "4")]
+    pub boot_disk_mib: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusEvent {
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub task_execution: ::core::option::Option<TaskExecution>,
-#[prost(enumeration = "task_status::State", tag = "5")]
-pub task_state: i32,
+    #[prost(string, tag = "3")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub task_execution: ::core::option::Option<TaskExecution>,
+    #[prost(enumeration = "task_status::State", tag = "5")]
+    pub task_state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskExecution {
-#[prost(int32, tag = "1")]
-pub exit_code: i32,
-#[prost(string, tag = "2")]
-pub stderr_snippet: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub exit_code: i32,
+    #[prost(string, tag = "2")]
+    pub stderr_snippet: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskStatus {
-#[prost(enumeration = "task_status::State", tag = "1")]
-pub state: i32,
-#[prost(message, repeated, tag = "2")]
-pub status_events: ::prost::alloc::vec::Vec<StatusEvent>,
-#[prost(message, optional, tag = "3")]
-pub resource_usage: ::core::option::Option<TaskResourceUsage>,
+    #[prost(enumeration = "task_status::State", tag = "1")]
+    pub state: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub status_events: ::prost::alloc::vec::Vec<StatusEvent>,
+    #[prost(message, optional, tag = "3")]
+    pub resource_usage: ::core::option::Option<TaskResourceUsage>,
 }
 /// Nested message and enum types in `TaskStatus`.
 pub mod task_status {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Pending = 1,
-Assigned = 2,
-Running = 3,
-Failed = 4,
-Succeeded = 5,
-Unexecuted = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Pending => "PENDING",
-State::Assigned => "ASSIGNED",
-State::Running => "RUNNING",
-State::Failed => "FAILED",
-State::Succeeded => "SUCCEEDED",
-State::Unexecuted => "UNEXECUTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"ASSIGNED" => Some(Self::Assigned),
-"RUNNING" => Some(Self::Running),
-"FAILED" => Some(Self::Failed),
-"SUCCEEDED" => Some(Self::Succeeded),
-"UNEXECUTED" => Some(Self::Unexecuted),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Pending = 1,
+        Assigned = 2,
+        Running = 3,
+        Failed = 4,
+        Succeeded = 5,
+        Unexecuted = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Pending => "PENDING",
+                State::Assigned => "ASSIGNED",
+                State::Running => "RUNNING",
+                State::Failed => "FAILED",
+                State::Succeeded => "SUCCEEDED",
+                State::Unexecuted => "UNEXECUTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "ASSIGNED" => Some(Self::Assigned),
+                "RUNNING" => Some(Self::Running),
+                "FAILED" => Some(Self::Failed),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "UNEXECUTED" => Some(Self::Unexecuted),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TaskResourceUsage {
-#[prost(double, tag = "1")]
-pub core_hours: f64,
+    #[prost(double, tag = "1")]
+    pub core_hours: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Runnable {
-#[prost(string, tag = "10")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub ignore_exit_status: bool,
-#[prost(bool, tag = "4")]
-pub background: bool,
-#[prost(bool, tag = "5")]
-pub always_run: bool,
-#[prost(message, optional, tag = "7")]
-pub environment: ::core::option::Option<Environment>,
-#[prost(message, optional, tag = "8")]
-pub timeout: ::core::option::Option<::prost_types::Duration>,
-#[prost(btree_map = "string, string", tag = "9")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(oneof = "runnable::Executable", tags = "1, 2, 6")]
-pub executable: ::core::option::Option<runnable::Executable>,
+    #[prost(string, tag = "10")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub ignore_exit_status: bool,
+    #[prost(bool, tag = "4")]
+    pub background: bool,
+    #[prost(bool, tag = "5")]
+    pub always_run: bool,
+    #[prost(message, optional, tag = "7")]
+    pub environment: ::core::option::Option<Environment>,
+    #[prost(message, optional, tag = "8")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(btree_map = "string, string", tag = "9")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(oneof = "runnable::Executable", tags = "1, 2, 6")]
+    pub executable: ::core::option::Option<runnable::Executable>,
 }
 /// Nested message and enum types in `Runnable`.
 pub mod runnable {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Container {
-#[prost(string, tag = "1")]
-pub image_uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "3")]
-pub entrypoint: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "7")]
-pub volumes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "8")]
-pub options: ::prost::alloc::string::String,
-#[prost(bool, tag = "9")]
-pub block_external_network: bool,
-#[prost(string, tag = "10")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub password: ::prost::alloc::string::String,
-#[prost(bool, tag = "12")]
-pub enable_image_streaming: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Script {
-#[prost(oneof = "script::Command", tags = "1, 2")]
-pub command: ::core::option::Option<script::Command>,
-}
-/// Nested message and enum types in `Script`.
-pub mod script {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Command {
-#[prost(string, tag = "1")]
-Path(::prost::alloc::string::String),
-#[prost(string, tag = "2")]
-Text(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Barrier {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Executable {
-#[prost(message, tag = "1")]
-Container(Container),
-#[prost(message, tag = "2")]
-Script(Script),
-#[prost(message, tag = "6")]
-Barrier(Barrier),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Container {
+        #[prost(string, tag = "1")]
+        pub image_uri: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "3")]
+        pub entrypoint: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "7")]
+        pub volumes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "8")]
+        pub options: ::prost::alloc::string::String,
+        #[prost(bool, tag = "9")]
+        pub block_external_network: bool,
+        #[prost(string, tag = "10")]
+        pub username: ::prost::alloc::string::String,
+        #[prost(string, tag = "11")]
+        pub password: ::prost::alloc::string::String,
+        #[prost(bool, tag = "12")]
+        pub enable_image_streaming: bool,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Script {
+        #[prost(oneof = "script::Command", tags = "1, 2")]
+        pub command: ::core::option::Option<script::Command>,
+    }
+    /// Nested message and enum types in `Script`.
+    pub mod script {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Command {
+            #[prost(string, tag = "1")]
+            Path(::prost::alloc::string::String),
+            #[prost(string, tag = "2")]
+            Text(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Barrier {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Executable {
+        #[prost(message, tag = "1")]
+        Container(Container),
+        #[prost(message, tag = "2")]
+        Script(Script),
+        #[prost(message, tag = "6")]
+        Barrier(Barrier),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskSpec {
-#[prost(message, repeated, tag = "8")]
-pub runnables: ::prost::alloc::vec::Vec<Runnable>,
-#[prost(message, optional, tag = "3")]
-pub compute_resource: ::core::option::Option<ComputeResource>,
-#[prost(message, optional, tag = "4")]
-pub max_run_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(int32, tag = "5")]
-pub max_retry_count: i32,
-#[prost(message, repeated, tag = "9")]
-pub lifecycle_policies: ::prost::alloc::vec::Vec<LifecyclePolicy>,
-#[prost(btree_map = "string, string", tag = "6")]
-pub environments: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "7")]
-pub volumes: ::prost::alloc::vec::Vec<Volume>,
-#[prost(message, optional, tag = "10")]
-pub environment: ::core::option::Option<Environment>,
+    #[prost(message, repeated, tag = "8")]
+    pub runnables: ::prost::alloc::vec::Vec<Runnable>,
+    #[prost(message, optional, tag = "3")]
+    pub compute_resource: ::core::option::Option<ComputeResource>,
+    #[prost(message, optional, tag = "4")]
+    pub max_run_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(int32, tag = "5")]
+    pub max_retry_count: i32,
+    #[prost(message, repeated, tag = "9")]
+    pub lifecycle_policies: ::prost::alloc::vec::Vec<LifecyclePolicy>,
+    #[prost(btree_map = "string, string", tag = "6")]
+    pub environments: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "7")]
+    pub volumes: ::prost::alloc::vec::Vec<Volume>,
+    #[prost(message, optional, tag = "10")]
+    pub environment: ::core::option::Option<Environment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LifecyclePolicy {
-#[prost(enumeration = "lifecycle_policy::Action", tag = "1")]
-pub action: i32,
-#[prost(message, optional, tag = "2")]
-pub action_condition: ::core::option::Option<lifecycle_policy::ActionCondition>,
+    #[prost(enumeration = "lifecycle_policy::Action", tag = "1")]
+    pub action: i32,
+    #[prost(message, optional, tag = "2")]
+    pub action_condition: ::core::option::Option<lifecycle_policy::ActionCondition>,
 }
 /// Nested message and enum types in `LifecyclePolicy`.
 pub mod lifecycle_policy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActionCondition {
-#[prost(int32, repeated, tag = "1")]
-pub exit_codes: ::prost::alloc::vec::Vec<i32>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Action {
-Unspecified = 0,
-RetryTask = 1,
-FailTask = 2,
-}
-impl Action {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Action::Unspecified => "ACTION_UNSPECIFIED",
-Action::RetryTask => "RETRY_TASK",
-Action::FailTask => "FAIL_TASK",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-"RETRY_TASK" => Some(Self::RetryTask),
-"FAIL_TASK" => Some(Self::FailTask),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ActionCondition {
+        #[prost(int32, repeated, tag = "1")]
+        pub exit_codes: ::prost::alloc::vec::Vec<i32>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Action {
+        Unspecified = 0,
+        RetryTask = 1,
+        FailTask = 2,
+    }
+    impl Action {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Action::Unspecified => "ACTION_UNSPECIFIED",
+                Action::RetryTask => "RETRY_TASK",
+                Action::FailTask => "FAIL_TASK",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+                "RETRY_TASK" => Some(Self::RetryTask),
+                "FAIL_TASK" => Some(Self::FailTask),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Task {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub status: ::core::option::Option<TaskStatus>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub status: ::core::option::Option<TaskStatus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Environment {
-#[prost(btree_map = "string, string", tag = "1")]
-pub variables: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(btree_map = "string, string", tag = "2")]
-pub secret_variables: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "3")]
-pub encrypted_variables: ::core::option::Option<environment::KmsEnvMap>,
+    #[prost(btree_map = "string, string", tag = "1")]
+    pub variables: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(btree_map = "string, string", tag = "2")]
+    pub secret_variables: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "3")]
+    pub encrypted_variables: ::core::option::Option<environment::KmsEnvMap>,
 }
 /// Nested message and enum types in `Environment`.
 pub mod environment {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KmsEnvMap {
-#[prost(string, tag = "1")]
-pub key_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cipher_text: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KmsEnvMap {
+        #[prost(string, tag = "1")]
+        pub key_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub cipher_text: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Job {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uid: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub priority: i64,
-#[prost(message, repeated, tag = "4")]
-pub task_groups: ::prost::alloc::vec::Vec<TaskGroup>,
-#[prost(enumeration = "job::SchedulingPolicy", tag = "5")]
-pub scheduling_policy: i32,
-#[prost(message, repeated, tag = "6")]
-pub dependencies: ::prost::alloc::vec::Vec<JobDependency>,
-#[prost(message, optional, tag = "7")]
-pub allocation_policy: ::core::option::Option<AllocationPolicy>,
-#[prost(btree_map = "string, string", tag = "8")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "9")]
-pub status: ::core::option::Option<JobStatus>,
-#[deprecated]
-#[prost(message, optional, tag = "10")]
-pub notification: ::core::option::Option<JobNotification>,
-#[prost(message, optional, tag = "11")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "12")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "13")]
-pub logs_policy: ::core::option::Option<LogsPolicy>,
-#[prost(message, repeated, tag = "14")]
-pub notifications: ::prost::alloc::vec::Vec<JobNotification>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub priority: i64,
+    #[prost(message, repeated, tag = "4")]
+    pub task_groups: ::prost::alloc::vec::Vec<TaskGroup>,
+    #[prost(enumeration = "job::SchedulingPolicy", tag = "5")]
+    pub scheduling_policy: i32,
+    #[prost(message, repeated, tag = "6")]
+    pub dependencies: ::prost::alloc::vec::Vec<JobDependency>,
+    #[prost(message, optional, tag = "7")]
+    pub allocation_policy: ::core::option::Option<AllocationPolicy>,
+    #[prost(btree_map = "string, string", tag = "8")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "9")]
+    pub status: ::core::option::Option<JobStatus>,
+    #[deprecated]
+    #[prost(message, optional, tag = "10")]
+    pub notification: ::core::option::Option<JobNotification>,
+    #[prost(message, optional, tag = "11")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "12")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "13")]
+    pub logs_policy: ::core::option::Option<LogsPolicy>,
+    #[prost(message, repeated, tag = "14")]
+    pub notifications: ::prost::alloc::vec::Vec<JobNotification>,
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SchedulingPolicy {
-Unspecified = 0,
-AsSoonAsPossible = 1,
-}
-impl SchedulingPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SchedulingPolicy::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
-SchedulingPolicy::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SCHEDULING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"AS_SOON_AS_POSSIBLE" => Some(Self::AsSoonAsPossible),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SchedulingPolicy {
+        Unspecified = 0,
+        AsSoonAsPossible = 1,
+    }
+    impl SchedulingPolicy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SchedulingPolicy::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
+                SchedulingPolicy::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SCHEDULING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                "AS_SOON_AS_POSSIBLE" => Some(Self::AsSoonAsPossible),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogsPolicy {
-#[prost(enumeration = "logs_policy::Destination", tag = "1")]
-pub destination: i32,
-#[prost(string, tag = "2")]
-pub logs_path: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub cloud_logging_option: ::core::option::Option<logs_policy::CloudLoggingOption>,
+    #[prost(enumeration = "logs_policy::Destination", tag = "1")]
+    pub destination: i32,
+    #[prost(string, tag = "2")]
+    pub logs_path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub cloud_logging_option: ::core::option::Option<logs_policy::CloudLoggingOption>,
 }
 /// Nested message and enum types in `LogsPolicy`.
 pub mod logs_policy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct CloudLoggingOption {
-#[prost(bool, tag = "1")]
-pub use_generic_task_monitored_resource: bool,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Destination {
-Unspecified = 0,
-CloudLogging = 1,
-Path = 2,
-}
-impl Destination {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Destination::Unspecified => "DESTINATION_UNSPECIFIED",
-Destination::CloudLogging => "CLOUD_LOGGING",
-Destination::Path => "PATH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DESTINATION_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOUD_LOGGING" => Some(Self::CloudLogging),
-"PATH" => Some(Self::Path),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct CloudLoggingOption {
+        #[prost(bool, tag = "1")]
+        pub use_generic_task_monitored_resource: bool,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Destination {
+        Unspecified = 0,
+        CloudLogging = 1,
+        Path = 2,
+    }
+    impl Destination {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Destination::Unspecified => "DESTINATION_UNSPECIFIED",
+                Destination::CloudLogging => "CLOUD_LOGGING",
+                Destination::Path => "PATH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DESTINATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLOUD_LOGGING" => Some(Self::CloudLogging),
+                "PATH" => Some(Self::Path),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobDependency {
-#[prost(btree_map = "string, enumeration(job_dependency::Type)", tag = "1")]
-pub items: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i32>,
+    #[prost(btree_map = "string, enumeration(job_dependency::Type)", tag = "1")]
+    pub items: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i32>,
 }
 /// Nested message and enum types in `JobDependency`.
 pub mod job_dependency {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Succeeded = 1,
-Failed = 2,
-Finished = 3,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Succeeded => "SUCCEEDED",
-Type::Failed => "FAILED",
-Type::Finished => "FINISHED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-"FINISHED" => Some(Self::Finished),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Succeeded = 1,
+        Failed = 2,
+        Finished = 3,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Succeeded => "SUCCEEDED",
+                Type::Failed => "FAILED",
+                Type::Finished => "FINISHED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "FINISHED" => Some(Self::Finished),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobStatus {
-#[prost(enumeration = "job_status::State", tag = "1")]
-pub state: i32,
-#[prost(message, repeated, tag = "2")]
-pub status_events: ::prost::alloc::vec::Vec<StatusEvent>,
-#[prost(btree_map = "string, message", tag = "4")]
-pub task_groups: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, job_status::TaskGroupStatus>,
-#[prost(message, optional, tag = "5")]
-pub run_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub resource_usage: ::core::option::Option<ResourceUsage>,
+    #[prost(enumeration = "job_status::State", tag = "1")]
+    pub state: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub status_events: ::prost::alloc::vec::Vec<StatusEvent>,
+    #[prost(btree_map = "string, message", tag = "4")]
+    pub task_groups: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        job_status::TaskGroupStatus,
+    >,
+    #[prost(message, optional, tag = "5")]
+    pub run_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "6")]
+    pub resource_usage: ::core::option::Option<ResourceUsage>,
 }
 /// Nested message and enum types in `JobStatus`.
 pub mod job_status {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstanceStatus {
-#[prost(string, tag = "1")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(enumeration = "super::allocation_policy::ProvisioningModel", tag = "2")]
-pub provisioning_model: i32,
-#[prost(int64, tag = "3")]
-pub task_pack: i64,
-#[prost(message, optional, tag = "4")]
-pub boot_disk: ::core::option::Option<super::allocation_policy::Disk>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TaskGroupStatus {
-#[prost(btree_map = "string, int64", tag = "1")]
-pub counts: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
-#[prost(message, repeated, tag = "2")]
-pub instances: ::prost::alloc::vec::Vec<InstanceStatus>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Queued = 1,
-Scheduled = 2,
-Running = 3,
-Succeeded = 4,
-Failed = 5,
-DeletionInProgress = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Queued => "QUEUED",
-State::Scheduled => "SCHEDULED",
-State::Running => "RUNNING",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-State::DeletionInProgress => "DELETION_IN_PROGRESS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"QUEUED" => Some(Self::Queued),
-"SCHEDULED" => Some(Self::Scheduled),
-"RUNNING" => Some(Self::Running),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-"DELETION_IN_PROGRESS" => Some(Self::DeletionInProgress),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstanceStatus {
+        #[prost(string, tag = "1")]
+        pub machine_type: ::prost::alloc::string::String,
+        #[prost(enumeration = "super::allocation_policy::ProvisioningModel", tag = "2")]
+        pub provisioning_model: i32,
+        #[prost(int64, tag = "3")]
+        pub task_pack: i64,
+        #[prost(message, optional, tag = "4")]
+        pub boot_disk: ::core::option::Option<super::allocation_policy::Disk>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TaskGroupStatus {
+        #[prost(btree_map = "string, int64", tag = "1")]
+        pub counts: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+        #[prost(message, repeated, tag = "2")]
+        pub instances: ::prost::alloc::vec::Vec<InstanceStatus>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Queued = 1,
+        Scheduled = 2,
+        Running = 3,
+        Succeeded = 4,
+        Failed = 5,
+        DeletionInProgress = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Queued => "QUEUED",
+                State::Scheduled => "SCHEDULED",
+                State::Running => "RUNNING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+                State::DeletionInProgress => "DELETION_IN_PROGRESS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "QUEUED" => Some(Self::Queued),
+                "SCHEDULED" => Some(Self::Scheduled),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "DELETION_IN_PROGRESS" => Some(Self::DeletionInProgress),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ResourceUsage {
-#[prost(double, tag = "1")]
-pub core_hours: f64,
+    #[prost(double, tag = "1")]
+    pub core_hours: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobNotification {
-#[prost(string, tag = "1")]
-pub pubsub_topic: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub message: ::core::option::Option<job_notification::Message>,
+    #[prost(string, tag = "1")]
+    pub pubsub_topic: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub message: ::core::option::Option<job_notification::Message>,
 }
 /// Nested message and enum types in `JobNotification`.
 pub mod job_notification {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Message {
-#[prost(enumeration = "Type", tag = "1")]
-pub r#type: i32,
-#[prost(enumeration = "super::job_status::State", tag = "2")]
-pub new_job_state: i32,
-#[prost(enumeration = "super::task_status::State", tag = "3")]
-pub new_task_state: i32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-JobStateChanged = 1,
-TaskStateChanged = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::JobStateChanged => "JOB_STATE_CHANGED",
-Type::TaskStateChanged => "TASK_STATE_CHANGED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"JOB_STATE_CHANGED" => Some(Self::JobStateChanged),
-"TASK_STATE_CHANGED" => Some(Self::TaskStateChanged),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Message {
+        #[prost(enumeration = "Type", tag = "1")]
+        pub r#type: i32,
+        #[prost(enumeration = "super::job_status::State", tag = "2")]
+        pub new_job_state: i32,
+        #[prost(enumeration = "super::task_status::State", tag = "3")]
+        pub new_task_state: i32,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        JobStateChanged = 1,
+        TaskStateChanged = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::JobStateChanged => "JOB_STATE_CHANGED",
+                Type::TaskStateChanged => "TASK_STATE_CHANGED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "JOB_STATE_CHANGED" => Some(Self::JobStateChanged),
+                "TASK_STATE_CHANGED" => Some(Self::TaskStateChanged),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocationPolicy {
-#[prost(message, optional, tag = "1")]
-pub location: ::core::option::Option<allocation_policy::LocationPolicy>,
-#[deprecated]
-#[prost(message, optional, tag = "2")]
-pub instance: ::core::option::Option<allocation_policy::InstancePolicy>,
-#[prost(message, repeated, tag = "8")]
-pub instances: ::prost::alloc::vec::Vec<allocation_policy::InstancePolicyOrTemplate>,
-#[deprecated]
-#[prost(string, repeated, tag = "3")]
-pub instance_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[deprecated]
-#[prost(enumeration = "allocation_policy::ProvisioningModel", repeated, packed = "false", tag = "4")]
-pub provisioning_models: ::prost::alloc::vec::Vec<i32>,
-#[deprecated]
-#[prost(string, tag = "5")]
-pub service_account_email: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub service_account: ::core::option::Option<ServiceAccount>,
-#[prost(btree_map = "string, string", tag = "6")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "7")]
-pub network: ::core::option::Option<allocation_policy::NetworkPolicy>,
-#[prost(message, optional, tag = "10")]
-pub placement: ::core::option::Option<allocation_policy::PlacementPolicy>,
-#[prost(string, repeated, tag = "11")]
-pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub location: ::core::option::Option<allocation_policy::LocationPolicy>,
+    #[deprecated]
+    #[prost(message, optional, tag = "2")]
+    pub instance: ::core::option::Option<allocation_policy::InstancePolicy>,
+    #[prost(message, repeated, tag = "8")]
+    pub instances: ::prost::alloc::vec::Vec<allocation_policy::InstancePolicyOrTemplate>,
+    #[deprecated]
+    #[prost(string, repeated, tag = "3")]
+    pub instance_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[deprecated]
+    #[prost(
+        enumeration = "allocation_policy::ProvisioningModel",
+        repeated,
+        packed = "false",
+        tag = "4"
+    )]
+    pub provisioning_models: ::prost::alloc::vec::Vec<i32>,
+    #[deprecated]
+    #[prost(string, tag = "5")]
+    pub service_account_email: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub service_account: ::core::option::Option<ServiceAccount>,
+    #[prost(btree_map = "string, string", tag = "6")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "7")]
+    pub network: ::core::option::Option<allocation_policy::NetworkPolicy>,
+    #[prost(message, optional, tag = "10")]
+    pub placement: ::core::option::Option<allocation_policy::PlacementPolicy>,
+    #[prost(string, repeated, tag = "11")]
+    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `AllocationPolicy`.
 pub mod allocation_policy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LocationPolicy {
-#[prost(string, repeated, tag = "1")]
-pub allowed_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "2")]
-pub denied_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Disk {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub size_gb: i64,
-#[prost(string, tag = "6")]
-pub disk_interface: ::prost::alloc::string::String,
-#[prost(oneof = "disk::DataSource", tags = "4, 5")]
-pub data_source: ::core::option::Option<disk::DataSource>,
-}
-/// Nested message and enum types in `Disk`.
-pub mod disk {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DataSource {
-#[prost(string, tag = "4")]
-Image(::prost::alloc::string::String),
-#[prost(string, tag = "5")]
-Snapshot(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AttachedDisk {
-#[prost(string, tag = "3")]
-pub device_name: ::prost::alloc::string::String,
-#[prost(oneof = "attached_disk::Attached", tags = "1, 2")]
-pub attached: ::core::option::Option<attached_disk::Attached>,
-}
-/// Nested message and enum types in `AttachedDisk`.
-pub mod attached_disk {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Attached {
-#[prost(message, tag = "1")]
-NewDisk(super::Disk),
-#[prost(string, tag = "2")]
-ExistingDisk(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Accelerator {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub count: i64,
-#[deprecated]
-#[prost(bool, tag = "3")]
-pub install_gpu_drivers: bool,
-#[prost(string, tag = "4")]
-pub driver_version: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstancePolicy {
-#[deprecated]
-#[prost(string, repeated, tag = "1")]
-pub allowed_machine_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub min_cpu_platform: ::prost::alloc::string::String,
-#[prost(enumeration = "ProvisioningModel", tag = "4")]
-pub provisioning_model: i32,
-#[prost(message, repeated, tag = "5")]
-pub accelerators: ::prost::alloc::vec::Vec<Accelerator>,
-#[prost(message, optional, tag = "8")]
-pub boot_disk: ::core::option::Option<Disk>,
-#[prost(message, repeated, tag = "6")]
-pub disks: ::prost::alloc::vec::Vec<AttachedDisk>,
-#[prost(string, tag = "7")]
-pub reservation: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InstancePolicyOrTemplate {
-#[prost(bool, tag = "3")]
-pub install_gpu_drivers: bool,
-#[prost(bool, tag = "4")]
-pub install_ops_agent: bool,
-#[prost(oneof = "instance_policy_or_template::PolicyTemplate", tags = "1, 2")]
-pub policy_template: ::core::option::Option<instance_policy_or_template::PolicyTemplate>,
-}
-/// Nested message and enum types in `InstancePolicyOrTemplate`.
-pub mod instance_policy_or_template {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum PolicyTemplate {
-#[prost(message, tag = "1")]
-Policy(super::InstancePolicy),
-#[prost(string, tag = "2")]
-InstanceTemplate(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NetworkInterface {
-#[prost(string, tag = "1")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subnetwork: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub no_external_ip_address: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NetworkPolicy {
-#[prost(message, repeated, tag = "1")]
-pub network_interfaces: ::prost::alloc::vec::Vec<NetworkInterface>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PlacementPolicy {
-#[prost(string, tag = "1")]
-pub collocation: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub max_distance: i64,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ProvisioningModel {
-Unspecified = 0,
-Standard = 1,
-Spot = 2,
-Preemptible = 3,
-}
-impl ProvisioningModel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ProvisioningModel::Unspecified => "PROVISIONING_MODEL_UNSPECIFIED",
-ProvisioningModel::Standard => "STANDARD",
-ProvisioningModel::Spot => "SPOT",
-ProvisioningModel::Preemptible => "PREEMPTIBLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROVISIONING_MODEL_UNSPECIFIED" => Some(Self::Unspecified),
-"STANDARD" => Some(Self::Standard),
-"SPOT" => Some(Self::Spot),
-"PREEMPTIBLE" => Some(Self::Preemptible),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LocationPolicy {
+        #[prost(string, repeated, tag = "1")]
+        pub allowed_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "2")]
+        pub denied_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Disk {
+        #[prost(string, tag = "1")]
+        pub r#type: ::prost::alloc::string::String,
+        #[prost(int64, tag = "2")]
+        pub size_gb: i64,
+        #[prost(string, tag = "6")]
+        pub disk_interface: ::prost::alloc::string::String,
+        #[prost(oneof = "disk::DataSource", tags = "4, 5")]
+        pub data_source: ::core::option::Option<disk::DataSource>,
+    }
+    /// Nested message and enum types in `Disk`.
+    pub mod disk {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum DataSource {
+            #[prost(string, tag = "4")]
+            Image(::prost::alloc::string::String),
+            #[prost(string, tag = "5")]
+            Snapshot(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AttachedDisk {
+        #[prost(string, tag = "3")]
+        pub device_name: ::prost::alloc::string::String,
+        #[prost(oneof = "attached_disk::Attached", tags = "1, 2")]
+        pub attached: ::core::option::Option<attached_disk::Attached>,
+    }
+    /// Nested message and enum types in `AttachedDisk`.
+    pub mod attached_disk {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Attached {
+            #[prost(message, tag = "1")]
+            NewDisk(super::Disk),
+            #[prost(string, tag = "2")]
+            ExistingDisk(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Accelerator {
+        #[prost(string, tag = "1")]
+        pub r#type: ::prost::alloc::string::String,
+        #[prost(int64, tag = "2")]
+        pub count: i64,
+        #[deprecated]
+        #[prost(bool, tag = "3")]
+        pub install_gpu_drivers: bool,
+        #[prost(string, tag = "4")]
+        pub driver_version: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstancePolicy {
+        #[deprecated]
+        #[prost(string, repeated, tag = "1")]
+        pub allowed_machine_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "2")]
+        pub machine_type: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub min_cpu_platform: ::prost::alloc::string::String,
+        #[prost(enumeration = "ProvisioningModel", tag = "4")]
+        pub provisioning_model: i32,
+        #[prost(message, repeated, tag = "5")]
+        pub accelerators: ::prost::alloc::vec::Vec<Accelerator>,
+        #[prost(message, optional, tag = "8")]
+        pub boot_disk: ::core::option::Option<Disk>,
+        #[prost(message, repeated, tag = "6")]
+        pub disks: ::prost::alloc::vec::Vec<AttachedDisk>,
+        #[prost(string, tag = "7")]
+        pub reservation: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InstancePolicyOrTemplate {
+        #[prost(bool, tag = "3")]
+        pub install_gpu_drivers: bool,
+        #[prost(bool, tag = "4")]
+        pub install_ops_agent: bool,
+        #[prost(oneof = "instance_policy_or_template::PolicyTemplate", tags = "1, 2")]
+        pub policy_template: ::core::option::Option<instance_policy_or_template::PolicyTemplate>,
+    }
+    /// Nested message and enum types in `InstancePolicyOrTemplate`.
+    pub mod instance_policy_or_template {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum PolicyTemplate {
+            #[prost(message, tag = "1")]
+            Policy(super::InstancePolicy),
+            #[prost(string, tag = "2")]
+            InstanceTemplate(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NetworkInterface {
+        #[prost(string, tag = "1")]
+        pub network: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub subnetwork: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub no_external_ip_address: bool,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NetworkPolicy {
+        #[prost(message, repeated, tag = "1")]
+        pub network_interfaces: ::prost::alloc::vec::Vec<NetworkInterface>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PlacementPolicy {
+        #[prost(string, tag = "1")]
+        pub collocation: ::prost::alloc::string::String,
+        #[prost(int64, tag = "2")]
+        pub max_distance: i64,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ProvisioningModel {
+        Unspecified = 0,
+        Standard = 1,
+        Spot = 2,
+        Preemptible = 3,
+    }
+    impl ProvisioningModel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ProvisioningModel::Unspecified => "PROVISIONING_MODEL_UNSPECIFIED",
+                ProvisioningModel::Standard => "STANDARD",
+                ProvisioningModel::Spot => "SPOT",
+                ProvisioningModel::Preemptible => "PREEMPTIBLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROVISIONING_MODEL_UNSPECIFIED" => Some(Self::Unspecified),
+                "STANDARD" => Some(Self::Standard),
+                "SPOT" => Some(Self::Spot),
+                "PREEMPTIBLE" => Some(Self::Preemptible),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskGroup {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub task_spec: ::core::option::Option<TaskSpec>,
-#[prost(int64, tag = "4")]
-pub task_count: i64,
-#[prost(int64, tag = "5")]
-pub parallelism: i64,
-#[prost(enumeration = "task_group::SchedulingPolicy", tag = "6")]
-pub scheduling_policy: i32,
-#[prost(message, optional, tag = "7")]
-pub allocation_policy: ::core::option::Option<AllocationPolicy>,
-#[prost(btree_map = "string, string", tag = "8")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "9")]
-pub task_environments: ::prost::alloc::vec::Vec<Environment>,
-#[prost(int64, tag = "10")]
-pub task_count_per_node: i64,
-#[prost(bool, tag = "11")]
-pub require_hosts_file: bool,
-#[prost(bool, tag = "12")]
-pub permissive_ssh: bool,
-#[prost(bool, tag = "14")]
-pub run_as_non_root: bool,
-#[prost(message, optional, tag = "15")]
-pub service_account: ::core::option::Option<ServiceAccount>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub task_spec: ::core::option::Option<TaskSpec>,
+    #[prost(int64, tag = "4")]
+    pub task_count: i64,
+    #[prost(int64, tag = "5")]
+    pub parallelism: i64,
+    #[prost(enumeration = "task_group::SchedulingPolicy", tag = "6")]
+    pub scheduling_policy: i32,
+    #[prost(message, optional, tag = "7")]
+    pub allocation_policy: ::core::option::Option<AllocationPolicy>,
+    #[prost(btree_map = "string, string", tag = "8")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "9")]
+    pub task_environments: ::prost::alloc::vec::Vec<Environment>,
+    #[prost(int64, tag = "10")]
+    pub task_count_per_node: i64,
+    #[prost(bool, tag = "11")]
+    pub require_hosts_file: bool,
+    #[prost(bool, tag = "12")]
+    pub permissive_ssh: bool,
+    #[prost(bool, tag = "14")]
+    pub run_as_non_root: bool,
+    #[prost(message, optional, tag = "15")]
+    pub service_account: ::core::option::Option<ServiceAccount>,
 }
 /// Nested message and enum types in `TaskGroup`.
 pub mod task_group {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SchedulingPolicy {
-Unspecified = 0,
-AsSoonAsPossible = 1,
-InOrder = 2,
-}
-impl SchedulingPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SchedulingPolicy::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
-SchedulingPolicy::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
-SchedulingPolicy::InOrder => "IN_ORDER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SCHEDULING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"AS_SOON_AS_POSSIBLE" => Some(Self::AsSoonAsPossible),
-"IN_ORDER" => Some(Self::InOrder),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SchedulingPolicy {
+        Unspecified = 0,
+        AsSoonAsPossible = 1,
+        InOrder = 2,
+    }
+    impl SchedulingPolicy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SchedulingPolicy::Unspecified => "SCHEDULING_POLICY_UNSPECIFIED",
+                SchedulingPolicy::AsSoonAsPossible => "AS_SOON_AS_POSSIBLE",
+                SchedulingPolicy::InOrder => "IN_ORDER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SCHEDULING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                "AS_SOON_AS_POSSIBLE" => Some(Self::AsSoonAsPossible),
+                "IN_ORDER" => Some(Self::InOrder),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccount {
-#[prost(string, tag = "1")]
-pub email: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub email: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateJobRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub job: ::core::option::Option<Job>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub job: ::core::option::Option<Job>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobRequest {
-#[prost(message, optional, tag = "1")]
-pub job: ::core::option::Option<Job>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub job: ::core::option::Option<Job>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsResponse {
-#[prost(message, repeated, tag = "1")]
-pub jobs: ::prost::alloc::vec::Vec<Job>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub jobs: ::prost::alloc::vec::Vec<Job>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksResponse {
-#[prost(message, repeated, tag = "1")]
-pub tasks: ::prost::alloc::vec::Vec<Task>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub tasks: ::prost::alloc::vec::Vec<Task>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaskRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateResourceAllowanceRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource_allowance_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub resource_allowance: ::core::option::Option<ResourceAllowance>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub resource_allowance_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub resource_allowance: ::core::option::Option<ResourceAllowance>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetResourceAllowanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteResourceAllowanceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListResourceAllowancesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListResourceAllowancesResponse {
-#[prost(message, repeated, tag = "1")]
-pub resource_allowances: ::prost::alloc::vec::Vec<ResourceAllowance>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub resource_allowances: ::prost::alloc::vec::Vec<ResourceAllowance>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateResourceAllowanceRequest {
-#[prost(message, optional, tag = "1")]
-pub resource_allowance: ::core::option::Option<ResourceAllowance>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub resource_allowance: ::core::option::Option<ResourceAllowance>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod batch_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Google Batch Service.
-/// The service manages user submitted batch jobs and allocates Google Compute
-/// Engine VM instances to run the jobs.
-#[derive(Debug, Clone)]
-pub struct BatchServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> BatchServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> BatchServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-BatchServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Create a Job.
-pub async fn create_job(&mut self, request: impl tonic::IntoRequest<super::CreateJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/CreateJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "CreateJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a Job specified by its resource name.
-pub async fn get_job(&mut self, request: impl tonic::IntoRequest<super::GetJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/GetJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "GetJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a Job.
-pub async fn delete_job(&mut self, request: impl tonic::IntoRequest<super::DeleteJobRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/DeleteJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "DeleteJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a Job.
-pub async fn update_job(&mut self, request: impl tonic::IntoRequest<super::UpdateJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/UpdateJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "UpdateJob"));
-self.inner.unary(req, path, codec).await
-}
-/// List all Jobs for a project within a region.
-pub async fn list_jobs(&mut self, request: impl tonic::IntoRequest<super::ListJobsRequest>) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/ListJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "ListJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// Return a single Task.
-pub async fn get_task(&mut self, request: impl tonic::IntoRequest<super::GetTaskRequest>) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/GetTask");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "GetTask"));
-self.inner.unary(req, path, codec).await
-}
-/// List Tasks associated with a job.
-pub async fn list_tasks(&mut self, request: impl tonic::IntoRequest<super::ListTasksRequest>) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/ListTasks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "ListTasks"));
-self.inner.unary(req, path, codec).await
-}
-/// Create a Resource Allowance.
-pub async fn create_resource_allowance(&mut self, request: impl tonic::IntoRequest<super::CreateResourceAllowanceRequest>) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/CreateResourceAllowance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "CreateResourceAllowance"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a ResourceAllowance specified by its resource name.
-pub async fn get_resource_allowance(&mut self, request: impl tonic::IntoRequest<super::GetResourceAllowanceRequest>) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/GetResourceAllowance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "GetResourceAllowance"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a ResourceAllowance.
-pub async fn delete_resource_allowance(&mut self, request: impl tonic::IntoRequest<super::DeleteResourceAllowanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/DeleteResourceAllowance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "DeleteResourceAllowance"));
-self.inner.unary(req, path, codec).await
-}
-/// List all ResourceAllowances for a project within a region.
-pub async fn list_resource_allowances(&mut self, request: impl tonic::IntoRequest<super::ListResourceAllowancesRequest>) -> std::result::Result<tonic::Response<super::ListResourceAllowancesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/ListResourceAllowances");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "ListResourceAllowances"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a Resource Allowance.
-pub async fn update_resource_allowance(&mut self, request: impl tonic::IntoRequest<super::UpdateResourceAllowanceRequest>) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.batch.v1alpha.BatchService/UpdateResourceAllowance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.batch.v1alpha.BatchService", "UpdateResourceAllowance"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Google Batch Service.
+    /// The service manages user submitted batch jobs and allocates Google Compute
+    /// Engine VM instances to run the jobs.
+    #[derive(Debug, Clone)]
+    pub struct BatchServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> BatchServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BatchServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            BatchServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Create a Job.
+        pub async fn create_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/CreateJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "CreateJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a Job specified by its resource name.
+        pub async fn get_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/GetJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "GetJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a Job.
+        pub async fn delete_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/DeleteJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "DeleteJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a Job.
+        pub async fn update_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/UpdateJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "UpdateJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List all Jobs for a project within a region.
+        pub async fn list_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/ListJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "ListJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Return a single Task.
+        pub async fn get_task(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTaskRequest>,
+        ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/GetTask",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "GetTask",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List Tasks associated with a job.
+        pub async fn list_tasks(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListTasksRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/ListTasks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "ListTasks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create a Resource Allowance.
+        pub async fn create_resource_allowance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateResourceAllowanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/CreateResourceAllowance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "CreateResourceAllowance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a ResourceAllowance specified by its resource name.
+        pub async fn get_resource_allowance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetResourceAllowanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/GetResourceAllowance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "GetResourceAllowance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a ResourceAllowance.
+        pub async fn delete_resource_allowance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteResourceAllowanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/DeleteResourceAllowance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "DeleteResourceAllowance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List all ResourceAllowances for a project within a region.
+        pub async fn list_resource_allowances(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListResourceAllowancesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListResourceAllowancesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/ListResourceAllowances",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "ListResourceAllowances",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a Resource Allowance.
+        pub async fn update_resource_allowance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateResourceAllowanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::ResourceAllowance>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/UpdateResourceAllowance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.batch.v1alpha.BatchService",
+                "UpdateResourceAllowance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

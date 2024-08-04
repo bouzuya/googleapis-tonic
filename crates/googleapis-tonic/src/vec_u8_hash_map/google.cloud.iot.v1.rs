@@ -2,568 +2,573 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Device {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(uint64, tag = "3")]
-pub num_id: u64,
-#[prost(message, repeated, tag = "12")]
-pub credentials: ::prost::alloc::vec::Vec<DeviceCredential>,
-#[prost(message, optional, tag = "7")]
-pub last_heartbeat_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub last_event_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "20")]
-pub last_state_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "14")]
-pub last_config_ack_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "18")]
-pub last_config_send_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(bool, tag = "19")]
-pub blocked: bool,
-#[prost(message, optional, tag = "10")]
-pub last_error_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "11")]
-pub last_error_status: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(message, optional, tag = "13")]
-pub config: ::core::option::Option<DeviceConfig>,
-#[prost(message, optional, tag = "16")]
-pub state: ::core::option::Option<DeviceState>,
-#[prost(enumeration = "LogLevel", tag = "21")]
-pub log_level: i32,
-#[prost(map = "string, string", tag = "17")]
-pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "24")]
-pub gateway_config: ::core::option::Option<GatewayConfig>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "3")]
+    pub num_id: u64,
+    #[prost(message, repeated, tag = "12")]
+    pub credentials: ::prost::alloc::vec::Vec<DeviceCredential>,
+    #[prost(message, optional, tag = "7")]
+    pub last_heartbeat_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub last_event_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "20")]
+    pub last_state_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "14")]
+    pub last_config_ack_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "18")]
+    pub last_config_send_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(bool, tag = "19")]
+    pub blocked: bool,
+    #[prost(message, optional, tag = "10")]
+    pub last_error_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "11")]
+    pub last_error_status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, optional, tag = "13")]
+    pub config: ::core::option::Option<DeviceConfig>,
+    #[prost(message, optional, tag = "16")]
+    pub state: ::core::option::Option<DeviceState>,
+    #[prost(enumeration = "LogLevel", tag = "21")]
+    pub log_level: i32,
+    #[prost(map = "string, string", tag = "17")]
+    pub metadata:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "24")]
+    pub gateway_config: ::core::option::Option<GatewayConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GatewayConfig {
-#[prost(enumeration = "GatewayType", tag = "1")]
-pub gateway_type: i32,
-#[prost(enumeration = "GatewayAuthMethod", tag = "2")]
-pub gateway_auth_method: i32,
-#[prost(string, tag = "3")]
-pub last_accessed_gateway_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub last_accessed_gateway_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "GatewayType", tag = "1")]
+    pub gateway_type: i32,
+    #[prost(enumeration = "GatewayAuthMethod", tag = "2")]
+    pub gateway_auth_method: i32,
+    #[prost(string, tag = "3")]
+    pub last_accessed_gateway_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub last_accessed_gateway_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceRegistry {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "10")]
-pub event_notification_configs: ::prost::alloc::vec::Vec<EventNotificationConfig>,
-#[prost(message, optional, tag = "7")]
-pub state_notification_config: ::core::option::Option<StateNotificationConfig>,
-#[prost(message, optional, tag = "4")]
-pub mqtt_config: ::core::option::Option<MqttConfig>,
-#[prost(message, optional, tag = "9")]
-pub http_config: ::core::option::Option<HttpConfig>,
-#[prost(enumeration = "LogLevel", tag = "11")]
-pub log_level: i32,
-#[prost(message, repeated, tag = "8")]
-pub credentials: ::prost::alloc::vec::Vec<RegistryCredential>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "10")]
+    pub event_notification_configs: ::prost::alloc::vec::Vec<EventNotificationConfig>,
+    #[prost(message, optional, tag = "7")]
+    pub state_notification_config: ::core::option::Option<StateNotificationConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub mqtt_config: ::core::option::Option<MqttConfig>,
+    #[prost(message, optional, tag = "9")]
+    pub http_config: ::core::option::Option<HttpConfig>,
+    #[prost(enumeration = "LogLevel", tag = "11")]
+    pub log_level: i32,
+    #[prost(message, repeated, tag = "8")]
+    pub credentials: ::prost::alloc::vec::Vec<RegistryCredential>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MqttConfig {
-#[prost(enumeration = "MqttState", tag = "1")]
-pub mqtt_enabled_state: i32,
+    #[prost(enumeration = "MqttState", tag = "1")]
+    pub mqtt_enabled_state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct HttpConfig {
-#[prost(enumeration = "HttpState", tag = "1")]
-pub http_enabled_state: i32,
+    #[prost(enumeration = "HttpState", tag = "1")]
+    pub http_enabled_state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventNotificationConfig {
-#[prost(string, tag = "2")]
-pub subfolder_matches: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub pubsub_topic_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subfolder_matches: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub pubsub_topic_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StateNotificationConfig {
-#[prost(string, tag = "1")]
-pub pubsub_topic_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub pubsub_topic_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegistryCredential {
-#[prost(oneof = "registry_credential::Credential", tags = "1")]
-pub credential: ::core::option::Option<registry_credential::Credential>,
+    #[prost(oneof = "registry_credential::Credential", tags = "1")]
+    pub credential: ::core::option::Option<registry_credential::Credential>,
 }
 /// Nested message and enum types in `RegistryCredential`.
 pub mod registry_credential {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Credential {
-#[prost(message, tag = "1")]
-PublicKeyCertificate(super::PublicKeyCertificate),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Credential {
+        #[prost(message, tag = "1")]
+        PublicKeyCertificate(super::PublicKeyCertificate),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct X509CertificateDetails {
-#[prost(string, tag = "1")]
-pub issuer: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subject: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub expiry_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "5")]
-pub signature_algorithm: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub public_key_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub issuer: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subject: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub expiry_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "5")]
+    pub signature_algorithm: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub public_key_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublicKeyCertificate {
-#[prost(enumeration = "PublicKeyCertificateFormat", tag = "1")]
-pub format: i32,
-#[prost(string, tag = "2")]
-pub certificate: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub x509_details: ::core::option::Option<X509CertificateDetails>,
+    #[prost(enumeration = "PublicKeyCertificateFormat", tag = "1")]
+    pub format: i32,
+    #[prost(string, tag = "2")]
+    pub certificate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub x509_details: ::core::option::Option<X509CertificateDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceCredential {
-#[prost(message, optional, tag = "6")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "device_credential::Credential", tags = "2")]
-pub credential: ::core::option::Option<device_credential::Credential>,
+    #[prost(message, optional, tag = "6")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(oneof = "device_credential::Credential", tags = "2")]
+    pub credential: ::core::option::Option<device_credential::Credential>,
 }
 /// Nested message and enum types in `DeviceCredential`.
 pub mod device_credential {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Credential {
-#[prost(message, tag = "2")]
-PublicKey(super::PublicKeyCredential),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Credential {
+        #[prost(message, tag = "2")]
+        PublicKey(super::PublicKeyCredential),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublicKeyCredential {
-#[prost(enumeration = "PublicKeyFormat", tag = "1")]
-pub format: i32,
-#[prost(string, tag = "2")]
-pub key: ::prost::alloc::string::String,
+    #[prost(enumeration = "PublicKeyFormat", tag = "1")]
+    pub format: i32,
+    #[prost(string, tag = "2")]
+    pub key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceConfig {
-#[prost(int64, tag = "1")]
-pub version: i64,
-#[prost(message, optional, tag = "2")]
-pub cloud_update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub device_ack_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(bytes = "vec", tag = "4")]
-pub binary_data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(int64, tag = "1")]
+    pub version: i64,
+    #[prost(message, optional, tag = "2")]
+    pub cloud_update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub device_ack_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(bytes = "vec", tag = "4")]
+    pub binary_data: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceState {
-#[prost(message, optional, tag = "1")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(bytes = "vec", tag = "2")]
-pub binary_data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "1")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub binary_data: ::prost::alloc::vec::Vec<u8>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MqttState {
-Unspecified = 0,
-MqttEnabled = 1,
-MqttDisabled = 2,
+    Unspecified = 0,
+    MqttEnabled = 1,
+    MqttDisabled = 2,
 }
 impl MqttState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MqttState::Unspecified => "MQTT_STATE_UNSPECIFIED",
-MqttState::MqttEnabled => "MQTT_ENABLED",
-MqttState::MqttDisabled => "MQTT_DISABLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MQTT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"MQTT_ENABLED" => Some(Self::MqttEnabled),
-"MQTT_DISABLED" => Some(Self::MqttDisabled),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MqttState::Unspecified => "MQTT_STATE_UNSPECIFIED",
+            MqttState::MqttEnabled => "MQTT_ENABLED",
+            MqttState::MqttDisabled => "MQTT_DISABLED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MQTT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MQTT_ENABLED" => Some(Self::MqttEnabled),
+            "MQTT_DISABLED" => Some(Self::MqttDisabled),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HttpState {
-Unspecified = 0,
-HttpEnabled = 1,
-HttpDisabled = 2,
+    Unspecified = 0,
+    HttpEnabled = 1,
+    HttpDisabled = 2,
 }
 impl HttpState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HttpState::Unspecified => "HTTP_STATE_UNSPECIFIED",
-HttpState::HttpEnabled => "HTTP_ENABLED",
-HttpState::HttpDisabled => "HTTP_DISABLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HTTP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"HTTP_ENABLED" => Some(Self::HttpEnabled),
-"HTTP_DISABLED" => Some(Self::HttpDisabled),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            HttpState::Unspecified => "HTTP_STATE_UNSPECIFIED",
+            HttpState::HttpEnabled => "HTTP_ENABLED",
+            HttpState::HttpDisabled => "HTTP_DISABLED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "HTTP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "HTTP_ENABLED" => Some(Self::HttpEnabled),
+            "HTTP_DISABLED" => Some(Self::HttpDisabled),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LogLevel {
-Unspecified = 0,
-None = 10,
-Error = 20,
-Info = 30,
-Debug = 40,
+    Unspecified = 0,
+    None = 10,
+    Error = 20,
+    Info = 30,
+    Debug = 40,
 }
 impl LogLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LogLevel::Unspecified => "LOG_LEVEL_UNSPECIFIED",
-LogLevel::None => "NONE",
-LogLevel::Error => "ERROR",
-LogLevel::Info => "INFO",
-LogLevel::Debug => "DEBUG",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LOG_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"NONE" => Some(Self::None),
-"ERROR" => Some(Self::Error),
-"INFO" => Some(Self::Info),
-"DEBUG" => Some(Self::Debug),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LogLevel::Unspecified => "LOG_LEVEL_UNSPECIFIED",
+            LogLevel::None => "NONE",
+            LogLevel::Error => "ERROR",
+            LogLevel::Info => "INFO",
+            LogLevel::Debug => "DEBUG",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "LOG_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "NONE" => Some(Self::None),
+            "ERROR" => Some(Self::Error),
+            "INFO" => Some(Self::Info),
+            "DEBUG" => Some(Self::Debug),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum GatewayType {
-Unspecified = 0,
-Gateway = 1,
-NonGateway = 2,
+    Unspecified = 0,
+    Gateway = 1,
+    NonGateway = 2,
 }
 impl GatewayType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-GatewayType::Unspecified => "GATEWAY_TYPE_UNSPECIFIED",
-GatewayType::Gateway => "GATEWAY",
-GatewayType::NonGateway => "NON_GATEWAY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GATEWAY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"GATEWAY" => Some(Self::Gateway),
-"NON_GATEWAY" => Some(Self::NonGateway),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            GatewayType::Unspecified => "GATEWAY_TYPE_UNSPECIFIED",
+            GatewayType::Gateway => "GATEWAY",
+            GatewayType::NonGateway => "NON_GATEWAY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "GATEWAY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "GATEWAY" => Some(Self::Gateway),
+            "NON_GATEWAY" => Some(Self::NonGateway),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum GatewayAuthMethod {
-Unspecified = 0,
-AssociationOnly = 1,
-DeviceAuthTokenOnly = 2,
-AssociationAndDeviceAuthToken = 3,
+    Unspecified = 0,
+    AssociationOnly = 1,
+    DeviceAuthTokenOnly = 2,
+    AssociationAndDeviceAuthToken = 3,
 }
 impl GatewayAuthMethod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-GatewayAuthMethod::Unspecified => "GATEWAY_AUTH_METHOD_UNSPECIFIED",
-GatewayAuthMethod::AssociationOnly => "ASSOCIATION_ONLY",
-GatewayAuthMethod::DeviceAuthTokenOnly => "DEVICE_AUTH_TOKEN_ONLY",
-GatewayAuthMethod::AssociationAndDeviceAuthToken => "ASSOCIATION_AND_DEVICE_AUTH_TOKEN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GATEWAY_AUTH_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"ASSOCIATION_ONLY" => Some(Self::AssociationOnly),
-"DEVICE_AUTH_TOKEN_ONLY" => Some(Self::DeviceAuthTokenOnly),
-"ASSOCIATION_AND_DEVICE_AUTH_TOKEN" => Some(Self::AssociationAndDeviceAuthToken),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            GatewayAuthMethod::Unspecified => "GATEWAY_AUTH_METHOD_UNSPECIFIED",
+            GatewayAuthMethod::AssociationOnly => "ASSOCIATION_ONLY",
+            GatewayAuthMethod::DeviceAuthTokenOnly => "DEVICE_AUTH_TOKEN_ONLY",
+            GatewayAuthMethod::AssociationAndDeviceAuthToken => "ASSOCIATION_AND_DEVICE_AUTH_TOKEN",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "GATEWAY_AUTH_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+            "ASSOCIATION_ONLY" => Some(Self::AssociationOnly),
+            "DEVICE_AUTH_TOKEN_ONLY" => Some(Self::DeviceAuthTokenOnly),
+            "ASSOCIATION_AND_DEVICE_AUTH_TOKEN" => Some(Self::AssociationAndDeviceAuthToken),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PublicKeyCertificateFormat {
-UnspecifiedPublicKeyCertificateFormat = 0,
-X509CertificatePem = 1,
+    UnspecifiedPublicKeyCertificateFormat = 0,
+    X509CertificatePem = 1,
 }
 impl PublicKeyCertificateFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicKeyCertificateFormat::UnspecifiedPublicKeyCertificateFormat => "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT",
-PublicKeyCertificateFormat::X509CertificatePem => "X509_CERTIFICATE_PEM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT" => Some(Self::UnspecifiedPublicKeyCertificateFormat),
-"X509_CERTIFICATE_PEM" => Some(Self::X509CertificatePem),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            PublicKeyCertificateFormat::UnspecifiedPublicKeyCertificateFormat => {
+                "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT"
+            }
+            PublicKeyCertificateFormat::X509CertificatePem => "X509_CERTIFICATE_PEM",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT" => {
+                Some(Self::UnspecifiedPublicKeyCertificateFormat)
+            }
+            "X509_CERTIFICATE_PEM" => Some(Self::X509CertificatePem),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PublicKeyFormat {
-UnspecifiedPublicKeyFormat = 0,
-RsaPem = 3,
-RsaX509Pem = 1,
-Es256Pem = 2,
-Es256X509Pem = 4,
+    UnspecifiedPublicKeyFormat = 0,
+    RsaPem = 3,
+    RsaX509Pem = 1,
+    Es256Pem = 2,
+    Es256X509Pem = 4,
 }
 impl PublicKeyFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicKeyFormat::UnspecifiedPublicKeyFormat => "UNSPECIFIED_PUBLIC_KEY_FORMAT",
-PublicKeyFormat::RsaPem => "RSA_PEM",
-PublicKeyFormat::RsaX509Pem => "RSA_X509_PEM",
-PublicKeyFormat::Es256Pem => "ES256_PEM",
-PublicKeyFormat::Es256X509Pem => "ES256_X509_PEM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNSPECIFIED_PUBLIC_KEY_FORMAT" => Some(Self::UnspecifiedPublicKeyFormat),
-"RSA_PEM" => Some(Self::RsaPem),
-"RSA_X509_PEM" => Some(Self::RsaX509Pem),
-"ES256_PEM" => Some(Self::Es256Pem),
-"ES256_X509_PEM" => Some(Self::Es256X509Pem),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            PublicKeyFormat::UnspecifiedPublicKeyFormat => "UNSPECIFIED_PUBLIC_KEY_FORMAT",
+            PublicKeyFormat::RsaPem => "RSA_PEM",
+            PublicKeyFormat::RsaX509Pem => "RSA_X509_PEM",
+            PublicKeyFormat::Es256Pem => "ES256_PEM",
+            PublicKeyFormat::Es256X509Pem => "ES256_X509_PEM",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNSPECIFIED_PUBLIC_KEY_FORMAT" => Some(Self::UnspecifiedPublicKeyFormat),
+            "RSA_PEM" => Some(Self::RsaPem),
+            "RSA_X509_PEM" => Some(Self::RsaX509Pem),
+            "ES256_PEM" => Some(Self::Es256Pem),
+            "ES256_X509_PEM" => Some(Self::Es256X509Pem),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDeviceRegistryRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub device_registry: ::core::option::Option<DeviceRegistry>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub device_registry: ::core::option::Option<DeviceRegistry>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDeviceRegistryRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDeviceRegistryRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDeviceRegistryRequest {
-#[prost(message, optional, tag = "1")]
-pub device_registry: ::core::option::Option<DeviceRegistry>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub device_registry: ::core::option::Option<DeviceRegistry>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceRegistriesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceRegistriesResponse {
-#[prost(message, repeated, tag = "1")]
-pub device_registries: ::prost::alloc::vec::Vec<DeviceRegistry>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub device_registries: ::prost::alloc::vec::Vec<DeviceRegistry>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDeviceRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub device: ::core::option::Option<Device>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub device: ::core::option::Option<Device>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDeviceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub field_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub field_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDeviceRequest {
-#[prost(message, optional, tag = "2")]
-pub device: ::core::option::Option<Device>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub device: ::core::option::Option<Device>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDeviceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDevicesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(uint64, repeated, tag = "2")]
-pub device_num_ids: ::prost::alloc::vec::Vec<u64>,
-#[prost(string, repeated, tag = "3")]
-pub device_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub field_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "6")]
-pub gateway_list_options: ::core::option::Option<GatewayListOptions>,
-#[prost(int32, tag = "100")]
-pub page_size: i32,
-#[prost(string, tag = "101")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(uint64, repeated, tag = "2")]
+    pub device_num_ids: ::prost::alloc::vec::Vec<u64>,
+    #[prost(string, repeated, tag = "3")]
+    pub device_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub field_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "6")]
+    pub gateway_list_options: ::core::option::Option<GatewayListOptions>,
+    #[prost(int32, tag = "100")]
+    pub page_size: i32,
+    #[prost(string, tag = "101")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GatewayListOptions {
-#[prost(oneof = "gateway_list_options::Filter", tags = "1, 2, 3")]
-pub filter: ::core::option::Option<gateway_list_options::Filter>,
+    #[prost(oneof = "gateway_list_options::Filter", tags = "1, 2, 3")]
+    pub filter: ::core::option::Option<gateway_list_options::Filter>,
 }
 /// Nested message and enum types in `GatewayListOptions`.
 pub mod gateway_list_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Filter {
-#[prost(enumeration = "super::GatewayType", tag = "1")]
-GatewayType(i32),
-#[prost(string, tag = "2")]
-AssociationsGatewayId(::prost::alloc::string::String),
-#[prost(string, tag = "3")]
-AssociationsDeviceId(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Filter {
+        #[prost(enumeration = "super::GatewayType", tag = "1")]
+        GatewayType(i32),
+        #[prost(string, tag = "2")]
+        AssociationsGatewayId(::prost::alloc::string::String),
+        #[prost(string, tag = "3")]
+        AssociationsDeviceId(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDevicesResponse {
-#[prost(message, repeated, tag = "1")]
-pub devices: ::prost::alloc::vec::Vec<Device>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub devices: ::prost::alloc::vec::Vec<Device>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModifyCloudToDeviceConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub version_to_update: i64,
-#[prost(bytes = "vec", tag = "3")]
-pub binary_data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub version_to_update: i64,
+    #[prost(bytes = "vec", tag = "3")]
+    pub binary_data: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceConfigVersionsRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub num_versions: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub num_versions: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceConfigVersionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub device_configs: ::prost::alloc::vec::Vec<DeviceConfig>,
+    #[prost(message, repeated, tag = "1")]
+    pub device_configs: ::prost::alloc::vec::Vec<DeviceConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceStatesRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub num_states: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub num_states: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeviceStatesResponse {
-#[prost(message, repeated, tag = "1")]
-pub device_states: ::prost::alloc::vec::Vec<DeviceState>,
+    #[prost(message, repeated, tag = "1")]
+    pub device_states: ::prost::alloc::vec::Vec<DeviceState>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SendCommandToDeviceRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bytes = "vec", tag = "2")]
-pub binary_data: ::prost::alloc::vec::Vec<u8>,
-#[prost(string, tag = "3")]
-pub subfolder: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", tag = "2")]
+    pub binary_data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(string, tag = "3")]
+    pub subfolder: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -571,12 +576,12 @@ pub struct SendCommandToDeviceResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BindDeviceToGatewayRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub gateway_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub device_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub gateway_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub device_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -584,272 +589,550 @@ pub struct BindDeviceToGatewayResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnbindDeviceFromGatewayRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub gateway_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub device_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub gateway_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub device_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UnbindDeviceFromGatewayResponse {}
 /// Generated client implementations.
 pub mod device_manager_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Internet of Things (IoT) service. Securely connect and manage IoT devices.
-#[derive(Debug, Clone)]
-pub struct DeviceManagerClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DeviceManagerClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DeviceManagerClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DeviceManagerClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a device registry that contains devices.
-pub async fn create_device_registry(&mut self, request: impl tonic::IntoRequest<super::CreateDeviceRegistryRequest>) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/CreateDeviceRegistry");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "CreateDeviceRegistry"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a device registry configuration.
-pub async fn get_device_registry(&mut self, request: impl tonic::IntoRequest<super::GetDeviceRegistryRequest>) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/GetDeviceRegistry");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "GetDeviceRegistry"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a device registry configuration.
-pub async fn update_device_registry(&mut self, request: impl tonic::IntoRequest<super::UpdateDeviceRegistryRequest>) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/UpdateDeviceRegistry");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "UpdateDeviceRegistry"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a device registry configuration.
-pub async fn delete_device_registry(&mut self, request: impl tonic::IntoRequest<super::DeleteDeviceRegistryRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/DeleteDeviceRegistry");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "DeleteDeviceRegistry"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists device registries.
-pub async fn list_device_registries(&mut self, request: impl tonic::IntoRequest<super::ListDeviceRegistriesRequest>) -> std::result::Result<tonic::Response<super::ListDeviceRegistriesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/ListDeviceRegistries");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ListDeviceRegistries"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a device in a device registry.
-pub async fn create_device(&mut self, request: impl tonic::IntoRequest<super::CreateDeviceRequest>) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/CreateDevice");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "CreateDevice"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details about a device.
-pub async fn get_device(&mut self, request: impl tonic::IntoRequest<super::GetDeviceRequest>) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/GetDevice");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "GetDevice"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a device.
-pub async fn update_device(&mut self, request: impl tonic::IntoRequest<super::UpdateDeviceRequest>) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/UpdateDevice");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "UpdateDevice"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a device.
-pub async fn delete_device(&mut self, request: impl tonic::IntoRequest<super::DeleteDeviceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/DeleteDevice");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "DeleteDevice"));
-self.inner.unary(req, path, codec).await
-}
-/// List devices in a device registry.
-pub async fn list_devices(&mut self, request: impl tonic::IntoRequest<super::ListDevicesRequest>) -> std::result::Result<tonic::Response<super::ListDevicesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/ListDevices");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ListDevices"));
-self.inner.unary(req, path, codec).await
-}
-/// Modifies the configuration for the device, which is eventually sent from
-/// the Cloud IoT Core servers. Returns the modified configuration version and
-/// its metadata.
-pub async fn modify_cloud_to_device_config(&mut self, request: impl tonic::IntoRequest<super::ModifyCloudToDeviceConfigRequest>) -> std::result::Result<tonic::Response<super::DeviceConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/ModifyCloudToDeviceConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ModifyCloudToDeviceConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the last few versions of the device configuration in descending
-/// order (i.e.: newest first).
-pub async fn list_device_config_versions(&mut self, request: impl tonic::IntoRequest<super::ListDeviceConfigVersionsRequest>) -> std::result::Result<tonic::Response<super::ListDeviceConfigVersionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/ListDeviceConfigVersions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ListDeviceConfigVersions"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the last few versions of the device state in descending order (i.e.:
-/// newest first).
-pub async fn list_device_states(&mut self, request: impl tonic::IntoRequest<super::ListDeviceStatesRequest>) -> std::result::Result<tonic::Response<super::ListDeviceStatesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/ListDeviceStates");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "ListDeviceStates"));
-self.inner.unary(req, path, codec).await
-}
-/// Sets the access control policy on the specified resource. Replaces any
-/// existing policy.
-pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/SetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "SetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the access control policy for a resource.
-/// Returns an empty policy if the resource exists and does not have a policy
-/// set.
-pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/GetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "GetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns permissions that a caller has on the specified resource.
-/// If the resource does not exist, this will return an empty set of
-/// permissions, not a NOT_FOUND error.
-pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/TestIamPermissions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "TestIamPermissions"));
-self.inner.unary(req, path, codec).await
-}
-/// Sends a command to the specified device. In order for a device to be able
-/// to receive commands, it must:
-/// 1) be connected to Cloud IoT Core using the MQTT protocol, and
-/// 2) be subscribed to the group of MQTT topics specified by
-///    /devices/{device-id}/commands/#. This subscription will receive commands
-///    at the top-level topic /devices/{device-id}/commands as well as commands
-///    for subfolders, like /devices/{device-id}/commands/subfolder.
-///    Note that subscribing to specific subfolders is not supported.
-/// If the command could not be delivered to the device, this method will
-/// return an error; in particular, if the device is not subscribed, this
-/// method will return FAILED_PRECONDITION. Otherwise, this method will
-/// return OK. If the subscription is QoS 1, at least once delivery will be
-/// guaranteed; for QoS 0, no acknowledgment will be expected from the device.
-pub async fn send_command_to_device(&mut self, request: impl tonic::IntoRequest<super::SendCommandToDeviceRequest>) -> std::result::Result<tonic::Response<super::SendCommandToDeviceResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/SendCommandToDevice");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "SendCommandToDevice"));
-self.inner.unary(req, path, codec).await
-}
-/// Associates the device with the gateway.
-pub async fn bind_device_to_gateway(&mut self, request: impl tonic::IntoRequest<super::BindDeviceToGatewayRequest>) -> std::result::Result<tonic::Response<super::BindDeviceToGatewayResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "BindDeviceToGateway"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the association between the device and the gateway.
-pub async fn unbind_device_from_gateway(&mut self, request: impl tonic::IntoRequest<super::UnbindDeviceFromGatewayRequest>) -> std::result::Result<tonic::Response<super::UnbindDeviceFromGatewayResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.iot.v1.DeviceManager", "UnbindDeviceFromGateway"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Internet of Things (IoT) service. Securely connect and manage IoT devices.
+    #[derive(Debug, Clone)]
+    pub struct DeviceManagerClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DeviceManagerClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DeviceManagerClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DeviceManagerClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a device registry that contains devices.
+        pub async fn create_device_registry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDeviceRegistryRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/CreateDeviceRegistry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "CreateDeviceRegistry",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a device registry configuration.
+        pub async fn get_device_registry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDeviceRegistryRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/GetDeviceRegistry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "GetDeviceRegistry",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a device registry configuration.
+        pub async fn update_device_registry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDeviceRegistryRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeviceRegistry>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/UpdateDeviceRegistry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "UpdateDeviceRegistry",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a device registry configuration.
+        pub async fn delete_device_registry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDeviceRegistryRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/DeleteDeviceRegistry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "DeleteDeviceRegistry",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists device registries.
+        pub async fn list_device_registries(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDeviceRegistriesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDeviceRegistriesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/ListDeviceRegistries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "ListDeviceRegistries",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a device in a device registry.
+        pub async fn create_device(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDeviceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/CreateDevice",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "CreateDevice",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details about a device.
+        pub async fn get_device(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDeviceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/GetDevice",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "GetDevice",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a device.
+        pub async fn update_device(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDeviceRequest>,
+        ) -> std::result::Result<tonic::Response<super::Device>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/UpdateDevice",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "UpdateDevice",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a device.
+        pub async fn delete_device(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDeviceRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/DeleteDevice",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "DeleteDevice",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List devices in a device registry.
+        pub async fn list_devices(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDevicesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDevicesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/ListDevices",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "ListDevices",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Modifies the configuration for the device, which is eventually sent from
+        /// the Cloud IoT Core servers. Returns the modified configuration version and
+        /// its metadata.
+        pub async fn modify_cloud_to_device_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ModifyCloudToDeviceConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeviceConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/ModifyCloudToDeviceConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "ModifyCloudToDeviceConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the last few versions of the device configuration in descending
+        /// order (i.e.: newest first).
+        pub async fn list_device_config_versions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDeviceConfigVersionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeviceConfigVersionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/ListDeviceConfigVersions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "ListDeviceConfigVersions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the last few versions of the device state in descending order (i.e.:
+        /// newest first).
+        pub async fn list_device_states(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDeviceStatesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDeviceStatesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/ListDeviceStates",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "ListDeviceStates",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Sets the access control policy on the specified resource. Replaces any
+        /// existing policy.
+        pub async fn set_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/SetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "SetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the access control policy for a resource.
+        /// Returns an empty policy if the resource exists and does not have a policy
+        /// set.
+        pub async fn get_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/GetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "GetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns permissions that a caller has on the specified resource.
+        /// If the resource does not exist, this will return an empty set of
+        /// permissions, not a NOT_FOUND error.
+        pub async fn test_iam_permissions(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::TestIamPermissionsRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/TestIamPermissions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "TestIamPermissions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Sends a command to the specified device. In order for a device to be able
+        /// to receive commands, it must:
+        /// 1) be connected to Cloud IoT Core using the MQTT protocol, and
+        /// 2) be subscribed to the group of MQTT topics specified by
+        ///    /devices/{device-id}/commands/#. This subscription will receive commands
+        ///    at the top-level topic /devices/{device-id}/commands as well as commands
+        ///    for subfolders, like /devices/{device-id}/commands/subfolder.
+        ///    Note that subscribing to specific subfolders is not supported.
+        /// If the command could not be delivered to the device, this method will
+        /// return an error; in particular, if the device is not subscribed, this
+        /// method will return FAILED_PRECONDITION. Otherwise, this method will
+        /// return OK. If the subscription is QoS 1, at least once delivery will be
+        /// guaranteed; for QoS 0, no acknowledgment will be expected from the device.
+        pub async fn send_command_to_device(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SendCommandToDeviceRequest>,
+        ) -> std::result::Result<tonic::Response<super::SendCommandToDeviceResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/SendCommandToDevice",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "SendCommandToDevice",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Associates the device with the gateway.
+        pub async fn bind_device_to_gateway(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BindDeviceToGatewayRequest>,
+        ) -> std::result::Result<tonic::Response<super::BindDeviceToGatewayResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "BindDeviceToGateway",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the association between the device and the gateway.
+        pub async fn unbind_device_from_gateway(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UnbindDeviceFromGatewayRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UnbindDeviceFromGatewayResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.iot.v1.DeviceManager",
+                "UnbindDeviceFromGateway",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

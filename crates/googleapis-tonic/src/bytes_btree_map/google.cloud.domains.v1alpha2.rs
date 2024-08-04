@@ -2,1025 +2,1276 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Registration {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "registration::State", tag = "7")]
-pub state: i32,
-#[prost(enumeration = "registration::Issue", repeated, packed = "false", tag = "8")]
-pub issues: ::prost::alloc::vec::Vec<i32>,
-#[prost(btree_map = "string, string", tag = "9")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "10")]
-pub management_settings: ::core::option::Option<ManagementSettings>,
-#[prost(message, optional, tag = "11")]
-pub dns_settings: ::core::option::Option<DnsSettings>,
-#[prost(message, optional, tag = "12")]
-pub contact_settings: ::core::option::Option<ContactSettings>,
-#[prost(message, optional, tag = "13")]
-pub pending_contact_settings: ::core::option::Option<ContactSettings>,
-#[prost(enumeration = "ContactPrivacy", repeated, packed = "false", tag = "14")]
-pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub domain_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "registration::State", tag = "7")]
+    pub state: i32,
+    #[prost(
+        enumeration = "registration::Issue",
+        repeated,
+        packed = "false",
+        tag = "8"
+    )]
+    pub issues: ::prost::alloc::vec::Vec<i32>,
+    #[prost(btree_map = "string, string", tag = "9")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "10")]
+    pub management_settings: ::core::option::Option<ManagementSettings>,
+    #[prost(message, optional, tag = "11")]
+    pub dns_settings: ::core::option::Option<DnsSettings>,
+    #[prost(message, optional, tag = "12")]
+    pub contact_settings: ::core::option::Option<ContactSettings>,
+    #[prost(message, optional, tag = "13")]
+    pub pending_contact_settings: ::core::option::Option<ContactSettings>,
+    #[prost(enumeration = "ContactPrivacy", repeated, packed = "false", tag = "14")]
+    pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `Registration`.
 pub mod registration {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-RegistrationPending = 1,
-RegistrationFailed = 2,
-TransferPending = 3,
-TransferFailed = 4,
-Active = 6,
-Suspended = 7,
-Exported = 8,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::RegistrationPending => "REGISTRATION_PENDING",
-State::RegistrationFailed => "REGISTRATION_FAILED",
-State::TransferPending => "TRANSFER_PENDING",
-State::TransferFailed => "TRANSFER_FAILED",
-State::Active => "ACTIVE",
-State::Suspended => "SUSPENDED",
-State::Exported => "EXPORTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"REGISTRATION_PENDING" => Some(Self::RegistrationPending),
-"REGISTRATION_FAILED" => Some(Self::RegistrationFailed),
-"TRANSFER_PENDING" => Some(Self::TransferPending),
-"TRANSFER_FAILED" => Some(Self::TransferFailed),
-"ACTIVE" => Some(Self::Active),
-"SUSPENDED" => Some(Self::Suspended),
-"EXPORTED" => Some(Self::Exported),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Issue {
-Unspecified = 0,
-ContactSupport = 1,
-UnverifiedEmail = 2,
-}
-impl Issue {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Issue::Unspecified => "ISSUE_UNSPECIFIED",
-Issue::ContactSupport => "CONTACT_SUPPORT",
-Issue::UnverifiedEmail => "UNVERIFIED_EMAIL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ISSUE_UNSPECIFIED" => Some(Self::Unspecified),
-"CONTACT_SUPPORT" => Some(Self::ContactSupport),
-"UNVERIFIED_EMAIL" => Some(Self::UnverifiedEmail),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        RegistrationPending = 1,
+        RegistrationFailed = 2,
+        TransferPending = 3,
+        TransferFailed = 4,
+        Active = 6,
+        Suspended = 7,
+        Exported = 8,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::RegistrationPending => "REGISTRATION_PENDING",
+                State::RegistrationFailed => "REGISTRATION_FAILED",
+                State::TransferPending => "TRANSFER_PENDING",
+                State::TransferFailed => "TRANSFER_FAILED",
+                State::Active => "ACTIVE",
+                State::Suspended => "SUSPENDED",
+                State::Exported => "EXPORTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "REGISTRATION_PENDING" => Some(Self::RegistrationPending),
+                "REGISTRATION_FAILED" => Some(Self::RegistrationFailed),
+                "TRANSFER_PENDING" => Some(Self::TransferPending),
+                "TRANSFER_FAILED" => Some(Self::TransferFailed),
+                "ACTIVE" => Some(Self::Active),
+                "SUSPENDED" => Some(Self::Suspended),
+                "EXPORTED" => Some(Self::Exported),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Issue {
+        Unspecified = 0,
+        ContactSupport = 1,
+        UnverifiedEmail = 2,
+    }
+    impl Issue {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Issue::Unspecified => "ISSUE_UNSPECIFIED",
+                Issue::ContactSupport => "CONTACT_SUPPORT",
+                Issue::UnverifiedEmail => "UNVERIFIED_EMAIL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ISSUE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONTACT_SUPPORT" => Some(Self::ContactSupport),
+                "UNVERIFIED_EMAIL" => Some(Self::UnverifiedEmail),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ManagementSettings {
-#[prost(enumeration = "management_settings::RenewalMethod", tag = "3")]
-pub renewal_method: i32,
-#[prost(enumeration = "TransferLockState", tag = "4")]
-pub transfer_lock_state: i32,
+    #[prost(enumeration = "management_settings::RenewalMethod", tag = "3")]
+    pub renewal_method: i32,
+    #[prost(enumeration = "TransferLockState", tag = "4")]
+    pub transfer_lock_state: i32,
 }
 /// Nested message and enum types in `ManagementSettings`.
 pub mod management_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RenewalMethod {
-Unspecified = 0,
-AutomaticRenewal = 1,
-ManualRenewal = 2,
-}
-impl RenewalMethod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RenewalMethod::Unspecified => "RENEWAL_METHOD_UNSPECIFIED",
-RenewalMethod::AutomaticRenewal => "AUTOMATIC_RENEWAL",
-RenewalMethod::ManualRenewal => "MANUAL_RENEWAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RENEWAL_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"AUTOMATIC_RENEWAL" => Some(Self::AutomaticRenewal),
-"MANUAL_RENEWAL" => Some(Self::ManualRenewal),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RenewalMethod {
+        Unspecified = 0,
+        AutomaticRenewal = 1,
+        ManualRenewal = 2,
+    }
+    impl RenewalMethod {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RenewalMethod::Unspecified => "RENEWAL_METHOD_UNSPECIFIED",
+                RenewalMethod::AutomaticRenewal => "AUTOMATIC_RENEWAL",
+                RenewalMethod::ManualRenewal => "MANUAL_RENEWAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RENEWAL_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "AUTOMATIC_RENEWAL" => Some(Self::AutomaticRenewal),
+                "MANUAL_RENEWAL" => Some(Self::ManualRenewal),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DnsSettings {
-#[prost(message, repeated, tag = "4")]
-pub glue_records: ::prost::alloc::vec::Vec<dns_settings::GlueRecord>,
-#[prost(oneof = "dns_settings::DnsProvider", tags = "1, 2")]
-pub dns_provider: ::core::option::Option<dns_settings::DnsProvider>,
+    #[prost(message, repeated, tag = "4")]
+    pub glue_records: ::prost::alloc::vec::Vec<dns_settings::GlueRecord>,
+    #[prost(oneof = "dns_settings::DnsProvider", tags = "1, 2")]
+    pub dns_provider: ::core::option::Option<dns_settings::DnsProvider>,
 }
 /// Nested message and enum types in `DnsSettings`.
 pub mod dns_settings {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomDns {
-#[prost(string, repeated, tag = "1")]
-pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "2")]
-pub ds_records: ::prost::alloc::vec::Vec<DsRecord>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GoogleDomainsDns {
-#[prost(string, repeated, tag = "1")]
-pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "DsState", tag = "2")]
-pub ds_state: i32,
-#[prost(message, repeated, tag = "3")]
-pub ds_records: ::prost::alloc::vec::Vec<DsRecord>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DsRecord {
-#[prost(int32, tag = "1")]
-pub key_tag: i32,
-#[prost(enumeration = "ds_record::Algorithm", tag = "2")]
-pub algorithm: i32,
-#[prost(enumeration = "ds_record::DigestType", tag = "3")]
-pub digest_type: i32,
-#[prost(string, tag = "4")]
-pub digest: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `DsRecord`.
-pub mod ds_record {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Algorithm {
-Unspecified = 0,
-Rsamd5 = 1,
-Dh = 2,
-Dsa = 3,
-Ecc = 4,
-Rsasha1 = 5,
-Dsansec3sha1 = 6,
-Rsasha1nsec3sha1 = 7,
-Rsasha256 = 8,
-Rsasha512 = 10,
-Eccgost = 12,
-Ecdsap256sha256 = 13,
-Ecdsap384sha384 = 14,
-Ed25519 = 15,
-Ed448 = 16,
-Indirect = 252,
-Privatedns = 253,
-Privateoid = 254,
-}
-impl Algorithm {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Algorithm::Unspecified => "ALGORITHM_UNSPECIFIED",
-Algorithm::Rsamd5 => "RSAMD5",
-Algorithm::Dh => "DH",
-Algorithm::Dsa => "DSA",
-Algorithm::Ecc => "ECC",
-Algorithm::Rsasha1 => "RSASHA1",
-Algorithm::Dsansec3sha1 => "DSANSEC3SHA1",
-Algorithm::Rsasha1nsec3sha1 => "RSASHA1NSEC3SHA1",
-Algorithm::Rsasha256 => "RSASHA256",
-Algorithm::Rsasha512 => "RSASHA512",
-Algorithm::Eccgost => "ECCGOST",
-Algorithm::Ecdsap256sha256 => "ECDSAP256SHA256",
-Algorithm::Ecdsap384sha384 => "ECDSAP384SHA384",
-Algorithm::Ed25519 => "ED25519",
-Algorithm::Ed448 => "ED448",
-Algorithm::Indirect => "INDIRECT",
-Algorithm::Privatedns => "PRIVATEDNS",
-Algorithm::Privateoid => "PRIVATEOID",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
-"RSAMD5" => Some(Self::Rsamd5),
-"DH" => Some(Self::Dh),
-"DSA" => Some(Self::Dsa),
-"ECC" => Some(Self::Ecc),
-"RSASHA1" => Some(Self::Rsasha1),
-"DSANSEC3SHA1" => Some(Self::Dsansec3sha1),
-"RSASHA1NSEC3SHA1" => Some(Self::Rsasha1nsec3sha1),
-"RSASHA256" => Some(Self::Rsasha256),
-"RSASHA512" => Some(Self::Rsasha512),
-"ECCGOST" => Some(Self::Eccgost),
-"ECDSAP256SHA256" => Some(Self::Ecdsap256sha256),
-"ECDSAP384SHA384" => Some(Self::Ecdsap384sha384),
-"ED25519" => Some(Self::Ed25519),
-"ED448" => Some(Self::Ed448),
-"INDIRECT" => Some(Self::Indirect),
-"PRIVATEDNS" => Some(Self::Privatedns),
-"PRIVATEOID" => Some(Self::Privateoid),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DigestType {
-Unspecified = 0,
-Sha1 = 1,
-Sha256 = 2,
-Gost3411 = 3,
-Sha384 = 4,
-}
-impl DigestType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DigestType::Unspecified => "DIGEST_TYPE_UNSPECIFIED",
-DigestType::Sha1 => "SHA1",
-DigestType::Sha256 => "SHA256",
-DigestType::Gost3411 => "GOST3411",
-DigestType::Sha384 => "SHA384",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DIGEST_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SHA1" => Some(Self::Sha1),
-"SHA256" => Some(Self::Sha256),
-"GOST3411" => Some(Self::Gost3411),
-"SHA384" => Some(Self::Sha384),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GlueRecord {
-#[prost(string, tag = "1")]
-pub host_name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub ipv4_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub ipv6_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DsState {
-Unspecified = 0,
-DsRecordsUnpublished = 1,
-DsRecordsPublished = 2,
-}
-impl DsState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DsState::Unspecified => "DS_STATE_UNSPECIFIED",
-DsState::DsRecordsUnpublished => "DS_RECORDS_UNPUBLISHED",
-DsState::DsRecordsPublished => "DS_RECORDS_PUBLISHED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DS_RECORDS_UNPUBLISHED" => Some(Self::DsRecordsUnpublished),
-"DS_RECORDS_PUBLISHED" => Some(Self::DsRecordsPublished),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DnsProvider {
-#[prost(message, tag = "1")]
-CustomDns(CustomDns),
-#[prost(message, tag = "2")]
-GoogleDomainsDns(GoogleDomainsDns),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CustomDns {
+        #[prost(string, repeated, tag = "1")]
+        pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, repeated, tag = "2")]
+        pub ds_records: ::prost::alloc::vec::Vec<DsRecord>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GoogleDomainsDns {
+        #[prost(string, repeated, tag = "1")]
+        pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(enumeration = "DsState", tag = "2")]
+        pub ds_state: i32,
+        #[prost(message, repeated, tag = "3")]
+        pub ds_records: ::prost::alloc::vec::Vec<DsRecord>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DsRecord {
+        #[prost(int32, tag = "1")]
+        pub key_tag: i32,
+        #[prost(enumeration = "ds_record::Algorithm", tag = "2")]
+        pub algorithm: i32,
+        #[prost(enumeration = "ds_record::DigestType", tag = "3")]
+        pub digest_type: i32,
+        #[prost(string, tag = "4")]
+        pub digest: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `DsRecord`.
+    pub mod ds_record {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Algorithm {
+            Unspecified = 0,
+            Rsamd5 = 1,
+            Dh = 2,
+            Dsa = 3,
+            Ecc = 4,
+            Rsasha1 = 5,
+            Dsansec3sha1 = 6,
+            Rsasha1nsec3sha1 = 7,
+            Rsasha256 = 8,
+            Rsasha512 = 10,
+            Eccgost = 12,
+            Ecdsap256sha256 = 13,
+            Ecdsap384sha384 = 14,
+            Ed25519 = 15,
+            Ed448 = 16,
+            Indirect = 252,
+            Privatedns = 253,
+            Privateoid = 254,
+        }
+        impl Algorithm {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Algorithm::Unspecified => "ALGORITHM_UNSPECIFIED",
+                    Algorithm::Rsamd5 => "RSAMD5",
+                    Algorithm::Dh => "DH",
+                    Algorithm::Dsa => "DSA",
+                    Algorithm::Ecc => "ECC",
+                    Algorithm::Rsasha1 => "RSASHA1",
+                    Algorithm::Dsansec3sha1 => "DSANSEC3SHA1",
+                    Algorithm::Rsasha1nsec3sha1 => "RSASHA1NSEC3SHA1",
+                    Algorithm::Rsasha256 => "RSASHA256",
+                    Algorithm::Rsasha512 => "RSASHA512",
+                    Algorithm::Eccgost => "ECCGOST",
+                    Algorithm::Ecdsap256sha256 => "ECDSAP256SHA256",
+                    Algorithm::Ecdsap384sha384 => "ECDSAP384SHA384",
+                    Algorithm::Ed25519 => "ED25519",
+                    Algorithm::Ed448 => "ED448",
+                    Algorithm::Indirect => "INDIRECT",
+                    Algorithm::Privatedns => "PRIVATEDNS",
+                    Algorithm::Privateoid => "PRIVATEOID",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
+                    "RSAMD5" => Some(Self::Rsamd5),
+                    "DH" => Some(Self::Dh),
+                    "DSA" => Some(Self::Dsa),
+                    "ECC" => Some(Self::Ecc),
+                    "RSASHA1" => Some(Self::Rsasha1),
+                    "DSANSEC3SHA1" => Some(Self::Dsansec3sha1),
+                    "RSASHA1NSEC3SHA1" => Some(Self::Rsasha1nsec3sha1),
+                    "RSASHA256" => Some(Self::Rsasha256),
+                    "RSASHA512" => Some(Self::Rsasha512),
+                    "ECCGOST" => Some(Self::Eccgost),
+                    "ECDSAP256SHA256" => Some(Self::Ecdsap256sha256),
+                    "ECDSAP384SHA384" => Some(Self::Ecdsap384sha384),
+                    "ED25519" => Some(Self::Ed25519),
+                    "ED448" => Some(Self::Ed448),
+                    "INDIRECT" => Some(Self::Indirect),
+                    "PRIVATEDNS" => Some(Self::Privatedns),
+                    "PRIVATEOID" => Some(Self::Privateoid),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum DigestType {
+            Unspecified = 0,
+            Sha1 = 1,
+            Sha256 = 2,
+            Gost3411 = 3,
+            Sha384 = 4,
+        }
+        impl DigestType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    DigestType::Unspecified => "DIGEST_TYPE_UNSPECIFIED",
+                    DigestType::Sha1 => "SHA1",
+                    DigestType::Sha256 => "SHA256",
+                    DigestType::Gost3411 => "GOST3411",
+                    DigestType::Sha384 => "SHA384",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "DIGEST_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "SHA1" => Some(Self::Sha1),
+                    "SHA256" => Some(Self::Sha256),
+                    "GOST3411" => Some(Self::Gost3411),
+                    "SHA384" => Some(Self::Sha384),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GlueRecord {
+        #[prost(string, tag = "1")]
+        pub host_name: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub ipv4_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "3")]
+        pub ipv6_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DsState {
+        Unspecified = 0,
+        DsRecordsUnpublished = 1,
+        DsRecordsPublished = 2,
+    }
+    impl DsState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DsState::Unspecified => "DS_STATE_UNSPECIFIED",
+                DsState::DsRecordsUnpublished => "DS_RECORDS_UNPUBLISHED",
+                DsState::DsRecordsPublished => "DS_RECORDS_PUBLISHED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DS_RECORDS_UNPUBLISHED" => Some(Self::DsRecordsUnpublished),
+                "DS_RECORDS_PUBLISHED" => Some(Self::DsRecordsPublished),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DnsProvider {
+        #[prost(message, tag = "1")]
+        CustomDns(CustomDns),
+        #[prost(message, tag = "2")]
+        GoogleDomainsDns(GoogleDomainsDns),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContactSettings {
-#[prost(enumeration = "ContactPrivacy", tag = "1")]
-pub privacy: i32,
-#[prost(message, optional, tag = "2")]
-pub registrant_contact: ::core::option::Option<contact_settings::Contact>,
-#[prost(message, optional, tag = "3")]
-pub admin_contact: ::core::option::Option<contact_settings::Contact>,
-#[prost(message, optional, tag = "4")]
-pub technical_contact: ::core::option::Option<contact_settings::Contact>,
+    #[prost(enumeration = "ContactPrivacy", tag = "1")]
+    pub privacy: i32,
+    #[prost(message, optional, tag = "2")]
+    pub registrant_contact: ::core::option::Option<contact_settings::Contact>,
+    #[prost(message, optional, tag = "3")]
+    pub admin_contact: ::core::option::Option<contact_settings::Contact>,
+    #[prost(message, optional, tag = "4")]
+    pub technical_contact: ::core::option::Option<contact_settings::Contact>,
 }
 /// Nested message and enum types in `ContactSettings`.
 pub mod contact_settings {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Contact {
-#[prost(message, optional, tag = "1")]
-pub postal_address: ::core::option::Option<super::super::super::super::r#type::PostalAddress>,
-#[prost(string, tag = "2")]
-pub email: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub phone_number: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub fax_number: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Contact {
+        #[prost(message, optional, tag = "1")]
+        pub postal_address:
+            ::core::option::Option<super::super::super::super::r#type::PostalAddress>,
+        #[prost(string, tag = "2")]
+        pub email: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub phone_number: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub fax_number: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchDomainsRequest {
-#[prost(string, tag = "1")]
-pub query: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub query: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchDomainsResponse {
-#[prost(message, repeated, tag = "1")]
-pub register_parameters: ::prost::alloc::vec::Vec<RegisterParameters>,
+    #[prost(message, repeated, tag = "1")]
+    pub register_parameters: ::prost::alloc::vec::Vec<RegisterParameters>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveRegisterParametersRequest {
-#[prost(string, tag = "1")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub domain_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveRegisterParametersResponse {
-#[prost(message, optional, tag = "1")]
-pub register_parameters: ::core::option::Option<RegisterParameters>,
+    #[prost(message, optional, tag = "1")]
+    pub register_parameters: ::core::option::Option<RegisterParameters>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegisterDomainRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub registration: ::core::option::Option<Registration>,
-#[prost(enumeration = "DomainNotice", repeated, tag = "3")]
-pub domain_notices: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "ContactNotice", repeated, tag = "4")]
-pub contact_notices: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, optional, tag = "5")]
-pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
-#[prost(bool, tag = "6")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub registration: ::core::option::Option<Registration>,
+    #[prost(enumeration = "DomainNotice", repeated, tag = "3")]
+    pub domain_notices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "ContactNotice", repeated, tag = "4")]
+    pub contact_notices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, optional, tag = "5")]
+    pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
+    #[prost(bool, tag = "6")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveTransferParametersRequest {
-#[prost(string, tag = "1")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub domain_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveTransferParametersResponse {
-#[prost(message, optional, tag = "1")]
-pub transfer_parameters: ::core::option::Option<TransferParameters>,
+    #[prost(message, optional, tag = "1")]
+    pub transfer_parameters: ::core::option::Option<TransferParameters>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferDomainRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub registration: ::core::option::Option<Registration>,
-#[prost(enumeration = "ContactNotice", repeated, tag = "3")]
-pub contact_notices: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, optional, tag = "4")]
-pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
-#[prost(message, optional, tag = "5")]
-pub authorization_code: ::core::option::Option<AuthorizationCode>,
-#[prost(bool, tag = "6")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub registration: ::core::option::Option<Registration>,
+    #[prost(enumeration = "ContactNotice", repeated, tag = "3")]
+    pub contact_notices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, optional, tag = "4")]
+    pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
+    #[prost(message, optional, tag = "5")]
+    pub authorization_code: ::core::option::Option<AuthorizationCode>,
+    #[prost(bool, tag = "6")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRegistrationsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRegistrationsResponse {
-#[prost(message, repeated, tag = "1")]
-pub registrations: ::prost::alloc::vec::Vec<Registration>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub registrations: ::prost::alloc::vec::Vec<Registration>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRegistrationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRegistrationRequest {
-#[prost(message, optional, tag = "1")]
-pub registration: ::core::option::Option<Registration>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub registration: ::core::option::Option<Registration>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigureManagementSettingsRequest {
-#[prost(string, tag = "1")]
-pub registration: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub management_settings: ::core::option::Option<ManagementSettings>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub registration: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub management_settings: ::core::option::Option<ManagementSettings>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigureDnsSettingsRequest {
-#[prost(string, tag = "1")]
-pub registration: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub dns_settings: ::core::option::Option<DnsSettings>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub registration: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub dns_settings: ::core::option::Option<DnsSettings>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigureContactSettingsRequest {
-#[prost(string, tag = "1")]
-pub registration: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub contact_settings: ::core::option::Option<ContactSettings>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(enumeration = "ContactNotice", repeated, tag = "4")]
-pub contact_notices: ::prost::alloc::vec::Vec<i32>,
-#[prost(bool, tag = "5")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub registration: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub contact_settings: ::core::option::Option<ContactSettings>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(enumeration = "ContactNotice", repeated, tag = "4")]
+    pub contact_notices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(bool, tag = "5")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportRegistrationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRegistrationRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveAuthorizationCodeRequest {
-#[prost(string, tag = "1")]
-pub registration: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub registration: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetAuthorizationCodeRequest {
-#[prost(string, tag = "1")]
-pub registration: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub registration: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegisterParameters {
-#[prost(string, tag = "1")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(enumeration = "register_parameters::Availability", tag = "2")]
-pub availability: i32,
-#[prost(enumeration = "ContactPrivacy", repeated, tag = "3")]
-pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "DomainNotice", repeated, tag = "4")]
-pub domain_notices: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, optional, tag = "5")]
-pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
+    #[prost(string, tag = "1")]
+    pub domain_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "register_parameters::Availability", tag = "2")]
+    pub availability: i32,
+    #[prost(enumeration = "ContactPrivacy", repeated, tag = "3")]
+    pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "DomainNotice", repeated, tag = "4")]
+    pub domain_notices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, optional, tag = "5")]
+    pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
 }
 /// Nested message and enum types in `RegisterParameters`.
 pub mod register_parameters {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Availability {
-Unspecified = 0,
-Available = 1,
-Unavailable = 2,
-Unsupported = 3,
-Unknown = 4,
-}
-impl Availability {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Availability::Unspecified => "AVAILABILITY_UNSPECIFIED",
-Availability::Available => "AVAILABLE",
-Availability::Unavailable => "UNAVAILABLE",
-Availability::Unsupported => "UNSUPPORTED",
-Availability::Unknown => "UNKNOWN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"AVAILABILITY_UNSPECIFIED" => Some(Self::Unspecified),
-"AVAILABLE" => Some(Self::Available),
-"UNAVAILABLE" => Some(Self::Unavailable),
-"UNSUPPORTED" => Some(Self::Unsupported),
-"UNKNOWN" => Some(Self::Unknown),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Availability {
+        Unspecified = 0,
+        Available = 1,
+        Unavailable = 2,
+        Unsupported = 3,
+        Unknown = 4,
+    }
+    impl Availability {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Availability::Unspecified => "AVAILABILITY_UNSPECIFIED",
+                Availability::Available => "AVAILABLE",
+                Availability::Unavailable => "UNAVAILABLE",
+                Availability::Unsupported => "UNSUPPORTED",
+                Availability::Unknown => "UNKNOWN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "AVAILABILITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "AVAILABLE" => Some(Self::Available),
+                "UNAVAILABLE" => Some(Self::Unavailable),
+                "UNSUPPORTED" => Some(Self::Unsupported),
+                "UNKNOWN" => Some(Self::Unknown),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferParameters {
-#[prost(string, tag = "1")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub current_registrar: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "TransferLockState", tag = "4")]
-pub transfer_lock_state: i32,
-#[prost(enumeration = "ContactPrivacy", repeated, tag = "5")]
-pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, optional, tag = "6")]
-pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
+    #[prost(string, tag = "1")]
+    pub domain_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub current_registrar: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub name_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "TransferLockState", tag = "4")]
+    pub transfer_lock_state: i32,
+    #[prost(enumeration = "ContactPrivacy", repeated, tag = "5")]
+    pub supported_privacy: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub yearly_price: ::core::option::Option<super::super::super::r#type::Money>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizationCode {
-#[prost(string, tag = "1")]
-pub code: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_detail: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_detail: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub api_version: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ContactPrivacy {
-Unspecified = 0,
-PublicContactData = 1,
-PrivateContactData = 2,
-RedactedContactData = 3,
+    Unspecified = 0,
+    PublicContactData = 1,
+    PrivateContactData = 2,
+    RedactedContactData = 3,
 }
 impl ContactPrivacy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContactPrivacy::Unspecified => "CONTACT_PRIVACY_UNSPECIFIED",
-ContactPrivacy::PublicContactData => "PUBLIC_CONTACT_DATA",
-ContactPrivacy::PrivateContactData => "PRIVATE_CONTACT_DATA",
-ContactPrivacy::RedactedContactData => "REDACTED_CONTACT_DATA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTACT_PRIVACY_UNSPECIFIED" => Some(Self::Unspecified),
-"PUBLIC_CONTACT_DATA" => Some(Self::PublicContactData),
-"PRIVATE_CONTACT_DATA" => Some(Self::PrivateContactData),
-"REDACTED_CONTACT_DATA" => Some(Self::RedactedContactData),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ContactPrivacy::Unspecified => "CONTACT_PRIVACY_UNSPECIFIED",
+            ContactPrivacy::PublicContactData => "PUBLIC_CONTACT_DATA",
+            ContactPrivacy::PrivateContactData => "PRIVATE_CONTACT_DATA",
+            ContactPrivacy::RedactedContactData => "REDACTED_CONTACT_DATA",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTACT_PRIVACY_UNSPECIFIED" => Some(Self::Unspecified),
+            "PUBLIC_CONTACT_DATA" => Some(Self::PublicContactData),
+            "PRIVATE_CONTACT_DATA" => Some(Self::PrivateContactData),
+            "REDACTED_CONTACT_DATA" => Some(Self::RedactedContactData),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DomainNotice {
-Unspecified = 0,
-HstsPreloaded = 1,
+    Unspecified = 0,
+    HstsPreloaded = 1,
 }
 impl DomainNotice {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DomainNotice::Unspecified => "DOMAIN_NOTICE_UNSPECIFIED",
-DomainNotice::HstsPreloaded => "HSTS_PRELOADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DOMAIN_NOTICE_UNSPECIFIED" => Some(Self::Unspecified),
-"HSTS_PRELOADED" => Some(Self::HstsPreloaded),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DomainNotice::Unspecified => "DOMAIN_NOTICE_UNSPECIFIED",
+            DomainNotice::HstsPreloaded => "HSTS_PRELOADED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DOMAIN_NOTICE_UNSPECIFIED" => Some(Self::Unspecified),
+            "HSTS_PRELOADED" => Some(Self::HstsPreloaded),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ContactNotice {
-Unspecified = 0,
-PublicContactDataAcknowledgement = 1,
+    Unspecified = 0,
+    PublicContactDataAcknowledgement = 1,
 }
 impl ContactNotice {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContactNotice::Unspecified => "CONTACT_NOTICE_UNSPECIFIED",
-ContactNotice::PublicContactDataAcknowledgement => "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTACT_NOTICE_UNSPECIFIED" => Some(Self::Unspecified),
-"PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT" => Some(Self::PublicContactDataAcknowledgement),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ContactNotice::Unspecified => "CONTACT_NOTICE_UNSPECIFIED",
+            ContactNotice::PublicContactDataAcknowledgement => {
+                "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTACT_NOTICE_UNSPECIFIED" => Some(Self::Unspecified),
+            "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT" => Some(Self::PublicContactDataAcknowledgement),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransferLockState {
-Unspecified = 0,
-Unlocked = 1,
-Locked = 2,
+    Unspecified = 0,
+    Unlocked = 1,
+    Locked = 2,
 }
 impl TransferLockState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransferLockState::Unspecified => "TRANSFER_LOCK_STATE_UNSPECIFIED",
-TransferLockState::Unlocked => "UNLOCKED",
-TransferLockState::Locked => "LOCKED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRANSFER_LOCK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"UNLOCKED" => Some(Self::Unlocked),
-"LOCKED" => Some(Self::Locked),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TransferLockState::Unspecified => "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            TransferLockState::Unlocked => "UNLOCKED",
+            TransferLockState::Locked => "LOCKED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TRANSFER_LOCK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "UNLOCKED" => Some(Self::Unlocked),
+            "LOCKED" => Some(Self::Locked),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod domains_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Cloud Domains API enables management and configuration of domain names.
-#[derive(Debug, Clone)]
-pub struct DomainsClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DomainsClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DomainsClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DomainsClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Searches for available domain names similar to the provided query.
-///
-/// Availability results from this method are approximate; call
-/// `RetrieveRegisterParameters` on a domain before registering to confirm
-/// availability.
-pub async fn search_domains(&mut self, request: impl tonic::IntoRequest<super::SearchDomainsRequest>) -> std::result::Result<tonic::Response<super::SearchDomainsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/SearchDomains");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "SearchDomains"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets parameters needed to register a new domain name, including price and
-/// up-to-date availability. Use the returned values to call `RegisterDomain`.
-pub async fn retrieve_register_parameters(&mut self, request: impl tonic::IntoRequest<super::RetrieveRegisterParametersRequest>) -> std::result::Result<tonic::Response<super::RetrieveRegisterParametersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/RetrieveRegisterParameters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "RetrieveRegisterParameters"));
-self.inner.unary(req, path, codec).await
-}
-/// Registers a new domain name and creates a corresponding `Registration`
-/// resource.
-///
-/// Call `RetrieveRegisterParameters` first to check availability of the domain
-/// name and determine parameters like price that are needed to build a call to
-/// this method.
-///
-/// A successful call creates a `Registration` resource in state
-/// `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2
-/// minutes, indicating that the domain was successfully registered. If the
-/// resource ends up in state `REGISTRATION_FAILED`, it indicates that the
-/// domain was not registered successfully, and you can safely delete the
-/// resource and retry registration.
-pub async fn register_domain(&mut self, request: impl tonic::IntoRequest<super::RegisterDomainRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/RegisterDomain");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "RegisterDomain"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets parameters needed to transfer a domain name from another registrar to
-/// Cloud Domains. For domains managed by Google Domains, transferring to Cloud
-/// Domains is not supported.
-///
-///
-/// Use the returned values to call `TransferDomain`.
-pub async fn retrieve_transfer_parameters(&mut self, request: impl tonic::IntoRequest<super::RetrieveTransferParametersRequest>) -> std::result::Result<tonic::Response<super::RetrieveTransferParametersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/RetrieveTransferParameters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "RetrieveTransferParameters"));
-self.inner.unary(req, path, codec).await
-}
-/// Transfers a domain name from another registrar to Cloud Domains.  For
-/// domains managed by Google Domains, transferring to Cloud Domains is not
-/// supported.
-///
-///
-/// Before calling this method, go to the domain's current registrar to unlock
-/// the domain for transfer and retrieve the domain's transfer authorization
-/// code. Then call `RetrieveTransferParameters` to confirm that the domain is
-/// unlocked and to get values needed to build a call to this method.
-///
-/// A successful call creates a `Registration` resource in state
-/// `TRANSFER_PENDING`. It can take several days to complete the transfer
-/// process. The registrant can often speed up this process by approving the
-/// transfer through the current registrar, either by clicking a link in an
-/// email from the registrar or by visiting the registrar's website.
-///
-/// A few minutes after transfer approval, the resource transitions to state
-/// `ACTIVE`, indicating that the transfer was successful. If the transfer is
-/// rejected or the request expires without being approved, the resource can
-/// end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
-/// the resource and retry the transfer.
-pub async fn transfer_domain(&mut self, request: impl tonic::IntoRequest<super::TransferDomainRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/TransferDomain");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "TransferDomain"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the `Registration` resources in a project.
-pub async fn list_registrations(&mut self, request: impl tonic::IntoRequest<super::ListRegistrationsRequest>) -> std::result::Result<tonic::Response<super::ListRegistrationsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ListRegistrations");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ListRegistrations"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the details of a `Registration` resource.
-pub async fn get_registration(&mut self, request: impl tonic::IntoRequest<super::GetRegistrationRequest>) -> std::result::Result<tonic::Response<super::Registration>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/GetRegistration");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "GetRegistration"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates select fields of a `Registration` resource, notably `labels`. To
-/// update other fields, use the appropriate custom update method:
-///
-/// * To update management settings, see `ConfigureManagementSettings`
-/// * To update DNS configuration, see `ConfigureDnsSettings`
-/// * To update contact information, see `ConfigureContactSettings`
-pub async fn update_registration(&mut self, request: impl tonic::IntoRequest<super::UpdateRegistrationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/UpdateRegistration");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "UpdateRegistration"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a `Registration`'s management settings.
-pub async fn configure_management_settings(&mut self, request: impl tonic::IntoRequest<super::ConfigureManagementSettingsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ConfigureManagementSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ConfigureManagementSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a `Registration`'s DNS settings.
-pub async fn configure_dns_settings(&mut self, request: impl tonic::IntoRequest<super::ConfigureDnsSettingsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ConfigureDnsSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ConfigureDnsSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a `Registration`'s contact settings. Some changes require
-/// confirmation by the domain's registrant contact .
-pub async fn configure_contact_settings(&mut self, request: impl tonic::IntoRequest<super::ConfigureContactSettingsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ConfigureContactSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ConfigureContactSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Exports a `Registration` resource, such that it is no longer managed by
-/// Cloud Domains.
-///
-/// When an active domain is successfully exported, you can continue to use the
-/// domain in [Google Domains](https://domains.google/) until it expires. The
-/// calling user becomes the domain's sole owner in Google Domains, and
-/// permissions for the domain are subsequently managed there. The domain does
-/// not renew automatically unless the new owner sets up billing in Google
-/// Domains.
-pub async fn export_registration(&mut self, request: impl tonic::IntoRequest<super::ExportRegistrationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ExportRegistration");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ExportRegistration"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a `Registration` resource.
-///
-/// This method works on any `Registration` resource using [Subscription or
-/// Commitment billing](/domains/pricing#billing-models), provided that the
-/// resource was created at least 1 day in the past.
-///
-/// For `Registration` resources using
-/// [Monthly billing](/domains/pricing#billing-models), this method works if:
-///
-/// * `state` is `EXPORTED` with `expire_time` in the past
-/// * `state` is `REGISTRATION_FAILED`
-/// * `state` is `TRANSFER_FAILED`
-///
-/// When an active registration is successfully deleted, you can continue to
-/// use the domain in [Google Domains](https://domains.google/) until it
-/// expires. The calling user becomes the domain's sole owner in Google
-/// Domains, and permissions for the domain are subsequently managed there. The
-/// domain does not renew automatically unless the new owner sets up billing in
-/// Google Domains.
-pub async fn delete_registration(&mut self, request: impl tonic::IntoRequest<super::DeleteRegistrationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/DeleteRegistration");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "DeleteRegistration"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the authorization code of the `Registration` for the purpose of
-/// transferring the domain to another registrar.
-///
-/// You can call this method only after 60 days have elapsed since the initial
-/// domain registration.
-pub async fn retrieve_authorization_code(&mut self, request: impl tonic::IntoRequest<super::RetrieveAuthorizationCodeRequest>) -> std::result::Result<tonic::Response<super::AuthorizationCode>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/RetrieveAuthorizationCode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "RetrieveAuthorizationCode"));
-self.inner.unary(req, path, codec).await
-}
-/// Resets the authorization code of the `Registration` to a new random string.
-///
-/// You can call this method only after 60 days have elapsed since the initial
-/// domain registration.
-pub async fn reset_authorization_code(&mut self, request: impl tonic::IntoRequest<super::ResetAuthorizationCodeRequest>) -> std::result::Result<tonic::Response<super::AuthorizationCode>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.domains.v1alpha2.Domains/ResetAuthorizationCode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.domains.v1alpha2.Domains", "ResetAuthorizationCode"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Cloud Domains API enables management and configuration of domain names.
+    #[derive(Debug, Clone)]
+    pub struct DomainsClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DomainsClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DomainsClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DomainsClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Searches for available domain names similar to the provided query.
+        ///
+        /// Availability results from this method are approximate; call
+        /// `RetrieveRegisterParameters` on a domain before registering to confirm
+        /// availability.
+        pub async fn search_domains(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchDomainsRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchDomainsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/SearchDomains",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "SearchDomains",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets parameters needed to register a new domain name, including price and
+        /// up-to-date availability. Use the returned values to call `RegisterDomain`.
+        pub async fn retrieve_register_parameters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RetrieveRegisterParametersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RetrieveRegisterParametersResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/RetrieveRegisterParameters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "RetrieveRegisterParameters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Registers a new domain name and creates a corresponding `Registration`
+        /// resource.
+        ///
+        /// Call `RetrieveRegisterParameters` first to check availability of the domain
+        /// name and determine parameters like price that are needed to build a call to
+        /// this method.
+        ///
+        /// A successful call creates a `Registration` resource in state
+        /// `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2
+        /// minutes, indicating that the domain was successfully registered. If the
+        /// resource ends up in state `REGISTRATION_FAILED`, it indicates that the
+        /// domain was not registered successfully, and you can safely delete the
+        /// resource and retry registration.
+        pub async fn register_domain(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RegisterDomainRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/RegisterDomain",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "RegisterDomain",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets parameters needed to transfer a domain name from another registrar to
+        /// Cloud Domains. For domains managed by Google Domains, transferring to Cloud
+        /// Domains is not supported.
+        ///
+        ///
+        /// Use the returned values to call `TransferDomain`.
+        pub async fn retrieve_transfer_parameters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RetrieveTransferParametersRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RetrieveTransferParametersResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/RetrieveTransferParameters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "RetrieveTransferParameters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Transfers a domain name from another registrar to Cloud Domains.  For
+        /// domains managed by Google Domains, transferring to Cloud Domains is not
+        /// supported.
+        ///
+        ///
+        /// Before calling this method, go to the domain's current registrar to unlock
+        /// the domain for transfer and retrieve the domain's transfer authorization
+        /// code. Then call `RetrieveTransferParameters` to confirm that the domain is
+        /// unlocked and to get values needed to build a call to this method.
+        ///
+        /// A successful call creates a `Registration` resource in state
+        /// `TRANSFER_PENDING`. It can take several days to complete the transfer
+        /// process. The registrant can often speed up this process by approving the
+        /// transfer through the current registrar, either by clicking a link in an
+        /// email from the registrar or by visiting the registrar's website.
+        ///
+        /// A few minutes after transfer approval, the resource transitions to state
+        /// `ACTIVE`, indicating that the transfer was successful. If the transfer is
+        /// rejected or the request expires without being approved, the resource can
+        /// end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
+        /// the resource and retry the transfer.
+        pub async fn transfer_domain(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TransferDomainRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/TransferDomain",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "TransferDomain",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the `Registration` resources in a project.
+        pub async fn list_registrations(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRegistrationsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListRegistrationsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ListRegistrations",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ListRegistrations",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the details of a `Registration` resource.
+        pub async fn get_registration(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRegistrationRequest>,
+        ) -> std::result::Result<tonic::Response<super::Registration>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/GetRegistration",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "GetRegistration",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates select fields of a `Registration` resource, notably `labels`. To
+        /// update other fields, use the appropriate custom update method:
+        ///
+        /// * To update management settings, see `ConfigureManagementSettings`
+        /// * To update DNS configuration, see `ConfigureDnsSettings`
+        /// * To update contact information, see `ConfigureContactSettings`
+        pub async fn update_registration(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRegistrationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/UpdateRegistration",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "UpdateRegistration",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a `Registration`'s management settings.
+        pub async fn configure_management_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ConfigureManagementSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ConfigureManagementSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ConfigureManagementSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a `Registration`'s DNS settings.
+        pub async fn configure_dns_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ConfigureDnsSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ConfigureDnsSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ConfigureDnsSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a `Registration`'s contact settings. Some changes require
+        /// confirmation by the domain's registrant contact .
+        pub async fn configure_contact_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ConfigureContactSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ConfigureContactSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ConfigureContactSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Exports a `Registration` resource, such that it is no longer managed by
+        /// Cloud Domains.
+        ///
+        /// When an active domain is successfully exported, you can continue to use the
+        /// domain in [Google Domains](https://domains.google/) until it expires. The
+        /// calling user becomes the domain's sole owner in Google Domains, and
+        /// permissions for the domain are subsequently managed there. The domain does
+        /// not renew automatically unless the new owner sets up billing in Google
+        /// Domains.
+        pub async fn export_registration(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportRegistrationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ExportRegistration",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ExportRegistration",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a `Registration` resource.
+        ///
+        /// This method works on any `Registration` resource using [Subscription or
+        /// Commitment billing](/domains/pricing#billing-models), provided that the
+        /// resource was created at least 1 day in the past.
+        ///
+        /// For `Registration` resources using
+        /// [Monthly billing](/domains/pricing#billing-models), this method works if:
+        ///
+        /// * `state` is `EXPORTED` with `expire_time` in the past
+        /// * `state` is `REGISTRATION_FAILED`
+        /// * `state` is `TRANSFER_FAILED`
+        ///
+        /// When an active registration is successfully deleted, you can continue to
+        /// use the domain in [Google Domains](https://domains.google/) until it
+        /// expires. The calling user becomes the domain's sole owner in Google
+        /// Domains, and permissions for the domain are subsequently managed there. The
+        /// domain does not renew automatically unless the new owner sets up billing in
+        /// Google Domains.
+        pub async fn delete_registration(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRegistrationRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/DeleteRegistration",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "DeleteRegistration",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the authorization code of the `Registration` for the purpose of
+        /// transferring the domain to another registrar.
+        ///
+        /// You can call this method only after 60 days have elapsed since the initial
+        /// domain registration.
+        pub async fn retrieve_authorization_code(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RetrieveAuthorizationCodeRequest>,
+        ) -> std::result::Result<tonic::Response<super::AuthorizationCode>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/RetrieveAuthorizationCode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "RetrieveAuthorizationCode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Resets the authorization code of the `Registration` to a new random string.
+        ///
+        /// You can call this method only after 60 days have elapsed since the initial
+        /// domain registration.
+        pub async fn reset_authorization_code(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResetAuthorizationCodeRequest>,
+        ) -> std::result::Result<tonic::Response<super::AuthorizationCode>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.domains.v1alpha2.Domains/ResetAuthorizationCode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.domains.v1alpha2.Domains",
+                "ResetAuthorizationCode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

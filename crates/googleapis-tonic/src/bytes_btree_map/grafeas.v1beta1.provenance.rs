@@ -2,111 +2,115 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildProvenance {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub commands: ::prost::alloc::vec::Vec<Command>,
-#[prost(message, repeated, tag = "4")]
-pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "8")]
-pub creator: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub logs_uri: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub source_provenance: ::core::option::Option<Source>,
-#[prost(string, tag = "11")]
-pub trigger_id: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "12")]
-pub build_options: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "13")]
-pub builder_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub commands: ::prost::alloc::vec::Vec<Command>,
+    #[prost(message, repeated, tag = "4")]
+    pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "8")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub logs_uri: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub source_provenance: ::core::option::Option<Source>,
+    #[prost(string, tag = "11")]
+    pub trigger_id: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "12")]
+    pub build_options: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "13")]
+    pub builder_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Source {
-#[prost(string, tag = "1")]
-pub artifact_storage_source_uri: ::prost::alloc::string::String,
-#[prost(btree_map = "string, message", tag = "2")]
-pub file_hashes: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, FileHashes>,
-#[prost(message, optional, tag = "3")]
-pub context: ::core::option::Option<super::source::SourceContext>,
-#[prost(message, repeated, tag = "4")]
-pub additional_contexts: ::prost::alloc::vec::Vec<super::source::SourceContext>,
+    #[prost(string, tag = "1")]
+    pub artifact_storage_source_uri: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, message", tag = "2")]
+    pub file_hashes:
+        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, FileHashes>,
+    #[prost(message, optional, tag = "3")]
+    pub context: ::core::option::Option<super::source::SourceContext>,
+    #[prost(message, repeated, tag = "4")]
+    pub additional_contexts: ::prost::alloc::vec::Vec<super::source::SourceContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileHashes {
-#[prost(message, repeated, tag = "1")]
-pub file_hash: ::prost::alloc::vec::Vec<Hash>,
+    #[prost(message, repeated, tag = "1")]
+    pub file_hash: ::prost::alloc::vec::Vec<Hash>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hash {
-#[prost(enumeration = "hash::HashType", tag = "1")]
-pub r#type: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub value: ::prost::bytes::Bytes,
+    #[prost(enumeration = "hash::HashType", tag = "1")]
+    pub r#type: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub value: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum HashType {
-Unspecified = 0,
-Sha256 = 1,
-}
-impl HashType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HashType::Unspecified => "HASH_TYPE_UNSPECIFIED",
-HashType::Sha256 => "SHA256",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HASH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SHA256" => Some(Self::Sha256),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum HashType {
+        Unspecified = 0,
+        Sha256 = 1,
+    }
+    impl HashType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                HashType::Unspecified => "HASH_TYPE_UNSPECIFIED",
+                HashType::Sha256 => "SHA256",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HASH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SHA256" => Some(Self::Sha256),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Command {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub dir: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "6")]
-pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub dir: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "6")]
+    pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Artifact {
-#[prost(string, tag = "1")]
-pub checksum: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub checksum: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }

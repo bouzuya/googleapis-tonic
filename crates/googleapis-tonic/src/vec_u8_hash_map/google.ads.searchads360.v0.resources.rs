@@ -2,1403 +2,1672 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAudienceView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAsset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub ad_group: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub asset: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus", tag = "5")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub ad_group: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus",
+        tag = "5"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductGroupView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeywordView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupTopCombinationView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub asset_group_top_combinations: ::prost::alloc::vec::Vec<AssetGroupAssetCombinationData>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub asset_group_top_combinations: ::prost::alloc::vec::Vec<AssetGroupAssetCombinationData>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupAssetCombinationData {
-#[prost(message, repeated, tag = "1")]
-pub asset_combination_served_assets: ::prost::alloc::vec::Vec<super::common::AssetUsage>,
+    #[prost(message, repeated, tag = "1")]
+    pub asset_combination_served_assets: ::prost::alloc::vec::Vec<super::common::AssetUsage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerAssetSet {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_set: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub customer: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus", tag = "4")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_set: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub customer: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus",
+        tag = "4"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignAssetSet {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub campaign: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub asset_set: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus", tag = "4")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub campaign: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub asset_set: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus",
+        tag = "4"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GeoTargetConstant {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "10")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "11")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "12")]
-pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "13")]
-pub target_type: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::geo_target_constant_status_enum::GeoTargetConstantStatus", tag = "7")]
-pub status: i32,
-#[prost(string, optional, tag = "14")]
-pub canonical_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "9")]
-pub parent_geo_target: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "10")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "11")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "12")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "13")]
+    pub target_type: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::geo_target_constant_status_enum::GeoTargetConstantStatus",
+        tag = "7"
+    )]
+    pub status: i32,
+    #[prost(string, optional, tag = "14")]
+    pub canonical_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "9")]
+    pub parent_geo_target: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessibleBiddingStrategy {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub id: i64,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType", tag = "4")]
-pub r#type: i32,
-#[prost(int64, tag = "5")]
-pub owner_customer_id: i64,
-#[prost(string, tag = "6")]
-pub owner_descriptive_name: ::prost::alloc::string::String,
-#[prost(oneof = "accessible_bidding_strategy::Scheme", tags = "7, 8, 9, 10, 11, 12")]
-pub scheme: ::core::option::Option<accessible_bidding_strategy::Scheme>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub id: i64,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType",
+        tag = "4"
+    )]
+    pub r#type: i32,
+    #[prost(int64, tag = "5")]
+    pub owner_customer_id: i64,
+    #[prost(string, tag = "6")]
+    pub owner_descriptive_name: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "accessible_bidding_strategy::Scheme",
+        tags = "7, 8, 9, 10, 11, 12"
+    )]
+    pub scheme: ::core::option::Option<accessible_bidding_strategy::Scheme>,
 }
 /// Nested message and enum types in `AccessibleBiddingStrategy`.
 pub mod accessible_bidding_strategy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MaximizeConversionValue {
-#[prost(double, tag = "1")]
-pub target_roas: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MaximizeConversions {
-#[prost(int64, tag = "1")]
-pub target_cpa: i64,
-#[prost(int64, tag = "2")]
-pub target_cpa_micros: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetCpa {
-#[prost(int64, optional, tag = "1")]
-pub target_cpa_micros: ::core::option::Option<i64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetImpressionShare {
-#[prost(enumeration = "super::super::enums::target_impression_share_location_enum::TargetImpressionShareLocation", tag = "1")]
-pub location: i32,
-#[prost(int64, optional, tag = "2")]
-pub location_fraction_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "3")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetRoas {
-#[prost(double, optional, tag = "1")]
-pub target_roas: ::core::option::Option<f64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetSpend {
-#[deprecated]
-#[prost(int64, optional, tag = "1")]
-pub target_spend_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "2")]
-pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Scheme {
-#[prost(message, tag = "7")]
-MaximizeConversionValue(MaximizeConversionValue),
-#[prost(message, tag = "8")]
-MaximizeConversions(MaximizeConversions),
-#[prost(message, tag = "9")]
-TargetCpa(TargetCpa),
-#[prost(message, tag = "10")]
-TargetImpressionShare(TargetImpressionShare),
-#[prost(message, tag = "11")]
-TargetRoas(TargetRoas),
-#[prost(message, tag = "12")]
-TargetSpend(TargetSpend),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MaximizeConversionValue {
+        #[prost(double, tag = "1")]
+        pub target_roas: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MaximizeConversions {
+        #[prost(int64, tag = "1")]
+        pub target_cpa: i64,
+        #[prost(int64, tag = "2")]
+        pub target_cpa_micros: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TargetCpa {
+        #[prost(int64, optional, tag = "1")]
+        pub target_cpa_micros: ::core::option::Option<i64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TargetImpressionShare {
+        #[prost(
+            enumeration = "super::super::enums::target_impression_share_location_enum::TargetImpressionShareLocation",
+            tag = "1"
+        )]
+        pub location: i32,
+        #[prost(int64, optional, tag = "2")]
+        pub location_fraction_micros: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "3")]
+        pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TargetRoas {
+        #[prost(double, optional, tag = "1")]
+        pub target_roas: ::core::option::Option<f64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TargetSpend {
+        #[deprecated]
+        #[prost(int64, optional, tag = "1")]
+        pub target_spend_micros: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "2")]
+        pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Scheme {
+        #[prost(message, tag = "7")]
+        MaximizeConversionValue(MaximizeConversionValue),
+        #[prost(message, tag = "8")]
+        MaximizeConversions(MaximizeConversions),
+        #[prost(message, tag = "9")]
+        TargetCpa(TargetCpa),
+        #[prost(message, tag = "10")]
+        TargetImpressionShare(TargetImpressionShare),
+        #[prost(message, tag = "11")]
+        TargetRoas(TargetRoas),
+        #[prost(message, tag = "12")]
+        TargetSpend(TargetSpend),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Visit {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "2")]
-pub id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "3")]
-pub criterion_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub merchant_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "5")]
-pub ad_id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "6")]
-pub click_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "7")]
-pub visit_date_time: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "8")]
-pub product_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::product_channel_enum::ProductChannel", optional, tag = "9")]
-pub product_channel: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "10")]
-pub product_language_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "11")]
-pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "12")]
-pub product_country_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "13")]
-pub asset_id: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::asset_field_type_enum::AssetFieldType", optional, tag = "14")]
-pub asset_field_type: ::core::option::Option<i32>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "2")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "3")]
+    pub criterion_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub merchant_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "5")]
+    pub ad_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "6")]
+    pub click_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "7")]
+    pub visit_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "8")]
+    pub product_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::product_channel_enum::ProductChannel",
+        optional,
+        tag = "9"
+    )]
+    pub product_channel: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "10")]
+    pub product_language_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "11")]
+    pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "12")]
+    pub product_country_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "13")]
+    pub asset_id: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::asset_field_type_enum::AssetFieldType",
+        optional,
+        tag = "14"
+    )]
+    pub asset_field_type: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "11")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "12")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::asset_type_enum::AssetType", tag = "4")]
-pub r#type: i32,
-#[prost(string, repeated, tag = "14")]
-pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "17")]
-pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::asset_status_enum::AssetStatus", tag = "42")]
-pub status: i32,
-#[prost(string, tag = "43")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(string, tag = "44")]
-pub last_modified_time: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_engine_status_enum::AssetEngineStatus", optional, tag = "61")]
-pub engine_status: ::core::option::Option<i32>,
-#[prost(oneof = "asset::AssetData", tags = "5, 7, 8, 48, 45, 46, 25, 47, 29, 49")]
-pub asset_data: ::core::option::Option<asset::AssetData>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "11")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "12")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "super::enums::asset_type_enum::AssetType", tag = "4")]
+    pub r#type: i32,
+    #[prost(string, repeated, tag = "14")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "17")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::asset_status_enum::AssetStatus",
+        tag = "42"
+    )]
+    pub status: i32,
+    #[prost(string, tag = "43")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "44")]
+    pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_engine_status_enum::AssetEngineStatus",
+        optional,
+        tag = "61"
+    )]
+    pub engine_status: ::core::option::Option<i32>,
+    #[prost(
+        oneof = "asset::AssetData",
+        tags = "5, 7, 8, 48, 45, 46, 25, 47, 29, 49"
+    )]
+    pub asset_data: ::core::option::Option<asset::AssetData>,
 }
 /// Nested message and enum types in `Asset`.
 pub mod asset {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AssetData {
-#[prost(message, tag = "5")]
-YoutubeVideoAsset(super::super::common::YoutubeVideoAsset),
-#[prost(message, tag = "7")]
-ImageAsset(super::super::common::ImageAsset),
-#[prost(message, tag = "8")]
-TextAsset(super::super::common::TextAsset),
-#[prost(message, tag = "48")]
-CalloutAsset(super::super::common::UnifiedCalloutAsset),
-#[prost(message, tag = "45")]
-SitelinkAsset(super::super::common::UnifiedSitelinkAsset),
-#[prost(message, tag = "46")]
-PageFeedAsset(super::super::common::UnifiedPageFeedAsset),
-#[prost(message, tag = "25")]
-MobileAppAsset(super::super::common::MobileAppAsset),
-#[prost(message, tag = "47")]
-CallAsset(super::super::common::UnifiedCallAsset),
-#[prost(message, tag = "29")]
-CallToActionAsset(super::super::common::CallToActionAsset),
-#[prost(message, tag = "49")]
-LocationAsset(super::super::common::UnifiedLocationAsset),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AssetData {
+        #[prost(message, tag = "5")]
+        YoutubeVideoAsset(super::super::common::YoutubeVideoAsset),
+        #[prost(message, tag = "7")]
+        ImageAsset(super::super::common::ImageAsset),
+        #[prost(message, tag = "8")]
+        TextAsset(super::super::common::TextAsset),
+        #[prost(message, tag = "48")]
+        CalloutAsset(super::super::common::UnifiedCalloutAsset),
+        #[prost(message, tag = "45")]
+        SitelinkAsset(super::super::common::UnifiedSitelinkAsset),
+        #[prost(message, tag = "46")]
+        PageFeedAsset(super::super::common::UnifiedPageFeedAsset),
+        #[prost(message, tag = "25")]
+        MobileAppAsset(super::super::common::MobileAppAsset),
+        #[prost(message, tag = "47")]
+        CallAsset(super::super::common::UnifiedCallAsset),
+        #[prost(message, tag = "29")]
+        CallToActionAsset(super::super::common::CallToActionAsset),
+        #[prost(message, tag = "49")]
+        LocationAsset(super::super::common::UnifiedLocationAsset),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AgeRangeView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CartDataSalesView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignLabel {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "4")]
-pub campaign: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub label: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "4")]
+    pub campaign: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub label: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomColumn {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub id: i64,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub description: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::custom_column_value_type_enum::CustomColumnValueType", tag = "5")]
-pub value_type: i32,
-#[prost(bool, tag = "6")]
-pub references_attributes: bool,
-#[prost(bool, tag = "7")]
-pub references_metrics: bool,
-#[prost(bool, tag = "8")]
-pub queryable: bool,
-#[prost(string, repeated, tag = "9")]
-pub referenced_system_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub id: i64,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::custom_column_value_type_enum::CustomColumnValueType",
+        tag = "5"
+    )]
+    pub value_type: i32,
+    #[prost(bool, tag = "6")]
+    pub references_attributes: bool,
+    #[prost(bool, tag = "7")]
+    pub references_metrics: bool,
+    #[prost(bool, tag = "8")]
+    pub queryable: bool,
+    #[prost(string, repeated, tag = "9")]
+    pub referenced_system_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerAsset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus", tag = "4")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus",
+        tag = "4"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShoppingPerformanceView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAssetSet {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub ad_group: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub asset_set: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus", tag = "4")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub ad_group: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub asset_set: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_set_link_status_enum::AssetSetLinkStatus",
+        tag = "4"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ad {
-#[prost(string, tag = "37")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "40")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, repeated, tag = "41")]
-pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "45")]
-pub display_url: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::ad_type_enum::AdType", tag = "5")]
-pub r#type: i32,
-#[prost(string, optional, tag = "47")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(oneof = "ad::AdData", tags = "55, 56, 57, 58, 59")]
-pub ad_data: ::core::option::Option<ad::AdData>,
+    #[prost(string, tag = "37")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "40")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, repeated, tag = "41")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "45")]
+    pub display_url: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "super::enums::ad_type_enum::AdType", tag = "5")]
+    pub r#type: i32,
+    #[prost(string, optional, tag = "47")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(oneof = "ad::AdData", tags = "55, 56, 57, 58, 59")]
+    pub ad_data: ::core::option::Option<ad::AdData>,
 }
 /// Nested message and enum types in `Ad`.
 pub mod ad {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AdData {
-#[prost(message, tag = "55")]
-TextAd(super::super::common::SearchAds360TextAdInfo),
-#[prost(message, tag = "56")]
-ExpandedTextAd(super::super::common::SearchAds360ExpandedTextAdInfo),
-#[prost(message, tag = "57")]
-ResponsiveSearchAd(super::super::common::SearchAds360ResponsiveSearchAdInfo),
-#[prost(message, tag = "58")]
-ProductAd(super::super::common::SearchAds360ProductAdInfo),
-#[prost(message, tag = "59")]
-ExpandedDynamicSearchAd(super::super::common::SearchAds360ExpandedDynamicSearchAdInfo),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AdData {
+        #[prost(message, tag = "55")]
+        TextAd(super::super::common::SearchAds360TextAdInfo),
+        #[prost(message, tag = "56")]
+        ExpandedTextAd(super::super::common::SearchAds360ExpandedTextAdInfo),
+        #[prost(message, tag = "57")]
+        ResponsiveSearchAd(super::super::common::SearchAds360ResponsiveSearchAdInfo),
+        #[prost(message, tag = "58")]
+        ProductAd(super::super::common::SearchAds360ProductAdInfo),
+        #[prost(message, tag = "59")]
+        ExpandedDynamicSearchAd(super::super::common::SearchAds360ExpandedDynamicSearchAdInfo),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAd {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::ad_group_ad_status_enum::AdGroupAdStatus", tag = "3")]
-pub status: i32,
-#[prost(message, optional, tag = "5")]
-pub ad: ::core::option::Option<Ad>,
-#[prost(string, tag = "14")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "10")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "11")]
-pub engine_id: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::ad_group_ad_engine_status_enum::AdGroupAdEngineStatus", tag = "15")]
-pub engine_status: i32,
-#[prost(string, tag = "12")]
-pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::ad_group_ad_status_enum::AdGroupAdStatus",
+        tag = "3"
+    )]
+    pub status: i32,
+    #[prost(message, optional, tag = "5")]
+    pub ad: ::core::option::Option<Ad>,
+    #[prost(string, tag = "14")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "10")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "11")]
+    pub engine_id: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::ad_group_ad_engine_status_enum::AdGroupAdEngineStatus",
+        tag = "15"
+    )]
+    pub engine_status: i32,
+    #[prost(string, tag = "12")]
+    pub last_modified_time: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360Field {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "21")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::search_ads360_field_category_enum::SearchAds360FieldCategory", tag = "3")]
-pub category: i32,
-#[prost(bool, optional, tag = "22")]
-pub selectable: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "23")]
-pub filterable: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "24")]
-pub sortable: ::core::option::Option<bool>,
-#[prost(string, repeated, tag = "25")]
-pub selectable_with: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "26")]
-pub attribute_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "27")]
-pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "28")]
-pub segments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "29")]
-pub enum_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::search_ads360_field_data_type_enum::SearchAds360FieldDataType", tag = "12")]
-pub data_type: i32,
-#[prost(string, optional, tag = "30")]
-pub type_url: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "31")]
-pub is_repeated: ::core::option::Option<bool>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "21")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::search_ads360_field_category_enum::SearchAds360FieldCategory",
+        tag = "3"
+    )]
+    pub category: i32,
+    #[prost(bool, optional, tag = "22")]
+    pub selectable: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "23")]
+    pub filterable: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "24")]
+    pub sortable: ::core::option::Option<bool>,
+    #[prost(string, repeated, tag = "25")]
+    pub selectable_with: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "26")]
+    pub attribute_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "27")]
+    pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "28")]
+    pub segments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "29")]
+    pub enum_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::search_ads360_field_data_type_enum::SearchAds360FieldDataType",
+        tag = "12"
+    )]
+    pub data_type: i32,
+    #[prost(string, optional, tag = "30")]
+    pub type_url: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "31")]
+    pub is_repeated: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebpageView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerManagerLink {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "6")]
-pub manager_customer: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "7")]
-pub manager_link_id: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::manager_link_status_enum::ManagerLinkStatus", tag = "5")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "6")]
+    pub manager_customer: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "7")]
+    pub manager_link_id: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::manager_link_status_enum::ManagerLinkStatus",
+        tag = "5"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignAsset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "6")]
-pub campaign: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "7")]
-pub asset: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus", tag = "5")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "6")]
+    pub campaign: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "7")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus",
+        tag = "5"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupAdLabel {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "4")]
-pub ad_group_ad: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub label: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "4")]
+    pub ad_group_ad: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub label: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroup {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "34")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "35")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::ad_group_status_enum::AdGroupStatus", tag = "5")]
-pub status: i32,
-#[prost(enumeration = "super::enums::ad_group_type_enum::AdGroupType", tag = "12")]
-pub r#type: i32,
-#[prost(enumeration = "super::enums::ad_group_ad_rotation_mode_enum::AdGroupAdRotationMode", tag = "22")]
-pub ad_rotation_mode: i32,
-#[prost(int64, optional, tag = "39")]
-pub cpc_bid_micros: ::core::option::Option<i64>,
-#[prost(string, tag = "60")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::ad_group_engine_status_enum::AdGroupEngineStatus", optional, tag = "61")]
-pub engine_status: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "25")]
-pub targeting_setting: ::core::option::Option<super::common::TargetingSetting>,
-#[prost(string, repeated, tag = "49")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "50")]
-pub engine_id: ::prost::alloc::string::String,
-#[prost(string, tag = "51")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "52")]
-pub end_date: ::prost::alloc::string::String,
-#[prost(string, tag = "53")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(string, tag = "55")]
-pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "34")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "35")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::ad_group_status_enum::AdGroupStatus",
+        tag = "5"
+    )]
+    pub status: i32,
+    #[prost(
+        enumeration = "super::enums::ad_group_type_enum::AdGroupType",
+        tag = "12"
+    )]
+    pub r#type: i32,
+    #[prost(
+        enumeration = "super::enums::ad_group_ad_rotation_mode_enum::AdGroupAdRotationMode",
+        tag = "22"
+    )]
+    pub ad_rotation_mode: i32,
+    #[prost(int64, optional, tag = "39")]
+    pub cpc_bid_micros: ::core::option::Option<i64>,
+    #[prost(string, tag = "60")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::ad_group_engine_status_enum::AdGroupEngineStatus",
+        optional,
+        tag = "61"
+    )]
+    pub engine_status: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "25")]
+    pub targeting_setting: ::core::option::Option<super::common::TargetingSetting>,
+    #[prost(string, repeated, tag = "49")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "50")]
+    pub engine_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "51")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "52")]
+    pub end_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "53")]
+    pub language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "55")]
+    pub last_modified_time: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupBidModifier {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(double, optional, tag = "15")]
-pub bid_modifier: ::core::option::Option<f64>,
-#[prost(oneof = "ad_group_bid_modifier::Criterion", tags = "11")]
-pub criterion: ::core::option::Option<ad_group_bid_modifier::Criterion>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(double, optional, tag = "15")]
+    pub bid_modifier: ::core::option::Option<f64>,
+    #[prost(oneof = "ad_group_bid_modifier::Criterion", tags = "11")]
+    pub criterion: ::core::option::Option<ad_group_bid_modifier::Criterion>,
 }
 /// Nested message and enum types in `AdGroupBidModifier`.
 pub mod ad_group_bid_modifier {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Criterion {
-#[prost(message, tag = "11")]
-Device(super::super::common::DeviceInfo),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Criterion {
+        #[prost(message, tag = "11")]
+        Device(super::super::common::DeviceInfo),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignBudget {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "21")]
-pub amount_micros: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::budget_delivery_method_enum::BudgetDeliveryMethod", tag = "7")]
-pub delivery_method: i32,
-#[prost(enumeration = "super::enums::budget_period_enum::BudgetPeriod", tag = "13")]
-pub period: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "21")]
+    pub amount_micros: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::budget_delivery_method_enum::BudgetDeliveryMethod",
+        tag = "7"
+    )]
+    pub delivery_method: i32,
+    #[prost(
+        enumeration = "super::enums::budget_period_enum::BudgetPeriod",
+        tag = "13"
+    )]
+    pub period: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Label {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "6")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "7")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::label_status_enum::LabelStatus", tag = "4")]
-pub status: i32,
-#[prost(message, optional, tag = "5")]
-pub text_label: ::core::option::Option<super::common::TextLabel>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "6")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "7")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::label_status_enum::LabelStatus",
+        tag = "4"
+    )]
+    pub status: i32,
+    #[prost(message, optional, tag = "5")]
+    pub text_label: ::core::option::Option<super::common::TextLabel>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomerClient {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "12")]
-pub client_customer: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "13")]
-pub hidden: ::core::option::Option<bool>,
-#[prost(int64, optional, tag = "14")]
-pub level: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "15")]
-pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "16")]
-pub test_account: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "17")]
-pub manager: ::core::option::Option<bool>,
-#[prost(string, optional, tag = "18")]
-pub descriptive_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "19")]
-pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "20")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, repeated, tag = "21")]
-pub applied_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::customer_status_enum::CustomerStatus", tag = "22")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "12")]
+    pub client_customer: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "13")]
+    pub hidden: ::core::option::Option<bool>,
+    #[prost(int64, optional, tag = "14")]
+    pub level: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "15")]
+    pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "16")]
+    pub test_account: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "17")]
+    pub manager: ::core::option::Option<bool>,
+    #[prost(string, optional, tag = "18")]
+    pub descriptive_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "19")]
+    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "20")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, repeated, tag = "21")]
+    pub applied_labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::customer_status_enum::CustomerStatus",
+        tag = "22"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignAudienceView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LanguageConstant {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "6")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "7")]
-pub code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "8")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "9")]
-pub targetable: ::core::option::Option<bool>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "6")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "7")]
+    pub code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "8")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "9")]
+    pub targetable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CampaignCriterion {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "38")]
-pub criterion_id: ::core::option::Option<i64>,
-#[prost(string, tag = "43")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(float, optional, tag = "39")]
-pub bid_modifier: ::core::option::Option<f32>,
-#[prost(bool, optional, tag = "40")]
-pub negative: ::core::option::Option<bool>,
-#[prost(enumeration = "super::enums::criterion_type_enum::CriterionType", tag = "6")]
-pub r#type: i32,
-#[prost(enumeration = "super::enums::campaign_criterion_status_enum::CampaignCriterionStatus", tag = "35")]
-pub status: i32,
-#[prost(string, tag = "44")]
-pub last_modified_time: ::prost::alloc::string::String,
-#[prost(oneof = "campaign_criterion::Criterion", tags = "8, 12, 13, 16, 17, 22, 26, 31, 34")]
-pub criterion: ::core::option::Option<campaign_criterion::Criterion>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "38")]
+    pub criterion_id: ::core::option::Option<i64>,
+    #[prost(string, tag = "43")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(float, optional, tag = "39")]
+    pub bid_modifier: ::core::option::Option<f32>,
+    #[prost(bool, optional, tag = "40")]
+    pub negative: ::core::option::Option<bool>,
+    #[prost(
+        enumeration = "super::enums::criterion_type_enum::CriterionType",
+        tag = "6"
+    )]
+    pub r#type: i32,
+    #[prost(
+        enumeration = "super::enums::campaign_criterion_status_enum::CampaignCriterionStatus",
+        tag = "35"
+    )]
+    pub status: i32,
+    #[prost(string, tag = "44")]
+    pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "campaign_criterion::Criterion",
+        tags = "8, 12, 13, 16, 17, 22, 26, 31, 34"
+    )]
+    pub criterion: ::core::option::Option<campaign_criterion::Criterion>,
 }
 /// Nested message and enum types in `CampaignCriterion`.
 pub mod campaign_criterion {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Criterion {
-#[prost(message, tag = "8")]
-Keyword(super::super::common::KeywordInfo),
-#[prost(message, tag = "12")]
-Location(super::super::common::LocationInfo),
-#[prost(message, tag = "13")]
-Device(super::super::common::DeviceInfo),
-#[prost(message, tag = "16")]
-AgeRange(super::super::common::AgeRangeInfo),
-#[prost(message, tag = "17")]
-Gender(super::super::common::GenderInfo),
-#[prost(message, tag = "22")]
-UserList(super::super::common::UserListInfo),
-#[prost(message, tag = "26")]
-Language(super::super::common::LanguageInfo),
-#[prost(message, tag = "31")]
-Webpage(super::super::common::WebpageInfo),
-#[prost(message, tag = "34")]
-LocationGroup(super::super::common::LocationGroupInfo),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Criterion {
+        #[prost(message, tag = "8")]
+        Keyword(super::super::common::KeywordInfo),
+        #[prost(message, tag = "12")]
+        Location(super::super::common::LocationInfo),
+        #[prost(message, tag = "13")]
+        Device(super::super::common::DeviceInfo),
+        #[prost(message, tag = "16")]
+        AgeRange(super::super::common::AgeRangeInfo),
+        #[prost(message, tag = "17")]
+        Gender(super::super::common::GenderInfo),
+        #[prost(message, tag = "22")]
+        UserList(super::super::common::UserListInfo),
+        #[prost(message, tag = "26")]
+        Language(super::super::common::LanguageInfo),
+        #[prost(message, tag = "31")]
+        Webpage(super::super::common::WebpageInfo),
+        #[prost(message, tag = "34")]
+        LocationGroup(super::super::common::LocationGroupInfo),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserList {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "25")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "27")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::user_list_type_enum::UserListType", tag = "13")]
-pub r#type: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "25")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "27")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::user_list_type_enum::UserListType",
+        tag = "13"
+    )]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetSet {
-#[prost(int64, tag = "6")]
-pub id: i64,
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "6")]
+    pub id: i64,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Conversion {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "2")]
-pub id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "3")]
-pub criterion_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub merchant_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "5")]
-pub ad_id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "6")]
-pub click_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "7")]
-pub visit_id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "8")]
-pub advertiser_conversion_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "9")]
-pub product_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::product_channel_enum::ProductChannel", optional, tag = "10")]
-pub product_channel: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "11")]
-pub product_language_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "12")]
-pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "13")]
-pub product_country_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::attribution_type_enum::AttributionType", optional, tag = "14")]
-pub attribution_type: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "15")]
-pub conversion_date_time: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "16")]
-pub conversion_last_modified_date_time: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "17")]
-pub conversion_visit_date_time: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "18")]
-pub conversion_quantity: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "19")]
-pub conversion_revenue_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "20")]
-pub floodlight_original_revenue: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "21")]
-pub floodlight_order_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::conversion_status_enum::ConversionStatus", optional, tag = "22")]
-pub status: ::core::option::Option<i32>,
-#[prost(int64, optional, tag = "23")]
-pub asset_id: ::core::option::Option<i64>,
-#[prost(enumeration = "super::enums::asset_field_type_enum::AssetFieldType", optional, tag = "24")]
-pub asset_field_type: ::core::option::Option<i32>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "2")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "3")]
+    pub criterion_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub merchant_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "5")]
+    pub ad_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "6")]
+    pub click_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "7")]
+    pub visit_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "8")]
+    pub advertiser_conversion_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "9")]
+    pub product_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::product_channel_enum::ProductChannel",
+        optional,
+        tag = "10"
+    )]
+    pub product_channel: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "11")]
+    pub product_language_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "12")]
+    pub product_store_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "13")]
+    pub product_country_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::attribution_type_enum::AttributionType",
+        optional,
+        tag = "14"
+    )]
+    pub attribution_type: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "15")]
+    pub conversion_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "16")]
+    pub conversion_last_modified_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "17")]
+    pub conversion_visit_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "18")]
+    pub conversion_quantity: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "19")]
+    pub conversion_revenue_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "20")]
+    pub floodlight_original_revenue: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "21")]
+    pub floodlight_order_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::conversion_status_enum::ConversionStatus",
+        optional,
+        tag = "22"
+    )]
+    pub status: ::core::option::Option<i32>,
+    #[prost(int64, optional, tag = "23")]
+    pub asset_id: ::core::option::Option<i64>,
+    #[prost(
+        enumeration = "super::enums::asset_field_type_enum::AssetFieldType",
+        optional,
+        tag = "24"
+    )]
+    pub asset_field_type: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenderView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BiddingStrategy {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "16")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "17")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::bidding_strategy_status_enum::BiddingStrategyStatus", tag = "15")]
-pub status: i32,
-#[prost(enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType", tag = "5")]
-pub r#type: i32,
-#[prost(string, tag = "23")]
-pub currency_code: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "20")]
-pub effective_currency_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, optional, tag = "18")]
-pub campaign_count: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "19")]
-pub non_removed_campaign_count: ::core::option::Option<i64>,
-#[prost(oneof = "bidding_strategy::Scheme", tags = "7, 21, 22, 9, 48, 10, 11, 12")]
-pub scheme: ::core::option::Option<bidding_strategy::Scheme>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "16")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "17")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::bidding_strategy_status_enum::BiddingStrategyStatus",
+        tag = "15"
+    )]
+    pub status: i32,
+    #[prost(
+        enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType",
+        tag = "5"
+    )]
+    pub r#type: i32,
+    #[prost(string, tag = "23")]
+    pub currency_code: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "20")]
+    pub effective_currency_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, optional, tag = "18")]
+    pub campaign_count: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "19")]
+    pub non_removed_campaign_count: ::core::option::Option<i64>,
+    #[prost(
+        oneof = "bidding_strategy::Scheme",
+        tags = "7, 21, 22, 9, 48, 10, 11, 12"
+    )]
+    pub scheme: ::core::option::Option<bidding_strategy::Scheme>,
 }
 /// Nested message and enum types in `BiddingStrategy`.
 pub mod bidding_strategy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Scheme {
-#[prost(message, tag = "7")]
-EnhancedCpc(super::super::common::EnhancedCpc),
-#[prost(message, tag = "21")]
-MaximizeConversionValue(super::super::common::MaximizeConversionValue),
-#[prost(message, tag = "22")]
-MaximizeConversions(super::super::common::MaximizeConversions),
-#[prost(message, tag = "9")]
-TargetCpa(super::super::common::TargetCpa),
-#[prost(message, tag = "48")]
-TargetImpressionShare(super::super::common::TargetImpressionShare),
-#[prost(message, tag = "10")]
-TargetOutrankShare(super::super::common::TargetOutrankShare),
-#[prost(message, tag = "11")]
-TargetRoas(super::super::common::TargetRoas),
-#[prost(message, tag = "12")]
-TargetSpend(super::super::common::TargetSpend),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Scheme {
+        #[prost(message, tag = "7")]
+        EnhancedCpc(super::super::common::EnhancedCpc),
+        #[prost(message, tag = "21")]
+        MaximizeConversionValue(super::super::common::MaximizeConversionValue),
+        #[prost(message, tag = "22")]
+        MaximizeConversions(super::super::common::MaximizeConversions),
+        #[prost(message, tag = "9")]
+        TargetCpa(super::super::common::TargetCpa),
+        #[prost(message, tag = "48")]
+        TargetImpressionShare(super::super::common::TargetImpressionShare),
+        #[prost(message, tag = "10")]
+        TargetOutrankShare(super::super::common::TargetOutrankShare),
+        #[prost(message, tag = "11")]
+        TargetRoas(super::super::common::TargetRoas),
+        #[prost(message, tag = "12")]
+        TargetSpend(super::super::common::TargetSpend),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Audience {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub id: i64,
-#[prost(string, tag = "4")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub id: i64,
+    #[prost(string, tag = "4")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DynamicSearchAdsSearchTermView {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "11")]
-pub landing_page: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "11")]
+    pub landing_page: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Customer {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "19")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "20")]
-pub descriptive_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "21")]
-pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "22")]
-pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "23")]
-pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "24")]
-pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "25")]
-pub auto_tagging_enabled: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "27")]
-pub manager: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "14")]
-pub conversion_tracking_setting: ::core::option::Option<ConversionTrackingSetting>,
-#[prost(enumeration = "super::enums::account_type_enum::AccountType", tag = "31")]
-pub account_type: i32,
-#[prost(message, optional, tag = "32")]
-pub double_click_campaign_manager_setting: ::core::option::Option<DoubleClickCampaignManagerSetting>,
-#[prost(enumeration = "super::enums::account_status_enum::AccountStatus", tag = "33")]
-pub account_status: i32,
-#[prost(string, tag = "34")]
-pub last_modified_time: ::prost::alloc::string::String,
-#[prost(string, tag = "35")]
-pub engine_id: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::customer_status_enum::CustomerStatus", tag = "36")]
-pub status: i32,
-#[prost(string, tag = "42")]
-pub creation_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "19")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "20")]
+    pub descriptive_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "21")]
+    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "22")]
+    pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "23")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "24")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "25")]
+    pub auto_tagging_enabled: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "27")]
+    pub manager: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "14")]
+    pub conversion_tracking_setting: ::core::option::Option<ConversionTrackingSetting>,
+    #[prost(
+        enumeration = "super::enums::account_type_enum::AccountType",
+        tag = "31"
+    )]
+    pub account_type: i32,
+    #[prost(message, optional, tag = "32")]
+    pub double_click_campaign_manager_setting:
+        ::core::option::Option<DoubleClickCampaignManagerSetting>,
+    #[prost(
+        enumeration = "super::enums::account_status_enum::AccountStatus",
+        tag = "33"
+    )]
+    pub account_status: i32,
+    #[prost(string, tag = "34")]
+    pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "35")]
+    pub engine_id: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::customer_status_enum::CustomerStatus",
+        tag = "36"
+    )]
+    pub status: i32,
+    #[prost(string, tag = "42")]
+    pub creation_time: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConversionTrackingSetting {
-#[prost(int64, optional, tag = "3")]
-pub conversion_tracking_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub google_ads_cross_account_conversion_tracking_id: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "37")]
-pub cross_account_conversion_tracking_id: ::core::option::Option<i64>,
-#[prost(bool, tag = "5")]
-pub accepted_customer_data_terms: bool,
-#[prost(enumeration = "super::enums::conversion_tracking_status_enum::ConversionTrackingStatus", tag = "6")]
-pub conversion_tracking_status: i32,
-#[prost(bool, tag = "7")]
-pub enhanced_conversions_for_leads_enabled: bool,
-#[prost(string, tag = "8")]
-pub google_ads_conversion_customer: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "3")]
+    pub conversion_tracking_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub google_ads_cross_account_conversion_tracking_id: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "37")]
+    pub cross_account_conversion_tracking_id: ::core::option::Option<i64>,
+    #[prost(bool, tag = "5")]
+    pub accepted_customer_data_terms: bool,
+    #[prost(
+        enumeration = "super::enums::conversion_tracking_status_enum::ConversionTrackingStatus",
+        tag = "6"
+    )]
+    pub conversion_tracking_status: i32,
+    #[prost(bool, tag = "7")]
+    pub enhanced_conversions_for_leads_enabled: bool,
+    #[prost(string, tag = "8")]
+    pub google_ads_conversion_customer: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DoubleClickCampaignManagerSetting {
-#[prost(int64, tag = "1")]
-pub advertiser_id: i64,
-#[prost(int64, tag = "2")]
-pub network_id: i64,
-#[prost(string, tag = "3")]
-pub time_zone: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub advertiser_id: i64,
+    #[prost(int64, tag = "2")]
+    pub network_id: i64,
+    #[prost(string, tag = "3")]
+    pub time_zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupAsset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_group: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub asset: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_field_type_enum::AssetFieldType", tag = "4")]
-pub field_type: i32,
-#[prost(enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus", tag = "5")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_group: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_field_type_enum::AssetFieldType",
+        tag = "4"
+    )]
+    pub field_type: i32,
+    #[prost(
+        enumeration = "super::enums::asset_link_status_enum::AssetLinkStatus",
+        tag = "5"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterionLabel {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "4")]
-pub ad_group_criterion: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub label: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "4")]
+    pub ad_group_criterion: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub label: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupListingGroupFilter {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_group: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub id: i64,
-#[prost(enumeration = "super::enums::listing_group_filter_type_enum::ListingGroupFilterType", tag = "4")]
-pub r#type: i32,
-#[prost(enumeration = "super::enums::listing_group_filter_vertical_enum::ListingGroupFilterVertical", tag = "5")]
-pub vertical: i32,
-#[prost(message, optional, tag = "6")]
-pub case_value: ::core::option::Option<ListingGroupFilterDimension>,
-#[prost(string, tag = "7")]
-pub parent_listing_group_filter: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "8")]
-pub path: ::core::option::Option<ListingGroupFilterDimensionPath>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_group: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub id: i64,
+    #[prost(
+        enumeration = "super::enums::listing_group_filter_type_enum::ListingGroupFilterType",
+        tag = "4"
+    )]
+    pub r#type: i32,
+    #[prost(
+        enumeration = "super::enums::listing_group_filter_vertical_enum::ListingGroupFilterVertical",
+        tag = "5"
+    )]
+    pub vertical: i32,
+    #[prost(message, optional, tag = "6")]
+    pub case_value: ::core::option::Option<ListingGroupFilterDimension>,
+    #[prost(string, tag = "7")]
+    pub parent_listing_group_filter: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "8")]
+    pub path: ::core::option::Option<ListingGroupFilterDimensionPath>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListingGroupFilterDimensionPath {
-#[prost(message, repeated, tag = "1")]
-pub dimensions: ::prost::alloc::vec::Vec<ListingGroupFilterDimension>,
+    #[prost(message, repeated, tag = "1")]
+    pub dimensions: ::prost::alloc::vec::Vec<ListingGroupFilterDimension>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListingGroupFilterDimension {
-#[prost(oneof = "listing_group_filter_dimension::Dimension", tags = "1, 2, 3, 4, 5, 6, 7")]
-pub dimension: ::core::option::Option<listing_group_filter_dimension::Dimension>,
+    #[prost(
+        oneof = "listing_group_filter_dimension::Dimension",
+        tags = "1, 2, 3, 4, 5, 6, 7"
+    )]
+    pub dimension: ::core::option::Option<listing_group_filter_dimension::Dimension>,
 }
 /// Nested message and enum types in `ListingGroupFilterDimension`.
 pub mod listing_group_filter_dimension {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ProductBiddingCategory {
-#[prost(int64, optional, tag = "1")]
-pub id: ::core::option::Option<i64>,
-#[prost(enumeration = "super::super::enums::listing_group_filter_bidding_category_level_enum::ListingGroupFilterBiddingCategoryLevel", tag = "2")]
-pub level: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProductBrand {
-#[prost(string, optional, tag = "1")]
-pub value: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ProductChannel {
-#[prost(enumeration = "super::super::enums::listing_group_filter_product_channel_enum::ListingGroupFilterProductChannel", tag = "1")]
-pub channel: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ProductCondition {
-#[prost(enumeration = "super::super::enums::listing_group_filter_product_condition_enum::ListingGroupFilterProductCondition", tag = "1")]
-pub condition: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProductCustomAttribute {
-#[prost(string, optional, tag = "1")]
-pub value: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::super::enums::listing_group_filter_custom_attribute_index_enum::ListingGroupFilterCustomAttributeIndex", tag = "2")]
-pub index: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProductItemId {
-#[prost(string, optional, tag = "1")]
-pub value: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProductType {
-#[prost(string, optional, tag = "1")]
-pub value: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::super::enums::listing_group_filter_product_type_level_enum::ListingGroupFilterProductTypeLevel", tag = "2")]
-pub level: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Dimension {
-#[prost(message, tag = "1")]
-ProductBiddingCategory(ProductBiddingCategory),
-#[prost(message, tag = "2")]
-ProductBrand(ProductBrand),
-#[prost(message, tag = "3")]
-ProductChannel(ProductChannel),
-#[prost(message, tag = "4")]
-ProductCondition(ProductCondition),
-#[prost(message, tag = "5")]
-ProductCustomAttribute(ProductCustomAttribute),
-#[prost(message, tag = "6")]
-ProductItemId(ProductItemId),
-#[prost(message, tag = "7")]
-ProductType(ProductType),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ProductBiddingCategory {
+        #[prost(int64, optional, tag = "1")]
+        pub id: ::core::option::Option<i64>,
+        #[prost(
+            enumeration = "super::super::enums::listing_group_filter_bidding_category_level_enum::ListingGroupFilterBiddingCategoryLevel",
+            tag = "2"
+        )]
+        pub level: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProductBrand {
+        #[prost(string, optional, tag = "1")]
+        pub value: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ProductChannel {
+        #[prost(
+            enumeration = "super::super::enums::listing_group_filter_product_channel_enum::ListingGroupFilterProductChannel",
+            tag = "1"
+        )]
+        pub channel: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ProductCondition {
+        #[prost(
+            enumeration = "super::super::enums::listing_group_filter_product_condition_enum::ListingGroupFilterProductCondition",
+            tag = "1"
+        )]
+        pub condition: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProductCustomAttribute {
+        #[prost(string, optional, tag = "1")]
+        pub value: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(
+            enumeration = "super::super::enums::listing_group_filter_custom_attribute_index_enum::ListingGroupFilterCustomAttributeIndex",
+            tag = "2"
+        )]
+        pub index: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProductItemId {
+        #[prost(string, optional, tag = "1")]
+        pub value: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProductType {
+        #[prost(string, optional, tag = "1")]
+        pub value: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(
+            enumeration = "super::super::enums::listing_group_filter_product_type_level_enum::ListingGroupFilterProductTypeLevel",
+            tag = "2"
+        )]
+        pub level: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Dimension {
+        #[prost(message, tag = "1")]
+        ProductBiddingCategory(ProductBiddingCategory),
+        #[prost(message, tag = "2")]
+        ProductBrand(ProductBrand),
+        #[prost(message, tag = "3")]
+        ProductChannel(ProductChannel),
+        #[prost(message, tag = "4")]
+        ProductCondition(ProductCondition),
+        #[prost(message, tag = "5")]
+        ProductCustomAttribute(ProductCustomAttribute),
+        #[prost(message, tag = "6")]
+        ProductItemId(ProductItemId),
+        #[prost(message, tag = "7")]
+        ProductType(ProductType),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroupSignal {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_group: ::prost::alloc::string::String,
-#[prost(oneof = "asset_group_signal::Signal", tags = "4")]
-pub signal: ::core::option::Option<asset_group_signal::Signal>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_group: ::prost::alloc::string::String,
+    #[prost(oneof = "asset_group_signal::Signal", tags = "4")]
+    pub signal: ::core::option::Option<asset_group_signal::Signal>,
 }
 /// Nested message and enum types in `AssetGroupSignal`.
 pub mod asset_group_signal {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Signal {
-#[prost(message, tag = "4")]
-Audience(super::super::common::AudienceInfo),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Signal {
+        #[prost(message, tag = "4")]
+        Audience(super::super::common::AudienceInfo),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterion {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "56")]
-pub criterion_id: ::core::option::Option<i64>,
-#[prost(string, tag = "81")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::ad_group_criterion_status_enum::AdGroupCriterionStatus", tag = "3")]
-pub status: i32,
-#[prost(message, optional, tag = "4")]
-pub quality_info: ::core::option::Option<ad_group_criterion::QualityInfo>,
-#[prost(string, optional, tag = "57")]
-pub ad_group: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::criterion_type_enum::CriterionType", tag = "25")]
-pub r#type: i32,
-#[prost(bool, optional, tag = "58")]
-pub negative: ::core::option::Option<bool>,
-#[prost(string, repeated, tag = "60")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(double, optional, tag = "61")]
-pub bid_modifier: ::core::option::Option<f64>,
-#[prost(int64, optional, tag = "62")]
-pub cpc_bid_micros: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "66")]
-pub effective_cpc_bid_micros: ::core::option::Option<i64>,
-#[prost(message, optional, tag = "10")]
-pub position_estimates: ::core::option::Option<ad_group_criterion::PositionEstimates>,
-#[prost(string, repeated, tag = "70")]
-pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::ad_group_criterion_engine_status_enum::AdGroupCriterionEngineStatus", optional, tag = "80")]
-pub engine_status: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "72")]
-pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "73")]
-pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, tag = "76")]
-pub engine_id: ::prost::alloc::string::String,
-#[prost(string, tag = "78")]
-pub last_modified_time: ::prost::alloc::string::String,
-#[prost(oneof = "ad_group_criterion::Criterion", tags = "27, 32, 36, 37, 42, 46, 82")]
-pub criterion: ::core::option::Option<ad_group_criterion::Criterion>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "56")]
+    pub criterion_id: ::core::option::Option<i64>,
+    #[prost(string, tag = "81")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::ad_group_criterion_status_enum::AdGroupCriterionStatus",
+        tag = "3"
+    )]
+    pub status: i32,
+    #[prost(message, optional, tag = "4")]
+    pub quality_info: ::core::option::Option<ad_group_criterion::QualityInfo>,
+    #[prost(string, optional, tag = "57")]
+    pub ad_group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::criterion_type_enum::CriterionType",
+        tag = "25"
+    )]
+    pub r#type: i32,
+    #[prost(bool, optional, tag = "58")]
+    pub negative: ::core::option::Option<bool>,
+    #[prost(string, repeated, tag = "60")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(double, optional, tag = "61")]
+    pub bid_modifier: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "62")]
+    pub cpc_bid_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "66")]
+    pub effective_cpc_bid_micros: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "10")]
+    pub position_estimates: ::core::option::Option<ad_group_criterion::PositionEstimates>,
+    #[prost(string, repeated, tag = "70")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::ad_group_criterion_engine_status_enum::AdGroupCriterionEngineStatus",
+        optional,
+        tag = "80"
+    )]
+    pub engine_status: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "72")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "73")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "76")]
+    pub engine_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "78")]
+    pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "ad_group_criterion::Criterion",
+        tags = "27, 32, 36, 37, 42, 46, 82"
+    )]
+    pub criterion: ::core::option::Option<ad_group_criterion::Criterion>,
 }
 /// Nested message and enum types in `AdGroupCriterion`.
 pub mod ad_group_criterion {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct QualityInfo {
-#[prost(int32, optional, tag = "5")]
-pub quality_score: ::core::option::Option<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PositionEstimates {
-#[prost(int64, optional, tag = "8")]
-pub top_of_page_cpc_micros: ::core::option::Option<i64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Criterion {
-#[prost(message, tag = "27")]
-Keyword(super::super::common::KeywordInfo),
-#[prost(message, tag = "32")]
-ListingGroup(super::super::common::ListingGroupInfo),
-#[prost(message, tag = "36")]
-AgeRange(super::super::common::AgeRangeInfo),
-#[prost(message, tag = "37")]
-Gender(super::super::common::GenderInfo),
-#[prost(message, tag = "42")]
-UserList(super::super::common::UserListInfo),
-#[prost(message, tag = "46")]
-Webpage(super::super::common::WebpageInfo),
-#[prost(message, tag = "82")]
-Location(super::super::common::LocationInfo),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct QualityInfo {
+        #[prost(int32, optional, tag = "5")]
+        pub quality_score: ::core::option::Option<i32>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PositionEstimates {
+        #[prost(int64, optional, tag = "8")]
+        pub top_of_page_cpc_micros: ::core::option::Option<i64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Criterion {
+        #[prost(message, tag = "27")]
+        Keyword(super::super::common::KeywordInfo),
+        #[prost(message, tag = "32")]
+        ListingGroup(super::super::common::ListingGroupInfo),
+        #[prost(message, tag = "36")]
+        AgeRange(super::super::common::AgeRangeInfo),
+        #[prost(message, tag = "37")]
+        Gender(super::super::common::GenderInfo),
+        #[prost(message, tag = "42")]
+        UserList(super::super::common::UserListInfo),
+        #[prost(message, tag = "46")]
+        Webpage(super::super::common::WebpageInfo),
+        #[prost(message, tag = "82")]
+        Location(super::super::common::LocationInfo),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupLabel {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "4")]
-pub ad_group: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub label: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "4")]
+    pub ad_group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub label: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetSetAsset {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_set: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub asset: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_set_asset_status_enum::AssetSetAssetStatus", tag = "4")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_set: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_set_asset_status_enum::AssetSetAssetStatus",
+        tag = "4"
+    )]
+    pub status: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConversionCustomVariable {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub id: i64,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub tag: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::conversion_custom_variable_status_enum::ConversionCustomVariableStatus", tag = "5")]
-pub status: i32,
-#[prost(string, tag = "6")]
-pub owner_customer: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::conversion_custom_variable_family_enum::ConversionCustomVariableFamily", tag = "7")]
-pub family: i32,
-#[prost(enumeration = "super::enums::conversion_custom_variable_cardinality_enum::ConversionCustomVariableCardinality", tag = "8")]
-pub cardinality: i32,
-#[prost(message, optional, tag = "9")]
-pub floodlight_conversion_custom_variable_info: ::core::option::Option<conversion_custom_variable::FloodlightConversionCustomVariableInfo>,
-#[prost(int64, repeated, packed = "false", tag = "10")]
-pub custom_column_ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub id: i64,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub tag: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::conversion_custom_variable_status_enum::ConversionCustomVariableStatus",
+        tag = "5"
+    )]
+    pub status: i32,
+    #[prost(string, tag = "6")]
+    pub owner_customer: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::conversion_custom_variable_family_enum::ConversionCustomVariableFamily",
+        tag = "7"
+    )]
+    pub family: i32,
+    #[prost(
+        enumeration = "super::enums::conversion_custom_variable_cardinality_enum::ConversionCustomVariableCardinality",
+        tag = "8"
+    )]
+    pub cardinality: i32,
+    #[prost(message, optional, tag = "9")]
+    pub floodlight_conversion_custom_variable_info:
+        ::core::option::Option<conversion_custom_variable::FloodlightConversionCustomVariableInfo>,
+    #[prost(int64, repeated, packed = "false", tag = "10")]
+    pub custom_column_ids: ::prost::alloc::vec::Vec<i64>,
 }
 /// Nested message and enum types in `ConversionCustomVariable`.
 pub mod conversion_custom_variable {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FloodlightConversionCustomVariableInfo {
-#[prost(enumeration = "super::super::enums::floodlight_variable_type_enum::FloodlightVariableType", optional, tag = "1")]
-pub floodlight_variable_type: ::core::option::Option<i32>,
-#[prost(enumeration = "super::super::enums::floodlight_variable_data_type_enum::FloodlightVariableDataType", optional, tag = "2")]
-pub floodlight_variable_data_type: ::core::option::Option<i32>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FloodlightConversionCustomVariableInfo {
+        #[prost(
+            enumeration = "super::super::enums::floodlight_variable_type_enum::FloodlightVariableType",
+            optional,
+            tag = "1"
+        )]
+        pub floodlight_variable_type: ::core::option::Option<i32>,
+        #[prost(
+            enumeration = "super::super::enums::floodlight_variable_data_type_enum::FloodlightVariableDataType",
+            optional,
+            tag = "2"
+        )]
+        pub floodlight_variable_data_type: ::core::option::Option<i32>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductBiddingCategoryConstant {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "10")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "11")]
-pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "12")]
-pub product_bidding_category_constant_parent: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::product_bidding_category_level_enum::ProductBiddingCategoryLevel", tag = "5")]
-pub level: i32,
-#[prost(enumeration = "super::enums::product_bidding_category_status_enum::ProductBiddingCategoryStatus", tag = "6")]
-pub status: i32,
-#[prost(string, optional, tag = "13")]
-pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "14")]
-pub localized_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "10")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "11")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "12")]
+    pub product_bidding_category_constant_parent:
+        ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::product_bidding_category_level_enum::ProductBiddingCategoryLevel",
+        tag = "5"
+    )]
+    pub level: i32,
+    #[prost(
+        enumeration = "super::enums::product_bidding_category_status_enum::ProductBiddingCategoryStatus",
+        tag = "6"
+    )]
+    pub status: i32,
+    #[prost(string, optional, tag = "13")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "14")]
+    pub localized_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssetGroup {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, tag = "9")]
-pub id: i64,
-#[prost(string, tag = "2")]
-pub campaign: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::asset_group_status_enum::AssetGroupStatus", tag = "6")]
-pub status: i32,
-#[prost(string, tag = "7")]
-pub path1: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub path2: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::ad_strength_enum::AdStrength", tag = "10")]
-pub ad_strength: i32,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "9")]
+    pub id: i64,
+    #[prost(string, tag = "2")]
+    pub campaign: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::asset_group_status_enum::AssetGroupStatus",
+        tag = "6"
+    )]
+    pub status: i32,
+    #[prost(string, tag = "7")]
+    pub path1: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub path2: ::prost::alloc::string::String,
+    #[prost(enumeration = "super::enums::ad_strength_enum::AdStrength", tag = "10")]
+    pub ad_strength: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConversionAction {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "21")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "22")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, tag = "33")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::conversion_action_status_enum::ConversionActionStatus", tag = "4")]
-pub status: i32,
-#[prost(enumeration = "super::enums::conversion_action_type_enum::ConversionActionType", tag = "5")]
-pub r#type: i32,
-#[prost(bool, optional, tag = "31")]
-pub primary_for_goal: ::core::option::Option<bool>,
-#[prost(enumeration = "super::enums::conversion_action_category_enum::ConversionActionCategory", tag = "6")]
-pub category: i32,
-#[prost(string, optional, tag = "23")]
-pub owner_customer: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "24")]
-pub include_in_client_account_conversions_metric: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "32")]
-pub include_in_conversions_metric: ::core::option::Option<bool>,
-#[prost(int64, optional, tag = "25")]
-pub click_through_lookback_window_days: ::core::option::Option<i64>,
-#[prost(message, optional, tag = "11")]
-pub value_settings: ::core::option::Option<conversion_action::ValueSettings>,
-#[prost(message, optional, tag = "13")]
-pub attribution_model_settings: ::core::option::Option<conversion_action::AttributionModelSettings>,
-#[prost(string, optional, tag = "28")]
-pub app_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "29")]
-pub floodlight_settings: ::core::option::Option<conversion_action::FloodlightSettings>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "21")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "22")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "33")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::conversion_action_status_enum::ConversionActionStatus",
+        tag = "4"
+    )]
+    pub status: i32,
+    #[prost(
+        enumeration = "super::enums::conversion_action_type_enum::ConversionActionType",
+        tag = "5"
+    )]
+    pub r#type: i32,
+    #[prost(bool, optional, tag = "31")]
+    pub primary_for_goal: ::core::option::Option<bool>,
+    #[prost(
+        enumeration = "super::enums::conversion_action_category_enum::ConversionActionCategory",
+        tag = "6"
+    )]
+    pub category: i32,
+    #[prost(string, optional, tag = "23")]
+    pub owner_customer: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "24")]
+    pub include_in_client_account_conversions_metric: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "32")]
+    pub include_in_conversions_metric: ::core::option::Option<bool>,
+    #[prost(int64, optional, tag = "25")]
+    pub click_through_lookback_window_days: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "11")]
+    pub value_settings: ::core::option::Option<conversion_action::ValueSettings>,
+    #[prost(message, optional, tag = "13")]
+    pub attribution_model_settings:
+        ::core::option::Option<conversion_action::AttributionModelSettings>,
+    #[prost(string, optional, tag = "28")]
+    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "29")]
+    pub floodlight_settings: ::core::option::Option<conversion_action::FloodlightSettings>,
 }
 /// Nested message and enum types in `ConversionAction`.
 pub mod conversion_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AttributionModelSettings {
-#[prost(enumeration = "super::super::enums::attribution_model_enum::AttributionModel", tag = "1")]
-pub attribution_model: i32,
-#[prost(enumeration = "super::super::enums::data_driven_model_status_enum::DataDrivenModelStatus", tag = "2")]
-pub data_driven_model_status: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValueSettings {
-#[prost(double, optional, tag = "4")]
-pub default_value: ::core::option::Option<f64>,
-#[prost(string, optional, tag = "5")]
-pub default_currency_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "6")]
-pub always_use_default_value: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FloodlightSettings {
-#[prost(string, tag = "1")]
-pub activity_group_tag: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub activity_tag: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub activity_id: i64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AttributionModelSettings {
+        #[prost(
+            enumeration = "super::super::enums::attribution_model_enum::AttributionModel",
+            tag = "1"
+        )]
+        pub attribution_model: i32,
+        #[prost(
+            enumeration = "super::super::enums::data_driven_model_status_enum::DataDrivenModelStatus",
+            tag = "2"
+        )]
+        pub data_driven_model_status: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ValueSettings {
+        #[prost(double, optional, tag = "4")]
+        pub default_value: ::core::option::Option<f64>,
+        #[prost(string, optional, tag = "5")]
+        pub default_currency_code: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(bool, optional, tag = "6")]
+        pub always_use_default_value: ::core::option::Option<bool>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FloodlightSettings {
+        #[prost(string, tag = "1")]
+        pub activity_group_tag: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub activity_tag: ::prost::alloc::string::String,
+        #[prost(int64, tag = "3")]
+        pub activity_id: i64,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Campaign {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "59")]
-pub id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "58")]
-pub name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::campaign_status_enum::CampaignStatus", tag = "5")]
-pub status: i32,
-#[prost(enumeration = "super::enums::campaign_serving_status_enum::CampaignServingStatus", tag = "21")]
-pub serving_status: i32,
-#[prost(enumeration = "super::enums::bidding_strategy_system_status_enum::BiddingStrategySystemStatus", tag = "78")]
-pub bidding_strategy_system_status: i32,
-#[prost(enumeration = "super::enums::ad_serving_optimization_status_enum::AdServingOptimizationStatus", tag = "8")]
-pub ad_serving_optimization_status: i32,
-#[prost(enumeration = "super::enums::advertising_channel_type_enum::AdvertisingChannelType", tag = "9")]
-pub advertising_channel_type: i32,
-#[prost(enumeration = "super::enums::advertising_channel_sub_type_enum::AdvertisingChannelSubType", tag = "10")]
-pub advertising_channel_sub_type: i32,
-#[prost(string, optional, tag = "60")]
-pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "12")]
-pub url_custom_parameters: ::prost::alloc::vec::Vec<super::common::CustomParameter>,
-#[prost(message, optional, tag = "39")]
-pub real_time_bidding_setting: ::core::option::Option<super::common::RealTimeBiddingSetting>,
-#[prost(message, optional, tag = "14")]
-pub network_settings: ::core::option::Option<campaign::NetworkSettings>,
-#[prost(message, optional, tag = "33")]
-pub dynamic_search_ads_setting: ::core::option::Option<campaign::DynamicSearchAdsSetting>,
-#[prost(message, optional, tag = "36")]
-pub shopping_setting: ::core::option::Option<campaign::ShoppingSetting>,
-#[prost(message, optional, tag = "47")]
-pub geo_target_type_setting: ::core::option::Option<campaign::GeoTargetTypeSetting>,
-#[prost(string, repeated, tag = "61")]
-pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "62")]
-pub campaign_budget: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType", tag = "22")]
-pub bidding_strategy_type: i32,
-#[prost(string, tag = "71")]
-pub accessible_bidding_strategy: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "63")]
-pub start_date: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "64")]
-pub end_date: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "65")]
-pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "40")]
-pub frequency_caps: ::prost::alloc::vec::Vec<super::common::FrequencyCapEntry>,
-#[prost(message, optional, tag = "45")]
-pub selective_optimization: ::core::option::Option<campaign::SelectiveOptimization>,
-#[prost(message, optional, tag = "54")]
-pub optimization_goal_setting: ::core::option::Option<campaign::OptimizationGoalSetting>,
-#[prost(message, optional, tag = "46")]
-pub tracking_setting: ::core::option::Option<campaign::TrackingSetting>,
-#[prost(string, tag = "68")]
-pub engine_id: ::prost::alloc::string::String,
-#[prost(enumeration = "super::enums::asset_field_type_enum::AssetFieldType", repeated, tag = "69")]
-pub excluded_parent_asset_field_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, tag = "79")]
-pub create_time: ::prost::alloc::string::String,
-#[prost(string, tag = "84")]
-pub creation_time: ::prost::alloc::string::String,
-#[prost(string, tag = "70")]
-pub last_modified_time: ::prost::alloc::string::String,
-#[prost(bool, optional, tag = "72")]
-pub url_expansion_opt_out: ::core::option::Option<bool>,
-#[prost(oneof = "campaign::CampaignBiddingStrategy", tags = "67, 74, 24, 25, 30, 31, 26, 48, 29, 27, 34, 41")]
-pub campaign_bidding_strategy: ::core::option::Option<campaign::CampaignBiddingStrategy>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "59")]
+    pub id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "58")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::campaign_status_enum::CampaignStatus",
+        tag = "5"
+    )]
+    pub status: i32,
+    #[prost(
+        enumeration = "super::enums::campaign_serving_status_enum::CampaignServingStatus",
+        tag = "21"
+    )]
+    pub serving_status: i32,
+    #[prost(
+        enumeration = "super::enums::bidding_strategy_system_status_enum::BiddingStrategySystemStatus",
+        tag = "78"
+    )]
+    pub bidding_strategy_system_status: i32,
+    #[prost(
+        enumeration = "super::enums::ad_serving_optimization_status_enum::AdServingOptimizationStatus",
+        tag = "8"
+    )]
+    pub ad_serving_optimization_status: i32,
+    #[prost(
+        enumeration = "super::enums::advertising_channel_type_enum::AdvertisingChannelType",
+        tag = "9"
+    )]
+    pub advertising_channel_type: i32,
+    #[prost(
+        enumeration = "super::enums::advertising_channel_sub_type_enum::AdvertisingChannelSubType",
+        tag = "10"
+    )]
+    pub advertising_channel_sub_type: i32,
+    #[prost(string, optional, tag = "60")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "12")]
+    pub url_custom_parameters: ::prost::alloc::vec::Vec<super::common::CustomParameter>,
+    #[prost(message, optional, tag = "39")]
+    pub real_time_bidding_setting: ::core::option::Option<super::common::RealTimeBiddingSetting>,
+    #[prost(message, optional, tag = "14")]
+    pub network_settings: ::core::option::Option<campaign::NetworkSettings>,
+    #[prost(message, optional, tag = "33")]
+    pub dynamic_search_ads_setting: ::core::option::Option<campaign::DynamicSearchAdsSetting>,
+    #[prost(message, optional, tag = "36")]
+    pub shopping_setting: ::core::option::Option<campaign::ShoppingSetting>,
+    #[prost(message, optional, tag = "47")]
+    pub geo_target_type_setting: ::core::option::Option<campaign::GeoTargetTypeSetting>,
+    #[prost(string, repeated, tag = "61")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "62")]
+    pub campaign_budget: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "super::enums::bidding_strategy_type_enum::BiddingStrategyType",
+        tag = "22"
+    )]
+    pub bidding_strategy_type: i32,
+    #[prost(string, tag = "71")]
+    pub accessible_bidding_strategy: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "63")]
+    pub start_date: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "64")]
+    pub end_date: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "65")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "40")]
+    pub frequency_caps: ::prost::alloc::vec::Vec<super::common::FrequencyCapEntry>,
+    #[prost(message, optional, tag = "45")]
+    pub selective_optimization: ::core::option::Option<campaign::SelectiveOptimization>,
+    #[prost(message, optional, tag = "54")]
+    pub optimization_goal_setting: ::core::option::Option<campaign::OptimizationGoalSetting>,
+    #[prost(message, optional, tag = "46")]
+    pub tracking_setting: ::core::option::Option<campaign::TrackingSetting>,
+    #[prost(string, tag = "68")]
+    pub engine_id: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_field_type_enum::AssetFieldType",
+        repeated,
+        tag = "69"
+    )]
+    pub excluded_parent_asset_field_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "79")]
+    pub create_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "84")]
+    pub creation_time: ::prost::alloc::string::String,
+    #[prost(string, tag = "70")]
+    pub last_modified_time: ::prost::alloc::string::String,
+    #[prost(bool, optional, tag = "72")]
+    pub url_expansion_opt_out: ::core::option::Option<bool>,
+    #[prost(
+        oneof = "campaign::CampaignBiddingStrategy",
+        tags = "67, 74, 24, 25, 30, 31, 26, 48, 29, 27, 34, 41"
+    )]
+    pub campaign_bidding_strategy: ::core::option::Option<campaign::CampaignBiddingStrategy>,
 }
 /// Nested message and enum types in `Campaign`.
 pub mod campaign {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NetworkSettings {
-#[prost(bool, optional, tag = "5")]
-pub target_google_search: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "6")]
-pub target_search_network: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "7")]
-pub target_content_network: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "8")]
-pub target_partner_search_network: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DynamicSearchAdsSetting {
-#[prost(string, tag = "6")]
-pub domain_name: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(bool, optional, tag = "8")]
-pub use_supplied_urls_only: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ShoppingSetting {
-#[prost(int64, optional, tag = "5")]
-pub merchant_id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "6")]
-pub sales_country: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, tag = "10")]
-pub feed_label: ::prost::alloc::string::String,
-#[prost(int32, optional, tag = "7")]
-pub campaign_priority: ::core::option::Option<i32>,
-#[prost(bool, optional, tag = "8")]
-pub enable_local: ::core::option::Option<bool>,
-#[prost(bool, tag = "9")]
-pub use_vehicle_inventory: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TrackingSetting {
-#[prost(string, optional, tag = "2")]
-pub tracking_url: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GeoTargetTypeSetting {
-#[prost(enumeration = "super::super::enums::positive_geo_target_type_enum::PositiveGeoTargetType", tag = "1")]
-pub positive_geo_target_type: i32,
-#[prost(enumeration = "super::super::enums::negative_geo_target_type_enum::NegativeGeoTargetType", tag = "2")]
-pub negative_geo_target_type: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SelectiveOptimization {
-#[prost(string, repeated, tag = "2")]
-pub conversion_actions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OptimizationGoalSetting {
-#[prost(enumeration = "super::super::enums::optimization_goal_type_enum::OptimizationGoalType", repeated, tag = "1")]
-pub optimization_goal_types: ::prost::alloc::vec::Vec<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum CampaignBiddingStrategy {
-#[prost(string, tag = "67")]
-BiddingStrategy(::prost::alloc::string::String),
-#[prost(message, tag = "74")]
-ManualCpa(super::super::common::ManualCpa),
-#[prost(message, tag = "24")]
-ManualCpc(super::super::common::ManualCpc),
-#[prost(message, tag = "25")]
-ManualCpm(super::super::common::ManualCpm),
-#[prost(message, tag = "30")]
-MaximizeConversions(super::super::common::MaximizeConversions),
-#[prost(message, tag = "31")]
-MaximizeConversionValue(super::super::common::MaximizeConversionValue),
-#[prost(message, tag = "26")]
-TargetCpa(super::super::common::TargetCpa),
-#[prost(message, tag = "48")]
-TargetImpressionShare(super::super::common::TargetImpressionShare),
-#[prost(message, tag = "29")]
-TargetRoas(super::super::common::TargetRoas),
-#[prost(message, tag = "27")]
-TargetSpend(super::super::common::TargetSpend),
-#[prost(message, tag = "34")]
-PercentCpc(super::super::common::PercentCpc),
-#[prost(message, tag = "41")]
-TargetCpm(super::super::common::TargetCpm),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct NetworkSettings {
+        #[prost(bool, optional, tag = "5")]
+        pub target_google_search: ::core::option::Option<bool>,
+        #[prost(bool, optional, tag = "6")]
+        pub target_search_network: ::core::option::Option<bool>,
+        #[prost(bool, optional, tag = "7")]
+        pub target_content_network: ::core::option::Option<bool>,
+        #[prost(bool, optional, tag = "8")]
+        pub target_partner_search_network: ::core::option::Option<bool>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DynamicSearchAdsSetting {
+        #[prost(string, tag = "6")]
+        pub domain_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "7")]
+        pub language_code: ::prost::alloc::string::String,
+        #[prost(bool, optional, tag = "8")]
+        pub use_supplied_urls_only: ::core::option::Option<bool>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ShoppingSetting {
+        #[prost(int64, optional, tag = "5")]
+        pub merchant_id: ::core::option::Option<i64>,
+        #[prost(string, optional, tag = "6")]
+        pub sales_country: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(string, tag = "10")]
+        pub feed_label: ::prost::alloc::string::String,
+        #[prost(int32, optional, tag = "7")]
+        pub campaign_priority: ::core::option::Option<i32>,
+        #[prost(bool, optional, tag = "8")]
+        pub enable_local: ::core::option::Option<bool>,
+        #[prost(bool, tag = "9")]
+        pub use_vehicle_inventory: bool,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TrackingSetting {
+        #[prost(string, optional, tag = "2")]
+        pub tracking_url: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct GeoTargetTypeSetting {
+        #[prost(
+            enumeration = "super::super::enums::positive_geo_target_type_enum::PositiveGeoTargetType",
+            tag = "1"
+        )]
+        pub positive_geo_target_type: i32,
+        #[prost(
+            enumeration = "super::super::enums::negative_geo_target_type_enum::NegativeGeoTargetType",
+            tag = "2"
+        )]
+        pub negative_geo_target_type: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SelectiveOptimization {
+        #[prost(string, repeated, tag = "2")]
+        pub conversion_actions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OptimizationGoalSetting {
+        #[prost(
+            enumeration = "super::super::enums::optimization_goal_type_enum::OptimizationGoalType",
+            repeated,
+            tag = "1"
+        )]
+        pub optimization_goal_types: ::prost::alloc::vec::Vec<i32>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum CampaignBiddingStrategy {
+        #[prost(string, tag = "67")]
+        BiddingStrategy(::prost::alloc::string::String),
+        #[prost(message, tag = "74")]
+        ManualCpa(super::super::common::ManualCpa),
+        #[prost(message, tag = "24")]
+        ManualCpc(super::super::common::ManualCpc),
+        #[prost(message, tag = "25")]
+        ManualCpm(super::super::common::ManualCpm),
+        #[prost(message, tag = "30")]
+        MaximizeConversions(super::super::common::MaximizeConversions),
+        #[prost(message, tag = "31")]
+        MaximizeConversionValue(super::super::common::MaximizeConversionValue),
+        #[prost(message, tag = "26")]
+        TargetCpa(super::super::common::TargetCpa),
+        #[prost(message, tag = "48")]
+        TargetImpressionShare(super::super::common::TargetImpressionShare),
+        #[prost(message, tag = "29")]
+        TargetRoas(super::super::common::TargetRoas),
+        #[prost(message, tag = "27")]
+        TargetSpend(super::super::common::TargetSpend),
+        #[prost(message, tag = "34")]
+        PercentCpc(super::super::common::PercentCpc),
+        #[prost(message, tag = "41")]
+        TargetCpm(super::super::common::TargetCpm),
+    }
 }

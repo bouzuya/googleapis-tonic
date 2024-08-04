@@ -2,726 +2,973 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Process {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(map = "string, message", tag = "3")]
-pub attributes: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
-#[prost(message, optional, tag = "4")]
-pub origin: ::core::option::Option<Origin>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(map = "string, message", tag = "3")]
+    pub attributes:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+    #[prost(message, optional, tag = "4")]
+    pub origin: ::core::option::Option<Origin>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Run {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(map = "string, message", tag = "3")]
-pub attributes: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "run::State", tag = "6")]
-pub state: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(map = "string, message", tag = "3")]
+    pub attributes:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "run::State", tag = "6")]
+    pub state: i32,
 }
 /// Nested message and enum types in `Run`.
 pub mod run {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unknown = 0,
-Started = 1,
-Completed = 2,
-Failed = 3,
-Aborted = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unknown => "UNKNOWN",
-State::Started => "STARTED",
-State::Completed => "COMPLETED",
-State::Failed => "FAILED",
-State::Aborted => "ABORTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"STARTED" => Some(Self::Started),
-"COMPLETED" => Some(Self::Completed),
-"FAILED" => Some(Self::Failed),
-"ABORTED" => Some(Self::Aborted),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unknown = 0,
+        Started = 1,
+        Completed = 2,
+        Failed = 3,
+        Aborted = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unknown => "UNKNOWN",
+                State::Started => "STARTED",
+                State::Completed => "COMPLETED",
+                State::Failed => "FAILED",
+                State::Aborted => "ABORTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "STARTED" => Some(Self::Started),
+                "COMPLETED" => Some(Self::Completed),
+                "FAILED" => Some(Self::Failed),
+                "ABORTED" => Some(Self::Aborted),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LineageEvent {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "8")]
-pub links: ::prost::alloc::vec::Vec<EventLink>,
-#[prost(message, optional, tag = "6")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "8")]
+    pub links: ::prost::alloc::vec::Vec<EventLink>,
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventLink {
-#[prost(message, optional, tag = "1")]
-pub source: ::core::option::Option<EntityReference>,
-#[prost(message, optional, tag = "2")]
-pub target: ::core::option::Option<EntityReference>,
+    #[prost(message, optional, tag = "1")]
+    pub source: ::core::option::Option<EntityReference>,
+    #[prost(message, optional, tag = "2")]
+    pub target: ::core::option::Option<EntityReference>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityReference {
-#[prost(string, tag = "1")]
-pub fully_qualified_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub fully_qualified_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(enumeration = "operation_metadata::State", tag = "1")]
-pub state: i32,
-#[prost(enumeration = "operation_metadata::Type", tag = "2")]
-pub operation_type: i32,
-#[prost(string, tag = "3")]
-pub resource: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub resource_uuid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "operation_metadata::State", tag = "1")]
+    pub state: i32,
+    #[prost(enumeration = "operation_metadata::Type", tag = "2")]
+    pub operation_type: i32,
+    #[prost(string, tag = "3")]
+    pub resource: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub resource_uuid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Pending = 1,
-Running = 2,
-Succeeded = 3,
-Failed = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Pending => "PENDING",
-State::Running => "RUNNING",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"RUNNING" => Some(Self::Running),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-Delete = 1,
-Create = 2,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::Delete => "DELETE",
-Type::Create => "CREATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"DELETE" => Some(Self::Delete),
-"CREATE" => Some(Self::Create),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Pending = 1,
+        Running = 2,
+        Succeeded = 3,
+        Failed = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Pending => "PENDING",
+                State::Running => "RUNNING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        Delete = 1,
+        Create = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Delete => "DELETE",
+                Type::Create => "CREATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DELETE" => Some(Self::Delete),
+                "CREATE" => Some(Self::Create),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessOpenLineageRunEventRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub open_lineage: ::core::option::Option<::prost_types::Struct>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub open_lineage: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessOpenLineageRunEventResponse {
-#[prost(string, tag = "1")]
-pub process: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub run: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub lineage_events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub process: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub run: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub lineage_events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProcessRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub process: ::core::option::Option<Process>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub process: ::core::option::Option<Process>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProcessRequest {
-#[prost(message, optional, tag = "1")]
-pub process: ::core::option::Option<Process>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
+    #[prost(message, optional, tag = "1")]
+    pub process: ::core::option::Option<Process>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProcessRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProcessesResponse {
-#[prost(message, repeated, tag = "1")]
-pub processes: ::prost::alloc::vec::Vec<Process>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub processes: ::prost::alloc::vec::Vec<Process>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteProcessRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_missing: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRunRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub run: ::core::option::Option<Run>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub run: ::core::option::Option<Run>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRunRequest {
-#[prost(message, optional, tag = "1")]
-pub run: ::core::option::Option<Run>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
+    #[prost(message, optional, tag = "1")]
+    pub run: ::core::option::Option<Run>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRunsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRunsResponse {
-#[prost(message, repeated, tag = "1")]
-pub runs: ::prost::alloc::vec::Vec<Run>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub runs: ::prost::alloc::vec::Vec<Run>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_missing: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLineageEventRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub lineage_event: ::core::option::Option<LineageEvent>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub lineage_event: ::core::option::Option<LineageEvent>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLineageEventRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLineageEventsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLineageEventsResponse {
-#[prost(message, repeated, tag = "1")]
-pub lineage_events: ::prost::alloc::vec::Vec<LineageEvent>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub lineage_events: ::prost::alloc::vec::Vec<LineageEvent>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLineageEventRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_missing: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchLinksRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(oneof = "search_links_request::Criteria", tags = "4, 5")]
-pub criteria: ::core::option::Option<search_links_request::Criteria>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(oneof = "search_links_request::Criteria", tags = "4, 5")]
+    pub criteria: ::core::option::Option<search_links_request::Criteria>,
 }
 /// Nested message and enum types in `SearchLinksRequest`.
 pub mod search_links_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Criteria {
-#[prost(message, tag = "4")]
-Source(super::EntityReference),
-#[prost(message, tag = "5")]
-Target(super::EntityReference),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Criteria {
+        #[prost(message, tag = "4")]
+        Source(super::EntityReference),
+        #[prost(message, tag = "5")]
+        Target(super::EntityReference),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchLinksResponse {
-#[prost(message, repeated, tag = "1")]
-pub links: ::prost::alloc::vec::Vec<Link>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub links: ::prost::alloc::vec::Vec<Link>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Link {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub source: ::core::option::Option<EntityReference>,
-#[prost(message, optional, tag = "3")]
-pub target: ::core::option::Option<EntityReference>,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub source: ::core::option::Option<EntityReference>,
+    #[prost(message, optional, tag = "3")]
+    pub target: ::core::option::Option<EntityReference>,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchSearchLinkProcessesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchSearchLinkProcessesResponse {
-#[prost(message, repeated, tag = "1")]
-pub process_links: ::prost::alloc::vec::Vec<ProcessLinks>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub process_links: ::prost::alloc::vec::Vec<ProcessLinks>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessLinks {
-#[prost(string, tag = "1")]
-pub process: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub links: ::prost::alloc::vec::Vec<ProcessLinkInfo>,
+    #[prost(string, tag = "1")]
+    pub process: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub links: ::prost::alloc::vec::Vec<ProcessLinkInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessLinkInfo {
-#[prost(string, tag = "1")]
-pub link: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub link: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Origin {
-#[prost(enumeration = "origin::SourceType", tag = "1")]
-pub source_type: i32,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "origin::SourceType", tag = "1")]
+    pub source_type: i32,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Origin`.
 pub mod origin {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SourceType {
-Unspecified = 0,
-Custom = 1,
-Bigquery = 2,
-DataFusion = 3,
-Composer = 4,
-LookerStudio = 5,
-Dataproc = 6,
-}
-impl SourceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
-SourceType::Custom => "CUSTOM",
-SourceType::Bigquery => "BIGQUERY",
-SourceType::DataFusion => "DATA_FUSION",
-SourceType::Composer => "COMPOSER",
-SourceType::LookerStudio => "LOOKER_STUDIO",
-SourceType::Dataproc => "DATAPROC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CUSTOM" => Some(Self::Custom),
-"BIGQUERY" => Some(Self::Bigquery),
-"DATA_FUSION" => Some(Self::DataFusion),
-"COMPOSER" => Some(Self::Composer),
-"LOOKER_STUDIO" => Some(Self::LookerStudio),
-"DATAPROC" => Some(Self::Dataproc),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SourceType {
+        Unspecified = 0,
+        Custom = 1,
+        Bigquery = 2,
+        DataFusion = 3,
+        Composer = 4,
+        LookerStudio = 5,
+        Dataproc = 6,
+    }
+    impl SourceType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SourceType::Unspecified => "SOURCE_TYPE_UNSPECIFIED",
+                SourceType::Custom => "CUSTOM",
+                SourceType::Bigquery => "BIGQUERY",
+                SourceType::DataFusion => "DATA_FUSION",
+                SourceType::Composer => "COMPOSER",
+                SourceType::LookerStudio => "LOOKER_STUDIO",
+                SourceType::Dataproc => "DATAPROC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CUSTOM" => Some(Self::Custom),
+                "BIGQUERY" => Some(Self::Bigquery),
+                "DATA_FUSION" => Some(Self::DataFusion),
+                "COMPOSER" => Some(Self::Composer),
+                "LOOKER_STUDIO" => Some(Self::LookerStudio),
+                "DATAPROC" => Some(Self::Dataproc),
+                _ => None,
+            }
+        }
+    }
 }
 /// Generated client implementations.
 pub mod lineage_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Lineage is used to track data flows between assets over time. You can
-/// create [LineageEvents][google.cloud.datacatalog.lineage.v1.LineageEvent]
-/// to record lineage between multiple sources and a single target, for
-/// example, when table data is based on data from multiple tables.
-#[derive(Debug, Clone)]
-pub struct LineageClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> LineageClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> LineageClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-LineageClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates new lineage events together with their parents: process and run.
-/// Updates the process and run if they already exist.
-/// Mapped from Open Lineage specification:
-/// https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
-pub async fn process_open_lineage_run_event(&mut self, request: impl tonic::IntoRequest<super::ProcessOpenLineageRunEventRequest>) -> std::result::Result<tonic::Response<super::ProcessOpenLineageRunEventResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/ProcessOpenLineageRunEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "ProcessOpenLineageRunEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new process.
-pub async fn create_process(&mut self, request: impl tonic::IntoRequest<super::CreateProcessRequest>) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/CreateProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "CreateProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a process.
-pub async fn update_process(&mut self, request: impl tonic::IntoRequest<super::UpdateProcessRequest>) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/UpdateProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "UpdateProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the details of the specified process.
-pub async fn get_process(&mut self, request: impl tonic::IntoRequest<super::GetProcessRequest>) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/GetProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "GetProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// List processes in the given project and location. List order is descending
-/// by insertion time.
-pub async fn list_processes(&mut self, request: impl tonic::IntoRequest<super::ListProcessesRequest>) -> std::result::Result<tonic::Response<super::ListProcessesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/ListProcesses");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "ListProcesses"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the process with the specified name.
-pub async fn delete_process(&mut self, request: impl tonic::IntoRequest<super::DeleteProcessRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/DeleteProcess");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "DeleteProcess"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new run.
-pub async fn create_run(&mut self, request: impl tonic::IntoRequest<super::CreateRunRequest>) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/CreateRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "CreateRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a run.
-pub async fn update_run(&mut self, request: impl tonic::IntoRequest<super::UpdateRunRequest>) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/UpdateRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "UpdateRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the details of the specified run.
-pub async fn get_run(&mut self, request: impl tonic::IntoRequest<super::GetRunRequest>) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/GetRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "GetRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists runs in the given project and location. List order is descending by
-/// `start_time`.
-pub async fn list_runs(&mut self, request: impl tonic::IntoRequest<super::ListRunsRequest>) -> std::result::Result<tonic::Response<super::ListRunsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/ListRuns");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "ListRuns"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the run with the specified name.
-pub async fn delete_run(&mut self, request: impl tonic::IntoRequest<super::DeleteRunRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/DeleteRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "DeleteRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new lineage event.
-pub async fn create_lineage_event(&mut self, request: impl tonic::IntoRequest<super::CreateLineageEventRequest>) -> std::result::Result<tonic::Response<super::LineageEvent>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/CreateLineageEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "CreateLineageEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a specified lineage event.
-pub async fn get_lineage_event(&mut self, request: impl tonic::IntoRequest<super::GetLineageEventRequest>) -> std::result::Result<tonic::Response<super::LineageEvent>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/GetLineageEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "GetLineageEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists lineage events in the given project and location. The list order is
-/// not defined.
-pub async fn list_lineage_events(&mut self, request: impl tonic::IntoRequest<super::ListLineageEventsRequest>) -> std::result::Result<tonic::Response<super::ListLineageEventsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/ListLineageEvents");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "ListLineageEvents"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes the lineage event with the specified name.
-pub async fn delete_lineage_event(&mut self, request: impl tonic::IntoRequest<super::DeleteLineageEventRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/DeleteLineageEvent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "DeleteLineageEvent"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieve a list of links connected to a specific asset.
-/// Links represent the data flow between **source** (upstream)
-/// and **target** (downstream) assets in transformation pipelines.
-/// Links are stored in the same project as the Lineage Events that create
-/// them.
-///
-/// You can retrieve links in every project where you have the
-/// `datalineage.events.get` permission. The project provided in the URL
-/// is used for Billing and Quota.
-pub async fn search_links(&mut self, request: impl tonic::IntoRequest<super::SearchLinksRequest>) -> std::result::Result<tonic::Response<super::SearchLinksResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/SearchLinks");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "SearchLinks"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieve information about LineageProcesses associated with specific
-/// links. LineageProcesses are transformation pipelines that result in data
-/// flowing from **source** to **target** assets. Links between assets
-/// represent this operation.
-///
-/// If you have specific link names, you can use this method to
-/// verify which LineageProcesses contribute to creating those links.
-/// See the
-/// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]
-/// method for more information on how to retrieve link name.
-///
-/// You can retrieve the LineageProcess information in every project where you
-/// have the `datalineage.events.get` permission. The project provided in the
-/// URL is used for Billing and Quota.
-pub async fn batch_search_link_processes(&mut self, request: impl tonic::IntoRequest<super::BatchSearchLinkProcessesRequest>) -> std::result::Result<tonic::Response<super::BatchSearchLinkProcessesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.lineage.v1.Lineage/BatchSearchLinkProcesses");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.lineage.v1.Lineage", "BatchSearchLinkProcesses"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Lineage is used to track data flows between assets over time. You can
+    /// create [LineageEvents][google.cloud.datacatalog.lineage.v1.LineageEvent]
+    /// to record lineage between multiple sources and a single target, for
+    /// example, when table data is based on data from multiple tables.
+    #[derive(Debug, Clone)]
+    pub struct LineageClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> LineageClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> LineageClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            LineageClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates new lineage events together with their parents: process and run.
+        /// Updates the process and run if they already exist.
+        /// Mapped from Open Lineage specification:
+        /// https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
+        pub async fn process_open_lineage_run_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ProcessOpenLineageRunEventRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ProcessOpenLineageRunEventResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/ProcessOpenLineageRunEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "ProcessOpenLineageRunEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new process.
+        pub async fn create_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateProcessRequest>,
+        ) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/CreateProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "CreateProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a process.
+        pub async fn update_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateProcessRequest>,
+        ) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/UpdateProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "UpdateProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the details of the specified process.
+        pub async fn get_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProcessRequest>,
+        ) -> std::result::Result<tonic::Response<super::Process>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/GetProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "GetProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List processes in the given project and location. List order is descending
+        /// by insertion time.
+        pub async fn list_processes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProcessesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListProcessesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/ListProcesses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "ListProcesses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the process with the specified name.
+        pub async fn delete_process(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteProcessRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/DeleteProcess",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "DeleteProcess",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new run.
+        pub async fn create_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/CreateRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "CreateRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a run.
+        pub async fn update_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/UpdateRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "UpdateRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the details of the specified run.
+        pub async fn get_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::Run>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/GetRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "GetRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists runs in the given project and location. List order is descending by
+        /// `start_time`.
+        pub async fn list_runs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRunsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListRunsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/ListRuns",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "ListRuns",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the run with the specified name.
+        pub async fn delete_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRunRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/DeleteRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "DeleteRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new lineage event.
+        pub async fn create_lineage_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateLineageEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::LineageEvent>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/CreateLineageEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "CreateLineageEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a specified lineage event.
+        pub async fn get_lineage_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetLineageEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::LineageEvent>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/GetLineageEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "GetLineageEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists lineage events in the given project and location. The list order is
+        /// not defined.
+        pub async fn list_lineage_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListLineageEventsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListLineageEventsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/ListLineageEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "ListLineageEvents",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes the lineage event with the specified name.
+        pub async fn delete_lineage_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteLineageEventRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/DeleteLineageEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "DeleteLineageEvent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieve a list of links connected to a specific asset.
+        /// Links represent the data flow between **source** (upstream)
+        /// and **target** (downstream) assets in transformation pipelines.
+        /// Links are stored in the same project as the Lineage Events that create
+        /// them.
+        ///
+        /// You can retrieve links in every project where you have the
+        /// `datalineage.events.get` permission. The project provided in the URL
+        /// is used for Billing and Quota.
+        pub async fn search_links(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchLinksRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchLinksResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/SearchLinks",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "SearchLinks",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieve information about LineageProcesses associated with specific
+        /// links. LineageProcesses are transformation pipelines that result in data
+        /// flowing from **source** to **target** assets. Links between assets
+        /// represent this operation.
+        ///
+        /// If you have specific link names, you can use this method to
+        /// verify which LineageProcesses contribute to creating those links.
+        /// See the
+        /// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]
+        /// method for more information on how to retrieve link name.
+        ///
+        /// You can retrieve the LineageProcess information in every project where you
+        /// have the `datalineage.events.get` permission. The project provided in the
+        /// URL is used for Billing and Quota.
+        pub async fn batch_search_link_processes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchSearchLinkProcessesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchSearchLinkProcessesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.datacatalog.lineage.v1.Lineage/BatchSearchLinkProcesses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.datacatalog.lineage.v1.Lineage",
+                "BatchSearchLinkProcesses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

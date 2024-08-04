@@ -2,624 +2,624 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IncidentList {
-#[prost(message, repeated, tag = "1")]
-pub monitored_resources: ::prost::alloc::vec::Vec<super::super::super::api::MonitoredResource>,
-#[prost(string, repeated, tag = "2")]
-pub policy_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub monitored_resources: ::prost::alloc::vec::Vec<super::super::super::api::MonitoredResource>,
+    #[prost(string, repeated, tag = "2")]
+    pub policy_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CollapsibleGroup {
-#[prost(bool, tag = "1")]
-pub collapsed: bool,
+    #[prost(bool, tag = "1")]
+    pub collapsed: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Aggregation {
-#[prost(message, optional, tag = "1")]
-pub alignment_period: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "aggregation::Aligner", tag = "2")]
-pub per_series_aligner: i32,
-#[prost(enumeration = "aggregation::Reducer", tag = "4")]
-pub cross_series_reducer: i32,
-#[prost(string, repeated, tag = "5")]
-pub group_by_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub alignment_period: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "aggregation::Aligner", tag = "2")]
+    pub per_series_aligner: i32,
+    #[prost(enumeration = "aggregation::Reducer", tag = "4")]
+    pub cross_series_reducer: i32,
+    #[prost(string, repeated, tag = "5")]
+    pub group_by_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Aggregation`.
 pub mod aggregation {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Aligner {
-AlignNone = 0,
-AlignDelta = 1,
-AlignRate = 2,
-AlignInterpolate = 3,
-AlignNextOlder = 4,
-AlignMin = 10,
-AlignMax = 11,
-AlignMean = 12,
-AlignCount = 13,
-AlignSum = 14,
-AlignStddev = 15,
-AlignCountTrue = 16,
-AlignCountFalse = 24,
-AlignFractionTrue = 17,
-AlignPercentile99 = 18,
-AlignPercentile95 = 19,
-AlignPercentile50 = 20,
-AlignPercentile05 = 21,
-AlignPercentChange = 23,
-}
-impl Aligner {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Aligner::AlignNone => "ALIGN_NONE",
-Aligner::AlignDelta => "ALIGN_DELTA",
-Aligner::AlignRate => "ALIGN_RATE",
-Aligner::AlignInterpolate => "ALIGN_INTERPOLATE",
-Aligner::AlignNextOlder => "ALIGN_NEXT_OLDER",
-Aligner::AlignMin => "ALIGN_MIN",
-Aligner::AlignMax => "ALIGN_MAX",
-Aligner::AlignMean => "ALIGN_MEAN",
-Aligner::AlignCount => "ALIGN_COUNT",
-Aligner::AlignSum => "ALIGN_SUM",
-Aligner::AlignStddev => "ALIGN_STDDEV",
-Aligner::AlignCountTrue => "ALIGN_COUNT_TRUE",
-Aligner::AlignCountFalse => "ALIGN_COUNT_FALSE",
-Aligner::AlignFractionTrue => "ALIGN_FRACTION_TRUE",
-Aligner::AlignPercentile99 => "ALIGN_PERCENTILE_99",
-Aligner::AlignPercentile95 => "ALIGN_PERCENTILE_95",
-Aligner::AlignPercentile50 => "ALIGN_PERCENTILE_50",
-Aligner::AlignPercentile05 => "ALIGN_PERCENTILE_05",
-Aligner::AlignPercentChange => "ALIGN_PERCENT_CHANGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ALIGN_NONE" => Some(Self::AlignNone),
-"ALIGN_DELTA" => Some(Self::AlignDelta),
-"ALIGN_RATE" => Some(Self::AlignRate),
-"ALIGN_INTERPOLATE" => Some(Self::AlignInterpolate),
-"ALIGN_NEXT_OLDER" => Some(Self::AlignNextOlder),
-"ALIGN_MIN" => Some(Self::AlignMin),
-"ALIGN_MAX" => Some(Self::AlignMax),
-"ALIGN_MEAN" => Some(Self::AlignMean),
-"ALIGN_COUNT" => Some(Self::AlignCount),
-"ALIGN_SUM" => Some(Self::AlignSum),
-"ALIGN_STDDEV" => Some(Self::AlignStddev),
-"ALIGN_COUNT_TRUE" => Some(Self::AlignCountTrue),
-"ALIGN_COUNT_FALSE" => Some(Self::AlignCountFalse),
-"ALIGN_FRACTION_TRUE" => Some(Self::AlignFractionTrue),
-"ALIGN_PERCENTILE_99" => Some(Self::AlignPercentile99),
-"ALIGN_PERCENTILE_95" => Some(Self::AlignPercentile95),
-"ALIGN_PERCENTILE_50" => Some(Self::AlignPercentile50),
-"ALIGN_PERCENTILE_05" => Some(Self::AlignPercentile05),
-"ALIGN_PERCENT_CHANGE" => Some(Self::AlignPercentChange),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Reducer {
-ReduceNone = 0,
-ReduceMean = 1,
-ReduceMin = 2,
-ReduceMax = 3,
-ReduceSum = 4,
-ReduceStddev = 5,
-ReduceCount = 6,
-ReduceCountTrue = 7,
-ReduceCountFalse = 15,
-ReduceFractionTrue = 8,
-ReducePercentile99 = 9,
-ReducePercentile95 = 10,
-ReducePercentile50 = 11,
-ReducePercentile05 = 12,
-}
-impl Reducer {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Reducer::ReduceNone => "REDUCE_NONE",
-Reducer::ReduceMean => "REDUCE_MEAN",
-Reducer::ReduceMin => "REDUCE_MIN",
-Reducer::ReduceMax => "REDUCE_MAX",
-Reducer::ReduceSum => "REDUCE_SUM",
-Reducer::ReduceStddev => "REDUCE_STDDEV",
-Reducer::ReduceCount => "REDUCE_COUNT",
-Reducer::ReduceCountTrue => "REDUCE_COUNT_TRUE",
-Reducer::ReduceCountFalse => "REDUCE_COUNT_FALSE",
-Reducer::ReduceFractionTrue => "REDUCE_FRACTION_TRUE",
-Reducer::ReducePercentile99 => "REDUCE_PERCENTILE_99",
-Reducer::ReducePercentile95 => "REDUCE_PERCENTILE_95",
-Reducer::ReducePercentile50 => "REDUCE_PERCENTILE_50",
-Reducer::ReducePercentile05 => "REDUCE_PERCENTILE_05",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REDUCE_NONE" => Some(Self::ReduceNone),
-"REDUCE_MEAN" => Some(Self::ReduceMean),
-"REDUCE_MIN" => Some(Self::ReduceMin),
-"REDUCE_MAX" => Some(Self::ReduceMax),
-"REDUCE_SUM" => Some(Self::ReduceSum),
-"REDUCE_STDDEV" => Some(Self::ReduceStddev),
-"REDUCE_COUNT" => Some(Self::ReduceCount),
-"REDUCE_COUNT_TRUE" => Some(Self::ReduceCountTrue),
-"REDUCE_COUNT_FALSE" => Some(Self::ReduceCountFalse),
-"REDUCE_FRACTION_TRUE" => Some(Self::ReduceFractionTrue),
-"REDUCE_PERCENTILE_99" => Some(Self::ReducePercentile99),
-"REDUCE_PERCENTILE_95" => Some(Self::ReducePercentile95),
-"REDUCE_PERCENTILE_50" => Some(Self::ReducePercentile50),
-"REDUCE_PERCENTILE_05" => Some(Self::ReducePercentile05),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Aligner {
+        AlignNone = 0,
+        AlignDelta = 1,
+        AlignRate = 2,
+        AlignInterpolate = 3,
+        AlignNextOlder = 4,
+        AlignMin = 10,
+        AlignMax = 11,
+        AlignMean = 12,
+        AlignCount = 13,
+        AlignSum = 14,
+        AlignStddev = 15,
+        AlignCountTrue = 16,
+        AlignCountFalse = 24,
+        AlignFractionTrue = 17,
+        AlignPercentile99 = 18,
+        AlignPercentile95 = 19,
+        AlignPercentile50 = 20,
+        AlignPercentile05 = 21,
+        AlignPercentChange = 23,
+    }
+    impl Aligner {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Aligner::AlignNone => "ALIGN_NONE",
+                Aligner::AlignDelta => "ALIGN_DELTA",
+                Aligner::AlignRate => "ALIGN_RATE",
+                Aligner::AlignInterpolate => "ALIGN_INTERPOLATE",
+                Aligner::AlignNextOlder => "ALIGN_NEXT_OLDER",
+                Aligner::AlignMin => "ALIGN_MIN",
+                Aligner::AlignMax => "ALIGN_MAX",
+                Aligner::AlignMean => "ALIGN_MEAN",
+                Aligner::AlignCount => "ALIGN_COUNT",
+                Aligner::AlignSum => "ALIGN_SUM",
+                Aligner::AlignStddev => "ALIGN_STDDEV",
+                Aligner::AlignCountTrue => "ALIGN_COUNT_TRUE",
+                Aligner::AlignCountFalse => "ALIGN_COUNT_FALSE",
+                Aligner::AlignFractionTrue => "ALIGN_FRACTION_TRUE",
+                Aligner::AlignPercentile99 => "ALIGN_PERCENTILE_99",
+                Aligner::AlignPercentile95 => "ALIGN_PERCENTILE_95",
+                Aligner::AlignPercentile50 => "ALIGN_PERCENTILE_50",
+                Aligner::AlignPercentile05 => "ALIGN_PERCENTILE_05",
+                Aligner::AlignPercentChange => "ALIGN_PERCENT_CHANGE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ALIGN_NONE" => Some(Self::AlignNone),
+                "ALIGN_DELTA" => Some(Self::AlignDelta),
+                "ALIGN_RATE" => Some(Self::AlignRate),
+                "ALIGN_INTERPOLATE" => Some(Self::AlignInterpolate),
+                "ALIGN_NEXT_OLDER" => Some(Self::AlignNextOlder),
+                "ALIGN_MIN" => Some(Self::AlignMin),
+                "ALIGN_MAX" => Some(Self::AlignMax),
+                "ALIGN_MEAN" => Some(Self::AlignMean),
+                "ALIGN_COUNT" => Some(Self::AlignCount),
+                "ALIGN_SUM" => Some(Self::AlignSum),
+                "ALIGN_STDDEV" => Some(Self::AlignStddev),
+                "ALIGN_COUNT_TRUE" => Some(Self::AlignCountTrue),
+                "ALIGN_COUNT_FALSE" => Some(Self::AlignCountFalse),
+                "ALIGN_FRACTION_TRUE" => Some(Self::AlignFractionTrue),
+                "ALIGN_PERCENTILE_99" => Some(Self::AlignPercentile99),
+                "ALIGN_PERCENTILE_95" => Some(Self::AlignPercentile95),
+                "ALIGN_PERCENTILE_50" => Some(Self::AlignPercentile50),
+                "ALIGN_PERCENTILE_05" => Some(Self::AlignPercentile05),
+                "ALIGN_PERCENT_CHANGE" => Some(Self::AlignPercentChange),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Reducer {
+        ReduceNone = 0,
+        ReduceMean = 1,
+        ReduceMin = 2,
+        ReduceMax = 3,
+        ReduceSum = 4,
+        ReduceStddev = 5,
+        ReduceCount = 6,
+        ReduceCountTrue = 7,
+        ReduceCountFalse = 15,
+        ReduceFractionTrue = 8,
+        ReducePercentile99 = 9,
+        ReducePercentile95 = 10,
+        ReducePercentile50 = 11,
+        ReducePercentile05 = 12,
+    }
+    impl Reducer {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Reducer::ReduceNone => "REDUCE_NONE",
+                Reducer::ReduceMean => "REDUCE_MEAN",
+                Reducer::ReduceMin => "REDUCE_MIN",
+                Reducer::ReduceMax => "REDUCE_MAX",
+                Reducer::ReduceSum => "REDUCE_SUM",
+                Reducer::ReduceStddev => "REDUCE_STDDEV",
+                Reducer::ReduceCount => "REDUCE_COUNT",
+                Reducer::ReduceCountTrue => "REDUCE_COUNT_TRUE",
+                Reducer::ReduceCountFalse => "REDUCE_COUNT_FALSE",
+                Reducer::ReduceFractionTrue => "REDUCE_FRACTION_TRUE",
+                Reducer::ReducePercentile99 => "REDUCE_PERCENTILE_99",
+                Reducer::ReducePercentile95 => "REDUCE_PERCENTILE_95",
+                Reducer::ReducePercentile50 => "REDUCE_PERCENTILE_50",
+                Reducer::ReducePercentile05 => "REDUCE_PERCENTILE_05",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REDUCE_NONE" => Some(Self::ReduceNone),
+                "REDUCE_MEAN" => Some(Self::ReduceMean),
+                "REDUCE_MIN" => Some(Self::ReduceMin),
+                "REDUCE_MAX" => Some(Self::ReduceMax),
+                "REDUCE_SUM" => Some(Self::ReduceSum),
+                "REDUCE_STDDEV" => Some(Self::ReduceStddev),
+                "REDUCE_COUNT" => Some(Self::ReduceCount),
+                "REDUCE_COUNT_TRUE" => Some(Self::ReduceCountTrue),
+                "REDUCE_COUNT_FALSE" => Some(Self::ReduceCountFalse),
+                "REDUCE_FRACTION_TRUE" => Some(Self::ReduceFractionTrue),
+                "REDUCE_PERCENTILE_99" => Some(Self::ReducePercentile99),
+                "REDUCE_PERCENTILE_95" => Some(Self::ReducePercentile95),
+                "REDUCE_PERCENTILE_50" => Some(Self::ReducePercentile50),
+                "REDUCE_PERCENTILE_05" => Some(Self::ReducePercentile05),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PickTimeSeriesFilter {
-#[prost(enumeration = "pick_time_series_filter::Method", tag = "1")]
-pub ranking_method: i32,
-#[prost(int32, tag = "2")]
-pub num_time_series: i32,
-#[prost(enumeration = "pick_time_series_filter::Direction", tag = "3")]
-pub direction: i32,
-#[prost(message, optional, tag = "4")]
-pub interval: ::core::option::Option<super::super::super::r#type::Interval>,
+    #[prost(enumeration = "pick_time_series_filter::Method", tag = "1")]
+    pub ranking_method: i32,
+    #[prost(int32, tag = "2")]
+    pub num_time_series: i32,
+    #[prost(enumeration = "pick_time_series_filter::Direction", tag = "3")]
+    pub direction: i32,
+    #[prost(message, optional, tag = "4")]
+    pub interval: ::core::option::Option<super::super::super::r#type::Interval>,
 }
 /// Nested message and enum types in `PickTimeSeriesFilter`.
 pub mod pick_time_series_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Method {
-Unspecified = 0,
-Mean = 1,
-Max = 2,
-Min = 3,
-Sum = 4,
-Latest = 5,
-}
-impl Method {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Method::Unspecified => "METHOD_UNSPECIFIED",
-Method::Mean => "METHOD_MEAN",
-Method::Max => "METHOD_MAX",
-Method::Min => "METHOD_MIN",
-Method::Sum => "METHOD_SUM",
-Method::Latest => "METHOD_LATEST",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"METHOD_MEAN" => Some(Self::Mean),
-"METHOD_MAX" => Some(Self::Max),
-"METHOD_MIN" => Some(Self::Min),
-"METHOD_SUM" => Some(Self::Sum),
-"METHOD_LATEST" => Some(Self::Latest),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Direction {
-Unspecified = 0,
-Top = 1,
-Bottom = 2,
-}
-impl Direction {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-Direction::Top => "TOP",
-Direction::Bottom => "BOTTOM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
-"TOP" => Some(Self::Top),
-"BOTTOM" => Some(Self::Bottom),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Method {
+        Unspecified = 0,
+        Mean = 1,
+        Max = 2,
+        Min = 3,
+        Sum = 4,
+        Latest = 5,
+    }
+    impl Method {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Method::Unspecified => "METHOD_UNSPECIFIED",
+                Method::Mean => "METHOD_MEAN",
+                Method::Max => "METHOD_MAX",
+                Method::Min => "METHOD_MIN",
+                Method::Sum => "METHOD_SUM",
+                Method::Latest => "METHOD_LATEST",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "METHOD_MEAN" => Some(Self::Mean),
+                "METHOD_MAX" => Some(Self::Max),
+                "METHOD_MIN" => Some(Self::Min),
+                "METHOD_SUM" => Some(Self::Sum),
+                "METHOD_LATEST" => Some(Self::Latest),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Direction {
+        Unspecified = 0,
+        Top = 1,
+        Bottom = 2,
+    }
+    impl Direction {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
+                Direction::Top => "TOP",
+                Direction::Bottom => "BOTTOM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
+                "TOP" => Some(Self::Top),
+                "BOTTOM" => Some(Self::Bottom),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StatisticalTimeSeriesFilter {
-#[prost(enumeration = "statistical_time_series_filter::Method", tag = "1")]
-pub ranking_method: i32,
-#[prost(int32, tag = "2")]
-pub num_time_series: i32,
+    #[prost(enumeration = "statistical_time_series_filter::Method", tag = "1")]
+    pub ranking_method: i32,
+    #[prost(int32, tag = "2")]
+    pub num_time_series: i32,
 }
 /// Nested message and enum types in `StatisticalTimeSeriesFilter`.
 pub mod statistical_time_series_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Method {
-Unspecified = 0,
-ClusterOutlier = 1,
-}
-impl Method {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Method::Unspecified => "METHOD_UNSPECIFIED",
-Method::ClusterOutlier => "METHOD_CLUSTER_OUTLIER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"METHOD_CLUSTER_OUTLIER" => Some(Self::ClusterOutlier),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Method {
+        Unspecified = 0,
+        ClusterOutlier = 1,
+    }
+    impl Method {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Method::Unspecified => "METHOD_UNSPECIFIED",
+                Method::ClusterOutlier => "METHOD_CLUSTER_OUTLIER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "METHOD_CLUSTER_OUTLIER" => Some(Self::ClusterOutlier),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeriesQuery {
-#[prost(string, tag = "5")]
-pub unit_override: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub output_full_duration: bool,
-#[prost(oneof = "time_series_query::Source", tags = "1, 2, 3, 6")]
-pub source: ::core::option::Option<time_series_query::Source>,
+    #[prost(string, tag = "5")]
+    pub unit_override: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub output_full_duration: bool,
+    #[prost(oneof = "time_series_query::Source", tags = "1, 2, 3, 6")]
+    pub source: ::core::option::Option<time_series_query::Source>,
 }
 /// Nested message and enum types in `TimeSeriesQuery`.
 pub mod time_series_query {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-TimeSeriesFilter(super::TimeSeriesFilter),
-#[prost(message, tag = "2")]
-TimeSeriesFilterRatio(super::TimeSeriesFilterRatio),
-#[prost(string, tag = "3")]
-TimeSeriesQueryLanguage(::prost::alloc::string::String),
-#[prost(string, tag = "6")]
-PrometheusQuery(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        TimeSeriesFilter(super::TimeSeriesFilter),
+        #[prost(message, tag = "2")]
+        TimeSeriesFilterRatio(super::TimeSeriesFilterRatio),
+        #[prost(string, tag = "3")]
+        TimeSeriesQueryLanguage(::prost::alloc::string::String),
+        #[prost(string, tag = "6")]
+        PrometheusQuery(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeriesFilter {
-#[prost(string, tag = "1")]
-pub filter: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub aggregation: ::core::option::Option<Aggregation>,
-#[prost(message, optional, tag = "3")]
-pub secondary_aggregation: ::core::option::Option<Aggregation>,
-#[prost(oneof = "time_series_filter::OutputFilter", tags = "4, 5")]
-pub output_filter: ::core::option::Option<time_series_filter::OutputFilter>,
+    #[prost(string, tag = "1")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub aggregation: ::core::option::Option<Aggregation>,
+    #[prost(message, optional, tag = "3")]
+    pub secondary_aggregation: ::core::option::Option<Aggregation>,
+    #[prost(oneof = "time_series_filter::OutputFilter", tags = "4, 5")]
+    pub output_filter: ::core::option::Option<time_series_filter::OutputFilter>,
 }
 /// Nested message and enum types in `TimeSeriesFilter`.
 pub mod time_series_filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum OutputFilter {
-#[prost(message, tag = "4")]
-PickTimeSeriesFilter(super::PickTimeSeriesFilter),
-#[prost(message, tag = "5")]
-StatisticalTimeSeriesFilter(super::StatisticalTimeSeriesFilter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum OutputFilter {
+        #[prost(message, tag = "4")]
+        PickTimeSeriesFilter(super::PickTimeSeriesFilter),
+        #[prost(message, tag = "5")]
+        StatisticalTimeSeriesFilter(super::StatisticalTimeSeriesFilter),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeriesFilterRatio {
-#[prost(message, optional, tag = "1")]
-pub numerator: ::core::option::Option<time_series_filter_ratio::RatioPart>,
-#[prost(message, optional, tag = "2")]
-pub denominator: ::core::option::Option<time_series_filter_ratio::RatioPart>,
-#[prost(message, optional, tag = "3")]
-pub secondary_aggregation: ::core::option::Option<Aggregation>,
-#[prost(oneof = "time_series_filter_ratio::OutputFilter", tags = "4, 5")]
-pub output_filter: ::core::option::Option<time_series_filter_ratio::OutputFilter>,
+    #[prost(message, optional, tag = "1")]
+    pub numerator: ::core::option::Option<time_series_filter_ratio::RatioPart>,
+    #[prost(message, optional, tag = "2")]
+    pub denominator: ::core::option::Option<time_series_filter_ratio::RatioPart>,
+    #[prost(message, optional, tag = "3")]
+    pub secondary_aggregation: ::core::option::Option<Aggregation>,
+    #[prost(oneof = "time_series_filter_ratio::OutputFilter", tags = "4, 5")]
+    pub output_filter: ::core::option::Option<time_series_filter_ratio::OutputFilter>,
 }
 /// Nested message and enum types in `TimeSeriesFilterRatio`.
 pub mod time_series_filter_ratio {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RatioPart {
-#[prost(string, tag = "1")]
-pub filter: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub aggregation: ::core::option::Option<super::Aggregation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum OutputFilter {
-#[prost(message, tag = "4")]
-PickTimeSeriesFilter(super::PickTimeSeriesFilter),
-#[prost(message, tag = "5")]
-StatisticalTimeSeriesFilter(super::StatisticalTimeSeriesFilter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RatioPart {
+        #[prost(string, tag = "1")]
+        pub filter: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub aggregation: ::core::option::Option<super::Aggregation>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum OutputFilter {
+        #[prost(message, tag = "4")]
+        PickTimeSeriesFilter(super::PickTimeSeriesFilter),
+        #[prost(message, tag = "5")]
+        StatisticalTimeSeriesFilter(super::StatisticalTimeSeriesFilter),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Threshold {
-#[prost(string, tag = "1")]
-pub label: ::prost::alloc::string::String,
-#[prost(double, tag = "2")]
-pub value: f64,
-#[prost(enumeration = "threshold::Color", tag = "3")]
-pub color: i32,
-#[prost(enumeration = "threshold::Direction", tag = "4")]
-pub direction: i32,
-#[prost(enumeration = "threshold::TargetAxis", tag = "5")]
-pub target_axis: i32,
+    #[prost(string, tag = "1")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(double, tag = "2")]
+    pub value: f64,
+    #[prost(enumeration = "threshold::Color", tag = "3")]
+    pub color: i32,
+    #[prost(enumeration = "threshold::Direction", tag = "4")]
+    pub direction: i32,
+    #[prost(enumeration = "threshold::TargetAxis", tag = "5")]
+    pub target_axis: i32,
 }
 /// Nested message and enum types in `Threshold`.
 pub mod threshold {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Color {
-Unspecified = 0,
-Yellow = 4,
-Red = 6,
-}
-impl Color {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Color::Unspecified => "COLOR_UNSPECIFIED",
-Color::Yellow => "YELLOW",
-Color::Red => "RED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COLOR_UNSPECIFIED" => Some(Self::Unspecified),
-"YELLOW" => Some(Self::Yellow),
-"RED" => Some(Self::Red),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Direction {
-Unspecified = 0,
-Above = 1,
-Below = 2,
-}
-impl Direction {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-Direction::Above => "ABOVE",
-Direction::Below => "BELOW",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
-"ABOVE" => Some(Self::Above),
-"BELOW" => Some(Self::Below),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TargetAxis {
-Unspecified = 0,
-Y1 = 1,
-Y2 = 2,
-}
-impl TargetAxis {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TargetAxis::Unspecified => "TARGET_AXIS_UNSPECIFIED",
-TargetAxis::Y1 => "Y1",
-TargetAxis::Y2 => "Y2",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TARGET_AXIS_UNSPECIFIED" => Some(Self::Unspecified),
-"Y1" => Some(Self::Y1),
-"Y2" => Some(Self::Y2),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Color {
+        Unspecified = 0,
+        Yellow = 4,
+        Red = 6,
+    }
+    impl Color {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Color::Unspecified => "COLOR_UNSPECIFIED",
+                Color::Yellow => "YELLOW",
+                Color::Red => "RED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COLOR_UNSPECIFIED" => Some(Self::Unspecified),
+                "YELLOW" => Some(Self::Yellow),
+                "RED" => Some(Self::Red),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Direction {
+        Unspecified = 0,
+        Above = 1,
+        Below = 2,
+    }
+    impl Direction {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
+                Direction::Above => "ABOVE",
+                Direction::Below => "BELOW",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
+                "ABOVE" => Some(Self::Above),
+                "BELOW" => Some(Self::Below),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TargetAxis {
+        Unspecified = 0,
+        Y1 = 1,
+        Y2 = 2,
+    }
+    impl TargetAxis {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TargetAxis::Unspecified => "TARGET_AXIS_UNSPECIFIED",
+                TargetAxis::Y1 => "Y1",
+                TargetAxis::Y2 => "Y2",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TARGET_AXIS_UNSPECIFIED" => Some(Self::Unspecified),
+                "Y1" => Some(Self::Y1),
+                "Y2" => Some(Self::Y2),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SparkChartType {
-Unspecified = 0,
-SparkLine = 1,
-SparkBar = 2,
+    Unspecified = 0,
+    SparkLine = 1,
+    SparkBar = 2,
 }
 impl SparkChartType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SparkChartType::Unspecified => "SPARK_CHART_TYPE_UNSPECIFIED",
-SparkChartType::SparkLine => "SPARK_LINE",
-SparkChartType::SparkBar => "SPARK_BAR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SPARK_CHART_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SPARK_LINE" => Some(Self::SparkLine),
-"SPARK_BAR" => Some(Self::SparkBar),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SparkChartType::Unspecified => "SPARK_CHART_TYPE_UNSPECIFIED",
+            SparkChartType::SparkLine => "SPARK_LINE",
+            SparkChartType::SparkBar => "SPARK_BAR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SPARK_CHART_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "SPARK_LINE" => Some(Self::SparkLine),
+            "SPARK_BAR" => Some(Self::SparkBar),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Scorecard {
-#[prost(message, optional, tag = "1")]
-pub time_series_query: ::core::option::Option<TimeSeriesQuery>,
-#[prost(message, repeated, tag = "6")]
-pub thresholds: ::prost::alloc::vec::Vec<Threshold>,
-#[prost(oneof = "scorecard::DataView", tags = "4, 5, 7")]
-pub data_view: ::core::option::Option<scorecard::DataView>,
+    #[prost(message, optional, tag = "1")]
+    pub time_series_query: ::core::option::Option<TimeSeriesQuery>,
+    #[prost(message, repeated, tag = "6")]
+    pub thresholds: ::prost::alloc::vec::Vec<Threshold>,
+    #[prost(oneof = "scorecard::DataView", tags = "4, 5, 7")]
+    pub data_view: ::core::option::Option<scorecard::DataView>,
 }
 /// Nested message and enum types in `Scorecard`.
 pub mod scorecard {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GaugeView {
-#[prost(double, tag = "1")]
-pub lower_bound: f64,
-#[prost(double, tag = "2")]
-pub upper_bound: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SparkChartView {
-#[prost(enumeration = "super::SparkChartType", tag = "1")]
-pub spark_chart_type: i32,
-#[prost(message, optional, tag = "2")]
-pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum DataView {
-#[prost(message, tag = "4")]
-GaugeView(GaugeView),
-#[prost(message, tag = "5")]
-SparkChartView(SparkChartView),
-#[prost(message, tag = "7")]
-BlankView(()),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct GaugeView {
+        #[prost(double, tag = "1")]
+        pub lower_bound: f64,
+        #[prost(double, tag = "2")]
+        pub upper_bound: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SparkChartView {
+        #[prost(enumeration = "super::SparkChartType", tag = "1")]
+        pub spark_chart_type: i32,
+        #[prost(message, optional, tag = "2")]
+        pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum DataView {
+        #[prost(message, tag = "4")]
+        GaugeView(GaugeView),
+        #[prost(message, tag = "5")]
+        SparkChartView(SparkChartView),
+        #[prost(message, tag = "7")]
+        BlankView(()),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AlertChart {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ErrorReportingPanel {
-#[prost(string, repeated, tag = "1")]
-pub project_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "2")]
-pub services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub project_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogsPanel {
-#[prost(string, tag = "1")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PieChart {
-#[prost(message, repeated, tag = "1")]
-pub data_sets: ::prost::alloc::vec::Vec<pie_chart::PieChartDataSet>,
-#[prost(enumeration = "pie_chart::PieChartType", tag = "2")]
-pub chart_type: i32,
-#[prost(bool, tag = "4")]
-pub show_labels: bool,
+    #[prost(message, repeated, tag = "1")]
+    pub data_sets: ::prost::alloc::vec::Vec<pie_chart::PieChartDataSet>,
+    #[prost(enumeration = "pie_chart::PieChartType", tag = "2")]
+    pub chart_type: i32,
+    #[prost(bool, tag = "4")]
+    pub show_labels: bool,
 }
 /// Nested message and enum types in `PieChart`.
 pub mod pie_chart {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PieChartDataSet {
-#[prost(message, optional, tag = "1")]
-pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
-#[prost(string, tag = "2")]
-pub slice_name_template: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PieChartType {
-Unspecified = 0,
-Pie = 1,
-Donut = 2,
-}
-impl PieChartType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PieChartType::Unspecified => "PIE_CHART_TYPE_UNSPECIFIED",
-PieChartType::Pie => "PIE",
-PieChartType::Donut => "DONUT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PIE_CHART_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PIE" => Some(Self::Pie),
-"DONUT" => Some(Self::Donut),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PieChartDataSet {
+        #[prost(message, optional, tag = "1")]
+        pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
+        #[prost(string, tag = "2")]
+        pub slice_name_template: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PieChartType {
+        Unspecified = 0,
+        Pie = 1,
+        Donut = 2,
+    }
+    impl PieChartType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PieChartType::Unspecified => "PIE_CHART_TYPE_UNSPECIFIED",
+                PieChartType::Pie => "PIE",
+                PieChartType::Donut => "DONUT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PIE_CHART_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PIE" => Some(Self::Pie),
+                "DONUT" => Some(Self::Donut),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SectionHeader {
-#[prost(string, tag = "1")]
-pub subtitle: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub divider_below: bool,
+    #[prost(string, tag = "1")]
+    pub subtitle: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub divider_below: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -627,896 +627,993 @@ pub struct SingleViewGroup {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableDisplayOptions {
-#[deprecated]
-#[prost(string, repeated, tag = "1")]
-pub shown_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[deprecated]
+    #[prost(string, repeated, tag = "1")]
+    pub shown_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeriesTable {
-#[prost(message, repeated, tag = "1")]
-pub data_sets: ::prost::alloc::vec::Vec<time_series_table::TableDataSet>,
-#[prost(enumeration = "time_series_table::MetricVisualization", tag = "2")]
-pub metric_visualization: i32,
-#[prost(message, repeated, tag = "4")]
-pub column_settings: ::prost::alloc::vec::Vec<time_series_table::ColumnSettings>,
+    #[prost(message, repeated, tag = "1")]
+    pub data_sets: ::prost::alloc::vec::Vec<time_series_table::TableDataSet>,
+    #[prost(enumeration = "time_series_table::MetricVisualization", tag = "2")]
+    pub metric_visualization: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub column_settings: ::prost::alloc::vec::Vec<time_series_table::ColumnSettings>,
 }
 /// Nested message and enum types in `TimeSeriesTable`.
 pub mod time_series_table {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TableDataSet {
-#[prost(message, optional, tag = "1")]
-pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
-#[prost(string, tag = "2")]
-pub table_template: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "4")]
-pub table_display_options: ::core::option::Option<super::TableDisplayOptions>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ColumnSettings {
-#[prost(string, tag = "1")]
-pub column: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub visible: bool,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MetricVisualization {
-Unspecified = 0,
-Number = 1,
-Bar = 2,
-}
-impl MetricVisualization {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MetricVisualization::Unspecified => "METRIC_VISUALIZATION_UNSPECIFIED",
-MetricVisualization::Number => "NUMBER",
-MetricVisualization::Bar => "BAR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METRIC_VISUALIZATION_UNSPECIFIED" => Some(Self::Unspecified),
-"NUMBER" => Some(Self::Number),
-"BAR" => Some(Self::Bar),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TableDataSet {
+        #[prost(message, optional, tag = "1")]
+        pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
+        #[prost(string, tag = "2")]
+        pub table_template: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "4")]
+        pub table_display_options: ::core::option::Option<super::TableDisplayOptions>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ColumnSettings {
+        #[prost(string, tag = "1")]
+        pub column: ::prost::alloc::string::String,
+        #[prost(bool, tag = "2")]
+        pub visible: bool,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MetricVisualization {
+        Unspecified = 0,
+        Number = 1,
+        Bar = 2,
+    }
+    impl MetricVisualization {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MetricVisualization::Unspecified => "METRIC_VISUALIZATION_UNSPECIFIED",
+                MetricVisualization::Number => "NUMBER",
+                MetricVisualization::Bar => "BAR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METRIC_VISUALIZATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "NUMBER" => Some(Self::Number),
+                "BAR" => Some(Self::Bar),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Text {
-#[prost(string, tag = "1")]
-pub content: ::prost::alloc::string::String,
-#[prost(enumeration = "text::Format", tag = "2")]
-pub format: i32,
-#[prost(message, optional, tag = "3")]
-pub style: ::core::option::Option<text::TextStyle>,
+    #[prost(string, tag = "1")]
+    pub content: ::prost::alloc::string::String,
+    #[prost(enumeration = "text::Format", tag = "2")]
+    pub format: i32,
+    #[prost(message, optional, tag = "3")]
+    pub style: ::core::option::Option<text::TextStyle>,
 }
 /// Nested message and enum types in `Text`.
 pub mod text {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TextStyle {
-#[prost(string, tag = "1")]
-pub background_color: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub text_color: ::prost::alloc::string::String,
-#[prost(enumeration = "text_style::HorizontalAlignment", tag = "3")]
-pub horizontal_alignment: i32,
-#[prost(enumeration = "text_style::VerticalAlignment", tag = "4")]
-pub vertical_alignment: i32,
-#[prost(enumeration = "text_style::PaddingSize", tag = "5")]
-pub padding: i32,
-#[prost(enumeration = "text_style::FontSize", tag = "6")]
-pub font_size: i32,
-#[prost(enumeration = "text_style::PointerLocation", tag = "7")]
-pub pointer_location: i32,
-}
-/// Nested message and enum types in `TextStyle`.
-pub mod text_style {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum HorizontalAlignment {
-Unspecified = 0,
-HLeft = 1,
-HCenter = 2,
-HRight = 3,
-}
-impl HorizontalAlignment {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HorizontalAlignment::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
-HorizontalAlignment::HLeft => "H_LEFT",
-HorizontalAlignment::HCenter => "H_CENTER",
-HorizontalAlignment::HRight => "H_RIGHT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HORIZONTAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
-"H_LEFT" => Some(Self::HLeft),
-"H_CENTER" => Some(Self::HCenter),
-"H_RIGHT" => Some(Self::HRight),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VerticalAlignment {
-Unspecified = 0,
-VTop = 1,
-VCenter = 2,
-VBottom = 3,
-}
-impl VerticalAlignment {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VerticalAlignment::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
-VerticalAlignment::VTop => "V_TOP",
-VerticalAlignment::VCenter => "V_CENTER",
-VerticalAlignment::VBottom => "V_BOTTOM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VERTICAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
-"V_TOP" => Some(Self::VTop),
-"V_CENTER" => Some(Self::VCenter),
-"V_BOTTOM" => Some(Self::VBottom),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PaddingSize {
-Unspecified = 0,
-PExtraSmall = 1,
-PSmall = 2,
-PMedium = 3,
-PLarge = 4,
-PExtraLarge = 5,
-}
-impl PaddingSize {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PaddingSize::Unspecified => "PADDING_SIZE_UNSPECIFIED",
-PaddingSize::PExtraSmall => "P_EXTRA_SMALL",
-PaddingSize::PSmall => "P_SMALL",
-PaddingSize::PMedium => "P_MEDIUM",
-PaddingSize::PLarge => "P_LARGE",
-PaddingSize::PExtraLarge => "P_EXTRA_LARGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PADDING_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
-"P_EXTRA_SMALL" => Some(Self::PExtraSmall),
-"P_SMALL" => Some(Self::PSmall),
-"P_MEDIUM" => Some(Self::PMedium),
-"P_LARGE" => Some(Self::PLarge),
-"P_EXTRA_LARGE" => Some(Self::PExtraLarge),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum FontSize {
-Unspecified = 0,
-FsExtraSmall = 1,
-FsSmall = 2,
-FsMedium = 3,
-FsLarge = 4,
-FsExtraLarge = 5,
-}
-impl FontSize {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FontSize::Unspecified => "FONT_SIZE_UNSPECIFIED",
-FontSize::FsExtraSmall => "FS_EXTRA_SMALL",
-FontSize::FsSmall => "FS_SMALL",
-FontSize::FsMedium => "FS_MEDIUM",
-FontSize::FsLarge => "FS_LARGE",
-FontSize::FsExtraLarge => "FS_EXTRA_LARGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FONT_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
-"FS_EXTRA_SMALL" => Some(Self::FsExtraSmall),
-"FS_SMALL" => Some(Self::FsSmall),
-"FS_MEDIUM" => Some(Self::FsMedium),
-"FS_LARGE" => Some(Self::FsLarge),
-"FS_EXTRA_LARGE" => Some(Self::FsExtraLarge),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PointerLocation {
-Unspecified = 0,
-PlTop = 1,
-PlRight = 2,
-PlBottom = 3,
-PlLeft = 4,
-PlTopLeft = 5,
-PlTopRight = 6,
-PlRightTop = 7,
-PlRightBottom = 8,
-PlBottomRight = 9,
-PlBottomLeft = 10,
-PlLeftBottom = 11,
-PlLeftTop = 12,
-}
-impl PointerLocation {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PointerLocation::Unspecified => "POINTER_LOCATION_UNSPECIFIED",
-PointerLocation::PlTop => "PL_TOP",
-PointerLocation::PlRight => "PL_RIGHT",
-PointerLocation::PlBottom => "PL_BOTTOM",
-PointerLocation::PlLeft => "PL_LEFT",
-PointerLocation::PlTopLeft => "PL_TOP_LEFT",
-PointerLocation::PlTopRight => "PL_TOP_RIGHT",
-PointerLocation::PlRightTop => "PL_RIGHT_TOP",
-PointerLocation::PlRightBottom => "PL_RIGHT_BOTTOM",
-PointerLocation::PlBottomRight => "PL_BOTTOM_RIGHT",
-PointerLocation::PlBottomLeft => "PL_BOTTOM_LEFT",
-PointerLocation::PlLeftBottom => "PL_LEFT_BOTTOM",
-PointerLocation::PlLeftTop => "PL_LEFT_TOP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"POINTER_LOCATION_UNSPECIFIED" => Some(Self::Unspecified),
-"PL_TOP" => Some(Self::PlTop),
-"PL_RIGHT" => Some(Self::PlRight),
-"PL_BOTTOM" => Some(Self::PlBottom),
-"PL_LEFT" => Some(Self::PlLeft),
-"PL_TOP_LEFT" => Some(Self::PlTopLeft),
-"PL_TOP_RIGHT" => Some(Self::PlTopRight),
-"PL_RIGHT_TOP" => Some(Self::PlRightTop),
-"PL_RIGHT_BOTTOM" => Some(Self::PlRightBottom),
-"PL_BOTTOM_RIGHT" => Some(Self::PlBottomRight),
-"PL_BOTTOM_LEFT" => Some(Self::PlBottomLeft),
-"PL_LEFT_BOTTOM" => Some(Self::PlLeftBottom),
-"PL_LEFT_TOP" => Some(Self::PlLeftTop),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Format {
-Unspecified = 0,
-Markdown = 1,
-Raw = 2,
-}
-impl Format {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Format::Unspecified => "FORMAT_UNSPECIFIED",
-Format::Markdown => "MARKDOWN",
-Format::Raw => "RAW",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"MARKDOWN" => Some(Self::Markdown),
-"RAW" => Some(Self::Raw),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TextStyle {
+        #[prost(string, tag = "1")]
+        pub background_color: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub text_color: ::prost::alloc::string::String,
+        #[prost(enumeration = "text_style::HorizontalAlignment", tag = "3")]
+        pub horizontal_alignment: i32,
+        #[prost(enumeration = "text_style::VerticalAlignment", tag = "4")]
+        pub vertical_alignment: i32,
+        #[prost(enumeration = "text_style::PaddingSize", tag = "5")]
+        pub padding: i32,
+        #[prost(enumeration = "text_style::FontSize", tag = "6")]
+        pub font_size: i32,
+        #[prost(enumeration = "text_style::PointerLocation", tag = "7")]
+        pub pointer_location: i32,
+    }
+    /// Nested message and enum types in `TextStyle`.
+    pub mod text_style {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum HorizontalAlignment {
+            Unspecified = 0,
+            HLeft = 1,
+            HCenter = 2,
+            HRight = 3,
+        }
+        impl HorizontalAlignment {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    HorizontalAlignment::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+                    HorizontalAlignment::HLeft => "H_LEFT",
+                    HorizontalAlignment::HCenter => "H_CENTER",
+                    HorizontalAlignment::HRight => "H_RIGHT",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "HORIZONTAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "H_LEFT" => Some(Self::HLeft),
+                    "H_CENTER" => Some(Self::HCenter),
+                    "H_RIGHT" => Some(Self::HRight),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum VerticalAlignment {
+            Unspecified = 0,
+            VTop = 1,
+            VCenter = 2,
+            VBottom = 3,
+        }
+        impl VerticalAlignment {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    VerticalAlignment::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
+                    VerticalAlignment::VTop => "V_TOP",
+                    VerticalAlignment::VCenter => "V_CENTER",
+                    VerticalAlignment::VBottom => "V_BOTTOM",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "VERTICAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "V_TOP" => Some(Self::VTop),
+                    "V_CENTER" => Some(Self::VCenter),
+                    "V_BOTTOM" => Some(Self::VBottom),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PaddingSize {
+            Unspecified = 0,
+            PExtraSmall = 1,
+            PSmall = 2,
+            PMedium = 3,
+            PLarge = 4,
+            PExtraLarge = 5,
+        }
+        impl PaddingSize {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PaddingSize::Unspecified => "PADDING_SIZE_UNSPECIFIED",
+                    PaddingSize::PExtraSmall => "P_EXTRA_SMALL",
+                    PaddingSize::PSmall => "P_SMALL",
+                    PaddingSize::PMedium => "P_MEDIUM",
+                    PaddingSize::PLarge => "P_LARGE",
+                    PaddingSize::PExtraLarge => "P_EXTRA_LARGE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PADDING_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "P_EXTRA_SMALL" => Some(Self::PExtraSmall),
+                    "P_SMALL" => Some(Self::PSmall),
+                    "P_MEDIUM" => Some(Self::PMedium),
+                    "P_LARGE" => Some(Self::PLarge),
+                    "P_EXTRA_LARGE" => Some(Self::PExtraLarge),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum FontSize {
+            Unspecified = 0,
+            FsExtraSmall = 1,
+            FsSmall = 2,
+            FsMedium = 3,
+            FsLarge = 4,
+            FsExtraLarge = 5,
+        }
+        impl FontSize {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    FontSize::Unspecified => "FONT_SIZE_UNSPECIFIED",
+                    FontSize::FsExtraSmall => "FS_EXTRA_SMALL",
+                    FontSize::FsSmall => "FS_SMALL",
+                    FontSize::FsMedium => "FS_MEDIUM",
+                    FontSize::FsLarge => "FS_LARGE",
+                    FontSize::FsExtraLarge => "FS_EXTRA_LARGE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "FONT_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "FS_EXTRA_SMALL" => Some(Self::FsExtraSmall),
+                    "FS_SMALL" => Some(Self::FsSmall),
+                    "FS_MEDIUM" => Some(Self::FsMedium),
+                    "FS_LARGE" => Some(Self::FsLarge),
+                    "FS_EXTRA_LARGE" => Some(Self::FsExtraLarge),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PointerLocation {
+            Unspecified = 0,
+            PlTop = 1,
+            PlRight = 2,
+            PlBottom = 3,
+            PlLeft = 4,
+            PlTopLeft = 5,
+            PlTopRight = 6,
+            PlRightTop = 7,
+            PlRightBottom = 8,
+            PlBottomRight = 9,
+            PlBottomLeft = 10,
+            PlLeftBottom = 11,
+            PlLeftTop = 12,
+        }
+        impl PointerLocation {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PointerLocation::Unspecified => "POINTER_LOCATION_UNSPECIFIED",
+                    PointerLocation::PlTop => "PL_TOP",
+                    PointerLocation::PlRight => "PL_RIGHT",
+                    PointerLocation::PlBottom => "PL_BOTTOM",
+                    PointerLocation::PlLeft => "PL_LEFT",
+                    PointerLocation::PlTopLeft => "PL_TOP_LEFT",
+                    PointerLocation::PlTopRight => "PL_TOP_RIGHT",
+                    PointerLocation::PlRightTop => "PL_RIGHT_TOP",
+                    PointerLocation::PlRightBottom => "PL_RIGHT_BOTTOM",
+                    PointerLocation::PlBottomRight => "PL_BOTTOM_RIGHT",
+                    PointerLocation::PlBottomLeft => "PL_BOTTOM_LEFT",
+                    PointerLocation::PlLeftBottom => "PL_LEFT_BOTTOM",
+                    PointerLocation::PlLeftTop => "PL_LEFT_TOP",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "POINTER_LOCATION_UNSPECIFIED" => Some(Self::Unspecified),
+                    "PL_TOP" => Some(Self::PlTop),
+                    "PL_RIGHT" => Some(Self::PlRight),
+                    "PL_BOTTOM" => Some(Self::PlBottom),
+                    "PL_LEFT" => Some(Self::PlLeft),
+                    "PL_TOP_LEFT" => Some(Self::PlTopLeft),
+                    "PL_TOP_RIGHT" => Some(Self::PlTopRight),
+                    "PL_RIGHT_TOP" => Some(Self::PlRightTop),
+                    "PL_RIGHT_BOTTOM" => Some(Self::PlRightBottom),
+                    "PL_BOTTOM_RIGHT" => Some(Self::PlBottomRight),
+                    "PL_BOTTOM_LEFT" => Some(Self::PlBottomLeft),
+                    "PL_LEFT_BOTTOM" => Some(Self::PlLeftBottom),
+                    "PL_LEFT_TOP" => Some(Self::PlLeftTop),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Format {
+        Unspecified = 0,
+        Markdown = 1,
+        Raw = 2,
+    }
+    impl Format {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Format::Unspecified => "FORMAT_UNSPECIFIED",
+                Format::Markdown => "MARKDOWN",
+                Format::Raw => "RAW",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "MARKDOWN" => Some(Self::Markdown),
+                "RAW" => Some(Self::Raw),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct XyChart {
-#[prost(message, repeated, tag = "1")]
-pub data_sets: ::prost::alloc::vec::Vec<xy_chart::DataSet>,
-#[prost(message, optional, tag = "4")]
-pub timeshift_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, repeated, tag = "5")]
-pub thresholds: ::prost::alloc::vec::Vec<Threshold>,
-#[prost(message, optional, tag = "6")]
-pub x_axis: ::core::option::Option<xy_chart::Axis>,
-#[prost(message, optional, tag = "7")]
-pub y_axis: ::core::option::Option<xy_chart::Axis>,
-#[prost(message, optional, tag = "9")]
-pub y2_axis: ::core::option::Option<xy_chart::Axis>,
-#[prost(message, optional, tag = "8")]
-pub chart_options: ::core::option::Option<ChartOptions>,
+    #[prost(message, repeated, tag = "1")]
+    pub data_sets: ::prost::alloc::vec::Vec<xy_chart::DataSet>,
+    #[prost(message, optional, tag = "4")]
+    pub timeshift_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, repeated, tag = "5")]
+    pub thresholds: ::prost::alloc::vec::Vec<Threshold>,
+    #[prost(message, optional, tag = "6")]
+    pub x_axis: ::core::option::Option<xy_chart::Axis>,
+    #[prost(message, optional, tag = "7")]
+    pub y_axis: ::core::option::Option<xy_chart::Axis>,
+    #[prost(message, optional, tag = "9")]
+    pub y2_axis: ::core::option::Option<xy_chart::Axis>,
+    #[prost(message, optional, tag = "8")]
+    pub chart_options: ::core::option::Option<ChartOptions>,
 }
 /// Nested message and enum types in `XyChart`.
 pub mod xy_chart {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DataSet {
-#[prost(message, optional, tag = "1")]
-pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
-#[prost(enumeration = "data_set::PlotType", tag = "2")]
-pub plot_type: i32,
-#[prost(string, tag = "3")]
-pub legend_template: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "data_set::TargetAxis", tag = "5")]
-pub target_axis: i32,
-}
-/// Nested message and enum types in `DataSet`.
-pub mod data_set {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PlotType {
-Unspecified = 0,
-Line = 1,
-StackedArea = 2,
-StackedBar = 3,
-Heatmap = 4,
-}
-impl PlotType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PlotType::Unspecified => "PLOT_TYPE_UNSPECIFIED",
-PlotType::Line => "LINE",
-PlotType::StackedArea => "STACKED_AREA",
-PlotType::StackedBar => "STACKED_BAR",
-PlotType::Heatmap => "HEATMAP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PLOT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LINE" => Some(Self::Line),
-"STACKED_AREA" => Some(Self::StackedArea),
-"STACKED_BAR" => Some(Self::StackedBar),
-"HEATMAP" => Some(Self::Heatmap),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TargetAxis {
-Unspecified = 0,
-Y1 = 1,
-Y2 = 2,
-}
-impl TargetAxis {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TargetAxis::Unspecified => "TARGET_AXIS_UNSPECIFIED",
-TargetAxis::Y1 => "Y1",
-TargetAxis::Y2 => "Y2",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TARGET_AXIS_UNSPECIFIED" => Some(Self::Unspecified),
-"Y1" => Some(Self::Y1),
-"Y2" => Some(Self::Y2),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Axis {
-#[prost(string, tag = "1")]
-pub label: ::prost::alloc::string::String,
-#[prost(enumeration = "axis::Scale", tag = "2")]
-pub scale: i32,
-}
-/// Nested message and enum types in `Axis`.
-pub mod axis {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Scale {
-Unspecified = 0,
-Linear = 1,
-Log10 = 2,
-}
-impl Scale {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Scale::Unspecified => "SCALE_UNSPECIFIED",
-Scale::Linear => "LINEAR",
-Scale::Log10 => "LOG10",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SCALE_UNSPECIFIED" => Some(Self::Unspecified),
-"LINEAR" => Some(Self::Linear),
-"LOG10" => Some(Self::Log10),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataSet {
+        #[prost(message, optional, tag = "1")]
+        pub time_series_query: ::core::option::Option<super::TimeSeriesQuery>,
+        #[prost(enumeration = "data_set::PlotType", tag = "2")]
+        pub plot_type: i32,
+        #[prost(string, tag = "3")]
+        pub legend_template: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "4")]
+        pub min_alignment_period: ::core::option::Option<::prost_types::Duration>,
+        #[prost(enumeration = "data_set::TargetAxis", tag = "5")]
+        pub target_axis: i32,
+    }
+    /// Nested message and enum types in `DataSet`.
+    pub mod data_set {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PlotType {
+            Unspecified = 0,
+            Line = 1,
+            StackedArea = 2,
+            StackedBar = 3,
+            Heatmap = 4,
+        }
+        impl PlotType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PlotType::Unspecified => "PLOT_TYPE_UNSPECIFIED",
+                    PlotType::Line => "LINE",
+                    PlotType::StackedArea => "STACKED_AREA",
+                    PlotType::StackedBar => "STACKED_BAR",
+                    PlotType::Heatmap => "HEATMAP",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PLOT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "LINE" => Some(Self::Line),
+                    "STACKED_AREA" => Some(Self::StackedArea),
+                    "STACKED_BAR" => Some(Self::StackedBar),
+                    "HEATMAP" => Some(Self::Heatmap),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum TargetAxis {
+            Unspecified = 0,
+            Y1 = 1,
+            Y2 = 2,
+        }
+        impl TargetAxis {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    TargetAxis::Unspecified => "TARGET_AXIS_UNSPECIFIED",
+                    TargetAxis::Y1 => "Y1",
+                    TargetAxis::Y2 => "Y2",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "TARGET_AXIS_UNSPECIFIED" => Some(Self::Unspecified),
+                    "Y1" => Some(Self::Y1),
+                    "Y2" => Some(Self::Y2),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Axis {
+        #[prost(string, tag = "1")]
+        pub label: ::prost::alloc::string::String,
+        #[prost(enumeration = "axis::Scale", tag = "2")]
+        pub scale: i32,
+    }
+    /// Nested message and enum types in `Axis`.
+    pub mod axis {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Scale {
+            Unspecified = 0,
+            Linear = 1,
+            Log10 = 2,
+        }
+        impl Scale {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Scale::Unspecified => "SCALE_UNSPECIFIED",
+                    Scale::Linear => "LINEAR",
+                    Scale::Log10 => "LOG10",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SCALE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "LINEAR" => Some(Self::Linear),
+                    "LOG10" => Some(Self::Log10),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ChartOptions {
-#[prost(enumeration = "chart_options::Mode", tag = "1")]
-pub mode: i32,
+    #[prost(enumeration = "chart_options::Mode", tag = "1")]
+    pub mode: i32,
 }
 /// Nested message and enum types in `ChartOptions`.
 pub mod chart_options {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Mode {
-Unspecified = 0,
-Color = 1,
-XRay = 2,
-Stats = 3,
-}
-impl Mode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Mode::Unspecified => "MODE_UNSPECIFIED",
-Mode::Color => "COLOR",
-Mode::XRay => "X_RAY",
-Mode::Stats => "STATS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"COLOR" => Some(Self::Color),
-"X_RAY" => Some(Self::XRay),
-"STATS" => Some(Self::Stats),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Mode {
+        Unspecified = 0,
+        Color = 1,
+        XRay = 2,
+        Stats = 3,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::Color => "COLOR",
+                Mode::XRay => "X_RAY",
+                Mode::Stats => "STATS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "COLOR" => Some(Self::Color),
+                "X_RAY" => Some(Self::XRay),
+                "STATS" => Some(Self::Stats),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Widget {
-#[prost(string, tag = "1")]
-pub title: ::prost::alloc::string::String,
-#[prost(string, tag = "17")]
-pub id: ::prost::alloc::string::String,
-#[prost(oneof = "widget::Content", tags = "2, 3, 4, 5, 7, 8, 9, 10, 12, 14, 19, 21, 22")]
-pub content: ::core::option::Option<widget::Content>,
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag = "17")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(
+        oneof = "widget::Content",
+        tags = "2, 3, 4, 5, 7, 8, 9, 10, 12, 14, 19, 21, 22"
+    )]
+    pub content: ::core::option::Option<widget::Content>,
 }
 /// Nested message and enum types in `Widget`.
 pub mod widget {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Content {
-#[prost(message, tag = "2")]
-XyChart(super::XyChart),
-#[prost(message, tag = "3")]
-Scorecard(super::Scorecard),
-#[prost(message, tag = "4")]
-Text(super::Text),
-#[prost(message, tag = "5")]
-Blank(()),
-#[prost(message, tag = "7")]
-AlertChart(super::AlertChart),
-#[prost(message, tag = "8")]
-TimeSeriesTable(super::TimeSeriesTable),
-#[prost(message, tag = "9")]
-CollapsibleGroup(super::CollapsibleGroup),
-#[prost(message, tag = "10")]
-LogsPanel(super::LogsPanel),
-#[prost(message, tag = "12")]
-IncidentList(super::IncidentList),
-#[prost(message, tag = "14")]
-PieChart(super::PieChart),
-#[prost(message, tag = "19")]
-ErrorReportingPanel(super::ErrorReportingPanel),
-#[prost(message, tag = "21")]
-SectionHeader(super::SectionHeader),
-#[prost(message, tag = "22")]
-SingleViewGroup(super::SingleViewGroup),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Content {
+        #[prost(message, tag = "2")]
+        XyChart(super::XyChart),
+        #[prost(message, tag = "3")]
+        Scorecard(super::Scorecard),
+        #[prost(message, tag = "4")]
+        Text(super::Text),
+        #[prost(message, tag = "5")]
+        Blank(()),
+        #[prost(message, tag = "7")]
+        AlertChart(super::AlertChart),
+        #[prost(message, tag = "8")]
+        TimeSeriesTable(super::TimeSeriesTable),
+        #[prost(message, tag = "9")]
+        CollapsibleGroup(super::CollapsibleGroup),
+        #[prost(message, tag = "10")]
+        LogsPanel(super::LogsPanel),
+        #[prost(message, tag = "12")]
+        IncidentList(super::IncidentList),
+        #[prost(message, tag = "14")]
+        PieChart(super::PieChart),
+        #[prost(message, tag = "19")]
+        ErrorReportingPanel(super::ErrorReportingPanel),
+        #[prost(message, tag = "21")]
+        SectionHeader(super::SectionHeader),
+        #[prost(message, tag = "22")]
+        SingleViewGroup(super::SingleViewGroup),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GridLayout {
-#[prost(int64, tag = "1")]
-pub columns: i64,
-#[prost(message, repeated, tag = "2")]
-pub widgets: ::prost::alloc::vec::Vec<Widget>,
+    #[prost(int64, tag = "1")]
+    pub columns: i64,
+    #[prost(message, repeated, tag = "2")]
+    pub widgets: ::prost::alloc::vec::Vec<Widget>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MosaicLayout {
-#[prost(int32, tag = "1")]
-pub columns: i32,
-#[prost(message, repeated, tag = "3")]
-pub tiles: ::prost::alloc::vec::Vec<mosaic_layout::Tile>,
+    #[prost(int32, tag = "1")]
+    pub columns: i32,
+    #[prost(message, repeated, tag = "3")]
+    pub tiles: ::prost::alloc::vec::Vec<mosaic_layout::Tile>,
 }
 /// Nested message and enum types in `MosaicLayout`.
 pub mod mosaic_layout {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Tile {
-#[prost(int32, tag = "1")]
-pub x_pos: i32,
-#[prost(int32, tag = "2")]
-pub y_pos: i32,
-#[prost(int32, tag = "3")]
-pub width: i32,
-#[prost(int32, tag = "4")]
-pub height: i32,
-#[prost(message, optional, tag = "5")]
-pub widget: ::core::option::Option<super::Widget>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Tile {
+        #[prost(int32, tag = "1")]
+        pub x_pos: i32,
+        #[prost(int32, tag = "2")]
+        pub y_pos: i32,
+        #[prost(int32, tag = "3")]
+        pub width: i32,
+        #[prost(int32, tag = "4")]
+        pub height: i32,
+        #[prost(message, optional, tag = "5")]
+        pub widget: ::core::option::Option<super::Widget>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RowLayout {
-#[prost(message, repeated, tag = "1")]
-pub rows: ::prost::alloc::vec::Vec<row_layout::Row>,
+    #[prost(message, repeated, tag = "1")]
+    pub rows: ::prost::alloc::vec::Vec<row_layout::Row>,
 }
 /// Nested message and enum types in `RowLayout`.
 pub mod row_layout {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Row {
-#[prost(int64, tag = "1")]
-pub weight: i64,
-#[prost(message, repeated, tag = "2")]
-pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Row {
+        #[prost(int64, tag = "1")]
+        pub weight: i64,
+        #[prost(message, repeated, tag = "2")]
+        pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnLayout {
-#[prost(message, repeated, tag = "1")]
-pub columns: ::prost::alloc::vec::Vec<column_layout::Column>,
+    #[prost(message, repeated, tag = "1")]
+    pub columns: ::prost::alloc::vec::Vec<column_layout::Column>,
 }
 /// Nested message and enum types in `ColumnLayout`.
 pub mod column_layout {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Column {
-#[prost(int64, tag = "1")]
-pub weight: i64,
-#[prost(message, repeated, tag = "2")]
-pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Column {
+        #[prost(int64, tag = "1")]
+        pub weight: i64,
+        #[prost(message, repeated, tag = "2")]
+        pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DashboardFilter {
-#[prost(string, tag = "1")]
-pub label_key: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub template_variable: ::prost::alloc::string::String,
-#[prost(enumeration = "dashboard_filter::FilterType", tag = "5")]
-pub filter_type: i32,
-#[prost(oneof = "dashboard_filter::DefaultValue", tags = "4")]
-pub default_value: ::core::option::Option<dashboard_filter::DefaultValue>,
+    #[prost(string, tag = "1")]
+    pub label_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub template_variable: ::prost::alloc::string::String,
+    #[prost(enumeration = "dashboard_filter::FilterType", tag = "5")]
+    pub filter_type: i32,
+    #[prost(oneof = "dashboard_filter::DefaultValue", tags = "4")]
+    pub default_value: ::core::option::Option<dashboard_filter::DefaultValue>,
 }
 /// Nested message and enum types in `DashboardFilter`.
 pub mod dashboard_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum FilterType {
-Unspecified = 0,
-ResourceLabel = 1,
-MetricLabel = 2,
-UserMetadataLabel = 3,
-SystemMetadataLabel = 4,
-Group = 5,
-}
-impl FilterType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FilterType::Unspecified => "FILTER_TYPE_UNSPECIFIED",
-FilterType::ResourceLabel => "RESOURCE_LABEL",
-FilterType::MetricLabel => "METRIC_LABEL",
-FilterType::UserMetadataLabel => "USER_METADATA_LABEL",
-FilterType::SystemMetadataLabel => "SYSTEM_METADATA_LABEL",
-FilterType::Group => "GROUP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FILTER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE_LABEL" => Some(Self::ResourceLabel),
-"METRIC_LABEL" => Some(Self::MetricLabel),
-"USER_METADATA_LABEL" => Some(Self::UserMetadataLabel),
-"SYSTEM_METADATA_LABEL" => Some(Self::SystemMetadataLabel),
-"GROUP" => Some(Self::Group),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DefaultValue {
-#[prost(string, tag = "4")]
-StringValue(::prost::alloc::string::String),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum FilterType {
+        Unspecified = 0,
+        ResourceLabel = 1,
+        MetricLabel = 2,
+        UserMetadataLabel = 3,
+        SystemMetadataLabel = 4,
+        Group = 5,
+    }
+    impl FilterType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                FilterType::Unspecified => "FILTER_TYPE_UNSPECIFIED",
+                FilterType::ResourceLabel => "RESOURCE_LABEL",
+                FilterType::MetricLabel => "METRIC_LABEL",
+                FilterType::UserMetadataLabel => "USER_METADATA_LABEL",
+                FilterType::SystemMetadataLabel => "SYSTEM_METADATA_LABEL",
+                FilterType::Group => "GROUP",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FILTER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RESOURCE_LABEL" => Some(Self::ResourceLabel),
+                "METRIC_LABEL" => Some(Self::MetricLabel),
+                "USER_METADATA_LABEL" => Some(Self::UserMetadataLabel),
+                "SYSTEM_METADATA_LABEL" => Some(Self::SystemMetadataLabel),
+                "GROUP" => Some(Self::Group),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DefaultValue {
+        #[prost(string, tag = "4")]
+        StringValue(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dashboard {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "11")]
-pub dashboard_filters: ::prost::alloc::vec::Vec<DashboardFilter>,
-#[prost(btree_map = "string, string", tag = "12")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(oneof = "dashboard::Layout", tags = "5, 6, 8, 9")]
-pub layout: ::core::option::Option<dashboard::Layout>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "11")]
+    pub dashboard_filters: ::prost::alloc::vec::Vec<DashboardFilter>,
+    #[prost(btree_map = "string, string", tag = "12")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(oneof = "dashboard::Layout", tags = "5, 6, 8, 9")]
+    pub layout: ::core::option::Option<dashboard::Layout>,
 }
 /// Nested message and enum types in `Dashboard`.
 pub mod dashboard {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Layout {
-#[prost(message, tag = "5")]
-GridLayout(super::GridLayout),
-#[prost(message, tag = "6")]
-MosaicLayout(super::MosaicLayout),
-#[prost(message, tag = "8")]
-RowLayout(super::RowLayout),
-#[prost(message, tag = "9")]
-ColumnLayout(super::ColumnLayout),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Layout {
+        #[prost(message, tag = "5")]
+        GridLayout(super::GridLayout),
+        #[prost(message, tag = "6")]
+        MosaicLayout(super::MosaicLayout),
+        #[prost(message, tag = "8")]
+        RowLayout(super::RowLayout),
+        #[prost(message, tag = "9")]
+        ColumnLayout(super::ColumnLayout),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDashboardRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub dashboard: ::core::option::Option<Dashboard>,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub dashboard: ::core::option::Option<Dashboard>,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDashboardsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDashboardsResponse {
-#[prost(message, repeated, tag = "1")]
-pub dashboards: ::prost::alloc::vec::Vec<Dashboard>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub dashboards: ::prost::alloc::vec::Vec<Dashboard>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDashboardRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDashboardRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDashboardRequest {
-#[prost(message, optional, tag = "1")]
-pub dashboard: ::core::option::Option<Dashboard>,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(message, optional, tag = "1")]
+    pub dashboard: ::core::option::Option<Dashboard>,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 /// Generated client implementations.
 pub mod dashboards_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Manages Stackdriver dashboards. A dashboard is an arrangement of data display
-/// widgets in a specific layout.
-#[derive(Debug, Clone)]
-pub struct DashboardsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DashboardsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DashboardsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DashboardsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new custom dashboard. For examples on how you can use this API to
-/// create dashboards, see [Managing dashboards by
-/// API](https://cloud.google.com/monitoring/dashboards/api-dashboard). This
-/// method requires the `monitoring.dashboards.create` permission on the
-/// specified project. For more information about permissions, see [Cloud
-/// Identity and Access Management](https://cloud.google.com/iam).
-pub async fn create_dashboard(&mut self, request: impl tonic::IntoRequest<super::CreateDashboardRequest>) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.monitoring.dashboard.v1.DashboardsService/CreateDashboard");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.monitoring.dashboard.v1.DashboardsService", "CreateDashboard"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the existing dashboards.
-///
-/// This method requires the `monitoring.dashboards.list` permission
-/// on the specified project. For more information, see
-/// [Cloud Identity and Access Management](https://cloud.google.com/iam).
-pub async fn list_dashboards(&mut self, request: impl tonic::IntoRequest<super::ListDashboardsRequest>) -> std::result::Result<tonic::Response<super::ListDashboardsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.monitoring.dashboard.v1.DashboardsService/ListDashboards");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.monitoring.dashboard.v1.DashboardsService", "ListDashboards"));
-self.inner.unary(req, path, codec).await
-}
-/// Fetches a specific dashboard.
-///
-/// This method requires the `monitoring.dashboards.get` permission
-/// on the specified dashboard. For more information, see
-/// [Cloud Identity and Access Management](https://cloud.google.com/iam).
-pub async fn get_dashboard(&mut self, request: impl tonic::IntoRequest<super::GetDashboardRequest>) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.monitoring.dashboard.v1.DashboardsService/GetDashboard");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.monitoring.dashboard.v1.DashboardsService", "GetDashboard"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes an existing custom dashboard.
-///
-/// This method requires the `monitoring.dashboards.delete` permission
-/// on the specified dashboard. For more information, see
-/// [Cloud Identity and Access Management](https://cloud.google.com/iam).
-pub async fn delete_dashboard(&mut self, request: impl tonic::IntoRequest<super::DeleteDashboardRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.monitoring.dashboard.v1.DashboardsService/DeleteDashboard");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.monitoring.dashboard.v1.DashboardsService", "DeleteDashboard"));
-self.inner.unary(req, path, codec).await
-}
-/// Replaces an existing custom dashboard with a new definition.
-///
-/// This method requires the `monitoring.dashboards.update` permission
-/// on the specified dashboard. For more information, see
-/// [Cloud Identity and Access Management](https://cloud.google.com/iam).
-pub async fn update_dashboard(&mut self, request: impl tonic::IntoRequest<super::UpdateDashboardRequest>) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.monitoring.dashboard.v1.DashboardsService/UpdateDashboard");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.monitoring.dashboard.v1.DashboardsService", "UpdateDashboard"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Manages Stackdriver dashboards. A dashboard is an arrangement of data display
+    /// widgets in a specific layout.
+    #[derive(Debug, Clone)]
+    pub struct DashboardsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DashboardsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DashboardsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DashboardsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new custom dashboard. For examples on how you can use this API to
+        /// create dashboards, see [Managing dashboards by
+        /// API](https://cloud.google.com/monitoring/dashboards/api-dashboard). This
+        /// method requires the `monitoring.dashboards.create` permission on the
+        /// specified project. For more information about permissions, see [Cloud
+        /// Identity and Access Management](https://cloud.google.com/iam).
+        pub async fn create_dashboard(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDashboardRequest>,
+        ) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.dashboard.v1.DashboardsService/CreateDashboard",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.monitoring.dashboard.v1.DashboardsService",
+                "CreateDashboard",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the existing dashboards.
+        ///
+        /// This method requires the `monitoring.dashboards.list` permission
+        /// on the specified project. For more information, see
+        /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+        pub async fn list_dashboards(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDashboardsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDashboardsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.dashboard.v1.DashboardsService/ListDashboards",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.monitoring.dashboard.v1.DashboardsService",
+                "ListDashboards",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Fetches a specific dashboard.
+        ///
+        /// This method requires the `monitoring.dashboards.get` permission
+        /// on the specified dashboard. For more information, see
+        /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+        pub async fn get_dashboard(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDashboardRequest>,
+        ) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.dashboard.v1.DashboardsService/GetDashboard",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.monitoring.dashboard.v1.DashboardsService",
+                "GetDashboard",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an existing custom dashboard.
+        ///
+        /// This method requires the `monitoring.dashboards.delete` permission
+        /// on the specified dashboard. For more information, see
+        /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+        pub async fn delete_dashboard(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDashboardRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.dashboard.v1.DashboardsService/DeleteDashboard",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.monitoring.dashboard.v1.DashboardsService",
+                "DeleteDashboard",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Replaces an existing custom dashboard with a new definition.
+        ///
+        /// This method requires the `monitoring.dashboards.update` permission
+        /// on the specified dashboard. For more information, see
+        /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+        pub async fn update_dashboard(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDashboardRequest>,
+        ) -> std::result::Result<tonic::Response<super::Dashboard>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.monitoring.dashboard.v1.DashboardsService/UpdateDashboard",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.monitoring.dashboard.v1.DashboardsService",
+                "UpdateDashboard",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

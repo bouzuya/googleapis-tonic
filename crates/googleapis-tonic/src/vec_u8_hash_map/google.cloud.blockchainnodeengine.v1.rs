@@ -2,525 +2,625 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BlockchainNode {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(enumeration = "blockchain_node::BlockchainType", optional, tag = "5")]
-pub blockchain_type: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "6")]
-pub connection_info: ::core::option::Option<blockchain_node::ConnectionInfo>,
-#[prost(enumeration = "blockchain_node::State", tag = "8")]
-pub state: i32,
-#[prost(bool, tag = "12")]
-pub private_service_connect_enabled: bool,
-#[prost(oneof = "blockchain_node::BlockchainTypeDetails", tags = "7")]
-pub blockchain_type_details: ::core::option::Option<blockchain_node::BlockchainTypeDetails>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(enumeration = "blockchain_node::BlockchainType", optional, tag = "5")]
+    pub blockchain_type: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub connection_info: ::core::option::Option<blockchain_node::ConnectionInfo>,
+    #[prost(enumeration = "blockchain_node::State", tag = "8")]
+    pub state: i32,
+    #[prost(bool, tag = "12")]
+    pub private_service_connect_enabled: bool,
+    #[prost(oneof = "blockchain_node::BlockchainTypeDetails", tags = "7")]
+    pub blockchain_type_details: ::core::option::Option<blockchain_node::BlockchainTypeDetails>,
 }
 /// Nested message and enum types in `BlockchainNode`.
 pub mod blockchain_node {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConnectionInfo {
-#[prost(message, optional, tag = "2")]
-pub endpoint_info: ::core::option::Option<connection_info::EndpointInfo>,
-#[prost(string, tag = "3")]
-pub service_attachment: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `ConnectionInfo`.
-pub mod connection_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EndpointInfo {
-#[prost(string, tag = "1")]
-pub json_rpc_api_endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub websockets_api_endpoint: ::prost::alloc::string::String,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EthereumDetails {
-#[prost(enumeration = "ethereum_details::Network", optional, tag = "1")]
-pub network: ::core::option::Option<i32>,
-#[prost(enumeration = "ethereum_details::NodeType", optional, tag = "2")]
-pub node_type: ::core::option::Option<i32>,
-#[prost(enumeration = "ethereum_details::ExecutionClient", optional, tag = "3")]
-pub execution_client: ::core::option::Option<i32>,
-#[prost(enumeration = "ethereum_details::ConsensusClient", optional, tag = "4")]
-pub consensus_client: ::core::option::Option<i32>,
-#[prost(bool, optional, tag = "5")]
-pub api_enable_admin: ::core::option::Option<bool>,
-#[prost(bool, optional, tag = "6")]
-pub api_enable_debug: ::core::option::Option<bool>,
-#[prost(message, optional, tag = "7")]
-pub additional_endpoints: ::core::option::Option<ethereum_details::EthereumEndpoints>,
-#[prost(message, optional, tag = "10")]
-pub validator_config: ::core::option::Option<ethereum_details::ValidatorConfig>,
-#[prost(oneof = "ethereum_details::ExecutionClientDetails", tags = "8")]
-pub execution_client_details: ::core::option::Option<ethereum_details::ExecutionClientDetails>,
-}
-/// Nested message and enum types in `EthereumDetails`.
-pub mod ethereum_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GethDetails {
-#[prost(enumeration = "geth_details::GarbageCollectionMode", optional, tag = "1")]
-pub garbage_collection_mode: ::core::option::Option<i32>,
-}
-/// Nested message and enum types in `GethDetails`.
-pub mod geth_details {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum GarbageCollectionMode {
-Unspecified = 0,
-Full = 1,
-Archive = 2,
-}
-impl GarbageCollectionMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-GarbageCollectionMode::Unspecified => "GARBAGE_COLLECTION_MODE_UNSPECIFIED",
-GarbageCollectionMode::Full => "FULL",
-GarbageCollectionMode::Archive => "ARCHIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GARBAGE_COLLECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"FULL" => Some(Self::Full),
-"ARCHIVE" => Some(Self::Archive),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EthereumEndpoints {
-#[prost(string, tag = "1")]
-pub beacon_api_endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub beacon_prometheus_metrics_api_endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub execution_client_prometheus_metrics_api_endpoint: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValidatorConfig {
-#[prost(string, repeated, tag = "1")]
-pub mev_relay_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "2")]
-pub managed_validator_client: bool,
-#[prost(string, optional, tag = "3")]
-pub beacon_fee_recipient: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Network {
-Unspecified = 0,
-Mainnet = 1,
-TestnetGoerliPrater = 2,
-TestnetSepolia = 3,
-TestnetHolesky = 4,
-}
-impl Network {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Network::Unspecified => "NETWORK_UNSPECIFIED",
-Network::Mainnet => "MAINNET",
-Network::TestnetGoerliPrater => "TESTNET_GOERLI_PRATER",
-Network::TestnetSepolia => "TESTNET_SEPOLIA",
-Network::TestnetHolesky => "TESTNET_HOLESKY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NETWORK_UNSPECIFIED" => Some(Self::Unspecified),
-"MAINNET" => Some(Self::Mainnet),
-"TESTNET_GOERLI_PRATER" => Some(Self::TestnetGoerliPrater),
-"TESTNET_SEPOLIA" => Some(Self::TestnetSepolia),
-"TESTNET_HOLESKY" => Some(Self::TestnetHolesky),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum NodeType {
-Unspecified = 0,
-Light = 1,
-Full = 2,
-Archive = 3,
-}
-impl NodeType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-NodeType::Unspecified => "NODE_TYPE_UNSPECIFIED",
-NodeType::Light => "LIGHT",
-NodeType::Full => "FULL",
-NodeType::Archive => "ARCHIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NODE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"LIGHT" => Some(Self::Light),
-"FULL" => Some(Self::Full),
-"ARCHIVE" => Some(Self::Archive),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ExecutionClient {
-Unspecified = 0,
-Geth = 1,
-Erigon = 2,
-}
-impl ExecutionClient {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExecutionClient::Unspecified => "EXECUTION_CLIENT_UNSPECIFIED",
-ExecutionClient::Geth => "GETH",
-ExecutionClient::Erigon => "ERIGON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXECUTION_CLIENT_UNSPECIFIED" => Some(Self::Unspecified),
-"GETH" => Some(Self::Geth),
-"ERIGON" => Some(Self::Erigon),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ConsensusClient {
-Unspecified = 0,
-Lighthouse = 1,
-}
-impl ConsensusClient {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ConsensusClient::Unspecified => "CONSENSUS_CLIENT_UNSPECIFIED",
-ConsensusClient::Lighthouse => "LIGHTHOUSE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONSENSUS_CLIENT_UNSPECIFIED" => Some(Self::Unspecified),
-"LIGHTHOUSE" => Some(Self::Lighthouse),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ExecutionClientDetails {
-#[prost(message, tag = "8")]
-GethDetails(GethDetails),
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BlockchainType {
-Unspecified = 0,
-Ethereum = 1,
-}
-impl BlockchainType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BlockchainType::Unspecified => "BLOCKCHAIN_TYPE_UNSPECIFIED",
-BlockchainType::Ethereum => "ETHEREUM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BLOCKCHAIN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ETHEREUM" => Some(Self::Ethereum),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Deleting = 2,
-Running = 4,
-Error = 5,
-Updating = 6,
-Repairing = 7,
-Reconciling = 8,
-Syncing = 9,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Deleting => "DELETING",
-State::Running => "RUNNING",
-State::Error => "ERROR",
-State::Updating => "UPDATING",
-State::Repairing => "REPAIRING",
-State::Reconciling => "RECONCILING",
-State::Syncing => "SYNCING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"DELETING" => Some(Self::Deleting),
-"RUNNING" => Some(Self::Running),
-"ERROR" => Some(Self::Error),
-"UPDATING" => Some(Self::Updating),
-"REPAIRING" => Some(Self::Repairing),
-"RECONCILING" => Some(Self::Reconciling),
-"SYNCING" => Some(Self::Syncing),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum BlockchainTypeDetails {
-#[prost(message, tag = "7")]
-EthereumDetails(EthereumDetails),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConnectionInfo {
+        #[prost(message, optional, tag = "2")]
+        pub endpoint_info: ::core::option::Option<connection_info::EndpointInfo>,
+        #[prost(string, tag = "3")]
+        pub service_attachment: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `ConnectionInfo`.
+    pub mod connection_info {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct EndpointInfo {
+            #[prost(string, tag = "1")]
+            pub json_rpc_api_endpoint: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub websockets_api_endpoint: ::prost::alloc::string::String,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EthereumDetails {
+        #[prost(enumeration = "ethereum_details::Network", optional, tag = "1")]
+        pub network: ::core::option::Option<i32>,
+        #[prost(enumeration = "ethereum_details::NodeType", optional, tag = "2")]
+        pub node_type: ::core::option::Option<i32>,
+        #[prost(enumeration = "ethereum_details::ExecutionClient", optional, tag = "3")]
+        pub execution_client: ::core::option::Option<i32>,
+        #[prost(enumeration = "ethereum_details::ConsensusClient", optional, tag = "4")]
+        pub consensus_client: ::core::option::Option<i32>,
+        #[prost(bool, optional, tag = "5")]
+        pub api_enable_admin: ::core::option::Option<bool>,
+        #[prost(bool, optional, tag = "6")]
+        pub api_enable_debug: ::core::option::Option<bool>,
+        #[prost(message, optional, tag = "7")]
+        pub additional_endpoints: ::core::option::Option<ethereum_details::EthereumEndpoints>,
+        #[prost(message, optional, tag = "10")]
+        pub validator_config: ::core::option::Option<ethereum_details::ValidatorConfig>,
+        #[prost(oneof = "ethereum_details::ExecutionClientDetails", tags = "8")]
+        pub execution_client_details:
+            ::core::option::Option<ethereum_details::ExecutionClientDetails>,
+    }
+    /// Nested message and enum types in `EthereumDetails`.
+    pub mod ethereum_details {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct GethDetails {
+            #[prost(
+                enumeration = "geth_details::GarbageCollectionMode",
+                optional,
+                tag = "1"
+            )]
+            pub garbage_collection_mode: ::core::option::Option<i32>,
+        }
+        /// Nested message and enum types in `GethDetails`.
+        pub mod geth_details {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum GarbageCollectionMode {
+                Unspecified = 0,
+                Full = 1,
+                Archive = 2,
+            }
+            impl GarbageCollectionMode {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        GarbageCollectionMode::Unspecified => "GARBAGE_COLLECTION_MODE_UNSPECIFIED",
+                        GarbageCollectionMode::Full => "FULL",
+                        GarbageCollectionMode::Archive => "ARCHIVE",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "GARBAGE_COLLECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                        "FULL" => Some(Self::Full),
+                        "ARCHIVE" => Some(Self::Archive),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct EthereumEndpoints {
+            #[prost(string, tag = "1")]
+            pub beacon_api_endpoint: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub beacon_prometheus_metrics_api_endpoint: ::prost::alloc::string::String,
+            #[prost(string, tag = "3")]
+            pub execution_client_prometheus_metrics_api_endpoint: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ValidatorConfig {
+            #[prost(string, repeated, tag = "1")]
+            pub mev_relay_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            #[prost(bool, tag = "2")]
+            pub managed_validator_client: bool,
+            #[prost(string, optional, tag = "3")]
+            pub beacon_fee_recipient: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Network {
+            Unspecified = 0,
+            Mainnet = 1,
+            TestnetGoerliPrater = 2,
+            TestnetSepolia = 3,
+            TestnetHolesky = 4,
+        }
+        impl Network {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Network::Unspecified => "NETWORK_UNSPECIFIED",
+                    Network::Mainnet => "MAINNET",
+                    Network::TestnetGoerliPrater => "TESTNET_GOERLI_PRATER",
+                    Network::TestnetSepolia => "TESTNET_SEPOLIA",
+                    Network::TestnetHolesky => "TESTNET_HOLESKY",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "NETWORK_UNSPECIFIED" => Some(Self::Unspecified),
+                    "MAINNET" => Some(Self::Mainnet),
+                    "TESTNET_GOERLI_PRATER" => Some(Self::TestnetGoerliPrater),
+                    "TESTNET_SEPOLIA" => Some(Self::TestnetSepolia),
+                    "TESTNET_HOLESKY" => Some(Self::TestnetHolesky),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum NodeType {
+            Unspecified = 0,
+            Light = 1,
+            Full = 2,
+            Archive = 3,
+        }
+        impl NodeType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    NodeType::Unspecified => "NODE_TYPE_UNSPECIFIED",
+                    NodeType::Light => "LIGHT",
+                    NodeType::Full => "FULL",
+                    NodeType::Archive => "ARCHIVE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "NODE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "LIGHT" => Some(Self::Light),
+                    "FULL" => Some(Self::Full),
+                    "ARCHIVE" => Some(Self::Archive),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum ExecutionClient {
+            Unspecified = 0,
+            Geth = 1,
+            Erigon = 2,
+        }
+        impl ExecutionClient {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ExecutionClient::Unspecified => "EXECUTION_CLIENT_UNSPECIFIED",
+                    ExecutionClient::Geth => "GETH",
+                    ExecutionClient::Erigon => "ERIGON",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "EXECUTION_CLIENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "GETH" => Some(Self::Geth),
+                    "ERIGON" => Some(Self::Erigon),
+                    _ => None,
+                }
+            }
+        }
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum ConsensusClient {
+            Unspecified = 0,
+            Lighthouse = 1,
+        }
+        impl ConsensusClient {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ConsensusClient::Unspecified => "CONSENSUS_CLIENT_UNSPECIFIED",
+                    ConsensusClient::Lighthouse => "LIGHTHOUSE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CONSENSUS_CLIENT_UNSPECIFIED" => Some(Self::Unspecified),
+                    "LIGHTHOUSE" => Some(Self::Lighthouse),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum ExecutionClientDetails {
+            #[prost(message, tag = "8")]
+            GethDetails(GethDetails),
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BlockchainType {
+        Unspecified = 0,
+        Ethereum = 1,
+    }
+    impl BlockchainType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BlockchainType::Unspecified => "BLOCKCHAIN_TYPE_UNSPECIFIED",
+                BlockchainType::Ethereum => "ETHEREUM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BLOCKCHAIN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ETHEREUM" => Some(Self::Ethereum),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Deleting = 2,
+        Running = 4,
+        Error = 5,
+        Updating = 6,
+        Repairing = 7,
+        Reconciling = 8,
+        Syncing = 9,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Deleting => "DELETING",
+                State::Running => "RUNNING",
+                State::Error => "ERROR",
+                State::Updating => "UPDATING",
+                State::Repairing => "REPAIRING",
+                State::Reconciling => "RECONCILING",
+                State::Syncing => "SYNCING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "DELETING" => Some(Self::Deleting),
+                "RUNNING" => Some(Self::Running),
+                "ERROR" => Some(Self::Error),
+                "UPDATING" => Some(Self::Updating),
+                "REPAIRING" => Some(Self::Repairing),
+                "RECONCILING" => Some(Self::Reconciling),
+                "SYNCING" => Some(Self::Syncing),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum BlockchainTypeDetails {
+        #[prost(message, tag = "7")]
+        EthereumDetails(EthereumDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBlockchainNodesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBlockchainNodesResponse {
-#[prost(message, repeated, tag = "1")]
-pub blockchain_nodes: ::prost::alloc::vec::Vec<BlockchainNode>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub blockchain_nodes: ::prost::alloc::vec::Vec<BlockchainNode>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBlockchainNodeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBlockchainNodeRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub blockchain_node_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub blockchain_node: ::core::option::Option<BlockchainNode>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub blockchain_node_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub blockchain_node: ::core::option::Option<BlockchainNode>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBlockchainNodeRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub blockchain_node: ::core::option::Option<BlockchainNode>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub blockchain_node: ::core::option::Option<BlockchainNode>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBlockchainNodeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod blockchain_node_engine_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// This service is the control plane API for Blockchain Node Engine,
-/// and can be used to create, read, and delete blockchain nodes.
-#[derive(Debug, Clone)]
-pub struct BlockchainNodeEngineClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> BlockchainNodeEngineClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> BlockchainNodeEngineClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-BlockchainNodeEngineClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists blockchain nodes in a given project and location.
-pub async fn list_blockchain_nodes(&mut self, request: impl tonic::IntoRequest<super::ListBlockchainNodesRequest>) -> std::result::Result<tonic::Response<super::ListBlockchainNodesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/ListBlockchainNodes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine", "ListBlockchainNodes"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single blockchain node.
-pub async fn get_blockchain_node(&mut self, request: impl tonic::IntoRequest<super::GetBlockchainNodeRequest>) -> std::result::Result<tonic::Response<super::BlockchainNode>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/GetBlockchainNode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine", "GetBlockchainNode"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new blockchain node in a given project and location.
-pub async fn create_blockchain_node(&mut self, request: impl tonic::IntoRequest<super::CreateBlockchainNodeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/CreateBlockchainNode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine", "CreateBlockchainNode"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single blockchain node.
-pub async fn update_blockchain_node(&mut self, request: impl tonic::IntoRequest<super::UpdateBlockchainNodeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/UpdateBlockchainNode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine", "UpdateBlockchainNode"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single blockchain node.
-pub async fn delete_blockchain_node(&mut self, request: impl tonic::IntoRequest<super::DeleteBlockchainNodeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/DeleteBlockchainNode");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine", "DeleteBlockchainNode"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// This service is the control plane API for Blockchain Node Engine,
+    /// and can be used to create, read, and delete blockchain nodes.
+    #[derive(Debug, Clone)]
+    pub struct BlockchainNodeEngineClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> BlockchainNodeEngineClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BlockchainNodeEngineClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            BlockchainNodeEngineClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists blockchain nodes in a given project and location.
+        pub async fn list_blockchain_nodes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListBlockchainNodesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListBlockchainNodesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/ListBlockchainNodes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine",
+                "ListBlockchainNodes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single blockchain node.
+        pub async fn get_blockchain_node(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetBlockchainNodeRequest>,
+        ) -> std::result::Result<tonic::Response<super::BlockchainNode>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/GetBlockchainNode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine",
+                "GetBlockchainNode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new blockchain node in a given project and location.
+        pub async fn create_blockchain_node(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateBlockchainNodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/CreateBlockchainNode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine",
+                "CreateBlockchainNode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single blockchain node.
+        pub async fn update_blockchain_node(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateBlockchainNodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/UpdateBlockchainNode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine",
+                "UpdateBlockchainNode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single blockchain node.
+        pub async fn delete_blockchain_node(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteBlockchainNodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine/DeleteBlockchainNode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.blockchainnodeengine.v1.BlockchainNodeEngine",
+                "DeleteBlockchainNode",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

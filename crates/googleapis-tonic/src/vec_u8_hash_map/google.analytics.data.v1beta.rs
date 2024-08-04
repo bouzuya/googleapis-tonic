@@ -2,1118 +2,1130 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateRange {
-#[prost(string, tag = "1")]
-pub start_date: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub end_date: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub start_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub end_date: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MinuteRange {
-#[prost(int32, optional, tag = "1")]
-pub start_minutes_ago: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "2")]
-pub end_minutes_ago: ::core::option::Option<i32>,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
+    #[prost(int32, optional, tag = "1")]
+    pub start_minutes_ago: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "2")]
+    pub end_minutes_ago: ::core::option::Option<i32>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dimension {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub dimension_expression: ::core::option::Option<DimensionExpression>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub dimension_expression: ::core::option::Option<DimensionExpression>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionExpression {
-#[prost(oneof = "dimension_expression::OneExpression", tags = "4, 5, 6")]
-pub one_expression: ::core::option::Option<dimension_expression::OneExpression>,
+    #[prost(oneof = "dimension_expression::OneExpression", tags = "4, 5, 6")]
+    pub one_expression: ::core::option::Option<dimension_expression::OneExpression>,
 }
 /// Nested message and enum types in `DimensionExpression`.
 pub mod dimension_expression {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CaseExpression {
-#[prost(string, tag = "1")]
-pub dimension_name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConcatenateExpression {
-#[prost(string, repeated, tag = "1")]
-pub dimension_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub delimiter: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneExpression {
-#[prost(message, tag = "4")]
-LowerCase(CaseExpression),
-#[prost(message, tag = "5")]
-UpperCase(CaseExpression),
-#[prost(message, tag = "6")]
-Concatenate(ConcatenateExpression),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CaseExpression {
+        #[prost(string, tag = "1")]
+        pub dimension_name: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConcatenateExpression {
+        #[prost(string, repeated, tag = "1")]
+        pub dimension_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "2")]
+        pub delimiter: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneExpression {
+        #[prost(message, tag = "4")]
+        LowerCase(CaseExpression),
+        #[prost(message, tag = "5")]
+        UpperCase(CaseExpression),
+        #[prost(message, tag = "6")]
+        Concatenate(ConcatenateExpression),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metric {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub expression: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub invisible: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub expression: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub invisible: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterExpression {
-#[prost(oneof = "filter_expression::Expr", tags = "1, 2, 3, 4")]
-pub expr: ::core::option::Option<filter_expression::Expr>,
+    #[prost(oneof = "filter_expression::Expr", tags = "1, 2, 3, 4")]
+    pub expr: ::core::option::Option<filter_expression::Expr>,
 }
 /// Nested message and enum types in `FilterExpression`.
 pub mod filter_expression {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Expr {
-#[prost(message, tag = "1")]
-AndGroup(super::FilterExpressionList),
-#[prost(message, tag = "2")]
-OrGroup(super::FilterExpressionList),
-#[prost(message, tag = "3")]
-NotExpression(::prost::alloc::boxed::Box<super::FilterExpression>),
-#[prost(message, tag = "4")]
-Filter(super::Filter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Expr {
+        #[prost(message, tag = "1")]
+        AndGroup(super::FilterExpressionList),
+        #[prost(message, tag = "2")]
+        OrGroup(super::FilterExpressionList),
+        #[prost(message, tag = "3")]
+        NotExpression(::prost::alloc::boxed::Box<super::FilterExpression>),
+        #[prost(message, tag = "4")]
+        Filter(super::Filter),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterExpressionList {
-#[prost(message, repeated, tag = "1")]
-pub expressions: ::prost::alloc::vec::Vec<FilterExpression>,
+    #[prost(message, repeated, tag = "1")]
+    pub expressions: ::prost::alloc::vec::Vec<FilterExpression>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
-#[prost(string, tag = "1")]
-pub field_name: ::prost::alloc::string::String,
-#[prost(oneof = "filter::OneFilter", tags = "3, 4, 5, 6")]
-pub one_filter: ::core::option::Option<filter::OneFilter>,
+    #[prost(string, tag = "1")]
+    pub field_name: ::prost::alloc::string::String,
+    #[prost(oneof = "filter::OneFilter", tags = "3, 4, 5, 6")]
+    pub one_filter: ::core::option::Option<filter::OneFilter>,
 }
 /// Nested message and enum types in `Filter`.
 pub mod filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StringFilter {
-#[prost(enumeration = "string_filter::MatchType", tag = "1")]
-pub match_type: i32,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub case_sensitive: bool,
-}
-/// Nested message and enum types in `StringFilter`.
-pub mod string_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MatchType {
-Unspecified = 0,
-Exact = 1,
-BeginsWith = 2,
-EndsWith = 3,
-Contains = 4,
-FullRegexp = 5,
-PartialRegexp = 6,
-}
-impl MatchType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
-MatchType::Exact => "EXACT",
-MatchType::BeginsWith => "BEGINS_WITH",
-MatchType::EndsWith => "ENDS_WITH",
-MatchType::Contains => "CONTAINS",
-MatchType::FullRegexp => "FULL_REGEXP",
-MatchType::PartialRegexp => "PARTIAL_REGEXP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MATCH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"EXACT" => Some(Self::Exact),
-"BEGINS_WITH" => Some(Self::BeginsWith),
-"ENDS_WITH" => Some(Self::EndsWith),
-"CONTAINS" => Some(Self::Contains),
-"FULL_REGEXP" => Some(Self::FullRegexp),
-"PARTIAL_REGEXP" => Some(Self::PartialRegexp),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InListFilter {
-#[prost(string, repeated, tag = "1")]
-pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "2")]
-pub case_sensitive: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NumericFilter {
-#[prost(enumeration = "numeric_filter::Operation", tag = "1")]
-pub operation: i32,
-#[prost(message, optional, tag = "2")]
-pub value: ::core::option::Option<super::NumericValue>,
-}
-/// Nested message and enum types in `NumericFilter`.
-pub mod numeric_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Operation {
-Unspecified = 0,
-Equal = 1,
-LessThan = 2,
-LessThanOrEqual = 3,
-GreaterThan = 4,
-GreaterThanOrEqual = 5,
-}
-impl Operation {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Operation::Unspecified => "OPERATION_UNSPECIFIED",
-Operation::Equal => "EQUAL",
-Operation::LessThan => "LESS_THAN",
-Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-Operation::GreaterThan => "GREATER_THAN",
-Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OPERATION_UNSPECIFIED" => Some(Self::Unspecified),
-"EQUAL" => Some(Self::Equal),
-"LESS_THAN" => Some(Self::LessThan),
-"LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
-"GREATER_THAN" => Some(Self::GreaterThan),
-"GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BetweenFilter {
-#[prost(message, optional, tag = "1")]
-pub from_value: ::core::option::Option<super::NumericValue>,
-#[prost(message, optional, tag = "2")]
-pub to_value: ::core::option::Option<super::NumericValue>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneFilter {
-#[prost(message, tag = "3")]
-StringFilter(StringFilter),
-#[prost(message, tag = "4")]
-InListFilter(InListFilter),
-#[prost(message, tag = "5")]
-NumericFilter(NumericFilter),
-#[prost(message, tag = "6")]
-BetweenFilter(BetweenFilter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StringFilter {
+        #[prost(enumeration = "string_filter::MatchType", tag = "1")]
+        pub match_type: i32,
+        #[prost(string, tag = "2")]
+        pub value: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub case_sensitive: bool,
+    }
+    /// Nested message and enum types in `StringFilter`.
+    pub mod string_filter {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum MatchType {
+            Unspecified = 0,
+            Exact = 1,
+            BeginsWith = 2,
+            EndsWith = 3,
+            Contains = 4,
+            FullRegexp = 5,
+            PartialRegexp = 6,
+        }
+        impl MatchType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
+                    MatchType::Exact => "EXACT",
+                    MatchType::BeginsWith => "BEGINS_WITH",
+                    MatchType::EndsWith => "ENDS_WITH",
+                    MatchType::Contains => "CONTAINS",
+                    MatchType::FullRegexp => "FULL_REGEXP",
+                    MatchType::PartialRegexp => "PARTIAL_REGEXP",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "MATCH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "EXACT" => Some(Self::Exact),
+                    "BEGINS_WITH" => Some(Self::BeginsWith),
+                    "ENDS_WITH" => Some(Self::EndsWith),
+                    "CONTAINS" => Some(Self::Contains),
+                    "FULL_REGEXP" => Some(Self::FullRegexp),
+                    "PARTIAL_REGEXP" => Some(Self::PartialRegexp),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InListFilter {
+        #[prost(string, repeated, tag = "1")]
+        pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(bool, tag = "2")]
+        pub case_sensitive: bool,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct NumericFilter {
+        #[prost(enumeration = "numeric_filter::Operation", tag = "1")]
+        pub operation: i32,
+        #[prost(message, optional, tag = "2")]
+        pub value: ::core::option::Option<super::NumericValue>,
+    }
+    /// Nested message and enum types in `NumericFilter`.
+    pub mod numeric_filter {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Operation {
+            Unspecified = 0,
+            Equal = 1,
+            LessThan = 2,
+            LessThanOrEqual = 3,
+            GreaterThan = 4,
+            GreaterThanOrEqual = 5,
+        }
+        impl Operation {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Operation::Unspecified => "OPERATION_UNSPECIFIED",
+                    Operation::Equal => "EQUAL",
+                    Operation::LessThan => "LESS_THAN",
+                    Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                    Operation::GreaterThan => "GREATER_THAN",
+                    Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "OPERATION_UNSPECIFIED" => Some(Self::Unspecified),
+                    "EQUAL" => Some(Self::Equal),
+                    "LESS_THAN" => Some(Self::LessThan),
+                    "LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
+                    "GREATER_THAN" => Some(Self::GreaterThan),
+                    "GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BetweenFilter {
+        #[prost(message, optional, tag = "1")]
+        pub from_value: ::core::option::Option<super::NumericValue>,
+        #[prost(message, optional, tag = "2")]
+        pub to_value: ::core::option::Option<super::NumericValue>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneFilter {
+        #[prost(message, tag = "3")]
+        StringFilter(StringFilter),
+        #[prost(message, tag = "4")]
+        InListFilter(InListFilter),
+        #[prost(message, tag = "5")]
+        NumericFilter(NumericFilter),
+        #[prost(message, tag = "6")]
+        BetweenFilter(BetweenFilter),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrderBy {
-#[prost(bool, tag = "4")]
-pub desc: bool,
-#[prost(oneof = "order_by::OneOrderBy", tags = "1, 2, 3")]
-pub one_order_by: ::core::option::Option<order_by::OneOrderBy>,
+    #[prost(bool, tag = "4")]
+    pub desc: bool,
+    #[prost(oneof = "order_by::OneOrderBy", tags = "1, 2, 3")]
+    pub one_order_by: ::core::option::Option<order_by::OneOrderBy>,
 }
 /// Nested message and enum types in `OrderBy`.
 pub mod order_by {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MetricOrderBy {
-#[prost(string, tag = "1")]
-pub metric_name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DimensionOrderBy {
-#[prost(string, tag = "1")]
-pub dimension_name: ::prost::alloc::string::String,
-#[prost(enumeration = "dimension_order_by::OrderType", tag = "2")]
-pub order_type: i32,
-}
-/// Nested message and enum types in `DimensionOrderBy`.
-pub mod dimension_order_by {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum OrderType {
-Unspecified = 0,
-Alphanumeric = 1,
-CaseInsensitiveAlphanumeric = 2,
-Numeric = 3,
-}
-impl OrderType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
-OrderType::Alphanumeric => "ALPHANUMERIC",
-OrderType::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
-OrderType::Numeric => "NUMERIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALPHANUMERIC" => Some(Self::Alphanumeric),
-"CASE_INSENSITIVE_ALPHANUMERIC" => Some(Self::CaseInsensitiveAlphanumeric),
-"NUMERIC" => Some(Self::Numeric),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PivotOrderBy {
-#[prost(string, tag = "1")]
-pub metric_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub pivot_selections: ::prost::alloc::vec::Vec<pivot_order_by::PivotSelection>,
-}
-/// Nested message and enum types in `PivotOrderBy`.
-pub mod pivot_order_by {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PivotSelection {
-#[prost(string, tag = "1")]
-pub dimension_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dimension_value: ::prost::alloc::string::String,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneOrderBy {
-#[prost(message, tag = "1")]
-Metric(MetricOrderBy),
-#[prost(message, tag = "2")]
-Dimension(DimensionOrderBy),
-#[prost(message, tag = "3")]
-Pivot(PivotOrderBy),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MetricOrderBy {
+        #[prost(string, tag = "1")]
+        pub metric_name: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DimensionOrderBy {
+        #[prost(string, tag = "1")]
+        pub dimension_name: ::prost::alloc::string::String,
+        #[prost(enumeration = "dimension_order_by::OrderType", tag = "2")]
+        pub order_type: i32,
+    }
+    /// Nested message and enum types in `DimensionOrderBy`.
+    pub mod dimension_order_by {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum OrderType {
+            Unspecified = 0,
+            Alphanumeric = 1,
+            CaseInsensitiveAlphanumeric = 2,
+            Numeric = 3,
+        }
+        impl OrderType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
+                    OrderType::Alphanumeric => "ALPHANUMERIC",
+                    OrderType::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+                    OrderType::Numeric => "NUMERIC",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "ALPHANUMERIC" => Some(Self::Alphanumeric),
+                    "CASE_INSENSITIVE_ALPHANUMERIC" => Some(Self::CaseInsensitiveAlphanumeric),
+                    "NUMERIC" => Some(Self::Numeric),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PivotOrderBy {
+        #[prost(string, tag = "1")]
+        pub metric_name: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "2")]
+        pub pivot_selections: ::prost::alloc::vec::Vec<pivot_order_by::PivotSelection>,
+    }
+    /// Nested message and enum types in `PivotOrderBy`.
+    pub mod pivot_order_by {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct PivotSelection {
+            #[prost(string, tag = "1")]
+            pub dimension_name: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub dimension_value: ::prost::alloc::string::String,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneOrderBy {
+        #[prost(message, tag = "1")]
+        Metric(MetricOrderBy),
+        #[prost(message, tag = "2")]
+        Dimension(DimensionOrderBy),
+        #[prost(message, tag = "3")]
+        Pivot(PivotOrderBy),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pivot {
-#[prost(string, repeated, tag = "1")]
-pub field_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "2")]
-pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
-#[prost(int64, tag = "3")]
-pub offset: i64,
-#[prost(int64, tag = "4")]
-pub limit: i64,
-#[prost(enumeration = "MetricAggregation", repeated, tag = "5")]
-pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, repeated, tag = "1")]
+    pub field_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "2")]
+    pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
+    #[prost(int64, tag = "3")]
+    pub offset: i64,
+    #[prost(int64, tag = "4")]
+    pub limit: i64,
+    #[prost(enumeration = "MetricAggregation", repeated, tag = "5")]
+    pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CohortSpec {
-#[prost(message, repeated, tag = "1")]
-pub cohorts: ::prost::alloc::vec::Vec<Cohort>,
-#[prost(message, optional, tag = "2")]
-pub cohorts_range: ::core::option::Option<CohortsRange>,
-#[prost(message, optional, tag = "3")]
-pub cohort_report_settings: ::core::option::Option<CohortReportSettings>,
+    #[prost(message, repeated, tag = "1")]
+    pub cohorts: ::prost::alloc::vec::Vec<Cohort>,
+    #[prost(message, optional, tag = "2")]
+    pub cohorts_range: ::core::option::Option<CohortsRange>,
+    #[prost(message, optional, tag = "3")]
+    pub cohort_report_settings: ::core::option::Option<CohortReportSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cohort {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dimension: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub date_range: ::core::option::Option<DateRange>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dimension: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub date_range: ::core::option::Option<DateRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CohortsRange {
-#[prost(enumeration = "cohorts_range::Granularity", tag = "1")]
-pub granularity: i32,
-#[prost(int32, tag = "2")]
-pub start_offset: i32,
-#[prost(int32, tag = "3")]
-pub end_offset: i32,
+    #[prost(enumeration = "cohorts_range::Granularity", tag = "1")]
+    pub granularity: i32,
+    #[prost(int32, tag = "2")]
+    pub start_offset: i32,
+    #[prost(int32, tag = "3")]
+    pub end_offset: i32,
 }
 /// Nested message and enum types in `CohortsRange`.
 pub mod cohorts_range {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Granularity {
-Unspecified = 0,
-Daily = 1,
-Weekly = 2,
-Monthly = 3,
-}
-impl Granularity {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-Granularity::Daily => "DAILY",
-Granularity::Weekly => "WEEKLY",
-Granularity::Monthly => "MONTHLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
-"DAILY" => Some(Self::Daily),
-"WEEKLY" => Some(Self::Weekly),
-"MONTHLY" => Some(Self::Monthly),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Granularity {
+        Unspecified = 0,
+        Daily = 1,
+        Weekly = 2,
+        Monthly = 3,
+    }
+    impl Granularity {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
+                Granularity::Daily => "DAILY",
+                Granularity::Weekly => "WEEKLY",
+                Granularity::Monthly => "MONTHLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
+                "DAILY" => Some(Self::Daily),
+                "WEEKLY" => Some(Self::Weekly),
+                "MONTHLY" => Some(Self::Monthly),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CohortReportSettings {
-#[prost(bool, tag = "1")]
-pub accumulate: bool,
+    #[prost(bool, tag = "1")]
+    pub accumulate: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResponseMetaData {
-#[prost(bool, tag = "3")]
-pub data_loss_from_other_row: bool,
-#[prost(message, optional, tag = "4")]
-pub schema_restriction_response: ::core::option::Option<response_meta_data::SchemaRestrictionResponse>,
-#[prost(string, optional, tag = "5")]
-pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "6")]
-pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "7")]
-pub empty_reason: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "8")]
-pub subject_to_thresholding: ::core::option::Option<bool>,
-#[prost(message, repeated, tag = "9")]
-pub sampling_metadatas: ::prost::alloc::vec::Vec<SamplingMetadata>,
+    #[prost(bool, tag = "3")]
+    pub data_loss_from_other_row: bool,
+    #[prost(message, optional, tag = "4")]
+    pub schema_restriction_response:
+        ::core::option::Option<response_meta_data::SchemaRestrictionResponse>,
+    #[prost(string, optional, tag = "5")]
+    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "6")]
+    pub time_zone: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "7")]
+    pub empty_reason: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "8")]
+    pub subject_to_thresholding: ::core::option::Option<bool>,
+    #[prost(message, repeated, tag = "9")]
+    pub sampling_metadatas: ::prost::alloc::vec::Vec<SamplingMetadata>,
 }
 /// Nested message and enum types in `ResponseMetaData`.
 pub mod response_meta_data {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SchemaRestrictionResponse {
-#[prost(message, repeated, tag = "1")]
-pub active_metric_restrictions: ::prost::alloc::vec::Vec<schema_restriction_response::ActiveMetricRestriction>,
-}
-/// Nested message and enum types in `SchemaRestrictionResponse`.
-pub mod schema_restriction_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActiveMetricRestriction {
-#[prost(string, optional, tag = "1")]
-pub metric_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "super::super::RestrictedMetricType", repeated, tag = "2")]
-pub restricted_metric_types: ::prost::alloc::vec::Vec<i32>,
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SchemaRestrictionResponse {
+        #[prost(message, repeated, tag = "1")]
+        pub active_metric_restrictions:
+            ::prost::alloc::vec::Vec<schema_restriction_response::ActiveMetricRestriction>,
+    }
+    /// Nested message and enum types in `SchemaRestrictionResponse`.
+    pub mod schema_restriction_response {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ActiveMetricRestriction {
+            #[prost(string, optional, tag = "1")]
+            pub metric_name: ::core::option::Option<::prost::alloc::string::String>,
+            #[prost(
+                enumeration = "super::super::RestrictedMetricType",
+                repeated,
+                tag = "2"
+            )]
+            pub restricted_metric_types: ::prost::alloc::vec::Vec<i32>,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SamplingMetadata {
-#[prost(int64, tag = "1")]
-pub samples_read_count: i64,
-#[prost(int64, tag = "2")]
-pub sampling_space_size: i64,
+    #[prost(int64, tag = "1")]
+    pub samples_read_count: i64,
+    #[prost(int64, tag = "2")]
+    pub sampling_space_size: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionHeader {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricHeader {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "MetricType", tag = "2")]
-pub r#type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "MetricType", tag = "2")]
+    pub r#type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PivotHeader {
-#[prost(message, repeated, tag = "1")]
-pub pivot_dimension_headers: ::prost::alloc::vec::Vec<PivotDimensionHeader>,
-#[prost(int32, tag = "2")]
-pub row_count: i32,
+    #[prost(message, repeated, tag = "1")]
+    pub pivot_dimension_headers: ::prost::alloc::vec::Vec<PivotDimensionHeader>,
+    #[prost(int32, tag = "2")]
+    pub row_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PivotDimensionHeader {
-#[prost(message, repeated, tag = "1")]
-pub dimension_values: ::prost::alloc::vec::Vec<DimensionValue>,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_values: ::prost::alloc::vec::Vec<DimensionValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Row {
-#[prost(message, repeated, tag = "1")]
-pub dimension_values: ::prost::alloc::vec::Vec<DimensionValue>,
-#[prost(message, repeated, tag = "2")]
-pub metric_values: ::prost::alloc::vec::Vec<MetricValue>,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_values: ::prost::alloc::vec::Vec<DimensionValue>,
+    #[prost(message, repeated, tag = "2")]
+    pub metric_values: ::prost::alloc::vec::Vec<MetricValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionValue {
-#[prost(oneof = "dimension_value::OneValue", tags = "1")]
-pub one_value: ::core::option::Option<dimension_value::OneValue>,
+    #[prost(oneof = "dimension_value::OneValue", tags = "1")]
+    pub one_value: ::core::option::Option<dimension_value::OneValue>,
 }
 /// Nested message and enum types in `DimensionValue`.
 pub mod dimension_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneValue {
-#[prost(string, tag = "1")]
-Value(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneValue {
+        #[prost(string, tag = "1")]
+        Value(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricValue {
-#[prost(oneof = "metric_value::OneValue", tags = "4")]
-pub one_value: ::core::option::Option<metric_value::OneValue>,
+    #[prost(oneof = "metric_value::OneValue", tags = "4")]
+    pub one_value: ::core::option::Option<metric_value::OneValue>,
 }
 /// Nested message and enum types in `MetricValue`.
 pub mod metric_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneValue {
-#[prost(string, tag = "4")]
-Value(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneValue {
+        #[prost(string, tag = "4")]
+        Value(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NumericValue {
-#[prost(oneof = "numeric_value::OneValue", tags = "1, 2")]
-pub one_value: ::core::option::Option<numeric_value::OneValue>,
+    #[prost(oneof = "numeric_value::OneValue", tags = "1, 2")]
+    pub one_value: ::core::option::Option<numeric_value::OneValue>,
 }
 /// Nested message and enum types in `NumericValue`.
 pub mod numeric_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum OneValue {
-#[prost(int64, tag = "1")]
-Int64Value(i64),
-#[prost(double, tag = "2")]
-DoubleValue(f64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum OneValue {
+        #[prost(int64, tag = "1")]
+        Int64Value(i64),
+        #[prost(double, tag = "2")]
+        DoubleValue(f64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PropertyQuota {
-#[prost(message, optional, tag = "1")]
-pub tokens_per_day: ::core::option::Option<QuotaStatus>,
-#[prost(message, optional, tag = "2")]
-pub tokens_per_hour: ::core::option::Option<QuotaStatus>,
-#[prost(message, optional, tag = "3")]
-pub concurrent_requests: ::core::option::Option<QuotaStatus>,
-#[prost(message, optional, tag = "4")]
-pub server_errors_per_project_per_hour: ::core::option::Option<QuotaStatus>,
-#[prost(message, optional, tag = "5")]
-pub potentially_thresholded_requests_per_hour: ::core::option::Option<QuotaStatus>,
-#[prost(message, optional, tag = "6")]
-pub tokens_per_project_per_hour: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "1")]
+    pub tokens_per_day: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "2")]
+    pub tokens_per_hour: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "3")]
+    pub concurrent_requests: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "4")]
+    pub server_errors_per_project_per_hour: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "5")]
+    pub potentially_thresholded_requests_per_hour: ::core::option::Option<QuotaStatus>,
+    #[prost(message, optional, tag = "6")]
+    pub tokens_per_project_per_hour: ::core::option::Option<QuotaStatus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct QuotaStatus {
-#[prost(int32, optional, tag = "1")]
-pub consumed: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "2")]
-pub remaining: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "1")]
+    pub consumed: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "2")]
+    pub remaining: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionMetadata {
-#[prost(string, tag = "1")]
-pub api_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub ui_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub deprecated_api_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "5")]
-pub custom_definition: bool,
-#[prost(string, tag = "7")]
-pub category: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub api_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub ui_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub deprecated_api_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "5")]
+    pub custom_definition: bool,
+    #[prost(string, tag = "7")]
+    pub category: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricMetadata {
-#[prost(string, tag = "1")]
-pub api_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub ui_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub deprecated_api_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "MetricType", tag = "5")]
-pub r#type: i32,
-#[prost(string, tag = "6")]
-pub expression: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub custom_definition: bool,
-#[prost(enumeration = "metric_metadata::BlockedReason", repeated, tag = "8")]
-pub blocked_reasons: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, tag = "10")]
-pub category: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub api_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub ui_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub deprecated_api_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "MetricType", tag = "5")]
+    pub r#type: i32,
+    #[prost(string, tag = "6")]
+    pub expression: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub custom_definition: bool,
+    #[prost(enumeration = "metric_metadata::BlockedReason", repeated, tag = "8")]
+    pub blocked_reasons: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "10")]
+    pub category: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `MetricMetadata`.
 pub mod metric_metadata {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BlockedReason {
-Unspecified = 0,
-NoRevenueMetrics = 1,
-NoCostMetrics = 2,
-}
-impl BlockedReason {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
-BlockedReason::NoRevenueMetrics => "NO_REVENUE_METRICS",
-BlockedReason::NoCostMetrics => "NO_COST_METRICS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BLOCKED_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-"NO_REVENUE_METRICS" => Some(Self::NoRevenueMetrics),
-"NO_COST_METRICS" => Some(Self::NoCostMetrics),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BlockedReason {
+        Unspecified = 0,
+        NoRevenueMetrics = 1,
+        NoCostMetrics = 2,
+    }
+    impl BlockedReason {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
+                BlockedReason::NoRevenueMetrics => "NO_REVENUE_METRICS",
+                BlockedReason::NoCostMetrics => "NO_COST_METRICS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BLOCKED_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+                "NO_REVENUE_METRICS" => Some(Self::NoRevenueMetrics),
+                "NO_COST_METRICS" => Some(Self::NoCostMetrics),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionCompatibility {
-#[prost(message, optional, tag = "1")]
-pub dimension_metadata: ::core::option::Option<DimensionMetadata>,
-#[prost(enumeration = "Compatibility", optional, tag = "2")]
-pub compatibility: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "1")]
+    pub dimension_metadata: ::core::option::Option<DimensionMetadata>,
+    #[prost(enumeration = "Compatibility", optional, tag = "2")]
+    pub compatibility: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricCompatibility {
-#[prost(message, optional, tag = "1")]
-pub metric_metadata: ::core::option::Option<MetricMetadata>,
-#[prost(enumeration = "Compatibility", optional, tag = "2")]
-pub compatibility: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "1")]
+    pub metric_metadata: ::core::option::Option<MetricMetadata>,
+    #[prost(enumeration = "Compatibility", optional, tag = "2")]
+    pub compatibility: ::core::option::Option<i32>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MetricAggregation {
-Unspecified = 0,
-Total = 1,
-Minimum = 5,
-Maximum = 6,
-Count = 4,
+    Unspecified = 0,
+    Total = 1,
+    Minimum = 5,
+    Maximum = 6,
+    Count = 4,
 }
 impl MetricAggregation {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MetricAggregation::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
-MetricAggregation::Total => "TOTAL",
-MetricAggregation::Minimum => "MINIMUM",
-MetricAggregation::Maximum => "MAXIMUM",
-MetricAggregation::Count => "COUNT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METRIC_AGGREGATION_UNSPECIFIED" => Some(Self::Unspecified),
-"TOTAL" => Some(Self::Total),
-"MINIMUM" => Some(Self::Minimum),
-"MAXIMUM" => Some(Self::Maximum),
-"COUNT" => Some(Self::Count),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MetricAggregation::Unspecified => "METRIC_AGGREGATION_UNSPECIFIED",
+            MetricAggregation::Total => "TOTAL",
+            MetricAggregation::Minimum => "MINIMUM",
+            MetricAggregation::Maximum => "MAXIMUM",
+            MetricAggregation::Count => "COUNT",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "METRIC_AGGREGATION_UNSPECIFIED" => Some(Self::Unspecified),
+            "TOTAL" => Some(Self::Total),
+            "MINIMUM" => Some(Self::Minimum),
+            "MAXIMUM" => Some(Self::Maximum),
+            "COUNT" => Some(Self::Count),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MetricType {
-Unspecified = 0,
-TypeInteger = 1,
-TypeFloat = 2,
-TypeSeconds = 4,
-TypeMilliseconds = 5,
-TypeMinutes = 6,
-TypeHours = 7,
-TypeStandard = 8,
-TypeCurrency = 9,
-TypeFeet = 10,
-TypeMiles = 11,
-TypeMeters = 12,
-TypeKilometers = 13,
+    Unspecified = 0,
+    TypeInteger = 1,
+    TypeFloat = 2,
+    TypeSeconds = 4,
+    TypeMilliseconds = 5,
+    TypeMinutes = 6,
+    TypeHours = 7,
+    TypeStandard = 8,
+    TypeCurrency = 9,
+    TypeFeet = 10,
+    TypeMiles = 11,
+    TypeMeters = 12,
+    TypeKilometers = 13,
 }
 impl MetricType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MetricType::Unspecified => "METRIC_TYPE_UNSPECIFIED",
-MetricType::TypeInteger => "TYPE_INTEGER",
-MetricType::TypeFloat => "TYPE_FLOAT",
-MetricType::TypeSeconds => "TYPE_SECONDS",
-MetricType::TypeMilliseconds => "TYPE_MILLISECONDS",
-MetricType::TypeMinutes => "TYPE_MINUTES",
-MetricType::TypeHours => "TYPE_HOURS",
-MetricType::TypeStandard => "TYPE_STANDARD",
-MetricType::TypeCurrency => "TYPE_CURRENCY",
-MetricType::TypeFeet => "TYPE_FEET",
-MetricType::TypeMiles => "TYPE_MILES",
-MetricType::TypeMeters => "TYPE_METERS",
-MetricType::TypeKilometers => "TYPE_KILOMETERS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"TYPE_INTEGER" => Some(Self::TypeInteger),
-"TYPE_FLOAT" => Some(Self::TypeFloat),
-"TYPE_SECONDS" => Some(Self::TypeSeconds),
-"TYPE_MILLISECONDS" => Some(Self::TypeMilliseconds),
-"TYPE_MINUTES" => Some(Self::TypeMinutes),
-"TYPE_HOURS" => Some(Self::TypeHours),
-"TYPE_STANDARD" => Some(Self::TypeStandard),
-"TYPE_CURRENCY" => Some(Self::TypeCurrency),
-"TYPE_FEET" => Some(Self::TypeFeet),
-"TYPE_MILES" => Some(Self::TypeMiles),
-"TYPE_METERS" => Some(Self::TypeMeters),
-"TYPE_KILOMETERS" => Some(Self::TypeKilometers),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MetricType::Unspecified => "METRIC_TYPE_UNSPECIFIED",
+            MetricType::TypeInteger => "TYPE_INTEGER",
+            MetricType::TypeFloat => "TYPE_FLOAT",
+            MetricType::TypeSeconds => "TYPE_SECONDS",
+            MetricType::TypeMilliseconds => "TYPE_MILLISECONDS",
+            MetricType::TypeMinutes => "TYPE_MINUTES",
+            MetricType::TypeHours => "TYPE_HOURS",
+            MetricType::TypeStandard => "TYPE_STANDARD",
+            MetricType::TypeCurrency => "TYPE_CURRENCY",
+            MetricType::TypeFeet => "TYPE_FEET",
+            MetricType::TypeMiles => "TYPE_MILES",
+            MetricType::TypeMeters => "TYPE_METERS",
+            MetricType::TypeKilometers => "TYPE_KILOMETERS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "TYPE_INTEGER" => Some(Self::TypeInteger),
+            "TYPE_FLOAT" => Some(Self::TypeFloat),
+            "TYPE_SECONDS" => Some(Self::TypeSeconds),
+            "TYPE_MILLISECONDS" => Some(Self::TypeMilliseconds),
+            "TYPE_MINUTES" => Some(Self::TypeMinutes),
+            "TYPE_HOURS" => Some(Self::TypeHours),
+            "TYPE_STANDARD" => Some(Self::TypeStandard),
+            "TYPE_CURRENCY" => Some(Self::TypeCurrency),
+            "TYPE_FEET" => Some(Self::TypeFeet),
+            "TYPE_MILES" => Some(Self::TypeMiles),
+            "TYPE_METERS" => Some(Self::TypeMeters),
+            "TYPE_KILOMETERS" => Some(Self::TypeKilometers),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RestrictedMetricType {
-Unspecified = 0,
-CostData = 1,
-RevenueData = 2,
+    Unspecified = 0,
+    CostData = 1,
+    RevenueData = 2,
 }
 impl RestrictedMetricType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
-RestrictedMetricType::CostData => "COST_DATA",
-RestrictedMetricType::RevenueData => "REVENUE_DATA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESTRICTED_METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"COST_DATA" => Some(Self::CostData),
-"REVENUE_DATA" => Some(Self::RevenueData),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+            RestrictedMetricType::CostData => "COST_DATA",
+            RestrictedMetricType::RevenueData => "REVENUE_DATA",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESTRICTED_METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "COST_DATA" => Some(Self::CostData),
+            "REVENUE_DATA" => Some(Self::RevenueData),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Compatibility {
-Unspecified = 0,
-Compatible = 1,
-Incompatible = 2,
+    Unspecified = 0,
+    Compatible = 1,
+    Incompatible = 2,
 }
 impl Compatibility {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Compatibility::Unspecified => "COMPATIBILITY_UNSPECIFIED",
-Compatibility::Compatible => "COMPATIBLE",
-Compatibility::Incompatible => "INCOMPATIBLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMPATIBILITY_UNSPECIFIED" => Some(Self::Unspecified),
-"COMPATIBLE" => Some(Self::Compatible),
-"INCOMPATIBLE" => Some(Self::Incompatible),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Compatibility::Unspecified => "COMPATIBILITY_UNSPECIFIED",
+            Compatibility::Compatible => "COMPATIBLE",
+            Compatibility::Incompatible => "INCOMPATIBLE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "COMPATIBILITY_UNSPECIFIED" => Some(Self::Unspecified),
+            "COMPATIBLE" => Some(Self::Compatible),
+            "INCOMPATIBLE" => Some(Self::Incompatible),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckCompatibilityRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
-#[prost(message, repeated, tag = "3")]
-pub metrics: ::prost::alloc::vec::Vec<Metric>,
-#[prost(message, optional, tag = "4")]
-pub dimension_filter: ::core::option::Option<FilterExpression>,
-#[prost(message, optional, tag = "5")]
-pub metric_filter: ::core::option::Option<FilterExpression>,
-#[prost(enumeration = "Compatibility", tag = "6")]
-pub compatibility_filter: i32,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
+    #[prost(message, repeated, tag = "3")]
+    pub metrics: ::prost::alloc::vec::Vec<Metric>,
+    #[prost(message, optional, tag = "4")]
+    pub dimension_filter: ::core::option::Option<FilterExpression>,
+    #[prost(message, optional, tag = "5")]
+    pub metric_filter: ::core::option::Option<FilterExpression>,
+    #[prost(enumeration = "Compatibility", tag = "6")]
+    pub compatibility_filter: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckCompatibilityResponse {
-#[prost(message, repeated, tag = "1")]
-pub dimension_compatibilities: ::prost::alloc::vec::Vec<DimensionCompatibility>,
-#[prost(message, repeated, tag = "2")]
-pub metric_compatibilities: ::prost::alloc::vec::Vec<MetricCompatibility>,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_compatibilities: ::prost::alloc::vec::Vec<DimensionCompatibility>,
+    #[prost(message, repeated, tag = "2")]
+    pub metric_compatibilities: ::prost::alloc::vec::Vec<MetricCompatibility>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metadata {
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "1")]
-pub dimensions: ::prost::alloc::vec::Vec<DimensionMetadata>,
-#[prost(message, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<MetricMetadata>,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub dimensions: ::prost::alloc::vec::Vec<DimensionMetadata>,
+    #[prost(message, repeated, tag = "2")]
+    pub metrics: ::prost::alloc::vec::Vec<MetricMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunReportRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
-#[prost(message, repeated, tag = "3")]
-pub metrics: ::prost::alloc::vec::Vec<Metric>,
-#[prost(message, repeated, tag = "4")]
-pub date_ranges: ::prost::alloc::vec::Vec<DateRange>,
-#[prost(message, optional, tag = "5")]
-pub dimension_filter: ::core::option::Option<FilterExpression>,
-#[prost(message, optional, tag = "6")]
-pub metric_filter: ::core::option::Option<FilterExpression>,
-#[prost(int64, tag = "7")]
-pub offset: i64,
-#[prost(int64, tag = "8")]
-pub limit: i64,
-#[prost(enumeration = "MetricAggregation", repeated, tag = "9")]
-pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, repeated, tag = "10")]
-pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
-#[prost(string, tag = "11")]
-pub currency_code: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "12")]
-pub cohort_spec: ::core::option::Option<CohortSpec>,
-#[prost(bool, tag = "13")]
-pub keep_empty_rows: bool,
-#[prost(bool, tag = "14")]
-pub return_property_quota: bool,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
+    #[prost(message, repeated, tag = "3")]
+    pub metrics: ::prost::alloc::vec::Vec<Metric>,
+    #[prost(message, repeated, tag = "4")]
+    pub date_ranges: ::prost::alloc::vec::Vec<DateRange>,
+    #[prost(message, optional, tag = "5")]
+    pub dimension_filter: ::core::option::Option<FilterExpression>,
+    #[prost(message, optional, tag = "6")]
+    pub metric_filter: ::core::option::Option<FilterExpression>,
+    #[prost(int64, tag = "7")]
+    pub offset: i64,
+    #[prost(int64, tag = "8")]
+    pub limit: i64,
+    #[prost(enumeration = "MetricAggregation", repeated, tag = "9")]
+    pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, repeated, tag = "10")]
+    pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
+    #[prost(string, tag = "11")]
+    pub currency_code: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "12")]
+    pub cohort_spec: ::core::option::Option<CohortSpec>,
+    #[prost(bool, tag = "13")]
+    pub keep_empty_rows: bool,
+    #[prost(bool, tag = "14")]
+    pub return_property_quota: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunReportResponse {
-#[prost(message, repeated, tag = "1")]
-pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
-#[prost(message, repeated, tag = "2")]
-pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
-#[prost(message, repeated, tag = "3")]
-pub rows: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "4")]
-pub totals: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "5")]
-pub maximums: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "6")]
-pub minimums: ::prost::alloc::vec::Vec<Row>,
-#[prost(int32, tag = "7")]
-pub row_count: i32,
-#[prost(message, optional, tag = "8")]
-pub metadata: ::core::option::Option<ResponseMetaData>,
-#[prost(message, optional, tag = "9")]
-pub property_quota: ::core::option::Option<PropertyQuota>,
-#[prost(string, tag = "10")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
+    #[prost(message, repeated, tag = "2")]
+    pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
+    #[prost(message, repeated, tag = "3")]
+    pub rows: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "4")]
+    pub totals: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "5")]
+    pub maximums: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "6")]
+    pub minimums: ::prost::alloc::vec::Vec<Row>,
+    #[prost(int32, tag = "7")]
+    pub row_count: i32,
+    #[prost(message, optional, tag = "8")]
+    pub metadata: ::core::option::Option<ResponseMetaData>,
+    #[prost(message, optional, tag = "9")]
+    pub property_quota: ::core::option::Option<PropertyQuota>,
+    #[prost(string, tag = "10")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunPivotReportRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
-#[prost(message, repeated, tag = "3")]
-pub metrics: ::prost::alloc::vec::Vec<Metric>,
-#[prost(message, repeated, tag = "4")]
-pub date_ranges: ::prost::alloc::vec::Vec<DateRange>,
-#[prost(message, repeated, tag = "5")]
-pub pivots: ::prost::alloc::vec::Vec<Pivot>,
-#[prost(message, optional, tag = "6")]
-pub dimension_filter: ::core::option::Option<FilterExpression>,
-#[prost(message, optional, tag = "7")]
-pub metric_filter: ::core::option::Option<FilterExpression>,
-#[prost(string, tag = "8")]
-pub currency_code: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub cohort_spec: ::core::option::Option<CohortSpec>,
-#[prost(bool, tag = "10")]
-pub keep_empty_rows: bool,
-#[prost(bool, tag = "11")]
-pub return_property_quota: bool,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
+    #[prost(message, repeated, tag = "3")]
+    pub metrics: ::prost::alloc::vec::Vec<Metric>,
+    #[prost(message, repeated, tag = "4")]
+    pub date_ranges: ::prost::alloc::vec::Vec<DateRange>,
+    #[prost(message, repeated, tag = "5")]
+    pub pivots: ::prost::alloc::vec::Vec<Pivot>,
+    #[prost(message, optional, tag = "6")]
+    pub dimension_filter: ::core::option::Option<FilterExpression>,
+    #[prost(message, optional, tag = "7")]
+    pub metric_filter: ::core::option::Option<FilterExpression>,
+    #[prost(string, tag = "8")]
+    pub currency_code: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub cohort_spec: ::core::option::Option<CohortSpec>,
+    #[prost(bool, tag = "10")]
+    pub keep_empty_rows: bool,
+    #[prost(bool, tag = "11")]
+    pub return_property_quota: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunPivotReportResponse {
-#[prost(message, repeated, tag = "1")]
-pub pivot_headers: ::prost::alloc::vec::Vec<PivotHeader>,
-#[prost(message, repeated, tag = "2")]
-pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
-#[prost(message, repeated, tag = "3")]
-pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
-#[prost(message, repeated, tag = "4")]
-pub rows: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "5")]
-pub aggregates: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, optional, tag = "6")]
-pub metadata: ::core::option::Option<ResponseMetaData>,
-#[prost(message, optional, tag = "7")]
-pub property_quota: ::core::option::Option<PropertyQuota>,
-#[prost(string, tag = "8")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub pivot_headers: ::prost::alloc::vec::Vec<PivotHeader>,
+    #[prost(message, repeated, tag = "2")]
+    pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
+    #[prost(message, repeated, tag = "3")]
+    pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
+    #[prost(message, repeated, tag = "4")]
+    pub rows: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "5")]
+    pub aggregates: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, optional, tag = "6")]
+    pub metadata: ::core::option::Option<ResponseMetaData>,
+    #[prost(message, optional, tag = "7")]
+    pub property_quota: ::core::option::Option<PropertyQuota>,
+    #[prost(string, tag = "8")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunReportsRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub requests: ::prost::alloc::vec::Vec<RunReportRequest>,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<RunReportRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunReportsResponse {
-#[prost(message, repeated, tag = "1")]
-pub reports: ::prost::alloc::vec::Vec<RunReportResponse>,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub reports: ::prost::alloc::vec::Vec<RunReportResponse>,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunPivotReportsRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub requests: ::prost::alloc::vec::Vec<RunPivotReportRequest>,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<RunPivotReportRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchRunPivotReportsResponse {
-#[prost(message, repeated, tag = "1")]
-pub pivot_reports: ::prost::alloc::vec::Vec<RunPivotReportResponse>,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub pivot_reports: ::prost::alloc::vec::Vec<RunPivotReportResponse>,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMetadataRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunRealtimeReportRequest {
-#[prost(string, tag = "1")]
-pub property: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
-#[prost(message, repeated, tag = "3")]
-pub metrics: ::prost::alloc::vec::Vec<Metric>,
-#[prost(message, optional, tag = "4")]
-pub dimension_filter: ::core::option::Option<FilterExpression>,
-#[prost(message, optional, tag = "5")]
-pub metric_filter: ::core::option::Option<FilterExpression>,
-#[prost(int64, tag = "6")]
-pub limit: i64,
-#[prost(enumeration = "MetricAggregation", repeated, tag = "7")]
-pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, repeated, tag = "8")]
-pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
-#[prost(bool, tag = "9")]
-pub return_property_quota: bool,
-#[prost(message, repeated, tag = "10")]
-pub minute_ranges: ::prost::alloc::vec::Vec<MinuteRange>,
+    #[prost(string, tag = "1")]
+    pub property: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub dimensions: ::prost::alloc::vec::Vec<Dimension>,
+    #[prost(message, repeated, tag = "3")]
+    pub metrics: ::prost::alloc::vec::Vec<Metric>,
+    #[prost(message, optional, tag = "4")]
+    pub dimension_filter: ::core::option::Option<FilterExpression>,
+    #[prost(message, optional, tag = "5")]
+    pub metric_filter: ::core::option::Option<FilterExpression>,
+    #[prost(int64, tag = "6")]
+    pub limit: i64,
+    #[prost(enumeration = "MetricAggregation", repeated, tag = "7")]
+    pub metric_aggregations: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, repeated, tag = "8")]
+    pub order_bys: ::prost::alloc::vec::Vec<OrderBy>,
+    #[prost(bool, tag = "9")]
+    pub return_property_quota: bool,
+    #[prost(message, repeated, tag = "10")]
+    pub minute_ranges: ::prost::alloc::vec::Vec<MinuteRange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunRealtimeReportResponse {
-#[prost(message, repeated, tag = "1")]
-pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
-#[prost(message, repeated, tag = "2")]
-pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
-#[prost(message, repeated, tag = "3")]
-pub rows: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "4")]
-pub totals: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "5")]
-pub maximums: ::prost::alloc::vec::Vec<Row>,
-#[prost(message, repeated, tag = "6")]
-pub minimums: ::prost::alloc::vec::Vec<Row>,
-#[prost(int32, tag = "7")]
-pub row_count: i32,
-#[prost(message, optional, tag = "8")]
-pub property_quota: ::core::option::Option<PropertyQuota>,
-#[prost(string, tag = "9")]
-pub kind: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_headers: ::prost::alloc::vec::Vec<DimensionHeader>,
+    #[prost(message, repeated, tag = "2")]
+    pub metric_headers: ::prost::alloc::vec::Vec<MetricHeader>,
+    #[prost(message, repeated, tag = "3")]
+    pub rows: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "4")]
+    pub totals: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "5")]
+    pub maximums: ::prost::alloc::vec::Vec<Row>,
+    #[prost(message, repeated, tag = "6")]
+    pub minimums: ::prost::alloc::vec::Vec<Row>,
+    #[prost(int32, tag = "7")]
+    pub row_count: i32,
+    #[prost(message, optional, tag = "8")]
+    pub property_quota: ::core::option::Option<PropertyQuota>,
+    #[prost(string, tag = "9")]
+    pub kind: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAudienceExportRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAudienceExportsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAudienceExportsResponse {
-#[prost(message, repeated, tag = "1")]
-pub audience_exports: ::prost::alloc::vec::Vec<AudienceExport>,
-#[prost(string, optional, tag = "2")]
-pub next_page_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub audience_exports: ::prost::alloc::vec::Vec<AudienceExport>,
+    #[prost(string, optional, tag = "2")]
+    pub next_page_token: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAudienceExportRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub audience_export: ::core::option::Option<AudienceExport>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub audience_export: ::core::option::Option<AudienceExport>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudienceExport {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub audience: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub audience_display_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub dimensions: ::prost::alloc::vec::Vec<AudienceDimension>,
-#[prost(enumeration = "audience_export::State", optional, tag = "5")]
-pub state: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "6")]
-pub begin_creating_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int32, tag = "7")]
-pub creation_quota_tokens_charged: i32,
-#[prost(int32, optional, tag = "8")]
-pub row_count: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "9")]
-pub error_message: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(double, optional, tag = "10")]
-pub percentage_completed: ::core::option::Option<f64>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub audience_display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub dimensions: ::prost::alloc::vec::Vec<AudienceDimension>,
+    #[prost(enumeration = "audience_export::State", optional, tag = "5")]
+    pub state: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "6")]
+    pub begin_creating_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int32, tag = "7")]
+    pub creation_quota_tokens_charged: i32,
+    #[prost(int32, optional, tag = "8")]
+    pub row_count: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "9")]
+    pub error_message: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(double, optional, tag = "10")]
+    pub percentage_completed: ::core::option::Option<f64>,
 }
 /// Nested message and enum types in `AudienceExport`.
 pub mod audience_export {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Active = 2,
-Failed = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Active => "ACTIVE",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"ACTIVE" => Some(Self::Active),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Active = 2,
+        Failed = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Active => "ACTIVE",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "ACTIVE" => Some(Self::Active),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1121,322 +1133,484 @@ pub struct AudienceExportMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAudienceExportRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub offset: i64,
-#[prost(int64, tag = "3")]
-pub limit: i64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub offset: i64,
+    #[prost(int64, tag = "3")]
+    pub limit: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAudienceExportResponse {
-#[prost(message, optional, tag = "1")]
-pub audience_export: ::core::option::Option<AudienceExport>,
-#[prost(message, repeated, tag = "2")]
-pub audience_rows: ::prost::alloc::vec::Vec<AudienceRow>,
-#[prost(int32, optional, tag = "3")]
-pub row_count: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "1")]
+    pub audience_export: ::core::option::Option<AudienceExport>,
+    #[prost(message, repeated, tag = "2")]
+    pub audience_rows: ::prost::alloc::vec::Vec<AudienceRow>,
+    #[prost(int32, optional, tag = "3")]
+    pub row_count: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudienceRow {
-#[prost(message, repeated, tag = "1")]
-pub dimension_values: ::prost::alloc::vec::Vec<AudienceDimensionValue>,
+    #[prost(message, repeated, tag = "1")]
+    pub dimension_values: ::prost::alloc::vec::Vec<AudienceDimensionValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudienceDimension {
-#[prost(string, tag = "1")]
-pub dimension_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub dimension_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudienceDimensionValue {
-#[prost(oneof = "audience_dimension_value::OneValue", tags = "1")]
-pub one_value: ::core::option::Option<audience_dimension_value::OneValue>,
+    #[prost(oneof = "audience_dimension_value::OneValue", tags = "1")]
+    pub one_value: ::core::option::Option<audience_dimension_value::OneValue>,
 }
 /// Nested message and enum types in `AudienceDimensionValue`.
 pub mod audience_dimension_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum OneValue {
-#[prost(string, tag = "1")]
-Value(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneValue {
+        #[prost(string, tag = "1")]
+        Value(::prost::alloc::string::String),
+    }
 }
 /// Generated client implementations.
 pub mod beta_analytics_data_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Google Analytics reporting data service.
-#[derive(Debug, Clone)]
-pub struct BetaAnalyticsDataClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> BetaAnalyticsDataClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> BetaAnalyticsDataClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-BetaAnalyticsDataClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Returns a customized report of your Google Analytics event data. Reports
-/// contain statistics derived from data collected by the Google Analytics
-/// tracking code. The data returned from the API is as a table with columns
-/// for the requested dimensions and metrics. Metrics are individual
-/// measurements of user activity on your property, such as active users or
-/// event count. Dimensions break down metrics across some common criteria,
-/// such as country or event name.
-///
-/// For a guide to constructing requests & understanding responses, see
-/// [Creating a
-/// Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
-pub async fn run_report(&mut self, request: impl tonic::IntoRequest<super::RunReportRequest>) -> std::result::Result<tonic::Response<super::RunReportResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/RunReport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "RunReport"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a customized pivot report of your Google Analytics event data.
-/// Pivot reports are more advanced and expressive formats than regular
-/// reports. In a pivot report, dimensions are only visible if they are
-/// included in a pivot. Multiple pivots can be specified to further dissect
-/// your data.
-pub async fn run_pivot_report(&mut self, request: impl tonic::IntoRequest<super::RunPivotReportRequest>) -> std::result::Result<tonic::Response<super::RunPivotReportResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/RunPivotReport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "RunPivotReport"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns multiple reports in a batch. All reports must be for the same
-/// GA4 Property.
-pub async fn batch_run_reports(&mut self, request: impl tonic::IntoRequest<super::BatchRunReportsRequest>) -> std::result::Result<tonic::Response<super::BatchRunReportsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunReports");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "BatchRunReports"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns multiple pivot reports in a batch. All reports must be for the same
-/// GA4 Property.
-pub async fn batch_run_pivot_reports(&mut self, request: impl tonic::IntoRequest<super::BatchRunPivotReportsRequest>) -> std::result::Result<tonic::Response<super::BatchRunPivotReportsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunPivotReports");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "BatchRunPivotReports"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns metadata for dimensions and metrics available in reporting methods.
-/// Used to explore the dimensions and metrics. In this method, a Google
-/// Analytics GA4 Property Identifier is specified in the request, and
-/// the metadata response includes Custom dimensions and metrics as well as
-/// Universal metadata.
-///
-/// For example if a custom metric with parameter name `levels_unlocked` is
-/// registered to a property, the Metadata response will contain
-/// `customEvent:levels_unlocked`. Universal metadata are dimensions and
-/// metrics applicable to any property such as `country` and `totalUsers`.
-pub async fn get_metadata(&mut self, request: impl tonic::IntoRequest<super::GetMetadataRequest>) -> std::result::Result<tonic::Response<super::Metadata>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/GetMetadata");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "GetMetadata"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a customized report of realtime event data for your property.
-/// Events appear in realtime reports seconds after they have been sent to
-/// the Google Analytics. Realtime reports show events and usage data for the
-/// periods of time ranging from the present moment to 30 minutes ago (up to
-/// 60 minutes for Google Analytics 360 properties).
-///
-/// For a guide to constructing realtime requests & understanding responses,
-/// see [Creating a Realtime
-/// Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
-pub async fn run_realtime_report(&mut self, request: impl tonic::IntoRequest<super::RunRealtimeReportRequest>) -> std::result::Result<tonic::Response<super::RunRealtimeReportResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/RunRealtimeReport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "RunRealtimeReport"));
-self.inner.unary(req, path, codec).await
-}
-/// This compatibility method lists dimensions and metrics that can be added to
-/// a report request and maintain compatibility. This method fails if the
-/// request's dimensions and metrics are incompatible.
-///
-/// In Google Analytics, reports fail if they request incompatible dimensions
-/// and/or metrics; in that case, you will need to remove dimensions and/or
-/// metrics from the incompatible report until the report is compatible.
-///
-/// The Realtime and Core reports have different compatibility rules. This
-/// method checks compatibility for Core reports.
-pub async fn check_compatibility(&mut self, request: impl tonic::IntoRequest<super::CheckCompatibilityRequest>) -> std::result::Result<tonic::Response<super::CheckCompatibilityResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/CheckCompatibility");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "CheckCompatibility"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates an audience export for later retrieval. This method quickly returns
-/// the audience export's resource name and initiates a long running
-/// asynchronous request to form an audience export. To export the users in an
-/// audience export, first create the audience export through this method and
-/// then send the audience resource name to the `QueryAudienceExport` method.
-///
-/// See [Creating an Audience
-/// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
-/// for an introduction to Audience Exports with examples.
-///
-/// An audience export is a snapshot of the users currently in the audience at
-/// the time of audience export creation. Creating audience exports for one
-/// audience on different days will return different results as users enter and
-/// exit the audience.
-///
-/// Audiences in Google Analytics 4 allow you to segment your users in the ways
-/// that are important to your business. To learn more, see
-/// https://support.google.com/analytics/answer/9267572. Audience exports
-/// contain the users in each audience.
-///
-/// Audience Export APIs have some methods at alpha and other methods at beta
-/// stability. The intention is to advance methods to beta stability after some
-/// feedback and adoption. To give your feedback on this API, complete the
-/// [Google Analytics Audience Export API
-/// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
-pub async fn create_audience_export(&mut self, request: impl tonic::IntoRequest<super::CreateAudienceExportRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/CreateAudienceExport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "CreateAudienceExport"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves an audience export of users. After creating an audience, the
-/// users are not immediately available for exporting. First, a request to
-/// `CreateAudienceExport` is necessary to create an audience export of users,
-/// and then second, this method is used to retrieve the users in the audience
-/// export.
-///
-/// See [Creating an Audience
-/// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
-/// for an introduction to Audience Exports with examples.
-///
-/// Audiences in Google Analytics 4 allow you to segment your users in the ways
-/// that are important to your business. To learn more, see
-/// https://support.google.com/analytics/answer/9267572.
-///
-/// Audience Export APIs have some methods at alpha and other methods at beta
-/// stability. The intention is to advance methods to beta stability after some
-/// feedback and adoption. To give your feedback on this API, complete the
-/// [Google Analytics Audience Export API
-/// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
-pub async fn query_audience_export(&mut self, request: impl tonic::IntoRequest<super::QueryAudienceExportRequest>) -> std::result::Result<tonic::Response<super::QueryAudienceExportResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/QueryAudienceExport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "QueryAudienceExport"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets configuration metadata about a specific audience export. This method
-/// can be used to understand an audience export after it has been created.
-///
-/// See [Creating an Audience
-/// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
-/// for an introduction to Audience Exports with examples.
-///
-/// Audience Export APIs have some methods at alpha and other methods at beta
-/// stability. The intention is to advance methods to beta stability after some
-/// feedback and adoption. To give your feedback on this API, complete the
-/// [Google Analytics Audience Export API
-/// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
-pub async fn get_audience_export(&mut self, request: impl tonic::IntoRequest<super::GetAudienceExportRequest>) -> std::result::Result<tonic::Response<super::AudienceExport>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/GetAudienceExport");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "GetAudienceExport"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all audience exports for a property. This method can be used for you
-/// to find and reuse existing audience exports rather than creating
-/// unnecessary new audience exports. The same audience can have multiple
-/// audience exports that represent the export of users that were in an
-/// audience on different days.
-///
-/// See [Creating an Audience
-/// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
-/// for an introduction to Audience Exports with examples.
-///
-/// Audience Export APIs have some methods at alpha and other methods at beta
-/// stability. The intention is to advance methods to beta stability after some
-/// feedback and adoption. To give your feedback on this API, complete the
-/// [Google Analytics Audience Export API
-/// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
-pub async fn list_audience_exports(&mut self, request: impl tonic::IntoRequest<super::ListAudienceExportsRequest>) -> std::result::Result<tonic::Response<super::ListAudienceExportsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.analytics.data.v1beta.BetaAnalyticsData/ListAudienceExports");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.analytics.data.v1beta.BetaAnalyticsData", "ListAudienceExports"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Google Analytics reporting data service.
+    #[derive(Debug, Clone)]
+    pub struct BetaAnalyticsDataClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> BetaAnalyticsDataClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BetaAnalyticsDataClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            BetaAnalyticsDataClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Returns a customized report of your Google Analytics event data. Reports
+        /// contain statistics derived from data collected by the Google Analytics
+        /// tracking code. The data returned from the API is as a table with columns
+        /// for the requested dimensions and metrics. Metrics are individual
+        /// measurements of user activity on your property, such as active users or
+        /// event count. Dimensions break down metrics across some common criteria,
+        /// such as country or event name.
+        ///
+        /// For a guide to constructing requests & understanding responses, see
+        /// [Creating a
+        /// Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
+        pub async fn run_report(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunReportRequest>,
+        ) -> std::result::Result<tonic::Response<super::RunReportResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/RunReport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "RunReport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a customized pivot report of your Google Analytics event data.
+        /// Pivot reports are more advanced and expressive formats than regular
+        /// reports. In a pivot report, dimensions are only visible if they are
+        /// included in a pivot. Multiple pivots can be specified to further dissect
+        /// your data.
+        pub async fn run_pivot_report(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunPivotReportRequest>,
+        ) -> std::result::Result<tonic::Response<super::RunPivotReportResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/RunPivotReport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "RunPivotReport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns multiple reports in a batch. All reports must be for the same
+        /// GA4 Property.
+        pub async fn batch_run_reports(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchRunReportsRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchRunReportsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunReports",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "BatchRunReports",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns multiple pivot reports in a batch. All reports must be for the same
+        /// GA4 Property.
+        pub async fn batch_run_pivot_reports(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchRunPivotReportsRequest>,
+        ) -> std::result::Result<tonic::Response<super::BatchRunPivotReportsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/BatchRunPivotReports",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "BatchRunPivotReports",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns metadata for dimensions and metrics available in reporting methods.
+        /// Used to explore the dimensions and metrics. In this method, a Google
+        /// Analytics GA4 Property Identifier is specified in the request, and
+        /// the metadata response includes Custom dimensions and metrics as well as
+        /// Universal metadata.
+        ///
+        /// For example if a custom metric with parameter name `levels_unlocked` is
+        /// registered to a property, the Metadata response will contain
+        /// `customEvent:levels_unlocked`. Universal metadata are dimensions and
+        /// metrics applicable to any property such as `country` and `totalUsers`.
+        pub async fn get_metadata(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetMetadataRequest>,
+        ) -> std::result::Result<tonic::Response<super::Metadata>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/GetMetadata",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "GetMetadata",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a customized report of realtime event data for your property.
+        /// Events appear in realtime reports seconds after they have been sent to
+        /// the Google Analytics. Realtime reports show events and usage data for the
+        /// periods of time ranging from the present moment to 30 minutes ago (up to
+        /// 60 minutes for Google Analytics 360 properties).
+        ///
+        /// For a guide to constructing realtime requests & understanding responses,
+        /// see [Creating a Realtime
+        /// Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
+        pub async fn run_realtime_report(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunRealtimeReportRequest>,
+        ) -> std::result::Result<tonic::Response<super::RunRealtimeReportResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/RunRealtimeReport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "RunRealtimeReport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// This compatibility method lists dimensions and metrics that can be added to
+        /// a report request and maintain compatibility. This method fails if the
+        /// request's dimensions and metrics are incompatible.
+        ///
+        /// In Google Analytics, reports fail if they request incompatible dimensions
+        /// and/or metrics; in that case, you will need to remove dimensions and/or
+        /// metrics from the incompatible report until the report is compatible.
+        ///
+        /// The Realtime and Core reports have different compatibility rules. This
+        /// method checks compatibility for Core reports.
+        pub async fn check_compatibility(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CheckCompatibilityRequest>,
+        ) -> std::result::Result<tonic::Response<super::CheckCompatibilityResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/CheckCompatibility",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "CheckCompatibility",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an audience export for later retrieval. This method quickly returns
+        /// the audience export's resource name and initiates a long running
+        /// asynchronous request to form an audience export. To export the users in an
+        /// audience export, first create the audience export through this method and
+        /// then send the audience resource name to the `QueryAudienceExport` method.
+        ///
+        /// See [Creating an Audience
+        /// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+        /// for an introduction to Audience Exports with examples.
+        ///
+        /// An audience export is a snapshot of the users currently in the audience at
+        /// the time of audience export creation. Creating audience exports for one
+        /// audience on different days will return different results as users enter and
+        /// exit the audience.
+        ///
+        /// Audiences in Google Analytics 4 allow you to segment your users in the ways
+        /// that are important to your business. To learn more, see
+        /// https://support.google.com/analytics/answer/9267572. Audience exports
+        /// contain the users in each audience.
+        ///
+        /// Audience Export APIs have some methods at alpha and other methods at beta
+        /// stability. The intention is to advance methods to beta stability after some
+        /// feedback and adoption. To give your feedback on this API, complete the
+        /// [Google Analytics Audience Export API
+        /// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+        pub async fn create_audience_export(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAudienceExportRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/CreateAudienceExport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "CreateAudienceExport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves an audience export of users. After creating an audience, the
+        /// users are not immediately available for exporting. First, a request to
+        /// `CreateAudienceExport` is necessary to create an audience export of users,
+        /// and then second, this method is used to retrieve the users in the audience
+        /// export.
+        ///
+        /// See [Creating an Audience
+        /// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+        /// for an introduction to Audience Exports with examples.
+        ///
+        /// Audiences in Google Analytics 4 allow you to segment your users in the ways
+        /// that are important to your business. To learn more, see
+        /// https://support.google.com/analytics/answer/9267572.
+        ///
+        /// Audience Export APIs have some methods at alpha and other methods at beta
+        /// stability. The intention is to advance methods to beta stability after some
+        /// feedback and adoption. To give your feedback on this API, complete the
+        /// [Google Analytics Audience Export API
+        /// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+        pub async fn query_audience_export(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryAudienceExportRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryAudienceExportResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/QueryAudienceExport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "QueryAudienceExport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets configuration metadata about a specific audience export. This method
+        /// can be used to understand an audience export after it has been created.
+        ///
+        /// See [Creating an Audience
+        /// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+        /// for an introduction to Audience Exports with examples.
+        ///
+        /// Audience Export APIs have some methods at alpha and other methods at beta
+        /// stability. The intention is to advance methods to beta stability after some
+        /// feedback and adoption. To give your feedback on this API, complete the
+        /// [Google Analytics Audience Export API
+        /// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+        pub async fn get_audience_export(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAudienceExportRequest>,
+        ) -> std::result::Result<tonic::Response<super::AudienceExport>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/GetAudienceExport",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "GetAudienceExport",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all audience exports for a property. This method can be used for you
+        /// to find and reuse existing audience exports rather than creating
+        /// unnecessary new audience exports. The same audience can have multiple
+        /// audience exports that represent the export of users that were in an
+        /// audience on different days.
+        ///
+        /// See [Creating an Audience
+        /// Export](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
+        /// for an introduction to Audience Exports with examples.
+        ///
+        /// Audience Export APIs have some methods at alpha and other methods at beta
+        /// stability. The intention is to advance methods to beta stability after some
+        /// feedback and adoption. To give your feedback on this API, complete the
+        /// [Google Analytics Audience Export API
+        /// Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
+        pub async fn list_audience_exports(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAudienceExportsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAudienceExportsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1beta.BetaAnalyticsData/ListAudienceExports",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.analytics.data.v1beta.BetaAnalyticsData",
+                "ListAudienceExports",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

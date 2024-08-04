@@ -2,328 +2,404 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TemporalAsset {
-#[prost(message, optional, tag = "1")]
-pub window: ::core::option::Option<TimeWindow>,
-#[prost(bool, tag = "2")]
-pub deleted: bool,
-#[prost(message, optional, tag = "3")]
-pub asset: ::core::option::Option<Asset>,
+    #[prost(message, optional, tag = "1")]
+    pub window: ::core::option::Option<TimeWindow>,
+    #[prost(bool, tag = "2")]
+    pub deleted: bool,
+    #[prost(message, optional, tag = "3")]
+    pub asset: ::core::option::Option<Asset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeWindow {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub asset_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub resource: ::core::option::Option<Resource>,
-#[prost(message, optional, tag = "4")]
-pub iam_policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
-#[prost(string, repeated, tag = "6")]
-pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "10")]
-pub org_policy: ::prost::alloc::vec::Vec<super::super::orgpolicy::v1::Policy>,
-#[prost(oneof = "asset::AccessContextPolicy", tags = "7, 8, 9")]
-pub access_context_policy: ::core::option::Option<asset::AccessContextPolicy>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub asset_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub resource: ::core::option::Option<Resource>,
+    #[prost(message, optional, tag = "4")]
+    pub iam_policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
+    #[prost(string, repeated, tag = "6")]
+    pub ancestors: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "10")]
+    pub org_policy: ::prost::alloc::vec::Vec<super::super::orgpolicy::v1::Policy>,
+    #[prost(oneof = "asset::AccessContextPolicy", tags = "7, 8, 9")]
+    pub access_context_policy: ::core::option::Option<asset::AccessContextPolicy>,
 }
 /// Nested message and enum types in `Asset`.
 pub mod asset {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum AccessContextPolicy {
-#[prost(message, tag = "7")]
-AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
-#[prost(message, tag = "8")]
-AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
-#[prost(message, tag = "9")]
-ServicePerimeter(super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum AccessContextPolicy {
+        #[prost(message, tag = "7")]
+        AccessPolicy(super::super::super::super::identity::accesscontextmanager::v1::AccessPolicy),
+        #[prost(message, tag = "8")]
+        AccessLevel(super::super::super::super::identity::accesscontextmanager::v1::AccessLevel),
+        #[prost(message, tag = "9")]
+        ServicePerimeter(
+            super::super::super::super::identity::accesscontextmanager::v1::ServicePerimeter,
+        ),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Resource {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub discovery_document_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub discovery_name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub resource_url: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub data: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub discovery_document_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub discovery_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub resource_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub data: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportAssetsResponse {
-#[prost(message, optional, tag = "1")]
-pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub output_config: ::core::option::Option<OutputConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub output_config: ::core::option::Option<OutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetAssetsHistoryResponse {
-#[prost(message, repeated, tag = "1")]
-pub assets: ::prost::alloc::vec::Vec<TemporalAsset>,
+    #[prost(message, repeated, tag = "1")]
+    pub assets: ::prost::alloc::vec::Vec<TemporalAsset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFeedRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub feed_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub feed: ::core::option::Option<Feed>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub feed_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub feed: ::core::option::Option<Feed>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFeedRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFeedsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFeedsResponse {
-#[prost(message, repeated, tag = "1")]
-pub feeds: ::prost::alloc::vec::Vec<Feed>,
+    #[prost(message, repeated, tag = "1")]
+    pub feeds: ::prost::alloc::vec::Vec<Feed>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFeedRequest {
-#[prost(message, optional, tag = "1")]
-pub feed: ::core::option::Option<Feed>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub feed: ::core::option::Option<Feed>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFeedRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-#[prost(oneof = "output_config::Destination", tags = "1")]
-pub destination: ::core::option::Option<output_config::Destination>,
+    #[prost(oneof = "output_config::Destination", tags = "1")]
+    pub destination: ::core::option::Option<output_config::Destination>,
 }
 /// Nested message and enum types in `OutputConfig`.
 pub mod output_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Destination {
-#[prost(message, tag = "1")]
-GcsDestination(super::GcsDestination),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Destination {
+        #[prost(message, tag = "1")]
+        GcsDestination(super::GcsDestination),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-#[prost(oneof = "gcs_destination::ObjectUri", tags = "1")]
-pub object_uri: ::core::option::Option<gcs_destination::ObjectUri>,
+    #[prost(oneof = "gcs_destination::ObjectUri", tags = "1")]
+    pub object_uri: ::core::option::Option<gcs_destination::ObjectUri>,
 }
 /// Nested message and enum types in `GcsDestination`.
 pub mod gcs_destination {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ObjectUri {
-#[prost(string, tag = "1")]
-Uri(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ObjectUri {
+        #[prost(string, tag = "1")]
+        Uri(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PubsubDestination {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FeedOutputConfig {
-#[prost(oneof = "feed_output_config::Destination", tags = "1")]
-pub destination: ::core::option::Option<feed_output_config::Destination>,
+    #[prost(oneof = "feed_output_config::Destination", tags = "1")]
+    pub destination: ::core::option::Option<feed_output_config::Destination>,
 }
 /// Nested message and enum types in `FeedOutputConfig`.
 pub mod feed_output_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Destination {
-#[prost(message, tag = "1")]
-PubsubDestination(super::PubsubDestination),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Destination {
+        #[prost(message, tag = "1")]
+        PubsubDestination(super::PubsubDestination),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Feed {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub asset_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "ContentType", tag = "4")]
-pub content_type: i32,
-#[prost(message, optional, tag = "5")]
-pub feed_output_config: ::core::option::Option<FeedOutputConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub asset_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "ContentType", tag = "4")]
+    pub content_type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub feed_output_config: ::core::option::Option<FeedOutputConfig>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ContentType {
-Unspecified = 0,
-Resource = 1,
-IamPolicy = 2,
+    Unspecified = 0,
+    Resource = 1,
+    IamPolicy = 2,
 }
 impl ContentType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-ContentType::Resource => "RESOURCE",
-ContentType::IamPolicy => "IAM_POLICY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE" => Some(Self::Resource),
-"IAM_POLICY" => Some(Self::IamPolicy),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+            ContentType::Resource => "RESOURCE",
+            ContentType::IamPolicy => "IAM_POLICY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "RESOURCE" => Some(Self::Resource),
+            "IAM_POLICY" => Some(Self::IamPolicy),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod asset_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Asset service definition.
-#[derive(Debug, Clone)]
-pub struct AssetServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AssetServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AssetServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AssetServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a feed in a parent project/folder/organization to listen to its
-/// asset updates.
-pub async fn create_feed(&mut self, request: impl tonic::IntoRequest<super::CreateFeedRequest>) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p2beta1.AssetService/CreateFeed");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p2beta1.AssetService", "CreateFeed"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details about an asset feed.
-pub async fn get_feed(&mut self, request: impl tonic::IntoRequest<super::GetFeedRequest>) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p2beta1.AssetService/GetFeed");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p2beta1.AssetService", "GetFeed"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all asset feeds in a parent project/folder/organization.
-pub async fn list_feeds(&mut self, request: impl tonic::IntoRequest<super::ListFeedsRequest>) -> std::result::Result<tonic::Response<super::ListFeedsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p2beta1.AssetService/ListFeeds");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p2beta1.AssetService", "ListFeeds"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an asset feed configuration.
-pub async fn update_feed(&mut self, request: impl tonic::IntoRequest<super::UpdateFeedRequest>) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p2beta1.AssetService/UpdateFeed");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p2beta1.AssetService", "UpdateFeed"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes an asset feed.
-pub async fn delete_feed(&mut self, request: impl tonic::IntoRequest<super::DeleteFeedRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p2beta1.AssetService/DeleteFeed");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p2beta1.AssetService", "DeleteFeed"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Asset service definition.
+    #[derive(Debug, Clone)]
+    pub struct AssetServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AssetServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AssetServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AssetServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a feed in a parent project/folder/organization to listen to its
+        /// asset updates.
+        pub async fn create_feed(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateFeedRequest>,
+        ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p2beta1.AssetService/CreateFeed",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p2beta1.AssetService",
+                "CreateFeed",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details about an asset feed.
+        pub async fn get_feed(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFeedRequest>,
+        ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p2beta1.AssetService/GetFeed",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p2beta1.AssetService",
+                "GetFeed",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all asset feeds in a parent project/folder/organization.
+        pub async fn list_feeds(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFeedsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListFeedsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p2beta1.AssetService/ListFeeds",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p2beta1.AssetService",
+                "ListFeeds",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an asset feed configuration.
+        pub async fn update_feed(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateFeedRequest>,
+        ) -> std::result::Result<tonic::Response<super::Feed>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p2beta1.AssetService/UpdateFeed",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p2beta1.AssetService",
+                "UpdateFeed",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an asset feed.
+        pub async fn delete_feed(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteFeedRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.asset.v1p2beta1.AssetService/DeleteFeed",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.asset.v1p2beta1.AssetService",
+                "DeleteFeed",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

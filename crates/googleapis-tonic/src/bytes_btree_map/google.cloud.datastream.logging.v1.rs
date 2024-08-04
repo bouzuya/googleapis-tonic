@@ -2,25 +2,25 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamActivityLogEntry {
-#[prost(string, tag = "1")]
-pub event_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub event_message: ::prost::alloc::string::String,
-#[prost(oneof = "stream_activity_log_entry::EventPayload", tags = "100")]
-pub event_payload: ::core::option::Option<stream_activity_log_entry::EventPayload>,
+    #[prost(string, tag = "1")]
+    pub event_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub event_message: ::prost::alloc::string::String,
+    #[prost(oneof = "stream_activity_log_entry::EventPayload", tags = "100")]
+    pub event_payload: ::core::option::Option<stream_activity_log_entry::EventPayload>,
 }
 /// Nested message and enum types in `StreamActivityLogEntry`.
 pub mod stream_activity_log_entry {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct StreamStateChange {
-#[prost(enumeration = "super::super::super::v1::stream::State", tag = "1")]
-pub new_state: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum EventPayload {
-#[prost(message, tag = "100")]
-StreamStateChange(StreamStateChange),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct StreamStateChange {
+        #[prost(enumeration = "super::super::super::v1::stream::State", tag = "1")]
+        pub new_state: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum EventPayload {
+        #[prost(message, tag = "100")]
+        StreamStateChange(StreamStateChange),
+    }
 }

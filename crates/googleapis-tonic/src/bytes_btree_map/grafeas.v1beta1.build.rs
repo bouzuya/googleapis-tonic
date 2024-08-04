@@ -2,60 +2,60 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Build {
-#[prost(string, tag = "1")]
-pub builder_version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub signature: ::core::option::Option<BuildSignature>,
+    #[prost(string, tag = "1")]
+    pub builder_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub signature: ::core::option::Option<BuildSignature>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildSignature {
-#[prost(string, tag = "1")]
-pub public_key: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "2")]
-pub signature: ::prost::bytes::Bytes,
-#[prost(string, tag = "3")]
-pub key_id: ::prost::alloc::string::String,
-#[prost(enumeration = "build_signature::KeyType", tag = "4")]
-pub key_type: i32,
+    #[prost(string, tag = "1")]
+    pub public_key: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub signature: ::prost::bytes::Bytes,
+    #[prost(string, tag = "3")]
+    pub key_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "build_signature::KeyType", tag = "4")]
+    pub key_type: i32,
 }
 /// Nested message and enum types in `BuildSignature`.
 pub mod build_signature {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum KeyType {
-Unspecified = 0,
-PgpAsciiArmored = 1,
-PkixPem = 2,
-}
-impl KeyType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-KeyType::Unspecified => "KEY_TYPE_UNSPECIFIED",
-KeyType::PgpAsciiArmored => "PGP_ASCII_ARMORED",
-KeyType::PkixPem => "PKIX_PEM",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"KEY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PGP_ASCII_ARMORED" => Some(Self::PgpAsciiArmored),
-"PKIX_PEM" => Some(Self::PkixPem),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum KeyType {
+        Unspecified = 0,
+        PgpAsciiArmored = 1,
+        PkixPem = 2,
+    }
+    impl KeyType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                KeyType::Unspecified => "KEY_TYPE_UNSPECIFIED",
+                KeyType::PgpAsciiArmored => "PGP_ASCII_ARMORED",
+                KeyType::PkixPem => "PKIX_PEM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "KEY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PGP_ASCII_ARMORED" => Some(Self::PgpAsciiArmored),
+                "PKIX_PEM" => Some(Self::PkixPem),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Details {
-#[prost(message, optional, tag = "1")]
-pub provenance: ::core::option::Option<super::provenance::BuildProvenance>,
-#[prost(string, tag = "2")]
-pub provenance_bytes: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub provenance: ::core::option::Option<super::provenance::BuildProvenance>,
+    #[prost(string, tag = "2")]
+    pub provenance_bytes: ::prost::alloc::string::String,
 }

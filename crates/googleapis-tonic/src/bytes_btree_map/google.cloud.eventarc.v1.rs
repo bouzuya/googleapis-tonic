@@ -2,695 +2,974 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Provider {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub event_types: ::prost::alloc::vec::Vec<EventType>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub event_types: ::prost::alloc::vec::Vec<EventType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventType {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub filtering_attributes: ::prost::alloc::vec::Vec<FilteringAttribute>,
-#[prost(string, tag = "4")]
-pub event_schema_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub filtering_attributes: ::prost::alloc::vec::Vec<FilteringAttribute>,
+    #[prost(string, tag = "4")]
+    pub event_schema_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilteringAttribute {
-#[prost(string, tag = "1")]
-pub attribute: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub required: bool,
-#[prost(bool, tag = "4")]
-pub path_pattern_supported: bool,
+    #[prost(string, tag = "1")]
+    pub attribute: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub required: bool,
+    #[prost(bool, tag = "4")]
+    pub path_pattern_supported: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Channel {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub provider: ::prost::alloc::string::String,
-#[prost(enumeration = "channel::State", tag = "9")]
-pub state: i32,
-#[prost(string, tag = "10")]
-pub activation_token: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub crypto_key_name: ::prost::alloc::string::String,
-#[prost(oneof = "channel::Transport", tags = "8")]
-pub transport: ::core::option::Option<channel::Transport>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub provider: ::prost::alloc::string::String,
+    #[prost(enumeration = "channel::State", tag = "9")]
+    pub state: i32,
+    #[prost(string, tag = "10")]
+    pub activation_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub crypto_key_name: ::prost::alloc::string::String,
+    #[prost(oneof = "channel::Transport", tags = "8")]
+    pub transport: ::core::option::Option<channel::Transport>,
 }
 /// Nested message and enum types in `Channel`.
 pub mod channel {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Pending = 1,
-Active = 2,
-Inactive = 3,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Pending => "PENDING",
-State::Active => "ACTIVE",
-State::Inactive => "INACTIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"ACTIVE" => Some(Self::Active),
-"INACTIVE" => Some(Self::Inactive),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Transport {
-#[prost(string, tag = "8")]
-PubsubTopic(::prost::alloc::string::String),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Pending = 1,
+        Active = 2,
+        Inactive = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Pending => "PENDING",
+                State::Active => "ACTIVE",
+                State::Inactive => "INACTIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "ACTIVE" => Some(Self::Active),
+                "INACTIVE" => Some(Self::Inactive),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transport {
+        #[prost(string, tag = "8")]
+        PubsubTopic(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChannelConnection {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uid: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub channel: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "8")]
-pub activation_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub channel: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "8")]
+    pub activation_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GoogleChannelConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub crypto_key_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub crypto_key_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trigger {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "8")]
-pub event_filters: ::prost::alloc::vec::Vec<EventFilter>,
-#[prost(string, tag = "9")]
-pub service_account: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub destination: ::core::option::Option<Destination>,
-#[prost(message, optional, tag = "11")]
-pub transport: ::core::option::Option<Transport>,
-#[prost(btree_map = "string, string", tag = "12")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "13")]
-pub channel: ::prost::alloc::string::String,
-#[prost(btree_map = "string, message", tag = "15")]
-pub conditions: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, StateCondition>,
-#[prost(string, tag = "99")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "8")]
+    pub event_filters: ::prost::alloc::vec::Vec<EventFilter>,
+    #[prost(string, tag = "9")]
+    pub service_account: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub destination: ::core::option::Option<Destination>,
+    #[prost(message, optional, tag = "11")]
+    pub transport: ::core::option::Option<Transport>,
+    #[prost(btree_map = "string, string", tag = "12")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "13")]
+    pub channel: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, message", tag = "15")]
+    pub conditions:
+        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, StateCondition>,
+    #[prost(string, tag = "99")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventFilter {
-#[prost(string, tag = "1")]
-pub attribute: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub operator: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub attribute: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub operator: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StateCondition {
-#[prost(enumeration = "super::super::super::rpc::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub message: ::prost::alloc::string::String,
+    #[prost(enumeration = "super::super::super::rpc::Code", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Destination {
-#[prost(oneof = "destination::Descriptor", tags = "1, 2, 3, 4")]
-pub descriptor: ::core::option::Option<destination::Descriptor>,
+    #[prost(oneof = "destination::Descriptor", tags = "1, 2, 3, 4")]
+    pub descriptor: ::core::option::Option<destination::Descriptor>,
 }
 /// Nested message and enum types in `Destination`.
 pub mod destination {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Descriptor {
-#[prost(message, tag = "1")]
-CloudRun(super::CloudRun),
-#[prost(string, tag = "2")]
-CloudFunction(::prost::alloc::string::String),
-#[prost(message, tag = "3")]
-Gke(super::Gke),
-#[prost(string, tag = "4")]
-Workflow(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Descriptor {
+        #[prost(message, tag = "1")]
+        CloudRun(super::CloudRun),
+        #[prost(string, tag = "2")]
+        CloudFunction(::prost::alloc::string::String),
+        #[prost(message, tag = "3")]
+        Gke(super::Gke),
+        #[prost(string, tag = "4")]
+        Workflow(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Transport {
-#[prost(oneof = "transport::Intermediary", tags = "1")]
-pub intermediary: ::core::option::Option<transport::Intermediary>,
+    #[prost(oneof = "transport::Intermediary", tags = "1")]
+    pub intermediary: ::core::option::Option<transport::Intermediary>,
 }
 /// Nested message and enum types in `Transport`.
 pub mod transport {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Intermediary {
-#[prost(message, tag = "1")]
-Pubsub(super::Pubsub),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Intermediary {
+        #[prost(message, tag = "1")]
+        Pubsub(super::Pubsub),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudRun {
-#[prost(string, tag = "1")]
-pub service: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub path: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub region: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub region: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gke {
-#[prost(string, tag = "1")]
-pub cluster: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub namespace: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub service: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pubsub {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subscription: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subscription: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTriggersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTriggersResponse {
-#[prost(message, repeated, tag = "1")]
-pub triggers: ::prost::alloc::vec::Vec<Trigger>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub triggers: ::prost::alloc::vec::Vec<Trigger>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTriggerRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub trigger: ::core::option::Option<Trigger>,
-#[prost(string, tag = "3")]
-pub trigger_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub trigger: ::core::option::Option<Trigger>,
+    #[prost(string, tag = "3")]
+    pub trigger_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTriggerRequest {
-#[prost(message, optional, tag = "1")]
-pub trigger: ::core::option::Option<Trigger>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(message, optional, tag = "1")]
+    pub trigger: ::core::option::Option<Trigger>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub etag: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetChannelRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelsResponse {
-#[prost(message, repeated, tag = "1")]
-pub channels: ::prost::alloc::vec::Vec<Channel>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub channels: ::prost::alloc::vec::Vec<Channel>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChannelRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub channel: ::core::option::Option<Channel>,
-#[prost(string, tag = "3")]
-pub channel_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub channel: ::core::option::Option<Channel>,
+    #[prost(string, tag = "3")]
+    pub channel_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateChannelRequest {
-#[prost(message, optional, tag = "1")]
-pub channel: ::core::option::Option<Channel>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(message, optional, tag = "1")]
+    pub channel: ::core::option::Option<Channel>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteChannelRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProviderRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProvidersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProvidersResponse {
-#[prost(message, repeated, tag = "1")]
-pub providers: ::prost::alloc::vec::Vec<Provider>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub providers: ::prost::alloc::vec::Vec<Provider>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetChannelConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelConnectionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChannelConnectionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub channel_connections: ::prost::alloc::vec::Vec<ChannelConnection>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub channel_connections: ::prost::alloc::vec::Vec<ChannelConnection>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChannelConnectionRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub channel_connection: ::core::option::Option<ChannelConnection>,
-#[prost(string, tag = "3")]
-pub channel_connection_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub channel_connection: ::core::option::Option<ChannelConnection>,
+    #[prost(string, tag = "3")]
+    pub channel_connection_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteChannelConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGoogleChannelConfigRequest {
-#[prost(message, optional, tag = "1")]
-pub google_channel_config: ::core::option::Option<GoogleChannelConfig>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub google_channel_config: ::core::option::Option<GoogleChannelConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGoogleChannelConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod eventarc_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Eventarc allows users to subscribe to various events that are provided by
-/// Google Cloud services and forward them to supported destinations.
-#[derive(Debug, Clone)]
-pub struct EventarcClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> EventarcClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> EventarcClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-EventarcClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Get a single trigger.
-pub async fn get_trigger(&mut self, request: impl tonic::IntoRequest<super::GetTriggerRequest>) -> std::result::Result<tonic::Response<super::Trigger>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/GetTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "GetTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// List triggers.
-pub async fn list_triggers(&mut self, request: impl tonic::IntoRequest<super::ListTriggersRequest>) -> std::result::Result<tonic::Response<super::ListTriggersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/ListTriggers");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "ListTriggers"));
-self.inner.unary(req, path, codec).await
-}
-/// Create a new trigger in a particular project and location.
-pub async fn create_trigger(&mut self, request: impl tonic::IntoRequest<super::CreateTriggerRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/CreateTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "CreateTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a single trigger.
-pub async fn update_trigger(&mut self, request: impl tonic::IntoRequest<super::UpdateTriggerRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/UpdateTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "UpdateTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a single trigger.
-pub async fn delete_trigger(&mut self, request: impl tonic::IntoRequest<super::DeleteTriggerRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/DeleteTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "DeleteTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a single Channel.
-pub async fn get_channel(&mut self, request: impl tonic::IntoRequest<super::GetChannelRequest>) -> std::result::Result<tonic::Response<super::Channel>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/GetChannel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "GetChannel"));
-self.inner.unary(req, path, codec).await
-}
-/// List channels.
-pub async fn list_channels(&mut self, request: impl tonic::IntoRequest<super::ListChannelsRequest>) -> std::result::Result<tonic::Response<super::ListChannelsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/ListChannels");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "ListChannels"));
-self.inner.unary(req, path, codec).await
-}
-/// Create a new channel in a particular project and location.
-pub async fn create_channel(&mut self, request: impl tonic::IntoRequest<super::CreateChannelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/CreateChannel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "CreateChannel"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a single channel.
-pub async fn update_channel(&mut self, request: impl tonic::IntoRequest<super::UpdateChannelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/UpdateChannel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "UpdateChannel"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a single channel.
-pub async fn delete_channel(&mut self, request: impl tonic::IntoRequest<super::DeleteChannelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/DeleteChannel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "DeleteChannel"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a single Provider.
-pub async fn get_provider(&mut self, request: impl tonic::IntoRequest<super::GetProviderRequest>) -> std::result::Result<tonic::Response<super::Provider>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/GetProvider");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "GetProvider"));
-self.inner.unary(req, path, codec).await
-}
-/// List providers.
-pub async fn list_providers(&mut self, request: impl tonic::IntoRequest<super::ListProvidersRequest>) -> std::result::Result<tonic::Response<super::ListProvidersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/ListProviders");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "ListProviders"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a single ChannelConnection.
-pub async fn get_channel_connection(&mut self, request: impl tonic::IntoRequest<super::GetChannelConnectionRequest>) -> std::result::Result<tonic::Response<super::ChannelConnection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/GetChannelConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "GetChannelConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// List channel connections.
-pub async fn list_channel_connections(&mut self, request: impl tonic::IntoRequest<super::ListChannelConnectionsRequest>) -> std::result::Result<tonic::Response<super::ListChannelConnectionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/ListChannelConnections");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "ListChannelConnections"));
-self.inner.unary(req, path, codec).await
-}
-/// Create a new ChannelConnection in a particular project and location.
-pub async fn create_channel_connection(&mut self, request: impl tonic::IntoRequest<super::CreateChannelConnectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/CreateChannelConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "CreateChannelConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a single ChannelConnection.
-pub async fn delete_channel_connection(&mut self, request: impl tonic::IntoRequest<super::DeleteChannelConnectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/DeleteChannelConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "DeleteChannelConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a GoogleChannelConfig
-pub async fn get_google_channel_config(&mut self, request: impl tonic::IntoRequest<super::GetGoogleChannelConfigRequest>) -> std::result::Result<tonic::Response<super::GoogleChannelConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/GetGoogleChannelConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "GetGoogleChannelConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a single GoogleChannelConfig
-pub async fn update_google_channel_config(&mut self, request: impl tonic::IntoRequest<super::UpdateGoogleChannelConfigRequest>) -> std::result::Result<tonic::Response<super::GoogleChannelConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.eventarc.v1.Eventarc/UpdateGoogleChannelConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.eventarc.v1.Eventarc", "UpdateGoogleChannelConfig"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Eventarc allows users to subscribe to various events that are provided by
+    /// Google Cloud services and forward them to supported destinations.
+    #[derive(Debug, Clone)]
+    pub struct EventarcClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> EventarcClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> EventarcClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            EventarcClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Get a single trigger.
+        pub async fn get_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::Trigger>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/GetTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "GetTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List triggers.
+        pub async fn list_triggers(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListTriggersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListTriggersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/ListTriggers",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "ListTriggers",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create a new trigger in a particular project and location.
+        pub async fn create_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateTriggerRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/CreateTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "CreateTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a single trigger.
+        pub async fn update_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateTriggerRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/UpdateTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "UpdateTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a single trigger.
+        pub async fn delete_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteTriggerRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/DeleteTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "DeleteTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a single Channel.
+        pub async fn get_channel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetChannelRequest>,
+        ) -> std::result::Result<tonic::Response<super::Channel>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/GetChannel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "GetChannel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List channels.
+        pub async fn list_channels(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListChannelsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListChannelsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/ListChannels",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "ListChannels",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create a new channel in a particular project and location.
+        pub async fn create_channel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateChannelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/CreateChannel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "CreateChannel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a single channel.
+        pub async fn update_channel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateChannelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/UpdateChannel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "UpdateChannel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a single channel.
+        pub async fn delete_channel(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteChannelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/DeleteChannel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "DeleteChannel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a single Provider.
+        pub async fn get_provider(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProviderRequest>,
+        ) -> std::result::Result<tonic::Response<super::Provider>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/GetProvider",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "GetProvider",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List providers.
+        pub async fn list_providers(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProvidersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListProvidersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/ListProviders",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "ListProviders",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a single ChannelConnection.
+        pub async fn get_channel_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetChannelConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::ChannelConnection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/GetChannelConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "GetChannelConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List channel connections.
+        pub async fn list_channel_connections(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListChannelConnectionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListChannelConnectionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/ListChannelConnections",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "ListChannelConnections",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create a new ChannelConnection in a particular project and location.
+        pub async fn create_channel_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateChannelConnectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/CreateChannelConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "CreateChannelConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a single ChannelConnection.
+        pub async fn delete_channel_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteChannelConnectionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/DeleteChannelConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "DeleteChannelConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a GoogleChannelConfig
+        pub async fn get_google_channel_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGoogleChannelConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::GoogleChannelConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/GetGoogleChannelConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "GetGoogleChannelConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a single GoogleChannelConfig
+        pub async fn update_google_channel_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateGoogleChannelConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::GoogleChannelConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.eventarc.v1.Eventarc/UpdateGoogleChannelConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.eventarc.v1.Eventarc",
+                "UpdateGoogleChannelConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

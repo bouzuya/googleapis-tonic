@@ -2,484 +2,488 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionId {
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub namespace_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub namespace_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Key {
-#[prost(message, optional, tag = "1")]
-pub partition_id: ::core::option::Option<PartitionId>,
-#[prost(message, repeated, tag = "2")]
-pub path: ::prost::alloc::vec::Vec<key::PathElement>,
+    #[prost(message, optional, tag = "1")]
+    pub partition_id: ::core::option::Option<PartitionId>,
+    #[prost(message, repeated, tag = "2")]
+    pub path: ::prost::alloc::vec::Vec<key::PathElement>,
 }
 /// Nested message and enum types in `Key`.
 pub mod key {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PathElement {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(oneof = "path_element::IdType", tags = "2, 3")]
-pub id_type: ::core::option::Option<path_element::IdType>,
-}
-/// Nested message and enum types in `PathElement`.
-pub mod path_element {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum IdType {
-#[prost(int64, tag = "2")]
-Id(i64),
-#[prost(string, tag = "3")]
-Name(::prost::alloc::string::String),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PathElement {
+        #[prost(string, tag = "1")]
+        pub kind: ::prost::alloc::string::String,
+        #[prost(oneof = "path_element::IdType", tags = "2, 3")]
+        pub id_type: ::core::option::Option<path_element::IdType>,
+    }
+    /// Nested message and enum types in `PathElement`.
+    pub mod path_element {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum IdType {
+            #[prost(int64, tag = "2")]
+            Id(i64),
+            #[prost(string, tag = "3")]
+            Name(::prost::alloc::string::String),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrayValue {
-#[prost(message, repeated, tag = "1")]
-pub values: ::prost::alloc::vec::Vec<Value>,
+    #[prost(message, repeated, tag = "1")]
+    pub values: ::prost::alloc::vec::Vec<Value>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-#[prost(int32, tag = "14")]
-pub meaning: i32,
-#[prost(bool, tag = "19")]
-pub exclude_from_indexes: bool,
-#[prost(oneof = "value::ValueType", tags = "11, 1, 2, 3, 10, 5, 17, 18, 8, 6, 9")]
-pub value_type: ::core::option::Option<value::ValueType>,
+    #[prost(int32, tag = "14")]
+    pub meaning: i32,
+    #[prost(bool, tag = "19")]
+    pub exclude_from_indexes: bool,
+    #[prost(
+        oneof = "value::ValueType",
+        tags = "11, 1, 2, 3, 10, 5, 17, 18, 8, 6, 9"
+    )]
+    pub value_type: ::core::option::Option<value::ValueType>,
 }
 /// Nested message and enum types in `Value`.
 pub mod value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ValueType {
-#[prost(enumeration = "::prost_types::NullValue", tag = "11")]
-NullValue(i32),
-#[prost(bool, tag = "1")]
-BooleanValue(bool),
-#[prost(int64, tag = "2")]
-IntegerValue(i64),
-#[prost(double, tag = "3")]
-DoubleValue(f64),
-#[prost(message, tag = "10")]
-TimestampValue(::prost_types::Timestamp),
-#[prost(message, tag = "5")]
-KeyValue(super::Key),
-#[prost(string, tag = "17")]
-StringValue(::prost::alloc::string::String),
-#[prost(bytes, tag = "18")]
-BlobValue(::prost::bytes::Bytes),
-#[prost(message, tag = "8")]
-GeoPointValue(super::super::super::r#type::LatLng),
-#[prost(message, tag = "6")]
-EntityValue(super::Entity),
-#[prost(message, tag = "9")]
-ArrayValue(super::ArrayValue),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ValueType {
+        #[prost(enumeration = "::prost_types::NullValue", tag = "11")]
+        NullValue(i32),
+        #[prost(bool, tag = "1")]
+        BooleanValue(bool),
+        #[prost(int64, tag = "2")]
+        IntegerValue(i64),
+        #[prost(double, tag = "3")]
+        DoubleValue(f64),
+        #[prost(message, tag = "10")]
+        TimestampValue(::prost_types::Timestamp),
+        #[prost(message, tag = "5")]
+        KeyValue(super::Key),
+        #[prost(string, tag = "17")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(bytes, tag = "18")]
+        BlobValue(::prost::bytes::Bytes),
+        #[prost(message, tag = "8")]
+        GeoPointValue(super::super::super::r#type::LatLng),
+        #[prost(message, tag = "6")]
+        EntityValue(super::Entity),
+        #[prost(message, tag = "9")]
+        ArrayValue(super::ArrayValue),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entity {
-#[prost(message, optional, tag = "1")]
-pub key: ::core::option::Option<Key>,
-#[prost(btree_map = "string, message", tag = "3")]
-pub properties: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    #[prost(message, optional, tag = "1")]
+    pub key: ::core::option::Option<Key>,
+    #[prost(btree_map = "string, message", tag = "3")]
+    pub properties: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityResult {
-#[prost(message, optional, tag = "1")]
-pub entity: ::core::option::Option<Entity>,
-#[prost(int64, tag = "4")]
-pub version: i64,
-#[prost(bytes = "bytes", tag = "3")]
-pub cursor: ::prost::bytes::Bytes,
+    #[prost(message, optional, tag = "1")]
+    pub entity: ::core::option::Option<Entity>,
+    #[prost(int64, tag = "4")]
+    pub version: i64,
+    #[prost(bytes = "bytes", tag = "3")]
+    pub cursor: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `EntityResult`.
 pub mod entity_result {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ResultType {
-Unspecified = 0,
-Full = 1,
-Projection = 2,
-KeyOnly = 3,
-}
-impl ResultType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResultType::Unspecified => "RESULT_TYPE_UNSPECIFIED",
-ResultType::Full => "FULL",
-ResultType::Projection => "PROJECTION",
-ResultType::KeyOnly => "KEY_ONLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESULT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"FULL" => Some(Self::Full),
-"PROJECTION" => Some(Self::Projection),
-"KEY_ONLY" => Some(Self::KeyOnly),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ResultType {
+        Unspecified = 0,
+        Full = 1,
+        Projection = 2,
+        KeyOnly = 3,
+    }
+    impl ResultType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ResultType::Unspecified => "RESULT_TYPE_UNSPECIFIED",
+                ResultType::Full => "FULL",
+                ResultType::Projection => "PROJECTION",
+                ResultType::KeyOnly => "KEY_ONLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESULT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "FULL" => Some(Self::Full),
+                "PROJECTION" => Some(Self::Projection),
+                "KEY_ONLY" => Some(Self::KeyOnly),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Query {
-#[prost(message, repeated, tag = "2")]
-pub projection: ::prost::alloc::vec::Vec<Projection>,
-#[prost(message, repeated, tag = "3")]
-pub kind: ::prost::alloc::vec::Vec<KindExpression>,
-#[prost(message, optional, tag = "4")]
-pub filter: ::core::option::Option<Filter>,
-#[prost(message, repeated, tag = "5")]
-pub order: ::prost::alloc::vec::Vec<PropertyOrder>,
-#[prost(message, repeated, tag = "6")]
-pub distinct_on: ::prost::alloc::vec::Vec<PropertyReference>,
-#[prost(bytes = "bytes", tag = "7")]
-pub start_cursor: ::prost::bytes::Bytes,
-#[prost(bytes = "bytes", tag = "8")]
-pub end_cursor: ::prost::bytes::Bytes,
-#[prost(int32, tag = "10")]
-pub offset: i32,
-#[prost(message, optional, tag = "12")]
-pub limit: ::core::option::Option<i32>,
+    #[prost(message, repeated, tag = "2")]
+    pub projection: ::prost::alloc::vec::Vec<Projection>,
+    #[prost(message, repeated, tag = "3")]
+    pub kind: ::prost::alloc::vec::Vec<KindExpression>,
+    #[prost(message, optional, tag = "4")]
+    pub filter: ::core::option::Option<Filter>,
+    #[prost(message, repeated, tag = "5")]
+    pub order: ::prost::alloc::vec::Vec<PropertyOrder>,
+    #[prost(message, repeated, tag = "6")]
+    pub distinct_on: ::prost::alloc::vec::Vec<PropertyReference>,
+    #[prost(bytes = "bytes", tag = "7")]
+    pub start_cursor: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "8")]
+    pub end_cursor: ::prost::bytes::Bytes,
+    #[prost(int32, tag = "10")]
+    pub offset: i32,
+    #[prost(message, optional, tag = "12")]
+    pub limit: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KindExpression {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyReference {
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Projection {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<PropertyReference>,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<PropertyReference>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyOrder {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<PropertyReference>,
-#[prost(enumeration = "property_order::Direction", tag = "2")]
-pub direction: i32,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<PropertyReference>,
+    #[prost(enumeration = "property_order::Direction", tag = "2")]
+    pub direction: i32,
 }
 /// Nested message and enum types in `PropertyOrder`.
 pub mod property_order {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Direction {
-Unspecified = 0,
-Ascending = 1,
-Descending = 2,
-}
-impl Direction {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Direction::Unspecified => "DIRECTION_UNSPECIFIED",
-Direction::Ascending => "ASCENDING",
-Direction::Descending => "DESCENDING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
-"ASCENDING" => Some(Self::Ascending),
-"DESCENDING" => Some(Self::Descending),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Direction {
+        Unspecified = 0,
+        Ascending = 1,
+        Descending = 2,
+    }
+    impl Direction {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Direction::Unspecified => "DIRECTION_UNSPECIFIED",
+                Direction::Ascending => "ASCENDING",
+                Direction::Descending => "DESCENDING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DIRECTION_UNSPECIFIED" => Some(Self::Unspecified),
+                "ASCENDING" => Some(Self::Ascending),
+                "DESCENDING" => Some(Self::Descending),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
-#[prost(oneof = "filter::FilterType", tags = "1, 2")]
-pub filter_type: ::core::option::Option<filter::FilterType>,
+    #[prost(oneof = "filter::FilterType", tags = "1, 2")]
+    pub filter_type: ::core::option::Option<filter::FilterType>,
 }
 /// Nested message and enum types in `Filter`.
 pub mod filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum FilterType {
-#[prost(message, tag = "1")]
-CompositeFilter(super::CompositeFilter),
-#[prost(message, tag = "2")]
-PropertyFilter(super::PropertyFilter),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum FilterType {
+        #[prost(message, tag = "1")]
+        CompositeFilter(super::CompositeFilter),
+        #[prost(message, tag = "2")]
+        PropertyFilter(super::PropertyFilter),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompositeFilter {
-#[prost(enumeration = "composite_filter::Operator", tag = "1")]
-pub op: i32,
-#[prost(message, repeated, tag = "2")]
-pub filters: ::prost::alloc::vec::Vec<Filter>,
+    #[prost(enumeration = "composite_filter::Operator", tag = "1")]
+    pub op: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub filters: ::prost::alloc::vec::Vec<Filter>,
 }
 /// Nested message and enum types in `CompositeFilter`.
 pub mod composite_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Operator {
-Unspecified = 0,
-And = 1,
-}
-impl Operator {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-Operator::And => "AND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
-"AND" => Some(Self::And),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Operator {
+        Unspecified = 0,
+        And = 1,
+    }
+    impl Operator {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
+                Operator::And => "AND",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+                "AND" => Some(Self::And),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyFilter {
-#[prost(message, optional, tag = "1")]
-pub property: ::core::option::Option<PropertyReference>,
-#[prost(enumeration = "property_filter::Operator", tag = "2")]
-pub op: i32,
-#[prost(message, optional, tag = "3")]
-pub value: ::core::option::Option<Value>,
+    #[prost(message, optional, tag = "1")]
+    pub property: ::core::option::Option<PropertyReference>,
+    #[prost(enumeration = "property_filter::Operator", tag = "2")]
+    pub op: i32,
+    #[prost(message, optional, tag = "3")]
+    pub value: ::core::option::Option<Value>,
 }
 /// Nested message and enum types in `PropertyFilter`.
 pub mod property_filter {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Operator {
-Unspecified = 0,
-LessThan = 1,
-LessThanOrEqual = 2,
-GreaterThan = 3,
-GreaterThanOrEqual = 4,
-Equal = 5,
-HasAncestor = 11,
-}
-impl Operator {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-Operator::LessThan => "LESS_THAN",
-Operator::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-Operator::GreaterThan => "GREATER_THAN",
-Operator::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
-Operator::Equal => "EQUAL",
-Operator::HasAncestor => "HAS_ANCESTOR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
-"LESS_THAN" => Some(Self::LessThan),
-"LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
-"GREATER_THAN" => Some(Self::GreaterThan),
-"GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
-"EQUAL" => Some(Self::Equal),
-"HAS_ANCESTOR" => Some(Self::HasAncestor),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Operator {
+        Unspecified = 0,
+        LessThan = 1,
+        LessThanOrEqual = 2,
+        GreaterThan = 3,
+        GreaterThanOrEqual = 4,
+        Equal = 5,
+        HasAncestor = 11,
+    }
+    impl Operator {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
+                Operator::LessThan => "LESS_THAN",
+                Operator::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+                Operator::GreaterThan => "GREATER_THAN",
+                Operator::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+                Operator::Equal => "EQUAL",
+                Operator::HasAncestor => "HAS_ANCESTOR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+                "LESS_THAN" => Some(Self::LessThan),
+                "LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
+                "GREATER_THAN" => Some(Self::GreaterThan),
+                "GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
+                "EQUAL" => Some(Self::Equal),
+                "HAS_ANCESTOR" => Some(Self::HasAncestor),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GqlQuery {
-#[prost(string, tag = "1")]
-pub query_string: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_literals: bool,
-#[prost(btree_map = "string, message", tag = "5")]
-pub named_bindings: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, GqlQueryParameter>,
-#[prost(message, repeated, tag = "4")]
-pub positional_bindings: ::prost::alloc::vec::Vec<GqlQueryParameter>,
+    #[prost(string, tag = "1")]
+    pub query_string: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_literals: bool,
+    #[prost(btree_map = "string, message", tag = "5")]
+    pub named_bindings:
+        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, GqlQueryParameter>,
+    #[prost(message, repeated, tag = "4")]
+    pub positional_bindings: ::prost::alloc::vec::Vec<GqlQueryParameter>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GqlQueryParameter {
-#[prost(oneof = "gql_query_parameter::ParameterType", tags = "2, 3")]
-pub parameter_type: ::core::option::Option<gql_query_parameter::ParameterType>,
+    #[prost(oneof = "gql_query_parameter::ParameterType", tags = "2, 3")]
+    pub parameter_type: ::core::option::Option<gql_query_parameter::ParameterType>,
 }
 /// Nested message and enum types in `GqlQueryParameter`.
 pub mod gql_query_parameter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ParameterType {
-#[prost(message, tag = "2")]
-Value(super::Value),
-#[prost(bytes, tag = "3")]
-Cursor(::prost::bytes::Bytes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ParameterType {
+        #[prost(message, tag = "2")]
+        Value(super::Value),
+        #[prost(bytes, tag = "3")]
+        Cursor(::prost::bytes::Bytes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryResultBatch {
-#[prost(int32, tag = "6")]
-pub skipped_results: i32,
-#[prost(bytes = "bytes", tag = "3")]
-pub skipped_cursor: ::prost::bytes::Bytes,
-#[prost(enumeration = "entity_result::ResultType", tag = "1")]
-pub entity_result_type: i32,
-#[prost(message, repeated, tag = "2")]
-pub entity_results: ::prost::alloc::vec::Vec<EntityResult>,
-#[prost(bytes = "bytes", tag = "4")]
-pub end_cursor: ::prost::bytes::Bytes,
-#[prost(enumeration = "query_result_batch::MoreResultsType", tag = "5")]
-pub more_results: i32,
-#[prost(int64, tag = "7")]
-pub snapshot_version: i64,
+    #[prost(int32, tag = "6")]
+    pub skipped_results: i32,
+    #[prost(bytes = "bytes", tag = "3")]
+    pub skipped_cursor: ::prost::bytes::Bytes,
+    #[prost(enumeration = "entity_result::ResultType", tag = "1")]
+    pub entity_result_type: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub entity_results: ::prost::alloc::vec::Vec<EntityResult>,
+    #[prost(bytes = "bytes", tag = "4")]
+    pub end_cursor: ::prost::bytes::Bytes,
+    #[prost(enumeration = "query_result_batch::MoreResultsType", tag = "5")]
+    pub more_results: i32,
+    #[prost(int64, tag = "7")]
+    pub snapshot_version: i64,
 }
 /// Nested message and enum types in `QueryResultBatch`.
 pub mod query_result_batch {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MoreResultsType {
-Unspecified = 0,
-NotFinished = 1,
-MoreResultsAfterLimit = 2,
-MoreResultsAfterCursor = 4,
-NoMoreResults = 3,
-}
-impl MoreResultsType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MoreResultsType::Unspecified => "MORE_RESULTS_TYPE_UNSPECIFIED",
-MoreResultsType::NotFinished => "NOT_FINISHED",
-MoreResultsType::MoreResultsAfterLimit => "MORE_RESULTS_AFTER_LIMIT",
-MoreResultsType::MoreResultsAfterCursor => "MORE_RESULTS_AFTER_CURSOR",
-MoreResultsType::NoMoreResults => "NO_MORE_RESULTS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MORE_RESULTS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NOT_FINISHED" => Some(Self::NotFinished),
-"MORE_RESULTS_AFTER_LIMIT" => Some(Self::MoreResultsAfterLimit),
-"MORE_RESULTS_AFTER_CURSOR" => Some(Self::MoreResultsAfterCursor),
-"NO_MORE_RESULTS" => Some(Self::NoMoreResults),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MoreResultsType {
+        Unspecified = 0,
+        NotFinished = 1,
+        MoreResultsAfterLimit = 2,
+        MoreResultsAfterCursor = 4,
+        NoMoreResults = 3,
+    }
+    impl MoreResultsType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MoreResultsType::Unspecified => "MORE_RESULTS_TYPE_UNSPECIFIED",
+                MoreResultsType::NotFinished => "NOT_FINISHED",
+                MoreResultsType::MoreResultsAfterLimit => "MORE_RESULTS_AFTER_LIMIT",
+                MoreResultsType::MoreResultsAfterCursor => "MORE_RESULTS_AFTER_CURSOR",
+                MoreResultsType::NoMoreResults => "NO_MORE_RESULTS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MORE_RESULTS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NOT_FINISHED" => Some(Self::NotFinished),
+                "MORE_RESULTS_AFTER_LIMIT" => Some(Self::MoreResultsAfterLimit),
+                "MORE_RESULTS_AFTER_CURSOR" => Some(Self::MoreResultsAfterCursor),
+                "NO_MORE_RESULTS" => Some(Self::NoMoreResults),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "1")]
-pub read_options: ::core::option::Option<ReadOptions>,
-#[prost(message, repeated, tag = "3")]
-pub keys: ::prost::alloc::vec::Vec<Key>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub read_options: ::core::option::Option<ReadOptions>,
+    #[prost(message, repeated, tag = "3")]
+    pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupResponse {
-#[prost(message, repeated, tag = "1")]
-pub found: ::prost::alloc::vec::Vec<EntityResult>,
-#[prost(message, repeated, tag = "2")]
-pub missing: ::prost::alloc::vec::Vec<EntityResult>,
-#[prost(message, repeated, tag = "3")]
-pub deferred: ::prost::alloc::vec::Vec<Key>,
+    #[prost(message, repeated, tag = "1")]
+    pub found: ::prost::alloc::vec::Vec<EntityResult>,
+    #[prost(message, repeated, tag = "2")]
+    pub missing: ::prost::alloc::vec::Vec<EntityResult>,
+    #[prost(message, repeated, tag = "3")]
+    pub deferred: ::prost::alloc::vec::Vec<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub partition_id: ::core::option::Option<PartitionId>,
-#[prost(message, optional, tag = "1")]
-pub read_options: ::core::option::Option<ReadOptions>,
-#[prost(oneof = "run_query_request::QueryType", tags = "3, 7")]
-pub query_type: ::core::option::Option<run_query_request::QueryType>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub partition_id: ::core::option::Option<PartitionId>,
+    #[prost(message, optional, tag = "1")]
+    pub read_options: ::core::option::Option<ReadOptions>,
+    #[prost(oneof = "run_query_request::QueryType", tags = "3, 7")]
+    pub query_type: ::core::option::Option<run_query_request::QueryType>,
 }
 /// Nested message and enum types in `RunQueryRequest`.
 pub mod run_query_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum QueryType {
-#[prost(message, tag = "3")]
-Query(super::Query),
-#[prost(message, tag = "7")]
-GqlQuery(super::GqlQuery),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum QueryType {
+        #[prost(message, tag = "3")]
+        Query(super::Query),
+        #[prost(message, tag = "7")]
+        GqlQuery(super::GqlQuery),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryResponse {
-#[prost(message, optional, tag = "1")]
-pub batch: ::core::option::Option<QueryResultBatch>,
-#[prost(message, optional, tag = "2")]
-pub query: ::core::option::Option<Query>,
+    #[prost(message, optional, tag = "1")]
+    pub batch: ::core::option::Option<QueryResultBatch>,
+    #[prost(message, optional, tag = "2")]
+    pub query: ::core::option::Option<Query>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub transaction_options: ::core::option::Option<TransactionOptions>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub transaction_options: ::core::option::Option<TransactionOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionResponse {
-#[prost(bytes = "bytes", tag = "1")]
-pub transaction: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub transaction: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "1")]
-pub transaction: ::prost::bytes::Bytes,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub transaction: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -487,84 +491,84 @@ pub struct RollbackResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(enumeration = "commit_request::Mode", tag = "5")]
-pub mode: i32,
-#[prost(message, repeated, tag = "6")]
-pub mutations: ::prost::alloc::vec::Vec<Mutation>,
-#[prost(oneof = "commit_request::TransactionSelector", tags = "1")]
-pub transaction_selector: ::core::option::Option<commit_request::TransactionSelector>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "commit_request::Mode", tag = "5")]
+    pub mode: i32,
+    #[prost(message, repeated, tag = "6")]
+    pub mutations: ::prost::alloc::vec::Vec<Mutation>,
+    #[prost(oneof = "commit_request::TransactionSelector", tags = "1")]
+    pub transaction_selector: ::core::option::Option<commit_request::TransactionSelector>,
 }
 /// Nested message and enum types in `CommitRequest`.
 pub mod commit_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Mode {
-Unspecified = 0,
-Transactional = 1,
-NonTransactional = 2,
-}
-impl Mode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Mode::Unspecified => "MODE_UNSPECIFIED",
-Mode::Transactional => "TRANSACTIONAL",
-Mode::NonTransactional => "NON_TRANSACTIONAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"TRANSACTIONAL" => Some(Self::Transactional),
-"NON_TRANSACTIONAL" => Some(Self::NonTransactional),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum TransactionSelector {
-#[prost(bytes, tag = "1")]
-Transaction(::prost::bytes::Bytes),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Mode {
+        Unspecified = 0,
+        Transactional = 1,
+        NonTransactional = 2,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::Transactional => "TRANSACTIONAL",
+                Mode::NonTransactional => "NON_TRANSACTIONAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "TRANSACTIONAL" => Some(Self::Transactional),
+                "NON_TRANSACTIONAL" => Some(Self::NonTransactional),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TransactionSelector {
+        #[prost(bytes, tag = "1")]
+        Transaction(::prost::bytes::Bytes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitResponse {
-#[prost(message, repeated, tag = "3")]
-pub mutation_results: ::prost::alloc::vec::Vec<MutationResult>,
-#[prost(int32, tag = "4")]
-pub index_updates: i32,
+    #[prost(message, repeated, tag = "3")]
+    pub mutation_results: ::prost::alloc::vec::Vec<MutationResult>,
+    #[prost(int32, tag = "4")]
+    pub index_updates: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "1")]
-pub keys: ::prost::alloc::vec::Vec<Key>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsResponse {
-#[prost(message, repeated, tag = "1")]
-pub keys: ::prost::alloc::vec::Vec<Key>,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReserveIdsRequest {
-#[prost(string, tag = "8")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub database_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "1")]
-pub keys: ::prost::alloc::vec::Vec<Key>,
+    #[prost(string, tag = "8")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub database_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -572,250 +576,351 @@ pub struct ReserveIdsResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Mutation {
-#[prost(oneof = "mutation::Operation", tags = "4, 5, 6, 7")]
-pub operation: ::core::option::Option<mutation::Operation>,
-#[prost(oneof = "mutation::ConflictDetectionStrategy", tags = "8")]
-pub conflict_detection_strategy: ::core::option::Option<mutation::ConflictDetectionStrategy>,
+    #[prost(oneof = "mutation::Operation", tags = "4, 5, 6, 7")]
+    pub operation: ::core::option::Option<mutation::Operation>,
+    #[prost(oneof = "mutation::ConflictDetectionStrategy", tags = "8")]
+    pub conflict_detection_strategy: ::core::option::Option<mutation::ConflictDetectionStrategy>,
 }
 /// Nested message and enum types in `Mutation`.
 pub mod mutation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Operation {
-#[prost(message, tag = "4")]
-Insert(super::Entity),
-#[prost(message, tag = "5")]
-Update(super::Entity),
-#[prost(message, tag = "6")]
-Upsert(super::Entity),
-#[prost(message, tag = "7")]
-Delete(super::Key),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ConflictDetectionStrategy {
-#[prost(int64, tag = "8")]
-BaseVersion(i64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Operation {
+        #[prost(message, tag = "4")]
+        Insert(super::Entity),
+        #[prost(message, tag = "5")]
+        Update(super::Entity),
+        #[prost(message, tag = "6")]
+        Upsert(super::Entity),
+        #[prost(message, tag = "7")]
+        Delete(super::Key),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ConflictDetectionStrategy {
+        #[prost(int64, tag = "8")]
+        BaseVersion(i64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutationResult {
-#[prost(message, optional, tag = "3")]
-pub key: ::core::option::Option<Key>,
-#[prost(int64, tag = "4")]
-pub version: i64,
-#[prost(bool, tag = "5")]
-pub conflict_detected: bool,
+    #[prost(message, optional, tag = "3")]
+    pub key: ::core::option::Option<Key>,
+    #[prost(int64, tag = "4")]
+    pub version: i64,
+    #[prost(bool, tag = "5")]
+    pub conflict_detected: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadOptions {
-#[prost(oneof = "read_options::ConsistencyType", tags = "1, 2")]
-pub consistency_type: ::core::option::Option<read_options::ConsistencyType>,
+    #[prost(oneof = "read_options::ConsistencyType", tags = "1, 2")]
+    pub consistency_type: ::core::option::Option<read_options::ConsistencyType>,
 }
 /// Nested message and enum types in `ReadOptions`.
 pub mod read_options {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ReadConsistency {
-Unspecified = 0,
-Strong = 1,
-Eventual = 2,
-}
-impl ReadConsistency {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ReadConsistency::Unspecified => "READ_CONSISTENCY_UNSPECIFIED",
-ReadConsistency::Strong => "STRONG",
-ReadConsistency::Eventual => "EVENTUAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"READ_CONSISTENCY_UNSPECIFIED" => Some(Self::Unspecified),
-"STRONG" => Some(Self::Strong),
-"EVENTUAL" => Some(Self::Eventual),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConsistencyType {
-#[prost(enumeration = "ReadConsistency", tag = "1")]
-ReadConsistency(i32),
-#[prost(bytes, tag = "2")]
-Transaction(::prost::bytes::Bytes),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ReadConsistency {
+        Unspecified = 0,
+        Strong = 1,
+        Eventual = 2,
+    }
+    impl ReadConsistency {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ReadConsistency::Unspecified => "READ_CONSISTENCY_UNSPECIFIED",
+                ReadConsistency::Strong => "STRONG",
+                ReadConsistency::Eventual => "EVENTUAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "READ_CONSISTENCY_UNSPECIFIED" => Some(Self::Unspecified),
+                "STRONG" => Some(Self::Strong),
+                "EVENTUAL" => Some(Self::Eventual),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ConsistencyType {
+        #[prost(enumeration = "ReadConsistency", tag = "1")]
+        ReadConsistency(i32),
+        #[prost(bytes, tag = "2")]
+        Transaction(::prost::bytes::Bytes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionOptions {
-#[prost(oneof = "transaction_options::Mode", tags = "1, 2")]
-pub mode: ::core::option::Option<transaction_options::Mode>,
+    #[prost(oneof = "transaction_options::Mode", tags = "1, 2")]
+    pub mode: ::core::option::Option<transaction_options::Mode>,
 }
 /// Nested message and enum types in `TransactionOptions`.
 pub mod transaction_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReadWrite {
-#[prost(bytes = "bytes", tag = "1")]
-pub previous_transaction: ::prost::bytes::Bytes,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ReadOnly {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Mode {
-#[prost(message, tag = "1")]
-ReadWrite(ReadWrite),
-#[prost(message, tag = "2")]
-ReadOnly(ReadOnly),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReadWrite {
+        #[prost(bytes = "bytes", tag = "1")]
+        pub previous_transaction: ::prost::bytes::Bytes,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ReadOnly {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Mode {
+        #[prost(message, tag = "1")]
+        ReadWrite(ReadWrite),
+        #[prost(message, tag = "2")]
+        ReadOnly(ReadOnly),
+    }
 }
 /// Generated client implementations.
 pub mod datastore_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Each RPC normalizes the partition IDs of the keys in its input entities,
-/// and always returns entities with keys with normalized partition IDs.
-/// This applies to all keys and entities, including those in values, except keys
-/// with both an empty path and an empty or unset partition ID. Normalization of
-/// input keys sets the project ID (if not already set) to the project ID from
-/// the request.
-///
-#[derive(Debug, Clone)]
-pub struct DatastoreClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DatastoreClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DatastoreClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DatastoreClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Looks up entities by key.
-pub async fn lookup(&mut self, request: impl tonic::IntoRequest<super::LookupRequest>) -> std::result::Result<tonic::Response<super::LookupResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/Lookup");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "Lookup"));
-self.inner.unary(req, path, codec).await
-}
-/// Queries for entities.
-pub async fn run_query(&mut self, request: impl tonic::IntoRequest<super::RunQueryRequest>) -> std::result::Result<tonic::Response<super::RunQueryResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/RunQuery");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "RunQuery"));
-self.inner.unary(req, path, codec).await
-}
-/// Begins a new transaction.
-pub async fn begin_transaction(&mut self, request: impl tonic::IntoRequest<super::BeginTransactionRequest>) -> std::result::Result<tonic::Response<super::BeginTransactionResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/BeginTransaction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "BeginTransaction"));
-self.inner.unary(req, path, codec).await
-}
-/// Commits a transaction, optionally creating, deleting or modifying some
-/// entities.
-pub async fn commit(&mut self, request: impl tonic::IntoRequest<super::CommitRequest>) -> std::result::Result<tonic::Response<super::CommitResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/Commit");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "Commit"));
-self.inner.unary(req, path, codec).await
-}
-/// Rolls back a transaction.
-pub async fn rollback(&mut self, request: impl tonic::IntoRequest<super::RollbackRequest>) -> std::result::Result<tonic::Response<super::RollbackResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/Rollback");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "Rollback"));
-self.inner.unary(req, path, codec).await
-}
-/// Allocates IDs for the given keys, which is useful for referencing an entity
-/// before it is inserted.
-pub async fn allocate_ids(&mut self, request: impl tonic::IntoRequest<super::AllocateIdsRequest>) -> std::result::Result<tonic::Response<super::AllocateIdsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/AllocateIds");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "AllocateIds"));
-self.inner.unary(req, path, codec).await
-}
-/// Prevents the supplied keys' IDs from being auto-allocated by Cloud
-/// Datastore.
-pub async fn reserve_ids(&mut self, request: impl tonic::IntoRequest<super::ReserveIdsRequest>) -> std::result::Result<tonic::Response<super::ReserveIdsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/ReserveIds");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.datastore.v1beta3.Datastore", "ReserveIds"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Each RPC normalizes the partition IDs of the keys in its input entities,
+    /// and always returns entities with keys with normalized partition IDs.
+    /// This applies to all keys and entities, including those in values, except keys
+    /// with both an empty path and an empty or unset partition ID. Normalization of
+    /// input keys sets the project ID (if not already set) to the project ID from
+    /// the request.
+    ///
+    #[derive(Debug, Clone)]
+    pub struct DatastoreClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DatastoreClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DatastoreClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DatastoreClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Looks up entities by key.
+        pub async fn lookup(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LookupRequest>,
+        ) -> std::result::Result<tonic::Response<super::LookupResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/Lookup");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "Lookup",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Queries for entities.
+        pub async fn run_query(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunQueryRequest>,
+        ) -> std::result::Result<tonic::Response<super::RunQueryResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1beta3.Datastore/RunQuery",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "RunQuery",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Begins a new transaction.
+        pub async fn begin_transaction(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BeginTransactionRequest>,
+        ) -> std::result::Result<tonic::Response<super::BeginTransactionResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1beta3.Datastore/BeginTransaction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "BeginTransaction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Commits a transaction, optionally creating, deleting or modifying some
+        /// entities.
+        pub async fn commit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CommitRequest>,
+        ) -> std::result::Result<tonic::Response<super::CommitResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.datastore.v1beta3.Datastore/Commit");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "Commit",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Rolls back a transaction.
+        pub async fn rollback(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RollbackRequest>,
+        ) -> std::result::Result<tonic::Response<super::RollbackResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1beta3.Datastore/Rollback",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "Rollback",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Allocates IDs for the given keys, which is useful for referencing an entity
+        /// before it is inserted.
+        pub async fn allocate_ids(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AllocateIdsRequest>,
+        ) -> std::result::Result<tonic::Response<super::AllocateIdsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1beta3.Datastore/AllocateIds",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "AllocateIds",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Prevents the supplied keys' IDs from being auto-allocated by Cloud
+        /// Datastore.
+        pub async fn reserve_ids(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReserveIdsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReserveIdsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.datastore.v1beta3.Datastore/ReserveIds",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.datastore.v1beta3.Datastore",
+                "ReserveIds",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

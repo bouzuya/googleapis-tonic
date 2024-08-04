@@ -2,56 +2,56 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PubsubSnapshotMetadata {
-#[prost(string, tag = "1")]
-pub topic_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub snapshot_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub topic_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub snapshot_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Snapshot {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub source_job_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub creation_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub ttl: ::core::option::Option<::prost_types::Duration>,
-#[prost(enumeration = "SnapshotState", tag = "6")]
-pub state: i32,
-#[prost(message, repeated, tag = "7")]
-pub pubsub_metadata: ::prost::alloc::vec::Vec<PubsubSnapshotMetadata>,
-#[prost(string, tag = "8")]
-pub description: ::prost::alloc::string::String,
-#[prost(int64, tag = "9")]
-pub disk_size_bytes: i64,
-#[prost(string, tag = "10")]
-pub region: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub source_job_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub creation_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub ttl: ::core::option::Option<::prost_types::Duration>,
+    #[prost(enumeration = "SnapshotState", tag = "6")]
+    pub state: i32,
+    #[prost(message, repeated, tag = "7")]
+    pub pubsub_metadata: ::prost::alloc::vec::Vec<PubsubSnapshotMetadata>,
+    #[prost(string, tag = "8")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(int64, tag = "9")]
+    pub disk_size_bytes: i64,
+    #[prost(string, tag = "10")]
+    pub region: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSnapshotRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub snapshot_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub snapshot_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSnapshotRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub snapshot_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub snapshot_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -59,2622 +59,2933 @@ pub struct DeleteSnapshotResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSnapshotsRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSnapshotsResponse {
-#[prost(message, repeated, tag = "1")]
-pub snapshots: ::prost::alloc::vec::Vec<Snapshot>,
+    #[prost(message, repeated, tag = "1")]
+    pub snapshots: ::prost::alloc::vec::Vec<Snapshot>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SnapshotState {
-UnknownSnapshotState = 0,
-Pending = 1,
-Running = 2,
-Ready = 3,
-Failed = 4,
-Deleted = 5,
+    UnknownSnapshotState = 0,
+    Pending = 1,
+    Running = 2,
+    Ready = 3,
+    Failed = 4,
+    Deleted = 5,
 }
 impl SnapshotState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SnapshotState::UnknownSnapshotState => "UNKNOWN_SNAPSHOT_STATE",
-SnapshotState::Pending => "PENDING",
-SnapshotState::Running => "RUNNING",
-SnapshotState::Ready => "READY",
-SnapshotState::Failed => "FAILED",
-SnapshotState::Deleted => "DELETED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_SNAPSHOT_STATE" => Some(Self::UnknownSnapshotState),
-"PENDING" => Some(Self::Pending),
-"RUNNING" => Some(Self::Running),
-"READY" => Some(Self::Ready),
-"FAILED" => Some(Self::Failed),
-"DELETED" => Some(Self::Deleted),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SnapshotState::UnknownSnapshotState => "UNKNOWN_SNAPSHOT_STATE",
+            SnapshotState::Pending => "PENDING",
+            SnapshotState::Running => "RUNNING",
+            SnapshotState::Ready => "READY",
+            SnapshotState::Failed => "FAILED",
+            SnapshotState::Deleted => "DELETED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN_SNAPSHOT_STATE" => Some(Self::UnknownSnapshotState),
+            "PENDING" => Some(Self::Pending),
+            "RUNNING" => Some(Self::Running),
+            "READY" => Some(Self::Ready),
+            "FAILED" => Some(Self::Failed),
+            "DELETED" => Some(Self::Deleted),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod snapshots_v1_beta3_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Provides methods to manage snapshots of Google Cloud Dataflow jobs.
-#[derive(Debug, Clone)]
-pub struct SnapshotsV1Beta3Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SnapshotsV1Beta3Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SnapshotsV1Beta3Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SnapshotsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Gets information about a snapshot.
-pub async fn get_snapshot(&mut self, request: impl tonic::IntoRequest<super::GetSnapshotRequest>) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.SnapshotsV1Beta3/GetSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.SnapshotsV1Beta3", "GetSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a snapshot.
-pub async fn delete_snapshot(&mut self, request: impl tonic::IntoRequest<super::DeleteSnapshotRequest>) -> std::result::Result<tonic::Response<super::DeleteSnapshotResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.SnapshotsV1Beta3/DeleteSnapshot");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.SnapshotsV1Beta3", "DeleteSnapshot"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists snapshots.
-pub async fn list_snapshots(&mut self, request: impl tonic::IntoRequest<super::ListSnapshotsRequest>) -> std::result::Result<tonic::Response<super::ListSnapshotsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.SnapshotsV1Beta3/ListSnapshots");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.SnapshotsV1Beta3", "ListSnapshots"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Provides methods to manage snapshots of Google Cloud Dataflow jobs.
+    #[derive(Debug, Clone)]
+    pub struct SnapshotsV1Beta3Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SnapshotsV1Beta3Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SnapshotsV1Beta3Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SnapshotsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Gets information about a snapshot.
+        pub async fn get_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetSnapshotRequest>,
+        ) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.SnapshotsV1Beta3/GetSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.SnapshotsV1Beta3",
+                "GetSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a snapshot.
+        pub async fn delete_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteSnapshotRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeleteSnapshotResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.SnapshotsV1Beta3/DeleteSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.SnapshotsV1Beta3",
+                "DeleteSnapshot",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists snapshots.
+        pub async fn list_snapshots(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListSnapshotsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListSnapshotsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.SnapshotsV1Beta3/ListSnapshots",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.SnapshotsV1Beta3",
+                "ListSnapshots",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Environment {
-#[prost(string, tag = "1")]
-pub temp_storage_prefix: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cluster_manager_api_service: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "16")]
-pub service_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "12")]
-pub service_kms_key_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub worker_pools: ::prost::alloc::vec::Vec<WorkerPool>,
-#[prost(message, optional, tag = "5")]
-pub user_agent: ::core::option::Option<::prost_types::Struct>,
-#[prost(message, optional, tag = "6")]
-pub version: ::core::option::Option<::prost_types::Struct>,
-#[prost(string, tag = "7")]
-pub dataset: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "8")]
-pub sdk_pipeline_options: ::core::option::Option<::prost_types::Struct>,
-#[prost(message, optional, tag = "9")]
-pub internal_experiments: ::core::option::Option<::prost_types::Any>,
-#[prost(string, tag = "10")]
-pub service_account_email: ::prost::alloc::string::String,
-#[prost(enumeration = "FlexResourceSchedulingGoal", tag = "11")]
-pub flex_resource_scheduling_goal: i32,
-#[prost(string, tag = "13")]
-pub worker_region: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub worker_zone: ::prost::alloc::string::String,
-#[prost(enumeration = "ShuffleMode", tag = "15")]
-pub shuffle_mode: i32,
-#[prost(message, optional, tag = "17")]
-pub debug_options: ::core::option::Option<DebugOptions>,
+    #[prost(string, tag = "1")]
+    pub temp_storage_prefix: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub cluster_manager_api_service: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "16")]
+    pub service_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "12")]
+    pub service_kms_key_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub worker_pools: ::prost::alloc::vec::Vec<WorkerPool>,
+    #[prost(message, optional, tag = "5")]
+    pub user_agent: ::core::option::Option<::prost_types::Struct>,
+    #[prost(message, optional, tag = "6")]
+    pub version: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "7")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "8")]
+    pub sdk_pipeline_options: ::core::option::Option<::prost_types::Struct>,
+    #[prost(message, optional, tag = "9")]
+    pub internal_experiments: ::core::option::Option<::prost_types::Any>,
+    #[prost(string, tag = "10")]
+    pub service_account_email: ::prost::alloc::string::String,
+    #[prost(enumeration = "FlexResourceSchedulingGoal", tag = "11")]
+    pub flex_resource_scheduling_goal: i32,
+    #[prost(string, tag = "13")]
+    pub worker_region: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub worker_zone: ::prost::alloc::string::String,
+    #[prost(enumeration = "ShuffleMode", tag = "15")]
+    pub shuffle_mode: i32,
+    #[prost(message, optional, tag = "17")]
+    pub debug_options: ::core::option::Option<DebugOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Package {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Disk {
-#[prost(int32, tag = "1")]
-pub size_gb: i32,
-#[prost(string, tag = "2")]
-pub disk_type: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub mount_point: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub size_gb: i32,
+    #[prost(string, tag = "2")]
+    pub disk_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub mount_point: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkerSettings {
-#[prost(string, tag = "1")]
-pub base_url: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub reporting_enabled: bool,
-#[prost(string, tag = "3")]
-pub service_path: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub shuffle_service_path: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub worker_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub temp_storage_prefix: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub base_url: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub reporting_enabled: bool,
+    #[prost(string, tag = "3")]
+    pub service_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub shuffle_service_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub worker_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub temp_storage_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskRunnerSettings {
-#[prost(string, tag = "1")]
-pub task_user: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub task_group: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub oauth_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "4")]
-pub base_url: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub dataflow_api_version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub parallel_worker_settings: ::core::option::Option<WorkerSettings>,
-#[prost(string, tag = "7")]
-pub base_task_dir: ::prost::alloc::string::String,
-#[prost(bool, tag = "8")]
-pub continue_on_exception: bool,
-#[prost(bool, tag = "9")]
-pub log_to_serialconsole: bool,
-#[prost(bool, tag = "10")]
-pub alsologtostderr: bool,
-#[prost(string, tag = "11")]
-pub log_upload_location: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub log_dir: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub temp_storage_prefix: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub harness_command: ::prost::alloc::string::String,
-#[prost(string, tag = "15")]
-pub workflow_file_name: ::prost::alloc::string::String,
-#[prost(string, tag = "16")]
-pub commandlines_file_name: ::prost::alloc::string::String,
-#[prost(string, tag = "17")]
-pub vm_id: ::prost::alloc::string::String,
-#[prost(string, tag = "18")]
-pub language_hint: ::prost::alloc::string::String,
-#[prost(string, tag = "19")]
-pub streaming_worker_main_class: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub task_user: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub task_group: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub oauth_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "4")]
+    pub base_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub dataflow_api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub parallel_worker_settings: ::core::option::Option<WorkerSettings>,
+    #[prost(string, tag = "7")]
+    pub base_task_dir: ::prost::alloc::string::String,
+    #[prost(bool, tag = "8")]
+    pub continue_on_exception: bool,
+    #[prost(bool, tag = "9")]
+    pub log_to_serialconsole: bool,
+    #[prost(bool, tag = "10")]
+    pub alsologtostderr: bool,
+    #[prost(string, tag = "11")]
+    pub log_upload_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub log_dir: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub temp_storage_prefix: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub harness_command: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub workflow_file_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "16")]
+    pub commandlines_file_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "17")]
+    pub vm_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "18")]
+    pub language_hint: ::prost::alloc::string::String,
+    #[prost(string, tag = "19")]
+    pub streaming_worker_main_class: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AutoscalingSettings {
-#[prost(enumeration = "AutoscalingAlgorithm", tag = "1")]
-pub algorithm: i32,
-#[prost(int32, tag = "2")]
-pub max_num_workers: i32,
+    #[prost(enumeration = "AutoscalingAlgorithm", tag = "1")]
+    pub algorithm: i32,
+    #[prost(int32, tag = "2")]
+    pub max_num_workers: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SdkHarnessContainerImage {
-#[prost(string, tag = "1")]
-pub container_image: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub use_single_core_per_container: bool,
-#[prost(string, tag = "3")]
-pub environment_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub capabilities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub container_image: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub use_single_core_per_container: bool,
+    #[prost(string, tag = "3")]
+    pub environment_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub capabilities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkerPool {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub num_workers: i32,
-#[prost(message, repeated, tag = "3")]
-pub packages: ::prost::alloc::vec::Vec<Package>,
-#[prost(enumeration = "DefaultPackageSet", tag = "4")]
-pub default_package_set: i32,
-#[prost(string, tag = "5")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(enumeration = "TeardownPolicy", tag = "6")]
-pub teardown_policy: i32,
-#[prost(int32, tag = "7")]
-pub disk_size_gb: i32,
-#[prost(string, tag = "16")]
-pub disk_type: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub disk_source_image: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub zone: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "10")]
-pub taskrunner_settings: ::core::option::Option<TaskRunnerSettings>,
-#[prost(string, tag = "11")]
-pub on_host_maintenance: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "12")]
-pub data_disks: ::prost::alloc::vec::Vec<Disk>,
-#[prost(map = "string, string", tag = "13")]
-pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "14")]
-pub autoscaling_settings: ::core::option::Option<AutoscalingSettings>,
-#[prost(message, optional, tag = "15")]
-pub pool_args: ::core::option::Option<::prost_types::Any>,
-#[prost(string, tag = "17")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "19")]
-pub subnetwork: ::prost::alloc::string::String,
-#[prost(string, tag = "18")]
-pub worker_harness_container_image: ::prost::alloc::string::String,
-#[prost(int32, tag = "20")]
-pub num_threads_per_worker: i32,
-#[prost(enumeration = "WorkerIpAddressConfiguration", tag = "21")]
-pub ip_configuration: i32,
-#[prost(message, repeated, tag = "22")]
-pub sdk_harness_container_images: ::prost::alloc::vec::Vec<SdkHarnessContainerImage>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub num_workers: i32,
+    #[prost(message, repeated, tag = "3")]
+    pub packages: ::prost::alloc::vec::Vec<Package>,
+    #[prost(enumeration = "DefaultPackageSet", tag = "4")]
+    pub default_package_set: i32,
+    #[prost(string, tag = "5")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(enumeration = "TeardownPolicy", tag = "6")]
+    pub teardown_policy: i32,
+    #[prost(int32, tag = "7")]
+    pub disk_size_gb: i32,
+    #[prost(string, tag = "16")]
+    pub disk_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub disk_source_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "10")]
+    pub taskrunner_settings: ::core::option::Option<TaskRunnerSettings>,
+    #[prost(string, tag = "11")]
+    pub on_host_maintenance: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "12")]
+    pub data_disks: ::prost::alloc::vec::Vec<Disk>,
+    #[prost(map = "string, string", tag = "13")]
+    pub metadata:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "14")]
+    pub autoscaling_settings: ::core::option::Option<AutoscalingSettings>,
+    #[prost(message, optional, tag = "15")]
+    pub pool_args: ::core::option::Option<::prost_types::Any>,
+    #[prost(string, tag = "17")]
+    pub network: ::prost::alloc::string::String,
+    #[prost(string, tag = "19")]
+    pub subnetwork: ::prost::alloc::string::String,
+    #[prost(string, tag = "18")]
+    pub worker_harness_container_image: ::prost::alloc::string::String,
+    #[prost(int32, tag = "20")]
+    pub num_threads_per_worker: i32,
+    #[prost(enumeration = "WorkerIpAddressConfiguration", tag = "21")]
+    pub ip_configuration: i32,
+    #[prost(message, repeated, tag = "22")]
+    pub sdk_harness_container_images: ::prost::alloc::vec::Vec<SdkHarnessContainerImage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DebugOptions {
-#[prost(bool, tag = "1")]
-pub enable_hot_key_logging: bool,
+    #[prost(bool, tag = "1")]
+    pub enable_hot_key_logging: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum JobType {
-Unknown = 0,
-Batch = 1,
-Streaming = 2,
+    Unknown = 0,
+    Batch = 1,
+    Streaming = 2,
 }
 impl JobType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-JobType::Unknown => "JOB_TYPE_UNKNOWN",
-JobType::Batch => "JOB_TYPE_BATCH",
-JobType::Streaming => "JOB_TYPE_STREAMING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"JOB_TYPE_UNKNOWN" => Some(Self::Unknown),
-"JOB_TYPE_BATCH" => Some(Self::Batch),
-"JOB_TYPE_STREAMING" => Some(Self::Streaming),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            JobType::Unknown => "JOB_TYPE_UNKNOWN",
+            JobType::Batch => "JOB_TYPE_BATCH",
+            JobType::Streaming => "JOB_TYPE_STREAMING",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "JOB_TYPE_UNKNOWN" => Some(Self::Unknown),
+            "JOB_TYPE_BATCH" => Some(Self::Batch),
+            "JOB_TYPE_STREAMING" => Some(Self::Streaming),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FlexResourceSchedulingGoal {
-FlexrsUnspecified = 0,
-FlexrsSpeedOptimized = 1,
-FlexrsCostOptimized = 2,
+    FlexrsUnspecified = 0,
+    FlexrsSpeedOptimized = 1,
+    FlexrsCostOptimized = 2,
 }
 impl FlexResourceSchedulingGoal {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FlexResourceSchedulingGoal::FlexrsUnspecified => "FLEXRS_UNSPECIFIED",
-FlexResourceSchedulingGoal::FlexrsSpeedOptimized => "FLEXRS_SPEED_OPTIMIZED",
-FlexResourceSchedulingGoal::FlexrsCostOptimized => "FLEXRS_COST_OPTIMIZED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FLEXRS_UNSPECIFIED" => Some(Self::FlexrsUnspecified),
-"FLEXRS_SPEED_OPTIMIZED" => Some(Self::FlexrsSpeedOptimized),
-"FLEXRS_COST_OPTIMIZED" => Some(Self::FlexrsCostOptimized),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            FlexResourceSchedulingGoal::FlexrsUnspecified => "FLEXRS_UNSPECIFIED",
+            FlexResourceSchedulingGoal::FlexrsSpeedOptimized => "FLEXRS_SPEED_OPTIMIZED",
+            FlexResourceSchedulingGoal::FlexrsCostOptimized => "FLEXRS_COST_OPTIMIZED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FLEXRS_UNSPECIFIED" => Some(Self::FlexrsUnspecified),
+            "FLEXRS_SPEED_OPTIMIZED" => Some(Self::FlexrsSpeedOptimized),
+            "FLEXRS_COST_OPTIMIZED" => Some(Self::FlexrsCostOptimized),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TeardownPolicy {
-Unknown = 0,
-TeardownAlways = 1,
-TeardownOnSuccess = 2,
-TeardownNever = 3,
+    Unknown = 0,
+    TeardownAlways = 1,
+    TeardownOnSuccess = 2,
+    TeardownNever = 3,
 }
 impl TeardownPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TeardownPolicy::Unknown => "TEARDOWN_POLICY_UNKNOWN",
-TeardownPolicy::TeardownAlways => "TEARDOWN_ALWAYS",
-TeardownPolicy::TeardownOnSuccess => "TEARDOWN_ON_SUCCESS",
-TeardownPolicy::TeardownNever => "TEARDOWN_NEVER",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TEARDOWN_POLICY_UNKNOWN" => Some(Self::Unknown),
-"TEARDOWN_ALWAYS" => Some(Self::TeardownAlways),
-"TEARDOWN_ON_SUCCESS" => Some(Self::TeardownOnSuccess),
-"TEARDOWN_NEVER" => Some(Self::TeardownNever),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TeardownPolicy::Unknown => "TEARDOWN_POLICY_UNKNOWN",
+            TeardownPolicy::TeardownAlways => "TEARDOWN_ALWAYS",
+            TeardownPolicy::TeardownOnSuccess => "TEARDOWN_ON_SUCCESS",
+            TeardownPolicy::TeardownNever => "TEARDOWN_NEVER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TEARDOWN_POLICY_UNKNOWN" => Some(Self::Unknown),
+            "TEARDOWN_ALWAYS" => Some(Self::TeardownAlways),
+            "TEARDOWN_ON_SUCCESS" => Some(Self::TeardownOnSuccess),
+            "TEARDOWN_NEVER" => Some(Self::TeardownNever),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DefaultPackageSet {
-Unknown = 0,
-None = 1,
-Java = 2,
-Python = 3,
+    Unknown = 0,
+    None = 1,
+    Java = 2,
+    Python = 3,
 }
 impl DefaultPackageSet {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DefaultPackageSet::Unknown => "DEFAULT_PACKAGE_SET_UNKNOWN",
-DefaultPackageSet::None => "DEFAULT_PACKAGE_SET_NONE",
-DefaultPackageSet::Java => "DEFAULT_PACKAGE_SET_JAVA",
-DefaultPackageSet::Python => "DEFAULT_PACKAGE_SET_PYTHON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DEFAULT_PACKAGE_SET_UNKNOWN" => Some(Self::Unknown),
-"DEFAULT_PACKAGE_SET_NONE" => Some(Self::None),
-"DEFAULT_PACKAGE_SET_JAVA" => Some(Self::Java),
-"DEFAULT_PACKAGE_SET_PYTHON" => Some(Self::Python),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DefaultPackageSet::Unknown => "DEFAULT_PACKAGE_SET_UNKNOWN",
+            DefaultPackageSet::None => "DEFAULT_PACKAGE_SET_NONE",
+            DefaultPackageSet::Java => "DEFAULT_PACKAGE_SET_JAVA",
+            DefaultPackageSet::Python => "DEFAULT_PACKAGE_SET_PYTHON",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DEFAULT_PACKAGE_SET_UNKNOWN" => Some(Self::Unknown),
+            "DEFAULT_PACKAGE_SET_NONE" => Some(Self::None),
+            "DEFAULT_PACKAGE_SET_JAVA" => Some(Self::Java),
+            "DEFAULT_PACKAGE_SET_PYTHON" => Some(Self::Python),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AutoscalingAlgorithm {
-Unknown = 0,
-None = 1,
-Basic = 2,
+    Unknown = 0,
+    None = 1,
+    Basic = 2,
 }
 impl AutoscalingAlgorithm {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AutoscalingAlgorithm::Unknown => "AUTOSCALING_ALGORITHM_UNKNOWN",
-AutoscalingAlgorithm::None => "AUTOSCALING_ALGORITHM_NONE",
-AutoscalingAlgorithm::Basic => "AUTOSCALING_ALGORITHM_BASIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"AUTOSCALING_ALGORITHM_UNKNOWN" => Some(Self::Unknown),
-"AUTOSCALING_ALGORITHM_NONE" => Some(Self::None),
-"AUTOSCALING_ALGORITHM_BASIC" => Some(Self::Basic),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AutoscalingAlgorithm::Unknown => "AUTOSCALING_ALGORITHM_UNKNOWN",
+            AutoscalingAlgorithm::None => "AUTOSCALING_ALGORITHM_NONE",
+            AutoscalingAlgorithm::Basic => "AUTOSCALING_ALGORITHM_BASIC",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "AUTOSCALING_ALGORITHM_UNKNOWN" => Some(Self::Unknown),
+            "AUTOSCALING_ALGORITHM_NONE" => Some(Self::None),
+            "AUTOSCALING_ALGORITHM_BASIC" => Some(Self::Basic),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum WorkerIpAddressConfiguration {
-WorkerIpUnspecified = 0,
-WorkerIpPublic = 1,
-WorkerIpPrivate = 2,
+    WorkerIpUnspecified = 0,
+    WorkerIpPublic = 1,
+    WorkerIpPrivate = 2,
 }
 impl WorkerIpAddressConfiguration {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-WorkerIpAddressConfiguration::WorkerIpUnspecified => "WORKER_IP_UNSPECIFIED",
-WorkerIpAddressConfiguration::WorkerIpPublic => "WORKER_IP_PUBLIC",
-WorkerIpAddressConfiguration::WorkerIpPrivate => "WORKER_IP_PRIVATE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"WORKER_IP_UNSPECIFIED" => Some(Self::WorkerIpUnspecified),
-"WORKER_IP_PUBLIC" => Some(Self::WorkerIpPublic),
-"WORKER_IP_PRIVATE" => Some(Self::WorkerIpPrivate),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            WorkerIpAddressConfiguration::WorkerIpUnspecified => "WORKER_IP_UNSPECIFIED",
+            WorkerIpAddressConfiguration::WorkerIpPublic => "WORKER_IP_PUBLIC",
+            WorkerIpAddressConfiguration::WorkerIpPrivate => "WORKER_IP_PRIVATE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "WORKER_IP_UNSPECIFIED" => Some(Self::WorkerIpUnspecified),
+            "WORKER_IP_PUBLIC" => Some(Self::WorkerIpPublic),
+            "WORKER_IP_PRIVATE" => Some(Self::WorkerIpPrivate),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ShuffleMode {
-Unspecified = 0,
-VmBased = 1,
-ServiceBased = 2,
+    Unspecified = 0,
+    VmBased = 1,
+    ServiceBased = 2,
 }
 impl ShuffleMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ShuffleMode::Unspecified => "SHUFFLE_MODE_UNSPECIFIED",
-ShuffleMode::VmBased => "VM_BASED",
-ShuffleMode::ServiceBased => "SERVICE_BASED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SHUFFLE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"VM_BASED" => Some(Self::VmBased),
-"SERVICE_BASED" => Some(Self::ServiceBased),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ShuffleMode::Unspecified => "SHUFFLE_MODE_UNSPECIFIED",
+            ShuffleMode::VmBased => "VM_BASED",
+            ShuffleMode::ServiceBased => "SERVICE_BASED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SHUFFLE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+            "VM_BASED" => Some(Self::VmBased),
+            "SERVICE_BASED" => Some(Self::ServiceBased),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Job {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "JobType", tag = "4")]
-pub r#type: i32,
-#[prost(message, optional, tag = "5")]
-pub environment: ::core::option::Option<Environment>,
-#[prost(message, repeated, tag = "6")]
-pub steps: ::prost::alloc::vec::Vec<Step>,
-#[prost(string, tag = "24")]
-pub steps_location: ::prost::alloc::string::String,
-#[prost(enumeration = "JobState", tag = "7")]
-pub current_state: i32,
-#[prost(message, optional, tag = "8")]
-pub current_state_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "JobState", tag = "9")]
-pub requested_state: i32,
-#[prost(message, optional, tag = "10")]
-pub execution_info: ::core::option::Option<JobExecutionInfo>,
-#[prost(message, optional, tag = "11")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "12")]
-pub replace_job_id: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "13")]
-pub transform_name_mapping: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "14")]
-pub client_request_id: ::prost::alloc::string::String,
-#[prost(string, tag = "15")]
-pub replaced_by_job_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "16")]
-pub temp_files: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "17")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "18")]
-pub location: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "19")]
-pub pipeline_description: ::core::option::Option<PipelineDescription>,
-#[prost(message, repeated, tag = "20")]
-pub stage_states: ::prost::alloc::vec::Vec<ExecutionStageState>,
-#[prost(message, optional, tag = "21")]
-pub job_metadata: ::core::option::Option<JobMetadata>,
-#[prost(message, optional, tag = "22")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "23")]
-pub created_from_snapshot_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "25")]
-pub satisfies_pzs: bool,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobType", tag = "4")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub environment: ::core::option::Option<Environment>,
+    #[prost(message, repeated, tag = "6")]
+    pub steps: ::prost::alloc::vec::Vec<Step>,
+    #[prost(string, tag = "24")]
+    pub steps_location: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobState", tag = "7")]
+    pub current_state: i32,
+    #[prost(message, optional, tag = "8")]
+    pub current_state_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "JobState", tag = "9")]
+    pub requested_state: i32,
+    #[prost(message, optional, tag = "10")]
+    pub execution_info: ::core::option::Option<JobExecutionInfo>,
+    #[prost(message, optional, tag = "11")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "12")]
+    pub replace_job_id: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "13")]
+    pub transform_name_mapping:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "14")]
+    pub client_request_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub replaced_by_job_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "16")]
+    pub temp_files: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "17")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "18")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "19")]
+    pub pipeline_description: ::core::option::Option<PipelineDescription>,
+    #[prost(message, repeated, tag = "20")]
+    pub stage_states: ::prost::alloc::vec::Vec<ExecutionStageState>,
+    #[prost(message, optional, tag = "21")]
+    pub job_metadata: ::core::option::Option<JobMetadata>,
+    #[prost(message, optional, tag = "22")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "23")]
+    pub created_from_snapshot_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "25")]
+    pub satisfies_pzs: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatastoreIoDetails {
-#[prost(string, tag = "1")]
-pub namespace: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PubSubIoDetails {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subscription: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subscription: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileIoDetails {
-#[prost(string, tag = "1")]
-pub file_pattern: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub file_pattern: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigTableIoDetails {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub table_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryIoDetails {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dataset: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub query: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub query: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpannerIoDetails {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SdkVersion {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version_display_name: ::prost::alloc::string::String,
-#[prost(enumeration = "sdk_version::SdkSupportStatus", tag = "3")]
-pub sdk_support_status: i32,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version_display_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "sdk_version::SdkSupportStatus", tag = "3")]
+    pub sdk_support_status: i32,
 }
 /// Nested message and enum types in `SdkVersion`.
 pub mod sdk_version {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SdkSupportStatus {
-Unknown = 0,
-Supported = 1,
-Stale = 2,
-Deprecated = 3,
-Unsupported = 4,
-}
-impl SdkSupportStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SdkSupportStatus::Unknown => "UNKNOWN",
-SdkSupportStatus::Supported => "SUPPORTED",
-SdkSupportStatus::Stale => "STALE",
-SdkSupportStatus::Deprecated => "DEPRECATED",
-SdkSupportStatus::Unsupported => "UNSUPPORTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"SUPPORTED" => Some(Self::Supported),
-"STALE" => Some(Self::Stale),
-"DEPRECATED" => Some(Self::Deprecated),
-"UNSUPPORTED" => Some(Self::Unsupported),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SdkSupportStatus {
+        Unknown = 0,
+        Supported = 1,
+        Stale = 2,
+        Deprecated = 3,
+        Unsupported = 4,
+    }
+    impl SdkSupportStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SdkSupportStatus::Unknown => "UNKNOWN",
+                SdkSupportStatus::Supported => "SUPPORTED",
+                SdkSupportStatus::Stale => "STALE",
+                SdkSupportStatus::Deprecated => "DEPRECATED",
+                SdkSupportStatus::Unsupported => "UNSUPPORTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "SUPPORTED" => Some(Self::Supported),
+                "STALE" => Some(Self::Stale),
+                "DEPRECATED" => Some(Self::Deprecated),
+                "UNSUPPORTED" => Some(Self::Unsupported),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobMetadata {
-#[prost(message, optional, tag = "1")]
-pub sdk_version: ::core::option::Option<SdkVersion>,
-#[prost(message, repeated, tag = "2")]
-pub spanner_details: ::prost::alloc::vec::Vec<SpannerIoDetails>,
-#[prost(message, repeated, tag = "3")]
-pub bigquery_details: ::prost::alloc::vec::Vec<BigQueryIoDetails>,
-#[prost(message, repeated, tag = "4")]
-pub big_table_details: ::prost::alloc::vec::Vec<BigTableIoDetails>,
-#[prost(message, repeated, tag = "5")]
-pub pubsub_details: ::prost::alloc::vec::Vec<PubSubIoDetails>,
-#[prost(message, repeated, tag = "6")]
-pub file_details: ::prost::alloc::vec::Vec<FileIoDetails>,
-#[prost(message, repeated, tag = "7")]
-pub datastore_details: ::prost::alloc::vec::Vec<DatastoreIoDetails>,
+    #[prost(message, optional, tag = "1")]
+    pub sdk_version: ::core::option::Option<SdkVersion>,
+    #[prost(message, repeated, tag = "2")]
+    pub spanner_details: ::prost::alloc::vec::Vec<SpannerIoDetails>,
+    #[prost(message, repeated, tag = "3")]
+    pub bigquery_details: ::prost::alloc::vec::Vec<BigQueryIoDetails>,
+    #[prost(message, repeated, tag = "4")]
+    pub big_table_details: ::prost::alloc::vec::Vec<BigTableIoDetails>,
+    #[prost(message, repeated, tag = "5")]
+    pub pubsub_details: ::prost::alloc::vec::Vec<PubSubIoDetails>,
+    #[prost(message, repeated, tag = "6")]
+    pub file_details: ::prost::alloc::vec::Vec<FileIoDetails>,
+    #[prost(message, repeated, tag = "7")]
+    pub datastore_details: ::prost::alloc::vec::Vec<DatastoreIoDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutionStageState {
-#[prost(string, tag = "1")]
-pub execution_stage_name: ::prost::alloc::string::String,
-#[prost(enumeration = "JobState", tag = "2")]
-pub execution_stage_state: i32,
-#[prost(message, optional, tag = "3")]
-pub current_state_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub execution_stage_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobState", tag = "2")]
+    pub execution_stage_state: i32,
+    #[prost(message, optional, tag = "3")]
+    pub current_state_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PipelineDescription {
-#[prost(message, repeated, tag = "1")]
-pub original_pipeline_transform: ::prost::alloc::vec::Vec<TransformSummary>,
-#[prost(message, repeated, tag = "2")]
-pub execution_pipeline_stage: ::prost::alloc::vec::Vec<ExecutionStageSummary>,
-#[prost(message, repeated, tag = "3")]
-pub display_data: ::prost::alloc::vec::Vec<DisplayData>,
+    #[prost(message, repeated, tag = "1")]
+    pub original_pipeline_transform: ::prost::alloc::vec::Vec<TransformSummary>,
+    #[prost(message, repeated, tag = "2")]
+    pub execution_pipeline_stage: ::prost::alloc::vec::Vec<ExecutionStageSummary>,
+    #[prost(message, repeated, tag = "3")]
+    pub display_data: ::prost::alloc::vec::Vec<DisplayData>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformSummary {
-#[prost(enumeration = "KindType", tag = "1")]
-pub kind: i32,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub display_data: ::prost::alloc::vec::Vec<DisplayData>,
-#[prost(string, repeated, tag = "5")]
-pub output_collection_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "6")]
-pub input_collection_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "KindType", tag = "1")]
+    pub kind: i32,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub display_data: ::prost::alloc::vec::Vec<DisplayData>,
+    #[prost(string, repeated, tag = "5")]
+    pub output_collection_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub input_collection_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutionStageSummary {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "KindType", tag = "3")]
-pub kind: i32,
-#[prost(message, repeated, tag = "4")]
-pub input_source: ::prost::alloc::vec::Vec<execution_stage_summary::StageSource>,
-#[prost(message, repeated, tag = "5")]
-pub output_source: ::prost::alloc::vec::Vec<execution_stage_summary::StageSource>,
-#[prost(string, repeated, tag = "8")]
-pub prerequisite_stage: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "6")]
-pub component_transform: ::prost::alloc::vec::Vec<execution_stage_summary::ComponentTransform>,
-#[prost(message, repeated, tag = "7")]
-pub component_source: ::prost::alloc::vec::Vec<execution_stage_summary::ComponentSource>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "KindType", tag = "3")]
+    pub kind: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub input_source: ::prost::alloc::vec::Vec<execution_stage_summary::StageSource>,
+    #[prost(message, repeated, tag = "5")]
+    pub output_source: ::prost::alloc::vec::Vec<execution_stage_summary::StageSource>,
+    #[prost(string, repeated, tag = "8")]
+    pub prerequisite_stage: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "6")]
+    pub component_transform: ::prost::alloc::vec::Vec<execution_stage_summary::ComponentTransform>,
+    #[prost(message, repeated, tag = "7")]
+    pub component_source: ::prost::alloc::vec::Vec<execution_stage_summary::ComponentSource>,
 }
 /// Nested message and enum types in `ExecutionStageSummary`.
 pub mod execution_stage_summary {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StageSource {
-#[prost(string, tag = "1")]
-pub user_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub original_transform_or_collection: ::prost::alloc::string::String,
-#[prost(int64, tag = "4")]
-pub size_bytes: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ComponentTransform {
-#[prost(string, tag = "1")]
-pub user_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub original_transform: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ComponentSource {
-#[prost(string, tag = "1")]
-pub user_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub original_transform_or_collection: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StageSource {
+        #[prost(string, tag = "1")]
+        pub user_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub original_transform_or_collection: ::prost::alloc::string::String,
+        #[prost(int64, tag = "4")]
+        pub size_bytes: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ComponentTransform {
+        #[prost(string, tag = "1")]
+        pub user_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub original_transform: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ComponentSource {
+        #[prost(string, tag = "1")]
+        pub user_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub original_transform_or_collection: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisplayData {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub namespace: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub short_str_value: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub label: ::prost::alloc::string::String,
-#[prost(oneof = "display_data::Value", tags = "4, 5, 6, 7, 8, 9, 10")]
-pub value: ::core::option::Option<display_data::Value>,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub short_str_value: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(oneof = "display_data::Value", tags = "4, 5, 6, 7, 8, 9, 10")]
+    pub value: ::core::option::Option<display_data::Value>,
 }
 /// Nested message and enum types in `DisplayData`.
 pub mod display_data {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(string, tag = "4")]
-StrValue(::prost::alloc::string::String),
-#[prost(int64, tag = "5")]
-Int64Value(i64),
-#[prost(float, tag = "6")]
-FloatValue(f32),
-#[prost(string, tag = "7")]
-JavaClassValue(::prost::alloc::string::String),
-#[prost(message, tag = "8")]
-TimestampValue(::prost_types::Timestamp),
-#[prost(message, tag = "9")]
-DurationValue(::prost_types::Duration),
-#[prost(bool, tag = "10")]
-BoolValue(bool),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(string, tag = "4")]
+        StrValue(::prost::alloc::string::String),
+        #[prost(int64, tag = "5")]
+        Int64Value(i64),
+        #[prost(float, tag = "6")]
+        FloatValue(f32),
+        #[prost(string, tag = "7")]
+        JavaClassValue(::prost::alloc::string::String),
+        #[prost(message, tag = "8")]
+        TimestampValue(::prost_types::Timestamp),
+        #[prost(message, tag = "9")]
+        DurationValue(::prost_types::Duration),
+        #[prost(bool, tag = "10")]
+        BoolValue(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Step {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub properties: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "1")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub properties: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobExecutionInfo {
-#[prost(map = "string, message", tag = "1")]
-pub stages: ::std::collections::HashMap<::prost::alloc::string::String, JobExecutionStageInfo>,
+    #[prost(map = "string, message", tag = "1")]
+    pub stages: ::std::collections::HashMap<::prost::alloc::string::String, JobExecutionStageInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobExecutionStageInfo {
-#[prost(string, repeated, tag = "1")]
-pub step_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub step_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateJobRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub job: ::core::option::Option<Job>,
-#[prost(enumeration = "JobView", tag = "3")]
-pub view: i32,
-#[prost(string, tag = "4")]
-pub replace_job_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub job: ::core::option::Option<Job>,
+    #[prost(enumeration = "JobView", tag = "3")]
+    pub view: i32,
+    #[prost(string, tag = "4")]
+    pub replace_job_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(enumeration = "JobView", tag = "3")]
-pub view: i32,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobView", tag = "3")]
+    pub view: i32,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub job: ::core::option::Option<Job>,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub job: ::core::option::Option<Job>,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsRequest {
-#[prost(enumeration = "list_jobs_request::Filter", tag = "5")]
-pub filter: i32,
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(enumeration = "JobView", tag = "2")]
-pub view: i32,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "17")]
-pub location: ::prost::alloc::string::String,
+    #[prost(enumeration = "list_jobs_request::Filter", tag = "5")]
+    pub filter: i32,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(enumeration = "JobView", tag = "2")]
+    pub view: i32,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "17")]
+    pub location: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ListJobsRequest`.
 pub mod list_jobs_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Filter {
-Unknown = 0,
-All = 1,
-Terminated = 2,
-Active = 3,
-}
-impl Filter {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Filter::Unknown => "UNKNOWN",
-Filter::All => "ALL",
-Filter::Terminated => "TERMINATED",
-Filter::Active => "ACTIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"ALL" => Some(Self::All),
-"TERMINATED" => Some(Self::Terminated),
-"ACTIVE" => Some(Self::Active),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Filter {
+        Unknown = 0,
+        All = 1,
+        Terminated = 2,
+        Active = 3,
+    }
+    impl Filter {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Filter::Unknown => "UNKNOWN",
+                Filter::All => "ALL",
+                Filter::Terminated => "TERMINATED",
+                Filter::Active => "ACTIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "ALL" => Some(Self::All),
+                "TERMINATED" => Some(Self::Terminated),
+                "ACTIVE" => Some(Self::Active),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FailedLocation {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsResponse {
-#[prost(message, repeated, tag = "1")]
-pub jobs: ::prost::alloc::vec::Vec<Job>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub failed_location: ::prost::alloc::vec::Vec<FailedLocation>,
+    #[prost(message, repeated, tag = "1")]
+    pub jobs: ::prost::alloc::vec::Vec<Job>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub failed_location: ::prost::alloc::vec::Vec<FailedLocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SnapshotJobRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub ttl: ::core::option::Option<::prost_types::Duration>,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub snapshot_sources: bool,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub ttl: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub snapshot_sources: bool,
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckActiveJobsRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CheckActiveJobsResponse {
-#[prost(bool, tag = "1")]
-pub active_jobs_exist: bool,
+    #[prost(bool, tag = "1")]
+    pub active_jobs_exist: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum KindType {
-UnknownKind = 0,
-ParDoKind = 1,
-GroupByKeyKind = 2,
-FlattenKind = 3,
-ReadKind = 4,
-WriteKind = 5,
-ConstantKind = 6,
-SingletonKind = 7,
-ShuffleKind = 8,
+    UnknownKind = 0,
+    ParDoKind = 1,
+    GroupByKeyKind = 2,
+    FlattenKind = 3,
+    ReadKind = 4,
+    WriteKind = 5,
+    ConstantKind = 6,
+    SingletonKind = 7,
+    ShuffleKind = 8,
 }
 impl KindType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-KindType::UnknownKind => "UNKNOWN_KIND",
-KindType::ParDoKind => "PAR_DO_KIND",
-KindType::GroupByKeyKind => "GROUP_BY_KEY_KIND",
-KindType::FlattenKind => "FLATTEN_KIND",
-KindType::ReadKind => "READ_KIND",
-KindType::WriteKind => "WRITE_KIND",
-KindType::ConstantKind => "CONSTANT_KIND",
-KindType::SingletonKind => "SINGLETON_KIND",
-KindType::ShuffleKind => "SHUFFLE_KIND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN_KIND" => Some(Self::UnknownKind),
-"PAR_DO_KIND" => Some(Self::ParDoKind),
-"GROUP_BY_KEY_KIND" => Some(Self::GroupByKeyKind),
-"FLATTEN_KIND" => Some(Self::FlattenKind),
-"READ_KIND" => Some(Self::ReadKind),
-"WRITE_KIND" => Some(Self::WriteKind),
-"CONSTANT_KIND" => Some(Self::ConstantKind),
-"SINGLETON_KIND" => Some(Self::SingletonKind),
-"SHUFFLE_KIND" => Some(Self::ShuffleKind),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            KindType::UnknownKind => "UNKNOWN_KIND",
+            KindType::ParDoKind => "PAR_DO_KIND",
+            KindType::GroupByKeyKind => "GROUP_BY_KEY_KIND",
+            KindType::FlattenKind => "FLATTEN_KIND",
+            KindType::ReadKind => "READ_KIND",
+            KindType::WriteKind => "WRITE_KIND",
+            KindType::ConstantKind => "CONSTANT_KIND",
+            KindType::SingletonKind => "SINGLETON_KIND",
+            KindType::ShuffleKind => "SHUFFLE_KIND",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN_KIND" => Some(Self::UnknownKind),
+            "PAR_DO_KIND" => Some(Self::ParDoKind),
+            "GROUP_BY_KEY_KIND" => Some(Self::GroupByKeyKind),
+            "FLATTEN_KIND" => Some(Self::FlattenKind),
+            "READ_KIND" => Some(Self::ReadKind),
+            "WRITE_KIND" => Some(Self::WriteKind),
+            "CONSTANT_KIND" => Some(Self::ConstantKind),
+            "SINGLETON_KIND" => Some(Self::SingletonKind),
+            "SHUFFLE_KIND" => Some(Self::ShuffleKind),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum JobState {
-Unknown = 0,
-Stopped = 1,
-Running = 2,
-Done = 3,
-Failed = 4,
-Cancelled = 5,
-Updated = 6,
-Draining = 7,
-Drained = 8,
-Pending = 9,
-Cancelling = 10,
-Queued = 11,
-ResourceCleaningUp = 12,
+    Unknown = 0,
+    Stopped = 1,
+    Running = 2,
+    Done = 3,
+    Failed = 4,
+    Cancelled = 5,
+    Updated = 6,
+    Draining = 7,
+    Drained = 8,
+    Pending = 9,
+    Cancelling = 10,
+    Queued = 11,
+    ResourceCleaningUp = 12,
 }
 impl JobState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-JobState::Unknown => "JOB_STATE_UNKNOWN",
-JobState::Stopped => "JOB_STATE_STOPPED",
-JobState::Running => "JOB_STATE_RUNNING",
-JobState::Done => "JOB_STATE_DONE",
-JobState::Failed => "JOB_STATE_FAILED",
-JobState::Cancelled => "JOB_STATE_CANCELLED",
-JobState::Updated => "JOB_STATE_UPDATED",
-JobState::Draining => "JOB_STATE_DRAINING",
-JobState::Drained => "JOB_STATE_DRAINED",
-JobState::Pending => "JOB_STATE_PENDING",
-JobState::Cancelling => "JOB_STATE_CANCELLING",
-JobState::Queued => "JOB_STATE_QUEUED",
-JobState::ResourceCleaningUp => "JOB_STATE_RESOURCE_CLEANING_UP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"JOB_STATE_UNKNOWN" => Some(Self::Unknown),
-"JOB_STATE_STOPPED" => Some(Self::Stopped),
-"JOB_STATE_RUNNING" => Some(Self::Running),
-"JOB_STATE_DONE" => Some(Self::Done),
-"JOB_STATE_FAILED" => Some(Self::Failed),
-"JOB_STATE_CANCELLED" => Some(Self::Cancelled),
-"JOB_STATE_UPDATED" => Some(Self::Updated),
-"JOB_STATE_DRAINING" => Some(Self::Draining),
-"JOB_STATE_DRAINED" => Some(Self::Drained),
-"JOB_STATE_PENDING" => Some(Self::Pending),
-"JOB_STATE_CANCELLING" => Some(Self::Cancelling),
-"JOB_STATE_QUEUED" => Some(Self::Queued),
-"JOB_STATE_RESOURCE_CLEANING_UP" => Some(Self::ResourceCleaningUp),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            JobState::Unknown => "JOB_STATE_UNKNOWN",
+            JobState::Stopped => "JOB_STATE_STOPPED",
+            JobState::Running => "JOB_STATE_RUNNING",
+            JobState::Done => "JOB_STATE_DONE",
+            JobState::Failed => "JOB_STATE_FAILED",
+            JobState::Cancelled => "JOB_STATE_CANCELLED",
+            JobState::Updated => "JOB_STATE_UPDATED",
+            JobState::Draining => "JOB_STATE_DRAINING",
+            JobState::Drained => "JOB_STATE_DRAINED",
+            JobState::Pending => "JOB_STATE_PENDING",
+            JobState::Cancelling => "JOB_STATE_CANCELLING",
+            JobState::Queued => "JOB_STATE_QUEUED",
+            JobState::ResourceCleaningUp => "JOB_STATE_RESOURCE_CLEANING_UP",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "JOB_STATE_UNKNOWN" => Some(Self::Unknown),
+            "JOB_STATE_STOPPED" => Some(Self::Stopped),
+            "JOB_STATE_RUNNING" => Some(Self::Running),
+            "JOB_STATE_DONE" => Some(Self::Done),
+            "JOB_STATE_FAILED" => Some(Self::Failed),
+            "JOB_STATE_CANCELLED" => Some(Self::Cancelled),
+            "JOB_STATE_UPDATED" => Some(Self::Updated),
+            "JOB_STATE_DRAINING" => Some(Self::Draining),
+            "JOB_STATE_DRAINED" => Some(Self::Drained),
+            "JOB_STATE_PENDING" => Some(Self::Pending),
+            "JOB_STATE_CANCELLING" => Some(Self::Cancelling),
+            "JOB_STATE_QUEUED" => Some(Self::Queued),
+            "JOB_STATE_RESOURCE_CLEANING_UP" => Some(Self::ResourceCleaningUp),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum JobView {
-Unknown = 0,
-Summary = 1,
-All = 2,
-Description = 3,
+    Unknown = 0,
+    Summary = 1,
+    All = 2,
+    Description = 3,
 }
 impl JobView {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-JobView::Unknown => "JOB_VIEW_UNKNOWN",
-JobView::Summary => "JOB_VIEW_SUMMARY",
-JobView::All => "JOB_VIEW_ALL",
-JobView::Description => "JOB_VIEW_DESCRIPTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"JOB_VIEW_UNKNOWN" => Some(Self::Unknown),
-"JOB_VIEW_SUMMARY" => Some(Self::Summary),
-"JOB_VIEW_ALL" => Some(Self::All),
-"JOB_VIEW_DESCRIPTION" => Some(Self::Description),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            JobView::Unknown => "JOB_VIEW_UNKNOWN",
+            JobView::Summary => "JOB_VIEW_SUMMARY",
+            JobView::All => "JOB_VIEW_ALL",
+            JobView::Description => "JOB_VIEW_DESCRIPTION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "JOB_VIEW_UNKNOWN" => Some(Self::Unknown),
+            "JOB_VIEW_SUMMARY" => Some(Self::Summary),
+            "JOB_VIEW_ALL" => Some(Self::All),
+            "JOB_VIEW_DESCRIPTION" => Some(Self::Description),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod jobs_v1_beta3_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Provides a method to create and modify Google Cloud Dataflow jobs.
-/// A Job is a multi-stage computation graph run by the Cloud Dataflow service.
-#[derive(Debug, Clone)]
-pub struct JobsV1Beta3Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> JobsV1Beta3Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> JobsV1Beta3Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-JobsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a Cloud Dataflow job.
-///
-/// To create a job, we recommend using `projects.locations.jobs.create` with a
-/// [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
-/// `projects.jobs.create` is not recommended, as your job will always start
-/// in `us-central1`.
-pub async fn create_job(&mut self, request: impl tonic::IntoRequest<super::CreateJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/CreateJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "CreateJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the state of the specified Cloud Dataflow job.
-///
-/// To get the state of a job, we recommend using `projects.locations.jobs.get`
-/// with a [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
-/// `projects.jobs.get` is not recommended, as you can only get the state of
-/// jobs that are running in `us-central1`.
-pub async fn get_job(&mut self, request: impl tonic::IntoRequest<super::GetJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/GetJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "GetJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the state of an existing Cloud Dataflow job.
-///
-/// To update the state of an existing job, we recommend using
-/// `projects.locations.jobs.update` with a [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
-/// `projects.jobs.update` is not recommended, as you can only update the state
-/// of jobs that are running in `us-central1`.
-pub async fn update_job(&mut self, request: impl tonic::IntoRequest<super::UpdateJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/UpdateJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "UpdateJob"));
-self.inner.unary(req, path, codec).await
-}
-/// List the jobs of a project.
-///
-/// To list the jobs of a project in a region, we recommend using
-/// `projects.locations.jobs.list` with a [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
-/// list the all jobs across all regions, use `projects.jobs.aggregated`. Using
-/// `projects.jobs.list` is not recommended, as you can only get the list of
-/// jobs that are running in `us-central1`.
-pub async fn list_jobs(&mut self, request: impl tonic::IntoRequest<super::ListJobsRequest>) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/ListJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "ListJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// List the jobs of a project across all regions.
-pub async fn aggregated_list_jobs(&mut self, request: impl tonic::IntoRequest<super::ListJobsRequest>) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/AggregatedListJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "AggregatedListJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// Check for existence of active jobs in the given project across all regions.
-pub async fn check_active_jobs(&mut self, request: impl tonic::IntoRequest<super::CheckActiveJobsRequest>) -> std::result::Result<tonic::Response<super::CheckActiveJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/CheckActiveJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "CheckActiveJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// Snapshot the state of a streaming job.
-pub async fn snapshot_job(&mut self, request: impl tonic::IntoRequest<super::SnapshotJobRequest>) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/SnapshotJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.JobsV1Beta3", "SnapshotJob"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Provides a method to create and modify Google Cloud Dataflow jobs.
+    /// A Job is a multi-stage computation graph run by the Cloud Dataflow service.
+    #[derive(Debug, Clone)]
+    pub struct JobsV1Beta3Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> JobsV1Beta3Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> JobsV1Beta3Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            JobsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a Cloud Dataflow job.
+        ///
+        /// To create a job, we recommend using `projects.locations.jobs.create` with a
+        /// [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+        /// `projects.jobs.create` is not recommended, as your job will always start
+        /// in `us-central1`.
+        pub async fn create_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/CreateJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "CreateJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the state of the specified Cloud Dataflow job.
+        ///
+        /// To get the state of a job, we recommend using `projects.locations.jobs.get`
+        /// with a [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+        /// `projects.jobs.get` is not recommended, as you can only get the state of
+        /// jobs that are running in `us-central1`.
+        pub async fn get_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.JobsV1Beta3/GetJob");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "GetJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the state of an existing Cloud Dataflow job.
+        ///
+        /// To update the state of an existing job, we recommend using
+        /// `projects.locations.jobs.update` with a [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+        /// `projects.jobs.update` is not recommended, as you can only update the state
+        /// of jobs that are running in `us-central1`.
+        pub async fn update_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/UpdateJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "UpdateJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List the jobs of a project.
+        ///
+        /// To list the jobs of a project in a region, we recommend using
+        /// `projects.locations.jobs.list` with a [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
+        /// list the all jobs across all regions, use `projects.jobs.aggregated`. Using
+        /// `projects.jobs.list` is not recommended, as you can only get the list of
+        /// jobs that are running in `us-central1`.
+        pub async fn list_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/ListJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "ListJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List the jobs of a project across all regions.
+        pub async fn aggregated_list_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/AggregatedListJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "AggregatedListJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Check for existence of active jobs in the given project across all regions.
+        pub async fn check_active_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CheckActiveJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::CheckActiveJobsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/CheckActiveJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "CheckActiveJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Snapshot the state of a streaming job.
+        pub async fn snapshot_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SnapshotJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.JobsV1Beta3/SnapshotJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.JobsV1Beta3",
+                "SnapshotJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricStructuredName {
-#[prost(string, tag = "1")]
-pub origin: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "3")]
-pub context: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub origin: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "3")]
+    pub context:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricUpdate {
-#[prost(message, optional, tag = "1")]
-pub name: ::core::option::Option<MetricStructuredName>,
-#[prost(string, tag = "2")]
-pub kind: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub cumulative: bool,
-#[prost(message, optional, tag = "4")]
-pub scalar: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "5")]
-pub mean_sum: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "6")]
-pub mean_count: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "7")]
-pub set: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "11")]
-pub distribution: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "12")]
-pub gauge: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "8")]
-pub internal: ::core::option::Option<::prost_types::Value>,
-#[prost(message, optional, tag = "9")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub name: ::core::option::Option<MetricStructuredName>,
+    #[prost(string, tag = "2")]
+    pub kind: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub cumulative: bool,
+    #[prost(message, optional, tag = "4")]
+    pub scalar: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "5")]
+    pub mean_sum: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "6")]
+    pub mean_count: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "7")]
+    pub set: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "11")]
+    pub distribution: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "12")]
+    pub gauge: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "8")]
+    pub internal: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, optional, tag = "9")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobMetricsRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobMetrics {
-#[prost(message, optional, tag = "1")]
-pub metric_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
+    #[prost(message, optional, tag = "1")]
+    pub metric_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "2")]
+    pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobExecutionDetailsRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProgressTimeseries {
-#[prost(double, tag = "1")]
-pub current_progress: f64,
-#[prost(message, repeated, tag = "2")]
-pub data_points: ::prost::alloc::vec::Vec<progress_timeseries::Point>,
+    #[prost(double, tag = "1")]
+    pub current_progress: f64,
+    #[prost(message, repeated, tag = "2")]
+    pub data_points: ::prost::alloc::vec::Vec<progress_timeseries::Point>,
 }
 /// Nested message and enum types in `ProgressTimeseries`.
 pub mod progress_timeseries {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Point {
-#[prost(message, optional, tag = "1")]
-pub time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(double, tag = "2")]
-pub value: f64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Point {
+        #[prost(message, optional, tag = "1")]
+        pub time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(double, tag = "2")]
+        pub value: f64,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StageSummary {
-#[prost(string, tag = "1")]
-pub stage_id: ::prost::alloc::string::String,
-#[prost(enumeration = "ExecutionState", tag = "2")]
-pub state: i32,
-#[prost(message, optional, tag = "3")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub progress: ::core::option::Option<ProgressTimeseries>,
-#[prost(message, repeated, tag = "6")]
-pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
+    #[prost(string, tag = "1")]
+    pub stage_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "ExecutionState", tag = "2")]
+    pub state: i32,
+    #[prost(message, optional, tag = "3")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub progress: ::core::option::Option<ProgressTimeseries>,
+    #[prost(message, repeated, tag = "6")]
+    pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobExecutionDetails {
-#[prost(message, repeated, tag = "1")]
-pub stages: ::prost::alloc::vec::Vec<StageSummary>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub stages: ::prost::alloc::vec::Vec<StageSummary>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetStageExecutionDetailsRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub stage_id: ::prost::alloc::string::String,
-#[prost(int32, tag = "5")]
-pub page_size: i32,
-#[prost(string, tag = "6")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub stage_id: ::prost::alloc::string::String,
+    #[prost(int32, tag = "5")]
+    pub page_size: i32,
+    #[prost(string, tag = "6")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkItemDetails {
-#[prost(string, tag = "1")]
-pub task_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub attempt_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "ExecutionState", tag = "5")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub progress: ::core::option::Option<ProgressTimeseries>,
-#[prost(message, repeated, tag = "7")]
-pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
+    #[prost(string, tag = "1")]
+    pub task_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub attempt_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "ExecutionState", tag = "5")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub progress: ::core::option::Option<ProgressTimeseries>,
+    #[prost(message, repeated, tag = "7")]
+    pub metrics: ::prost::alloc::vec::Vec<MetricUpdate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkerDetails {
-#[prost(string, tag = "1")]
-pub worker_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub work_items: ::prost::alloc::vec::Vec<WorkItemDetails>,
+    #[prost(string, tag = "1")]
+    pub worker_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub work_items: ::prost::alloc::vec::Vec<WorkItemDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StageExecutionDetails {
-#[prost(message, repeated, tag = "1")]
-pub workers: ::prost::alloc::vec::Vec<WorkerDetails>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub workers: ::prost::alloc::vec::Vec<WorkerDetails>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExecutionState {
-Unknown = 0,
-NotStarted = 1,
-Running = 2,
-Succeeded = 3,
-Failed = 4,
-Cancelled = 5,
+    Unknown = 0,
+    NotStarted = 1,
+    Running = 2,
+    Succeeded = 3,
+    Failed = 4,
+    Cancelled = 5,
 }
 impl ExecutionState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExecutionState::Unknown => "EXECUTION_STATE_UNKNOWN",
-ExecutionState::NotStarted => "EXECUTION_STATE_NOT_STARTED",
-ExecutionState::Running => "EXECUTION_STATE_RUNNING",
-ExecutionState::Succeeded => "EXECUTION_STATE_SUCCEEDED",
-ExecutionState::Failed => "EXECUTION_STATE_FAILED",
-ExecutionState::Cancelled => "EXECUTION_STATE_CANCELLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXECUTION_STATE_UNKNOWN" => Some(Self::Unknown),
-"EXECUTION_STATE_NOT_STARTED" => Some(Self::NotStarted),
-"EXECUTION_STATE_RUNNING" => Some(Self::Running),
-"EXECUTION_STATE_SUCCEEDED" => Some(Self::Succeeded),
-"EXECUTION_STATE_FAILED" => Some(Self::Failed),
-"EXECUTION_STATE_CANCELLED" => Some(Self::Cancelled),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ExecutionState::Unknown => "EXECUTION_STATE_UNKNOWN",
+            ExecutionState::NotStarted => "EXECUTION_STATE_NOT_STARTED",
+            ExecutionState::Running => "EXECUTION_STATE_RUNNING",
+            ExecutionState::Succeeded => "EXECUTION_STATE_SUCCEEDED",
+            ExecutionState::Failed => "EXECUTION_STATE_FAILED",
+            ExecutionState::Cancelled => "EXECUTION_STATE_CANCELLED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EXECUTION_STATE_UNKNOWN" => Some(Self::Unknown),
+            "EXECUTION_STATE_NOT_STARTED" => Some(Self::NotStarted),
+            "EXECUTION_STATE_RUNNING" => Some(Self::Running),
+            "EXECUTION_STATE_SUCCEEDED" => Some(Self::Succeeded),
+            "EXECUTION_STATE_FAILED" => Some(Self::Failed),
+            "EXECUTION_STATE_CANCELLED" => Some(Self::Cancelled),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod metrics_v1_beta3_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Dataflow Metrics API lets you monitor the progress of Dataflow
-/// jobs.
-#[derive(Debug, Clone)]
-pub struct MetricsV1Beta3Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> MetricsV1Beta3Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> MetricsV1Beta3Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-MetricsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Request the job status.
-///
-/// To request the status of a job, we recommend using
-/// `projects.locations.jobs.getMetrics` with a [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
-/// `projects.jobs.getMetrics` is not recommended, as you can only request the
-/// status of jobs that are running in `us-central1`.
-pub async fn get_job_metrics(&mut self, request: impl tonic::IntoRequest<super::GetJobMetricsRequest>) -> std::result::Result<tonic::Response<super::JobMetrics>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.MetricsV1Beta3/GetJobMetrics");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.MetricsV1Beta3", "GetJobMetrics"));
-self.inner.unary(req, path, codec).await
-}
-/// Request detailed information about the execution status of the job.
-///
-/// EXPERIMENTAL.  This API is subject to change or removal without notice.
-pub async fn get_job_execution_details(&mut self, request: impl tonic::IntoRequest<super::GetJobExecutionDetailsRequest>) -> std::result::Result<tonic::Response<super::JobExecutionDetails>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.MetricsV1Beta3/GetJobExecutionDetails");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.MetricsV1Beta3", "GetJobExecutionDetails"));
-self.inner.unary(req, path, codec).await
-}
-/// Request detailed information about the execution status of a stage of the
-/// job.
-///
-/// EXPERIMENTAL.  This API is subject to change or removal without notice.
-pub async fn get_stage_execution_details(&mut self, request: impl tonic::IntoRequest<super::GetStageExecutionDetailsRequest>) -> std::result::Result<tonic::Response<super::StageExecutionDetails>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.MetricsV1Beta3/GetStageExecutionDetails");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.MetricsV1Beta3", "GetStageExecutionDetails"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Dataflow Metrics API lets you monitor the progress of Dataflow
+    /// jobs.
+    #[derive(Debug, Clone)]
+    pub struct MetricsV1Beta3Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> MetricsV1Beta3Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> MetricsV1Beta3Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MetricsV1Beta3Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Request the job status.
+        ///
+        /// To request the status of a job, we recommend using
+        /// `projects.locations.jobs.getMetrics` with a [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+        /// `projects.jobs.getMetrics` is not recommended, as you can only request the
+        /// status of jobs that are running in `us-central1`.
+        pub async fn get_job_metrics(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobMetricsRequest>,
+        ) -> std::result::Result<tonic::Response<super::JobMetrics>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.MetricsV1Beta3/GetJobMetrics",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.MetricsV1Beta3",
+                "GetJobMetrics",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Request detailed information about the execution status of the job.
+        ///
+        /// EXPERIMENTAL.  This API is subject to change or removal without notice.
+        pub async fn get_job_execution_details(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobExecutionDetailsRequest>,
+        ) -> std::result::Result<tonic::Response<super::JobExecutionDetails>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.MetricsV1Beta3/GetJobExecutionDetails",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.MetricsV1Beta3",
+                "GetJobExecutionDetails",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Request detailed information about the execution status of a stage of the
+        /// job.
+        ///
+        /// EXPERIMENTAL.  This API is subject to change or removal without notice.
+        pub async fn get_stage_execution_details(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStageExecutionDetailsRequest>,
+        ) -> std::result::Result<tonic::Response<super::StageExecutionDetails>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.MetricsV1Beta3/GetStageExecutionDetails",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.MetricsV1Beta3",
+                "GetStageExecutionDetails",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TopologyConfig {
-#[prost(message, repeated, tag = "1")]
-pub computations: ::prost::alloc::vec::Vec<ComputationTopology>,
-#[prost(message, repeated, tag = "2")]
-pub data_disk_assignments: ::prost::alloc::vec::Vec<DataDiskAssignment>,
-#[prost(map = "string, string", tag = "3")]
-pub user_stage_to_computation_name_map: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(int32, tag = "4")]
-pub forwarding_key_bits: i32,
-#[prost(int32, tag = "5")]
-pub persistent_state_version: i32,
+    #[prost(message, repeated, tag = "1")]
+    pub computations: ::prost::alloc::vec::Vec<ComputationTopology>,
+    #[prost(message, repeated, tag = "2")]
+    pub data_disk_assignments: ::prost::alloc::vec::Vec<DataDiskAssignment>,
+    #[prost(map = "string, string", tag = "3")]
+    pub user_stage_to_computation_name_map:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(int32, tag = "4")]
+    pub forwarding_key_bits: i32,
+    #[prost(int32, tag = "5")]
+    pub persistent_state_version: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PubsubLocation {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subscription: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub timestamp_label: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub id_label: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub drop_late_data: bool,
-#[prost(string, tag = "6")]
-pub tracking_subscription: ::prost::alloc::string::String,
-#[prost(bool, tag = "7")]
-pub with_attributes: bool,
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subscription: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub timestamp_label: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub id_label: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub drop_late_data: bool,
+    #[prost(string, tag = "6")]
+    pub tracking_subscription: ::prost::alloc::string::String,
+    #[prost(bool, tag = "7")]
+    pub with_attributes: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingStageLocation {
-#[prost(string, tag = "1")]
-pub stream_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub stream_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingSideInputLocation {
-#[prost(string, tag = "1")]
-pub tag: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub state_family: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub tag: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub state_family: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomSourceLocation {
-#[prost(bool, tag = "1")]
-pub stateful: bool,
+    #[prost(bool, tag = "1")]
+    pub stateful: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamLocation {
-#[prost(oneof = "stream_location::Location", tags = "1, 2, 3, 4")]
-pub location: ::core::option::Option<stream_location::Location>,
+    #[prost(oneof = "stream_location::Location", tags = "1, 2, 3, 4")]
+    pub location: ::core::option::Option<stream_location::Location>,
 }
 /// Nested message and enum types in `StreamLocation`.
 pub mod stream_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Location {
-#[prost(message, tag = "1")]
-StreamingStageLocation(super::StreamingStageLocation),
-#[prost(message, tag = "2")]
-PubsubLocation(super::PubsubLocation),
-#[prost(message, tag = "3")]
-SideInputLocation(super::StreamingSideInputLocation),
-#[prost(message, tag = "4")]
-CustomSourceLocation(super::CustomSourceLocation),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Location {
+        #[prost(message, tag = "1")]
+        StreamingStageLocation(super::StreamingStageLocation),
+        #[prost(message, tag = "2")]
+        PubsubLocation(super::PubsubLocation),
+        #[prost(message, tag = "3")]
+        SideInputLocation(super::StreamingSideInputLocation),
+        #[prost(message, tag = "4")]
+        CustomSourceLocation(super::CustomSourceLocation),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StateFamilyConfig {
-#[prost(string, tag = "1")]
-pub state_family: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub is_read: bool,
+    #[prost(string, tag = "1")]
+    pub state_family: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub is_read: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputationTopology {
-#[prost(string, tag = "1")]
-pub system_stage_name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub computation_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub key_ranges: ::prost::alloc::vec::Vec<KeyRangeLocation>,
-#[prost(message, repeated, tag = "3")]
-pub inputs: ::prost::alloc::vec::Vec<StreamLocation>,
-#[prost(message, repeated, tag = "4")]
-pub outputs: ::prost::alloc::vec::Vec<StreamLocation>,
-#[prost(message, repeated, tag = "7")]
-pub state_families: ::prost::alloc::vec::Vec<StateFamilyConfig>,
+    #[prost(string, tag = "1")]
+    pub system_stage_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub computation_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub key_ranges: ::prost::alloc::vec::Vec<KeyRangeLocation>,
+    #[prost(message, repeated, tag = "3")]
+    pub inputs: ::prost::alloc::vec::Vec<StreamLocation>,
+    #[prost(message, repeated, tag = "4")]
+    pub outputs: ::prost::alloc::vec::Vec<StreamLocation>,
+    #[prost(message, repeated, tag = "7")]
+    pub state_families: ::prost::alloc::vec::Vec<StateFamilyConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyRangeLocation {
-#[prost(string, tag = "1")]
-pub start: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub end: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub delivery_endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub data_disk: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(string, tag = "4")]
-pub deprecated_persistent_directory: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub start: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub end: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub delivery_endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub data_disk: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(string, tag = "4")]
+    pub deprecated_persistent_directory: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MountedDataDisk {
-#[prost(string, tag = "1")]
-pub data_disk: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub data_disk: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataDiskAssignment {
-#[prost(string, tag = "1")]
-pub vm_instance: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub data_disks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub vm_instance: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub data_disks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyRangeDataDiskAssignment {
-#[prost(string, tag = "1")]
-pub start: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub end: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub data_disk: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub start: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub end: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub data_disk: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingComputationRanges {
-#[prost(string, tag = "1")]
-pub computation_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub range_assignments: ::prost::alloc::vec::Vec<KeyRangeDataDiskAssignment>,
+    #[prost(string, tag = "1")]
+    pub computation_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub range_assignments: ::prost::alloc::vec::Vec<KeyRangeDataDiskAssignment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingApplianceSnapshotConfig {
-#[prost(string, tag = "1")]
-pub snapshot_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub import_state_endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub snapshot_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub import_state_endpoint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobMessage {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub message_text: ::prost::alloc::string::String,
-#[prost(enumeration = "JobMessageImportance", tag = "4")]
-pub message_importance: i32,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub message_text: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobMessageImportance", tag = "4")]
+    pub message_importance: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StructuredMessage {
-#[prost(string, tag = "1")]
-pub message_text: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub message_key: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub parameters: ::prost::alloc::vec::Vec<structured_message::Parameter>,
+    #[prost(string, tag = "1")]
+    pub message_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub message_key: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub parameters: ::prost::alloc::vec::Vec<structured_message::Parameter>,
 }
 /// Nested message and enum types in `StructuredMessage`.
 pub mod structured_message {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Parameter {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub value: ::core::option::Option<::prost_types::Value>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Parameter {
+        #[prost(string, tag = "1")]
+        pub key: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub value: ::core::option::Option<::prost_types::Value>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutoscalingEvent {
-#[prost(int64, tag = "1")]
-pub current_num_workers: i64,
-#[prost(int64, tag = "2")]
-pub target_num_workers: i64,
-#[prost(enumeration = "autoscaling_event::AutoscalingEventType", tag = "3")]
-pub event_type: i32,
-#[prost(message, optional, tag = "4")]
-pub description: ::core::option::Option<StructuredMessage>,
-#[prost(message, optional, tag = "5")]
-pub time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub worker_pool: ::prost::alloc::string::String,
+    #[prost(int64, tag = "1")]
+    pub current_num_workers: i64,
+    #[prost(int64, tag = "2")]
+    pub target_num_workers: i64,
+    #[prost(enumeration = "autoscaling_event::AutoscalingEventType", tag = "3")]
+    pub event_type: i32,
+    #[prost(message, optional, tag = "4")]
+    pub description: ::core::option::Option<StructuredMessage>,
+    #[prost(message, optional, tag = "5")]
+    pub time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub worker_pool: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AutoscalingEvent`.
 pub mod autoscaling_event {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AutoscalingEventType {
-TypeUnknown = 0,
-TargetNumWorkersChanged = 1,
-CurrentNumWorkersChanged = 2,
-ActuationFailure = 3,
-NoChange = 4,
-}
-impl AutoscalingEventType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AutoscalingEventType::TypeUnknown => "TYPE_UNKNOWN",
-AutoscalingEventType::TargetNumWorkersChanged => "TARGET_NUM_WORKERS_CHANGED",
-AutoscalingEventType::CurrentNumWorkersChanged => "CURRENT_NUM_WORKERS_CHANGED",
-AutoscalingEventType::ActuationFailure => "ACTUATION_FAILURE",
-AutoscalingEventType::NoChange => "NO_CHANGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNKNOWN" => Some(Self::TypeUnknown),
-"TARGET_NUM_WORKERS_CHANGED" => Some(Self::TargetNumWorkersChanged),
-"CURRENT_NUM_WORKERS_CHANGED" => Some(Self::CurrentNumWorkersChanged),
-"ACTUATION_FAILURE" => Some(Self::ActuationFailure),
-"NO_CHANGE" => Some(Self::NoChange),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum AutoscalingEventType {
+        TypeUnknown = 0,
+        TargetNumWorkersChanged = 1,
+        CurrentNumWorkersChanged = 2,
+        ActuationFailure = 3,
+        NoChange = 4,
+    }
+    impl AutoscalingEventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AutoscalingEventType::TypeUnknown => "TYPE_UNKNOWN",
+                AutoscalingEventType::TargetNumWorkersChanged => "TARGET_NUM_WORKERS_CHANGED",
+                AutoscalingEventType::CurrentNumWorkersChanged => "CURRENT_NUM_WORKERS_CHANGED",
+                AutoscalingEventType::ActuationFailure => "ACTUATION_FAILURE",
+                AutoscalingEventType::NoChange => "NO_CHANGE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNKNOWN" => Some(Self::TypeUnknown),
+                "TARGET_NUM_WORKERS_CHANGED" => Some(Self::TargetNumWorkersChanged),
+                "CURRENT_NUM_WORKERS_CHANGED" => Some(Self::CurrentNumWorkersChanged),
+                "ACTUATION_FAILURE" => Some(Self::ActuationFailure),
+                "NO_CHANGE" => Some(Self::NoChange),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobMessagesRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(enumeration = "JobMessageImportance", tag = "3")]
-pub minimum_importance: i32,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "8")]
-pub location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "JobMessageImportance", tag = "3")]
+    pub minimum_importance: i32,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "8")]
+    pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobMessagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub job_messages: ::prost::alloc::vec::Vec<JobMessage>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub autoscaling_events: ::prost::alloc::vec::Vec<AutoscalingEvent>,
+    #[prost(message, repeated, tag = "1")]
+    pub job_messages: ::prost::alloc::vec::Vec<JobMessage>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub autoscaling_events: ::prost::alloc::vec::Vec<AutoscalingEvent>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum JobMessageImportance {
-Unknown = 0,
-JobMessageDebug = 1,
-JobMessageDetailed = 2,
-JobMessageBasic = 5,
-JobMessageWarning = 3,
-JobMessageError = 4,
+    Unknown = 0,
+    JobMessageDebug = 1,
+    JobMessageDetailed = 2,
+    JobMessageBasic = 5,
+    JobMessageWarning = 3,
+    JobMessageError = 4,
 }
 impl JobMessageImportance {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-JobMessageImportance::Unknown => "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
-JobMessageImportance::JobMessageDebug => "JOB_MESSAGE_DEBUG",
-JobMessageImportance::JobMessageDetailed => "JOB_MESSAGE_DETAILED",
-JobMessageImportance::JobMessageBasic => "JOB_MESSAGE_BASIC",
-JobMessageImportance::JobMessageWarning => "JOB_MESSAGE_WARNING",
-JobMessageImportance::JobMessageError => "JOB_MESSAGE_ERROR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"JOB_MESSAGE_IMPORTANCE_UNKNOWN" => Some(Self::Unknown),
-"JOB_MESSAGE_DEBUG" => Some(Self::JobMessageDebug),
-"JOB_MESSAGE_DETAILED" => Some(Self::JobMessageDetailed),
-"JOB_MESSAGE_BASIC" => Some(Self::JobMessageBasic),
-"JOB_MESSAGE_WARNING" => Some(Self::JobMessageWarning),
-"JOB_MESSAGE_ERROR" => Some(Self::JobMessageError),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            JobMessageImportance::Unknown => "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
+            JobMessageImportance::JobMessageDebug => "JOB_MESSAGE_DEBUG",
+            JobMessageImportance::JobMessageDetailed => "JOB_MESSAGE_DETAILED",
+            JobMessageImportance::JobMessageBasic => "JOB_MESSAGE_BASIC",
+            JobMessageImportance::JobMessageWarning => "JOB_MESSAGE_WARNING",
+            JobMessageImportance::JobMessageError => "JOB_MESSAGE_ERROR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "JOB_MESSAGE_IMPORTANCE_UNKNOWN" => Some(Self::Unknown),
+            "JOB_MESSAGE_DEBUG" => Some(Self::JobMessageDebug),
+            "JOB_MESSAGE_DETAILED" => Some(Self::JobMessageDetailed),
+            "JOB_MESSAGE_BASIC" => Some(Self::JobMessageBasic),
+            "JOB_MESSAGE_WARNING" => Some(Self::JobMessageWarning),
+            "JOB_MESSAGE_ERROR" => Some(Self::JobMessageError),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod messages_v1_beta3_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Dataflow Messages API is used for monitoring the progress of
-/// Dataflow jobs.
-#[derive(Debug, Clone)]
-pub struct MessagesV1Beta3Client<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> MessagesV1Beta3Client<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> MessagesV1Beta3Client<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-MessagesV1Beta3Client::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Request the job status.
-///
-/// To request the status of a job, we recommend using
-/// `projects.locations.jobs.messages.list` with a [regional endpoint]
-/// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
-/// `projects.jobs.messages.list` is not recommended, as you can only request
-/// the status of jobs that are running in `us-central1`.
-pub async fn list_job_messages(&mut self, request: impl tonic::IntoRequest<super::ListJobMessagesRequest>) -> std::result::Result<tonic::Response<super::ListJobMessagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.MessagesV1Beta3/ListJobMessages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.MessagesV1Beta3", "ListJobMessages"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Dataflow Messages API is used for monitoring the progress of
+    /// Dataflow jobs.
+    #[derive(Debug, Clone)]
+    pub struct MessagesV1Beta3Client<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> MessagesV1Beta3Client<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> MessagesV1Beta3Client<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            MessagesV1Beta3Client::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Request the job status.
+        ///
+        /// To request the status of a job, we recommend using
+        /// `projects.locations.jobs.messages.list` with a [regional endpoint]
+        /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+        /// `projects.jobs.messages.list` is not recommended, as you can only request
+        /// the status of jobs that are running in `us-central1`.
+        pub async fn list_job_messages(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListJobMessagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListJobMessagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.MessagesV1Beta3/ListJobMessages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.MessagesV1Beta3",
+                "ListJobMessages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchFlexTemplateResponse {
-#[prost(message, optional, tag = "1")]
-pub job: ::core::option::Option<Job>,
+    #[prost(message, optional, tag = "1")]
+    pub job: ::core::option::Option<Job>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerSpec {
-#[prost(string, tag = "1")]
-pub image: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub metadata: ::core::option::Option<TemplateMetadata>,
-#[prost(message, optional, tag = "3")]
-pub sdk_info: ::core::option::Option<SdkInfo>,
-#[prost(message, optional, tag = "4")]
-pub default_environment: ::core::option::Option<FlexTemplateRuntimeEnvironment>,
+    #[prost(string, tag = "1")]
+    pub image: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub metadata: ::core::option::Option<TemplateMetadata>,
+    #[prost(message, optional, tag = "3")]
+    pub sdk_info: ::core::option::Option<SdkInfo>,
+    #[prost(message, optional, tag = "4")]
+    pub default_environment: ::core::option::Option<FlexTemplateRuntimeEnvironment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchFlexTemplateParameter {
-#[prost(string, tag = "1")]
-pub job_name: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub parameters: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "6")]
-pub launch_options: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "7")]
-pub environment: ::core::option::Option<FlexTemplateRuntimeEnvironment>,
-#[prost(bool, tag = "8")]
-pub update: bool,
-#[prost(map = "string, string", tag = "9")]
-pub transform_name_mappings: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(oneof = "launch_flex_template_parameter::Template", tags = "4, 5")]
-pub template: ::core::option::Option<launch_flex_template_parameter::Template>,
+    #[prost(string, tag = "1")]
+    pub job_name: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub parameters:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "6")]
+    pub launch_options:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub environment: ::core::option::Option<FlexTemplateRuntimeEnvironment>,
+    #[prost(bool, tag = "8")]
+    pub update: bool,
+    #[prost(map = "string, string", tag = "9")]
+    pub transform_name_mappings:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(oneof = "launch_flex_template_parameter::Template", tags = "4, 5")]
+    pub template: ::core::option::Option<launch_flex_template_parameter::Template>,
 }
 /// Nested message and enum types in `LaunchFlexTemplateParameter`.
 pub mod launch_flex_template_parameter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Template {
-#[prost(message, tag = "4")]
-ContainerSpec(super::ContainerSpec),
-#[prost(string, tag = "5")]
-ContainerSpecGcsPath(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Template {
+        #[prost(message, tag = "4")]
+        ContainerSpec(super::ContainerSpec),
+        #[prost(string, tag = "5")]
+        ContainerSpecGcsPath(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FlexTemplateRuntimeEnvironment {
-#[prost(int32, tag = "1")]
-pub num_workers: i32,
-#[prost(int32, tag = "2")]
-pub max_workers: i32,
-#[prost(string, tag = "3")]
-pub zone: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub service_account_email: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub temp_location: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "7")]
-pub additional_experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "8")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub subnetwork: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "10")]
-pub additional_user_labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "11")]
-pub kms_key_name: ::prost::alloc::string::String,
-#[prost(enumeration = "WorkerIpAddressConfiguration", tag = "12")]
-pub ip_configuration: i32,
-#[prost(string, tag = "13")]
-pub worker_region: ::prost::alloc::string::String,
-#[prost(string, tag = "14")]
-pub worker_zone: ::prost::alloc::string::String,
-#[prost(bool, tag = "15")]
-pub enable_streaming_engine: bool,
-#[prost(enumeration = "FlexResourceSchedulingGoal", tag = "16")]
-pub flexrs_goal: i32,
-#[prost(string, tag = "17")]
-pub staging_location: ::prost::alloc::string::String,
-#[prost(string, tag = "18")]
-pub sdk_container_image: ::prost::alloc::string::String,
-#[prost(int32, tag = "20")]
-pub disk_size_gb: i32,
-#[prost(enumeration = "AutoscalingAlgorithm", tag = "21")]
-pub autoscaling_algorithm: i32,
-#[prost(bool, tag = "22")]
-pub dump_heap_on_oom: bool,
-#[prost(string, tag = "23")]
-pub save_heap_dumps_to_gcs_path: ::prost::alloc::string::String,
-#[prost(string, tag = "24")]
-pub launcher_machine_type: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub num_workers: i32,
+    #[prost(int32, tag = "2")]
+    pub max_workers: i32,
+    #[prost(string, tag = "3")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub service_account_email: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub temp_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "7")]
+    pub additional_experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "8")]
+    pub network: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub subnetwork: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "10")]
+    pub additional_user_labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "11")]
+    pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "WorkerIpAddressConfiguration", tag = "12")]
+    pub ip_configuration: i32,
+    #[prost(string, tag = "13")]
+    pub worker_region: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub worker_zone: ::prost::alloc::string::String,
+    #[prost(bool, tag = "15")]
+    pub enable_streaming_engine: bool,
+    #[prost(enumeration = "FlexResourceSchedulingGoal", tag = "16")]
+    pub flexrs_goal: i32,
+    #[prost(string, tag = "17")]
+    pub staging_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "18")]
+    pub sdk_container_image: ::prost::alloc::string::String,
+    #[prost(int32, tag = "20")]
+    pub disk_size_gb: i32,
+    #[prost(enumeration = "AutoscalingAlgorithm", tag = "21")]
+    pub autoscaling_algorithm: i32,
+    #[prost(bool, tag = "22")]
+    pub dump_heap_on_oom: bool,
+    #[prost(string, tag = "23")]
+    pub save_heap_dumps_to_gcs_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "24")]
+    pub launcher_machine_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchFlexTemplateRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub launch_parameter: ::core::option::Option<LaunchFlexTemplateParameter>,
-#[prost(string, tag = "3")]
-pub location: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub launch_parameter: ::core::option::Option<LaunchFlexTemplateParameter>,
+    #[prost(string, tag = "3")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuntimeEnvironment {
-#[prost(int32, tag = "11")]
-pub num_workers: i32,
-#[prost(int32, tag = "1")]
-pub max_workers: i32,
-#[prost(string, tag = "2")]
-pub zone: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub service_account_email: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub temp_location: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub bypass_temp_dir_validation: bool,
-#[prost(string, tag = "6")]
-pub machine_type: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "7")]
-pub additional_experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "8")]
-pub network: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub subnetwork: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "10")]
-pub additional_user_labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "12")]
-pub kms_key_name: ::prost::alloc::string::String,
-#[prost(enumeration = "WorkerIpAddressConfiguration", tag = "14")]
-pub ip_configuration: i32,
-#[prost(string, tag = "15")]
-pub worker_region: ::prost::alloc::string::String,
-#[prost(string, tag = "16")]
-pub worker_zone: ::prost::alloc::string::String,
-#[prost(bool, tag = "17")]
-pub enable_streaming_engine: bool,
+    #[prost(int32, tag = "11")]
+    pub num_workers: i32,
+    #[prost(int32, tag = "1")]
+    pub max_workers: i32,
+    #[prost(string, tag = "2")]
+    pub zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub service_account_email: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub temp_location: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub bypass_temp_dir_validation: bool,
+    #[prost(string, tag = "6")]
+    pub machine_type: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "7")]
+    pub additional_experiments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "8")]
+    pub network: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub subnetwork: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "10")]
+    pub additional_user_labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "12")]
+    pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "WorkerIpAddressConfiguration", tag = "14")]
+    pub ip_configuration: i32,
+    #[prost(string, tag = "15")]
+    pub worker_region: ::prost::alloc::string::String,
+    #[prost(string, tag = "16")]
+    pub worker_zone: ::prost::alloc::string::String,
+    #[prost(bool, tag = "17")]
+    pub enable_streaming_engine: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParameterMetadata {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub label: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub help_text: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub is_optional: bool,
-#[prost(string, repeated, tag = "5")]
-pub regexes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "ParameterType", tag = "6")]
-pub param_type: i32,
-#[prost(map = "string, string", tag = "7")]
-pub custom_metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub help_text: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub is_optional: bool,
+    #[prost(string, repeated, tag = "5")]
+    pub regexes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "ParameterType", tag = "6")]
+    pub param_type: i32,
+    #[prost(map = "string, string", tag = "7")]
+    pub custom_metadata:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TemplateMetadata {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub parameters: ::prost::alloc::vec::Vec<ParameterMetadata>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub parameters: ::prost::alloc::vec::Vec<ParameterMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SdkInfo {
-#[prost(enumeration = "sdk_info::Language", tag = "1")]
-pub language: i32,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
+    #[prost(enumeration = "sdk_info::Language", tag = "1")]
+    pub language: i32,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SDKInfo`.
 pub mod sdk_info {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Language {
-Unknown = 0,
-Java = 1,
-Python = 2,
-}
-impl Language {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Language::Unknown => "UNKNOWN",
-Language::Java => "JAVA",
-Language::Python => "PYTHON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"JAVA" => Some(Self::Java),
-"PYTHON" => Some(Self::Python),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Language {
+        Unknown = 0,
+        Java = 1,
+        Python = 2,
+    }
+    impl Language {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Language::Unknown => "UNKNOWN",
+                Language::Java => "JAVA",
+                Language::Python => "PYTHON",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "JAVA" => Some(Self::Java),
+                "PYTHON" => Some(Self::Python),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuntimeMetadata {
-#[prost(message, optional, tag = "1")]
-pub sdk_info: ::core::option::Option<SdkInfo>,
-#[prost(message, repeated, tag = "2")]
-pub parameters: ::prost::alloc::vec::Vec<ParameterMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub sdk_info: ::core::option::Option<SdkInfo>,
+    #[prost(message, repeated, tag = "2")]
+    pub parameters: ::prost::alloc::vec::Vec<ParameterMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateJobFromTemplateRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub job_name: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "3")]
-pub parameters: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub environment: ::core::option::Option<RuntimeEnvironment>,
-#[prost(string, tag = "6")]
-pub location: ::prost::alloc::string::String,
-#[prost(oneof = "create_job_from_template_request::Template", tags = "2")]
-pub template: ::core::option::Option<create_job_from_template_request::Template>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub job_name: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "3")]
+    pub parameters:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub environment: ::core::option::Option<RuntimeEnvironment>,
+    #[prost(string, tag = "6")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(oneof = "create_job_from_template_request::Template", tags = "2")]
+    pub template: ::core::option::Option<create_job_from_template_request::Template>,
 }
 /// Nested message and enum types in `CreateJobFromTemplateRequest`.
 pub mod create_job_from_template_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Template {
-#[prost(string, tag = "2")]
-GcsPath(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Template {
+        #[prost(string, tag = "2")]
+        GcsPath(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTemplateRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(enumeration = "get_template_request::TemplateView", tag = "3")]
-pub view: i32,
-#[prost(string, tag = "4")]
-pub location: ::prost::alloc::string::String,
-#[prost(oneof = "get_template_request::Template", tags = "2")]
-pub template: ::core::option::Option<get_template_request::Template>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "get_template_request::TemplateView", tag = "3")]
+    pub view: i32,
+    #[prost(string, tag = "4")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(oneof = "get_template_request::Template", tags = "2")]
+    pub template: ::core::option::Option<get_template_request::Template>,
 }
 /// Nested message and enum types in `GetTemplateRequest`.
 pub mod get_template_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TemplateView {
-MetadataOnly = 0,
-}
-impl TemplateView {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TemplateView::MetadataOnly => "METADATA_ONLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METADATA_ONLY" => Some(Self::MetadataOnly),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Template {
-#[prost(string, tag = "2")]
-GcsPath(::prost::alloc::string::String),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TemplateView {
+        MetadataOnly = 0,
+    }
+    impl TemplateView {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TemplateView::MetadataOnly => "METADATA_ONLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METADATA_ONLY" => Some(Self::MetadataOnly),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Template {
+        #[prost(string, tag = "2")]
+        GcsPath(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTemplateResponse {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::rpc::Status>,
-#[prost(message, optional, tag = "2")]
-pub metadata: ::core::option::Option<TemplateMetadata>,
-#[prost(enumeration = "get_template_response::TemplateType", tag = "3")]
-pub template_type: i32,
-#[prost(message, optional, tag = "4")]
-pub runtime_metadata: ::core::option::Option<RuntimeMetadata>,
+    #[prost(message, optional, tag = "1")]
+    pub status: ::core::option::Option<super::super::rpc::Status>,
+    #[prost(message, optional, tag = "2")]
+    pub metadata: ::core::option::Option<TemplateMetadata>,
+    #[prost(enumeration = "get_template_response::TemplateType", tag = "3")]
+    pub template_type: i32,
+    #[prost(message, optional, tag = "4")]
+    pub runtime_metadata: ::core::option::Option<RuntimeMetadata>,
 }
 /// Nested message and enum types in `GetTemplateResponse`.
 pub mod get_template_response {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TemplateType {
-Unknown = 0,
-Legacy = 1,
-Flex = 2,
-}
-impl TemplateType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TemplateType::Unknown => "UNKNOWN",
-TemplateType::Legacy => "LEGACY",
-TemplateType::Flex => "FLEX",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNKNOWN" => Some(Self::Unknown),
-"LEGACY" => Some(Self::Legacy),
-"FLEX" => Some(Self::Flex),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TemplateType {
+        Unknown = 0,
+        Legacy = 1,
+        Flex = 2,
+    }
+    impl TemplateType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TemplateType::Unknown => "UNKNOWN",
+                TemplateType::Legacy => "LEGACY",
+                TemplateType::Flex => "FLEX",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "LEGACY" => Some(Self::Legacy),
+                "FLEX" => Some(Self::Flex),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchTemplateParameters {
-#[prost(string, tag = "1")]
-pub job_name: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub parameters: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "3")]
-pub environment: ::core::option::Option<RuntimeEnvironment>,
-#[prost(bool, tag = "4")]
-pub update: bool,
-#[prost(map = "string, string", tag = "5")]
-pub transform_name_mapping: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub job_name: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub parameters:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub environment: ::core::option::Option<RuntimeEnvironment>,
+    #[prost(bool, tag = "4")]
+    pub update: bool,
+    #[prost(map = "string, string", tag = "5")]
+    pub transform_name_mapping:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchTemplateRequest {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "4")]
-pub launch_parameters: ::core::option::Option<LaunchTemplateParameters>,
-#[prost(string, tag = "5")]
-pub location: ::prost::alloc::string::String,
-#[prost(oneof = "launch_template_request::Template", tags = "3, 6")]
-pub template: ::core::option::Option<launch_template_request::Template>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "4")]
+    pub launch_parameters: ::core::option::Option<LaunchTemplateParameters>,
+    #[prost(string, tag = "5")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(oneof = "launch_template_request::Template", tags = "3, 6")]
+    pub template: ::core::option::Option<launch_template_request::Template>,
 }
 /// Nested message and enum types in `LaunchTemplateRequest`.
 pub mod launch_template_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Template {
-#[prost(string, tag = "3")]
-GcsPath(::prost::alloc::string::String),
-#[prost(message, tag = "6")]
-DynamicTemplate(super::DynamicTemplateLaunchParams),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Template {
+        #[prost(string, tag = "3")]
+        GcsPath(::prost::alloc::string::String),
+        #[prost(message, tag = "6")]
+        DynamicTemplate(super::DynamicTemplateLaunchParams),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LaunchTemplateResponse {
-#[prost(message, optional, tag = "1")]
-pub job: ::core::option::Option<Job>,
+    #[prost(message, optional, tag = "1")]
+    pub job: ::core::option::Option<Job>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InvalidTemplateParameters {
-#[prost(message, repeated, tag = "1")]
-pub parameter_violations: ::prost::alloc::vec::Vec<invalid_template_parameters::ParameterViolation>,
+    #[prost(message, repeated, tag = "1")]
+    pub parameter_violations:
+        ::prost::alloc::vec::Vec<invalid_template_parameters::ParameterViolation>,
 }
 /// Nested message and enum types in `InvalidTemplateParameters`.
 pub mod invalid_template_parameters {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ParameterViolation {
-#[prost(string, tag = "1")]
-pub parameter: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ParameterViolation {
+        #[prost(string, tag = "1")]
+        pub parameter: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub description: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DynamicTemplateLaunchParams {
-#[prost(string, tag = "1")]
-pub gcs_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub staging_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub gcs_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub staging_location: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ParameterType {
-Default = 0,
-Text = 1,
-GcsReadBucket = 2,
-GcsWriteBucket = 3,
-GcsReadFile = 4,
-GcsWriteFile = 5,
-GcsReadFolder = 6,
-GcsWriteFolder = 7,
-PubsubTopic = 8,
-PubsubSubscription = 9,
+    Default = 0,
+    Text = 1,
+    GcsReadBucket = 2,
+    GcsWriteBucket = 3,
+    GcsReadFile = 4,
+    GcsWriteFile = 5,
+    GcsReadFolder = 6,
+    GcsWriteFolder = 7,
+    PubsubTopic = 8,
+    PubsubSubscription = 9,
 }
 impl ParameterType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ParameterType::Default => "DEFAULT",
-ParameterType::Text => "TEXT",
-ParameterType::GcsReadBucket => "GCS_READ_BUCKET",
-ParameterType::GcsWriteBucket => "GCS_WRITE_BUCKET",
-ParameterType::GcsReadFile => "GCS_READ_FILE",
-ParameterType::GcsWriteFile => "GCS_WRITE_FILE",
-ParameterType::GcsReadFolder => "GCS_READ_FOLDER",
-ParameterType::GcsWriteFolder => "GCS_WRITE_FOLDER",
-ParameterType::PubsubTopic => "PUBSUB_TOPIC",
-ParameterType::PubsubSubscription => "PUBSUB_SUBSCRIPTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DEFAULT" => Some(Self::Default),
-"TEXT" => Some(Self::Text),
-"GCS_READ_BUCKET" => Some(Self::GcsReadBucket),
-"GCS_WRITE_BUCKET" => Some(Self::GcsWriteBucket),
-"GCS_READ_FILE" => Some(Self::GcsReadFile),
-"GCS_WRITE_FILE" => Some(Self::GcsWriteFile),
-"GCS_READ_FOLDER" => Some(Self::GcsReadFolder),
-"GCS_WRITE_FOLDER" => Some(Self::GcsWriteFolder),
-"PUBSUB_TOPIC" => Some(Self::PubsubTopic),
-"PUBSUB_SUBSCRIPTION" => Some(Self::PubsubSubscription),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ParameterType::Default => "DEFAULT",
+            ParameterType::Text => "TEXT",
+            ParameterType::GcsReadBucket => "GCS_READ_BUCKET",
+            ParameterType::GcsWriteBucket => "GCS_WRITE_BUCKET",
+            ParameterType::GcsReadFile => "GCS_READ_FILE",
+            ParameterType::GcsWriteFile => "GCS_WRITE_FILE",
+            ParameterType::GcsReadFolder => "GCS_READ_FOLDER",
+            ParameterType::GcsWriteFolder => "GCS_WRITE_FOLDER",
+            ParameterType::PubsubTopic => "PUBSUB_TOPIC",
+            ParameterType::PubsubSubscription => "PUBSUB_SUBSCRIPTION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DEFAULT" => Some(Self::Default),
+            "TEXT" => Some(Self::Text),
+            "GCS_READ_BUCKET" => Some(Self::GcsReadBucket),
+            "GCS_WRITE_BUCKET" => Some(Self::GcsWriteBucket),
+            "GCS_READ_FILE" => Some(Self::GcsReadFile),
+            "GCS_WRITE_FILE" => Some(Self::GcsWriteFile),
+            "GCS_READ_FOLDER" => Some(Self::GcsReadFolder),
+            "GCS_WRITE_FOLDER" => Some(Self::GcsWriteFolder),
+            "PUBSUB_TOPIC" => Some(Self::PubsubTopic),
+            "PUBSUB_SUBSCRIPTION" => Some(Self::PubsubSubscription),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod templates_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Provides a method to create Cloud Dataflow jobs from templates.
-#[derive(Debug, Clone)]
-pub struct TemplatesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> TemplatesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> TemplatesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-TemplatesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a Cloud Dataflow job from a template.
-pub async fn create_job_from_template(&mut self, request: impl tonic::IntoRequest<super::CreateJobFromTemplateRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.TemplatesService/CreateJobFromTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.TemplatesService", "CreateJobFromTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Launch a template.
-pub async fn launch_template(&mut self, request: impl tonic::IntoRequest<super::LaunchTemplateRequest>) -> std::result::Result<tonic::Response<super::LaunchTemplateResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.TemplatesService/LaunchTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.TemplatesService", "LaunchTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Get the template associated with a template.
-pub async fn get_template(&mut self, request: impl tonic::IntoRequest<super::GetTemplateRequest>) -> std::result::Result<tonic::Response<super::GetTemplateResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.TemplatesService/GetTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.TemplatesService", "GetTemplate"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Provides a method to create Cloud Dataflow jobs from templates.
+    #[derive(Debug, Clone)]
+    pub struct TemplatesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> TemplatesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> TemplatesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            TemplatesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a Cloud Dataflow job from a template.
+        pub async fn create_job_from_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateJobFromTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.TemplatesService/CreateJobFromTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.TemplatesService",
+                "CreateJobFromTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Launch a template.
+        pub async fn launch_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LaunchTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::LaunchTemplateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.TemplatesService/LaunchTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.TemplatesService",
+                "LaunchTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get the template associated with a template.
+        pub async fn get_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::GetTemplateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.TemplatesService/GetTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.TemplatesService",
+                "GetTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Generated client implementations.
 pub mod flex_templates_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Provides a service for Flex templates. This feature is not ready yet.
-#[derive(Debug, Clone)]
-pub struct FlexTemplatesServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> FlexTemplatesServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> FlexTemplatesServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-FlexTemplatesServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Launch a job with a FlexTemplate.
-pub async fn launch_flex_template(&mut self, request: impl tonic::IntoRequest<super::LaunchFlexTemplateRequest>) -> std::result::Result<tonic::Response<super::LaunchFlexTemplateResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.dataflow.v1beta3.FlexTemplatesService/LaunchFlexTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.dataflow.v1beta3.FlexTemplatesService", "LaunchFlexTemplate"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Provides a service for Flex templates. This feature is not ready yet.
+    #[derive(Debug, Clone)]
+    pub struct FlexTemplatesServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> FlexTemplatesServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> FlexTemplatesServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            FlexTemplatesServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Launch a job with a FlexTemplate.
+        pub async fn launch_flex_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LaunchFlexTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::LaunchFlexTemplateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.dataflow.v1beta3.FlexTemplatesService/LaunchFlexTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.dataflow.v1beta3.FlexTemplatesService",
+                "LaunchFlexTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

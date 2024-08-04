@@ -2,795 +2,874 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Distribution {
-#[prost(int64, tag = "1")]
-pub count: i64,
-#[prost(double, tag = "2")]
-pub mean: f64,
-#[prost(double, tag = "3")]
-pub minimum: f64,
-#[prost(double, tag = "4")]
-pub maximum: f64,
-#[prost(double, tag = "5")]
-pub sum_of_squared_deviation: f64,
-#[prost(int64, repeated, tag = "6")]
-pub bucket_counts: ::prost::alloc::vec::Vec<i64>,
-#[prost(message, repeated, tag = "10")]
-pub exemplars: ::prost::alloc::vec::Vec<super::super::distribution::Exemplar>,
-#[prost(oneof = "distribution::BucketOption", tags = "7, 8, 9")]
-pub bucket_option: ::core::option::Option<distribution::BucketOption>,
+    #[prost(int64, tag = "1")]
+    pub count: i64,
+    #[prost(double, tag = "2")]
+    pub mean: f64,
+    #[prost(double, tag = "3")]
+    pub minimum: f64,
+    #[prost(double, tag = "4")]
+    pub maximum: f64,
+    #[prost(double, tag = "5")]
+    pub sum_of_squared_deviation: f64,
+    #[prost(int64, repeated, tag = "6")]
+    pub bucket_counts: ::prost::alloc::vec::Vec<i64>,
+    #[prost(message, repeated, tag = "10")]
+    pub exemplars: ::prost::alloc::vec::Vec<super::super::distribution::Exemplar>,
+    #[prost(oneof = "distribution::BucketOption", tags = "7, 8, 9")]
+    pub bucket_option: ::core::option::Option<distribution::BucketOption>,
 }
 /// Nested message and enum types in `Distribution`.
 pub mod distribution {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LinearBuckets {
-#[prost(int32, tag = "1")]
-pub num_finite_buckets: i32,
-#[prost(double, tag = "2")]
-pub width: f64,
-#[prost(double, tag = "3")]
-pub offset: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ExponentialBuckets {
-#[prost(int32, tag = "1")]
-pub num_finite_buckets: i32,
-#[prost(double, tag = "2")]
-pub growth_factor: f64,
-#[prost(double, tag = "3")]
-pub scale: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExplicitBuckets {
-#[prost(double, repeated, tag = "1")]
-pub bounds: ::prost::alloc::vec::Vec<f64>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum BucketOption {
-#[prost(message, tag = "7")]
-LinearBuckets(LinearBuckets),
-#[prost(message, tag = "8")]
-ExponentialBuckets(ExponentialBuckets),
-#[prost(message, tag = "9")]
-ExplicitBuckets(ExplicitBuckets),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LinearBuckets {
+        #[prost(int32, tag = "1")]
+        pub num_finite_buckets: i32,
+        #[prost(double, tag = "2")]
+        pub width: f64,
+        #[prost(double, tag = "3")]
+        pub offset: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ExponentialBuckets {
+        #[prost(int32, tag = "1")]
+        pub num_finite_buckets: i32,
+        #[prost(double, tag = "2")]
+        pub growth_factor: f64,
+        #[prost(double, tag = "3")]
+        pub scale: f64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ExplicitBuckets {
+        #[prost(double, repeated, tag = "1")]
+        pub bounds: ::prost::alloc::vec::Vec<f64>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum BucketOption {
+        #[prost(message, tag = "7")]
+        LinearBuckets(LinearBuckets),
+        #[prost(message, tag = "8")]
+        ExponentialBuckets(ExponentialBuckets),
+        #[prost(message, tag = "9")]
+        ExplicitBuckets(ExplicitBuckets),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricValue {
-#[prost(btree_map = "string, string", tag = "1")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(oneof = "metric_value::Value", tags = "4, 5, 6, 7, 8")]
-pub value: ::core::option::Option<metric_value::Value>,
+    #[prost(btree_map = "string, string", tag = "1")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(oneof = "metric_value::Value", tags = "4, 5, 6, 7, 8")]
+    pub value: ::core::option::Option<metric_value::Value>,
 }
 /// Nested message and enum types in `MetricValue`.
 pub mod metric_value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(bool, tag = "4")]
-BoolValue(bool),
-#[prost(int64, tag = "5")]
-Int64Value(i64),
-#[prost(double, tag = "6")]
-DoubleValue(f64),
-#[prost(string, tag = "7")]
-StringValue(::prost::alloc::string::String),
-#[prost(message, tag = "8")]
-DistributionValue(super::Distribution),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(bool, tag = "4")]
+        BoolValue(bool),
+        #[prost(int64, tag = "5")]
+        Int64Value(i64),
+        #[prost(double, tag = "6")]
+        DoubleValue(f64),
+        #[prost(string, tag = "7")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(message, tag = "8")]
+        DistributionValue(super::Distribution),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricValueSet {
-#[prost(string, tag = "1")]
-pub metric_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub metric_values: ::prost::alloc::vec::Vec<MetricValue>,
+    #[prost(string, tag = "1")]
+    pub metric_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub metric_values: ::prost::alloc::vec::Vec<MetricValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateQuotaRequest {
-#[prost(string, tag = "1")]
-pub service_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub allocate_operation: ::core::option::Option<QuotaOperation>,
-#[prost(string, tag = "4")]
-pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub service_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub allocate_operation: ::core::option::Option<QuotaOperation>,
+    #[prost(string, tag = "4")]
+    pub service_config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuotaOperation {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub method_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub consumer_id: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "4")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "5")]
-pub quota_metrics: ::prost::alloc::vec::Vec<MetricValueSet>,
-#[prost(enumeration = "quota_operation::QuotaMode", tag = "6")]
-pub quota_mode: i32,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub method_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub consumer_id: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "5")]
+    pub quota_metrics: ::prost::alloc::vec::Vec<MetricValueSet>,
+    #[prost(enumeration = "quota_operation::QuotaMode", tag = "6")]
+    pub quota_mode: i32,
 }
 /// Nested message and enum types in `QuotaOperation`.
 pub mod quota_operation {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum QuotaMode {
-Unspecified = 0,
-Normal = 1,
-BestEffort = 2,
-CheckOnly = 3,
-QueryOnly = 4,
-AdjustOnly = 5,
-}
-impl QuotaMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-QuotaMode::Unspecified => "UNSPECIFIED",
-QuotaMode::Normal => "NORMAL",
-QuotaMode::BestEffort => "BEST_EFFORT",
-QuotaMode::CheckOnly => "CHECK_ONLY",
-QuotaMode::QueryOnly => "QUERY_ONLY",
-QuotaMode::AdjustOnly => "ADJUST_ONLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNSPECIFIED" => Some(Self::Unspecified),
-"NORMAL" => Some(Self::Normal),
-"BEST_EFFORT" => Some(Self::BestEffort),
-"CHECK_ONLY" => Some(Self::CheckOnly),
-"QUERY_ONLY" => Some(Self::QueryOnly),
-"ADJUST_ONLY" => Some(Self::AdjustOnly),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum QuotaMode {
+        Unspecified = 0,
+        Normal = 1,
+        BestEffort = 2,
+        CheckOnly = 3,
+        QueryOnly = 4,
+        AdjustOnly = 5,
+    }
+    impl QuotaMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                QuotaMode::Unspecified => "UNSPECIFIED",
+                QuotaMode::Normal => "NORMAL",
+                QuotaMode::BestEffort => "BEST_EFFORT",
+                QuotaMode::CheckOnly => "CHECK_ONLY",
+                QuotaMode::QueryOnly => "QUERY_ONLY",
+                QuotaMode::AdjustOnly => "ADJUST_ONLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "NORMAL" => Some(Self::Normal),
+                "BEST_EFFORT" => Some(Self::BestEffort),
+                "CHECK_ONLY" => Some(Self::CheckOnly),
+                "QUERY_ONLY" => Some(Self::QueryOnly),
+                "ADJUST_ONLY" => Some(Self::AdjustOnly),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateQuotaResponse {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub allocate_errors: ::prost::alloc::vec::Vec<QuotaError>,
-#[prost(message, repeated, tag = "3")]
-pub quota_metrics: ::prost::alloc::vec::Vec<MetricValueSet>,
-#[prost(string, tag = "4")]
-pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub allocate_errors: ::prost::alloc::vec::Vec<QuotaError>,
+    #[prost(message, repeated, tag = "3")]
+    pub quota_metrics: ::prost::alloc::vec::Vec<MetricValueSet>,
+    #[prost(string, tag = "4")]
+    pub service_config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuotaError {
-#[prost(enumeration = "quota_error::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub subject: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(enumeration = "quota_error::Code", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub subject: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
 }
 /// Nested message and enum types in `QuotaError`.
 pub mod quota_error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-ResourceExhausted = 8,
-BillingNotActive = 107,
-ProjectDeleted = 108,
-ApiKeyInvalid = 105,
-ApiKeyExpired = 112,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "UNSPECIFIED",
-Code::ResourceExhausted => "RESOURCE_EXHAUSTED",
-Code::BillingNotActive => "BILLING_NOT_ACTIVE",
-Code::ProjectDeleted => "PROJECT_DELETED",
-Code::ApiKeyInvalid => "API_KEY_INVALID",
-Code::ApiKeyExpired => "API_KEY_EXPIRED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
-"BILLING_NOT_ACTIVE" => Some(Self::BillingNotActive),
-"PROJECT_DELETED" => Some(Self::ProjectDeleted),
-"API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
-"API_KEY_EXPIRED" => Some(Self::ApiKeyExpired),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Code {
+        Unspecified = 0,
+        ResourceExhausted = 8,
+        BillingNotActive = 107,
+        ProjectDeleted = 108,
+        ApiKeyInvalid = 105,
+        ApiKeyExpired = 112,
+    }
+    impl Code {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Code::Unspecified => "UNSPECIFIED",
+                Code::ResourceExhausted => "RESOURCE_EXHAUSTED",
+                Code::BillingNotActive => "BILLING_NOT_ACTIVE",
+                Code::ProjectDeleted => "PROJECT_DELETED",
+                Code::ApiKeyInvalid => "API_KEY_INVALID",
+                Code::ApiKeyExpired => "API_KEY_EXPIRED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
+                "BILLING_NOT_ACTIVE" => Some(Self::BillingNotActive),
+                "PROJECT_DELETED" => Some(Self::ProjectDeleted),
+                "API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
+                "API_KEY_EXPIRED" => Some(Self::ApiKeyExpired),
+                _ => None,
+            }
+        }
+    }
 }
 /// Generated client implementations.
 pub mod quota_controller_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// [Google Quota Control API](/service-control/overview)
-///
-/// Allows clients to allocate and release quota against a [managed
-/// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
-#[derive(Debug, Clone)]
-pub struct QuotaControllerClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> QuotaControllerClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> QuotaControllerClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-QuotaControllerClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Attempts to allocate quota for the specified consumer. It should be called
-/// before the operation is executed.
-///
-/// This method requires the `servicemanagement.services.quota`
-/// permission on the specified service. For more information, see
-/// [Cloud IAM](https://cloud.google.com/iam).
-///
-/// **NOTE:** The client **must** fail-open on server errors `INTERNAL`,
-/// `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system
-/// reliability, the server may inject these errors to prohibit any hard
-/// dependency on the quota functionality.
-pub async fn allocate_quota(&mut self, request: impl tonic::IntoRequest<super::AllocateQuotaRequest>) -> std::result::Result<tonic::Response<super::AllocateQuotaResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.api.servicecontrol.v1.QuotaController/AllocateQuota");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.api.servicecontrol.v1.QuotaController", "AllocateQuota"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// [Google Quota Control API](/service-control/overview)
+    ///
+    /// Allows clients to allocate and release quota against a [managed
+    /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
+    #[derive(Debug, Clone)]
+    pub struct QuotaControllerClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> QuotaControllerClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> QuotaControllerClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            QuotaControllerClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Attempts to allocate quota for the specified consumer. It should be called
+        /// before the operation is executed.
+        ///
+        /// This method requires the `servicemanagement.services.quota`
+        /// permission on the specified service. For more information, see
+        /// [Cloud IAM](https://cloud.google.com/iam).
+        ///
+        /// **NOTE:** The client **must** fail-open on server errors `INTERNAL`,
+        /// `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system
+        /// reliability, the server may inject these errors to prohibit any hard
+        /// dependency on the quota functionality.
+        pub async fn allocate_quota(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AllocateQuotaRequest>,
+        ) -> std::result::Result<tonic::Response<super::AllocateQuotaResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.api.servicecontrol.v1.QuotaController/AllocateQuota",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.api.servicecontrol.v1.QuotaController",
+                "AllocateQuota",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckError {
-#[prost(enumeration = "check_error::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "4")]
-pub subject: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub detail: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(enumeration = "check_error::Code", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "4")]
+    pub subject: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub detail: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
 }
 /// Nested message and enum types in `CheckError`.
 pub mod check_error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-ErrorCodeUnspecified = 0,
-NotFound = 5,
-PermissionDenied = 7,
-ResourceExhausted = 8,
-ServiceNotActivated = 104,
-BillingDisabled = 107,
-ProjectDeleted = 108,
-ProjectInvalid = 114,
-ConsumerInvalid = 125,
-IpAddressBlocked = 109,
-RefererBlocked = 110,
-ClientAppBlocked = 111,
-ApiTargetBlocked = 122,
-ApiKeyInvalid = 105,
-ApiKeyExpired = 112,
-ApiKeyNotFound = 113,
-InvalidCredential = 123,
-NamespaceLookupUnavailable = 300,
-ServiceStatusUnavailable = 301,
-BillingStatusUnavailable = 302,
-CloudResourceManagerBackendUnavailable = 305,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::ErrorCodeUnspecified => "ERROR_CODE_UNSPECIFIED",
-Code::NotFound => "NOT_FOUND",
-Code::PermissionDenied => "PERMISSION_DENIED",
-Code::ResourceExhausted => "RESOURCE_EXHAUSTED",
-Code::ServiceNotActivated => "SERVICE_NOT_ACTIVATED",
-Code::BillingDisabled => "BILLING_DISABLED",
-Code::ProjectDeleted => "PROJECT_DELETED",
-Code::ProjectInvalid => "PROJECT_INVALID",
-Code::ConsumerInvalid => "CONSUMER_INVALID",
-Code::IpAddressBlocked => "IP_ADDRESS_BLOCKED",
-Code::RefererBlocked => "REFERER_BLOCKED",
-Code::ClientAppBlocked => "CLIENT_APP_BLOCKED",
-Code::ApiTargetBlocked => "API_TARGET_BLOCKED",
-Code::ApiKeyInvalid => "API_KEY_INVALID",
-Code::ApiKeyExpired => "API_KEY_EXPIRED",
-Code::ApiKeyNotFound => "API_KEY_NOT_FOUND",
-Code::InvalidCredential => "INVALID_CREDENTIAL",
-Code::NamespaceLookupUnavailable => "NAMESPACE_LOOKUP_UNAVAILABLE",
-Code::ServiceStatusUnavailable => "SERVICE_STATUS_UNAVAILABLE",
-Code::BillingStatusUnavailable => "BILLING_STATUS_UNAVAILABLE",
-Code::CloudResourceManagerBackendUnavailable => "CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ERROR_CODE_UNSPECIFIED" => Some(Self::ErrorCodeUnspecified),
-"NOT_FOUND" => Some(Self::NotFound),
-"PERMISSION_DENIED" => Some(Self::PermissionDenied),
-"RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
-"SERVICE_NOT_ACTIVATED" => Some(Self::ServiceNotActivated),
-"BILLING_DISABLED" => Some(Self::BillingDisabled),
-"PROJECT_DELETED" => Some(Self::ProjectDeleted),
-"PROJECT_INVALID" => Some(Self::ProjectInvalid),
-"CONSUMER_INVALID" => Some(Self::ConsumerInvalid),
-"IP_ADDRESS_BLOCKED" => Some(Self::IpAddressBlocked),
-"REFERER_BLOCKED" => Some(Self::RefererBlocked),
-"CLIENT_APP_BLOCKED" => Some(Self::ClientAppBlocked),
-"API_TARGET_BLOCKED" => Some(Self::ApiTargetBlocked),
-"API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
-"API_KEY_EXPIRED" => Some(Self::ApiKeyExpired),
-"API_KEY_NOT_FOUND" => Some(Self::ApiKeyNotFound),
-"INVALID_CREDENTIAL" => Some(Self::InvalidCredential),
-"NAMESPACE_LOOKUP_UNAVAILABLE" => Some(Self::NamespaceLookupUnavailable),
-"SERVICE_STATUS_UNAVAILABLE" => Some(Self::ServiceStatusUnavailable),
-"BILLING_STATUS_UNAVAILABLE" => Some(Self::BillingStatusUnavailable),
-"CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE" => Some(Self::CloudResourceManagerBackendUnavailable),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Code {
+        ErrorCodeUnspecified = 0,
+        NotFound = 5,
+        PermissionDenied = 7,
+        ResourceExhausted = 8,
+        ServiceNotActivated = 104,
+        BillingDisabled = 107,
+        ProjectDeleted = 108,
+        ProjectInvalid = 114,
+        ConsumerInvalid = 125,
+        IpAddressBlocked = 109,
+        RefererBlocked = 110,
+        ClientAppBlocked = 111,
+        ApiTargetBlocked = 122,
+        ApiKeyInvalid = 105,
+        ApiKeyExpired = 112,
+        ApiKeyNotFound = 113,
+        InvalidCredential = 123,
+        NamespaceLookupUnavailable = 300,
+        ServiceStatusUnavailable = 301,
+        BillingStatusUnavailable = 302,
+        CloudResourceManagerBackendUnavailable = 305,
+    }
+    impl Code {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Code::ErrorCodeUnspecified => "ERROR_CODE_UNSPECIFIED",
+                Code::NotFound => "NOT_FOUND",
+                Code::PermissionDenied => "PERMISSION_DENIED",
+                Code::ResourceExhausted => "RESOURCE_EXHAUSTED",
+                Code::ServiceNotActivated => "SERVICE_NOT_ACTIVATED",
+                Code::BillingDisabled => "BILLING_DISABLED",
+                Code::ProjectDeleted => "PROJECT_DELETED",
+                Code::ProjectInvalid => "PROJECT_INVALID",
+                Code::ConsumerInvalid => "CONSUMER_INVALID",
+                Code::IpAddressBlocked => "IP_ADDRESS_BLOCKED",
+                Code::RefererBlocked => "REFERER_BLOCKED",
+                Code::ClientAppBlocked => "CLIENT_APP_BLOCKED",
+                Code::ApiTargetBlocked => "API_TARGET_BLOCKED",
+                Code::ApiKeyInvalid => "API_KEY_INVALID",
+                Code::ApiKeyExpired => "API_KEY_EXPIRED",
+                Code::ApiKeyNotFound => "API_KEY_NOT_FOUND",
+                Code::InvalidCredential => "INVALID_CREDENTIAL",
+                Code::NamespaceLookupUnavailable => "NAMESPACE_LOOKUP_UNAVAILABLE",
+                Code::ServiceStatusUnavailable => "SERVICE_STATUS_UNAVAILABLE",
+                Code::BillingStatusUnavailable => "BILLING_STATUS_UNAVAILABLE",
+                Code::CloudResourceManagerBackendUnavailable => {
+                    "CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ERROR_CODE_UNSPECIFIED" => Some(Self::ErrorCodeUnspecified),
+                "NOT_FOUND" => Some(Self::NotFound),
+                "PERMISSION_DENIED" => Some(Self::PermissionDenied),
+                "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
+                "SERVICE_NOT_ACTIVATED" => Some(Self::ServiceNotActivated),
+                "BILLING_DISABLED" => Some(Self::BillingDisabled),
+                "PROJECT_DELETED" => Some(Self::ProjectDeleted),
+                "PROJECT_INVALID" => Some(Self::ProjectInvalid),
+                "CONSUMER_INVALID" => Some(Self::ConsumerInvalid),
+                "IP_ADDRESS_BLOCKED" => Some(Self::IpAddressBlocked),
+                "REFERER_BLOCKED" => Some(Self::RefererBlocked),
+                "CLIENT_APP_BLOCKED" => Some(Self::ClientAppBlocked),
+                "API_TARGET_BLOCKED" => Some(Self::ApiTargetBlocked),
+                "API_KEY_INVALID" => Some(Self::ApiKeyInvalid),
+                "API_KEY_EXPIRED" => Some(Self::ApiKeyExpired),
+                "API_KEY_NOT_FOUND" => Some(Self::ApiKeyNotFound),
+                "INVALID_CREDENTIAL" => Some(Self::InvalidCredential),
+                "NAMESPACE_LOOKUP_UNAVAILABLE" => Some(Self::NamespaceLookupUnavailable),
+                "SERVICE_STATUS_UNAVAILABLE" => Some(Self::ServiceStatusUnavailable),
+                "BILLING_STATUS_UNAVAILABLE" => Some(Self::BillingStatusUnavailable),
+                "CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE" => {
+                    Some(Self::CloudResourceManagerBackendUnavailable)
+                }
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequest {
-#[prost(string, tag = "1")]
-pub request_method: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_url: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub request_size: i64,
-#[prost(int32, tag = "4")]
-pub status: i32,
-#[prost(int64, tag = "5")]
-pub response_size: i64,
-#[prost(string, tag = "6")]
-pub user_agent: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub remote_ip: ::prost::alloc::string::String,
-#[prost(string, tag = "13")]
-pub server_ip: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub referer: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "14")]
-pub latency: ::core::option::Option<::prost_types::Duration>,
-#[prost(bool, tag = "11")]
-pub cache_lookup: bool,
-#[prost(bool, tag = "9")]
-pub cache_hit: bool,
-#[prost(bool, tag = "10")]
-pub cache_validated_with_origin_server: bool,
-#[prost(int64, tag = "12")]
-pub cache_fill_bytes: i64,
-#[prost(string, tag = "15")]
-pub protocol: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub request_method: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_url: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub request_size: i64,
+    #[prost(int32, tag = "4")]
+    pub status: i32,
+    #[prost(int64, tag = "5")]
+    pub response_size: i64,
+    #[prost(string, tag = "6")]
+    pub user_agent: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub remote_ip: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub server_ip: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub referer: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "14")]
+    pub latency: ::core::option::Option<::prost_types::Duration>,
+    #[prost(bool, tag = "11")]
+    pub cache_lookup: bool,
+    #[prost(bool, tag = "9")]
+    pub cache_hit: bool,
+    #[prost(bool, tag = "10")]
+    pub cache_validated_with_origin_server: bool,
+    #[prost(int64, tag = "12")]
+    pub cache_fill_bytes: i64,
+    #[prost(string, tag = "15")]
+    pub protocol: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntry {
-#[prost(string, tag = "10")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "11")]
-pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "super::super::super::logging::r#type::LogSeverity", tag = "12")]
-pub severity: i32,
-#[prost(message, optional, tag = "14")]
-pub http_request: ::core::option::Option<HttpRequest>,
-#[prost(string, tag = "15")]
-pub trace: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub insert_id: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "13")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "16")]
-pub operation: ::core::option::Option<LogEntryOperation>,
-#[prost(message, optional, tag = "17")]
-pub source_location: ::core::option::Option<LogEntrySourceLocation>,
-#[prost(oneof = "log_entry::Payload", tags = "2, 3, 6")]
-pub payload: ::core::option::Option<log_entry::Payload>,
+    #[prost(string, tag = "10")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "11")]
+    pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(
+        enumeration = "super::super::super::logging::r#type::LogSeverity",
+        tag = "12"
+    )]
+    pub severity: i32,
+    #[prost(message, optional, tag = "14")]
+    pub http_request: ::core::option::Option<HttpRequest>,
+    #[prost(string, tag = "15")]
+    pub trace: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub insert_id: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "13")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "16")]
+    pub operation: ::core::option::Option<LogEntryOperation>,
+    #[prost(message, optional, tag = "17")]
+    pub source_location: ::core::option::Option<LogEntrySourceLocation>,
+    #[prost(oneof = "log_entry::Payload", tags = "2, 3, 6")]
+    pub payload: ::core::option::Option<log_entry::Payload>,
 }
 /// Nested message and enum types in `LogEntry`.
 pub mod log_entry {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Payload {
-#[prost(message, tag = "2")]
-ProtoPayload(::prost_types::Any),
-#[prost(string, tag = "3")]
-TextPayload(::prost::alloc::string::String),
-#[prost(message, tag = "6")]
-StructPayload(::prost_types::Struct),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Payload {
+        #[prost(message, tag = "2")]
+        ProtoPayload(::prost_types::Any),
+        #[prost(string, tag = "3")]
+        TextPayload(::prost::alloc::string::String),
+        #[prost(message, tag = "6")]
+        StructPayload(::prost_types::Struct),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntryOperation {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub producer: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub first: bool,
-#[prost(bool, tag = "4")]
-pub last: bool,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub producer: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub first: bool,
+    #[prost(bool, tag = "4")]
+    pub last: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntrySourceLocation {
-#[prost(string, tag = "1")]
-pub file: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub line: i64,
-#[prost(string, tag = "3")]
-pub function: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub file: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub line: i64,
+    #[prost(string, tag = "3")]
+    pub function: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Operation {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub operation_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub consumer_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(btree_map = "string, string", tag = "6")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "7")]
-pub metric_value_sets: ::prost::alloc::vec::Vec<MetricValueSet>,
-#[prost(message, repeated, tag = "8")]
-pub log_entries: ::prost::alloc::vec::Vec<LogEntry>,
-#[prost(enumeration = "operation::Importance", tag = "11")]
-pub importance: i32,
-#[prost(message, repeated, tag = "16")]
-pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub operation_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub consumer_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(btree_map = "string, string", tag = "6")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "7")]
+    pub metric_value_sets: ::prost::alloc::vec::Vec<MetricValueSet>,
+    #[prost(message, repeated, tag = "8")]
+    pub log_entries: ::prost::alloc::vec::Vec<LogEntry>,
+    #[prost(enumeration = "operation::Importance", tag = "11")]
+    pub importance: i32,
+    #[prost(message, repeated, tag = "16")]
+    pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 /// Nested message and enum types in `Operation`.
 pub mod operation {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Importance {
-Low = 0,
-High = 1,
-}
-impl Importance {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Importance::Low => "LOW",
-Importance::High => "HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LOW" => Some(Self::Low),
-"HIGH" => Some(Self::High),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Importance {
+        Low = 0,
+        High = 1,
+    }
+    impl Importance {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Importance::Low => "LOW",
+                Importance::High => "HIGH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LOW" => Some(Self::Low),
+                "HIGH" => Some(Self::High),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckRequest {
-#[prost(string, tag = "1")]
-pub service_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub operation: ::core::option::Option<Operation>,
-#[prost(string, tag = "4")]
-pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub service_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub operation: ::core::option::Option<Operation>,
+    #[prost(string, tag = "4")]
+    pub service_config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckResponse {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub check_errors: ::prost::alloc::vec::Vec<CheckError>,
-#[prost(string, tag = "5")]
-pub service_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub service_rollout_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub check_info: ::core::option::Option<check_response::CheckInfo>,
+    #[prost(string, tag = "1")]
+    pub operation_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub check_errors: ::prost::alloc::vec::Vec<CheckError>,
+    #[prost(string, tag = "5")]
+    pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub service_rollout_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub check_info: ::core::option::Option<check_response::CheckInfo>,
 }
 /// Nested message and enum types in `CheckResponse`.
 pub mod check_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CheckInfo {
-#[prost(string, repeated, tag = "1")]
-pub unused_arguments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "2")]
-pub consumer_info: ::core::option::Option<ConsumerInfo>,
-#[prost(string, tag = "5")]
-pub api_key_uid: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ConsumerInfo {
-#[prost(int64, tag = "1")]
-pub project_number: i64,
-#[prost(enumeration = "consumer_info::ConsumerType", tag = "2")]
-pub r#type: i32,
-#[prost(int64, tag = "3")]
-pub consumer_number: i64,
-}
-/// Nested message and enum types in `ConsumerInfo`.
-pub mod consumer_info {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ConsumerType {
-Unspecified = 0,
-Project = 1,
-Folder = 2,
-Organization = 3,
-ServiceSpecific = 4,
-}
-impl ConsumerType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ConsumerType::Unspecified => "CONSUMER_TYPE_UNSPECIFIED",
-ConsumerType::Project => "PROJECT",
-ConsumerType::Folder => "FOLDER",
-ConsumerType::Organization => "ORGANIZATION",
-ConsumerType::ServiceSpecific => "SERVICE_SPECIFIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONSUMER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROJECT" => Some(Self::Project),
-"FOLDER" => Some(Self::Folder),
-"ORGANIZATION" => Some(Self::Organization),
-"SERVICE_SPECIFIC" => Some(Self::ServiceSpecific),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CheckInfo {
+        #[prost(string, repeated, tag = "1")]
+        pub unused_arguments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, optional, tag = "2")]
+        pub consumer_info: ::core::option::Option<ConsumerInfo>,
+        #[prost(string, tag = "5")]
+        pub api_key_uid: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ConsumerInfo {
+        #[prost(int64, tag = "1")]
+        pub project_number: i64,
+        #[prost(enumeration = "consumer_info::ConsumerType", tag = "2")]
+        pub r#type: i32,
+        #[prost(int64, tag = "3")]
+        pub consumer_number: i64,
+    }
+    /// Nested message and enum types in `ConsumerInfo`.
+    pub mod consumer_info {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum ConsumerType {
+            Unspecified = 0,
+            Project = 1,
+            Folder = 2,
+            Organization = 3,
+            ServiceSpecific = 4,
+        }
+        impl ConsumerType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ConsumerType::Unspecified => "CONSUMER_TYPE_UNSPECIFIED",
+                    ConsumerType::Project => "PROJECT",
+                    ConsumerType::Folder => "FOLDER",
+                    ConsumerType::Organization => "ORGANIZATION",
+                    ConsumerType::ServiceSpecific => "SERVICE_SPECIFIC",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CONSUMER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "PROJECT" => Some(Self::Project),
+                    "FOLDER" => Some(Self::Folder),
+                    "ORGANIZATION" => Some(Self::Organization),
+                    "SERVICE_SPECIFIC" => Some(Self::ServiceSpecific),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportRequest {
-#[prost(string, tag = "1")]
-pub service_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub operations: ::prost::alloc::vec::Vec<Operation>,
-#[prost(string, tag = "3")]
-pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub service_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub operations: ::prost::alloc::vec::Vec<Operation>,
+    #[prost(string, tag = "3")]
+    pub service_config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportResponse {
-#[prost(message, repeated, tag = "1")]
-pub report_errors: ::prost::alloc::vec::Vec<report_response::ReportError>,
-#[prost(string, tag = "2")]
-pub service_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub service_rollout_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub report_errors: ::prost::alloc::vec::Vec<report_response::ReportError>,
+    #[prost(string, tag = "2")]
+    pub service_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub service_rollout_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ReportResponse`.
 pub mod report_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReportError {
-#[prost(string, tag = "1")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub status: ::core::option::Option<super::super::super::super::rpc::Status>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReportError {
+        #[prost(string, tag = "1")]
+        pub operation_id: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub status: ::core::option::Option<super::super::super::super::rpc::Status>,
+    }
 }
 /// Generated client implementations.
 pub mod service_controller_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// [Google Service Control API](/service-control/overview)
-///
-/// Lets clients check and report operations against a [managed
-/// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
-#[derive(Debug, Clone)]
-pub struct ServiceControllerClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ServiceControllerClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServiceControllerClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ServiceControllerClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Checks whether an operation on a service should be allowed to proceed
-/// based on the configuration of the service and related policies. It must be
-/// called before the operation is executed.
-///
-/// If feasible, the client should cache the check results and reuse them for
-/// 60 seconds. In case of any server errors, the client should rely on the
-/// cached results for much longer time to avoid outage.
-/// WARNING: There is general 60s delay for the configuration and policy
-/// propagation, therefore callers MUST NOT depend on the `Check` method having
-/// the latest policy information.
-///
-/// NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has
-/// the size limit (wire-format byte size) of 1MB.
-///
-/// This method requires the `servicemanagement.services.check` permission
-/// on the specified service. For more information, see
-/// [Cloud IAM](https://cloud.google.com/iam).
-pub async fn check(&mut self, request: impl tonic::IntoRequest<super::CheckRequest>) -> std::result::Result<tonic::Response<super::CheckResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.api.servicecontrol.v1.ServiceController/Check");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.api.servicecontrol.v1.ServiceController", "Check"));
-self.inner.unary(req, path, codec).await
-}
-/// Reports operation results to Google Service Control, such as logs and
-/// metrics. It should be called after an operation is completed.
-///
-/// If feasible, the client should aggregate reporting data for up to 5
-/// seconds to reduce API traffic. Limiting aggregation to 5 seconds is to
-/// reduce data loss during client crashes. Clients should carefully choose
-/// the aggregation time window to avoid data loss risk more than 0.01%
-/// for business and compliance reasons.
-///
-/// NOTE: the [ReportRequest][google.api.servicecontrol.v1.ReportRequest] has
-/// the size limit (wire-format byte size) of 1MB.
-///
-/// This method requires the `servicemanagement.services.report` permission
-/// on the specified service. For more information, see
-/// [Google Cloud IAM](https://cloud.google.com/iam).
-pub async fn report(&mut self, request: impl tonic::IntoRequest<super::ReportRequest>) -> std::result::Result<tonic::Response<super::ReportResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.api.servicecontrol.v1.ServiceController/Report");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.api.servicecontrol.v1.ServiceController", "Report"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// [Google Service Control API](/service-control/overview)
+    ///
+    /// Lets clients check and report operations against a [managed
+    /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
+    #[derive(Debug, Clone)]
+    pub struct ServiceControllerClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ServiceControllerClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ServiceControllerClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ServiceControllerClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Checks whether an operation on a service should be allowed to proceed
+        /// based on the configuration of the service and related policies. It must be
+        /// called before the operation is executed.
+        ///
+        /// If feasible, the client should cache the check results and reuse them for
+        /// 60 seconds. In case of any server errors, the client should rely on the
+        /// cached results for much longer time to avoid outage.
+        /// WARNING: There is general 60s delay for the configuration and policy
+        /// propagation, therefore callers MUST NOT depend on the `Check` method having
+        /// the latest policy information.
+        ///
+        /// NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has
+        /// the size limit (wire-format byte size) of 1MB.
+        ///
+        /// This method requires the `servicemanagement.services.check` permission
+        /// on the specified service. For more information, see
+        /// [Cloud IAM](https://cloud.google.com/iam).
+        pub async fn check(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CheckRequest>,
+        ) -> std::result::Result<tonic::Response<super::CheckResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.api.servicecontrol.v1.ServiceController/Check",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.api.servicecontrol.v1.ServiceController",
+                "Check",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Reports operation results to Google Service Control, such as logs and
+        /// metrics. It should be called after an operation is completed.
+        ///
+        /// If feasible, the client should aggregate reporting data for up to 5
+        /// seconds to reduce API traffic. Limiting aggregation to 5 seconds is to
+        /// reduce data loss during client crashes. Clients should carefully choose
+        /// the aggregation time window to avoid data loss risk more than 0.01%
+        /// for business and compliance reasons.
+        ///
+        /// NOTE: the [ReportRequest][google.api.servicecontrol.v1.ReportRequest] has
+        /// the size limit (wire-format byte size) of 1MB.
+        ///
+        /// This method requires the `servicemanagement.services.report` permission
+        /// on the specified service. For more information, see
+        /// [Google Cloud IAM](https://cloud.google.com/iam).
+        pub async fn report(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReportRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReportResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.api.servicecontrol.v1.ServiceController/Report",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.api.servicecontrol.v1.ServiceController",
+                "Report",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

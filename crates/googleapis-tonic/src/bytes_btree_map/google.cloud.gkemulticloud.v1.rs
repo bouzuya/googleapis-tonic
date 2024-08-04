@@ -2,2536 +2,3258 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Jwk {
-#[prost(string, tag = "1")]
-pub kty: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub alg: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub r#use: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub kid: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub n: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub e: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub x: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub y: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub crv: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kty: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub alg: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub r#use: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub kid: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub n: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub e: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub x: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub y: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub crv: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkloadIdentityConfig {
-#[prost(string, tag = "1")]
-pub issuer_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub workload_pool: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub identity_provider: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub issuer_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub workload_pool: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub identity_provider: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MaxPodsConstraint {
-#[prost(int64, tag = "1")]
-pub max_pods_per_node: i64,
+    #[prost(int64, tag = "1")]
+    pub max_pods_per_node: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub status_detail: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub error_detail: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub verb: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub status_detail: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub error_detail: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeTaint {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-#[prost(enumeration = "node_taint::Effect", tag = "3")]
-pub effect: i32,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(enumeration = "node_taint::Effect", tag = "3")]
+    pub effect: i32,
 }
 /// Nested message and enum types in `NodeTaint`.
 pub mod node_taint {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Effect {
-Unspecified = 0,
-NoSchedule = 1,
-PreferNoSchedule = 2,
-NoExecute = 3,
-}
-impl Effect {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Effect::Unspecified => "EFFECT_UNSPECIFIED",
-Effect::NoSchedule => "NO_SCHEDULE",
-Effect::PreferNoSchedule => "PREFER_NO_SCHEDULE",
-Effect::NoExecute => "NO_EXECUTE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EFFECT_UNSPECIFIED" => Some(Self::Unspecified),
-"NO_SCHEDULE" => Some(Self::NoSchedule),
-"PREFER_NO_SCHEDULE" => Some(Self::PreferNoSchedule),
-"NO_EXECUTE" => Some(Self::NoExecute),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Effect {
+        Unspecified = 0,
+        NoSchedule = 1,
+        PreferNoSchedule = 2,
+        NoExecute = 3,
+    }
+    impl Effect {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Effect::Unspecified => "EFFECT_UNSPECIFIED",
+                Effect::NoSchedule => "NO_SCHEDULE",
+                Effect::PreferNoSchedule => "PREFER_NO_SCHEDULE",
+                Effect::NoExecute => "NO_EXECUTE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EFFECT_UNSPECIFIED" => Some(Self::Unspecified),
+                "NO_SCHEDULE" => Some(Self::NoSchedule),
+                "PREFER_NO_SCHEDULE" => Some(Self::PreferNoSchedule),
+                "NO_EXECUTE" => Some(Self::NoExecute),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Fleet {
-#[prost(string, tag = "1")]
-pub project: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub membership: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub membership: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoggingConfig {
-#[prost(message, optional, tag = "1")]
-pub component_config: ::core::option::Option<LoggingComponentConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub component_config: ::core::option::Option<LoggingComponentConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoggingComponentConfig {
-#[prost(enumeration = "logging_component_config::Component", repeated, tag = "1")]
-pub enable_components: ::prost::alloc::vec::Vec<i32>,
+    #[prost(
+        enumeration = "logging_component_config::Component",
+        repeated,
+        tag = "1"
+    )]
+    pub enable_components: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `LoggingComponentConfig`.
 pub mod logging_component_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Component {
-Unspecified = 0,
-SystemComponents = 1,
-Workloads = 2,
-}
-impl Component {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Component::Unspecified => "COMPONENT_UNSPECIFIED",
-Component::SystemComponents => "SYSTEM_COMPONENTS",
-Component::Workloads => "WORKLOADS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMPONENT_UNSPECIFIED" => Some(Self::Unspecified),
-"SYSTEM_COMPONENTS" => Some(Self::SystemComponents),
-"WORKLOADS" => Some(Self::Workloads),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Component {
+        Unspecified = 0,
+        SystemComponents = 1,
+        Workloads = 2,
+    }
+    impl Component {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Component::Unspecified => "COMPONENT_UNSPECIFIED",
+                Component::SystemComponents => "SYSTEM_COMPONENTS",
+                Component::Workloads => "WORKLOADS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMPONENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "SYSTEM_COMPONENTS" => Some(Self::SystemComponents),
+                "WORKLOADS" => Some(Self::Workloads),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MonitoringConfig {
-#[prost(message, optional, tag = "2")]
-pub managed_prometheus_config: ::core::option::Option<ManagedPrometheusConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub managed_prometheus_config: ::core::option::Option<ManagedPrometheusConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ManagedPrometheusConfig {
-#[prost(bool, tag = "1")]
-pub enabled: bool,
+    #[prost(bool, tag = "1")]
+    pub enabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BinaryAuthorization {
-#[prost(enumeration = "binary_authorization::EvaluationMode", tag = "1")]
-pub evaluation_mode: i32,
+    #[prost(enumeration = "binary_authorization::EvaluationMode", tag = "1")]
+    pub evaluation_mode: i32,
 }
 /// Nested message and enum types in `BinaryAuthorization`.
 pub mod binary_authorization {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EvaluationMode {
-Unspecified = 0,
-Disabled = 1,
-ProjectSingletonPolicyEnforce = 2,
-}
-impl EvaluationMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EvaluationMode::Unspecified => "EVALUATION_MODE_UNSPECIFIED",
-EvaluationMode::Disabled => "DISABLED",
-EvaluationMode::ProjectSingletonPolicyEnforce => "PROJECT_SINGLETON_POLICY_ENFORCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EVALUATION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"DISABLED" => Some(Self::Disabled),
-"PROJECT_SINGLETON_POLICY_ENFORCE" => Some(Self::ProjectSingletonPolicyEnforce),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum EvaluationMode {
+        Unspecified = 0,
+        Disabled = 1,
+        ProjectSingletonPolicyEnforce = 2,
+    }
+    impl EvaluationMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EvaluationMode::Unspecified => "EVALUATION_MODE_UNSPECIFIED",
+                EvaluationMode::Disabled => "DISABLED",
+                EvaluationMode::ProjectSingletonPolicyEnforce => "PROJECT_SINGLETON_POLICY_ENFORCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVALUATION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DISABLED" => Some(Self::Disabled),
+                "PROJECT_SINGLETON_POLICY_ENFORCE" => Some(Self::ProjectSingletonPolicyEnforce),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsCluster {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub networking: ::core::option::Option<AwsClusterNetworking>,
-#[prost(string, tag = "4")]
-pub aws_region: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub control_plane: ::core::option::Option<AwsControlPlane>,
-#[prost(message, optional, tag = "15")]
-pub authorization: ::core::option::Option<AwsAuthorization>,
-#[prost(enumeration = "aws_cluster::State", tag = "7")]
-pub state: i32,
-#[prost(string, tag = "8")]
-pub endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub uid: ::prost::alloc::string::String,
-#[prost(bool, tag = "10")]
-pub reconciling: bool,
-#[prost(message, optional, tag = "11")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "12")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "13")]
-pub etag: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "14")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "16")]
-pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
-#[prost(string, tag = "17")]
-pub cluster_ca_certificate: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "18")]
-pub fleet: ::core::option::Option<Fleet>,
-#[prost(message, optional, tag = "19")]
-pub logging_config: ::core::option::Option<LoggingConfig>,
-#[prost(message, repeated, tag = "20")]
-pub errors: ::prost::alloc::vec::Vec<AwsClusterError>,
-#[prost(message, optional, tag = "21")]
-pub monitoring_config: ::core::option::Option<MonitoringConfig>,
-#[prost(message, optional, tag = "22")]
-pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub networking: ::core::option::Option<AwsClusterNetworking>,
+    #[prost(string, tag = "4")]
+    pub aws_region: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub control_plane: ::core::option::Option<AwsControlPlane>,
+    #[prost(message, optional, tag = "15")]
+    pub authorization: ::core::option::Option<AwsAuthorization>,
+    #[prost(enumeration = "aws_cluster::State", tag = "7")]
+    pub state: i32,
+    #[prost(string, tag = "8")]
+    pub endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(bool, tag = "10")]
+    pub reconciling: bool,
+    #[prost(message, optional, tag = "11")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "12")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "13")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "14")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "16")]
+    pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
+    #[prost(string, tag = "17")]
+    pub cluster_ca_certificate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "18")]
+    pub fleet: ::core::option::Option<Fleet>,
+    #[prost(message, optional, tag = "19")]
+    pub logging_config: ::core::option::Option<LoggingConfig>,
+    #[prost(message, repeated, tag = "20")]
+    pub errors: ::prost::alloc::vec::Vec<AwsClusterError>,
+    #[prost(message, optional, tag = "21")]
+    pub monitoring_config: ::core::option::Option<MonitoringConfig>,
+    #[prost(message, optional, tag = "22")]
+    pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
 }
 /// Nested message and enum types in `AwsCluster`.
 pub mod aws_cluster {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Reconciling = 3,
-Stopping = 4,
-Error = 5,
-Degraded = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Reconciling => "RECONCILING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-State::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"RECONCILING" => Some(Self::Reconciling),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Reconciling = 3,
+        Stopping = 4,
+        Error = 5,
+        Degraded = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Reconciling => "RECONCILING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+                State::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "RECONCILING" => Some(Self::Reconciling),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsControlPlane {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "14")]
-pub ssh_config: ::core::option::Option<AwsSshConfig>,
-#[prost(string, repeated, tag = "4")]
-pub subnet_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub security_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "7")]
-pub iam_instance_profile: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "8")]
-pub root_volume: ::core::option::Option<AwsVolumeTemplate>,
-#[prost(message, optional, tag = "9")]
-pub main_volume: ::core::option::Option<AwsVolumeTemplate>,
-#[prost(message, optional, tag = "10")]
-pub database_encryption: ::core::option::Option<AwsDatabaseEncryption>,
-#[prost(btree_map = "string, string", tag = "11")]
-pub tags: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "12")]
-pub aws_services_authentication: ::core::option::Option<AwsServicesAuthentication>,
-#[prost(message, optional, tag = "16")]
-pub proxy_config: ::core::option::Option<AwsProxyConfig>,
-#[prost(message, optional, tag = "17")]
-pub config_encryption: ::core::option::Option<AwsConfigEncryption>,
-#[prost(message, optional, tag = "18")]
-pub instance_placement: ::core::option::Option<AwsInstancePlacement>,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "14")]
+    pub ssh_config: ::core::option::Option<AwsSshConfig>,
+    #[prost(string, repeated, tag = "4")]
+    pub subnet_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub security_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "7")]
+    pub iam_instance_profile: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "8")]
+    pub root_volume: ::core::option::Option<AwsVolumeTemplate>,
+    #[prost(message, optional, tag = "9")]
+    pub main_volume: ::core::option::Option<AwsVolumeTemplate>,
+    #[prost(message, optional, tag = "10")]
+    pub database_encryption: ::core::option::Option<AwsDatabaseEncryption>,
+    #[prost(btree_map = "string, string", tag = "11")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "12")]
+    pub aws_services_authentication: ::core::option::Option<AwsServicesAuthentication>,
+    #[prost(message, optional, tag = "16")]
+    pub proxy_config: ::core::option::Option<AwsProxyConfig>,
+    #[prost(message, optional, tag = "17")]
+    pub config_encryption: ::core::option::Option<AwsConfigEncryption>,
+    #[prost(message, optional, tag = "18")]
+    pub instance_placement: ::core::option::Option<AwsInstancePlacement>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsServicesAuthentication {
-#[prost(string, tag = "1")]
-pub role_arn: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub role_session_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub role_arn: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub role_session_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsAuthorization {
-#[prost(message, repeated, tag = "1")]
-pub admin_users: ::prost::alloc::vec::Vec<AwsClusterUser>,
-#[prost(message, repeated, tag = "2")]
-pub admin_groups: ::prost::alloc::vec::Vec<AwsClusterGroup>,
+    #[prost(message, repeated, tag = "1")]
+    pub admin_users: ::prost::alloc::vec::Vec<AwsClusterUser>,
+    #[prost(message, repeated, tag = "2")]
+    pub admin_groups: ::prost::alloc::vec::Vec<AwsClusterGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsClusterUser {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsClusterGroup {
-#[prost(string, tag = "1")]
-pub group: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub group: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsDatabaseEncryption {
-#[prost(string, tag = "1")]
-pub kms_key_arn: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kms_key_arn: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsVolumeTemplate {
-#[prost(int32, tag = "1")]
-pub size_gib: i32,
-#[prost(enumeration = "aws_volume_template::VolumeType", tag = "2")]
-pub volume_type: i32,
-#[prost(int32, tag = "3")]
-pub iops: i32,
-#[prost(int32, tag = "5")]
-pub throughput: i32,
-#[prost(string, tag = "4")]
-pub kms_key_arn: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub size_gib: i32,
+    #[prost(enumeration = "aws_volume_template::VolumeType", tag = "2")]
+    pub volume_type: i32,
+    #[prost(int32, tag = "3")]
+    pub iops: i32,
+    #[prost(int32, tag = "5")]
+    pub throughput: i32,
+    #[prost(string, tag = "4")]
+    pub kms_key_arn: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AwsVolumeTemplate`.
 pub mod aws_volume_template {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VolumeType {
-Unspecified = 0,
-Gp2 = 1,
-Gp3 = 2,
-}
-impl VolumeType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VolumeType::Unspecified => "VOLUME_TYPE_UNSPECIFIED",
-VolumeType::Gp2 => "GP2",
-VolumeType::Gp3 => "GP3",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VOLUME_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"GP2" => Some(Self::Gp2),
-"GP3" => Some(Self::Gp3),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum VolumeType {
+        Unspecified = 0,
+        Gp2 = 1,
+        Gp3 = 2,
+    }
+    impl VolumeType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VolumeType::Unspecified => "VOLUME_TYPE_UNSPECIFIED",
+                VolumeType::Gp2 => "GP2",
+                VolumeType::Gp3 => "GP3",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VOLUME_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GP2" => Some(Self::Gp2),
+                "GP3" => Some(Self::Gp3),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsClusterNetworking {
-#[prost(string, tag = "1")]
-pub vpc_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "5")]
-pub per_node_pool_sg_rules_disabled: bool,
+    #[prost(string, tag = "1")]
+    pub vpc_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "5")]
+    pub per_node_pool_sg_rules_disabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsNodePool {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "28")]
-pub config: ::core::option::Option<AwsNodeConfig>,
-#[prost(message, optional, tag = "25")]
-pub autoscaling: ::core::option::Option<AwsNodePoolAutoscaling>,
-#[prost(string, tag = "6")]
-pub subnet_id: ::prost::alloc::string::String,
-#[prost(enumeration = "aws_node_pool::State", tag = "16")]
-pub state: i32,
-#[prost(string, tag = "17")]
-pub uid: ::prost::alloc::string::String,
-#[prost(bool, tag = "18")]
-pub reconciling: bool,
-#[prost(message, optional, tag = "19")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "20")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "21")]
-pub etag: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "22")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "27")]
-pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
-#[prost(message, repeated, tag = "29")]
-pub errors: ::prost::alloc::vec::Vec<AwsNodePoolError>,
-#[prost(message, optional, tag = "30")]
-pub management: ::core::option::Option<AwsNodeManagement>,
-#[prost(message, optional, tag = "32")]
-pub update_settings: ::core::option::Option<UpdateSettings>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "28")]
+    pub config: ::core::option::Option<AwsNodeConfig>,
+    #[prost(message, optional, tag = "25")]
+    pub autoscaling: ::core::option::Option<AwsNodePoolAutoscaling>,
+    #[prost(string, tag = "6")]
+    pub subnet_id: ::prost::alloc::string::String,
+    #[prost(enumeration = "aws_node_pool::State", tag = "16")]
+    pub state: i32,
+    #[prost(string, tag = "17")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(bool, tag = "18")]
+    pub reconciling: bool,
+    #[prost(message, optional, tag = "19")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "20")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "21")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "22")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "27")]
+    pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
+    #[prost(message, repeated, tag = "29")]
+    pub errors: ::prost::alloc::vec::Vec<AwsNodePoolError>,
+    #[prost(message, optional, tag = "30")]
+    pub management: ::core::option::Option<AwsNodeManagement>,
+    #[prost(message, optional, tag = "32")]
+    pub update_settings: ::core::option::Option<UpdateSettings>,
 }
 /// Nested message and enum types in `AwsNodePool`.
 pub mod aws_node_pool {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Reconciling = 3,
-Stopping = 4,
-Error = 5,
-Degraded = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Reconciling => "RECONCILING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-State::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"RECONCILING" => Some(Self::Reconciling),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Reconciling = 3,
+        Stopping = 4,
+        Error = 5,
+        Degraded = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Reconciling => "RECONCILING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+                State::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "RECONCILING" => Some(Self::Reconciling),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UpdateSettings {
-#[prost(message, optional, tag = "1")]
-pub surge_settings: ::core::option::Option<SurgeSettings>,
+    #[prost(message, optional, tag = "1")]
+    pub surge_settings: ::core::option::Option<SurgeSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SurgeSettings {
-#[prost(int32, tag = "1")]
-pub max_surge: i32,
-#[prost(int32, tag = "2")]
-pub max_unavailable: i32,
+    #[prost(int32, tag = "1")]
+    pub max_surge: i32,
+    #[prost(int32, tag = "2")]
+    pub max_unavailable: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AwsNodeManagement {
-#[prost(bool, tag = "1")]
-pub auto_repair: bool,
+    #[prost(bool, tag = "1")]
+    pub auto_repair: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsNodeConfig {
-#[prost(string, tag = "1")]
-pub instance_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub root_volume: ::core::option::Option<AwsVolumeTemplate>,
-#[prost(message, repeated, tag = "3")]
-pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
-#[prost(btree_map = "string, string", tag = "4")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(btree_map = "string, string", tag = "5")]
-pub tags: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "6")]
-pub iam_instance_profile: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub image_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub ssh_config: ::core::option::Option<AwsSshConfig>,
-#[prost(string, repeated, tag = "10")]
-pub security_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "12")]
-pub proxy_config: ::core::option::Option<AwsProxyConfig>,
-#[prost(message, optional, tag = "13")]
-pub config_encryption: ::core::option::Option<AwsConfigEncryption>,
-#[prost(message, optional, tag = "14")]
-pub instance_placement: ::core::option::Option<AwsInstancePlacement>,
-#[prost(message, optional, tag = "15")]
-pub autoscaling_metrics_collection: ::core::option::Option<AwsAutoscalingGroupMetricsCollection>,
-#[prost(message, optional, tag = "16")]
-pub spot_config: ::core::option::Option<SpotConfig>,
+    #[prost(string, tag = "1")]
+    pub instance_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub root_volume: ::core::option::Option<AwsVolumeTemplate>,
+    #[prost(message, repeated, tag = "3")]
+    pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(btree_map = "string, string", tag = "5")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "6")]
+    pub iam_instance_profile: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub image_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub ssh_config: ::core::option::Option<AwsSshConfig>,
+    #[prost(string, repeated, tag = "10")]
+    pub security_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "12")]
+    pub proxy_config: ::core::option::Option<AwsProxyConfig>,
+    #[prost(message, optional, tag = "13")]
+    pub config_encryption: ::core::option::Option<AwsConfigEncryption>,
+    #[prost(message, optional, tag = "14")]
+    pub instance_placement: ::core::option::Option<AwsInstancePlacement>,
+    #[prost(message, optional, tag = "15")]
+    pub autoscaling_metrics_collection:
+        ::core::option::Option<AwsAutoscalingGroupMetricsCollection>,
+    #[prost(message, optional, tag = "16")]
+    pub spot_config: ::core::option::Option<SpotConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AwsNodePoolAutoscaling {
-#[prost(int32, tag = "1")]
-pub min_node_count: i32,
-#[prost(int32, tag = "2")]
-pub max_node_count: i32,
+    #[prost(int32, tag = "1")]
+    pub min_node_count: i32,
+    #[prost(int32, tag = "2")]
+    pub max_node_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsOpenIdConfig {
-#[prost(string, tag = "1")]
-pub issuer: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub jwks_uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub id_token_signing_alg_values_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "6")]
-pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "7")]
-pub grant_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub issuer: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub jwks_uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub id_token_signing_alg_values_supported:
+        ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "7")]
+    pub grant_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsJsonWebKeys {
-#[prost(message, repeated, tag = "1")]
-pub keys: ::prost::alloc::vec::Vec<Jwk>,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<Jwk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsServerConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub valid_versions: ::prost::alloc::vec::Vec<AwsK8sVersionInfo>,
-#[prost(string, repeated, tag = "3")]
-pub supported_aws_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub valid_versions: ::prost::alloc::vec::Vec<AwsK8sVersionInfo>,
+    #[prost(string, repeated, tag = "3")]
+    pub supported_aws_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsK8sVersionInfo {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub enabled: bool,
-#[prost(bool, tag = "4")]
-pub end_of_life: bool,
-#[prost(message, optional, tag = "5")]
-pub end_of_life_date: ::core::option::Option<super::super::super::r#type::Date>,
-#[prost(message, optional, tag = "6")]
-pub release_date: ::core::option::Option<super::super::super::r#type::Date>,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub enabled: bool,
+    #[prost(bool, tag = "4")]
+    pub end_of_life: bool,
+    #[prost(message, optional, tag = "5")]
+    pub end_of_life_date: ::core::option::Option<super::super::super::r#type::Date>,
+    #[prost(message, optional, tag = "6")]
+    pub release_date: ::core::option::Option<super::super::super::r#type::Date>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsSshConfig {
-#[prost(string, tag = "1")]
-pub ec2_key_pair: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub ec2_key_pair: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsProxyConfig {
-#[prost(string, tag = "1")]
-pub secret_arn: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub secret_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub secret_arn: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub secret_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsConfigEncryption {
-#[prost(string, tag = "1")]
-pub kms_key_arn: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub kms_key_arn: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AwsInstancePlacement {
-#[prost(enumeration = "aws_instance_placement::Tenancy", tag = "1")]
-pub tenancy: i32,
+    #[prost(enumeration = "aws_instance_placement::Tenancy", tag = "1")]
+    pub tenancy: i32,
 }
 /// Nested message and enum types in `AwsInstancePlacement`.
 pub mod aws_instance_placement {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Tenancy {
-Unspecified = 0,
-Default = 1,
-Dedicated = 2,
-Host = 3,
-}
-impl Tenancy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Tenancy::Unspecified => "TENANCY_UNSPECIFIED",
-Tenancy::Default => "DEFAULT",
-Tenancy::Dedicated => "DEDICATED",
-Tenancy::Host => "HOST",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TENANCY_UNSPECIFIED" => Some(Self::Unspecified),
-"DEFAULT" => Some(Self::Default),
-"DEDICATED" => Some(Self::Dedicated),
-"HOST" => Some(Self::Host),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Tenancy {
+        Unspecified = 0,
+        Default = 1,
+        Dedicated = 2,
+        Host = 3,
+    }
+    impl Tenancy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Tenancy::Unspecified => "TENANCY_UNSPECIFIED",
+                Tenancy::Default => "DEFAULT",
+                Tenancy::Dedicated => "DEDICATED",
+                Tenancy::Host => "HOST",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TENANCY_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEFAULT" => Some(Self::Default),
+                "DEDICATED" => Some(Self::Dedicated),
+                "HOST" => Some(Self::Host),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsAutoscalingGroupMetricsCollection {
-#[prost(string, tag = "1")]
-pub granularity: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub granularity: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub metrics: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpotConfig {
-#[prost(string, repeated, tag = "1")]
-pub instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub instance_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsClusterError {
-#[prost(string, tag = "1")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsNodePoolError {
-#[prost(string, tag = "1")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureCluster {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub azure_region: ::prost::alloc::string::String,
-#[prost(string, tag = "17")]
-pub resource_group_id: ::prost::alloc::string::String,
-#[prost(string, tag = "16")]
-pub azure_client: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub networking: ::core::option::Option<AzureClusterNetworking>,
-#[prost(message, optional, tag = "5")]
-pub control_plane: ::core::option::Option<AzureControlPlane>,
-#[prost(message, optional, tag = "6")]
-pub authorization: ::core::option::Option<AzureAuthorization>,
-#[prost(message, optional, tag = "22")]
-pub azure_services_authentication: ::core::option::Option<AzureServicesAuthentication>,
-#[prost(enumeration = "azure_cluster::State", tag = "7")]
-pub state: i32,
-#[prost(string, tag = "8")]
-pub endpoint: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub uid: ::prost::alloc::string::String,
-#[prost(bool, tag = "10")]
-pub reconciling: bool,
-#[prost(message, optional, tag = "11")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "12")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "13")]
-pub etag: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "14")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "18")]
-pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
-#[prost(string, tag = "19")]
-pub cluster_ca_certificate: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "20")]
-pub fleet: ::core::option::Option<Fleet>,
-#[prost(message, optional, tag = "21")]
-pub managed_resources: ::core::option::Option<AzureClusterResources>,
-#[prost(message, optional, tag = "23")]
-pub logging_config: ::core::option::Option<LoggingConfig>,
-#[prost(message, repeated, tag = "24")]
-pub errors: ::prost::alloc::vec::Vec<AzureClusterError>,
-#[prost(message, optional, tag = "25")]
-pub monitoring_config: ::core::option::Option<MonitoringConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub azure_region: ::prost::alloc::string::String,
+    #[prost(string, tag = "17")]
+    pub resource_group_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "16")]
+    pub azure_client: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub networking: ::core::option::Option<AzureClusterNetworking>,
+    #[prost(message, optional, tag = "5")]
+    pub control_plane: ::core::option::Option<AzureControlPlane>,
+    #[prost(message, optional, tag = "6")]
+    pub authorization: ::core::option::Option<AzureAuthorization>,
+    #[prost(message, optional, tag = "22")]
+    pub azure_services_authentication: ::core::option::Option<AzureServicesAuthentication>,
+    #[prost(enumeration = "azure_cluster::State", tag = "7")]
+    pub state: i32,
+    #[prost(string, tag = "8")]
+    pub endpoint: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(bool, tag = "10")]
+    pub reconciling: bool,
+    #[prost(message, optional, tag = "11")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "12")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "13")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "14")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "18")]
+    pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
+    #[prost(string, tag = "19")]
+    pub cluster_ca_certificate: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "20")]
+    pub fleet: ::core::option::Option<Fleet>,
+    #[prost(message, optional, tag = "21")]
+    pub managed_resources: ::core::option::Option<AzureClusterResources>,
+    #[prost(message, optional, tag = "23")]
+    pub logging_config: ::core::option::Option<LoggingConfig>,
+    #[prost(message, repeated, tag = "24")]
+    pub errors: ::prost::alloc::vec::Vec<AzureClusterError>,
+    #[prost(message, optional, tag = "25")]
+    pub monitoring_config: ::core::option::Option<MonitoringConfig>,
 }
 /// Nested message and enum types in `AzureCluster`.
 pub mod azure_cluster {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Reconciling = 3,
-Stopping = 4,
-Error = 5,
-Degraded = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Reconciling => "RECONCILING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-State::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"RECONCILING" => Some(Self::Reconciling),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Reconciling = 3,
+        Stopping = 4,
+        Error = 5,
+        Degraded = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Reconciling => "RECONCILING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+                State::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "RECONCILING" => Some(Self::Reconciling),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClusterNetworking {
-#[prost(string, tag = "1")]
-pub virtual_network_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub service_load_balancer_subnet_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub virtual_network_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub pod_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub service_address_cidr_blocks: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub service_load_balancer_subnet_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureControlPlane {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subnet_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub vm_size: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "11")]
-pub ssh_config: ::core::option::Option<AzureSshConfig>,
-#[prost(message, optional, tag = "4")]
-pub root_volume: ::core::option::Option<AzureDiskTemplate>,
-#[prost(message, optional, tag = "5")]
-pub main_volume: ::core::option::Option<AzureDiskTemplate>,
-#[prost(message, optional, tag = "10")]
-pub database_encryption: ::core::option::Option<AzureDatabaseEncryption>,
-#[prost(message, optional, tag = "12")]
-pub proxy_config: ::core::option::Option<AzureProxyConfig>,
-#[prost(message, optional, tag = "14")]
-pub config_encryption: ::core::option::Option<AzureConfigEncryption>,
-#[prost(btree_map = "string, string", tag = "7")]
-pub tags: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "13")]
-pub replica_placements: ::prost::alloc::vec::Vec<ReplicaPlacement>,
-#[prost(string, tag = "15")]
-pub endpoint_subnet_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subnet_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub vm_size: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "11")]
+    pub ssh_config: ::core::option::Option<AzureSshConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub root_volume: ::core::option::Option<AzureDiskTemplate>,
+    #[prost(message, optional, tag = "5")]
+    pub main_volume: ::core::option::Option<AzureDiskTemplate>,
+    #[prost(message, optional, tag = "10")]
+    pub database_encryption: ::core::option::Option<AzureDatabaseEncryption>,
+    #[prost(message, optional, tag = "12")]
+    pub proxy_config: ::core::option::Option<AzureProxyConfig>,
+    #[prost(message, optional, tag = "14")]
+    pub config_encryption: ::core::option::Option<AzureConfigEncryption>,
+    #[prost(btree_map = "string, string", tag = "7")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "13")]
+    pub replica_placements: ::prost::alloc::vec::Vec<ReplicaPlacement>,
+    #[prost(string, tag = "15")]
+    pub endpoint_subnet_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplicaPlacement {
-#[prost(string, tag = "1")]
-pub subnet_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub azure_availability_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub subnet_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub azure_availability_zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureProxyConfig {
-#[prost(string, tag = "1")]
-pub resource_group_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub secret_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub resource_group_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub secret_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureDatabaseEncryption {
-#[prost(string, tag = "3")]
-pub key_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub key_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureConfigEncryption {
-#[prost(string, tag = "2")]
-pub key_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub public_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub key_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub public_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AzureDiskTemplate {
-#[prost(int32, tag = "1")]
-pub size_gib: i32,
+    #[prost(int32, tag = "1")]
+    pub size_gib: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClient {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub tenant_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub application_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "9")]
-pub reconciling: bool,
-#[prost(btree_map = "string, string", tag = "8")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "7")]
-pub pem_certificate: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub uid: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub tenant_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub application_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "9")]
+    pub reconciling: bool,
+    #[prost(btree_map = "string, string", tag = "8")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "7")]
+    pub pem_certificate: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureAuthorization {
-#[prost(message, repeated, tag = "1")]
-pub admin_users: ::prost::alloc::vec::Vec<AzureClusterUser>,
-#[prost(message, repeated, tag = "2")]
-pub admin_groups: ::prost::alloc::vec::Vec<AzureClusterGroup>,
+    #[prost(message, repeated, tag = "1")]
+    pub admin_users: ::prost::alloc::vec::Vec<AzureClusterUser>,
+    #[prost(message, repeated, tag = "2")]
+    pub admin_groups: ::prost::alloc::vec::Vec<AzureClusterGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureServicesAuthentication {
-#[prost(string, tag = "1")]
-pub tenant_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub application_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub tenant_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub application_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClusterUser {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClusterGroup {
-#[prost(string, tag = "1")]
-pub group: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub group: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureNodePool {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "22")]
-pub config: ::core::option::Option<AzureNodeConfig>,
-#[prost(string, tag = "3")]
-pub subnet_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub autoscaling: ::core::option::Option<AzureNodePoolAutoscaling>,
-#[prost(enumeration = "azure_node_pool::State", tag = "6")]
-pub state: i32,
-#[prost(string, tag = "8")]
-pub uid: ::prost::alloc::string::String,
-#[prost(bool, tag = "9")]
-pub reconciling: bool,
-#[prost(message, optional, tag = "10")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "11")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "12")]
-pub etag: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "13")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "21")]
-pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
-#[prost(string, tag = "23")]
-pub azure_availability_zone: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "29")]
-pub errors: ::prost::alloc::vec::Vec<AzureNodePoolError>,
-#[prost(message, optional, tag = "30")]
-pub management: ::core::option::Option<AzureNodeManagement>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "22")]
+    pub config: ::core::option::Option<AzureNodeConfig>,
+    #[prost(string, tag = "3")]
+    pub subnet_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub autoscaling: ::core::option::Option<AzureNodePoolAutoscaling>,
+    #[prost(enumeration = "azure_node_pool::State", tag = "6")]
+    pub state: i32,
+    #[prost(string, tag = "8")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(bool, tag = "9")]
+    pub reconciling: bool,
+    #[prost(message, optional, tag = "10")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "11")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "12")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "13")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "21")]
+    pub max_pods_constraint: ::core::option::Option<MaxPodsConstraint>,
+    #[prost(string, tag = "23")]
+    pub azure_availability_zone: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "29")]
+    pub errors: ::prost::alloc::vec::Vec<AzureNodePoolError>,
+    #[prost(message, optional, tag = "30")]
+    pub management: ::core::option::Option<AzureNodeManagement>,
 }
 /// Nested message and enum types in `AzureNodePool`.
 pub mod azure_node_pool {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Reconciling = 3,
-Stopping = 4,
-Error = 5,
-Degraded = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Reconciling => "RECONCILING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-State::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"RECONCILING" => Some(Self::Reconciling),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Reconciling = 3,
+        Stopping = 4,
+        Error = 5,
+        Degraded = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Reconciling => "RECONCILING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+                State::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "RECONCILING" => Some(Self::Reconciling),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AzureNodeManagement {
-#[prost(bool, tag = "1")]
-pub auto_repair: bool,
+    #[prost(bool, tag = "1")]
+    pub auto_repair: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureNodeConfig {
-#[prost(string, tag = "1")]
-pub vm_size: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub root_volume: ::core::option::Option<AzureDiskTemplate>,
-#[prost(btree_map = "string, string", tag = "3")]
-pub tags: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "8")]
-pub image_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub ssh_config: ::core::option::Option<AzureSshConfig>,
-#[prost(message, optional, tag = "9")]
-pub proxy_config: ::core::option::Option<AzureProxyConfig>,
-#[prost(message, optional, tag = "12")]
-pub config_encryption: ::core::option::Option<AzureConfigEncryption>,
-#[prost(message, repeated, tag = "10")]
-pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
-#[prost(btree_map = "string, string", tag = "11")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub vm_size: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub root_volume: ::core::option::Option<AzureDiskTemplate>,
+    #[prost(btree_map = "string, string", tag = "3")]
+    pub tags: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "8")]
+    pub image_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub ssh_config: ::core::option::Option<AzureSshConfig>,
+    #[prost(message, optional, tag = "9")]
+    pub proxy_config: ::core::option::Option<AzureProxyConfig>,
+    #[prost(message, optional, tag = "12")]
+    pub config_encryption: ::core::option::Option<AzureConfigEncryption>,
+    #[prost(message, repeated, tag = "10")]
+    pub taints: ::prost::alloc::vec::Vec<NodeTaint>,
+    #[prost(btree_map = "string, string", tag = "11")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AzureNodePoolAutoscaling {
-#[prost(int32, tag = "1")]
-pub min_node_count: i32,
-#[prost(int32, tag = "2")]
-pub max_node_count: i32,
+    #[prost(int32, tag = "1")]
+    pub min_node_count: i32,
+    #[prost(int32, tag = "2")]
+    pub max_node_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureOpenIdConfig {
-#[prost(string, tag = "1")]
-pub issuer: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub jwks_uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub id_token_signing_alg_values_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "6")]
-pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "7")]
-pub grant_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub issuer: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub jwks_uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub response_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub subject_types_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub id_token_signing_alg_values_supported:
+        ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub claims_supported: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "7")]
+    pub grant_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureJsonWebKeys {
-#[prost(message, repeated, tag = "1")]
-pub keys: ::prost::alloc::vec::Vec<Jwk>,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<Jwk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureServerConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub valid_versions: ::prost::alloc::vec::Vec<AzureK8sVersionInfo>,
-#[prost(string, repeated, tag = "3")]
-pub supported_azure_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub valid_versions: ::prost::alloc::vec::Vec<AzureK8sVersionInfo>,
+    #[prost(string, repeated, tag = "3")]
+    pub supported_azure_regions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureK8sVersionInfo {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub enabled: bool,
-#[prost(bool, tag = "4")]
-pub end_of_life: bool,
-#[prost(message, optional, tag = "5")]
-pub end_of_life_date: ::core::option::Option<super::super::super::r#type::Date>,
-#[prost(message, optional, tag = "6")]
-pub release_date: ::core::option::Option<super::super::super::r#type::Date>,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub enabled: bool,
+    #[prost(bool, tag = "4")]
+    pub end_of_life: bool,
+    #[prost(message, optional, tag = "5")]
+    pub end_of_life_date: ::core::option::Option<super::super::super::r#type::Date>,
+    #[prost(message, optional, tag = "6")]
+    pub release_date: ::core::option::Option<super::super::super::r#type::Date>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureSshConfig {
-#[prost(string, tag = "1")]
-pub authorized_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub authorized_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClusterResources {
-#[prost(string, tag = "1")]
-pub network_security_group_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub control_plane_application_security_group_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub network_security_group_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub control_plane_application_security_group_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureClusterError {
-#[prost(string, tag = "1")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AzureNodePoolError {
-#[prost(string, tag = "1")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAzureClusterRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub azure_cluster: ::core::option::Option<AzureCluster>,
-#[prost(string, tag = "3")]
-pub azure_cluster_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub azure_cluster: ::core::option::Option<AzureCluster>,
+    #[prost(string, tag = "3")]
+    pub azure_cluster_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAzureClusterRequest {
-#[prost(message, optional, tag = "1")]
-pub azure_cluster: ::core::option::Option<AzureCluster>,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "4")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub azure_cluster: ::core::option::Option<AzureCluster>,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "4")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureClustersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureClustersResponse {
-#[prost(message, repeated, tag = "1")]
-pub azure_clusters: ::prost::alloc::vec::Vec<AzureCluster>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub azure_clusters: ::prost::alloc::vec::Vec<AzureCluster>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAzureClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_missing: bool,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub ignore_errors: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub ignore_errors: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAzureNodePoolRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub azure_node_pool: ::core::option::Option<AzureNodePool>,
-#[prost(string, tag = "3")]
-pub azure_node_pool_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub azure_node_pool: ::core::option::Option<AzureNodePool>,
+    #[prost(string, tag = "3")]
+    pub azure_node_pool_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAzureNodePoolRequest {
-#[prost(message, optional, tag = "1")]
-pub azure_node_pool: ::core::option::Option<AzureNodePool>,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub azure_node_pool: ::core::option::Option<AzureNodePool>,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureNodePoolRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureNodePoolsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureNodePoolsResponse {
-#[prost(message, repeated, tag = "1")]
-pub azure_node_pools: ::prost::alloc::vec::Vec<AzureNodePool>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub azure_node_pools: ::prost::alloc::vec::Vec<AzureNodePool>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAzureNodePoolRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub ignore_errors: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub ignore_errors: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureOpenIdConfigRequest {
-#[prost(string, tag = "1")]
-pub azure_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub azure_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureJsonWebKeysRequest {
-#[prost(string, tag = "1")]
-pub azure_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub azure_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureServerConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAzureClientRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub azure_client: ::core::option::Option<AzureClient>,
-#[prost(string, tag = "4")]
-pub azure_client_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub azure_client: ::core::option::Option<AzureClient>,
+    #[prost(string, tag = "4")]
+    pub azure_client_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAzureClientRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureClientsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAzureClientsResponse {
-#[prost(message, repeated, tag = "1")]
-pub azure_clients: ::prost::alloc::vec::Vec<AzureClient>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub azure_clients: ::prost::alloc::vec::Vec<AzureClient>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAzureClientRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub allow_missing: bool,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAzureAccessTokenRequest {
-#[prost(string, tag = "1")]
-pub azure_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub azure_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAzureAccessTokenResponse {
-#[prost(string, tag = "1")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAzureClusterAgentTokenRequest {
-#[prost(string, tag = "1")]
-pub azure_cluster: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subject_token: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub subject_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub node_pool_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub grant_type: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub audience: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub scope: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub requested_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub options: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub azure_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subject_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub subject_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub node_pool_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub grant_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub scope: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub requested_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub options: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAzureClusterAgentTokenResponse {
-#[prost(string, tag = "1")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub expires_in: i32,
-#[prost(string, tag = "3")]
-pub token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub expires_in: i32,
+    #[prost(string, tag = "3")]
+    pub token_type: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod azure_clusters_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The AzureClusters API provides a single centrally managed service
-/// to create and manage Anthos clusters that run on Azure infrastructure.
-#[derive(Debug, Clone)]
-pub struct AzureClustersClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AzureClustersClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AzureClustersClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AzureClustersClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-/// resource on a given Google Cloud project and region.
-///
-/// `AzureClient` resources hold client authentication
-/// information needed by the Anthos Multicloud API to manage Azure resources
-/// on your Azure subscription on your behalf.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_azure_client(&mut self, request: impl tonic::IntoRequest<super::CreateAzureClientRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureClient");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "CreateAzureClient"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific
-/// [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
-pub async fn get_azure_client(&mut self, request: impl tonic::IntoRequest<super::GetAzureClientRequest>) -> std::result::Result<tonic::Response<super::AzureClient>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureClient");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureClient"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-/// resources on a given Google Cloud project and region.
-pub async fn list_azure_clients(&mut self, request: impl tonic::IntoRequest<super::ListAzureClientsRequest>) -> std::result::Result<tonic::Response<super::ListAzureClientsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClients");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "ListAzureClients"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-/// resource.
-///
-/// If the client is used by one or more clusters, deletion will
-/// fail and a `FAILED_PRECONDITION` error will be returned.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_azure_client(&mut self, request: impl tonic::IntoRequest<super::DeleteAzureClientRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureClient");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "DeleteAzureClient"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-/// resource on a given Google Cloud Platform project and region.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_azure_cluster(&mut self, request: impl tonic::IntoRequest<super::CreateAzureClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "CreateAzureCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
-pub async fn update_azure_cluster(&mut self, request: impl tonic::IntoRequest<super::UpdateAzureClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "UpdateAzureCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific
-/// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
-pub async fn get_azure_cluster(&mut self, request: impl tonic::IntoRequest<super::GetAzureClusterRequest>) -> std::result::Result<tonic::Response<super::AzureCluster>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-/// resources on a given Google Cloud project and region.
-pub async fn list_azure_clusters(&mut self, request: impl tonic::IntoRequest<super::ListAzureClustersRequest>) -> std::result::Result<tonic::Response<super::ListAzureClustersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClusters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "ListAzureClusters"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific
-/// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
-///
-/// Fails if the cluster has one or more associated
-/// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_azure_cluster(&mut self, request: impl tonic::IntoRequest<super::DeleteAzureClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "DeleteAzureCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates an access token for a cluster agent.
-pub async fn generate_azure_cluster_agent_token(&mut self, request: impl tonic::IntoRequest<super::GenerateAzureClusterAgentTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateAzureClusterAgentTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GenerateAzureClusterAgentToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a short-lived access token to authenticate to a given
-/// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
-pub async fn generate_azure_access_token(&mut self, request: impl tonic::IntoRequest<super::GenerateAzureAccessTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateAzureAccessTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureAccessToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GenerateAzureAccessToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
-/// attached to a given
-/// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_azure_node_pool(&mut self, request: impl tonic::IntoRequest<super::CreateAzureNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "CreateAzureNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
-pub async fn update_azure_node_pool(&mut self, request: impl tonic::IntoRequest<super::UpdateAzureNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "UpdateAzureNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific
-/// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
-pub async fn get_azure_node_pool(&mut self, request: impl tonic::IntoRequest<super::GetAzureNodePoolRequest>) -> std::result::Result<tonic::Response<super::AzureNodePool>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-/// resources on a given
-/// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
-pub async fn list_azure_node_pools(&mut self, request: impl tonic::IntoRequest<super::ListAzureNodePoolsRequest>) -> std::result::Result<tonic::Response<super::ListAzureNodePoolsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureNodePools");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "ListAzureNodePools"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific
-/// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_azure_node_pool(&mut self, request: impl tonic::IntoRequest<super::DeleteAzureNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "DeleteAzureNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the OIDC discovery document for the cluster.
-/// See the
-/// [OpenID Connect Discovery 1.0
-/// specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
-/// for details.
-pub async fn get_azure_open_id_config(&mut self, request: impl tonic::IntoRequest<super::GetAzureOpenIdConfigRequest>) -> std::result::Result<tonic::Response<super::AzureOpenIdConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureOpenIdConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureOpenIdConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the public component of the cluster signing keys in
-/// JSON Web Key format.
-pub async fn get_azure_json_web_keys(&mut self, request: impl tonic::IntoRequest<super::GetAzureJsonWebKeysRequest>) -> std::result::Result<tonic::Response<super::AzureJsonWebKeys>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureJsonWebKeys");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureJsonWebKeys"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns information, such as supported Azure regions and Kubernetes
-/// versions, on a given Google Cloud location.
-pub async fn get_azure_server_config(&mut self, request: impl tonic::IntoRequest<super::GetAzureServerConfigRequest>) -> std::result::Result<tonic::Response<super::AzureServerConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureServerConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AzureClusters", "GetAzureServerConfig"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The AzureClusters API provides a single centrally managed service
+    /// to create and manage Anthos clusters that run on Azure infrastructure.
+    #[derive(Debug, Clone)]
+    pub struct AzureClustersClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AzureClustersClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AzureClustersClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AzureClustersClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+        /// resource on a given Google Cloud project and region.
+        ///
+        /// `AzureClient` resources hold client authentication
+        /// information needed by the Anthos Multicloud API to manage Azure resources
+        /// on your Azure subscription on your behalf.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_azure_client(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAzureClientRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureClient",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "CreateAzureClient",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific
+        /// [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource.
+        pub async fn get_azure_client(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureClientRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureClient>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureClient",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureClient",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+        /// resources on a given Google Cloud project and region.
+        pub async fn list_azure_clients(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAzureClientsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAzureClientsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClients",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "ListAzureClients",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
+        /// resource.
+        ///
+        /// If the client is used by one or more clusters, deletion will
+        /// fail and a `FAILED_PRECONDITION` error will be returned.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_azure_client(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAzureClientRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureClient",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "DeleteAzureClient",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+        /// resource on a given Google Cloud Platform project and region.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_azure_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAzureClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "CreateAzureCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+        pub async fn update_azure_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAzureClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "UpdateAzureCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific
+        /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+        pub async fn get_azure_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureClusterRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureCluster>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+        /// resources on a given Google Cloud project and region.
+        pub async fn list_azure_clusters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAzureClustersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAzureClustersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureClusters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "ListAzureClusters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific
+        /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+        ///
+        /// Fails if the cluster has one or more associated
+        /// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_azure_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAzureClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "DeleteAzureCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates an access token for a cluster agent.
+        pub async fn generate_azure_cluster_agent_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAzureClusterAgentTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAzureClusterAgentTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GenerateAzureClusterAgentToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a short-lived access token to authenticate to a given
+        /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
+        pub async fn generate_azure_access_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAzureAccessTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAzureAccessTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureAccessToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GenerateAzureAccessToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool],
+        /// attached to a given
+        /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_azure_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAzureNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/CreateAzureNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "CreateAzureNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+        pub async fn update_azure_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAzureNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/UpdateAzureNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "UpdateAzureNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific
+        /// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+        pub async fn get_azure_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureNodePoolRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureNodePool>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+        /// resources on a given
+        /// [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
+        pub async fn list_azure_node_pools(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAzureNodePoolsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAzureNodePoolsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/ListAzureNodePools",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "ListAzureNodePools",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific
+        /// [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_azure_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAzureNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/DeleteAzureNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "DeleteAzureNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the OIDC discovery document for the cluster.
+        /// See the
+        /// [OpenID Connect Discovery 1.0
+        /// specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+        /// for details.
+        pub async fn get_azure_open_id_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureOpenIdConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureOpenIdConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureOpenIdConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureOpenIdConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the public component of the cluster signing keys in
+        /// JSON Web Key format.
+        pub async fn get_azure_json_web_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureJsonWebKeysRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureJsonWebKeys>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureJsonWebKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureJsonWebKeys",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns information, such as supported Azure regions and Kubernetes
+        /// versions, on a given Google Cloud location.
+        pub async fn get_azure_server_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAzureServerConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::AzureServerConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureServerConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AzureClusters",
+                "GetAzureServerConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAwsClusterRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub aws_cluster: ::core::option::Option<AwsCluster>,
-#[prost(string, tag = "3")]
-pub aws_cluster_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub aws_cluster: ::core::option::Option<AwsCluster>,
+    #[prost(string, tag = "3")]
+    pub aws_cluster_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAwsClusterRequest {
-#[prost(message, optional, tag = "1")]
-pub aws_cluster: ::core::option::Option<AwsCluster>,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "4")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub aws_cluster: ::core::option::Option<AwsCluster>,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "4")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAwsClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAwsClustersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAwsClustersResponse {
-#[prost(message, repeated, tag = "1")]
-pub aws_clusters: ::prost::alloc::vec::Vec<AwsCluster>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub aws_clusters: ::prost::alloc::vec::Vec<AwsCluster>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAwsClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(bool, tag = "5")]
-pub ignore_errors: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "5")]
+    pub ignore_errors: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAwsNodePoolRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub aws_node_pool: ::core::option::Option<AwsNodePool>,
-#[prost(string, tag = "3")]
-pub aws_node_pool_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub aws_node_pool: ::core::option::Option<AwsNodePool>,
+    #[prost(string, tag = "3")]
+    pub aws_node_pool_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAwsNodePoolRequest {
-#[prost(message, optional, tag = "1")]
-pub aws_node_pool: ::core::option::Option<AwsNodePool>,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub aws_node_pool: ::core::option::Option<AwsNodePool>,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackAwsNodePoolUpdateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub respect_pdb: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub respect_pdb: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAwsNodePoolRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAwsNodePoolsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAwsNodePoolsResponse {
-#[prost(message, repeated, tag = "1")]
-pub aws_node_pools: ::prost::alloc::vec::Vec<AwsNodePool>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub aws_node_pools: ::prost::alloc::vec::Vec<AwsNodePool>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAwsNodePoolRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(bool, tag = "5")]
-pub ignore_errors: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "5")]
+    pub ignore_errors: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAwsOpenIdConfigRequest {
-#[prost(string, tag = "1")]
-pub aws_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub aws_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAwsJsonWebKeysRequest {
-#[prost(string, tag = "1")]
-pub aws_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub aws_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAwsServerConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAwsAccessTokenRequest {
-#[prost(string, tag = "1")]
-pub aws_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub aws_cluster: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAwsAccessTokenResponse {
-#[prost(string, tag = "1")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAwsClusterAgentTokenRequest {
-#[prost(string, tag = "1")]
-pub aws_cluster: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subject_token: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub subject_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub node_pool_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub grant_type: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub audience: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub scope: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub requested_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub options: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub aws_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subject_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub subject_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub node_pool_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub grant_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub scope: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub requested_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub options: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAwsClusterAgentTokenResponse {
-#[prost(string, tag = "1")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub expires_in: i32,
-#[prost(string, tag = "3")]
-pub token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub expires_in: i32,
+    #[prost(string, tag = "3")]
+    pub token_type: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod aws_clusters_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The AwsClusters API provides a single centrally managed service
-/// to create and manage Anthos clusters that run on AWS infrastructure.
-#[derive(Debug, Clone)]
-pub struct AwsClustersClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AwsClustersClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AwsClustersClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AwsClustersClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-/// resource on a given Google Cloud Platform project and region.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_aws_cluster(&mut self, request: impl tonic::IntoRequest<super::CreateAwsClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "CreateAwsCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
-pub async fn update_aws_cluster(&mut self, request: impl tonic::IntoRequest<super::UpdateAwsClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "UpdateAwsCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-/// resource.
-pub async fn get_aws_cluster(&mut self, request: impl tonic::IntoRequest<super::GetAwsClusterRequest>) -> std::result::Result<tonic::Response<super::AwsCluster>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GetAwsCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
-/// on a given Google Cloud project and region.
-pub async fn list_aws_clusters(&mut self, request: impl tonic::IntoRequest<super::ListAwsClustersRequest>) -> std::result::Result<tonic::Response<super::ListAwsClustersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsClusters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "ListAwsClusters"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-/// resource.
-///
-/// Fails if the cluster has one or more associated
-/// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_aws_cluster(&mut self, request: impl tonic::IntoRequest<super::DeleteAwsClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "DeleteAwsCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates an access token for a cluster agent.
-pub async fn generate_aws_cluster_agent_token(&mut self, request: impl tonic::IntoRequest<super::GenerateAwsClusterAgentTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateAwsClusterAgentTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsClusterAgentToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GenerateAwsClusterAgentToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates a short-lived access token to authenticate to a given
-/// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
-pub async fn generate_aws_access_token(&mut self, request: impl tonic::IntoRequest<super::GenerateAwsAccessTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateAwsAccessTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsAccessToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GenerateAwsAccessToken"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
-/// attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_aws_node_pool(&mut self, request: impl tonic::IntoRequest<super::CreateAwsNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "CreateAwsNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
-pub async fn update_aws_node_pool(&mut self, request: impl tonic::IntoRequest<super::UpdateAwsNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "UpdateAwsNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Rolls back a previously aborted or failed
-/// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
-/// Makes no changes if the last update request successfully finished.
-/// If an update request is in progress, you cannot rollback the update.
-/// You must first cancel or let it finish unsuccessfully before you can
-/// rollback.
-pub async fn rollback_aws_node_pool_update(&mut self, request: impl tonic::IntoRequest<super::RollbackAwsNodePoolUpdateRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/RollbackAwsNodePoolUpdate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "RollbackAwsNodePoolUpdate"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific
-/// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
-pub async fn get_aws_node_pool(&mut self, request: impl tonic::IntoRequest<super::GetAwsNodePoolRequest>) -> std::result::Result<tonic::Response<super::AwsNodePool>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GetAwsNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-/// resources on a given
-/// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
-pub async fn list_aws_node_pools(&mut self, request: impl tonic::IntoRequest<super::ListAwsNodePoolsRequest>) -> std::result::Result<tonic::Response<super::ListAwsNodePoolsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsNodePools");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "ListAwsNodePools"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-/// resource.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_aws_node_pool(&mut self, request: impl tonic::IntoRequest<super::DeleteAwsNodePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsNodePool");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "DeleteAwsNodePool"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the OIDC discovery document for the cluster.
-/// See the
-/// [OpenID Connect Discovery 1.0
-/// specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
-/// for details.
-pub async fn get_aws_open_id_config(&mut self, request: impl tonic::IntoRequest<super::GetAwsOpenIdConfigRequest>) -> std::result::Result<tonic::Response<super::AwsOpenIdConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsOpenIdConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GetAwsOpenIdConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the public component of the cluster signing keys in
-/// JSON Web Key format.
-pub async fn get_aws_json_web_keys(&mut self, request: impl tonic::IntoRequest<super::GetAwsJsonWebKeysRequest>) -> std::result::Result<tonic::Response<super::AwsJsonWebKeys>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsJsonWebKeys");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GetAwsJsonWebKeys"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns information, such as supported AWS regions and Kubernetes
-/// versions, on a given Google Cloud location.
-pub async fn get_aws_server_config(&mut self, request: impl tonic::IntoRequest<super::GetAwsServerConfigRequest>) -> std::result::Result<tonic::Response<super::AwsServerConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsServerConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AwsClusters", "GetAwsServerConfig"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The AwsClusters API provides a single centrally managed service
+    /// to create and manage Anthos clusters that run on AWS infrastructure.
+    #[derive(Debug, Clone)]
+    pub struct AwsClustersClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AwsClustersClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AwsClustersClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AwsClustersClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+        /// resource on a given Google Cloud Platform project and region.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_aws_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAwsClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "CreateAwsCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+        pub async fn update_aws_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAwsClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "UpdateAwsCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+        /// resource.
+        pub async fn get_aws_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAwsClusterRequest>,
+        ) -> std::result::Result<tonic::Response<super::AwsCluster>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GetAwsCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+        /// on a given Google Cloud project and region.
+        pub async fn list_aws_clusters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAwsClustersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAwsClustersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsClusters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "ListAwsClusters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+        /// resource.
+        ///
+        /// Fails if the cluster has one or more associated
+        /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_aws_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAwsClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "DeleteAwsCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates an access token for a cluster agent.
+        pub async fn generate_aws_cluster_agent_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAwsClusterAgentTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAwsClusterAgentTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsClusterAgentToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GenerateAwsClusterAgentToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates a short-lived access token to authenticate to a given
+        /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+        pub async fn generate_aws_access_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAwsAccessTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAwsAccessTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GenerateAwsAccessToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GenerateAwsAccessToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+        /// attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_aws_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAwsNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/CreateAwsNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "CreateAwsNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+        pub async fn update_aws_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAwsNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/UpdateAwsNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "UpdateAwsNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Rolls back a previously aborted or failed
+        /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+        /// Makes no changes if the last update request successfully finished.
+        /// If an update request is in progress, you cannot rollback the update.
+        /// You must first cancel or let it finish unsuccessfully before you can
+        /// rollback.
+        pub async fn rollback_aws_node_pool_update(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RollbackAwsNodePoolUpdateRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/RollbackAwsNodePoolUpdate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "RollbackAwsNodePoolUpdate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific
+        /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+        pub async fn get_aws_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAwsNodePoolRequest>,
+        ) -> std::result::Result<tonic::Response<super::AwsNodePool>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GetAwsNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+        /// resources on a given
+        /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+        pub async fn list_aws_node_pools(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAwsNodePoolsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAwsNodePoolsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/ListAwsNodePools",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "ListAwsNodePools",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+        /// resource.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_aws_node_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAwsNodePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/DeleteAwsNodePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "DeleteAwsNodePool",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the OIDC discovery document for the cluster.
+        /// See the
+        /// [OpenID Connect Discovery 1.0
+        /// specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+        /// for details.
+        pub async fn get_aws_open_id_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAwsOpenIdConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::AwsOpenIdConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsOpenIdConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GetAwsOpenIdConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the public component of the cluster signing keys in
+        /// JSON Web Key format.
+        pub async fn get_aws_json_web_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAwsJsonWebKeysRequest>,
+        ) -> std::result::Result<tonic::Response<super::AwsJsonWebKeys>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsJsonWebKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GetAwsJsonWebKeys",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns information, such as supported AWS regions and Kubernetes
+        /// versions, on a given Google Cloud location.
+        pub async fn get_aws_server_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAwsServerConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::AwsServerConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AwsClusters/GetAwsServerConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AwsClusters",
+                "GetAwsServerConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedCluster {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub oidc_config: ::core::option::Option<AttachedOidcConfig>,
-#[prost(string, tag = "4")]
-pub platform_version: ::prost::alloc::string::String,
-#[prost(string, tag = "16")]
-pub distribution: ::prost::alloc::string::String,
-#[prost(string, tag = "22")]
-pub cluster_region: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub fleet: ::core::option::Option<Fleet>,
-#[prost(enumeration = "attached_cluster::State", tag = "6")]
-pub state: i32,
-#[prost(string, tag = "7")]
-pub uid: ::prost::alloc::string::String,
-#[prost(bool, tag = "8")]
-pub reconciling: bool,
-#[prost(message, optional, tag = "9")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "10")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "11")]
-pub etag: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub kubernetes_version: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "13")]
-pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "14")]
-pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
-#[prost(message, optional, tag = "15")]
-pub logging_config: ::core::option::Option<LoggingConfig>,
-#[prost(message, repeated, tag = "20")]
-pub errors: ::prost::alloc::vec::Vec<AttachedClusterError>,
-#[prost(message, optional, tag = "21")]
-pub authorization: ::core::option::Option<AttachedClustersAuthorization>,
-#[prost(message, optional, tag = "23")]
-pub monitoring_config: ::core::option::Option<MonitoringConfig>,
-#[prost(message, optional, tag = "24")]
-pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
-#[prost(message, optional, tag = "25")]
-pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub oidc_config: ::core::option::Option<AttachedOidcConfig>,
+    #[prost(string, tag = "4")]
+    pub platform_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "16")]
+    pub distribution: ::prost::alloc::string::String,
+    #[prost(string, tag = "22")]
+    pub cluster_region: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub fleet: ::core::option::Option<Fleet>,
+    #[prost(enumeration = "attached_cluster::State", tag = "6")]
+    pub state: i32,
+    #[prost(string, tag = "7")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(bool, tag = "8")]
+    pub reconciling: bool,
+    #[prost(message, optional, tag = "9")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "11")]
+    pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub kubernetes_version: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "13")]
+    pub annotations: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "14")]
+    pub workload_identity_config: ::core::option::Option<WorkloadIdentityConfig>,
+    #[prost(message, optional, tag = "15")]
+    pub logging_config: ::core::option::Option<LoggingConfig>,
+    #[prost(message, repeated, tag = "20")]
+    pub errors: ::prost::alloc::vec::Vec<AttachedClusterError>,
+    #[prost(message, optional, tag = "21")]
+    pub authorization: ::core::option::Option<AttachedClustersAuthorization>,
+    #[prost(message, optional, tag = "23")]
+    pub monitoring_config: ::core::option::Option<MonitoringConfig>,
+    #[prost(message, optional, tag = "24")]
+    pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
+    #[prost(message, optional, tag = "25")]
+    pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
 }
 /// Nested message and enum types in `AttachedCluster`.
 pub mod attached_cluster {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Provisioning = 1,
-Running = 2,
-Reconciling = 3,
-Stopping = 4,
-Error = 5,
-Degraded = 6,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Provisioning => "PROVISIONING",
-State::Running => "RUNNING",
-State::Reconciling => "RECONCILING",
-State::Stopping => "STOPPING",
-State::Error => "ERROR",
-State::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PROVISIONING" => Some(Self::Provisioning),
-"RUNNING" => Some(Self::Running),
-"RECONCILING" => Some(Self::Reconciling),
-"STOPPING" => Some(Self::Stopping),
-"ERROR" => Some(Self::Error),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Provisioning = 1,
+        Running = 2,
+        Reconciling = 3,
+        Stopping = 4,
+        Error = 5,
+        Degraded = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Provisioning => "PROVISIONING",
+                State::Running => "RUNNING",
+                State::Reconciling => "RECONCILING",
+                State::Stopping => "STOPPING",
+                State::Error => "ERROR",
+                State::Degraded => "DEGRADED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "RUNNING" => Some(Self::Running),
+                "RECONCILING" => Some(Self::Reconciling),
+                "STOPPING" => Some(Self::Stopping),
+                "ERROR" => Some(Self::Error),
+                "DEGRADED" => Some(Self::Degraded),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedClustersAuthorization {
-#[prost(message, repeated, tag = "1")]
-pub admin_users: ::prost::alloc::vec::Vec<AttachedClusterUser>,
-#[prost(message, repeated, tag = "2")]
-pub admin_groups: ::prost::alloc::vec::Vec<AttachedClusterGroup>,
+    #[prost(message, repeated, tag = "1")]
+    pub admin_users: ::prost::alloc::vec::Vec<AttachedClusterUser>,
+    #[prost(message, repeated, tag = "2")]
+    pub admin_groups: ::prost::alloc::vec::Vec<AttachedClusterGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedClusterUser {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub username: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedClusterGroup {
-#[prost(string, tag = "1")]
-pub group: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub group: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedOidcConfig {
-#[prost(string, tag = "1")]
-pub issuer_url: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "2")]
-pub jwks: ::prost::bytes::Bytes,
+    #[prost(string, tag = "1")]
+    pub issuer_url: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub jwks: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedServerConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub valid_versions: ::prost::alloc::vec::Vec<AttachedPlatformVersionInfo>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub valid_versions: ::prost::alloc::vec::Vec<AttachedPlatformVersionInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedPlatformVersionInfo {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedClusterError {
-#[prost(string, tag = "1")]
-pub message: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttachedProxyConfig {
-#[prost(message, optional, tag = "1")]
-pub kubernetes_secret: ::core::option::Option<KubernetesSecret>,
+    #[prost(message, optional, tag = "1")]
+    pub kubernetes_secret: ::core::option::Option<KubernetesSecret>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KubernetesSecret {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub namespace: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAttachedClusterInstallManifestRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub attached_cluster_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub platform_version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub attached_cluster_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub platform_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAttachedClusterInstallManifestResponse {
-#[prost(string, tag = "1")]
-pub manifest: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub manifest: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAttachedClusterRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub attached_cluster: ::core::option::Option<AttachedCluster>,
-#[prost(string, tag = "3")]
-pub attached_cluster_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub attached_cluster: ::core::option::Option<AttachedCluster>,
+    #[prost(string, tag = "3")]
+    pub attached_cluster_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAttachedClusterRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(string, tag = "3")]
-pub fleet_membership: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub platform_version: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub distribution: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(string, tag = "3")]
+    pub fleet_membership: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub platform_version: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub distribution: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub proxy_config: ::core::option::Option<AttachedProxyConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAttachedClusterRequest {
-#[prost(message, optional, tag = "1")]
-pub attached_cluster: ::core::option::Option<AttachedCluster>,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub attached_cluster: ::core::option::Option<AttachedCluster>,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAttachedClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAttachedClustersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAttachedClustersResponse {
-#[prost(message, repeated, tag = "1")]
-pub attached_clusters: ::prost::alloc::vec::Vec<AttachedCluster>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub attached_clusters: ::prost::alloc::vec::Vec<AttachedCluster>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAttachedClusterRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub validate_only: bool,
-#[prost(bool, tag = "3")]
-pub allow_missing: bool,
-#[prost(bool, tag = "5")]
-pub ignore_errors: bool,
-#[prost(string, tag = "4")]
-pub etag: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub validate_only: bool,
+    #[prost(bool, tag = "3")]
+    pub allow_missing: bool,
+    #[prost(bool, tag = "5")]
+    pub ignore_errors: bool,
+    #[prost(string, tag = "4")]
+    pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAttachedServerConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAttachedClusterAgentTokenRequest {
-#[prost(string, tag = "1")]
-pub attached_cluster: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub subject_token: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub subject_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub grant_type: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub audience: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub scope: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub requested_token_type: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub options: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub attached_cluster: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub subject_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub subject_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub grant_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub scope: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub requested_token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub options: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAttachedClusterAgentTokenResponse {
-#[prost(string, tag = "1")]
-pub access_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub expires_in: i32,
-#[prost(string, tag = "3")]
-pub token_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub access_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub expires_in: i32,
+    #[prost(string, tag = "3")]
+    pub token_type: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod attached_clusters_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The AttachedClusters API provides a single centrally managed service
-/// to register and manage Anthos attached clusters that run on customer's owned
-/// infrastructure.
-#[derive(Debug, Clone)]
-pub struct AttachedClustersClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AttachedClustersClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AttachedClustersClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AttachedClustersClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new
-/// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-/// on a given Google Cloud Platform project and region.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn create_attached_cluster(&mut self, request: impl tonic::IntoRequest<super::CreateAttachedClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/CreateAttachedCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "CreateAttachedCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates an
-/// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster].
-pub async fn update_attached_cluster(&mut self, request: impl tonic::IntoRequest<super::UpdateAttachedClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/UpdateAttachedCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "UpdateAttachedCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Imports creates a new
-/// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-/// by importing an existing Fleet Membership resource.
-///
-/// Attached Clusters created before the introduction of the Anthos Multi-Cloud
-/// API can be imported through this method.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn import_attached_cluster(&mut self, request: impl tonic::IntoRequest<super::ImportAttachedClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/ImportAttachedCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "ImportAttachedCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Describes a specific
-/// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
-pub async fn get_attached_cluster(&mut self, request: impl tonic::IntoRequest<super::GetAttachedClusterRequest>) -> std::result::Result<tonic::Response<super::AttachedCluster>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "GetAttachedCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
-/// resources on a given Google Cloud project and region.
-pub async fn list_attached_clusters(&mut self, request: impl tonic::IntoRequest<super::ListAttachedClustersRequest>) -> std::result::Result<tonic::Response<super::ListAttachedClustersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/ListAttachedClusters");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "ListAttachedClusters"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a specific
-/// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
-///
-/// If successful, the response contains a newly created
-/// [Operation][google.longrunning.Operation] resource that can be
-/// described to track the status of the operation.
-pub async fn delete_attached_cluster(&mut self, request: impl tonic::IntoRequest<super::DeleteAttachedClusterRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/DeleteAttachedCluster");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "DeleteAttachedCluster"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns information, such as supported Kubernetes versions, on a given
-/// Google Cloud location.
-pub async fn get_attached_server_config(&mut self, request: impl tonic::IntoRequest<super::GetAttachedServerConfigRequest>) -> std::result::Result<tonic::Response<super::AttachedServerConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedServerConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "GetAttachedServerConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates the install manifest to be installed on the target cluster.
-pub async fn generate_attached_cluster_install_manifest(&mut self, request: impl tonic::IntoRequest<super::GenerateAttachedClusterInstallManifestRequest>) -> std::result::Result<tonic::Response<super::GenerateAttachedClusterInstallManifestResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "GenerateAttachedClusterInstallManifest"));
-self.inner.unary(req, path, codec).await
-}
-/// Generates an access token for a cluster agent.
-pub async fn generate_attached_cluster_agent_token(&mut self, request: impl tonic::IntoRequest<super::GenerateAttachedClusterAgentTokenRequest>) -> std::result::Result<tonic::Response<super::GenerateAttachedClusterAgentTokenResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkemulticloud.v1.AttachedClusters", "GenerateAttachedClusterAgentToken"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The AttachedClusters API provides a single centrally managed service
+    /// to register and manage Anthos attached clusters that run on customer's owned
+    /// infrastructure.
+    #[derive(Debug, Clone)]
+    pub struct AttachedClustersClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AttachedClustersClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AttachedClustersClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AttachedClustersClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new
+        /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+        /// on a given Google Cloud Platform project and region.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn create_attached_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAttachedClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/CreateAttachedCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "CreateAttachedCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an
+        /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster].
+        pub async fn update_attached_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAttachedClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/UpdateAttachedCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "UpdateAttachedCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports creates a new
+        /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+        /// by importing an existing Fleet Membership resource.
+        ///
+        /// Attached Clusters created before the introduction of the Anthos Multi-Cloud
+        /// API can be imported through this method.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn import_attached_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportAttachedClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/ImportAttachedCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "ImportAttachedCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Describes a specific
+        /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
+        pub async fn get_attached_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAttachedClusterRequest>,
+        ) -> std::result::Result<tonic::Response<super::AttachedCluster>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "GetAttachedCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
+        /// resources on a given Google Cloud project and region.
+        pub async fn list_attached_clusters(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAttachedClustersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAttachedClustersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/ListAttachedClusters",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "ListAttachedClusters",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific
+        /// [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
+        ///
+        /// If successful, the response contains a newly created
+        /// [Operation][google.longrunning.Operation] resource that can be
+        /// described to track the status of the operation.
+        pub async fn delete_attached_cluster(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAttachedClusterRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/DeleteAttachedCluster",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "DeleteAttachedCluster",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns information, such as supported Kubernetes versions, on a given
+        /// Google Cloud location.
+        pub async fn get_attached_server_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAttachedServerConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::AttachedServerConfig>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedServerConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "GetAttachedServerConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates the install manifest to be installed on the target cluster.
+        pub async fn generate_attached_cluster_install_manifest(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAttachedClusterInstallManifestRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAttachedClusterInstallManifestResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "GenerateAttachedClusterInstallManifest",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Generates an access token for a cluster agent.
+        pub async fn generate_attached_cluster_agent_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateAttachedClusterAgentTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAttachedClusterAgentTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.gkemulticloud.v1.AttachedClusters",
+                "GenerateAttachedClusterAgentToken",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

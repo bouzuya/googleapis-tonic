@@ -2,565 +2,623 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TroubleshootIamPolicyRequest {
-#[prost(message, optional, tag = "1")]
-pub access_tuple: ::core::option::Option<AccessTuple>,
+    #[prost(message, optional, tag = "1")]
+    pub access_tuple: ::core::option::Option<AccessTuple>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TroubleshootIamPolicyResponse {
-#[prost(enumeration = "troubleshoot_iam_policy_response::OverallAccessState", tag = "1")]
-pub overall_access_state: i32,
-#[prost(message, optional, tag = "2")]
-pub access_tuple: ::core::option::Option<AccessTuple>,
-#[prost(message, optional, tag = "3")]
-pub allow_policy_explanation: ::core::option::Option<AllowPolicyExplanation>,
-#[prost(message, optional, tag = "4")]
-pub deny_policy_explanation: ::core::option::Option<DenyPolicyExplanation>,
+    #[prost(
+        enumeration = "troubleshoot_iam_policy_response::OverallAccessState",
+        tag = "1"
+    )]
+    pub overall_access_state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub access_tuple: ::core::option::Option<AccessTuple>,
+    #[prost(message, optional, tag = "3")]
+    pub allow_policy_explanation: ::core::option::Option<AllowPolicyExplanation>,
+    #[prost(message, optional, tag = "4")]
+    pub deny_policy_explanation: ::core::option::Option<DenyPolicyExplanation>,
 }
 /// Nested message and enum types in `TroubleshootIamPolicyResponse`.
 pub mod troubleshoot_iam_policy_response {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum OverallAccessState {
-Unspecified = 0,
-CanAccess = 1,
-CannotAccess = 2,
-UnknownInfo = 3,
-UnknownConditional = 4,
-}
-impl OverallAccessState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-OverallAccessState::Unspecified => "OVERALL_ACCESS_STATE_UNSPECIFIED",
-OverallAccessState::CanAccess => "CAN_ACCESS",
-OverallAccessState::CannotAccess => "CANNOT_ACCESS",
-OverallAccessState::UnknownInfo => "UNKNOWN_INFO",
-OverallAccessState::UnknownConditional => "UNKNOWN_CONDITIONAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OVERALL_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CAN_ACCESS" => Some(Self::CanAccess),
-"CANNOT_ACCESS" => Some(Self::CannotAccess),
-"UNKNOWN_INFO" => Some(Self::UnknownInfo),
-"UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum OverallAccessState {
+        Unspecified = 0,
+        CanAccess = 1,
+        CannotAccess = 2,
+        UnknownInfo = 3,
+        UnknownConditional = 4,
+    }
+    impl OverallAccessState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                OverallAccessState::Unspecified => "OVERALL_ACCESS_STATE_UNSPECIFIED",
+                OverallAccessState::CanAccess => "CAN_ACCESS",
+                OverallAccessState::CannotAccess => "CANNOT_ACCESS",
+                OverallAccessState::UnknownInfo => "UNKNOWN_INFO",
+                OverallAccessState::UnknownConditional => "UNKNOWN_CONDITIONAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OVERALL_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CAN_ACCESS" => Some(Self::CanAccess),
+                "CANNOT_ACCESS" => Some(Self::CannotAccess),
+                "UNKNOWN_INFO" => Some(Self::UnknownInfo),
+                "UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessTuple {
-#[prost(string, tag = "1")]
-pub principal: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub full_resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub permission: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub permission_fqdn: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub condition_context: ::core::option::Option<ConditionContext>,
+    #[prost(string, tag = "1")]
+    pub principal: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub full_resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub permission: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub permission_fqdn: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub condition_context: ::core::option::Option<ConditionContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConditionContext {
-#[prost(message, optional, tag = "1")]
-pub resource: ::core::option::Option<condition_context::Resource>,
-#[prost(message, optional, tag = "2")]
-pub destination: ::core::option::Option<condition_context::Peer>,
-#[prost(message, optional, tag = "3")]
-pub request: ::core::option::Option<condition_context::Request>,
-#[prost(message, repeated, tag = "4")]
-pub effective_tags: ::prost::alloc::vec::Vec<condition_context::EffectiveTag>,
+    #[prost(message, optional, tag = "1")]
+    pub resource: ::core::option::Option<condition_context::Resource>,
+    #[prost(message, optional, tag = "2")]
+    pub destination: ::core::option::Option<condition_context::Peer>,
+    #[prost(message, optional, tag = "3")]
+    pub request: ::core::option::Option<condition_context::Request>,
+    #[prost(message, repeated, tag = "4")]
+    pub effective_tags: ::prost::alloc::vec::Vec<condition_context::EffectiveTag>,
 }
 /// Nested message and enum types in `ConditionContext`.
 pub mod condition_context {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Resource {
-#[prost(string, tag = "1")]
-pub service: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub r#type: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Peer {
-#[prost(string, tag = "1")]
-pub ip: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub port: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Request {
-#[prost(message, optional, tag = "1")]
-pub receive_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EffectiveTag {
-#[prost(string, tag = "1")]
-pub tag_value: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub namespaced_tag_value: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub tag_key: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub namespaced_tag_key: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub tag_key_parent_name: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub inherited: bool,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Resource {
+        #[prost(string, tag = "1")]
+        pub service: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub r#type: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Peer {
+        #[prost(string, tag = "1")]
+        pub ip: ::prost::alloc::string::String,
+        #[prost(int64, tag = "2")]
+        pub port: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Request {
+        #[prost(message, optional, tag = "1")]
+        pub receive_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EffectiveTag {
+        #[prost(string, tag = "1")]
+        pub tag_value: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub namespaced_tag_value: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub tag_key: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub namespaced_tag_key: ::prost::alloc::string::String,
+        #[prost(string, tag = "6")]
+        pub tag_key_parent_name: ::prost::alloc::string::String,
+        #[prost(bool, tag = "5")]
+        pub inherited: bool,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllowPolicyExplanation {
-#[prost(enumeration = "AllowAccessState", tag = "1")]
-pub allow_access_state: i32,
-#[prost(message, repeated, tag = "2")]
-pub explained_policies: ::prost::alloc::vec::Vec<ExplainedAllowPolicy>,
-#[prost(enumeration = "HeuristicRelevance", tag = "3")]
-pub relevance: i32,
+    #[prost(enumeration = "AllowAccessState", tag = "1")]
+    pub allow_access_state: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub explained_policies: ::prost::alloc::vec::Vec<ExplainedAllowPolicy>,
+    #[prost(enumeration = "HeuristicRelevance", tag = "3")]
+    pub relevance: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplainedAllowPolicy {
-#[prost(enumeration = "AllowAccessState", tag = "1")]
-pub allow_access_state: i32,
-#[prost(string, tag = "2")]
-pub full_resource_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub binding_explanations: ::prost::alloc::vec::Vec<AllowBindingExplanation>,
-#[prost(enumeration = "HeuristicRelevance", tag = "4")]
-pub relevance: i32,
-#[prost(message, optional, tag = "5")]
-pub policy: ::core::option::Option<super::super::super::super::iam::v1::Policy>,
+    #[prost(enumeration = "AllowAccessState", tag = "1")]
+    pub allow_access_state: i32,
+    #[prost(string, tag = "2")]
+    pub full_resource_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub binding_explanations: ::prost::alloc::vec::Vec<AllowBindingExplanation>,
+    #[prost(enumeration = "HeuristicRelevance", tag = "4")]
+    pub relevance: i32,
+    #[prost(message, optional, tag = "5")]
+    pub policy: ::core::option::Option<super::super::super::super::iam::v1::Policy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllowBindingExplanation {
-#[prost(enumeration = "AllowAccessState", tag = "1")]
-pub allow_access_state: i32,
-#[prost(string, tag = "2")]
-pub role: ::prost::alloc::string::String,
-#[prost(enumeration = "RolePermissionInclusionState", tag = "3")]
-pub role_permission: i32,
-#[prost(enumeration = "HeuristicRelevance", tag = "4")]
-pub role_permission_relevance: i32,
-#[prost(message, optional, tag = "5")]
-pub combined_membership: ::core::option::Option<allow_binding_explanation::AnnotatedAllowMembership>,
-#[prost(btree_map = "string, message", tag = "6")]
-pub memberships: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, allow_binding_explanation::AnnotatedAllowMembership>,
-#[prost(enumeration = "HeuristicRelevance", tag = "7")]
-pub relevance: i32,
-#[prost(message, optional, tag = "8")]
-pub condition: ::core::option::Option<super::super::super::super::r#type::Expr>,
-#[prost(message, optional, tag = "9")]
-pub condition_explanation: ::core::option::Option<ConditionExplanation>,
+    #[prost(enumeration = "AllowAccessState", tag = "1")]
+    pub allow_access_state: i32,
+    #[prost(string, tag = "2")]
+    pub role: ::prost::alloc::string::String,
+    #[prost(enumeration = "RolePermissionInclusionState", tag = "3")]
+    pub role_permission: i32,
+    #[prost(enumeration = "HeuristicRelevance", tag = "4")]
+    pub role_permission_relevance: i32,
+    #[prost(message, optional, tag = "5")]
+    pub combined_membership:
+        ::core::option::Option<allow_binding_explanation::AnnotatedAllowMembership>,
+    #[prost(btree_map = "string, message", tag = "6")]
+    pub memberships: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        allow_binding_explanation::AnnotatedAllowMembership,
+    >,
+    #[prost(enumeration = "HeuristicRelevance", tag = "7")]
+    pub relevance: i32,
+    #[prost(message, optional, tag = "8")]
+    pub condition: ::core::option::Option<super::super::super::super::r#type::Expr>,
+    #[prost(message, optional, tag = "9")]
+    pub condition_explanation: ::core::option::Option<ConditionExplanation>,
 }
 /// Nested message and enum types in `AllowBindingExplanation`.
 pub mod allow_binding_explanation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AnnotatedAllowMembership {
-#[prost(enumeration = "super::MembershipMatchingState", tag = "1")]
-pub membership: i32,
-#[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
-pub relevance: i32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AnnotatedAllowMembership {
+        #[prost(enumeration = "super::MembershipMatchingState", tag = "1")]
+        pub membership: i32,
+        #[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
+        pub relevance: i32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DenyPolicyExplanation {
-#[prost(enumeration = "DenyAccessState", tag = "1")]
-pub deny_access_state: i32,
-#[prost(message, repeated, tag = "2")]
-pub explained_resources: ::prost::alloc::vec::Vec<ExplainedDenyResource>,
-#[prost(enumeration = "HeuristicRelevance", tag = "3")]
-pub relevance: i32,
-#[prost(bool, tag = "4")]
-pub permission_deniable: bool,
+    #[prost(enumeration = "DenyAccessState", tag = "1")]
+    pub deny_access_state: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub explained_resources: ::prost::alloc::vec::Vec<ExplainedDenyResource>,
+    #[prost(enumeration = "HeuristicRelevance", tag = "3")]
+    pub relevance: i32,
+    #[prost(bool, tag = "4")]
+    pub permission_deniable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplainedDenyResource {
-#[prost(enumeration = "DenyAccessState", tag = "1")]
-pub deny_access_state: i32,
-#[prost(string, tag = "2")]
-pub full_resource_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub explained_policies: ::prost::alloc::vec::Vec<ExplainedDenyPolicy>,
-#[prost(enumeration = "HeuristicRelevance", tag = "4")]
-pub relevance: i32,
+    #[prost(enumeration = "DenyAccessState", tag = "1")]
+    pub deny_access_state: i32,
+    #[prost(string, tag = "2")]
+    pub full_resource_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub explained_policies: ::prost::alloc::vec::Vec<ExplainedDenyPolicy>,
+    #[prost(enumeration = "HeuristicRelevance", tag = "4")]
+    pub relevance: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplainedDenyPolicy {
-#[prost(enumeration = "DenyAccessState", tag = "1")]
-pub deny_access_state: i32,
-#[prost(message, optional, tag = "2")]
-pub policy: ::core::option::Option<super::super::super::super::iam::v2::Policy>,
-#[prost(message, repeated, tag = "3")]
-pub rule_explanations: ::prost::alloc::vec::Vec<DenyRuleExplanation>,
-#[prost(enumeration = "HeuristicRelevance", tag = "4")]
-pub relevance: i32,
+    #[prost(enumeration = "DenyAccessState", tag = "1")]
+    pub deny_access_state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub policy: ::core::option::Option<super::super::super::super::iam::v2::Policy>,
+    #[prost(message, repeated, tag = "3")]
+    pub rule_explanations: ::prost::alloc::vec::Vec<DenyRuleExplanation>,
+    #[prost(enumeration = "HeuristicRelevance", tag = "4")]
+    pub relevance: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DenyRuleExplanation {
-#[prost(enumeration = "DenyAccessState", tag = "1")]
-pub deny_access_state: i32,
-#[prost(message, optional, tag = "2")]
-pub combined_denied_permission: ::core::option::Option<deny_rule_explanation::AnnotatedPermissionMatching>,
-#[prost(btree_map = "string, message", tag = "3")]
-pub denied_permissions: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, deny_rule_explanation::AnnotatedPermissionMatching>,
-#[prost(message, optional, tag = "4")]
-pub combined_exception_permission: ::core::option::Option<deny_rule_explanation::AnnotatedPermissionMatching>,
-#[prost(btree_map = "string, message", tag = "5")]
-pub exception_permissions: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, deny_rule_explanation::AnnotatedPermissionMatching>,
-#[prost(message, optional, tag = "6")]
-pub combined_denied_principal: ::core::option::Option<deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
-#[prost(btree_map = "string, message", tag = "7")]
-pub denied_principals: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
-#[prost(message, optional, tag = "8")]
-pub combined_exception_principal: ::core::option::Option<deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
-#[prost(btree_map = "string, message", tag = "9")]
-pub exception_principals: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
-#[prost(enumeration = "HeuristicRelevance", tag = "10")]
-pub relevance: i32,
-#[prost(message, optional, tag = "11")]
-pub condition: ::core::option::Option<super::super::super::super::r#type::Expr>,
-#[prost(message, optional, tag = "12")]
-pub condition_explanation: ::core::option::Option<ConditionExplanation>,
+    #[prost(enumeration = "DenyAccessState", tag = "1")]
+    pub deny_access_state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub combined_denied_permission:
+        ::core::option::Option<deny_rule_explanation::AnnotatedPermissionMatching>,
+    #[prost(btree_map = "string, message", tag = "3")]
+    pub denied_permissions: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        deny_rule_explanation::AnnotatedPermissionMatching,
+    >,
+    #[prost(message, optional, tag = "4")]
+    pub combined_exception_permission:
+        ::core::option::Option<deny_rule_explanation::AnnotatedPermissionMatching>,
+    #[prost(btree_map = "string, message", tag = "5")]
+    pub exception_permissions: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        deny_rule_explanation::AnnotatedPermissionMatching,
+    >,
+    #[prost(message, optional, tag = "6")]
+    pub combined_denied_principal:
+        ::core::option::Option<deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
+    #[prost(btree_map = "string, message", tag = "7")]
+    pub denied_principals: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        deny_rule_explanation::AnnotatedDenyPrincipalMatching,
+    >,
+    #[prost(message, optional, tag = "8")]
+    pub combined_exception_principal:
+        ::core::option::Option<deny_rule_explanation::AnnotatedDenyPrincipalMatching>,
+    #[prost(btree_map = "string, message", tag = "9")]
+    pub exception_principals: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        deny_rule_explanation::AnnotatedDenyPrincipalMatching,
+    >,
+    #[prost(enumeration = "HeuristicRelevance", tag = "10")]
+    pub relevance: i32,
+    #[prost(message, optional, tag = "11")]
+    pub condition: ::core::option::Option<super::super::super::super::r#type::Expr>,
+    #[prost(message, optional, tag = "12")]
+    pub condition_explanation: ::core::option::Option<ConditionExplanation>,
 }
 /// Nested message and enum types in `DenyRuleExplanation`.
 pub mod deny_rule_explanation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AnnotatedPermissionMatching {
-#[prost(enumeration = "super::PermissionPatternMatchingState", tag = "1")]
-pub permission_matching_state: i32,
-#[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
-pub relevance: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AnnotatedDenyPrincipalMatching {
-#[prost(enumeration = "super::MembershipMatchingState", tag = "1")]
-pub membership: i32,
-#[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
-pub relevance: i32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AnnotatedPermissionMatching {
+        #[prost(enumeration = "super::PermissionPatternMatchingState", tag = "1")]
+        pub permission_matching_state: i32,
+        #[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
+        pub relevance: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AnnotatedDenyPrincipalMatching {
+        #[prost(enumeration = "super::MembershipMatchingState", tag = "1")]
+        pub membership: i32,
+        #[prost(enumeration = "super::HeuristicRelevance", tag = "2")]
+        pub relevance: i32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConditionExplanation {
-#[prost(message, optional, tag = "1")]
-pub value: ::core::option::Option<::prost_types::Value>,
-#[prost(message, repeated, tag = "3")]
-pub errors: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
-#[prost(message, repeated, tag = "2")]
-pub evaluation_states: ::prost::alloc::vec::Vec<condition_explanation::EvaluationState>,
+    #[prost(message, optional, tag = "1")]
+    pub value: ::core::option::Option<::prost_types::Value>,
+    #[prost(message, repeated, tag = "3")]
+    pub errors: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+    #[prost(message, repeated, tag = "2")]
+    pub evaluation_states: ::prost::alloc::vec::Vec<condition_explanation::EvaluationState>,
 }
 /// Nested message and enum types in `ConditionExplanation`.
 pub mod condition_explanation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EvaluationState {
-#[prost(int32, tag = "1")]
-pub start: i32,
-#[prost(int32, tag = "2")]
-pub end: i32,
-#[prost(message, optional, tag = "3")]
-pub value: ::core::option::Option<::prost_types::Value>,
-#[prost(message, repeated, tag = "4")]
-pub errors: ::prost::alloc::vec::Vec<super::super::super::super::super::rpc::Status>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EvaluationState {
+        #[prost(int32, tag = "1")]
+        pub start: i32,
+        #[prost(int32, tag = "2")]
+        pub end: i32,
+        #[prost(message, optional, tag = "3")]
+        pub value: ::core::option::Option<::prost_types::Value>,
+        #[prost(message, repeated, tag = "4")]
+        pub errors: ::prost::alloc::vec::Vec<super::super::super::super::super::rpc::Status>,
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AllowAccessState {
-Unspecified = 0,
-Granted = 1,
-NotGranted = 2,
-UnknownConditional = 3,
-UnknownInfo = 4,
+    Unspecified = 0,
+    Granted = 1,
+    NotGranted = 2,
+    UnknownConditional = 3,
+    UnknownInfo = 4,
 }
 impl AllowAccessState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AllowAccessState::Unspecified => "ALLOW_ACCESS_STATE_UNSPECIFIED",
-AllowAccessState::Granted => "ALLOW_ACCESS_STATE_GRANTED",
-AllowAccessState::NotGranted => "ALLOW_ACCESS_STATE_NOT_GRANTED",
-AllowAccessState::UnknownConditional => "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL",
-AllowAccessState::UnknownInfo => "ALLOW_ACCESS_STATE_UNKNOWN_INFO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ALLOW_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALLOW_ACCESS_STATE_GRANTED" => Some(Self::Granted),
-"ALLOW_ACCESS_STATE_NOT_GRANTED" => Some(Self::NotGranted),
-"ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
-"ALLOW_ACCESS_STATE_UNKNOWN_INFO" => Some(Self::UnknownInfo),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AllowAccessState::Unspecified => "ALLOW_ACCESS_STATE_UNSPECIFIED",
+            AllowAccessState::Granted => "ALLOW_ACCESS_STATE_GRANTED",
+            AllowAccessState::NotGranted => "ALLOW_ACCESS_STATE_NOT_GRANTED",
+            AllowAccessState::UnknownConditional => "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL",
+            AllowAccessState::UnknownInfo => "ALLOW_ACCESS_STATE_UNKNOWN_INFO",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ALLOW_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ALLOW_ACCESS_STATE_GRANTED" => Some(Self::Granted),
+            "ALLOW_ACCESS_STATE_NOT_GRANTED" => Some(Self::NotGranted),
+            "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
+            "ALLOW_ACCESS_STATE_UNKNOWN_INFO" => Some(Self::UnknownInfo),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DenyAccessState {
-Unspecified = 0,
-Denied = 1,
-NotDenied = 2,
-UnknownConditional = 3,
-UnknownInfo = 4,
+    Unspecified = 0,
+    Denied = 1,
+    NotDenied = 2,
+    UnknownConditional = 3,
+    UnknownInfo = 4,
 }
 impl DenyAccessState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DenyAccessState::Unspecified => "DENY_ACCESS_STATE_UNSPECIFIED",
-DenyAccessState::Denied => "DENY_ACCESS_STATE_DENIED",
-DenyAccessState::NotDenied => "DENY_ACCESS_STATE_NOT_DENIED",
-DenyAccessState::UnknownConditional => "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL",
-DenyAccessState::UnknownInfo => "DENY_ACCESS_STATE_UNKNOWN_INFO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DENY_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"DENY_ACCESS_STATE_DENIED" => Some(Self::Denied),
-"DENY_ACCESS_STATE_NOT_DENIED" => Some(Self::NotDenied),
-"DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
-"DENY_ACCESS_STATE_UNKNOWN_INFO" => Some(Self::UnknownInfo),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DenyAccessState::Unspecified => "DENY_ACCESS_STATE_UNSPECIFIED",
+            DenyAccessState::Denied => "DENY_ACCESS_STATE_DENIED",
+            DenyAccessState::NotDenied => "DENY_ACCESS_STATE_NOT_DENIED",
+            DenyAccessState::UnknownConditional => "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL",
+            DenyAccessState::UnknownInfo => "DENY_ACCESS_STATE_UNKNOWN_INFO",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DENY_ACCESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "DENY_ACCESS_STATE_DENIED" => Some(Self::Denied),
+            "DENY_ACCESS_STATE_NOT_DENIED" => Some(Self::NotDenied),
+            "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL" => Some(Self::UnknownConditional),
+            "DENY_ACCESS_STATE_UNKNOWN_INFO" => Some(Self::UnknownInfo),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RolePermissionInclusionState {
-Unspecified = 0,
-RolePermissionIncluded = 1,
-RolePermissionNotIncluded = 2,
-RolePermissionUnknownInfo = 3,
+    Unspecified = 0,
+    RolePermissionIncluded = 1,
+    RolePermissionNotIncluded = 2,
+    RolePermissionUnknownInfo = 3,
 }
 impl RolePermissionInclusionState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RolePermissionInclusionState::Unspecified => "ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED",
-RolePermissionInclusionState::RolePermissionIncluded => "ROLE_PERMISSION_INCLUDED",
-RolePermissionInclusionState::RolePermissionNotIncluded => "ROLE_PERMISSION_NOT_INCLUDED",
-RolePermissionInclusionState::RolePermissionUnknownInfo => "ROLE_PERMISSION_UNKNOWN_INFO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"ROLE_PERMISSION_INCLUDED" => Some(Self::RolePermissionIncluded),
-"ROLE_PERMISSION_NOT_INCLUDED" => Some(Self::RolePermissionNotIncluded),
-"ROLE_PERMISSION_UNKNOWN_INFO" => Some(Self::RolePermissionUnknownInfo),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            RolePermissionInclusionState::Unspecified => {
+                "ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED"
+            }
+            RolePermissionInclusionState::RolePermissionIncluded => "ROLE_PERMISSION_INCLUDED",
+            RolePermissionInclusionState::RolePermissionNotIncluded => {
+                "ROLE_PERMISSION_NOT_INCLUDED"
+            }
+            RolePermissionInclusionState::RolePermissionUnknownInfo => {
+                "ROLE_PERMISSION_UNKNOWN_INFO"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "ROLE_PERMISSION_INCLUDED" => Some(Self::RolePermissionIncluded),
+            "ROLE_PERMISSION_NOT_INCLUDED" => Some(Self::RolePermissionNotIncluded),
+            "ROLE_PERMISSION_UNKNOWN_INFO" => Some(Self::RolePermissionUnknownInfo),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PermissionPatternMatchingState {
-Unspecified = 0,
-PermissionPatternMatched = 1,
-PermissionPatternNotMatched = 2,
+    Unspecified = 0,
+    PermissionPatternMatched = 1,
+    PermissionPatternNotMatched = 2,
 }
 impl PermissionPatternMatchingState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PermissionPatternMatchingState::Unspecified => "PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED",
-PermissionPatternMatchingState::PermissionPatternMatched => "PERMISSION_PATTERN_MATCHED",
-PermissionPatternMatchingState::PermissionPatternNotMatched => "PERMISSION_PATTERN_NOT_MATCHED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PERMISSION_PATTERN_MATCHED" => Some(Self::PermissionPatternMatched),
-"PERMISSION_PATTERN_NOT_MATCHED" => Some(Self::PermissionPatternNotMatched),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            PermissionPatternMatchingState::Unspecified => {
+                "PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED"
+            }
+            PermissionPatternMatchingState::PermissionPatternMatched => {
+                "PERMISSION_PATTERN_MATCHED"
+            }
+            PermissionPatternMatchingState::PermissionPatternNotMatched => {
+                "PERMISSION_PATTERN_NOT_MATCHED"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "PERMISSION_PATTERN_MATCHED" => Some(Self::PermissionPatternMatched),
+            "PERMISSION_PATTERN_NOT_MATCHED" => Some(Self::PermissionPatternNotMatched),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MembershipMatchingState {
-Unspecified = 0,
-MembershipMatched = 1,
-MembershipNotMatched = 2,
-MembershipUnknownInfo = 3,
-MembershipUnknownUnsupported = 4,
+    Unspecified = 0,
+    MembershipMatched = 1,
+    MembershipNotMatched = 2,
+    MembershipUnknownInfo = 3,
+    MembershipUnknownUnsupported = 4,
 }
 impl MembershipMatchingState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MembershipMatchingState::Unspecified => "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED",
-MembershipMatchingState::MembershipMatched => "MEMBERSHIP_MATCHED",
-MembershipMatchingState::MembershipNotMatched => "MEMBERSHIP_NOT_MATCHED",
-MembershipMatchingState::MembershipUnknownInfo => "MEMBERSHIP_UNKNOWN_INFO",
-MembershipMatchingState::MembershipUnknownUnsupported => "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MEMBERSHIP_MATCHING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"MEMBERSHIP_MATCHED" => Some(Self::MembershipMatched),
-"MEMBERSHIP_NOT_MATCHED" => Some(Self::MembershipNotMatched),
-"MEMBERSHIP_UNKNOWN_INFO" => Some(Self::MembershipUnknownInfo),
-"MEMBERSHIP_UNKNOWN_UNSUPPORTED" => Some(Self::MembershipUnknownUnsupported),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MembershipMatchingState::Unspecified => "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED",
+            MembershipMatchingState::MembershipMatched => "MEMBERSHIP_MATCHED",
+            MembershipMatchingState::MembershipNotMatched => "MEMBERSHIP_NOT_MATCHED",
+            MembershipMatchingState::MembershipUnknownInfo => "MEMBERSHIP_UNKNOWN_INFO",
+            MembershipMatchingState::MembershipUnknownUnsupported => {
+                "MEMBERSHIP_UNKNOWN_UNSUPPORTED"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MEMBERSHIP_MATCHED" => Some(Self::MembershipMatched),
+            "MEMBERSHIP_NOT_MATCHED" => Some(Self::MembershipNotMatched),
+            "MEMBERSHIP_UNKNOWN_INFO" => Some(Self::MembershipUnknownInfo),
+            "MEMBERSHIP_UNKNOWN_UNSUPPORTED" => Some(Self::MembershipUnknownUnsupported),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HeuristicRelevance {
-Unspecified = 0,
-Normal = 1,
-High = 2,
+    Unspecified = 0,
+    Normal = 1,
+    High = 2,
 }
 impl HeuristicRelevance {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HeuristicRelevance::Unspecified => "HEURISTIC_RELEVANCE_UNSPECIFIED",
-HeuristicRelevance::Normal => "HEURISTIC_RELEVANCE_NORMAL",
-HeuristicRelevance::High => "HEURISTIC_RELEVANCE_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HEURISTIC_RELEVANCE_UNSPECIFIED" => Some(Self::Unspecified),
-"HEURISTIC_RELEVANCE_NORMAL" => Some(Self::Normal),
-"HEURISTIC_RELEVANCE_HIGH" => Some(Self::High),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            HeuristicRelevance::Unspecified => "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            HeuristicRelevance::Normal => "HEURISTIC_RELEVANCE_NORMAL",
+            HeuristicRelevance::High => "HEURISTIC_RELEVANCE_HIGH",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "HEURISTIC_RELEVANCE_UNSPECIFIED" => Some(Self::Unspecified),
+            "HEURISTIC_RELEVANCE_NORMAL" => Some(Self::Normal),
+            "HEURISTIC_RELEVANCE_HIGH" => Some(Self::High),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod policy_troubleshooter_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// IAM Policy Troubleshooter service.
-///
-/// This service helps you troubleshoot access issues for Google Cloud resources.
-#[derive(Debug, Clone)]
-pub struct PolicyTroubleshooterClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> PolicyTroubleshooterClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> PolicyTroubleshooterClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-PolicyTroubleshooterClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Checks whether a principal has a specific permission for a specific
-/// resource, and explains why the principal does or doesn't have that
-/// permission.
-pub async fn troubleshoot_iam_policy(&mut self, request: impl tonic::IntoRequest<super::TroubleshootIamPolicyRequest>) -> std::result::Result<tonic::Response<super::TroubleshootIamPolicyResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.policytroubleshooter.iam.v3beta.PolicyTroubleshooter/TroubleshootIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.policytroubleshooter.iam.v3beta.PolicyTroubleshooter", "TroubleshootIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// IAM Policy Troubleshooter service.
+    ///
+    /// This service helps you troubleshoot access issues for Google Cloud resources.
+    #[derive(Debug, Clone)]
+    pub struct PolicyTroubleshooterClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> PolicyTroubleshooterClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> PolicyTroubleshooterClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            PolicyTroubleshooterClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Checks whether a principal has a specific permission for a specific
+        /// resource, and explains why the principal does or doesn't have that
+        /// permission.
+        pub async fn troubleshoot_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TroubleshootIamPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::TroubleshootIamPolicyResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.policytroubleshooter.iam.v3beta.PolicyTroubleshooter/TroubleshootIamPolicy");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.policytroubleshooter.iam.v3beta.PolicyTroubleshooter",
+                "TroubleshootIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

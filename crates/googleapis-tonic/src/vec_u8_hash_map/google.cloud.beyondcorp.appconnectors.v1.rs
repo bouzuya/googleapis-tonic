@@ -2,404 +2,505 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppConnectorInstanceConfig {
-#[prost(int64, tag = "1")]
-pub sequence_number: i64,
-#[prost(message, optional, tag = "2")]
-pub instance_config: ::core::option::Option<::prost_types::Any>,
-#[prost(message, optional, tag = "3")]
-pub notification_config: ::core::option::Option<NotificationConfig>,
-#[prost(message, optional, tag = "4")]
-pub image_config: ::core::option::Option<ImageConfig>,
+    #[prost(int64, tag = "1")]
+    pub sequence_number: i64,
+    #[prost(message, optional, tag = "2")]
+    pub instance_config: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "3")]
+    pub notification_config: ::core::option::Option<NotificationConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub image_config: ::core::option::Option<ImageConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NotificationConfig {
-#[prost(oneof = "notification_config::Config", tags = "1")]
-pub config: ::core::option::Option<notification_config::Config>,
+    #[prost(oneof = "notification_config::Config", tags = "1")]
+    pub config: ::core::option::Option<notification_config::Config>,
 }
 /// Nested message and enum types in `NotificationConfig`.
 pub mod notification_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CloudPubSubNotificationConfig {
-#[prost(string, tag = "1")]
-pub pubsub_subscription: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Config {
-#[prost(message, tag = "1")]
-PubsubNotification(CloudPubSubNotificationConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CloudPubSubNotificationConfig {
+        #[prost(string, tag = "1")]
+        pub pubsub_subscription: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Config {
+        #[prost(message, tag = "1")]
+        PubsubNotification(CloudPubSubNotificationConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageConfig {
-#[prost(string, tag = "1")]
-pub target_image: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub stable_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub target_image: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub stable_image: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceInfo {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "HealthStatus", tag = "2")]
-pub status: i32,
-#[prost(message, optional, tag = "3")]
-pub resource: ::core::option::Option<::prost_types::Any>,
-#[prost(message, optional, tag = "4")]
-pub time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "5")]
-pub sub: ::prost::alloc::vec::Vec<ResourceInfo>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "HealthStatus", tag = "2")]
+    pub status: i32,
+    #[prost(message, optional, tag = "3")]
+    pub resource: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "4")]
+    pub time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "5")]
+    pub sub: ::prost::alloc::vec::Vec<ResourceInfo>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HealthStatus {
-Unspecified = 0,
-Healthy = 1,
-Unhealthy = 2,
-Unresponsive = 3,
-Degraded = 4,
+    Unspecified = 0,
+    Healthy = 1,
+    Unhealthy = 2,
+    Unresponsive = 3,
+    Degraded = 4,
 }
 impl HealthStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HealthStatus::Unspecified => "HEALTH_STATUS_UNSPECIFIED",
-HealthStatus::Healthy => "HEALTHY",
-HealthStatus::Unhealthy => "UNHEALTHY",
-HealthStatus::Unresponsive => "UNRESPONSIVE",
-HealthStatus::Degraded => "DEGRADED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HEALTH_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"HEALTHY" => Some(Self::Healthy),
-"UNHEALTHY" => Some(Self::Unhealthy),
-"UNRESPONSIVE" => Some(Self::Unresponsive),
-"DEGRADED" => Some(Self::Degraded),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            HealthStatus::Unspecified => "HEALTH_STATUS_UNSPECIFIED",
+            HealthStatus::Healthy => "HEALTHY",
+            HealthStatus::Unhealthy => "UNHEALTHY",
+            HealthStatus::Unresponsive => "UNRESPONSIVE",
+            HealthStatus::Degraded => "DEGRADED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "HEALTH_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+            "HEALTHY" => Some(Self::Healthy),
+            "UNHEALTHY" => Some(Self::Unhealthy),
+            "UNRESPONSIVE" => Some(Self::Unresponsive),
+            "DEGRADED" => Some(Self::Degraded),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAppConnectorsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAppConnectorsResponse {
-#[prost(message, repeated, tag = "1")]
-pub app_connectors: ::prost::alloc::vec::Vec<AppConnector>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub app_connectors: ::prost::alloc::vec::Vec<AppConnector>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAppConnectorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAppConnectorRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub app_connector_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub app_connector: ::core::option::Option<AppConnector>,
-#[prost(string, tag = "4")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "5")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub app_connector_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub app_connector: ::core::option::Option<AppConnector>,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "5")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAppConnectorRequest {
-#[prost(message, optional, tag = "1")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-#[prost(message, optional, tag = "2")]
-pub app_connector: ::core::option::Option<AppConnector>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub app_connector: ::core::option::Option<AppConnector>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAppConnectorRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportStatusRequest {
-#[prost(string, tag = "1")]
-pub app_connector: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub resource_info: ::core::option::Option<ResourceInfo>,
-#[prost(string, tag = "3")]
-pub request_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub app_connector: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub resource_info: ::core::option::Option<ResourceInfo>,
+    #[prost(string, tag = "3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppConnector {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub uid: ::prost::alloc::string::String,
-#[prost(enumeration = "app_connector::State", tag = "7")]
-pub state: i32,
-#[prost(message, optional, tag = "8")]
-pub principal_info: ::core::option::Option<app_connector::PrincipalInfo>,
-#[prost(message, optional, tag = "11")]
-pub resource_info: ::core::option::Option<ResourceInfo>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub uid: ::prost::alloc::string::String,
+    #[prost(enumeration = "app_connector::State", tag = "7")]
+    pub state: i32,
+    #[prost(message, optional, tag = "8")]
+    pub principal_info: ::core::option::Option<app_connector::PrincipalInfo>,
+    #[prost(message, optional, tag = "11")]
+    pub resource_info: ::core::option::Option<ResourceInfo>,
 }
 /// Nested message and enum types in `AppConnector`.
 pub mod app_connector {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PrincipalInfo {
-#[prost(oneof = "principal_info::Type", tags = "1")]
-pub r#type: ::core::option::Option<principal_info::Type>,
-}
-/// Nested message and enum types in `PrincipalInfo`.
-pub mod principal_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ServiceAccount {
-#[prost(string, tag = "1")]
-pub email: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-ServiceAccount(ServiceAccount),
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Creating = 1,
-Created = 2,
-Updating = 3,
-Deleting = 4,
-Down = 5,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Creating => "CREATING",
-State::Created => "CREATED",
-State::Updating => "UPDATING",
-State::Deleting => "DELETING",
-State::Down => "DOWN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREATING" => Some(Self::Creating),
-"CREATED" => Some(Self::Created),
-"UPDATING" => Some(Self::Updating),
-"DELETING" => Some(Self::Deleting),
-"DOWN" => Some(Self::Down),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PrincipalInfo {
+        #[prost(oneof = "principal_info::Type", tags = "1")]
+        pub r#type: ::core::option::Option<principal_info::Type>,
+    }
+    /// Nested message and enum types in `PrincipalInfo`.
+    pub mod principal_info {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ServiceAccount {
+            #[prost(string, tag = "1")]
+            pub email: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Type {
+            #[prost(message, tag = "1")]
+            ServiceAccount(ServiceAccount),
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Creating = 1,
+        Created = 2,
+        Updating = 3,
+        Deleting = 4,
+        Down = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Created => "CREATED",
+                State::Updating => "UPDATING",
+                State::Deleting => "DELETING",
+                State::Down => "DOWN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "CREATED" => Some(Self::Created),
+                "UPDATING" => Some(Self::Updating),
+                "DELETING" => Some(Self::Deleting),
+                "DOWN" => Some(Self::Down),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppConnectorOperationMetadata {
-#[prost(message, optional, tag = "1")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub target: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub verb: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub status_message: ::prost::alloc::string::String,
-#[prost(bool, tag = "6")]
-pub requested_cancellation: bool,
-#[prost(string, tag = "7")]
-pub api_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub verb: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub status_message: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub requested_cancellation: bool,
+    #[prost(string, tag = "7")]
+    pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod app_connectors_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// API Overview:
-///
-/// The `beyondcorp.googleapis.com` service implements the Google Cloud
-/// BeyondCorp API.
-///
-/// Data Model:
-///
-/// The AppConnectorsService exposes the following resource:
-///
-/// * AppConnectors, named as follows:
-///   `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
-///
-/// The AppConnectorsService provides methods to manage
-/// (create/read/update/delete) BeyondCorp AppConnectors.
-#[derive(Debug, Clone)]
-pub struct AppConnectorsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AppConnectorsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AppConnectorsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AppConnectorsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists AppConnectors in a given project and location.
-pub async fn list_app_connectors(&mut self, request: impl tonic::IntoRequest<super::ListAppConnectorsRequest>) -> std::result::Result<tonic::Response<super::ListAppConnectorsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ListAppConnectors");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "ListAppConnectors"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets details of a single AppConnector.
-pub async fn get_app_connector(&mut self, request: impl tonic::IntoRequest<super::GetAppConnectorRequest>) -> std::result::Result<tonic::Response<super::AppConnector>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/GetAppConnector");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "GetAppConnector"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new AppConnector in a given project and location.
-pub async fn create_app_connector(&mut self, request: impl tonic::IntoRequest<super::CreateAppConnectorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "CreateAppConnector"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the parameters of a single AppConnector.
-pub async fn update_app_connector(&mut self, request: impl tonic::IntoRequest<super::UpdateAppConnectorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/UpdateAppConnector");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "UpdateAppConnector"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a single AppConnector.
-pub async fn delete_app_connector(&mut self, request: impl tonic::IntoRequest<super::DeleteAppConnectorRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/DeleteAppConnector");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "DeleteAppConnector"));
-self.inner.unary(req, path, codec).await
-}
-/// Report status for a given connector.
-pub async fn report_status(&mut self, request: impl tonic::IntoRequest<super::ReportStatusRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ReportStatus");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService", "ReportStatus"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// API Overview:
+    ///
+    /// The `beyondcorp.googleapis.com` service implements the Google Cloud
+    /// BeyondCorp API.
+    ///
+    /// Data Model:
+    ///
+    /// The AppConnectorsService exposes the following resource:
+    ///
+    /// * AppConnectors, named as follows:
+    ///   `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
+    ///
+    /// The AppConnectorsService provides methods to manage
+    /// (create/read/update/delete) BeyondCorp AppConnectors.
+    #[derive(Debug, Clone)]
+    pub struct AppConnectorsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AppConnectorsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AppConnectorsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AppConnectorsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists AppConnectors in a given project and location.
+        pub async fn list_app_connectors(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAppConnectorsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAppConnectorsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ListAppConnectors",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "ListAppConnectors",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single AppConnector.
+        pub async fn get_app_connector(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAppConnectorRequest>,
+        ) -> std::result::Result<tonic::Response<super::AppConnector>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/GetAppConnector",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "GetAppConnector",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new AppConnector in a given project and location.
+        pub async fn create_app_connector(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAppConnectorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "CreateAppConnector",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single AppConnector.
+        pub async fn update_app_connector(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAppConnectorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/UpdateAppConnector",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "UpdateAppConnector",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single AppConnector.
+        pub async fn delete_app_connector(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAppConnectorRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/DeleteAppConnector",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "DeleteAppConnector",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Report status for a given connector.
+        pub async fn report_status(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReportStatusRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ReportStatus",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService",
+                "ReportStatus",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

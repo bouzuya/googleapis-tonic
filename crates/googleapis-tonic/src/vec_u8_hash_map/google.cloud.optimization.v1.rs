@@ -2,290 +2,290 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
-#[prost(enumeration = "DataFormat", tag = "2")]
-pub data_format: i32,
-#[prost(oneof = "input_config::Source", tags = "1")]
-pub source: ::core::option::Option<input_config::Source>,
+    #[prost(enumeration = "DataFormat", tag = "2")]
+    pub data_format: i32,
+    #[prost(oneof = "input_config::Source", tags = "1")]
+    pub source: ::core::option::Option<input_config::Source>,
 }
 /// Nested message and enum types in `InputConfig`.
 pub mod input_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-GcsSource(super::GcsSource),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        GcsSource(super::GcsSource),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-#[prost(enumeration = "DataFormat", tag = "2")]
-pub data_format: i32,
-#[prost(oneof = "output_config::Destination", tags = "1")]
-pub destination: ::core::option::Option<output_config::Destination>,
+    #[prost(enumeration = "DataFormat", tag = "2")]
+    pub data_format: i32,
+    #[prost(oneof = "output_config::Destination", tags = "1")]
+    pub destination: ::core::option::Option<output_config::Destination>,
 }
 /// Nested message and enum types in `OutputConfig`.
 pub mod output_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Destination {
-#[prost(message, tag = "1")]
-GcsDestination(super::GcsDestination),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Destination {
+        #[prost(message, tag = "1")]
+        GcsDestination(super::GcsDestination),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-#[prost(string, tag = "1")]
-pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AsyncModelMetadata {
-#[prost(enumeration = "async_model_metadata::State", tag = "1")]
-pub state: i32,
-#[prost(string, tag = "2")]
-pub state_message: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "async_model_metadata::State", tag = "1")]
+    pub state: i32,
+    #[prost(string, tag = "2")]
+    pub state_message: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `AsyncModelMetadata`.
 pub mod async_model_metadata {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Running = 1,
-Succeeded = 2,
-Cancelled = 3,
-Failed = 4,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Running => "RUNNING",
-State::Succeeded => "SUCCEEDED",
-State::Cancelled => "CANCELLED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNING" => Some(Self::Running),
-"SUCCEEDED" => Some(Self::Succeeded),
-"CANCELLED" => Some(Self::Cancelled),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Running = 1,
+        Succeeded = 2,
+        Cancelled = 3,
+        Failed = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Running => "RUNNING",
+                State::Succeeded => "SUCCEEDED",
+                State::Cancelled => "CANCELLED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "CANCELLED" => Some(Self::Cancelled),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DataFormat {
-Unspecified = 0,
-Json = 1,
-String = 2,
+    Unspecified = 0,
+    Json = 1,
+    String = 2,
 }
 impl DataFormat {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
-DataFormat::Json => "JSON",
-DataFormat::String => "STRING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"JSON" => Some(Self::Json),
-"STRING" => Some(Self::String),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
+            DataFormat::Json => "JSON",
+            DataFormat::String => "STRING",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+            "JSON" => Some(Self::Json),
+            "STRING" => Some(Self::String),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OptimizeToursRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub timeout: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "3")]
-pub model: ::core::option::Option<ShipmentModel>,
-#[prost(enumeration = "optimize_tours_request::SolvingMode", tag = "4")]
-pub solving_mode: i32,
-#[prost(enumeration = "optimize_tours_request::SearchMode", tag = "6")]
-pub search_mode: i32,
-#[prost(message, repeated, tag = "7")]
-pub injected_first_solution_routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
-#[prost(message, optional, tag = "8")]
-pub injected_solution_constraint: ::core::option::Option<InjectedSolutionConstraint>,
-#[prost(message, repeated, tag = "9")]
-pub refresh_details_routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
-#[prost(bool, tag = "10")]
-pub interpret_injected_solutions_using_labels: bool,
-#[prost(bool, tag = "11")]
-pub consider_road_traffic: bool,
-#[prost(bool, tag = "12")]
-pub populate_polylines: bool,
-#[prost(bool, tag = "13")]
-pub populate_transition_polylines: bool,
-#[prost(bool, tag = "14")]
-pub allow_large_deadline_despite_interruption_risk: bool,
-#[prost(bool, tag = "15")]
-pub use_geodesic_distances: bool,
-#[prost(double, optional, tag = "16")]
-pub geodesic_meters_per_second: ::core::option::Option<f64>,
-#[prost(int32, optional, tag = "5")]
-pub max_validation_errors: ::core::option::Option<i32>,
-#[prost(string, tag = "17")]
-pub label: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(bool, tag = "20")]
-pub populate_travel_step_polylines: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "3")]
+    pub model: ::core::option::Option<ShipmentModel>,
+    #[prost(enumeration = "optimize_tours_request::SolvingMode", tag = "4")]
+    pub solving_mode: i32,
+    #[prost(enumeration = "optimize_tours_request::SearchMode", tag = "6")]
+    pub search_mode: i32,
+    #[prost(message, repeated, tag = "7")]
+    pub injected_first_solution_routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
+    #[prost(message, optional, tag = "8")]
+    pub injected_solution_constraint: ::core::option::Option<InjectedSolutionConstraint>,
+    #[prost(message, repeated, tag = "9")]
+    pub refresh_details_routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
+    #[prost(bool, tag = "10")]
+    pub interpret_injected_solutions_using_labels: bool,
+    #[prost(bool, tag = "11")]
+    pub consider_road_traffic: bool,
+    #[prost(bool, tag = "12")]
+    pub populate_polylines: bool,
+    #[prost(bool, tag = "13")]
+    pub populate_transition_polylines: bool,
+    #[prost(bool, tag = "14")]
+    pub allow_large_deadline_despite_interruption_risk: bool,
+    #[prost(bool, tag = "15")]
+    pub use_geodesic_distances: bool,
+    #[prost(double, optional, tag = "16")]
+    pub geodesic_meters_per_second: ::core::option::Option<f64>,
+    #[prost(int32, optional, tag = "5")]
+    pub max_validation_errors: ::core::option::Option<i32>,
+    #[prost(string, tag = "17")]
+    pub label: ::prost::alloc::string::String,
+    #[deprecated]
+    #[prost(bool, tag = "20")]
+    pub populate_travel_step_polylines: bool,
 }
 /// Nested message and enum types in `OptimizeToursRequest`.
 pub mod optimize_tours_request {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SolvingMode {
-DefaultSolve = 0,
-ValidateOnly = 1,
-DetectSomeInfeasibleShipments = 2,
-}
-impl SolvingMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SolvingMode::DefaultSolve => "DEFAULT_SOLVE",
-SolvingMode::ValidateOnly => "VALIDATE_ONLY",
-SolvingMode::DetectSomeInfeasibleShipments => "DETECT_SOME_INFEASIBLE_SHIPMENTS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DEFAULT_SOLVE" => Some(Self::DefaultSolve),
-"VALIDATE_ONLY" => Some(Self::ValidateOnly),
-"DETECT_SOME_INFEASIBLE_SHIPMENTS" => Some(Self::DetectSomeInfeasibleShipments),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SearchMode {
-Unspecified = 0,
-ReturnFast = 1,
-ConsumeAllAvailableTime = 2,
-}
-impl SearchMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SearchMode::Unspecified => "SEARCH_MODE_UNSPECIFIED",
-SearchMode::ReturnFast => "RETURN_FAST",
-SearchMode::ConsumeAllAvailableTime => "CONSUME_ALL_AVAILABLE_TIME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SEARCH_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"RETURN_FAST" => Some(Self::ReturnFast),
-"CONSUME_ALL_AVAILABLE_TIME" => Some(Self::ConsumeAllAvailableTime),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SolvingMode {
+        DefaultSolve = 0,
+        ValidateOnly = 1,
+        DetectSomeInfeasibleShipments = 2,
+    }
+    impl SolvingMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SolvingMode::DefaultSolve => "DEFAULT_SOLVE",
+                SolvingMode::ValidateOnly => "VALIDATE_ONLY",
+                SolvingMode::DetectSomeInfeasibleShipments => "DETECT_SOME_INFEASIBLE_SHIPMENTS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT_SOLVE" => Some(Self::DefaultSolve),
+                "VALIDATE_ONLY" => Some(Self::ValidateOnly),
+                "DETECT_SOME_INFEASIBLE_SHIPMENTS" => Some(Self::DetectSomeInfeasibleShipments),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SearchMode {
+        Unspecified = 0,
+        ReturnFast = 1,
+        ConsumeAllAvailableTime = 2,
+    }
+    impl SearchMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SearchMode::Unspecified => "SEARCH_MODE_UNSPECIFIED",
+                SearchMode::ReturnFast => "RETURN_FAST",
+                SearchMode::ConsumeAllAvailableTime => "CONSUME_ALL_AVAILABLE_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SEARCH_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RETURN_FAST" => Some(Self::ReturnFast),
+                "CONSUME_ALL_AVAILABLE_TIME" => Some(Self::ConsumeAllAvailableTime),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OptimizeToursResponse {
-#[prost(message, repeated, tag = "1")]
-pub routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
-#[prost(string, tag = "3")]
-pub request_label: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub skipped_shipments: ::prost::alloc::vec::Vec<SkippedShipment>,
-#[prost(message, repeated, tag = "5")]
-pub validation_errors: ::prost::alloc::vec::Vec<OptimizeToursValidationError>,
-#[prost(message, optional, tag = "6")]
-pub metrics: ::core::option::Option<optimize_tours_response::Metrics>,
-#[deprecated]
-#[prost(double, tag = "2")]
-pub total_cost: f64,
+    #[prost(message, repeated, tag = "1")]
+    pub routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
+    #[prost(string, tag = "3")]
+    pub request_label: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub skipped_shipments: ::prost::alloc::vec::Vec<SkippedShipment>,
+    #[prost(message, repeated, tag = "5")]
+    pub validation_errors: ::prost::alloc::vec::Vec<OptimizeToursValidationError>,
+    #[prost(message, optional, tag = "6")]
+    pub metrics: ::core::option::Option<optimize_tours_response::Metrics>,
+    #[deprecated]
+    #[prost(double, tag = "2")]
+    pub total_cost: f64,
 }
 /// Nested message and enum types in `OptimizeToursResponse`.
 pub mod optimize_tours_response {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Metrics {
-#[prost(message, optional, tag = "1")]
-pub aggregated_route_metrics: ::core::option::Option<super::AggregatedMetrics>,
-#[prost(int32, tag = "2")]
-pub skipped_mandatory_shipment_count: i32,
-#[prost(int32, tag = "3")]
-pub used_vehicle_count: i32,
-#[prost(message, optional, tag = "4")]
-pub earliest_vehicle_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub latest_vehicle_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, double", tag = "10")]
-pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-#[prost(double, tag = "6")]
-pub total_cost: f64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Metrics {
+        #[prost(message, optional, tag = "1")]
+        pub aggregated_route_metrics: ::core::option::Option<super::AggregatedMetrics>,
+        #[prost(int32, tag = "2")]
+        pub skipped_mandatory_shipment_count: i32,
+        #[prost(int32, tag = "3")]
+        pub used_vehicle_count: i32,
+        #[prost(message, optional, tag = "4")]
+        pub earliest_vehicle_start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "5")]
+        pub latest_vehicle_end_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(map = "string, double", tag = "10")]
+        pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+        #[prost(double, tag = "6")]
+        pub total_cost: f64,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchOptimizeToursRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub model_configs: ::prost::alloc::vec::Vec<batch_optimize_tours_request::AsyncModelConfig>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub model_configs: ::prost::alloc::vec::Vec<batch_optimize_tours_request::AsyncModelConfig>,
 }
 /// Nested message and enum types in `BatchOptimizeToursRequest`.
 pub mod batch_optimize_tours_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AsyncModelConfig {
-#[prost(string, tag = "1")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub input_config: ::core::option::Option<super::InputConfig>,
-#[prost(message, optional, tag = "3")]
-pub output_config: ::core::option::Option<super::OutputConfig>,
-#[prost(bool, tag = "4")]
-pub enable_checkpoints: bool,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AsyncModelConfig {
+        #[prost(string, tag = "1")]
+        pub display_name: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub input_config: ::core::option::Option<super::InputConfig>,
+        #[prost(message, optional, tag = "3")]
+        pub output_config: ::core::option::Option<super::OutputConfig>,
+        #[prost(bool, tag = "4")]
+        pub enable_checkpoints: bool,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -293,1020 +293,1097 @@ pub struct BatchOptimizeToursResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShipmentModel {
-#[prost(message, repeated, tag = "1")]
-pub shipments: ::prost::alloc::vec::Vec<Shipment>,
-#[prost(message, repeated, tag = "2")]
-pub vehicles: ::prost::alloc::vec::Vec<Vehicle>,
-#[prost(int32, optional, tag = "4")]
-pub max_active_vehicles: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "5")]
-pub global_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub global_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(double, tag = "7")]
-pub global_duration_cost_per_hour: f64,
-#[prost(message, repeated, tag = "8")]
-pub duration_distance_matrices: ::prost::alloc::vec::Vec<shipment_model::DurationDistanceMatrix>,
-#[prost(string, repeated, tag = "9")]
-pub duration_distance_matrix_src_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "10")]
-pub duration_distance_matrix_dst_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "11")]
-pub transition_attributes: ::prost::alloc::vec::Vec<TransitionAttributes>,
-#[prost(message, repeated, tag = "12")]
-pub shipment_type_incompatibilities: ::prost::alloc::vec::Vec<ShipmentTypeIncompatibility>,
-#[prost(message, repeated, tag = "13")]
-pub shipment_type_requirements: ::prost::alloc::vec::Vec<ShipmentTypeRequirement>,
-#[prost(message, repeated, tag = "14")]
-pub precedence_rules: ::prost::alloc::vec::Vec<shipment_model::PrecedenceRule>,
-#[deprecated]
-#[prost(message, repeated, tag = "15")]
-pub break_rules: ::prost::alloc::vec::Vec<shipment_model::BreakRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub shipments: ::prost::alloc::vec::Vec<Shipment>,
+    #[prost(message, repeated, tag = "2")]
+    pub vehicles: ::prost::alloc::vec::Vec<Vehicle>,
+    #[prost(int32, optional, tag = "4")]
+    pub max_active_vehicles: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "5")]
+    pub global_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub global_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(double, tag = "7")]
+    pub global_duration_cost_per_hour: f64,
+    #[prost(message, repeated, tag = "8")]
+    pub duration_distance_matrices:
+        ::prost::alloc::vec::Vec<shipment_model::DurationDistanceMatrix>,
+    #[prost(string, repeated, tag = "9")]
+    pub duration_distance_matrix_src_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "10")]
+    pub duration_distance_matrix_dst_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "11")]
+    pub transition_attributes: ::prost::alloc::vec::Vec<TransitionAttributes>,
+    #[prost(message, repeated, tag = "12")]
+    pub shipment_type_incompatibilities: ::prost::alloc::vec::Vec<ShipmentTypeIncompatibility>,
+    #[prost(message, repeated, tag = "13")]
+    pub shipment_type_requirements: ::prost::alloc::vec::Vec<ShipmentTypeRequirement>,
+    #[prost(message, repeated, tag = "14")]
+    pub precedence_rules: ::prost::alloc::vec::Vec<shipment_model::PrecedenceRule>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "15")]
+    pub break_rules: ::prost::alloc::vec::Vec<shipment_model::BreakRule>,
 }
 /// Nested message and enum types in `ShipmentModel`.
 pub mod shipment_model {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DurationDistanceMatrix {
-#[prost(message, repeated, tag = "1")]
-pub rows: ::prost::alloc::vec::Vec<duration_distance_matrix::Row>,
-#[prost(string, tag = "2")]
-pub vehicle_start_tag: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `DurationDistanceMatrix`.
-pub mod duration_distance_matrix {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Row {
-#[prost(message, repeated, tag = "1")]
-pub durations: ::prost::alloc::vec::Vec<::prost_types::Duration>,
-#[prost(double, repeated, tag = "2")]
-pub meters: ::prost::alloc::vec::Vec<f64>,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PrecedenceRule {
-#[prost(int32, optional, tag = "1")]
-pub first_index: ::core::option::Option<i32>,
-#[prost(bool, tag = "3")]
-pub first_is_delivery: bool,
-#[prost(int32, optional, tag = "2")]
-pub second_index: ::core::option::Option<i32>,
-#[prost(bool, tag = "4")]
-pub second_is_delivery: bool,
-#[prost(message, optional, tag = "5")]
-pub offset_duration: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BreakRule {
-#[prost(message, repeated, tag = "1")]
-pub break_requests: ::prost::alloc::vec::Vec<break_rule::BreakRequest>,
-#[prost(message, repeated, tag = "2")]
-pub frequency_constraints: ::prost::alloc::vec::Vec<break_rule::FrequencyConstraint>,
-}
-/// Nested message and enum types in `BreakRule`.
-pub mod break_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BreakRequest {
-#[prost(message, optional, tag = "1")]
-pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub latest_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub min_duration: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FrequencyConstraint {
-#[prost(message, optional, tag = "1")]
-pub min_break_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "2")]
-pub max_inter_break_duration: ::core::option::Option<::prost_types::Duration>,
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DurationDistanceMatrix {
+        #[prost(message, repeated, tag = "1")]
+        pub rows: ::prost::alloc::vec::Vec<duration_distance_matrix::Row>,
+        #[prost(string, tag = "2")]
+        pub vehicle_start_tag: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `DurationDistanceMatrix`.
+    pub mod duration_distance_matrix {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct Row {
+            #[prost(message, repeated, tag = "1")]
+            pub durations: ::prost::alloc::vec::Vec<::prost_types::Duration>,
+            #[prost(double, repeated, tag = "2")]
+            pub meters: ::prost::alloc::vec::Vec<f64>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PrecedenceRule {
+        #[prost(int32, optional, tag = "1")]
+        pub first_index: ::core::option::Option<i32>,
+        #[prost(bool, tag = "3")]
+        pub first_is_delivery: bool,
+        #[prost(int32, optional, tag = "2")]
+        pub second_index: ::core::option::Option<i32>,
+        #[prost(bool, tag = "4")]
+        pub second_is_delivery: bool,
+        #[prost(message, optional, tag = "5")]
+        pub offset_duration: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BreakRule {
+        #[prost(message, repeated, tag = "1")]
+        pub break_requests: ::prost::alloc::vec::Vec<break_rule::BreakRequest>,
+        #[prost(message, repeated, tag = "2")]
+        pub frequency_constraints: ::prost::alloc::vec::Vec<break_rule::FrequencyConstraint>,
+    }
+    /// Nested message and enum types in `BreakRule`.
+    pub mod break_rule {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct BreakRequest {
+            #[prost(message, optional, tag = "1")]
+            pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
+            #[prost(message, optional, tag = "2")]
+            pub latest_start_time: ::core::option::Option<::prost_types::Timestamp>,
+            #[prost(message, optional, tag = "3")]
+            pub min_duration: ::core::option::Option<::prost_types::Duration>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct FrequencyConstraint {
+            #[prost(message, optional, tag = "1")]
+            pub min_break_duration: ::core::option::Option<::prost_types::Duration>,
+            #[prost(message, optional, tag = "2")]
+            pub max_inter_break_duration: ::core::option::Option<::prost_types::Duration>,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Shipment {
-#[prost(message, repeated, tag = "1")]
-pub pickups: ::prost::alloc::vec::Vec<shipment::VisitRequest>,
-#[prost(message, repeated, tag = "2")]
-pub deliveries: ::prost::alloc::vec::Vec<shipment::VisitRequest>,
-#[prost(map = "string, message", tag = "14")]
-pub load_demands: ::std::collections::HashMap<::prost::alloc::string::String, shipment::Load>,
-#[prost(double, optional, tag = "4")]
-pub penalty_cost: ::core::option::Option<f64>,
-#[prost(int32, repeated, tag = "5")]
-pub allowed_vehicle_indices: ::prost::alloc::vec::Vec<i32>,
-#[prost(double, repeated, tag = "6")]
-pub costs_per_vehicle: ::prost::alloc::vec::Vec<f64>,
-#[prost(int32, repeated, tag = "7")]
-pub costs_per_vehicle_indices: ::prost::alloc::vec::Vec<i32>,
-#[prost(double, optional, tag = "8")]
-pub pickup_to_delivery_relative_detour_limit: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "9")]
-pub pickup_to_delivery_absolute_detour_limit: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "10")]
-pub pickup_to_delivery_time_limit: ::core::option::Option<::prost_types::Duration>,
-#[prost(string, tag = "11")]
-pub shipment_type: ::prost::alloc::string::String,
-#[prost(string, tag = "12")]
-pub label: ::prost::alloc::string::String,
-#[prost(bool, tag = "13")]
-pub ignore: bool,
-#[deprecated]
-#[prost(message, repeated, tag = "3")]
-pub demands: ::prost::alloc::vec::Vec<CapacityQuantity>,
+    #[prost(message, repeated, tag = "1")]
+    pub pickups: ::prost::alloc::vec::Vec<shipment::VisitRequest>,
+    #[prost(message, repeated, tag = "2")]
+    pub deliveries: ::prost::alloc::vec::Vec<shipment::VisitRequest>,
+    #[prost(map = "string, message", tag = "14")]
+    pub load_demands: ::std::collections::HashMap<::prost::alloc::string::String, shipment::Load>,
+    #[prost(double, optional, tag = "4")]
+    pub penalty_cost: ::core::option::Option<f64>,
+    #[prost(int32, repeated, tag = "5")]
+    pub allowed_vehicle_indices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(double, repeated, tag = "6")]
+    pub costs_per_vehicle: ::prost::alloc::vec::Vec<f64>,
+    #[prost(int32, repeated, tag = "7")]
+    pub costs_per_vehicle_indices: ::prost::alloc::vec::Vec<i32>,
+    #[prost(double, optional, tag = "8")]
+    pub pickup_to_delivery_relative_detour_limit: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "9")]
+    pub pickup_to_delivery_absolute_detour_limit: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "10")]
+    pub pickup_to_delivery_time_limit: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "11")]
+    pub shipment_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "12")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(bool, tag = "13")]
+    pub ignore: bool,
+    #[deprecated]
+    #[prost(message, repeated, tag = "3")]
+    pub demands: ::prost::alloc::vec::Vec<CapacityQuantity>,
 }
 /// Nested message and enum types in `Shipment`.
 pub mod shipment {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VisitRequest {
-#[prost(message, optional, tag = "1")]
-pub arrival_location: ::core::option::Option<super::super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "2")]
-pub arrival_waypoint: ::core::option::Option<super::Waypoint>,
-#[prost(message, optional, tag = "3")]
-pub departure_location: ::core::option::Option<super::super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "4")]
-pub departure_waypoint: ::core::option::Option<super::Waypoint>,
-#[prost(string, repeated, tag = "5")]
-pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "6")]
-pub time_windows: ::prost::alloc::vec::Vec<super::TimeWindow>,
-#[prost(message, optional, tag = "7")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, tag = "8")]
-pub cost: f64,
-#[prost(map = "string, message", tag = "12")]
-pub load_demands: ::std::collections::HashMap<::prost::alloc::string::String, Load>,
-#[prost(string, repeated, tag = "10")]
-pub visit_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "11")]
-pub label: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(message, repeated, tag = "9")]
-pub demands: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Load {
-#[prost(int64, tag = "2")]
-pub amount: i64,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VisitRequest {
+        #[prost(message, optional, tag = "1")]
+        pub arrival_location: ::core::option::Option<super::super::super::super::r#type::LatLng>,
+        #[prost(message, optional, tag = "2")]
+        pub arrival_waypoint: ::core::option::Option<super::Waypoint>,
+        #[prost(message, optional, tag = "3")]
+        pub departure_location: ::core::option::Option<super::super::super::super::r#type::LatLng>,
+        #[prost(message, optional, tag = "4")]
+        pub departure_waypoint: ::core::option::Option<super::Waypoint>,
+        #[prost(string, repeated, tag = "5")]
+        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, repeated, tag = "6")]
+        pub time_windows: ::prost::alloc::vec::Vec<super::TimeWindow>,
+        #[prost(message, optional, tag = "7")]
+        pub duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(double, tag = "8")]
+        pub cost: f64,
+        #[prost(map = "string, message", tag = "12")]
+        pub load_demands: ::std::collections::HashMap<::prost::alloc::string::String, Load>,
+        #[prost(string, repeated, tag = "10")]
+        pub visit_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, tag = "11")]
+        pub label: ::prost::alloc::string::String,
+        #[deprecated]
+        #[prost(message, repeated, tag = "9")]
+        pub demands: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Load {
+        #[prost(int64, tag = "2")]
+        pub amount: i64,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShipmentTypeIncompatibility {
-#[prost(string, repeated, tag = "1")]
-pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "shipment_type_incompatibility::IncompatibilityMode", tag = "2")]
-pub incompatibility_mode: i32,
+    #[prost(string, repeated, tag = "1")]
+    pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(
+        enumeration = "shipment_type_incompatibility::IncompatibilityMode",
+        tag = "2"
+    )]
+    pub incompatibility_mode: i32,
 }
 /// Nested message and enum types in `ShipmentTypeIncompatibility`.
 pub mod shipment_type_incompatibility {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum IncompatibilityMode {
-Unspecified = 0,
-NotPerformedBySameVehicle = 1,
-NotInSameVehicleSimultaneously = 2,
-}
-impl IncompatibilityMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-IncompatibilityMode::Unspecified => "INCOMPATIBILITY_MODE_UNSPECIFIED",
-IncompatibilityMode::NotPerformedBySameVehicle => "NOT_PERFORMED_BY_SAME_VEHICLE",
-IncompatibilityMode::NotInSameVehicleSimultaneously => "NOT_IN_SAME_VEHICLE_SIMULTANEOUSLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INCOMPATIBILITY_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"NOT_PERFORMED_BY_SAME_VEHICLE" => Some(Self::NotPerformedBySameVehicle),
-"NOT_IN_SAME_VEHICLE_SIMULTANEOUSLY" => Some(Self::NotInSameVehicleSimultaneously),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum IncompatibilityMode {
+        Unspecified = 0,
+        NotPerformedBySameVehicle = 1,
+        NotInSameVehicleSimultaneously = 2,
+    }
+    impl IncompatibilityMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IncompatibilityMode::Unspecified => "INCOMPATIBILITY_MODE_UNSPECIFIED",
+                IncompatibilityMode::NotPerformedBySameVehicle => "NOT_PERFORMED_BY_SAME_VEHICLE",
+                IncompatibilityMode::NotInSameVehicleSimultaneously => {
+                    "NOT_IN_SAME_VEHICLE_SIMULTANEOUSLY"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INCOMPATIBILITY_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NOT_PERFORMED_BY_SAME_VEHICLE" => Some(Self::NotPerformedBySameVehicle),
+                "NOT_IN_SAME_VEHICLE_SIMULTANEOUSLY" => Some(Self::NotInSameVehicleSimultaneously),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShipmentTypeRequirement {
-#[prost(string, repeated, tag = "1")]
-pub required_shipment_type_alternatives: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "2")]
-pub dependent_shipment_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(enumeration = "shipment_type_requirement::RequirementMode", tag = "3")]
-pub requirement_mode: i32,
+    #[prost(string, repeated, tag = "1")]
+    pub required_shipment_type_alternatives:
+        ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub dependent_shipment_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "shipment_type_requirement::RequirementMode", tag = "3")]
+    pub requirement_mode: i32,
 }
 /// Nested message and enum types in `ShipmentTypeRequirement`.
 pub mod shipment_type_requirement {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RequirementMode {
-Unspecified = 0,
-PerformedBySameVehicle = 1,
-InSameVehicleAtPickupTime = 2,
-InSameVehicleAtDeliveryTime = 3,
-}
-impl RequirementMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RequirementMode::Unspecified => "REQUIREMENT_MODE_UNSPECIFIED",
-RequirementMode::PerformedBySameVehicle => "PERFORMED_BY_SAME_VEHICLE",
-RequirementMode::InSameVehicleAtPickupTime => "IN_SAME_VEHICLE_AT_PICKUP_TIME",
-RequirementMode::InSameVehicleAtDeliveryTime => "IN_SAME_VEHICLE_AT_DELIVERY_TIME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REQUIREMENT_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"PERFORMED_BY_SAME_VEHICLE" => Some(Self::PerformedBySameVehicle),
-"IN_SAME_VEHICLE_AT_PICKUP_TIME" => Some(Self::InSameVehicleAtPickupTime),
-"IN_SAME_VEHICLE_AT_DELIVERY_TIME" => Some(Self::InSameVehicleAtDeliveryTime),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RequirementMode {
+        Unspecified = 0,
+        PerformedBySameVehicle = 1,
+        InSameVehicleAtPickupTime = 2,
+        InSameVehicleAtDeliveryTime = 3,
+    }
+    impl RequirementMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RequirementMode::Unspecified => "REQUIREMENT_MODE_UNSPECIFIED",
+                RequirementMode::PerformedBySameVehicle => "PERFORMED_BY_SAME_VEHICLE",
+                RequirementMode::InSameVehicleAtPickupTime => "IN_SAME_VEHICLE_AT_PICKUP_TIME",
+                RequirementMode::InSameVehicleAtDeliveryTime => "IN_SAME_VEHICLE_AT_DELIVERY_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REQUIREMENT_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PERFORMED_BY_SAME_VEHICLE" => Some(Self::PerformedBySameVehicle),
+                "IN_SAME_VEHICLE_AT_PICKUP_TIME" => Some(Self::InSameVehicleAtPickupTime),
+                "IN_SAME_VEHICLE_AT_DELIVERY_TIME" => Some(Self::InSameVehicleAtDeliveryTime),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RouteModifiers {
-#[prost(bool, tag = "2")]
-pub avoid_tolls: bool,
-#[prost(bool, tag = "3")]
-pub avoid_highways: bool,
-#[prost(bool, tag = "4")]
-pub avoid_ferries: bool,
-#[prost(bool, tag = "5")]
-pub avoid_indoor: bool,
+    #[prost(bool, tag = "2")]
+    pub avoid_tolls: bool,
+    #[prost(bool, tag = "3")]
+    pub avoid_highways: bool,
+    #[prost(bool, tag = "4")]
+    pub avoid_ferries: bool,
+    #[prost(bool, tag = "5")]
+    pub avoid_indoor: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vehicle {
-#[prost(enumeration = "vehicle::TravelMode", tag = "1")]
-pub travel_mode: i32,
-#[prost(message, optional, tag = "2")]
-pub route_modifiers: ::core::option::Option<RouteModifiers>,
-#[prost(message, optional, tag = "3")]
-pub start_location: ::core::option::Option<super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "4")]
-pub start_waypoint: ::core::option::Option<Waypoint>,
-#[prost(message, optional, tag = "5")]
-pub end_location: ::core::option::Option<super::super::super::r#type::LatLng>,
-#[prost(message, optional, tag = "6")]
-pub end_waypoint: ::core::option::Option<Waypoint>,
-#[prost(string, repeated, tag = "7")]
-pub start_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "8")]
-pub end_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "9")]
-pub start_time_windows: ::prost::alloc::vec::Vec<TimeWindow>,
-#[prost(message, repeated, tag = "10")]
-pub end_time_windows: ::prost::alloc::vec::Vec<TimeWindow>,
-#[prost(double, optional, tag = "11")]
-pub travel_duration_multiple: ::core::option::Option<f64>,
-#[prost(enumeration = "vehicle::UnloadingPolicy", tag = "12")]
-pub unloading_policy: i32,
-#[prost(map = "string, message", tag = "30")]
-pub load_limits: ::std::collections::HashMap<::prost::alloc::string::String, vehicle::LoadLimit>,
-#[prost(double, tag = "16")]
-pub cost_per_hour: f64,
-#[prost(double, tag = "17")]
-pub cost_per_traveled_hour: f64,
-#[prost(double, tag = "18")]
-pub cost_per_kilometer: f64,
-#[prost(double, tag = "19")]
-pub fixed_cost: f64,
-#[prost(bool, tag = "20")]
-pub used_if_route_is_empty: bool,
-#[prost(message, optional, tag = "21")]
-pub route_duration_limit: ::core::option::Option<vehicle::DurationLimit>,
-#[prost(message, optional, tag = "22")]
-pub travel_duration_limit: ::core::option::Option<vehicle::DurationLimit>,
-#[prost(message, optional, tag = "23")]
-pub route_distance_limit: ::core::option::Option<DistanceLimit>,
-#[prost(map = "string, message", tag = "24")]
-pub extra_visit_duration_for_visit_type: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Duration>,
-#[prost(message, optional, tag = "25")]
-pub break_rule: ::core::option::Option<BreakRule>,
-#[prost(string, tag = "27")]
-pub label: ::prost::alloc::string::String,
-#[prost(bool, tag = "28")]
-pub ignore: bool,
-#[deprecated]
-#[prost(int32, repeated, packed = "false", tag = "29")]
-pub break_rule_indices: ::prost::alloc::vec::Vec<i32>,
-#[deprecated]
-#[prost(message, repeated, tag = "13")]
-pub capacities: ::prost::alloc::vec::Vec<CapacityQuantity>,
-#[deprecated]
-#[prost(message, repeated, tag = "14")]
-pub start_load_intervals: ::prost::alloc::vec::Vec<CapacityQuantityInterval>,
-#[deprecated]
-#[prost(message, repeated, tag = "15")]
-pub end_load_intervals: ::prost::alloc::vec::Vec<CapacityQuantityInterval>,
+    #[prost(enumeration = "vehicle::TravelMode", tag = "1")]
+    pub travel_mode: i32,
+    #[prost(message, optional, tag = "2")]
+    pub route_modifiers: ::core::option::Option<RouteModifiers>,
+    #[prost(message, optional, tag = "3")]
+    pub start_location: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "4")]
+    pub start_waypoint: ::core::option::Option<Waypoint>,
+    #[prost(message, optional, tag = "5")]
+    pub end_location: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(message, optional, tag = "6")]
+    pub end_waypoint: ::core::option::Option<Waypoint>,
+    #[prost(string, repeated, tag = "7")]
+    pub start_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "8")]
+    pub end_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "9")]
+    pub start_time_windows: ::prost::alloc::vec::Vec<TimeWindow>,
+    #[prost(message, repeated, tag = "10")]
+    pub end_time_windows: ::prost::alloc::vec::Vec<TimeWindow>,
+    #[prost(double, optional, tag = "11")]
+    pub travel_duration_multiple: ::core::option::Option<f64>,
+    #[prost(enumeration = "vehicle::UnloadingPolicy", tag = "12")]
+    pub unloading_policy: i32,
+    #[prost(map = "string, message", tag = "30")]
+    pub load_limits:
+        ::std::collections::HashMap<::prost::alloc::string::String, vehicle::LoadLimit>,
+    #[prost(double, tag = "16")]
+    pub cost_per_hour: f64,
+    #[prost(double, tag = "17")]
+    pub cost_per_traveled_hour: f64,
+    #[prost(double, tag = "18")]
+    pub cost_per_kilometer: f64,
+    #[prost(double, tag = "19")]
+    pub fixed_cost: f64,
+    #[prost(bool, tag = "20")]
+    pub used_if_route_is_empty: bool,
+    #[prost(message, optional, tag = "21")]
+    pub route_duration_limit: ::core::option::Option<vehicle::DurationLimit>,
+    #[prost(message, optional, tag = "22")]
+    pub travel_duration_limit: ::core::option::Option<vehicle::DurationLimit>,
+    #[prost(message, optional, tag = "23")]
+    pub route_distance_limit: ::core::option::Option<DistanceLimit>,
+    #[prost(map = "string, message", tag = "24")]
+    pub extra_visit_duration_for_visit_type:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Duration>,
+    #[prost(message, optional, tag = "25")]
+    pub break_rule: ::core::option::Option<BreakRule>,
+    #[prost(string, tag = "27")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(bool, tag = "28")]
+    pub ignore: bool,
+    #[deprecated]
+    #[prost(int32, repeated, packed = "false", tag = "29")]
+    pub break_rule_indices: ::prost::alloc::vec::Vec<i32>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "13")]
+    pub capacities: ::prost::alloc::vec::Vec<CapacityQuantity>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "14")]
+    pub start_load_intervals: ::prost::alloc::vec::Vec<CapacityQuantityInterval>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "15")]
+    pub end_load_intervals: ::prost::alloc::vec::Vec<CapacityQuantityInterval>,
 }
 /// Nested message and enum types in `Vehicle`.
 pub mod vehicle {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LoadLimit {
-#[prost(int64, optional, tag = "1")]
-pub max_load: ::core::option::Option<i64>,
-#[prost(int64, tag = "2")]
-pub soft_max_load: i64,
-#[prost(double, tag = "3")]
-pub cost_per_unit_above_soft_max: f64,
-#[prost(message, optional, tag = "4")]
-pub start_load_interval: ::core::option::Option<load_limit::Interval>,
-#[prost(message, optional, tag = "5")]
-pub end_load_interval: ::core::option::Option<load_limit::Interval>,
-}
-/// Nested message and enum types in `LoadLimit`.
-pub mod load_limit {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Interval {
-#[prost(int64, tag = "1")]
-pub min: i64,
-#[prost(int64, optional, tag = "2")]
-pub max: ::core::option::Option<i64>,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DurationLimit {
-#[prost(message, optional, tag = "1")]
-pub max_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "2")]
-pub soft_max_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, optional, tag = "3")]
-pub cost_per_hour_after_soft_max: ::core::option::Option<f64>,
-#[prost(message, optional, tag = "4")]
-pub quadratic_soft_max_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, optional, tag = "5")]
-pub cost_per_square_hour_after_quadratic_soft_max: ::core::option::Option<f64>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TravelMode {
-Unspecified = 0,
-Driving = 1,
-Walking = 2,
-}
-impl TravelMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TravelMode::Unspecified => "TRAVEL_MODE_UNSPECIFIED",
-TravelMode::Driving => "DRIVING",
-TravelMode::Walking => "WALKING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRAVEL_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"DRIVING" => Some(Self::Driving),
-"WALKING" => Some(Self::Walking),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum UnloadingPolicy {
-Unspecified = 0,
-LastInFirstOut = 1,
-FirstInFirstOut = 2,
-}
-impl UnloadingPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-UnloadingPolicy::Unspecified => "UNLOADING_POLICY_UNSPECIFIED",
-UnloadingPolicy::LastInFirstOut => "LAST_IN_FIRST_OUT",
-UnloadingPolicy::FirstInFirstOut => "FIRST_IN_FIRST_OUT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNLOADING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"LAST_IN_FIRST_OUT" => Some(Self::LastInFirstOut),
-"FIRST_IN_FIRST_OUT" => Some(Self::FirstInFirstOut),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LoadLimit {
+        #[prost(int64, optional, tag = "1")]
+        pub max_load: ::core::option::Option<i64>,
+        #[prost(int64, tag = "2")]
+        pub soft_max_load: i64,
+        #[prost(double, tag = "3")]
+        pub cost_per_unit_above_soft_max: f64,
+        #[prost(message, optional, tag = "4")]
+        pub start_load_interval: ::core::option::Option<load_limit::Interval>,
+        #[prost(message, optional, tag = "5")]
+        pub end_load_interval: ::core::option::Option<load_limit::Interval>,
+    }
+    /// Nested message and enum types in `LoadLimit`.
+    pub mod load_limit {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Interval {
+            #[prost(int64, tag = "1")]
+            pub min: i64,
+            #[prost(int64, optional, tag = "2")]
+            pub max: ::core::option::Option<i64>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct DurationLimit {
+        #[prost(message, optional, tag = "1")]
+        pub max_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "2")]
+        pub soft_max_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(double, optional, tag = "3")]
+        pub cost_per_hour_after_soft_max: ::core::option::Option<f64>,
+        #[prost(message, optional, tag = "4")]
+        pub quadratic_soft_max_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(double, optional, tag = "5")]
+        pub cost_per_square_hour_after_quadratic_soft_max: ::core::option::Option<f64>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TravelMode {
+        Unspecified = 0,
+        Driving = 1,
+        Walking = 2,
+    }
+    impl TravelMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TravelMode::Unspecified => "TRAVEL_MODE_UNSPECIFIED",
+                TravelMode::Driving => "DRIVING",
+                TravelMode::Walking => "WALKING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TRAVEL_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DRIVING" => Some(Self::Driving),
+                "WALKING" => Some(Self::Walking),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum UnloadingPolicy {
+        Unspecified = 0,
+        LastInFirstOut = 1,
+        FirstInFirstOut = 2,
+    }
+    impl UnloadingPolicy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                UnloadingPolicy::Unspecified => "UNLOADING_POLICY_UNSPECIFIED",
+                UnloadingPolicy::LastInFirstOut => "LAST_IN_FIRST_OUT",
+                UnloadingPolicy::FirstInFirstOut => "FIRST_IN_FIRST_OUT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNLOADING_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                "LAST_IN_FIRST_OUT" => Some(Self::LastInFirstOut),
+                "FIRST_IN_FIRST_OUT" => Some(Self::FirstInFirstOut),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeWindow {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub soft_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub soft_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(double, optional, tag = "5")]
-pub cost_per_hour_before_soft_start_time: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "6")]
-pub cost_per_hour_after_soft_end_time: ::core::option::Option<f64>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub soft_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub soft_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(double, optional, tag = "5")]
+    pub cost_per_hour_before_soft_start_time: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "6")]
+    pub cost_per_hour_after_soft_end_time: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CapacityQuantity {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub value: i64,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub value: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CapacityQuantityInterval {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "2")]
-pub min_value: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "3")]
-pub max_value: ::core::option::Option<i64>,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "2")]
+    pub min_value: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "3")]
+    pub max_value: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DistanceLimit {
-#[prost(int64, optional, tag = "1")]
-pub max_meters: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "2")]
-pub soft_max_meters: ::core::option::Option<i64>,
-#[prost(double, optional, tag = "4")]
-pub cost_per_kilometer_below_soft_max: ::core::option::Option<f64>,
-#[prost(double, optional, tag = "3")]
-pub cost_per_kilometer_above_soft_max: ::core::option::Option<f64>,
+    #[prost(int64, optional, tag = "1")]
+    pub max_meters: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "2")]
+    pub soft_max_meters: ::core::option::Option<i64>,
+    #[prost(double, optional, tag = "4")]
+    pub cost_per_kilometer_below_soft_max: ::core::option::Option<f64>,
+    #[prost(double, optional, tag = "3")]
+    pub cost_per_kilometer_above_soft_max: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransitionAttributes {
-#[prost(string, tag = "1")]
-pub src_tag: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub excluded_src_tag: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub dst_tag: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub excluded_dst_tag: ::prost::alloc::string::String,
-#[prost(double, tag = "5")]
-pub cost: f64,
-#[prost(double, tag = "6")]
-pub cost_per_kilometer: f64,
-#[prost(message, optional, tag = "7")]
-pub distance_limit: ::core::option::Option<DistanceLimit>,
-#[prost(message, optional, tag = "8")]
-pub delay: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag = "1")]
+    pub src_tag: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub excluded_src_tag: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub dst_tag: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub excluded_dst_tag: ::prost::alloc::string::String,
+    #[prost(double, tag = "5")]
+    pub cost: f64,
+    #[prost(double, tag = "6")]
+    pub cost_per_kilometer: f64,
+    #[prost(message, optional, tag = "7")]
+    pub distance_limit: ::core::option::Option<DistanceLimit>,
+    #[prost(message, optional, tag = "8")]
+    pub delay: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Waypoint {
-#[prost(bool, tag = "3")]
-pub side_of_road: bool,
-#[prost(oneof = "waypoint::LocationType", tags = "1, 2")]
-pub location_type: ::core::option::Option<waypoint::LocationType>,
+    #[prost(bool, tag = "3")]
+    pub side_of_road: bool,
+    #[prost(oneof = "waypoint::LocationType", tags = "1, 2")]
+    pub location_type: ::core::option::Option<waypoint::LocationType>,
 }
 /// Nested message and enum types in `Waypoint`.
 pub mod waypoint {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum LocationType {
-#[prost(message, tag = "1")]
-Location(super::Location),
-#[prost(string, tag = "2")]
-PlaceId(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum LocationType {
+        #[prost(message, tag = "1")]
+        Location(super::Location),
+        #[prost(string, tag = "2")]
+        PlaceId(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Location {
-#[prost(message, optional, tag = "1")]
-pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
-#[prost(int32, optional, tag = "2")]
-pub heading: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "1")]
+    pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
+    #[prost(int32, optional, tag = "2")]
+    pub heading: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BreakRule {
-#[prost(message, repeated, tag = "1")]
-pub break_requests: ::prost::alloc::vec::Vec<break_rule::BreakRequest>,
-#[prost(message, repeated, tag = "2")]
-pub frequency_constraints: ::prost::alloc::vec::Vec<break_rule::FrequencyConstraint>,
+    #[prost(message, repeated, tag = "1")]
+    pub break_requests: ::prost::alloc::vec::Vec<break_rule::BreakRequest>,
+    #[prost(message, repeated, tag = "2")]
+    pub frequency_constraints: ::prost::alloc::vec::Vec<break_rule::FrequencyConstraint>,
 }
 /// Nested message and enum types in `BreakRule`.
 pub mod break_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BreakRequest {
-#[prost(message, optional, tag = "1")]
-pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub latest_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub min_duration: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FrequencyConstraint {
-#[prost(message, optional, tag = "1")]
-pub min_break_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "2")]
-pub max_inter_break_duration: ::core::option::Option<::prost_types::Duration>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct BreakRequest {
+        #[prost(message, optional, tag = "1")]
+        pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub latest_start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "3")]
+        pub min_duration: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FrequencyConstraint {
+        #[prost(message, optional, tag = "1")]
+        pub min_break_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "2")]
+        pub max_inter_break_duration: ::core::option::Option<::prost_types::Duration>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShipmentRoute {
-#[prost(int32, tag = "1")]
-pub vehicle_index: i32,
-#[prost(string, tag = "2")]
-pub vehicle_label: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub vehicle_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub vehicle_end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "7")]
-pub visits: ::prost::alloc::vec::Vec<shipment_route::Visit>,
-#[prost(message, repeated, tag = "8")]
-pub transitions: ::prost::alloc::vec::Vec<shipment_route::Transition>,
-#[prost(bool, tag = "9")]
-pub has_traffic_infeasibilities: bool,
-#[prost(message, optional, tag = "10")]
-pub route_polyline: ::core::option::Option<shipment_route::EncodedPolyline>,
-#[prost(message, repeated, tag = "11")]
-pub breaks: ::prost::alloc::vec::Vec<shipment_route::Break>,
-#[prost(message, optional, tag = "12")]
-pub metrics: ::core::option::Option<AggregatedMetrics>,
-#[prost(map = "string, double", tag = "17")]
-pub route_costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-#[prost(double, tag = "18")]
-pub route_total_cost: f64,
-#[deprecated]
-#[prost(message, repeated, tag = "13")]
-pub end_loads: ::prost::alloc::vec::Vec<CapacityQuantity>,
-#[deprecated]
-#[prost(message, repeated, tag = "14")]
-pub travel_steps: ::prost::alloc::vec::Vec<shipment_route::TravelStep>,
-#[deprecated]
-#[prost(message, optional, tag = "15")]
-pub vehicle_detour: ::core::option::Option<::prost_types::Duration>,
-#[deprecated]
-#[prost(message, optional, tag = "16")]
-pub delay_before_vehicle_end: ::core::option::Option<shipment_route::Delay>,
+    #[prost(int32, tag = "1")]
+    pub vehicle_index: i32,
+    #[prost(string, tag = "2")]
+    pub vehicle_label: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub vehicle_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub vehicle_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "7")]
+    pub visits: ::prost::alloc::vec::Vec<shipment_route::Visit>,
+    #[prost(message, repeated, tag = "8")]
+    pub transitions: ::prost::alloc::vec::Vec<shipment_route::Transition>,
+    #[prost(bool, tag = "9")]
+    pub has_traffic_infeasibilities: bool,
+    #[prost(message, optional, tag = "10")]
+    pub route_polyline: ::core::option::Option<shipment_route::EncodedPolyline>,
+    #[prost(message, repeated, tag = "11")]
+    pub breaks: ::prost::alloc::vec::Vec<shipment_route::Break>,
+    #[prost(message, optional, tag = "12")]
+    pub metrics: ::core::option::Option<AggregatedMetrics>,
+    #[prost(map = "string, double", tag = "17")]
+    pub route_costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    #[prost(double, tag = "18")]
+    pub route_total_cost: f64,
+    #[deprecated]
+    #[prost(message, repeated, tag = "13")]
+    pub end_loads: ::prost::alloc::vec::Vec<CapacityQuantity>,
+    #[deprecated]
+    #[prost(message, repeated, tag = "14")]
+    pub travel_steps: ::prost::alloc::vec::Vec<shipment_route::TravelStep>,
+    #[deprecated]
+    #[prost(message, optional, tag = "15")]
+    pub vehicle_detour: ::core::option::Option<::prost_types::Duration>,
+    #[deprecated]
+    #[prost(message, optional, tag = "16")]
+    pub delay_before_vehicle_end: ::core::option::Option<shipment_route::Delay>,
 }
 /// Nested message and enum types in `ShipmentRoute`.
 pub mod shipment_route {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Delay {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Visit {
-#[prost(int32, tag = "1")]
-pub shipment_index: i32,
-#[prost(bool, tag = "2")]
-pub is_pickup: bool,
-#[prost(int32, tag = "3")]
-pub visit_request_index: i32,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(map = "string, message", tag = "11")]
-pub load_demands: ::std::collections::HashMap<::prost::alloc::string::String, super::shipment::Load>,
-#[prost(message, optional, tag = "6")]
-pub detour: ::core::option::Option<::prost_types::Duration>,
-#[prost(string, tag = "7")]
-pub shipment_label: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub visit_label: ::prost::alloc::string::String,
-#[deprecated]
-#[prost(message, repeated, tag = "9")]
-pub arrival_loads: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
-#[deprecated]
-#[prost(message, optional, tag = "10")]
-pub delay_before_start: ::core::option::Option<Delay>,
-#[deprecated]
-#[prost(message, repeated, tag = "5")]
-pub demands: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Transition {
-#[prost(message, optional, tag = "1")]
-pub travel_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, tag = "2")]
-pub travel_distance_meters: f64,
-#[prost(bool, tag = "3")]
-pub traffic_info_unavailable: bool,
-#[prost(message, optional, tag = "4")]
-pub delay_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "5")]
-pub break_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub wait_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "7")]
-pub total_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "8")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "9")]
-pub route_polyline: ::core::option::Option<EncodedPolyline>,
-#[prost(map = "string, message", tag = "11")]
-pub vehicle_loads: ::std::collections::HashMap<::prost::alloc::string::String, VehicleLoad>,
-#[deprecated]
-#[prost(message, repeated, tag = "10")]
-pub loads: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct VehicleLoad {
-#[prost(int64, tag = "1")]
-pub amount: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncodedPolyline {
-#[prost(string, tag = "1")]
-pub points: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Break {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TravelStep {
-#[prost(message, optional, tag = "1")]
-pub duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, tag = "2")]
-pub distance_meters: f64,
-#[prost(bool, tag = "3")]
-pub traffic_info_unavailable: bool,
-#[prost(message, optional, tag = "4")]
-pub route_polyline: ::core::option::Option<EncodedPolyline>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Delay {
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub duration: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Visit {
+        #[prost(int32, tag = "1")]
+        pub shipment_index: i32,
+        #[prost(bool, tag = "2")]
+        pub is_pickup: bool,
+        #[prost(int32, tag = "3")]
+        pub visit_request_index: i32,
+        #[prost(message, optional, tag = "4")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(map = "string, message", tag = "11")]
+        pub load_demands:
+            ::std::collections::HashMap<::prost::alloc::string::String, super::shipment::Load>,
+        #[prost(message, optional, tag = "6")]
+        pub detour: ::core::option::Option<::prost_types::Duration>,
+        #[prost(string, tag = "7")]
+        pub shipment_label: ::prost::alloc::string::String,
+        #[prost(string, tag = "8")]
+        pub visit_label: ::prost::alloc::string::String,
+        #[deprecated]
+        #[prost(message, repeated, tag = "9")]
+        pub arrival_loads: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
+        #[deprecated]
+        #[prost(message, optional, tag = "10")]
+        pub delay_before_start: ::core::option::Option<Delay>,
+        #[deprecated]
+        #[prost(message, repeated, tag = "5")]
+        pub demands: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Transition {
+        #[prost(message, optional, tag = "1")]
+        pub travel_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(double, tag = "2")]
+        pub travel_distance_meters: f64,
+        #[prost(bool, tag = "3")]
+        pub traffic_info_unavailable: bool,
+        #[prost(message, optional, tag = "4")]
+        pub delay_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "5")]
+        pub break_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "6")]
+        pub wait_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "7")]
+        pub total_duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(message, optional, tag = "8")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "9")]
+        pub route_polyline: ::core::option::Option<EncodedPolyline>,
+        #[prost(map = "string, message", tag = "11")]
+        pub vehicle_loads: ::std::collections::HashMap<::prost::alloc::string::String, VehicleLoad>,
+        #[deprecated]
+        #[prost(message, repeated, tag = "10")]
+        pub loads: ::prost::alloc::vec::Vec<super::CapacityQuantity>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct VehicleLoad {
+        #[prost(int64, tag = "1")]
+        pub amount: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EncodedPolyline {
+        #[prost(string, tag = "1")]
+        pub points: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Break {
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub duration: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TravelStep {
+        #[prost(message, optional, tag = "1")]
+        pub duration: ::core::option::Option<::prost_types::Duration>,
+        #[prost(double, tag = "2")]
+        pub distance_meters: f64,
+        #[prost(bool, tag = "3")]
+        pub traffic_info_unavailable: bool,
+        #[prost(message, optional, tag = "4")]
+        pub route_polyline: ::core::option::Option<EncodedPolyline>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SkippedShipment {
-#[prost(int32, tag = "1")]
-pub index: i32,
-#[prost(string, tag = "2")]
-pub label: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub reasons: ::prost::alloc::vec::Vec<skipped_shipment::Reason>,
+    #[prost(int32, tag = "1")]
+    pub index: i32,
+    #[prost(string, tag = "2")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub reasons: ::prost::alloc::vec::Vec<skipped_shipment::Reason>,
 }
 /// Nested message and enum types in `SkippedShipment`.
 pub mod skipped_shipment {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Reason {
-#[prost(enumeration = "reason::Code", tag = "1")]
-pub code: i32,
-#[prost(int32, optional, tag = "2")]
-pub example_vehicle_index: ::core::option::Option<i32>,
-#[prost(string, tag = "3")]
-pub example_exceeded_capacity_type: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `Reason`.
-pub mod reason {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-NoVehicle = 1,
-DemandExceedsVehicleCapacity = 2,
-CannotBePerformedWithinVehicleDistanceLimit = 3,
-CannotBePerformedWithinVehicleDurationLimit = 4,
-CannotBePerformedWithinVehicleTravelDurationLimit = 5,
-CannotBePerformedWithinVehicleTimeWindows = 6,
-VehicleNotAllowed = 7,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::NoVehicle => "NO_VEHICLE",
-Code::DemandExceedsVehicleCapacity => "DEMAND_EXCEEDS_VEHICLE_CAPACITY",
-Code::CannotBePerformedWithinVehicleDistanceLimit => "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DISTANCE_LIMIT",
-Code::CannotBePerformedWithinVehicleDurationLimit => "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DURATION_LIMIT",
-Code::CannotBePerformedWithinVehicleTravelDurationLimit => "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT",
-Code::CannotBePerformedWithinVehicleTimeWindows => "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS",
-Code::VehicleNotAllowed => "VEHICLE_NOT_ALLOWED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"NO_VEHICLE" => Some(Self::NoVehicle),
-"DEMAND_EXCEEDS_VEHICLE_CAPACITY" => Some(Self::DemandExceedsVehicleCapacity),
-"CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DISTANCE_LIMIT" => Some(Self::CannotBePerformedWithinVehicleDistanceLimit),
-"CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DURATION_LIMIT" => Some(Self::CannotBePerformedWithinVehicleDurationLimit),
-"CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT" => Some(Self::CannotBePerformedWithinVehicleTravelDurationLimit),
-"CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS" => Some(Self::CannotBePerformedWithinVehicleTimeWindows),
-"VEHICLE_NOT_ALLOWED" => Some(Self::VehicleNotAllowed),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Reason {
+        #[prost(enumeration = "reason::Code", tag = "1")]
+        pub code: i32,
+        #[prost(int32, optional, tag = "2")]
+        pub example_vehicle_index: ::core::option::Option<i32>,
+        #[prost(string, tag = "3")]
+        pub example_exceeded_capacity_type: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `Reason`.
+    pub mod reason {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum Code {
+            Unspecified = 0,
+            NoVehicle = 1,
+            DemandExceedsVehicleCapacity = 2,
+            CannotBePerformedWithinVehicleDistanceLimit = 3,
+            CannotBePerformedWithinVehicleDurationLimit = 4,
+            CannotBePerformedWithinVehicleTravelDurationLimit = 5,
+            CannotBePerformedWithinVehicleTimeWindows = 6,
+            VehicleNotAllowed = 7,
+        }
+        impl Code {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Code::Unspecified => "CODE_UNSPECIFIED",
+                    Code::NoVehicle => "NO_VEHICLE",
+                    Code::DemandExceedsVehicleCapacity => "DEMAND_EXCEEDS_VEHICLE_CAPACITY",
+                    Code::CannotBePerformedWithinVehicleDistanceLimit => {
+                        "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DISTANCE_LIMIT"
+                    }
+                    Code::CannotBePerformedWithinVehicleDurationLimit => {
+                        "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DURATION_LIMIT"
+                    }
+                    Code::CannotBePerformedWithinVehicleTravelDurationLimit => {
+                        "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT"
+                    }
+                    Code::CannotBePerformedWithinVehicleTimeWindows => {
+                        "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS"
+                    }
+                    Code::VehicleNotAllowed => "VEHICLE_NOT_ALLOWED",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "NO_VEHICLE" => Some(Self::NoVehicle),
+                    "DEMAND_EXCEEDS_VEHICLE_CAPACITY" => Some(Self::DemandExceedsVehicleCapacity),
+                    "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DISTANCE_LIMIT" => {
+                        Some(Self::CannotBePerformedWithinVehicleDistanceLimit)
+                    }
+                    "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DURATION_LIMIT" => {
+                        Some(Self::CannotBePerformedWithinVehicleDurationLimit)
+                    }
+                    "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT" => {
+                        Some(Self::CannotBePerformedWithinVehicleTravelDurationLimit)
+                    }
+                    "CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS" => {
+                        Some(Self::CannotBePerformedWithinVehicleTimeWindows)
+                    }
+                    "VEHICLE_NOT_ALLOWED" => Some(Self::VehicleNotAllowed),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregatedMetrics {
-#[prost(int32, tag = "1")]
-pub performed_shipment_count: i32,
-#[prost(message, optional, tag = "2")]
-pub travel_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "3")]
-pub wait_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "4")]
-pub delay_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "5")]
-pub break_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "6")]
-pub visit_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "7")]
-pub total_duration: ::core::option::Option<::prost_types::Duration>,
-#[prost(double, tag = "8")]
-pub travel_distance_meters: f64,
-#[prost(map = "string, message", tag = "9")]
-pub max_loads: ::std::collections::HashMap<::prost::alloc::string::String, shipment_route::VehicleLoad>,
-#[prost(map = "string, double", tag = "10")]
-pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-#[deprecated]
-#[prost(double, tag = "11")]
-pub total_cost: f64,
+    #[prost(int32, tag = "1")]
+    pub performed_shipment_count: i32,
+    #[prost(message, optional, tag = "2")]
+    pub travel_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "3")]
+    pub wait_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "4")]
+    pub delay_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "5")]
+    pub break_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "6")]
+    pub visit_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "7")]
+    pub total_duration: ::core::option::Option<::prost_types::Duration>,
+    #[prost(double, tag = "8")]
+    pub travel_distance_meters: f64,
+    #[prost(map = "string, message", tag = "9")]
+    pub max_loads:
+        ::std::collections::HashMap<::prost::alloc::string::String, shipment_route::VehicleLoad>,
+    #[prost(map = "string, double", tag = "10")]
+    pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+    #[deprecated]
+    #[prost(double, tag = "11")]
+    pub total_cost: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InjectedSolutionConstraint {
-#[prost(message, repeated, tag = "1")]
-pub routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
-#[prost(message, repeated, tag = "2")]
-pub skipped_shipments: ::prost::alloc::vec::Vec<SkippedShipment>,
-#[prost(message, repeated, tag = "3")]
-pub constraint_relaxations: ::prost::alloc::vec::Vec<injected_solution_constraint::ConstraintRelaxation>,
+    #[prost(message, repeated, tag = "1")]
+    pub routes: ::prost::alloc::vec::Vec<ShipmentRoute>,
+    #[prost(message, repeated, tag = "2")]
+    pub skipped_shipments: ::prost::alloc::vec::Vec<SkippedShipment>,
+    #[prost(message, repeated, tag = "3")]
+    pub constraint_relaxations:
+        ::prost::alloc::vec::Vec<injected_solution_constraint::ConstraintRelaxation>,
 }
 /// Nested message and enum types in `InjectedSolutionConstraint`.
 pub mod injected_solution_constraint {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConstraintRelaxation {
-#[prost(message, repeated, tag = "1")]
-pub relaxations: ::prost::alloc::vec::Vec<constraint_relaxation::Relaxation>,
-#[prost(int32, repeated, tag = "2")]
-pub vehicle_indices: ::prost::alloc::vec::Vec<i32>,
-}
-/// Nested message and enum types in `ConstraintRelaxation`.
-pub mod constraint_relaxation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Relaxation {
-#[prost(enumeration = "relaxation::Level", tag = "1")]
-pub level: i32,
-#[prost(message, optional, tag = "2")]
-pub threshold_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int32, tag = "3")]
-pub threshold_visit_count: i32,
-}
-/// Nested message and enum types in `Relaxation`.
-pub mod relaxation {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Level {
-Unspecified = 0,
-RelaxVisitTimesAfterThreshold = 1,
-RelaxVisitTimesAndSequenceAfterThreshold = 2,
-RelaxAllAfterThreshold = 3,
-}
-impl Level {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Level::Unspecified => "LEVEL_UNSPECIFIED",
-Level::RelaxVisitTimesAfterThreshold => "RELAX_VISIT_TIMES_AFTER_THRESHOLD",
-Level::RelaxVisitTimesAndSequenceAfterThreshold => "RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD",
-Level::RelaxAllAfterThreshold => "RELAX_ALL_AFTER_THRESHOLD",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"RELAX_VISIT_TIMES_AFTER_THRESHOLD" => Some(Self::RelaxVisitTimesAfterThreshold),
-"RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD" => Some(Self::RelaxVisitTimesAndSequenceAfterThreshold),
-"RELAX_ALL_AFTER_THRESHOLD" => Some(Self::RelaxAllAfterThreshold),
-_ => None,
-}
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConstraintRelaxation {
+        #[prost(message, repeated, tag = "1")]
+        pub relaxations: ::prost::alloc::vec::Vec<constraint_relaxation::Relaxation>,
+        #[prost(int32, repeated, tag = "2")]
+        pub vehicle_indices: ::prost::alloc::vec::Vec<i32>,
+    }
+    /// Nested message and enum types in `ConstraintRelaxation`.
+    pub mod constraint_relaxation {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Relaxation {
+            #[prost(enumeration = "relaxation::Level", tag = "1")]
+            pub level: i32,
+            #[prost(message, optional, tag = "2")]
+            pub threshold_time: ::core::option::Option<::prost_types::Timestamp>,
+            #[prost(int32, tag = "3")]
+            pub threshold_visit_count: i32,
+        }
+        /// Nested message and enum types in `Relaxation`.
+        pub mod relaxation {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum Level {
+                Unspecified = 0,
+                RelaxVisitTimesAfterThreshold = 1,
+                RelaxVisitTimesAndSequenceAfterThreshold = 2,
+                RelaxAllAfterThreshold = 3,
+            }
+            impl Level {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        Level::Unspecified => "LEVEL_UNSPECIFIED",
+                        Level::RelaxVisitTimesAfterThreshold => "RELAX_VISIT_TIMES_AFTER_THRESHOLD",
+                        Level::RelaxVisitTimesAndSequenceAfterThreshold => {
+                            "RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD"
+                        }
+                        Level::RelaxAllAfterThreshold => "RELAX_ALL_AFTER_THRESHOLD",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+                        "RELAX_VISIT_TIMES_AFTER_THRESHOLD" => {
+                            Some(Self::RelaxVisitTimesAfterThreshold)
+                        }
+                        "RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD" => {
+                            Some(Self::RelaxVisitTimesAndSequenceAfterThreshold)
+                        }
+                        "RELAX_ALL_AFTER_THRESHOLD" => Some(Self::RelaxAllAfterThreshold),
+                        _ => None,
+                    }
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OptimizeToursValidationError {
-#[prost(int32, tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub fields: ::prost::alloc::vec::Vec<optimize_tours_validation_error::FieldReference>,
-#[prost(string, tag = "4")]
-pub error_message: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub offending_values: ::prost::alloc::string::String,
+    #[prost(int32, tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub fields: ::prost::alloc::vec::Vec<optimize_tours_validation_error::FieldReference>,
+    #[prost(string, tag = "4")]
+    pub error_message: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub offending_values: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `OptimizeToursValidationError`.
 pub mod optimize_tours_validation_error {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FieldReference {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, boxed, tag = "3")]
-pub sub_field: ::core::option::Option<::prost::alloc::boxed::Box<FieldReference>>,
-#[prost(oneof = "field_reference::IndexOrKey", tags = "2, 4")]
-pub index_or_key: ::core::option::Option<field_reference::IndexOrKey>,
-}
-/// Nested message and enum types in `FieldReference`.
-pub mod field_reference {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum IndexOrKey {
-#[prost(int32, tag = "2")]
-Index(i32),
-#[prost(string, tag = "4")]
-Key(::prost::alloc::string::String),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FieldReference {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(message, optional, boxed, tag = "3")]
+        pub sub_field: ::core::option::Option<::prost::alloc::boxed::Box<FieldReference>>,
+        #[prost(oneof = "field_reference::IndexOrKey", tags = "2, 4")]
+        pub index_or_key: ::core::option::Option<field_reference::IndexOrKey>,
+    }
+    /// Nested message and enum types in `FieldReference`.
+    pub mod field_reference {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum IndexOrKey {
+            #[prost(int32, tag = "2")]
+            Index(i32),
+            #[prost(string, tag = "4")]
+            Key(::prost::alloc::string::String),
+        }
+    }
 }
 /// Generated client implementations.
 pub mod fleet_routing_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// A service for optimizing vehicle tours.
-///
-/// Validity of certain types of fields:
-///
-///   * `google.protobuf.Timestamp`
-///     * Times are in Unix time: seconds since 1970-01-01T00:00:00+00:00.
-///     * seconds must be in [0, 253402300799],
-///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
-///     * nanos must be unset or set to 0.
-///   * `google.protobuf.Duration`
-///     * seconds must be in [0, 253402300799],
-///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
-///     * nanos must be unset or set to 0.
-///   * `google.type.LatLng`
-///     * latitude must be in [-90.0, 90.0].
-///     * longitude must be in [-180.0, 180.0].
-///     * at least one of latitude and longitude must be non-zero.
-#[derive(Debug, Clone)]
-pub struct FleetRoutingClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> FleetRoutingClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> FleetRoutingClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-FleetRoutingClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Sends an `OptimizeToursRequest` containing a `ShipmentModel` and returns an
-/// `OptimizeToursResponse` containing `ShipmentRoute`s, which are a set of
-/// routes to be performed by vehicles minimizing the overall cost.
-///
-/// A `ShipmentModel` model consists mainly of `Shipment`s that need to be
-/// carried out and `Vehicle`s that can be used to transport the `Shipment`s.
-/// The `ShipmentRoute`s assign `Shipment`s to `Vehicle`s. More specifically,
-/// they assign a series of `Visit`s to each vehicle, where a `Visit`
-/// corresponds to a `VisitRequest`, which is a pickup or delivery for a
-/// `Shipment`.
-///
-/// The goal is to provide an assignment of `ShipmentRoute`s to `Vehicle`s that
-/// minimizes the total cost where cost has many components defined in the
-/// `ShipmentModel`.
-pub async fn optimize_tours(&mut self, request: impl tonic::IntoRequest<super::OptimizeToursRequest>) -> std::result::Result<tonic::Response<super::OptimizeToursResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.optimization.v1.FleetRouting/OptimizeTours");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.optimization.v1.FleetRouting", "OptimizeTours"));
-self.inner.unary(req, path, codec).await
-}
-/// Optimizes vehicle tours for one or more `OptimizeToursRequest`
-/// messages as a batch.
-///
-/// This method is a Long Running Operation (LRO). The inputs for optimization
-/// (`OptimizeToursRequest` messages) and outputs (`OptimizeToursResponse`
-/// messages) are read/written from/to Cloud Storage in user-specified
-/// format. Like the `OptimizeTours` method, each `OptimizeToursRequest`
-/// contains a `ShipmentModel` and returns an `OptimizeToursResponse`
-/// containing `ShipmentRoute`s, which are a set of routes to be performed by
-/// vehicles minimizing the overall cost.
-pub async fn batch_optimize_tours(&mut self, request: impl tonic::IntoRequest<super::BatchOptimizeToursRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.optimization.v1.FleetRouting/BatchOptimizeTours");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.optimization.v1.FleetRouting", "BatchOptimizeTours"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// A service for optimizing vehicle tours.
+    ///
+    /// Validity of certain types of fields:
+    ///
+    ///   * `google.protobuf.Timestamp`
+    ///     * Times are in Unix time: seconds since 1970-01-01T00:00:00+00:00.
+    ///     * seconds must be in [0, 253402300799],
+    ///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
+    ///     * nanos must be unset or set to 0.
+    ///   * `google.protobuf.Duration`
+    ///     * seconds must be in [0, 253402300799],
+    ///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
+    ///     * nanos must be unset or set to 0.
+    ///   * `google.type.LatLng`
+    ///     * latitude must be in [-90.0, 90.0].
+    ///     * longitude must be in [-180.0, 180.0].
+    ///     * at least one of latitude and longitude must be non-zero.
+    #[derive(Debug, Clone)]
+    pub struct FleetRoutingClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> FleetRoutingClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> FleetRoutingClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            FleetRoutingClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Sends an `OptimizeToursRequest` containing a `ShipmentModel` and returns an
+        /// `OptimizeToursResponse` containing `ShipmentRoute`s, which are a set of
+        /// routes to be performed by vehicles minimizing the overall cost.
+        ///
+        /// A `ShipmentModel` model consists mainly of `Shipment`s that need to be
+        /// carried out and `Vehicle`s that can be used to transport the `Shipment`s.
+        /// The `ShipmentRoute`s assign `Shipment`s to `Vehicle`s. More specifically,
+        /// they assign a series of `Visit`s to each vehicle, where a `Visit`
+        /// corresponds to a `VisitRequest`, which is a pickup or delivery for a
+        /// `Shipment`.
+        ///
+        /// The goal is to provide an assignment of `ShipmentRoute`s to `Vehicle`s that
+        /// minimizes the total cost where cost has many components defined in the
+        /// `ShipmentModel`.
+        pub async fn optimize_tours(
+            &mut self,
+            request: impl tonic::IntoRequest<super::OptimizeToursRequest>,
+        ) -> std::result::Result<tonic::Response<super::OptimizeToursResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.optimization.v1.FleetRouting/OptimizeTours",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.optimization.v1.FleetRouting",
+                "OptimizeTours",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Optimizes vehicle tours for one or more `OptimizeToursRequest`
+        /// messages as a batch.
+        ///
+        /// This method is a Long Running Operation (LRO). The inputs for optimization
+        /// (`OptimizeToursRequest` messages) and outputs (`OptimizeToursResponse`
+        /// messages) are read/written from/to Cloud Storage in user-specified
+        /// format. Like the `OptimizeTours` method, each `OptimizeToursRequest`
+        /// contains a `ShipmentModel` and returns an `OptimizeToursResponse`
+        /// containing `ShipmentRoute`s, which are a set of routes to be performed by
+        /// vehicles minimizing the overall cost.
+        pub async fn batch_optimize_tours(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchOptimizeToursRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.optimization.v1.FleetRouting/BatchOptimizeTours",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.optimization.v1.FleetRouting",
+                "BatchOptimizeTours",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

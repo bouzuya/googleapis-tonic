@@ -2,480 +2,505 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssistRequest {
-#[prost(oneof = "assist_request::Type", tags = "1, 2")]
-pub r#type: ::core::option::Option<assist_request::Type>,
+    #[prost(oneof = "assist_request::Type", tags = "1, 2")]
+    pub r#type: ::core::option::Option<assist_request::Type>,
 }
 /// Nested message and enum types in `AssistRequest`.
 pub mod assist_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-Config(super::AssistConfig),
-#[prost(bytes, tag = "2")]
-AudioIn(::prost::bytes::Bytes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        Config(super::AssistConfig),
+        #[prost(bytes, tag = "2")]
+        AudioIn(::prost::bytes::Bytes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssistResponse {
-#[prost(enumeration = "assist_response::EventType", tag = "1")]
-pub event_type: i32,
-#[prost(message, optional, tag = "3")]
-pub audio_out: ::core::option::Option<AudioOut>,
-#[prost(message, optional, tag = "4")]
-pub screen_out: ::core::option::Option<ScreenOut>,
-#[prost(message, optional, tag = "6")]
-pub device_action: ::core::option::Option<DeviceAction>,
-#[prost(message, repeated, tag = "2")]
-pub speech_results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
-#[prost(message, optional, tag = "5")]
-pub dialog_state_out: ::core::option::Option<DialogStateOut>,
-#[prost(message, optional, tag = "8")]
-pub debug_info: ::core::option::Option<DebugInfo>,
+    #[prost(enumeration = "assist_response::EventType", tag = "1")]
+    pub event_type: i32,
+    #[prost(message, optional, tag = "3")]
+    pub audio_out: ::core::option::Option<AudioOut>,
+    #[prost(message, optional, tag = "4")]
+    pub screen_out: ::core::option::Option<ScreenOut>,
+    #[prost(message, optional, tag = "6")]
+    pub device_action: ::core::option::Option<DeviceAction>,
+    #[prost(message, repeated, tag = "2")]
+    pub speech_results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
+    #[prost(message, optional, tag = "5")]
+    pub dialog_state_out: ::core::option::Option<DialogStateOut>,
+    #[prost(message, optional, tag = "8")]
+    pub debug_info: ::core::option::Option<DebugInfo>,
 }
 /// Nested message and enum types in `AssistResponse`.
 pub mod assist_response {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EventType {
-Unspecified = 0,
-EndOfUtterance = 1,
-}
-impl EventType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-EventType::EndOfUtterance => "END_OF_UTTERANCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"END_OF_UTTERANCE" => Some(Self::EndOfUtterance),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum EventType {
+        Unspecified = 0,
+        EndOfUtterance = 1,
+    }
+    impl EventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                EventType::EndOfUtterance => "END_OF_UTTERANCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "END_OF_UTTERANCE" => Some(Self::EndOfUtterance),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DebugInfo {
-#[prost(string, tag = "1")]
-pub aog_agent_to_assistant_json: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub aog_agent_to_assistant_json: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AssistConfig {
-#[prost(message, optional, tag = "2")]
-pub audio_out_config: ::core::option::Option<AudioOutConfig>,
-#[prost(message, optional, tag = "8")]
-pub screen_out_config: ::core::option::Option<ScreenOutConfig>,
-#[prost(message, optional, tag = "3")]
-pub dialog_state_in: ::core::option::Option<DialogStateIn>,
-#[prost(message, optional, tag = "4")]
-pub device_config: ::core::option::Option<DeviceConfig>,
-#[prost(message, optional, tag = "5")]
-pub debug_config: ::core::option::Option<DebugConfig>,
-#[prost(oneof = "assist_config::Type", tags = "1, 6")]
-pub r#type: ::core::option::Option<assist_config::Type>,
+    #[prost(message, optional, tag = "2")]
+    pub audio_out_config: ::core::option::Option<AudioOutConfig>,
+    #[prost(message, optional, tag = "8")]
+    pub screen_out_config: ::core::option::Option<ScreenOutConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub dialog_state_in: ::core::option::Option<DialogStateIn>,
+    #[prost(message, optional, tag = "4")]
+    pub device_config: ::core::option::Option<DeviceConfig>,
+    #[prost(message, optional, tag = "5")]
+    pub debug_config: ::core::option::Option<DebugConfig>,
+    #[prost(oneof = "assist_config::Type", tags = "1, 6")]
+    pub r#type: ::core::option::Option<assist_config::Type>,
 }
 /// Nested message and enum types in `AssistConfig`.
 pub mod assist_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-AudioInConfig(super::AudioInConfig),
-#[prost(string, tag = "6")]
-TextQuery(::prost::alloc::string::String),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        AudioInConfig(super::AudioInConfig),
+        #[prost(string, tag = "6")]
+        TextQuery(::prost::alloc::string::String),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AudioInConfig {
-#[prost(enumeration = "audio_in_config::Encoding", tag = "1")]
-pub encoding: i32,
-#[prost(int32, tag = "2")]
-pub sample_rate_hertz: i32,
+    #[prost(enumeration = "audio_in_config::Encoding", tag = "1")]
+    pub encoding: i32,
+    #[prost(int32, tag = "2")]
+    pub sample_rate_hertz: i32,
 }
 /// Nested message and enum types in `AudioInConfig`.
 pub mod audio_in_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Encoding {
-Unspecified = 0,
-Linear16 = 1,
-Flac = 2,
-}
-impl Encoding {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-Encoding::Linear16 => "LINEAR16",
-Encoding::Flac => "FLAC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-"LINEAR16" => Some(Self::Linear16),
-"FLAC" => Some(Self::Flac),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Encoding {
+        Unspecified = 0,
+        Linear16 = 1,
+        Flac = 2,
+    }
+    impl Encoding {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
+                Encoding::Linear16 => "LINEAR16",
+                Encoding::Flac => "FLAC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+                "LINEAR16" => Some(Self::Linear16),
+                "FLAC" => Some(Self::Flac),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AudioOutConfig {
-#[prost(enumeration = "audio_out_config::Encoding", tag = "1")]
-pub encoding: i32,
-#[prost(int32, tag = "2")]
-pub sample_rate_hertz: i32,
-#[prost(int32, tag = "3")]
-pub volume_percentage: i32,
+    #[prost(enumeration = "audio_out_config::Encoding", tag = "1")]
+    pub encoding: i32,
+    #[prost(int32, tag = "2")]
+    pub sample_rate_hertz: i32,
+    #[prost(int32, tag = "3")]
+    pub volume_percentage: i32,
 }
 /// Nested message and enum types in `AudioOutConfig`.
 pub mod audio_out_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Encoding {
-Unspecified = 0,
-Linear16 = 1,
-Mp3 = 2,
-OpusInOgg = 3,
-}
-impl Encoding {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Encoding::Unspecified => "ENCODING_UNSPECIFIED",
-Encoding::Linear16 => "LINEAR16",
-Encoding::Mp3 => "MP3",
-Encoding::OpusInOgg => "OPUS_IN_OGG",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-"LINEAR16" => Some(Self::Linear16),
-"MP3" => Some(Self::Mp3),
-"OPUS_IN_OGG" => Some(Self::OpusInOgg),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Encoding {
+        Unspecified = 0,
+        Linear16 = 1,
+        Mp3 = 2,
+        OpusInOgg = 3,
+    }
+    impl Encoding {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Encoding::Unspecified => "ENCODING_UNSPECIFIED",
+                Encoding::Linear16 => "LINEAR16",
+                Encoding::Mp3 => "MP3",
+                Encoding::OpusInOgg => "OPUS_IN_OGG",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+                "LINEAR16" => Some(Self::Linear16),
+                "MP3" => Some(Self::Mp3),
+                "OPUS_IN_OGG" => Some(Self::OpusInOgg),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ScreenOutConfig {
-#[prost(enumeration = "screen_out_config::ScreenMode", tag = "1")]
-pub screen_mode: i32,
+    #[prost(enumeration = "screen_out_config::ScreenMode", tag = "1")]
+    pub screen_mode: i32,
 }
 /// Nested message and enum types in `ScreenOutConfig`.
 pub mod screen_out_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ScreenMode {
-Unspecified = 0,
-Off = 1,
-Playing = 3,
-}
-impl ScreenMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ScreenMode::Unspecified => "SCREEN_MODE_UNSPECIFIED",
-ScreenMode::Off => "OFF",
-ScreenMode::Playing => "PLAYING",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SCREEN_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"OFF" => Some(Self::Off),
-"PLAYING" => Some(Self::Playing),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ScreenMode {
+        Unspecified = 0,
+        Off = 1,
+        Playing = 3,
+    }
+    impl ScreenMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ScreenMode::Unspecified => "SCREEN_MODE_UNSPECIFIED",
+                ScreenMode::Off => "OFF",
+                ScreenMode::Playing => "PLAYING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SCREEN_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "OFF" => Some(Self::Off),
+                "PLAYING" => Some(Self::Playing),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DialogStateIn {
-#[prost(bytes = "bytes", tag = "1")]
-pub conversation_state: ::prost::bytes::Bytes,
-#[prost(string, tag = "2")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub device_location: ::core::option::Option<DeviceLocation>,
-#[prost(bool, tag = "7")]
-pub is_new_conversation: bool,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub conversation_state: ::prost::bytes::Bytes,
+    #[prost(string, tag = "2")]
+    pub language_code: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub device_location: ::core::option::Option<DeviceLocation>,
+    #[prost(bool, tag = "7")]
+    pub is_new_conversation: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceConfig {
-#[prost(string, tag = "1")]
-pub device_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub device_model_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub device_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub device_model_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AudioOut {
-#[prost(bytes = "bytes", tag = "1")]
-pub audio_data: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub audio_data: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScreenOut {
-#[prost(enumeration = "screen_out::Format", tag = "1")]
-pub format: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub data: ::prost::bytes::Bytes,
+    #[prost(enumeration = "screen_out::Format", tag = "1")]
+    pub format: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub data: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `ScreenOut`.
 pub mod screen_out {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Format {
-Unspecified = 0,
-Html = 1,
-}
-impl Format {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Format::Unspecified => "FORMAT_UNSPECIFIED",
-Format::Html => "HTML",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"HTML" => Some(Self::Html),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Format {
+        Unspecified = 0,
+        Html = 1,
+    }
+    impl Format {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Format::Unspecified => "FORMAT_UNSPECIFIED",
+                Format::Html => "HTML",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "HTML" => Some(Self::Html),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceAction {
-#[prost(string, tag = "1")]
-pub device_request_json: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub device_request_json: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechRecognitionResult {
-#[prost(string, tag = "1")]
-pub transcript: ::prost::alloc::string::String,
-#[prost(float, tag = "2")]
-pub stability: f32,
+    #[prost(string, tag = "1")]
+    pub transcript: ::prost::alloc::string::String,
+    #[prost(float, tag = "2")]
+    pub stability: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DialogStateOut {
-#[prost(string, tag = "1")]
-pub supplemental_display_text: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "2")]
-pub conversation_state: ::prost::bytes::Bytes,
-#[prost(enumeration = "dialog_state_out::MicrophoneMode", tag = "3")]
-pub microphone_mode: i32,
-#[prost(int32, tag = "4")]
-pub volume_percentage: i32,
+    #[prost(string, tag = "1")]
+    pub supplemental_display_text: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub conversation_state: ::prost::bytes::Bytes,
+    #[prost(enumeration = "dialog_state_out::MicrophoneMode", tag = "3")]
+    pub microphone_mode: i32,
+    #[prost(int32, tag = "4")]
+    pub volume_percentage: i32,
 }
 /// Nested message and enum types in `DialogStateOut`.
 pub mod dialog_state_out {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum MicrophoneMode {
-Unspecified = 0,
-CloseMicrophone = 1,
-DialogFollowOn = 2,
-}
-impl MicrophoneMode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
-MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
-MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MICROPHONE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOSE_MICROPHONE" => Some(Self::CloseMicrophone),
-"DIALOG_FOLLOW_ON" => Some(Self::DialogFollowOn),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MicrophoneMode {
+        Unspecified = 0,
+        CloseMicrophone = 1,
+        DialogFollowOn = 2,
+    }
+    impl MicrophoneMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MicrophoneMode::Unspecified => "MICROPHONE_MODE_UNSPECIFIED",
+                MicrophoneMode::CloseMicrophone => "CLOSE_MICROPHONE",
+                MicrophoneMode::DialogFollowOn => "DIALOG_FOLLOW_ON",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MICROPHONE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLOSE_MICROPHONE" => Some(Self::CloseMicrophone),
+                "DIALOG_FOLLOW_ON" => Some(Self::DialogFollowOn),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DebugConfig {
-#[prost(bool, tag = "6")]
-pub return_debug_info: bool,
+    #[prost(bool, tag = "6")]
+    pub return_debug_info: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeviceLocation {
-#[prost(oneof = "device_location::Type", tags = "1")]
-pub r#type: ::core::option::Option<device_location::Type>,
+    #[prost(oneof = "device_location::Type", tags = "1")]
+    pub r#type: ::core::option::Option<device_location::Type>,
 }
 /// Nested message and enum types in `DeviceLocation`.
 pub mod device_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-Coordinates(super::super::super::super::r#type::LatLng),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        Coordinates(super::super::super::super::r#type::LatLng),
+    }
 }
 /// Generated client implementations.
 pub mod embedded_assistant_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that implements the Google Assistant API.
-#[derive(Debug, Clone)]
-pub struct EmbeddedAssistantClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> EmbeddedAssistantClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> EmbeddedAssistantClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-EmbeddedAssistantClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Initiates or continues a conversation with the embedded Assistant Service.
-/// Each call performs one round-trip, sending an audio request to the service
-/// and receiving the audio response. Uses bidirectional streaming to receive
-/// results, such as the `END_OF_UTTERANCE` event, while sending audio.
-///
-/// A conversation is one or more gRPC connections, each consisting of several
-/// streamed requests and responses.
-/// For example, the user says *Add to my shopping list* and the Assistant
-/// responds *What do you want to add?*. The sequence of streamed requests and
-/// responses in the first gRPC message could be:
-///
-/// *   AssistRequest.config
-/// *   AssistRequest.audio_in
-/// *   AssistRequest.audio_in
-/// *   AssistRequest.audio_in
-/// *   AssistRequest.audio_in
-/// *   AssistResponse.event_type.END_OF_UTTERANCE
-/// *   AssistResponse.speech_results.transcript "add to my shopping list"
-/// *   AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
-/// *   AssistResponse.audio_out
-/// *   AssistResponse.audio_out
-/// *   AssistResponse.audio_out
-///
-///
-/// The user then says *bagels* and the Assistant responds
-/// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
-/// connection call to the `Assist` method, again with streamed requests and
-/// responses, such as:
-///
-/// *   AssistRequest.config
-/// *   AssistRequest.audio_in
-/// *   AssistRequest.audio_in
-/// *   AssistRequest.audio_in
-/// *   AssistResponse.event_type.END_OF_UTTERANCE
-/// *   AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
-/// *   AssistResponse.audio_out
-/// *   AssistResponse.audio_out
-/// *   AssistResponse.audio_out
-/// *   AssistResponse.audio_out
-///
-/// Although the precise order of responses is not guaranteed, sequential
-/// `AssistResponse.audio_out` messages will always contain sequential portions
-/// of audio.
-pub async fn assist(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::AssistRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::AssistResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.assistant.embedded.v1alpha2.EmbeddedAssistant/Assist");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.assistant.embedded.v1alpha2.EmbeddedAssistant", "Assist"));
-self.inner.streaming(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that implements the Google Assistant API.
+    #[derive(Debug, Clone)]
+    pub struct EmbeddedAssistantClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> EmbeddedAssistantClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> EmbeddedAssistantClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            EmbeddedAssistantClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Initiates or continues a conversation with the embedded Assistant Service.
+        /// Each call performs one round-trip, sending an audio request to the service
+        /// and receiving the audio response. Uses bidirectional streaming to receive
+        /// results, such as the `END_OF_UTTERANCE` event, while sending audio.
+        ///
+        /// A conversation is one or more gRPC connections, each consisting of several
+        /// streamed requests and responses.
+        /// For example, the user says *Add to my shopping list* and the Assistant
+        /// responds *What do you want to add?*. The sequence of streamed requests and
+        /// responses in the first gRPC message could be:
+        ///
+        /// *   AssistRequest.config
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistResponse.event_type.END_OF_UTTERANCE
+        /// *   AssistResponse.speech_results.transcript "add to my shopping list"
+        /// *   AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        ///
+        ///
+        /// The user then says *bagels* and the Assistant responds
+        /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
+        /// connection call to the `Assist` method, again with streamed requests and
+        /// responses, such as:
+        ///
+        /// *   AssistRequest.config
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistRequest.audio_in
+        /// *   AssistResponse.event_type.END_OF_UTTERANCE
+        /// *   AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        /// *   AssistResponse.audio_out
+        ///
+        /// Although the precise order of responses is not guaranteed, sequential
+        /// `AssistResponse.audio_out` messages will always contain sequential portions
+        /// of audio.
+        pub async fn assist(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::AssistRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::AssistResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.assistant.embedded.v1alpha2.EmbeddedAssistant/Assist",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.assistant.embedded.v1alpha2.EmbeddedAssistant",
+                "Assist",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+    }
 }

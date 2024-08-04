@@ -2,8 +2,8 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MembershipState {
-#[prost(message, optional, tag = "1")]
-pub last_measurement_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(float, tag = "3")]
-pub precise_last_measured_cluster_vcpu_capacity: f32,
+    #[prost(message, optional, tag = "1")]
+    pub last_measurement_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(float, tag = "3")]
+    pub precise_last_measured_cluster_vcpu_capacity: f32,
 }

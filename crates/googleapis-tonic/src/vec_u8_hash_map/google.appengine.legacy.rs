@@ -2,8 +2,9 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditData {
-#[prost(string, tag = "1")]
-pub event_message: ::prost::alloc::string::String,
-#[prost(map = "string, string", tag = "2")]
-pub event_data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub event_message: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "2")]
+    pub event_data:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }

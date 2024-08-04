@@ -2,37 +2,40 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuntimeEvent {
-#[prost(enumeration = "runtime_event::EventType", tag = "1")]
-pub r#type: i32,
-#[prost(btree_map = "string, string", tag = "2")]
-pub details: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(enumeration = "runtime_event::EventType", tag = "1")]
+    pub r#type: i32,
+    #[prost(btree_map = "string, string", tag = "2")]
+    pub details: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `RuntimeEvent`.
 pub mod runtime_event {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EventType {
-Unspecified = 0,
-RuntimeStateChangeEvent = 1,
-}
-impl EventType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-EventType::RuntimeStateChangeEvent => "RUNTIME_STATE_CHANGE_EVENT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNTIME_STATE_CHANGE_EVENT" => Some(Self::RuntimeStateChangeEvent),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum EventType {
+        Unspecified = 0,
+        RuntimeStateChangeEvent = 1,
+    }
+    impl EventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                EventType::RuntimeStateChangeEvent => "RUNTIME_STATE_CHANGE_EVENT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNTIME_STATE_CHANGE_EVENT" => Some(Self::RuntimeStateChangeEvent),
+                _ => None,
+            }
+        }
+    }
 }

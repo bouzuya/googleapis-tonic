@@ -2,663 +2,749 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountManagerTransaction {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub account_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub info: ::core::option::Option<AccountManagerTransactionInfo>,
-#[prost(message, optional, tag = "4")]
-pub payer: ::core::option::Option<AccountManagerSettlementParticipant>,
-#[prost(message, optional, tag = "5")]
-pub payee: ::core::option::Option<AccountManagerSettlementParticipant>,
-#[prost(message, optional, tag = "6")]
-pub reconciliation_info: ::core::option::Option<AccountManagerTransactionReconciliationInfo>,
-#[prost(message, optional, tag = "7")]
-pub amount: ::core::option::Option<super::super::super::super::super::r#type::Money>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub account_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub info: ::core::option::Option<AccountManagerTransactionInfo>,
+    #[prost(message, optional, tag = "4")]
+    pub payer: ::core::option::Option<AccountManagerSettlementParticipant>,
+    #[prost(message, optional, tag = "5")]
+    pub payee: ::core::option::Option<AccountManagerSettlementParticipant>,
+    #[prost(message, optional, tag = "6")]
+    pub reconciliation_info: ::core::option::Option<AccountManagerTransactionReconciliationInfo>,
+    #[prost(message, optional, tag = "7")]
+    pub amount: ::core::option::Option<super::super::super::super::super::r#type::Money>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountManagerTransactionInfo {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "AccountManagerTransactionType", tag = "3")]
-pub transaction_type: i32,
-#[prost(enumeration = "account_manager_transaction_info::State", tag = "5")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub metadata: ::core::option::Option<account_manager_transaction_info::AccountManagerTransactionMetadata>,
-#[prost(message, optional, tag = "7")]
-pub error_details: ::core::option::Option<account_manager_transaction_info::AccountManagerTransactionErrorDetails>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "AccountManagerTransactionType", tag = "3")]
+    pub transaction_type: i32,
+    #[prost(enumeration = "account_manager_transaction_info::State", tag = "5")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub metadata:
+        ::core::option::Option<account_manager_transaction_info::AccountManagerTransactionMetadata>,
+    #[prost(message, optional, tag = "7")]
+    pub error_details: ::core::option::Option<
+        account_manager_transaction_info::AccountManagerTransactionErrorDetails,
+    >,
 }
 /// Nested message and enum types in `AccountManagerTransactionInfo`.
 pub mod account_manager_transaction_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AccountManagerTransactionMetadata {
-#[prost(message, optional, tag = "1")]
-pub transaction_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub retrieval_reference_number: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub initiation_mode: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub purpose_code: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AccountManagerTransactionErrorDetails {
-#[prost(string, tag = "1")]
-pub error_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub error_message: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Succeeded = 1,
-Failed = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Succeeded => "SUCCEEDED",
-State::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AccountManagerTransactionMetadata {
+        #[prost(message, optional, tag = "1")]
+        pub transaction_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "3")]
+        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(string, tag = "4")]
+        pub retrieval_reference_number: ::prost::alloc::string::String,
+        #[prost(string, tag = "5")]
+        pub initiation_mode: ::prost::alloc::string::String,
+        #[prost(string, tag = "6")]
+        pub purpose_code: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AccountManagerTransactionErrorDetails {
+        #[prost(string, tag = "1")]
+        pub error_code: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub error_message: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Succeeded = 1,
+        Failed = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountManagerSettlementParticipant {
-#[prost(message, optional, tag = "1")]
-pub participant: ::core::option::Option<AccountManagerParticipant>,
-#[prost(message, optional, tag = "2")]
-pub merchant_info: ::core::option::Option<AccountManagerMerchantInfo>,
+    #[prost(message, optional, tag = "1")]
+    pub participant: ::core::option::Option<AccountManagerParticipant>,
+    #[prost(message, optional, tag = "2")]
+    pub merchant_info: ::core::option::Option<AccountManagerMerchantInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountManagerParticipant {
-#[prost(string, tag = "1")]
-pub payment_address: ::prost::alloc::string::String,
-#[prost(enumeration = "account_manager_participant::Persona", tag = "2")]
-pub persona: i32,
-#[prost(message, optional, tag = "3")]
-pub account: ::core::option::Option<super::super::v1::AccountReference>,
+    #[prost(string, tag = "1")]
+    pub payment_address: ::prost::alloc::string::String,
+    #[prost(enumeration = "account_manager_participant::Persona", tag = "2")]
+    pub persona: i32,
+    #[prost(message, optional, tag = "3")]
+    pub account: ::core::option::Option<super::super::v1::AccountReference>,
 }
 /// Nested message and enum types in `AccountManagerParticipant`.
 pub mod account_manager_participant {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Persona {
-Unspecified = 0,
-Entity = 1,
-Person = 2,
-}
-impl Persona {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Persona::Unspecified => "PERSONA_UNSPECIFIED",
-Persona::Entity => "ENTITY",
-Persona::Person => "PERSON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PERSONA_UNSPECIFIED" => Some(Self::Unspecified),
-"ENTITY" => Some(Self::Entity),
-"PERSON" => Some(Self::Person),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Persona {
+        Unspecified = 0,
+        Entity = 1,
+        Person = 2,
+    }
+    impl Persona {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Persona::Unspecified => "PERSONA_UNSPECIFIED",
+                Persona::Entity => "ENTITY",
+                Persona::Person => "PERSON",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PERSONA_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENTITY" => Some(Self::Entity),
+                "PERSON" => Some(Self::Person),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountManagerMerchantInfo {
-#[prost(string, tag = "1")]
-pub category_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub category_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AccountManagerTransactionReconciliationInfo {
-#[prost(enumeration = "account_manager_transaction_reconciliation_info::ReconciliationState", tag = "1")]
-pub state: i32,
-#[prost(message, optional, tag = "2")]
-pub reconciliation_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(
+        enumeration = "account_manager_transaction_reconciliation_info::ReconciliationState",
+        tag = "1"
+    )]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub reconciliation_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `AccountManagerTransactionReconciliationInfo`.
 pub mod account_manager_transaction_reconciliation_info {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ReconciliationState {
-Unspecified = 0,
-Succeeded = 1,
-Failed = 2,
-}
-impl ReconciliationState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ReconciliationState::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
-ReconciliationState::Succeeded => "SUCCEEDED",
-ReconciliationState::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RECONCILIATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ReconciliationState {
+        Unspecified = 0,
+        Succeeded = 1,
+        Failed = 2,
+    }
+    impl ReconciliationState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ReconciliationState::Unspecified => "RECONCILIATION_STATE_UNSPECIFIED",
+                ReconciliationState::Succeeded => "SUCCEEDED",
+                ReconciliationState::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RECONCILIATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportAccountManagerTransactionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(enumeration = "AccountManagerTransactionType", tag = "3")]
-pub transaction_type: i32,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(enumeration = "AccountManagerTransactionType", tag = "3")]
+    pub transaction_type: i32,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountManagerTransactionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountManagerTransactionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReconcileAccountManagerTransactionsRequest {
-#[prost(message, optional, tag = "1")]
-pub transaction: ::core::option::Option<AccountManagerTransaction>,
+    #[prost(message, optional, tag = "1")]
+    pub transaction: ::core::option::Option<AccountManagerTransaction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchReconcileAccountManagerTransactionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub requests: ::prost::alloc::vec::Vec<ReconcileAccountManagerTransactionsRequest>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<ReconcileAccountManagerTransactionsRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchReconcileAccountManagerTransactionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
+    #[prost(message, repeated, tag = "1")]
+    pub account_manager_transactions: ::prost::alloc::vec::Vec<AccountManagerTransaction>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AccountManagerTransactionType {
-Unspecified = 0,
-Credit = 1,
-CreditReversal = 2,
-Debit = 3,
-DebitReversal = 4,
+    Unspecified = 0,
+    Credit = 1,
+    CreditReversal = 2,
+    Debit = 3,
+    DebitReversal = 4,
 }
 impl AccountManagerTransactionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AccountManagerTransactionType::Unspecified => "ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED",
-AccountManagerTransactionType::Credit => "CREDIT",
-AccountManagerTransactionType::CreditReversal => "CREDIT_REVERSAL",
-AccountManagerTransactionType::Debit => "DEBIT",
-AccountManagerTransactionType::DebitReversal => "DEBIT_REVERSAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CREDIT" => Some(Self::Credit),
-"CREDIT_REVERSAL" => Some(Self::CreditReversal),
-"DEBIT" => Some(Self::Debit),
-"DEBIT_REVERSAL" => Some(Self::DebitReversal),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AccountManagerTransactionType::Unspecified => {
+                "ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED"
+            }
+            AccountManagerTransactionType::Credit => "CREDIT",
+            AccountManagerTransactionType::CreditReversal => "CREDIT_REVERSAL",
+            AccountManagerTransactionType::Debit => "DEBIT",
+            AccountManagerTransactionType::DebitReversal => "DEBIT_REVERSAL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ACCOUNT_MANAGER_TRANSACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "CREDIT" => Some(Self::Credit),
+            "CREDIT_REVERSAL" => Some(Self::CreditReversal),
+            "DEBIT" => Some(Self::Debit),
+            "DEBIT_REVERSAL" => Some(Self::DebitReversal),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod account_manager_transactions_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Lists and exports transactions processed by the account manager.
-#[derive(Debug, Clone)]
-pub struct AccountManagerTransactionsClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AccountManagerTransactionsClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AccountManagerTransactionsClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AccountManagerTransactionsClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Export transactions received within the specified time range as a
-/// file into a configured target location. The returned `Operation` type has
-/// the following method-specific fields:
-///
-/// - `metadata`:
-/// [ExportAccountManagerTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata]
-/// - `response`:
-/// [ExportAccountManagerTransactionsResponse][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse]
-///
-/// The exported file will be in the standard CSV format where each row in the
-/// file represents a transaction. The file has the following fields in order:
-///
-/// 1. `TransactionID`
-///     * **Min Length** - 35 characters
-///     * **Max Length** - 35 characters
-///     * **Description** - Account manager transaction ID.
-/// 1. `TransactionType`
-///     * **Min Length** - 22 characters
-///     * **Max Length** - 25 characters
-///     * **Description** - Type of the transaction. This will be one of
-///     `TRANSACTION_TYPE_CREDIT`, `TRANSACTION_TYPE_CREDIT_REVERSAL`,
-///     `TRANSACTION_TYPE_DEBIT` or `TRANSACTION_TYPE_DEBIT_REVERSAL`. When
-///     account manager is used for managing UPI Lite transactions, the CREDIT
-///     transactions would be for Lite account top-ups and DEBIT transactions
-///     could be either for a Lite account disablement where balance is
-///     transferred back the underlying bank account or for a Lite account
-///     financial transaction which happened offline.
-/// 1. `AccountID`
-///     * **Min Length** - 35 characters
-///     * **Max Length** - 35 characters
-///     * **Description** - Account ID. When account manager is used for
-///     managing UPI Lite transactions, this column will contain the Lite
-///     Reference Number (LRN) of the UPI Lite account.
-/// 1. `State`
-///     * **Min Length** - 6 characters
-///     * **Max Length** - 12 characters
-///     * **Description** - State of the transaction. This will be one of
-///     `SUCCEEDED` or `FAILED`.
-/// 1. `RRN`
-///     * **Min Length** - 12 characters
-///     * **Max Length** - 12 characters
-///     * **Description** - Retrieval reference number associated with the
-///     transaction.
-/// 1. `PayerVPA`
-///     * **Min Length** - 3 characters
-///     * **Max Length** - 255 characters
-///     * **Description** - Virtual Payment Address (VPA) of the payer.
-/// 1. `PayerIFSC`
-///     * **Min Length** - 11 characters
-///     * **Max Length** - 11 characters
-///     * **Description** - IFSC of the payer's bank account.
-/// 1. `PayerAccountNumber`
-///     * **Min Length** - 1 characters
-///     * **Max Length** - 30 characters
-///     * **Description** - Payer's bank account number.
-/// 1. `PayeeVPA`
-///     * **Min Length** - 3 characters
-///     * **Max Length** - 255 characters
-///     * **Description** - Virtual Payment Address (VPA) of the payee.
-/// 1. `PayeeIFSC`
-///     * **Min Length** - 11 characters
-///     * **Max Length** - 11 characters
-///     * **Description** - IFSC of the payee's bank account.
-/// 1. `PayeeAccountNumber`
-///     * **Min Length** - 1 characters
-///     * **Max Length** - 30 characters
-///     * **Description** - Payee's bank account number.
-/// 1. `PayeeMCC`
-///     * **Min Length** - 4 characters
-///     * **Max Length** - 4 characters
-///     * **Description** - Payee's Merchant Category Code (MCC), only if the
-///     payee is a merchant.
-/// 1. `PayeeMerchantID`
-///     * **Min Length** - 4 characters
-///     * **Max Length** - 4 characters
-///     * **Description** - Payee's merchant ID, only if the payee is a
-///     merchant.
-/// 1. `Currency`
-///     * **Min Length** - 3 characters
-///     * **Max Length** - 3 characters
-///     * **Description** - Currency of the amount involved in the transaction.
-///     The currency codes are defined in ISO 4217.
-/// 1. `Amount`
-///     * **Description** - Amount involved in the transaction.
-/// 1. `Purpose`
-///     * **Min Length** - 1 characters
-///     * **Max Length** - 4 characters
-///     * **Description** - Purpose code associated with the transaction. When
-///     account manager is used for managing UPI Lite transactions, this column
-///     will contain one of the values from `41` (Lite account creation with
-///     initial topup), `42` (Lite account topup), `43` (Lite account
-///     disablement with balance transfer) or `44` (Lite account online
-///     transaction).
-/// 1. `TransactionTime`
-///     * **Min Length** - 20 characters
-///     * **Max Length** - 20 characters
-///     * **Description** - Timestamp (in UTC) indicating the timestamp at
-///     which the transaction took place. The format will be as per RFC-3339.
-///     Example : 2022-11-22T23:00:05Z
-pub async fn export_account_manager_transactions(&mut self, request: impl tonic::IntoRequest<super::ExportAccountManagerTransactionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ExportAccountManagerTransactions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ExportAccountManagerTransactions"));
-self.inner.unary(req, path, codec).await
-}
-/// List account manager transactions that satisfy specified filter criteria.
-pub async fn list_account_manager_transactions(&mut self, request: impl tonic::IntoRequest<super::ListAccountManagerTransactionsRequest>) -> std::result::Result<tonic::Response<super::ListAccountManagerTransactionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ListAccountManagerTransactions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ListAccountManagerTransactions"));
-self.inner.unary(req, path, codec).await
-}
-/// Batch reconcile account manager transactions and return status for each
-/// transaction.
-pub async fn batch_reconcile_account_manager_transactions(&mut self, request: impl tonic::IntoRequest<super::BatchReconcileAccountManagerTransactionsRequest>) -> std::result::Result<tonic::Response<super::BatchReconcileAccountManagerTransactionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/BatchReconcileAccountManagerTransactions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "BatchReconcileAccountManagerTransactions"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Lists and exports transactions processed by the account manager.
+    #[derive(Debug, Clone)]
+    pub struct AccountManagerTransactionsClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AccountManagerTransactionsClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AccountManagerTransactionsClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AccountManagerTransactionsClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Export transactions received within the specified time range as a
+        /// file into a configured target location. The returned `Operation` type has
+        /// the following method-specific fields:
+        ///
+        /// - `metadata`:
+        /// [ExportAccountManagerTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata]
+        /// - `response`:
+        /// [ExportAccountManagerTransactionsResponse][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse]
+        ///
+        /// The exported file will be in the standard CSV format where each row in the
+        /// file represents a transaction. The file has the following fields in order:
+        ///
+        /// 1. `TransactionID`
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Account manager transaction ID.
+        /// 1. `TransactionType`
+        ///     * **Min Length** - 22 characters
+        ///     * **Max Length** - 25 characters
+        ///     * **Description** - Type of the transaction. This will be one of
+        ///     `TRANSACTION_TYPE_CREDIT`, `TRANSACTION_TYPE_CREDIT_REVERSAL`,
+        ///     `TRANSACTION_TYPE_DEBIT` or `TRANSACTION_TYPE_DEBIT_REVERSAL`. When
+        ///     account manager is used for managing UPI Lite transactions, the CREDIT
+        ///     transactions would be for Lite account top-ups and DEBIT transactions
+        ///     could be either for a Lite account disablement where balance is
+        ///     transferred back the underlying bank account or for a Lite account
+        ///     financial transaction which happened offline.
+        /// 1. `AccountID`
+        ///     * **Min Length** - 35 characters
+        ///     * **Max Length** - 35 characters
+        ///     * **Description** - Account ID. When account manager is used for
+        ///     managing UPI Lite transactions, this column will contain the Lite
+        ///     Reference Number (LRN) of the UPI Lite account.
+        /// 1. `State`
+        ///     * **Min Length** - 6 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - State of the transaction. This will be one of
+        ///     `SUCCEEDED` or `FAILED`.
+        /// 1. `RRN`
+        ///     * **Min Length** - 12 characters
+        ///     * **Max Length** - 12 characters
+        ///     * **Description** - Retrieval reference number associated with the
+        ///     transaction.
+        /// 1. `PayerVPA`
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payer.
+        /// 1. `PayerIFSC`
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payer's bank account.
+        /// 1. `PayerAccountNumber`
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payer's bank account number.
+        /// 1. `PayeeVPA`
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 255 characters
+        ///     * **Description** - Virtual Payment Address (VPA) of the payee.
+        /// 1. `PayeeIFSC`
+        ///     * **Min Length** - 11 characters
+        ///     * **Max Length** - 11 characters
+        ///     * **Description** - IFSC of the payee's bank account.
+        /// 1. `PayeeAccountNumber`
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 30 characters
+        ///     * **Description** - Payee's bank account number.
+        /// 1. `PayeeMCC`
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's Merchant Category Code (MCC), only if the
+        ///     payee is a merchant.
+        /// 1. `PayeeMerchantID`
+        ///     * **Min Length** - 4 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Payee's merchant ID, only if the payee is a
+        ///     merchant.
+        /// 1. `Currency`
+        ///     * **Min Length** - 3 characters
+        ///     * **Max Length** - 3 characters
+        ///     * **Description** - Currency of the amount involved in the transaction.
+        ///     The currency codes are defined in ISO 4217.
+        /// 1. `Amount`
+        ///     * **Description** - Amount involved in the transaction.
+        /// 1. `Purpose`
+        ///     * **Min Length** - 1 characters
+        ///     * **Max Length** - 4 characters
+        ///     * **Description** - Purpose code associated with the transaction. When
+        ///     account manager is used for managing UPI Lite transactions, this column
+        ///     will contain one of the values from `41` (Lite account creation with
+        ///     initial topup), `42` (Lite account topup), `43` (Lite account
+        ///     disablement with balance transfer) or `44` (Lite account online
+        ///     transaction).
+        /// 1. `TransactionTime`
+        ///     * **Min Length** - 20 characters
+        ///     * **Max Length** - 20 characters
+        ///     * **Description** - Timestamp (in UTC) indicating the timestamp at
+        ///     which the transaction took place. The format will be as per RFC-3339.
+        ///     Example : 2022-11-22T23:00:05Z
+        pub async fn export_account_manager_transactions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportAccountManagerTransactionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ExportAccountManagerTransactions");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ExportAccountManagerTransactions"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List account manager transactions that satisfy specified filter criteria.
+        pub async fn list_account_manager_transactions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAccountManagerTransactionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListAccountManagerTransactionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/ListAccountManagerTransactions");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "ListAccountManagerTransactions"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Batch reconcile account manager transactions and return status for each
+        /// transaction.
+        pub async fn batch_reconcile_account_manager_transactions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchReconcileAccountManagerTransactionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchReconcileAccountManagerTransactionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions/BatchReconcileAccountManagerTransactions");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.AccountManagerTransactions", "BatchReconcileAccountManagerTransactions"));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ManagedAccount {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub account_reference: ::core::option::Option<super::super::v1::AccountReference>,
-#[prost(enumeration = "managed_account::State", tag = "3")]
-pub state: i32,
-#[prost(message, optional, tag = "4")]
-pub balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
-#[prost(enumeration = "managed_account::AccountReconciliationState", tag = "5")]
-pub last_reconciliation_state: i32,
-#[prost(message, optional, tag = "6")]
-pub last_reconciliation_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub account_reference: ::core::option::Option<super::super::v1::AccountReference>,
+    #[prost(enumeration = "managed_account::State", tag = "3")]
+    pub state: i32,
+    #[prost(message, optional, tag = "4")]
+    pub balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
+    #[prost(enumeration = "managed_account::AccountReconciliationState", tag = "5")]
+    pub last_reconciliation_state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub last_reconciliation_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `ManagedAccount`.
 pub mod managed_account {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Active = 1,
-Deactivated = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Active => "ACTIVE",
-State::Deactivated => "DEACTIVATED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"ACTIVE" => Some(Self::Active),
-"DEACTIVATED" => Some(Self::Deactivated),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AccountReconciliationState {
-Unspecified = 0,
-Succeeded = 1,
-Failed = 2,
-}
-impl AccountReconciliationState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AccountReconciliationState::Unspecified => "ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED",
-AccountReconciliationState::Succeeded => "SUCCEEDED",
-AccountReconciliationState::Failed => "FAILED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCEEDED" => Some(Self::Succeeded),
-"FAILED" => Some(Self::Failed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Active = 1,
+        Deactivated = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Active => "ACTIVE",
+                State::Deactivated => "DEACTIVATED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "DEACTIVATED" => Some(Self::Deactivated),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum AccountReconciliationState {
+        Unspecified = 0,
+        Succeeded = 1,
+        Failed = 2,
+    }
+    impl AccountReconciliationState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AccountReconciliationState::Unspecified => {
+                    "ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED"
+                }
+                AccountReconciliationState::Succeeded => "SUCCEEDED",
+                AccountReconciliationState::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACCOUNT_RECONCILIATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReconcileManagedAccountBalanceRequest {
-#[prost(message, optional, tag = "1")]
-pub account: ::core::option::Option<ManagedAccount>,
-#[prost(message, optional, tag = "2")]
-pub expected_balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
-#[prost(message, optional, tag = "3")]
-pub reference_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub account: ::core::option::Option<ManagedAccount>,
+    #[prost(message, optional, tag = "2")]
+    pub expected_balance: ::core::option::Option<super::super::super::super::super::r#type::Money>,
+    #[prost(message, optional, tag = "3")]
+    pub reference_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchReconcileManagedAccountBalanceRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub requests: ::prost::alloc::vec::Vec<ReconcileManagedAccountBalanceRequest>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub requests: ::prost::alloc::vec::Vec<ReconcileManagedAccountBalanceRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchReconcileManagedAccountBalanceResponse {
-#[prost(message, repeated, tag = "1")]
-pub accounts: ::prost::alloc::vec::Vec<ManagedAccount>,
+    #[prost(message, repeated, tag = "1")]
+    pub accounts: ::prost::alloc::vec::Vec<ManagedAccount>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetManagedAccountRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod managed_accounts_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Reconciles and provide balance information for an account within the account
-/// manager.
-#[derive(Debug, Clone)]
-pub struct ManagedAccountsClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ManagedAccountsClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ManagedAccountsClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ManagedAccountsClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Batch reconcile account balance and return status for each account.
-pub async fn batch_reconcile_managed_account_balance(&mut self, request: impl tonic::IntoRequest<super::BatchReconcileManagedAccountBalanceRequest>) -> std::result::Result<tonic::Response<super::BatchReconcileManagedAccountBalanceResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/BatchReconcileManagedAccountBalance");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts", "BatchReconcileManagedAccountBalance"));
-self.inner.unary(req, path, codec).await
-}
-/// Get information on the account managed by account manager.
-pub async fn get_managed_account(&mut self, request: impl tonic::IntoRequest<super::GetManagedAccountRequest>) -> std::result::Result<tonic::Response<super::ManagedAccount>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/GetManagedAccount");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts", "GetManagedAccount"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Reconciles and provide balance information for an account within the account
+    /// manager.
+    #[derive(Debug, Clone)]
+    pub struct ManagedAccountsClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ManagedAccountsClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ManagedAccountsClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ManagedAccountsClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Batch reconcile account balance and return status for each account.
+        pub async fn batch_reconcile_managed_account_balance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchReconcileManagedAccountBalanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::BatchReconcileManagedAccountBalanceResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/BatchReconcileManagedAccountBalance");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
+                "BatchReconcileManagedAccountBalance",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get information on the account managed by account manager.
+        pub async fn get_managed_account(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetManagedAccountRequest>,
+        ) -> std::result::Result<tonic::Response<super::ManagedAccount>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts/GetManagedAccount");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ManagedAccounts",
+                "GetManagedAccount",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

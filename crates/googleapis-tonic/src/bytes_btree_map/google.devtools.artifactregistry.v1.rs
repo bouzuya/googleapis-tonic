@@ -2,1248 +2,1277 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hash {
-#[prost(enumeration = "hash::HashType", tag = "1")]
-pub r#type: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub value: ::prost::bytes::Bytes,
+    #[prost(enumeration = "hash::HashType", tag = "1")]
+    pub r#type: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub value: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `Hash`.
 pub mod hash {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum HashType {
-Unspecified = 0,
-Sha256 = 1,
-Md5 = 2,
-}
-impl HashType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-HashType::Unspecified => "HASH_TYPE_UNSPECIFIED",
-HashType::Sha256 => "SHA256",
-HashType::Md5 => "MD5",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"HASH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"SHA256" => Some(Self::Sha256),
-"MD5" => Some(Self::Md5),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum HashType {
+        Unspecified = 0,
+        Sha256 = 1,
+        Md5 = 2,
+    }
+    impl HashType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                HashType::Unspecified => "HASH_TYPE_UNSPECIFIED",
+                HashType::Sha256 => "SHA256",
+                HashType::Md5 => "MD5",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HASH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SHA256" => Some(Self::Sha256),
+                "MD5" => Some(Self::Md5),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct File {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, tag = "3")]
-pub size_bytes: i64,
-#[prost(message, repeated, tag = "4")]
-pub hashes: ::prost::alloc::vec::Vec<Hash>,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub owner: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "8")]
-pub fetch_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "3")]
+    pub size_bytes: i64,
+    #[prost(message, repeated, tag = "4")]
+    pub hashes: ::prost::alloc::vec::Vec<Hash>,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "8")]
+    pub fetch_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFilesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub files: ::prost::alloc::vec::Vec<File>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub files: ::prost::alloc::vec::Vec<File>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VpcscConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "vpcsc_config::VpcscPolicy", tag = "2")]
-pub vpcsc_policy: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "vpcsc_config::VpcscPolicy", tag = "2")]
+    pub vpcsc_policy: i32,
 }
 /// Nested message and enum types in `VPCSCConfig`.
 pub mod vpcsc_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VpcscPolicy {
-Unspecified = 0,
-Deny = 1,
-Allow = 2,
-}
-impl VpcscPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VpcscPolicy::Unspecified => "VPCSC_POLICY_UNSPECIFIED",
-VpcscPolicy::Deny => "DENY",
-VpcscPolicy::Allow => "ALLOW",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VPCSC_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"DENY" => Some(Self::Deny),
-"ALLOW" => Some(Self::Allow),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum VpcscPolicy {
+        Unspecified = 0,
+        Deny = 1,
+        Allow = 2,
+    }
+    impl VpcscPolicy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VpcscPolicy::Unspecified => "VPCSC_POLICY_UNSPECIFIED",
+                VpcscPolicy::Deny => "DENY",
+                VpcscPolicy::Allow => "ALLOW",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VPCSC_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                "DENY" => Some(Self::Deny),
+                "ALLOW" => Some(Self::Allow),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVpcscConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVpcscConfigRequest {
-#[prost(message, optional, tag = "1")]
-pub vpcsc_config: ::core::option::Option<VpcscConfig>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub vpcsc_config: ::core::option::Option<VpcscConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamPolicy {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub repository: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub priority: i32,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub repository: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub priority: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CleanupPolicyCondition {
-#[prost(enumeration = "cleanup_policy_condition::TagState", optional, tag = "2")]
-pub tag_state: ::core::option::Option<i32>,
-#[prost(string, repeated, tag = "3")]
-pub tag_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub version_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub package_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "6")]
-pub older_than: ::core::option::Option<::prost_types::Duration>,
-#[prost(message, optional, tag = "7")]
-pub newer_than: ::core::option::Option<::prost_types::Duration>,
+    #[prost(
+        enumeration = "cleanup_policy_condition::TagState",
+        optional,
+        tag = "2"
+    )]
+    pub tag_state: ::core::option::Option<i32>,
+    #[prost(string, repeated, tag = "3")]
+    pub tag_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub version_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub package_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub older_than: ::core::option::Option<::prost_types::Duration>,
+    #[prost(message, optional, tag = "7")]
+    pub newer_than: ::core::option::Option<::prost_types::Duration>,
 }
 /// Nested message and enum types in `CleanupPolicyCondition`.
 pub mod cleanup_policy_condition {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TagState {
-Unspecified = 0,
-Tagged = 1,
-Untagged = 2,
-Any = 3,
-}
-impl TagState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TagState::Unspecified => "TAG_STATE_UNSPECIFIED",
-TagState::Tagged => "TAGGED",
-TagState::Untagged => "UNTAGGED",
-TagState::Any => "ANY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TAG_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"TAGGED" => Some(Self::Tagged),
-"UNTAGGED" => Some(Self::Untagged),
-"ANY" => Some(Self::Any),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TagState {
+        Unspecified = 0,
+        Tagged = 1,
+        Untagged = 2,
+        Any = 3,
+    }
+    impl TagState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TagState::Unspecified => "TAG_STATE_UNSPECIFIED",
+                TagState::Tagged => "TAGGED",
+                TagState::Untagged => "UNTAGGED",
+                TagState::Any => "ANY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TAG_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "TAGGED" => Some(Self::Tagged),
+                "UNTAGGED" => Some(Self::Untagged),
+                "ANY" => Some(Self::Any),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CleanupPolicyMostRecentVersions {
-#[prost(string, repeated, tag = "1")]
-pub package_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "2")]
-pub keep_count: ::core::option::Option<i32>,
+    #[prost(string, repeated, tag = "1")]
+    pub package_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "2")]
+    pub keep_count: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CleanupPolicy {
-#[prost(string, tag = "1")]
-pub id: ::prost::alloc::string::String,
-#[prost(enumeration = "cleanup_policy::Action", tag = "3")]
-pub action: i32,
-#[prost(oneof = "cleanup_policy::ConditionType", tags = "2, 4")]
-pub condition_type: ::core::option::Option<cleanup_policy::ConditionType>,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(enumeration = "cleanup_policy::Action", tag = "3")]
+    pub action: i32,
+    #[prost(oneof = "cleanup_policy::ConditionType", tags = "2, 4")]
+    pub condition_type: ::core::option::Option<cleanup_policy::ConditionType>,
 }
 /// Nested message and enum types in `CleanupPolicy`.
 pub mod cleanup_policy {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Action {
-Unspecified = 0,
-Delete = 1,
-Keep = 2,
-}
-impl Action {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Action::Unspecified => "ACTION_UNSPECIFIED",
-Action::Delete => "DELETE",
-Action::Keep => "KEEP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-"DELETE" => Some(Self::Delete),
-"KEEP" => Some(Self::Keep),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ConditionType {
-#[prost(message, tag = "2")]
-Condition(super::CleanupPolicyCondition),
-#[prost(message, tag = "4")]
-MostRecentVersions(super::CleanupPolicyMostRecentVersions),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Action {
+        Unspecified = 0,
+        Delete = 1,
+        Keep = 2,
+    }
+    impl Action {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Action::Unspecified => "ACTION_UNSPECIFIED",
+                Action::Delete => "DELETE",
+                Action::Keep => "KEEP",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+                "DELETE" => Some(Self::Delete),
+                "KEEP" => Some(Self::Keep),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ConditionType {
+        #[prost(message, tag = "2")]
+        Condition(super::CleanupPolicyCondition),
+        #[prost(message, tag = "4")]
+        MostRecentVersions(super::CleanupPolicyMostRecentVersions),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VirtualRepositoryConfig {
-#[prost(message, repeated, tag = "1")]
-pub upstream_policies: ::prost::alloc::vec::Vec<UpstreamPolicy>,
+    #[prost(message, repeated, tag = "1")]
+    pub upstream_policies: ::prost::alloc::vec::Vec<UpstreamPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoteRepositoryConfig {
-#[prost(string, tag = "1")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub upstream_credentials: ::core::option::Option<remote_repository_config::UpstreamCredentials>,
-#[prost(oneof = "remote_repository_config::RemoteSource", tags = "2, 3, 4, 5, 6, 7")]
-pub remote_source: ::core::option::Option<remote_repository_config::RemoteSource>,
+    #[prost(string, tag = "1")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub upstream_credentials: ::core::option::Option<remote_repository_config::UpstreamCredentials>,
+    #[prost(
+        oneof = "remote_repository_config::RemoteSource",
+        tags = "2, 3, 4, 5, 6, 7"
+    )]
+    pub remote_source: ::core::option::Option<remote_repository_config::RemoteSource>,
 }
 /// Nested message and enum types in `RemoteRepositoryConfig`.
 pub mod remote_repository_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpstreamCredentials {
-#[prost(oneof = "upstream_credentials::Credentials", tags = "1")]
-pub credentials: ::core::option::Option<upstream_credentials::Credentials>,
-}
-/// Nested message and enum types in `UpstreamCredentials`.
-pub mod upstream_credentials {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UsernamePasswordCredentials {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub password_secret_version: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Credentials {
-#[prost(message, tag = "1")]
-UsernamePasswordCredentials(UsernamePasswordCredentials),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DockerRepository {
-#[prost(oneof = "docker_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<docker_repository::Upstream>,
-}
-/// Nested message and enum types in `DockerRepository`.
-pub mod docker_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PublicRepository {
-Unspecified = 0,
-DockerHub = 1,
-}
-impl PublicRepository {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
-PublicRepository::DockerHub => "DOCKER_HUB",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
-"DOCKER_HUB" => Some(Self::DockerHub),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(enumeration = "PublicRepository", tag = "1")]
-PublicRepository(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MavenRepository {
-#[prost(oneof = "maven_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<maven_repository::Upstream>,
-}
-/// Nested message and enum types in `MavenRepository`.
-pub mod maven_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PublicRepository {
-Unspecified = 0,
-MavenCentral = 1,
-}
-impl PublicRepository {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
-PublicRepository::MavenCentral => "MAVEN_CENTRAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
-"MAVEN_CENTRAL" => Some(Self::MavenCentral),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(enumeration = "PublicRepository", tag = "1")]
-PublicRepository(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NpmRepository {
-#[prost(oneof = "npm_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<npm_repository::Upstream>,
-}
-/// Nested message and enum types in `NpmRepository`.
-pub mod npm_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PublicRepository {
-Unspecified = 0,
-Npmjs = 1,
-}
-impl PublicRepository {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
-PublicRepository::Npmjs => "NPMJS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
-"NPMJS" => Some(Self::Npmjs),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(enumeration = "PublicRepository", tag = "1")]
-PublicRepository(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PythonRepository {
-#[prost(oneof = "python_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<python_repository::Upstream>,
-}
-/// Nested message and enum types in `PythonRepository`.
-pub mod python_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PublicRepository {
-Unspecified = 0,
-Pypi = 1,
-}
-impl PublicRepository {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
-PublicRepository::Pypi => "PYPI",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
-"PYPI" => Some(Self::Pypi),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(enumeration = "PublicRepository", tag = "1")]
-PublicRepository(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AptRepository {
-#[prost(oneof = "apt_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<apt_repository::Upstream>,
-}
-/// Nested message and enum types in `AptRepository`.
-pub mod apt_repository {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PublicRepository {
-#[prost(enumeration = "public_repository::RepositoryBase", tag = "1")]
-pub repository_base: i32,
-#[prost(string, tag = "2")]
-pub repository_path: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `PublicRepository`.
-pub mod public_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RepositoryBase {
-Unspecified = 0,
-Debian = 1,
-Ubuntu = 2,
-}
-impl RepositoryBase {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RepositoryBase::Unspecified => "REPOSITORY_BASE_UNSPECIFIED",
-RepositoryBase::Debian => "DEBIAN",
-RepositoryBase::Ubuntu => "UBUNTU",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REPOSITORY_BASE_UNSPECIFIED" => Some(Self::Unspecified),
-"DEBIAN" => Some(Self::Debian),
-"UBUNTU" => Some(Self::Ubuntu),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(message, tag = "1")]
-PublicRepository(PublicRepository),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct YumRepository {
-#[prost(oneof = "yum_repository::Upstream", tags = "1")]
-pub upstream: ::core::option::Option<yum_repository::Upstream>,
-}
-/// Nested message and enum types in `YumRepository`.
-pub mod yum_repository {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PublicRepository {
-#[prost(enumeration = "public_repository::RepositoryBase", tag = "1")]
-pub repository_base: i32,
-#[prost(string, tag = "2")]
-pub repository_path: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `PublicRepository`.
-pub mod public_repository {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RepositoryBase {
-Unspecified = 0,
-Centos = 1,
-CentosDebug = 2,
-CentosVault = 3,
-CentosStream = 4,
-Rocky = 5,
-Epel = 6,
-}
-impl RepositoryBase {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RepositoryBase::Unspecified => "REPOSITORY_BASE_UNSPECIFIED",
-RepositoryBase::Centos => "CENTOS",
-RepositoryBase::CentosDebug => "CENTOS_DEBUG",
-RepositoryBase::CentosVault => "CENTOS_VAULT",
-RepositoryBase::CentosStream => "CENTOS_STREAM",
-RepositoryBase::Rocky => "ROCKY",
-RepositoryBase::Epel => "EPEL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REPOSITORY_BASE_UNSPECIFIED" => Some(Self::Unspecified),
-"CENTOS" => Some(Self::Centos),
-"CENTOS_DEBUG" => Some(Self::CentosDebug),
-"CENTOS_VAULT" => Some(Self::CentosVault),
-"CENTOS_STREAM" => Some(Self::CentosStream),
-"ROCKY" => Some(Self::Rocky),
-"EPEL" => Some(Self::Epel),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Upstream {
-#[prost(message, tag = "1")]
-PublicRepository(PublicRepository),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum RemoteSource {
-#[prost(message, tag = "2")]
-DockerRepository(DockerRepository),
-#[prost(message, tag = "3")]
-MavenRepository(MavenRepository),
-#[prost(message, tag = "4")]
-NpmRepository(NpmRepository),
-#[prost(message, tag = "5")]
-PythonRepository(PythonRepository),
-#[prost(message, tag = "6")]
-AptRepository(AptRepository),
-#[prost(message, tag = "7")]
-YumRepository(YumRepository),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct UpstreamCredentials {
+        #[prost(oneof = "upstream_credentials::Credentials", tags = "1")]
+        pub credentials: ::core::option::Option<upstream_credentials::Credentials>,
+    }
+    /// Nested message and enum types in `UpstreamCredentials`.
+    pub mod upstream_credentials {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct UsernamePasswordCredentials {
+            #[prost(string, tag = "1")]
+            pub username: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub password_secret_version: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Credentials {
+            #[prost(message, tag = "1")]
+            UsernamePasswordCredentials(UsernamePasswordCredentials),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct DockerRepository {
+        #[prost(oneof = "docker_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<docker_repository::Upstream>,
+    }
+    /// Nested message and enum types in `DockerRepository`.
+    pub mod docker_repository {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PublicRepository {
+            Unspecified = 0,
+            DockerHub = 1,
+        }
+        impl PublicRepository {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
+                    PublicRepository::DockerHub => "DOCKER_HUB",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "DOCKER_HUB" => Some(Self::DockerHub),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(enumeration = "PublicRepository", tag = "1")]
+            PublicRepository(i32),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MavenRepository {
+        #[prost(oneof = "maven_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<maven_repository::Upstream>,
+    }
+    /// Nested message and enum types in `MavenRepository`.
+    pub mod maven_repository {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PublicRepository {
+            Unspecified = 0,
+            MavenCentral = 1,
+        }
+        impl PublicRepository {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
+                    PublicRepository::MavenCentral => "MAVEN_CENTRAL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "MAVEN_CENTRAL" => Some(Self::MavenCentral),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(enumeration = "PublicRepository", tag = "1")]
+            PublicRepository(i32),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct NpmRepository {
+        #[prost(oneof = "npm_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<npm_repository::Upstream>,
+    }
+    /// Nested message and enum types in `NpmRepository`.
+    pub mod npm_repository {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PublicRepository {
+            Unspecified = 0,
+            Npmjs = 1,
+        }
+        impl PublicRepository {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
+                    PublicRepository::Npmjs => "NPMJS",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "NPMJS" => Some(Self::Npmjs),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(enumeration = "PublicRepository", tag = "1")]
+            PublicRepository(i32),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PythonRepository {
+        #[prost(oneof = "python_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<python_repository::Upstream>,
+    }
+    /// Nested message and enum types in `PythonRepository`.
+    pub mod python_repository {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PublicRepository {
+            Unspecified = 0,
+            Pypi = 1,
+        }
+        impl PublicRepository {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PublicRepository::Unspecified => "PUBLIC_REPOSITORY_UNSPECIFIED",
+                    PublicRepository::Pypi => "PYPI",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "PUBLIC_REPOSITORY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "PYPI" => Some(Self::Pypi),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(enumeration = "PublicRepository", tag = "1")]
+            PublicRepository(i32),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AptRepository {
+        #[prost(oneof = "apt_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<apt_repository::Upstream>,
+    }
+    /// Nested message and enum types in `AptRepository`.
+    pub mod apt_repository {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct PublicRepository {
+            #[prost(enumeration = "public_repository::RepositoryBase", tag = "1")]
+            pub repository_base: i32,
+            #[prost(string, tag = "2")]
+            pub repository_path: ::prost::alloc::string::String,
+        }
+        /// Nested message and enum types in `PublicRepository`.
+        pub mod public_repository {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum RepositoryBase {
+                Unspecified = 0,
+                Debian = 1,
+                Ubuntu = 2,
+            }
+            impl RepositoryBase {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        RepositoryBase::Unspecified => "REPOSITORY_BASE_UNSPECIFIED",
+                        RepositoryBase::Debian => "DEBIAN",
+                        RepositoryBase::Ubuntu => "UBUNTU",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "REPOSITORY_BASE_UNSPECIFIED" => Some(Self::Unspecified),
+                        "DEBIAN" => Some(Self::Debian),
+                        "UBUNTU" => Some(Self::Ubuntu),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(message, tag = "1")]
+            PublicRepository(PublicRepository),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct YumRepository {
+        #[prost(oneof = "yum_repository::Upstream", tags = "1")]
+        pub upstream: ::core::option::Option<yum_repository::Upstream>,
+    }
+    /// Nested message and enum types in `YumRepository`.
+    pub mod yum_repository {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct PublicRepository {
+            #[prost(enumeration = "public_repository::RepositoryBase", tag = "1")]
+            pub repository_base: i32,
+            #[prost(string, tag = "2")]
+            pub repository_path: ::prost::alloc::string::String,
+        }
+        /// Nested message and enum types in `PublicRepository`.
+        pub mod public_repository {
+            #[derive(
+                Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+            )]
+            #[repr(i32)]
+            pub enum RepositoryBase {
+                Unspecified = 0,
+                Centos = 1,
+                CentosDebug = 2,
+                CentosVault = 3,
+                CentosStream = 4,
+                Rocky = 5,
+                Epel = 6,
+            }
+            impl RepositoryBase {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        RepositoryBase::Unspecified => "REPOSITORY_BASE_UNSPECIFIED",
+                        RepositoryBase::Centos => "CENTOS",
+                        RepositoryBase::CentosDebug => "CENTOS_DEBUG",
+                        RepositoryBase::CentosVault => "CENTOS_VAULT",
+                        RepositoryBase::CentosStream => "CENTOS_STREAM",
+                        RepositoryBase::Rocky => "ROCKY",
+                        RepositoryBase::Epel => "EPEL",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "REPOSITORY_BASE_UNSPECIFIED" => Some(Self::Unspecified),
+                        "CENTOS" => Some(Self::Centos),
+                        "CENTOS_DEBUG" => Some(Self::CentosDebug),
+                        "CENTOS_VAULT" => Some(Self::CentosVault),
+                        "CENTOS_STREAM" => Some(Self::CentosStream),
+                        "ROCKY" => Some(Self::Rocky),
+                        "EPEL" => Some(Self::Epel),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Upstream {
+            #[prost(message, tag = "1")]
+            PublicRepository(PublicRepository),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RemoteSource {
+        #[prost(message, tag = "2")]
+        DockerRepository(DockerRepository),
+        #[prost(message, tag = "3")]
+        MavenRepository(MavenRepository),
+        #[prost(message, tag = "4")]
+        NpmRepository(NpmRepository),
+        #[prost(message, tag = "5")]
+        PythonRepository(PythonRepository),
+        #[prost(message, tag = "6")]
+        AptRepository(AptRepository),
+        #[prost(message, tag = "7")]
+        YumRepository(YumRepository),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Repository {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "repository::Format", tag = "2")]
-pub format: i32,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "4")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "8")]
-pub kms_key_name: ::prost::alloc::string::String,
-#[prost(enumeration = "repository::Mode", tag = "10")]
-pub mode: i32,
-#[prost(btree_map = "string, message", tag = "12")]
-pub cleanup_policies: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, CleanupPolicy>,
-#[prost(int64, tag = "13")]
-pub size_bytes: i64,
-#[prost(bool, tag = "16")]
-pub satisfies_pzs: bool,
-#[prost(bool, tag = "18")]
-pub cleanup_policy_dry_run: bool,
-#[prost(oneof = "repository::FormatConfig", tags = "9, 17")]
-pub format_config: ::core::option::Option<repository::FormatConfig>,
-#[prost(oneof = "repository::ModeConfig", tags = "14, 15")]
-pub mode_config: ::core::option::Option<repository::ModeConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "repository::Format", tag = "2")]
+    pub format: i32,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "8")]
+    pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "repository::Mode", tag = "10")]
+    pub mode: i32,
+    #[prost(btree_map = "string, message", tag = "12")]
+    pub cleanup_policies:
+        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, CleanupPolicy>,
+    #[prost(int64, tag = "13")]
+    pub size_bytes: i64,
+    #[prost(bool, tag = "16")]
+    pub satisfies_pzs: bool,
+    #[prost(bool, tag = "18")]
+    pub cleanup_policy_dry_run: bool,
+    #[prost(oneof = "repository::FormatConfig", tags = "9, 17")]
+    pub format_config: ::core::option::Option<repository::FormatConfig>,
+    #[prost(oneof = "repository::ModeConfig", tags = "14, 15")]
+    pub mode_config: ::core::option::Option<repository::ModeConfig>,
 }
 /// Nested message and enum types in `Repository`.
 pub mod repository {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MavenRepositoryConfig {
-#[prost(bool, tag = "1")]
-pub allow_snapshot_overwrites: bool,
-#[prost(enumeration = "maven_repository_config::VersionPolicy", tag = "2")]
-pub version_policy: i32,
-}
-/// Nested message and enum types in `MavenRepositoryConfig`.
-pub mod maven_repository_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VersionPolicy {
-Unspecified = 0,
-Release = 1,
-Snapshot = 2,
-}
-impl VersionPolicy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VersionPolicy::Unspecified => "VERSION_POLICY_UNSPECIFIED",
-VersionPolicy::Release => "RELEASE",
-VersionPolicy::Snapshot => "SNAPSHOT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VERSION_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-"RELEASE" => Some(Self::Release),
-"SNAPSHOT" => Some(Self::Snapshot),
-_ => None,
-}
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DockerRepositoryConfig {
-#[prost(bool, tag = "1")]
-pub immutable_tags: bool,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Format {
-Unspecified = 0,
-Docker = 1,
-Maven = 2,
-Npm = 3,
-Apt = 5,
-Yum = 6,
-Python = 8,
-Kfp = 9,
-Go = 10,
-}
-impl Format {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Format::Unspecified => "FORMAT_UNSPECIFIED",
-Format::Docker => "DOCKER",
-Format::Maven => "MAVEN",
-Format::Npm => "NPM",
-Format::Apt => "APT",
-Format::Yum => "YUM",
-Format::Python => "PYTHON",
-Format::Kfp => "KFP",
-Format::Go => "GO",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-"DOCKER" => Some(Self::Docker),
-"MAVEN" => Some(Self::Maven),
-"NPM" => Some(Self::Npm),
-"APT" => Some(Self::Apt),
-"YUM" => Some(Self::Yum),
-"PYTHON" => Some(Self::Python),
-"KFP" => Some(Self::Kfp),
-"GO" => Some(Self::Go),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Mode {
-Unspecified = 0,
-StandardRepository = 1,
-VirtualRepository = 2,
-RemoteRepository = 3,
-}
-impl Mode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Mode::Unspecified => "MODE_UNSPECIFIED",
-Mode::StandardRepository => "STANDARD_REPOSITORY",
-Mode::VirtualRepository => "VIRTUAL_REPOSITORY",
-Mode::RemoteRepository => "REMOTE_REPOSITORY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"STANDARD_REPOSITORY" => Some(Self::StandardRepository),
-"VIRTUAL_REPOSITORY" => Some(Self::VirtualRepository),
-"REMOTE_REPOSITORY" => Some(Self::RemoteRepository),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum FormatConfig {
-#[prost(message, tag = "9")]
-MavenConfig(MavenRepositoryConfig),
-#[prost(message, tag = "17")]
-DockerConfig(DockerRepositoryConfig),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ModeConfig {
-#[prost(message, tag = "14")]
-VirtualRepositoryConfig(super::VirtualRepositoryConfig),
-#[prost(message, tag = "15")]
-RemoteRepositoryConfig(super::RemoteRepositoryConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MavenRepositoryConfig {
+        #[prost(bool, tag = "1")]
+        pub allow_snapshot_overwrites: bool,
+        #[prost(enumeration = "maven_repository_config::VersionPolicy", tag = "2")]
+        pub version_policy: i32,
+    }
+    /// Nested message and enum types in `MavenRepositoryConfig`.
+    pub mod maven_repository_config {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum VersionPolicy {
+            Unspecified = 0,
+            Release = 1,
+            Snapshot = 2,
+        }
+        impl VersionPolicy {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    VersionPolicy::Unspecified => "VERSION_POLICY_UNSPECIFIED",
+                    VersionPolicy::Release => "RELEASE",
+                    VersionPolicy::Snapshot => "SNAPSHOT",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "VERSION_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "RELEASE" => Some(Self::Release),
+                    "SNAPSHOT" => Some(Self::Snapshot),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct DockerRepositoryConfig {
+        #[prost(bool, tag = "1")]
+        pub immutable_tags: bool,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Format {
+        Unspecified = 0,
+        Docker = 1,
+        Maven = 2,
+        Npm = 3,
+        Apt = 5,
+        Yum = 6,
+        Python = 8,
+        Kfp = 9,
+        Go = 10,
+    }
+    impl Format {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Format::Unspecified => "FORMAT_UNSPECIFIED",
+                Format::Docker => "DOCKER",
+                Format::Maven => "MAVEN",
+                Format::Npm => "NPM",
+                Format::Apt => "APT",
+                Format::Yum => "YUM",
+                Format::Python => "PYTHON",
+                Format::Kfp => "KFP",
+                Format::Go => "GO",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "DOCKER" => Some(Self::Docker),
+                "MAVEN" => Some(Self::Maven),
+                "NPM" => Some(Self::Npm),
+                "APT" => Some(Self::Apt),
+                "YUM" => Some(Self::Yum),
+                "PYTHON" => Some(Self::Python),
+                "KFP" => Some(Self::Kfp),
+                "GO" => Some(Self::Go),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Mode {
+        Unspecified = 0,
+        StandardRepository = 1,
+        VirtualRepository = 2,
+        RemoteRepository = 3,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::StandardRepository => "STANDARD_REPOSITORY",
+                Mode::VirtualRepository => "VIRTUAL_REPOSITORY",
+                Mode::RemoteRepository => "REMOTE_REPOSITORY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STANDARD_REPOSITORY" => Some(Self::StandardRepository),
+                "VIRTUAL_REPOSITORY" => Some(Self::VirtualRepository),
+                "REMOTE_REPOSITORY" => Some(Self::RemoteRepository),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum FormatConfig {
+        #[prost(message, tag = "9")]
+        MavenConfig(MavenRepositoryConfig),
+        #[prost(message, tag = "17")]
+        DockerConfig(DockerRepositoryConfig),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ModeConfig {
+        #[prost(message, tag = "14")]
+        VirtualRepositoryConfig(super::VirtualRepositoryConfig),
+        #[prost(message, tag = "15")]
+        RemoteRepositoryConfig(super::RemoteRepositoryConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRepositoriesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRepositoriesResponse {
-#[prost(message, repeated, tag = "1")]
-pub repositories: ::prost::alloc::vec::Vec<Repository>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub repositories: ::prost::alloc::vec::Vec<Repository>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRepositoryRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRepositoryRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub repository_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub repository: ::core::option::Option<Repository>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub repository_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub repository: ::core::option::Option<Repository>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRepositoryRequest {
-#[prost(message, optional, tag = "1")]
-pub repository: ::core::option::Option<Repository>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub repository: ::core::option::Option<Repository>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRepositoryRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Package {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPackagesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPackagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub packages: ::prost::alloc::vec::Vec<Package>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub packages: ::prost::alloc::vec::Vec<Package>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPackageRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePackageRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProjectSettings {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "project_settings::RedirectionState", tag = "2")]
-pub legacy_redirection_state: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "project_settings::RedirectionState", tag = "2")]
+    pub legacy_redirection_state: i32,
 }
 /// Nested message and enum types in `ProjectSettings`.
 pub mod project_settings {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RedirectionState {
-Unspecified = 0,
-RedirectionFromGcrIoDisabled = 1,
-RedirectionFromGcrIoEnabled = 2,
-RedirectionFromGcrIoFinalized = 3,
-}
-impl RedirectionState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RedirectionState::Unspecified => "REDIRECTION_STATE_UNSPECIFIED",
-RedirectionState::RedirectionFromGcrIoDisabled => "REDIRECTION_FROM_GCR_IO_DISABLED",
-RedirectionState::RedirectionFromGcrIoEnabled => "REDIRECTION_FROM_GCR_IO_ENABLED",
-RedirectionState::RedirectionFromGcrIoFinalized => "REDIRECTION_FROM_GCR_IO_FINALIZED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"REDIRECTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"REDIRECTION_FROM_GCR_IO_DISABLED" => Some(Self::RedirectionFromGcrIoDisabled),
-"REDIRECTION_FROM_GCR_IO_ENABLED" => Some(Self::RedirectionFromGcrIoEnabled),
-"REDIRECTION_FROM_GCR_IO_FINALIZED" => Some(Self::RedirectionFromGcrIoFinalized),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RedirectionState {
+        Unspecified = 0,
+        RedirectionFromGcrIoDisabled = 1,
+        RedirectionFromGcrIoEnabled = 2,
+        RedirectionFromGcrIoFinalized = 3,
+    }
+    impl RedirectionState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RedirectionState::Unspecified => "REDIRECTION_STATE_UNSPECIFIED",
+                RedirectionState::RedirectionFromGcrIoDisabled => {
+                    "REDIRECTION_FROM_GCR_IO_DISABLED"
+                }
+                RedirectionState::RedirectionFromGcrIoEnabled => "REDIRECTION_FROM_GCR_IO_ENABLED",
+                RedirectionState::RedirectionFromGcrIoFinalized => {
+                    "REDIRECTION_FROM_GCR_IO_FINALIZED"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REDIRECTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "REDIRECTION_FROM_GCR_IO_DISABLED" => Some(Self::RedirectionFromGcrIoDisabled),
+                "REDIRECTION_FROM_GCR_IO_ENABLED" => Some(Self::RedirectionFromGcrIoEnabled),
+                "REDIRECTION_FROM_GCR_IO_FINALIZED" => Some(Self::RedirectionFromGcrIoFinalized),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProjectSettingsRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProjectSettingsRequest {
-#[prost(message, optional, tag = "2")]
-pub project_settings: ::core::option::Option<ProjectSettings>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub project_settings: ::core::option::Option<ProjectSettings>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tag {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsResponse {
-#[prost(message, repeated, tag = "1")]
-pub tags: ::prost::alloc::vec::Vec<Tag>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub tags: ::prost::alloc::vec::Vec<Tag>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTagRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub tag_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub tag: ::core::option::Option<Tag>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub tag_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub tag: ::core::option::Option<Tag>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagRequest {
-#[prost(message, optional, tag = "1")]
-pub tag: ::core::option::Option<Tag>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub tag: ::core::option::Option<Tag>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DockerImage {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int64, tag = "4")]
-pub image_size_bytes: i64,
-#[prost(message, optional, tag = "5")]
-pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "6")]
-pub media_type: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub build_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int64, tag = "4")]
+    pub image_size_bytes: i64,
+    #[prost(message, optional, tag = "5")]
+    pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "6")]
+    pub media_type: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub build_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDockerImagesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDockerImagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub docker_images: ::prost::alloc::vec::Vec<DockerImage>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub docker_images: ::prost::alloc::vec::Vec<DockerImage>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDockerImageRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MavenArtifact {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub pom_uri: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub group_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub artifact_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub pom_uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub group_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub artifact_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMavenArtifactsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMavenArtifactsResponse {
-#[prost(message, repeated, tag = "1")]
-pub maven_artifacts: ::prost::alloc::vec::Vec<MavenArtifact>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub maven_artifacts: ::prost::alloc::vec::Vec<MavenArtifact>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMavenArtifactRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NpmPackage {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub package_name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "5")]
-pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub package_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "5")]
+    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNpmPackagesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNpmPackagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub npm_packages: ::prost::alloc::vec::Vec<NpmPackage>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub npm_packages: ::prost::alloc::vec::Vec<NpmPackage>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNpmPackageRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PythonPackage {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub uri: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub package_name: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub uri: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub package_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPythonPackagesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPythonPackagesResponse {
-#[prost(message, repeated, tag = "1")]
-pub python_packages: ::prost::alloc::vec::Vec<PythonPackage>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub python_packages: ::prost::alloc::vec::Vec<PythonPackage>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPythonPackageRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct YumArtifact {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub package_name: ::prost::alloc::string::String,
-#[prost(enumeration = "yum_artifact::PackageType", tag = "3")]
-pub package_type: i32,
-#[prost(string, tag = "4")]
-pub architecture: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub package_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "yum_artifact::PackageType", tag = "3")]
+    pub package_type: i32,
+    #[prost(string, tag = "4")]
+    pub architecture: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `YumArtifact`.
 pub mod yum_artifact {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PackageType {
-Unspecified = 0,
-Binary = 1,
-Source = 2,
-}
-impl PackageType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PackageType::Unspecified => "PACKAGE_TYPE_UNSPECIFIED",
-PackageType::Binary => "BINARY",
-PackageType::Source => "SOURCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PACKAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BINARY" => Some(Self::Binary),
-"SOURCE" => Some(Self::Source),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PackageType {
+        Unspecified = 0,
+        Binary = 1,
+        Source = 2,
+    }
+    impl PackageType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PackageType::Unspecified => "PACKAGE_TYPE_UNSPECIFIED",
+                PackageType::Binary => "BINARY",
+                PackageType::Source => "SOURCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PACKAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "BINARY" => Some(Self::Binary),
+                "SOURCE" => Some(Self::Source),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportYumArtifactsGcsSource {
-#[prost(string, repeated, tag = "1")]
-pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "2")]
-pub use_wildcards: bool,
+    #[prost(string, repeated, tag = "1")]
+    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "2")]
+    pub use_wildcards: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportYumArtifactsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(oneof = "import_yum_artifacts_request::Source", tags = "2")]
-pub source: ::core::option::Option<import_yum_artifacts_request::Source>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(oneof = "import_yum_artifacts_request::Source", tags = "2")]
+    pub source: ::core::option::Option<import_yum_artifacts_request::Source>,
 }
 /// Nested message and enum types in `ImportYumArtifactsRequest`.
 pub mod import_yum_artifacts_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "2")]
-GcsSource(super::ImportYumArtifactsGcsSource),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "2")]
+        GcsSource(super::ImportYumArtifactsGcsSource),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportYumArtifactsErrorInfo {
-#[prost(message, optional, tag = "2")]
-pub error: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(oneof = "import_yum_artifacts_error_info::Source", tags = "1")]
-pub source: ::core::option::Option<import_yum_artifacts_error_info::Source>,
+    #[prost(message, optional, tag = "2")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(oneof = "import_yum_artifacts_error_info::Source", tags = "1")]
+    pub source: ::core::option::Option<import_yum_artifacts_error_info::Source>,
 }
 /// Nested message and enum types in `ImportYumArtifactsErrorInfo`.
 pub mod import_yum_artifacts_error_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-GcsSource(super::ImportYumArtifactsGcsSource),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        GcsSource(super::ImportYumArtifactsGcsSource),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportYumArtifactsResponse {
-#[prost(message, repeated, tag = "1")]
-pub yum_artifacts: ::prost::alloc::vec::Vec<YumArtifact>,
-#[prost(message, repeated, tag = "2")]
-pub errors: ::prost::alloc::vec::Vec<ImportYumArtifactsErrorInfo>,
+    #[prost(message, repeated, tag = "1")]
+    pub yum_artifacts: ::prost::alloc::vec::Vec<YumArtifact>,
+    #[prost(message, repeated, tag = "2")]
+    pub errors: ::prost::alloc::vec::Vec<ImportYumArtifactsErrorInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1251,100 +1280,100 @@ pub struct ImportYumArtifactsMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AptArtifact {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub package_name: ::prost::alloc::string::String,
-#[prost(enumeration = "apt_artifact::PackageType", tag = "3")]
-pub package_type: i32,
-#[prost(string, tag = "4")]
-pub architecture: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub component: ::prost::alloc::string::String,
-#[prost(bytes = "bytes", tag = "6")]
-pub control_file: ::prost::bytes::Bytes,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub package_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "apt_artifact::PackageType", tag = "3")]
+    pub package_type: i32,
+    #[prost(string, tag = "4")]
+    pub architecture: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub component: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "6")]
+    pub control_file: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `AptArtifact`.
 pub mod apt_artifact {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PackageType {
-Unspecified = 0,
-Binary = 1,
-Source = 2,
-}
-impl PackageType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PackageType::Unspecified => "PACKAGE_TYPE_UNSPECIFIED",
-PackageType::Binary => "BINARY",
-PackageType::Source => "SOURCE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PACKAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BINARY" => Some(Self::Binary),
-"SOURCE" => Some(Self::Source),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum PackageType {
+        Unspecified = 0,
+        Binary = 1,
+        Source = 2,
+    }
+    impl PackageType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PackageType::Unspecified => "PACKAGE_TYPE_UNSPECIFIED",
+                PackageType::Binary => "BINARY",
+                PackageType::Source => "SOURCE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PACKAGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "BINARY" => Some(Self::Binary),
+                "SOURCE" => Some(Self::Source),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAptArtifactsGcsSource {
-#[prost(string, repeated, tag = "1")]
-pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "2")]
-pub use_wildcards: bool,
+    #[prost(string, repeated, tag = "1")]
+    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "2")]
+    pub use_wildcards: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAptArtifactsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(oneof = "import_apt_artifacts_request::Source", tags = "2")]
-pub source: ::core::option::Option<import_apt_artifacts_request::Source>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(oneof = "import_apt_artifacts_request::Source", tags = "2")]
+    pub source: ::core::option::Option<import_apt_artifacts_request::Source>,
 }
 /// Nested message and enum types in `ImportAptArtifactsRequest`.
 pub mod import_apt_artifacts_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "2")]
-GcsSource(super::ImportAptArtifactsGcsSource),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "2")]
+        GcsSource(super::ImportAptArtifactsGcsSource),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAptArtifactsErrorInfo {
-#[prost(message, optional, tag = "2")]
-pub error: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(oneof = "import_apt_artifacts_error_info::Source", tags = "1")]
-pub source: ::core::option::Option<import_apt_artifacts_error_info::Source>,
+    #[prost(message, optional, tag = "2")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(oneof = "import_apt_artifacts_error_info::Source", tags = "1")]
+    pub source: ::core::option::Option<import_apt_artifacts_error_info::Source>,
 }
 /// Nested message and enum types in `ImportAptArtifactsErrorInfo`.
 pub mod import_apt_artifacts_error_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-GcsSource(super::ImportAptArtifactsGcsSource),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        GcsSource(super::ImportAptArtifactsGcsSource),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAptArtifactsResponse {
-#[prost(message, repeated, tag = "1")]
-pub apt_artifacts: ::prost::alloc::vec::Vec<AptArtifact>,
-#[prost(message, repeated, tag = "2")]
-pub errors: ::prost::alloc::vec::Vec<ImportAptArtifactsErrorInfo>,
+    #[prost(message, repeated, tag = "1")]
+    pub apt_artifacts: ::prost::alloc::vec::Vec<AptArtifact>,
+    #[prost(message, repeated, tag = "2")]
+    pub errors: ::prost::alloc::vec::Vec<ImportAptArtifactsErrorInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1352,517 +1381,1033 @@ pub struct ImportAptArtifactsMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Version {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "7")]
-pub related_tags: ::prost::alloc::vec::Vec<Tag>,
-#[prost(message, optional, tag = "8")]
-pub metadata: ::core::option::Option<::prost_types::Struct>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "7")]
+    pub related_tags: ::prost::alloc::vec::Vec<Tag>,
+    #[prost(message, optional, tag = "8")]
+    pub metadata: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVersionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(enumeration = "VersionView", tag = "4")]
-pub view: i32,
-#[prost(string, tag = "5")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(enumeration = "VersionView", tag = "4")]
+    pub view: i32,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVersionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub versions: ::prost::alloc::vec::Vec<Version>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub versions: ::prost::alloc::vec::Vec<Version>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVersionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "VersionView", tag = "2")]
-pub view: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "VersionView", tag = "2")]
+    pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteVersionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(bool, tag = "2")]
-pub force: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteVersionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(bool, tag = "3")]
-pub validate_only: bool,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(bool, tag = "3")]
+    pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteVersionsMetadata {
-#[prost(string, repeated, tag = "2")]
-pub failed_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub failed_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum VersionView {
-Unspecified = 0,
-Basic = 1,
-Full = 2,
+    Unspecified = 0,
+    Basic = 1,
+    Full = 2,
 }
 impl VersionView {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VersionView::Unspecified => "VERSION_VIEW_UNSPECIFIED",
-VersionView::Basic => "BASIC",
-VersionView::Full => "FULL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VERSION_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-"BASIC" => Some(Self::Basic),
-"FULL" => Some(Self::Full),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            VersionView::Unspecified => "VERSION_VIEW_UNSPECIFIED",
+            VersionView::Basic => "BASIC",
+            VersionView::Full => "FULL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "VERSION_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+            "BASIC" => Some(Self::Basic),
+            "FULL" => Some(Self::Full),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {}
 /// Generated client implementations.
 pub mod artifact_registry_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Artifact Registry API service.
-///
-/// Artifact Registry is an artifact management system for storing artifacts
-/// from different package management systems.
-///
-/// The resources managed by this API are:
-///
-/// * Repositories, which group packages and their data.
-/// * Packages, which group versions and their tags.
-/// * Versions, which are specific forms of a package.
-/// * Tags, which represent alternative names for versions.
-/// * Files, which contain content and are optionally associated with a Package
-///   or Version.
-#[derive(Debug, Clone)]
-pub struct ArtifactRegistryClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> ArtifactRegistryClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> ArtifactRegistryClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-ArtifactRegistryClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists docker images.
-pub async fn list_docker_images(&mut self, request: impl tonic::IntoRequest<super::ListDockerImagesRequest>) -> std::result::Result<tonic::Response<super::ListDockerImagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListDockerImages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListDockerImages"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a docker image.
-pub async fn get_docker_image(&mut self, request: impl tonic::IntoRequest<super::GetDockerImageRequest>) -> std::result::Result<tonic::Response<super::DockerImage>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetDockerImage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetDockerImage"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists maven artifacts.
-pub async fn list_maven_artifacts(&mut self, request: impl tonic::IntoRequest<super::ListMavenArtifactsRequest>) -> std::result::Result<tonic::Response<super::ListMavenArtifactsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListMavenArtifacts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListMavenArtifacts"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a maven artifact.
-pub async fn get_maven_artifact(&mut self, request: impl tonic::IntoRequest<super::GetMavenArtifactRequest>) -> std::result::Result<tonic::Response<super::MavenArtifact>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetMavenArtifact");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetMavenArtifact"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists npm packages.
-pub async fn list_npm_packages(&mut self, request: impl tonic::IntoRequest<super::ListNpmPackagesRequest>) -> std::result::Result<tonic::Response<super::ListNpmPackagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListNpmPackages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListNpmPackages"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a npm package.
-pub async fn get_npm_package(&mut self, request: impl tonic::IntoRequest<super::GetNpmPackageRequest>) -> std::result::Result<tonic::Response<super::NpmPackage>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetNpmPackage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetNpmPackage"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists python packages.
-pub async fn list_python_packages(&mut self, request: impl tonic::IntoRequest<super::ListPythonPackagesRequest>) -> std::result::Result<tonic::Response<super::ListPythonPackagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPythonPackages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListPythonPackages"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a python package.
-pub async fn get_python_package(&mut self, request: impl tonic::IntoRequest<super::GetPythonPackageRequest>) -> std::result::Result<tonic::Response<super::PythonPackage>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPythonPackage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetPythonPackage"));
-self.inner.unary(req, path, codec).await
-}
-/// Imports Apt artifacts. The returned Operation will complete once the
-/// resources are imported. Package, Version, and File resources are created
-/// based on the imported artifacts. Imported artifacts that conflict with
-/// existing resources are ignored.
-pub async fn import_apt_artifacts(&mut self, request: impl tonic::IntoRequest<super::ImportAptArtifactsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportAptArtifacts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ImportAptArtifacts"));
-self.inner.unary(req, path, codec).await
-}
-/// Imports Yum (RPM) artifacts. The returned Operation will complete once the
-/// resources are imported. Package, Version, and File resources are created
-/// based on the imported artifacts. Imported artifacts that conflict with
-/// existing resources are ignored.
-pub async fn import_yum_artifacts(&mut self, request: impl tonic::IntoRequest<super::ImportYumArtifactsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportYumArtifacts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ImportYumArtifacts"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists repositories.
-pub async fn list_repositories(&mut self, request: impl tonic::IntoRequest<super::ListRepositoriesRequest>) -> std::result::Result<tonic::Response<super::ListRepositoriesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListRepositories");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListRepositories"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a repository.
-pub async fn get_repository(&mut self, request: impl tonic::IntoRequest<super::GetRepositoryRequest>) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetRepository");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetRepository"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a repository. The returned Operation will finish once the
-/// repository has been created. Its response will be the created Repository.
-pub async fn create_repository(&mut self, request: impl tonic::IntoRequest<super::CreateRepositoryRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateRepository");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "CreateRepository"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a repository.
-pub async fn update_repository(&mut self, request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateRepository");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "UpdateRepository"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a repository and all of its contents. The returned Operation will
-/// finish once the repository has been deleted. It will not have any Operation
-/// metadata and will return a google.protobuf.Empty response.
-pub async fn delete_repository(&mut self, request: impl tonic::IntoRequest<super::DeleteRepositoryRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteRepository");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "DeleteRepository"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists packages.
-pub async fn list_packages(&mut self, request: impl tonic::IntoRequest<super::ListPackagesRequest>) -> std::result::Result<tonic::Response<super::ListPackagesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPackages");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListPackages"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a package.
-pub async fn get_package(&mut self, request: impl tonic::IntoRequest<super::GetPackageRequest>) -> std::result::Result<tonic::Response<super::Package>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPackage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetPackage"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a package and all of its versions and tags. The returned operation
-/// will complete once the package has been deleted.
-pub async fn delete_package(&mut self, request: impl tonic::IntoRequest<super::DeletePackageRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/DeletePackage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "DeletePackage"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists versions.
-pub async fn list_versions(&mut self, request: impl tonic::IntoRequest<super::ListVersionsRequest>) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListVersions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListVersions"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a version
-pub async fn get_version(&mut self, request: impl tonic::IntoRequest<super::GetVersionRequest>) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetVersion");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetVersion"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a version and all of its content. The returned operation will
-/// complete once the version has been deleted.
-pub async fn delete_version(&mut self, request: impl tonic::IntoRequest<super::DeleteVersionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteVersion");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "DeleteVersion"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes multiple versions across a repository. The returned operation will
-/// complete once the versions have been deleted.
-pub async fn batch_delete_versions(&mut self, request: impl tonic::IntoRequest<super::BatchDeleteVersionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "BatchDeleteVersions"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists files.
-pub async fn list_files(&mut self, request: impl tonic::IntoRequest<super::ListFilesRequest>) -> std::result::Result<tonic::Response<super::ListFilesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListFiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListFiles"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a file.
-pub async fn get_file(&mut self, request: impl tonic::IntoRequest<super::GetFileRequest>) -> std::result::Result<tonic::Response<super::File>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetFile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetFile"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists tags.
-pub async fn list_tags(&mut self, request: impl tonic::IntoRequest<super::ListTagsRequest>) -> std::result::Result<tonic::Response<super::ListTagsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/ListTags");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "ListTags"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a tag.
-pub async fn get_tag(&mut self, request: impl tonic::IntoRequest<super::GetTagRequest>) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetTag");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetTag"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a tag.
-pub async fn create_tag(&mut self, request: impl tonic::IntoRequest<super::CreateTagRequest>) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateTag");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "CreateTag"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a tag.
-pub async fn update_tag(&mut self, request: impl tonic::IntoRequest<super::UpdateTagRequest>) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateTag");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "UpdateTag"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a tag.
-pub async fn delete_tag(&mut self, request: impl tonic::IntoRequest<super::DeleteTagRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteTag");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "DeleteTag"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the IAM policy for a given resource.
-pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/SetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "SetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the IAM policy for a given resource.
-pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Tests if the caller has a list of permissions on a resource.
-pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/TestIamPermissions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "TestIamPermissions"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves the Settings for the Project.
-pub async fn get_project_settings(&mut self, request: impl tonic::IntoRequest<super::GetProjectSettingsRequest>) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetProjectSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetProjectSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the Settings for the Project.
-pub async fn update_project_settings(&mut self, request: impl tonic::IntoRequest<super::UpdateProjectSettingsRequest>) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateProjectSettings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "UpdateProjectSettings"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves the VPCSC Config for the Project.
-pub async fn get_vpcsc_config(&mut self, request: impl tonic::IntoRequest<super::GetVpcscConfigRequest>) -> std::result::Result<tonic::Response<super::VpcscConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/GetVPCSCConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "GetVPCSCConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the VPCSC Config for the Project.
-pub async fn update_vpcsc_config(&mut self, request: impl tonic::IntoRequest<super::UpdateVpcscConfigRequest>) -> std::result::Result<tonic::Response<super::VpcscConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateVPCSCConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.devtools.artifactregistry.v1.ArtifactRegistry", "UpdateVPCSCConfig"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Artifact Registry API service.
+    ///
+    /// Artifact Registry is an artifact management system for storing artifacts
+    /// from different package management systems.
+    ///
+    /// The resources managed by this API are:
+    ///
+    /// * Repositories, which group packages and their data.
+    /// * Packages, which group versions and their tags.
+    /// * Versions, which are specific forms of a package.
+    /// * Tags, which represent alternative names for versions.
+    /// * Files, which contain content and are optionally associated with a Package
+    ///   or Version.
+    #[derive(Debug, Clone)]
+    pub struct ArtifactRegistryClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ArtifactRegistryClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ArtifactRegistryClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            ArtifactRegistryClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists docker images.
+        pub async fn list_docker_images(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDockerImagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDockerImagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListDockerImages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListDockerImages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a docker image.
+        pub async fn get_docker_image(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDockerImageRequest>,
+        ) -> std::result::Result<tonic::Response<super::DockerImage>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetDockerImage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetDockerImage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists maven artifacts.
+        pub async fn list_maven_artifacts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListMavenArtifactsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListMavenArtifactsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListMavenArtifacts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListMavenArtifacts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a maven artifact.
+        pub async fn get_maven_artifact(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetMavenArtifactRequest>,
+        ) -> std::result::Result<tonic::Response<super::MavenArtifact>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetMavenArtifact",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetMavenArtifact",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists npm packages.
+        pub async fn list_npm_packages(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNpmPackagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListNpmPackagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListNpmPackages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListNpmPackages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a npm package.
+        pub async fn get_npm_package(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNpmPackageRequest>,
+        ) -> std::result::Result<tonic::Response<super::NpmPackage>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetNpmPackage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetNpmPackage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists python packages.
+        pub async fn list_python_packages(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPythonPackagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPythonPackagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPythonPackages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListPythonPackages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a python package.
+        pub async fn get_python_package(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPythonPackageRequest>,
+        ) -> std::result::Result<tonic::Response<super::PythonPackage>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPythonPackage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetPythonPackage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports Apt artifacts. The returned Operation will complete once the
+        /// resources are imported. Package, Version, and File resources are created
+        /// based on the imported artifacts. Imported artifacts that conflict with
+        /// existing resources are ignored.
+        pub async fn import_apt_artifacts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportAptArtifactsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportAptArtifacts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ImportAptArtifacts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Imports Yum (RPM) artifacts. The returned Operation will complete once the
+        /// resources are imported. Package, Version, and File resources are created
+        /// based on the imported artifacts. Imported artifacts that conflict with
+        /// existing resources are ignored.
+        pub async fn import_yum_artifacts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportYumArtifactsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportYumArtifacts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ImportYumArtifacts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists repositories.
+        pub async fn list_repositories(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRepositoriesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListRepositoriesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListRepositories",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListRepositories",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a repository.
+        pub async fn get_repository(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRepositoryRequest>,
+        ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetRepository",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetRepository",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a repository. The returned Operation will finish once the
+        /// repository has been created. Its response will be the created Repository.
+        pub async fn create_repository(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateRepositoryRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateRepository",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "CreateRepository",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a repository.
+        pub async fn update_repository(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>,
+        ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateRepository",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "UpdateRepository",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a repository and all of its contents. The returned Operation will
+        /// finish once the repository has been deleted. It will not have any Operation
+        /// metadata and will return a google.protobuf.Empty response.
+        pub async fn delete_repository(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRepositoryRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteRepository",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "DeleteRepository",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists packages.
+        pub async fn list_packages(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListPackagesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListPackagesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPackages",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListPackages",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a package.
+        pub async fn get_package(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPackageRequest>,
+        ) -> std::result::Result<tonic::Response<super::Package>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPackage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetPackage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a package and all of its versions and tags. The returned operation
+        /// will complete once the package has been deleted.
+        pub async fn delete_package(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeletePackageRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/DeletePackage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "DeletePackage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists versions.
+        pub async fn list_versions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListVersionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListVersions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListVersions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a version
+        pub async fn get_version(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVersionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetVersion",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetVersion",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a version and all of its content. The returned operation will
+        /// complete once the version has been deleted.
+        pub async fn delete_version(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteVersionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteVersion",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "DeleteVersion",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes multiple versions across a repository. The returned operation will
+        /// complete once the versions have been deleted.
+        pub async fn batch_delete_versions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::BatchDeleteVersionsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "BatchDeleteVersions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists files.
+        pub async fn list_files(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFilesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListFilesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListFiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListFiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a file.
+        pub async fn get_file(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFileRequest>,
+        ) -> std::result::Result<tonic::Response<super::File>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetFile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetFile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists tags.
+        pub async fn list_tags(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListTagsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListTagsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/ListTags",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "ListTags",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a tag.
+        pub async fn get_tag(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTagRequest>,
+        ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetTag",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetTag",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a tag.
+        pub async fn create_tag(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateTagRequest>,
+        ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateTag",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "CreateTag",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a tag.
+        pub async fn update_tag(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateTagRequest>,
+        ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateTag",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "UpdateTag",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a tag.
+        pub async fn delete_tag(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteTagRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteTag",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "DeleteTag",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the IAM policy for a given resource.
+        pub async fn set_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/SetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "SetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the IAM policy for a given resource.
+        pub async fn get_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Tests if the caller has a list of permissions on a resource.
+        pub async fn test_iam_permissions(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::TestIamPermissionsRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/TestIamPermissions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "TestIamPermissions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the Settings for the Project.
+        pub async fn get_project_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProjectSettingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetProjectSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetProjectSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the Settings for the Project.
+        pub async fn update_project_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateProjectSettingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProjectSettings>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateProjectSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "UpdateProjectSettings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves the VPCSC Config for the Project.
+        pub async fn get_vpcsc_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVpcscConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::VpcscConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/GetVPCSCConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "GetVPCSCConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the VPCSC Config for the Project.
+        pub async fn update_vpcsc_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateVpcscConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::VpcscConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateVPCSCConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.devtools.artifactregistry.v1.ArtifactRegistry",
+                "UpdateVPCSCConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

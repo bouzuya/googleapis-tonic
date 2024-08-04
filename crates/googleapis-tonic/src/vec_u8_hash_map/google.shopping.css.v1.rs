@@ -2,849 +2,1031 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChildAccountsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "2")]
-pub label_id: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "3")]
-pub full_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "2")]
+    pub label_id: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "3")]
+    pub full_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChildAccountsResponse {
-#[prost(message, repeated, tag = "1")]
-pub accounts: ::prost::alloc::vec::Vec<Account>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub accounts: ::prost::alloc::vec::Vec<Account>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAccountRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "2")]
-pub parent: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub parent: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAccountLabelsRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, repeated, tag = "2")]
-pub label_ids: ::prost::alloc::vec::Vec<i64>,
-#[prost(string, optional, tag = "3")]
-pub parent: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, repeated, tag = "2")]
+    pub label_ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(string, optional, tag = "3")]
+    pub parent: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Account {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub full_name: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "3")]
-pub display_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub homepage_uri: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub parent: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int64, repeated, tag = "6")]
-pub label_ids: ::prost::alloc::vec::Vec<i64>,
-#[prost(int64, repeated, tag = "7")]
-pub automatic_label_ids: ::prost::alloc::vec::Vec<i64>,
-#[prost(enumeration = "account::AccountType", tag = "8")]
-pub account_type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub full_name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "3")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub homepage_uri: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub parent: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int64, repeated, tag = "6")]
+    pub label_ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(int64, repeated, tag = "7")]
+    pub automatic_label_ids: ::prost::alloc::vec::Vec<i64>,
+    #[prost(enumeration = "account::AccountType", tag = "8")]
+    pub account_type: i32,
 }
 /// Nested message and enum types in `Account`.
 pub mod account {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AccountType {
-Unspecified = 0,
-CssGroup = 1,
-CssDomain = 2,
-McPrimaryCssMca = 3,
-McCssMca = 4,
-McMarketplaceMca = 5,
-McOtherMca = 6,
-McStandalone = 7,
-McMcaSubaccount = 8,
-}
-impl AccountType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-AccountType::Unspecified => "ACCOUNT_TYPE_UNSPECIFIED",
-AccountType::CssGroup => "CSS_GROUP",
-AccountType::CssDomain => "CSS_DOMAIN",
-AccountType::McPrimaryCssMca => "MC_PRIMARY_CSS_MCA",
-AccountType::McCssMca => "MC_CSS_MCA",
-AccountType::McMarketplaceMca => "MC_MARKETPLACE_MCA",
-AccountType::McOtherMca => "MC_OTHER_MCA",
-AccountType::McStandalone => "MC_STANDALONE",
-AccountType::McMcaSubaccount => "MC_MCA_SUBACCOUNT",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACCOUNT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CSS_GROUP" => Some(Self::CssGroup),
-"CSS_DOMAIN" => Some(Self::CssDomain),
-"MC_PRIMARY_CSS_MCA" => Some(Self::McPrimaryCssMca),
-"MC_CSS_MCA" => Some(Self::McCssMca),
-"MC_MARKETPLACE_MCA" => Some(Self::McMarketplaceMca),
-"MC_OTHER_MCA" => Some(Self::McOtherMca),
-"MC_STANDALONE" => Some(Self::McStandalone),
-"MC_MCA_SUBACCOUNT" => Some(Self::McMcaSubaccount),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum AccountType {
+        Unspecified = 0,
+        CssGroup = 1,
+        CssDomain = 2,
+        McPrimaryCssMca = 3,
+        McCssMca = 4,
+        McMarketplaceMca = 5,
+        McOtherMca = 6,
+        McStandalone = 7,
+        McMcaSubaccount = 8,
+    }
+    impl AccountType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AccountType::Unspecified => "ACCOUNT_TYPE_UNSPECIFIED",
+                AccountType::CssGroup => "CSS_GROUP",
+                AccountType::CssDomain => "CSS_DOMAIN",
+                AccountType::McPrimaryCssMca => "MC_PRIMARY_CSS_MCA",
+                AccountType::McCssMca => "MC_CSS_MCA",
+                AccountType::McMarketplaceMca => "MC_MARKETPLACE_MCA",
+                AccountType::McOtherMca => "MC_OTHER_MCA",
+                AccountType::McStandalone => "MC_STANDALONE",
+                AccountType::McMcaSubaccount => "MC_MCA_SUBACCOUNT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACCOUNT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CSS_GROUP" => Some(Self::CssGroup),
+                "CSS_DOMAIN" => Some(Self::CssDomain),
+                "MC_PRIMARY_CSS_MCA" => Some(Self::McPrimaryCssMca),
+                "MC_CSS_MCA" => Some(Self::McCssMca),
+                "MC_MARKETPLACE_MCA" => Some(Self::McMarketplaceMca),
+                "MC_OTHER_MCA" => Some(Self::McOtherMca),
+                "MC_STANDALONE" => Some(Self::McStandalone),
+                "MC_MCA_SUBACCOUNT" => Some(Self::McMcaSubaccount),
+                _ => None,
+            }
+        }
+    }
 }
 /// Generated client implementations.
 pub mod accounts_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for managing CSS/MC account information.
-#[derive(Debug, Clone)]
-pub struct AccountsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AccountsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AccountsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AccountsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists all the accounts under the specified CSS account ID, and
-/// optionally filters by label ID and account name.
-pub async fn list_child_accounts(&mut self, request: impl tonic::IntoRequest<super::ListChildAccountsRequest>) -> std::result::Result<tonic::Response<super::ListChildAccountsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountsService/ListChildAccounts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountsService", "ListChildAccounts"));
-self.inner.unary(req, path, codec).await
-}
-/// Retrieves a single CSS/MC account by ID.
-pub async fn get_account(&mut self, request: impl tonic::IntoRequest<super::GetAccountRequest>) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountsService/GetAccount");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountsService", "GetAccount"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates labels assigned to CSS/MC accounts by a CSS domain.
-pub async fn update_labels(&mut self, request: impl tonic::IntoRequest<super::UpdateAccountLabelsRequest>) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountsService/UpdateLabels");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountsService", "UpdateLabels"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for managing CSS/MC account information.
+    #[derive(Debug, Clone)]
+    pub struct AccountsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AccountsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AccountsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AccountsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists all the accounts under the specified CSS account ID, and
+        /// optionally filters by label ID and account name.
+        pub async fn list_child_accounts(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListChildAccountsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListChildAccountsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountsService/ListChildAccounts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountsService",
+                "ListChildAccounts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves a single CSS/MC account by ID.
+        pub async fn get_account(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAccountRequest>,
+        ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountsService/GetAccount",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountsService",
+                "GetAccount",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates labels assigned to CSS/MC accounts by a CSS domain.
+        pub async fn update_labels(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAccountLabelsRequest>,
+        ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountsService/UpdateLabels",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountsService",
+                "UpdateLabels",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Attributes {
-#[prost(string, optional, tag = "1")]
-pub cpp_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "2")]
-pub cpp_mobile_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "42")]
-pub cpp_ads_redirect: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "3")]
-pub low_price: ::core::option::Option<super::super::r#type::Price>,
-#[prost(message, optional, tag = "4")]
-pub high_price: ::core::option::Option<super::super::r#type::Price>,
-#[prost(int64, optional, tag = "5")]
-pub number_of_offers: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "6")]
-pub headline_offer_condition: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "7")]
-pub headline_offer_price: ::core::option::Option<super::super::r#type::Price>,
-#[prost(string, optional, tag = "8")]
-pub headline_offer_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "9")]
-pub headline_offer_mobile_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "41")]
-pub headline_offer_shipping_price: ::core::option::Option<super::super::r#type::Price>,
-#[prost(string, optional, tag = "10")]
-pub title: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "11")]
-pub image_link: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "12")]
-pub additional_image_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "13")]
-pub description: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "14")]
-pub brand: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "15")]
-pub mpn: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "16")]
-pub gtin: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "36")]
-pub product_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "17")]
-pub google_product_category: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bool, optional, tag = "18")]
-pub adult: ::core::option::Option<bool>,
-#[prost(int64, optional, tag = "19")]
-pub multipack: ::core::option::Option<i64>,
-#[prost(bool, optional, tag = "20")]
-pub is_bundle: ::core::option::Option<bool>,
-#[prost(string, optional, tag = "21")]
-pub age_group: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "22")]
-pub color: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "23")]
-pub gender: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "24")]
-pub material: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "25")]
-pub pattern: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "26")]
-pub size: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "27")]
-pub size_system: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "28")]
-pub size_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "29")]
-pub item_group_id: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "30")]
-pub product_details: ::prost::alloc::vec::Vec<ProductDetail>,
-#[prost(message, optional, tag = "31")]
-pub product_weight: ::core::option::Option<ProductWeight>,
-#[prost(message, optional, tag = "32")]
-pub product_length: ::core::option::Option<ProductDimension>,
-#[prost(message, optional, tag = "33")]
-pub product_width: ::core::option::Option<ProductDimension>,
-#[prost(message, optional, tag = "34")]
-pub product_height: ::core::option::Option<ProductDimension>,
-#[prost(string, repeated, tag = "35")]
-pub product_highlights: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "39")]
-pub certifications: ::prost::alloc::vec::Vec<Certification>,
-#[prost(message, optional, tag = "40")]
-pub expiration_date: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, repeated, tag = "43")]
-pub included_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "44")]
-pub excluded_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "45")]
-pub pause: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "46")]
-pub custom_label_0: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "47")]
-pub custom_label_1: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "48")]
-pub custom_label_2: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "49")]
-pub custom_label_3: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "50")]
-pub custom_label_4: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "1")]
+    pub cpp_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub cpp_mobile_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "42")]
+    pub cpp_ads_redirect: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub low_price: ::core::option::Option<super::super::r#type::Price>,
+    #[prost(message, optional, tag = "4")]
+    pub high_price: ::core::option::Option<super::super::r#type::Price>,
+    #[prost(int64, optional, tag = "5")]
+    pub number_of_offers: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "6")]
+    pub headline_offer_condition: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub headline_offer_price: ::core::option::Option<super::super::r#type::Price>,
+    #[prost(string, optional, tag = "8")]
+    pub headline_offer_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "9")]
+    pub headline_offer_mobile_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "41")]
+    pub headline_offer_shipping_price: ::core::option::Option<super::super::r#type::Price>,
+    #[prost(string, optional, tag = "10")]
+    pub title: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "11")]
+    pub image_link: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "12")]
+    pub additional_image_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "13")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "14")]
+    pub brand: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "15")]
+    pub mpn: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "16")]
+    pub gtin: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "36")]
+    pub product_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "17")]
+    pub google_product_category: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "18")]
+    pub adult: ::core::option::Option<bool>,
+    #[prost(int64, optional, tag = "19")]
+    pub multipack: ::core::option::Option<i64>,
+    #[prost(bool, optional, tag = "20")]
+    pub is_bundle: ::core::option::Option<bool>,
+    #[prost(string, optional, tag = "21")]
+    pub age_group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "22")]
+    pub color: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "23")]
+    pub gender: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "24")]
+    pub material: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "25")]
+    pub pattern: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "26")]
+    pub size: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "27")]
+    pub size_system: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "28")]
+    pub size_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "29")]
+    pub item_group_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "30")]
+    pub product_details: ::prost::alloc::vec::Vec<ProductDetail>,
+    #[prost(message, optional, tag = "31")]
+    pub product_weight: ::core::option::Option<ProductWeight>,
+    #[prost(message, optional, tag = "32")]
+    pub product_length: ::core::option::Option<ProductDimension>,
+    #[prost(message, optional, tag = "33")]
+    pub product_width: ::core::option::Option<ProductDimension>,
+    #[prost(message, optional, tag = "34")]
+    pub product_height: ::core::option::Option<ProductDimension>,
+    #[prost(string, repeated, tag = "35")]
+    pub product_highlights: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "39")]
+    pub certifications: ::prost::alloc::vec::Vec<Certification>,
+    #[prost(message, optional, tag = "40")]
+    pub expiration_date: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "43")]
+    pub included_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "44")]
+    pub excluded_destinations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "45")]
+    pub pause: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "46")]
+    pub custom_label_0: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "47")]
+    pub custom_label_1: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "48")]
+    pub custom_label_2: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "49")]
+    pub custom_label_3: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "50")]
+    pub custom_label_4: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Certification {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub authority: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub code: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub authority: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductDetail {
-#[prost(string, tag = "1")]
-pub section_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub attribute_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub attribute_value: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub section_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub attribute_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub attribute_value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductDimension {
-#[prost(double, tag = "1")]
-pub value: f64,
-#[prost(string, tag = "2")]
-pub unit: ::prost::alloc::string::String,
+    #[prost(double, tag = "1")]
+    pub value: f64,
+    #[prost(string, tag = "2")]
+    pub unit: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductWeight {
-#[prost(double, tag = "1")]
-pub value: f64,
-#[prost(string, tag = "2")]
-pub unit: ::prost::alloc::string::String,
+    #[prost(double, tag = "1")]
+    pub value: f64,
+    #[prost(string, tag = "2")]
+    pub unit: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CssProductStatus {
-#[prost(message, repeated, tag = "3")]
-pub destination_statuses: ::prost::alloc::vec::Vec<css_product_status::DestinationStatus>,
-#[prost(message, repeated, tag = "4")]
-pub item_level_issues: ::prost::alloc::vec::Vec<css_product_status::ItemLevelIssue>,
-#[prost(message, optional, tag = "5")]
-pub creation_date: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub last_update_date: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub google_expiration_date: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "3")]
+    pub destination_statuses: ::prost::alloc::vec::Vec<css_product_status::DestinationStatus>,
+    #[prost(message, repeated, tag = "4")]
+    pub item_level_issues: ::prost::alloc::vec::Vec<css_product_status::ItemLevelIssue>,
+    #[prost(message, optional, tag = "5")]
+    pub creation_date: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub last_update_date: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub google_expiration_date: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `CssProductStatus`.
 pub mod css_product_status {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DestinationStatus {
-#[prost(string, tag = "1")]
-pub destination: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub approved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub pending_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "4")]
-pub disapproved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ItemLevelIssue {
-#[prost(string, tag = "1")]
-pub code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub servability: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub resolution: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub attribute: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub destination: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub detail: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub documentation: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "9")]
-pub applicable_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DestinationStatus {
+        #[prost(string, tag = "1")]
+        pub destination: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub approved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "3")]
+        pub pending_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "4")]
+        pub disapproved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ItemLevelIssue {
+        #[prost(string, tag = "1")]
+        pub code: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub servability: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub resolution: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub attribute: ::prost::alloc::string::String,
+        #[prost(string, tag = "5")]
+        pub destination: ::prost::alloc::string::String,
+        #[prost(string, tag = "6")]
+        pub description: ::prost::alloc::string::String,
+        #[prost(string, tag = "7")]
+        pub detail: ::prost::alloc::string::String,
+        #[prost(string, tag = "8")]
+        pub documentation: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "9")]
+        pub applicable_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountLabel {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub label_id: i64,
-#[prost(int64, tag = "3")]
-pub account_id: i64,
-#[prost(string, optional, tag = "4")]
-pub display_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "5")]
-pub description: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(enumeration = "account_label::LabelType", tag = "6")]
-pub label_type: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub label_id: i64,
+    #[prost(int64, tag = "3")]
+    pub account_id: i64,
+    #[prost(string, optional, tag = "4")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "5")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "account_label::LabelType", tag = "6")]
+    pub label_type: i32,
 }
 /// Nested message and enum types in `AccountLabel`.
 pub mod account_label {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum LabelType {
-Unspecified = 0,
-Manual = 1,
-Automatic = 2,
-}
-impl LabelType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
-LabelType::Manual => "MANUAL",
-LabelType::Automatic => "AUTOMATIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LABEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"MANUAL" => Some(Self::Manual),
-"AUTOMATIC" => Some(Self::Automatic),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum LabelType {
+        Unspecified = 0,
+        Manual = 1,
+        Automatic = 2,
+    }
+    impl LabelType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
+                LabelType::Manual => "MANUAL",
+                LabelType::Automatic => "AUTOMATIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LABEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "MANUAL" => Some(Self::Manual),
+                "AUTOMATIC" => Some(Self::Automatic),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountLabelsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountLabelsResponse {
-#[prost(message, repeated, tag = "1")]
-pub account_labels: ::prost::alloc::vec::Vec<AccountLabel>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub account_labels: ::prost::alloc::vec::Vec<AccountLabel>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAccountLabelRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub account_label: ::core::option::Option<AccountLabel>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub account_label: ::core::option::Option<AccountLabel>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAccountLabelRequest {
-#[prost(message, optional, tag = "1")]
-pub account_label: ::core::option::Option<AccountLabel>,
+    #[prost(message, optional, tag = "1")]
+    pub account_label: ::core::option::Option<AccountLabel>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAccountLabelRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod account_labels_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Manages Merchant Center and CSS accounts labels.
-#[derive(Debug, Clone)]
-pub struct AccountLabelsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> AccountLabelsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> AccountLabelsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-AccountLabelsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Lists the labels assigned to an account.
-pub async fn list_account_labels(&mut self, request: impl tonic::IntoRequest<super::ListAccountLabelsRequest>) -> std::result::Result<tonic::Response<super::ListAccountLabelsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountLabelsService/ListAccountLabels");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountLabelsService", "ListAccountLabels"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new label, not assigned to any account.
-pub async fn create_account_label(&mut self, request: impl tonic::IntoRequest<super::CreateAccountLabelRequest>) -> std::result::Result<tonic::Response<super::AccountLabel>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountLabelsService/CreateAccountLabel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountLabelsService", "CreateAccountLabel"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a label.
-pub async fn update_account_label(&mut self, request: impl tonic::IntoRequest<super::UpdateAccountLabelRequest>) -> std::result::Result<tonic::Response<super::AccountLabel>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountLabelsService/UpdateAccountLabel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountLabelsService", "UpdateAccountLabel"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a label and removes it from all accounts to which it was assigned.
-pub async fn delete_account_label(&mut self, request: impl tonic::IntoRequest<super::DeleteAccountLabelRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.AccountLabelsService/DeleteAccountLabel");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.AccountLabelsService", "DeleteAccountLabel"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Manages Merchant Center and CSS accounts labels.
+    #[derive(Debug, Clone)]
+    pub struct AccountLabelsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AccountLabelsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AccountLabelsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            AccountLabelsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists the labels assigned to an account.
+        pub async fn list_account_labels(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAccountLabelsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListAccountLabelsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountLabelsService/ListAccountLabels",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountLabelsService",
+                "ListAccountLabels",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new label, not assigned to any account.
+        pub async fn create_account_label(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateAccountLabelRequest>,
+        ) -> std::result::Result<tonic::Response<super::AccountLabel>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountLabelsService/CreateAccountLabel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountLabelsService",
+                "CreateAccountLabel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a label.
+        pub async fn update_account_label(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAccountLabelRequest>,
+        ) -> std::result::Result<tonic::Response<super::AccountLabel>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountLabelsService/UpdateAccountLabel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountLabelsService",
+                "UpdateAccountLabel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a label and removes it from all accounts to which it was assigned.
+        pub async fn delete_account_label(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteAccountLabelRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.AccountLabelsService/DeleteAccountLabel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.AccountLabelsService",
+                "DeleteAccountLabel",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCssProductRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CssProduct {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub raw_provided_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub content_language: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub feed_label: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub attributes: ::core::option::Option<Attributes>,
-#[prost(message, repeated, tag = "6")]
-pub custom_attributes: ::prost::alloc::vec::Vec<super::super::r#type::CustomAttribute>,
-#[prost(message, optional, tag = "8")]
-pub css_product_status: ::core::option::Option<CssProductStatus>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub raw_provided_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub content_language: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub feed_label: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub attributes: ::core::option::Option<Attributes>,
+    #[prost(message, repeated, tag = "6")]
+    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::r#type::CustomAttribute>,
+    #[prost(message, optional, tag = "8")]
+    pub css_product_status: ::core::option::Option<CssProductStatus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCssProductsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCssProductsResponse {
-#[prost(message, repeated, tag = "1")]
-pub css_products: ::prost::alloc::vec::Vec<CssProduct>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub css_products: ::prost::alloc::vec::Vec<CssProduct>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod css_products_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service for doing get and list on Css Products(a.k.a Aggregate Offers
-/// internally).
-#[derive(Debug, Clone)]
-pub struct CssProductsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> CssProductsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> CssProductsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-CssProductsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Retrieves the processed CSS Product from your CSS Center account. After
-/// inserting, updating, or deleting a product input, it may take several
-/// minutes before the updated final product can be retrieved.
-pub async fn get_css_product(&mut self, request: impl tonic::IntoRequest<super::GetCssProductRequest>) -> std::result::Result<tonic::Response<super::CssProduct>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.CssProductsService/GetCssProduct");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.CssProductsService", "GetCssProduct"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists the processed CSS Products in your CSS Center account. The response
-/// might contain fewer items than specified by pageSize. Rely on pageToken to
-/// determine if there are more items to be requested.
-///
-/// After inserting, updating, or deleting a CSS product input, it may
-/// take several minutes before the updated processed CSS product can be
-/// retrieved.
-pub async fn list_css_products(&mut self, request: impl tonic::IntoRequest<super::ListCssProductsRequest>) -> std::result::Result<tonic::Response<super::ListCssProductsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.CssProductsService/ListCssProducts");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.CssProductsService", "ListCssProducts"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service for doing get and list on Css Products(a.k.a Aggregate Offers
+    /// internally).
+    #[derive(Debug, Clone)]
+    pub struct CssProductsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CssProductsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CssProductsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            CssProductsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves the processed CSS Product from your CSS Center account. After
+        /// inserting, updating, or deleting a product input, it may take several
+        /// minutes before the updated final product can be retrieved.
+        pub async fn get_css_product(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetCssProductRequest>,
+        ) -> std::result::Result<tonic::Response<super::CssProduct>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.CssProductsService/GetCssProduct",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.CssProductsService",
+                "GetCssProduct",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the processed CSS Products in your CSS Center account. The response
+        /// might contain fewer items than specified by pageSize. Rely on pageToken to
+        /// determine if there are more items to be requested.
+        ///
+        /// After inserting, updating, or deleting a CSS product input, it may
+        /// take several minutes before the updated processed CSS product can be
+        /// retrieved.
+        pub async fn list_css_products(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListCssProductsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListCssProductsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.CssProductsService/ListCssProducts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.CssProductsService",
+                "ListCssProducts",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CssProductInput {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub final_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub raw_provided_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub content_language: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub feed_label: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub freshness_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub attributes: ::core::option::Option<Attributes>,
-#[prost(message, repeated, tag = "8")]
-pub custom_attributes: ::prost::alloc::vec::Vec<super::super::r#type::CustomAttribute>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub final_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub raw_provided_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub content_language: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub feed_label: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub freshness_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub attributes: ::core::option::Option<Attributes>,
+    #[prost(message, repeated, tag = "8")]
+    pub custom_attributes: ::prost::alloc::vec::Vec<super::super::r#type::CustomAttribute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsertCssProductInputRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub css_product_input: ::core::option::Option<CssProductInput>,
-#[prost(int64, tag = "3")]
-pub feed_id: i64,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub css_product_input: ::core::option::Option<CssProductInput>,
+    #[prost(int64, tag = "3")]
+    pub feed_id: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCssProductInputRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, optional, tag = "2")]
-pub supplemental_feed_id: ::core::option::Option<i64>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, optional, tag = "2")]
+    pub supplemental_feed_id: ::core::option::Option<i64>,
 }
 /// Generated client implementations.
 pub mod css_product_inputs_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service to use CssProductInput resource.
-/// This service helps to insert/update/delete CSS Products.
-#[derive(Debug, Clone)]
-pub struct CssProductInputsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> CssProductInputsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> CssProductInputsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-CssProductInputsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Uploads a CssProductInput to your CSS Center account. If an
-/// input with the same contentLanguage, identity, feedLabel and feedId already
-/// exists, this method replaces that entry.
-///
-/// After inserting, updating, or deleting a CSS Product input, it may
-/// take several minutes before the processed CSS Product can be retrieved.
-pub async fn insert_css_product_input(&mut self, request: impl tonic::IntoRequest<super::InsertCssProductInputRequest>) -> std::result::Result<tonic::Response<super::CssProductInput>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.CssProductInputsService/InsertCssProductInput");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.CssProductInputsService", "InsertCssProductInput"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a CSS Product input from your CSS Center account.
-///
-/// After a delete it may take several minutes until the input is no longer
-/// available.
-pub async fn delete_css_product_input(&mut self, request: impl tonic::IntoRequest<super::DeleteCssProductInputRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.shopping.css.v1.CssProductInputsService/DeleteCssProductInput");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.shopping.css.v1.CssProductInputsService", "DeleteCssProductInput"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service to use CssProductInput resource.
+    /// This service helps to insert/update/delete CSS Products.
+    #[derive(Debug, Clone)]
+    pub struct CssProductInputsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CssProductInputsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CssProductInputsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            CssProductInputsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Uploads a CssProductInput to your CSS Center account. If an
+        /// input with the same contentLanguage, identity, feedLabel and feedId already
+        /// exists, this method replaces that entry.
+        ///
+        /// After inserting, updating, or deleting a CSS Product input, it may
+        /// take several minutes before the processed CSS Product can be retrieved.
+        pub async fn insert_css_product_input(
+            &mut self,
+            request: impl tonic::IntoRequest<super::InsertCssProductInputRequest>,
+        ) -> std::result::Result<tonic::Response<super::CssProductInput>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.CssProductInputsService/InsertCssProductInput",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.CssProductInputsService",
+                "InsertCssProductInput",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a CSS Product input from your CSS Center account.
+        ///
+        /// After a delete it may take several minutes until the input is no longer
+        /// available.
+        pub async fn delete_css_product_input(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteCssProductInputRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.css.v1.CssProductInputsService/DeleteCssProductInput",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.shopping.css.v1.CssProductInputsService",
+                "DeleteCssProductInput",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

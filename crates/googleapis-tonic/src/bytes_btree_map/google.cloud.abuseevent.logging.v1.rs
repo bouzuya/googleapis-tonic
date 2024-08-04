@@ -2,158 +2,158 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AbuseEvent {
-#[prost(enumeration = "abuse_event::DetectionType", tag = "1")]
-pub detection_type: i32,
-#[prost(string, tag = "2")]
-pub reason: ::prost::alloc::string::String,
-#[prost(enumeration = "abuse_event::ActionType", tag = "3")]
-pub action: i32,
-#[prost(string, tag = "7")]
-pub remediation_link: ::prost::alloc::string::String,
-#[prost(oneof = "abuse_event::EventType", tags = "4, 5, 6, 8, 9")]
-pub event_type: ::core::option::Option<abuse_event::EventType>,
+    #[prost(enumeration = "abuse_event::DetectionType", tag = "1")]
+    pub detection_type: i32,
+    #[prost(string, tag = "2")]
+    pub reason: ::prost::alloc::string::String,
+    #[prost(enumeration = "abuse_event::ActionType", tag = "3")]
+    pub action: i32,
+    #[prost(string, tag = "7")]
+    pub remediation_link: ::prost::alloc::string::String,
+    #[prost(oneof = "abuse_event::EventType", tags = "4, 5, 6, 8, 9")]
+    pub event_type: ::core::option::Option<abuse_event::EventType>,
 }
 /// Nested message and enum types in `AbuseEvent`.
 pub mod abuse_event {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DetectionType {
-Unspecified = 0,
-CryptoMining = 1,
-LeakedCredentials = 2,
-Phishing = 3,
-Malware = 4,
-NoAbuse = 5,
-}
-impl DetectionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DetectionType::Unspecified => "DETECTION_TYPE_UNSPECIFIED",
-DetectionType::CryptoMining => "CRYPTO_MINING",
-DetectionType::LeakedCredentials => "LEAKED_CREDENTIALS",
-DetectionType::Phishing => "PHISHING",
-DetectionType::Malware => "MALWARE",
-DetectionType::NoAbuse => "NO_ABUSE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DETECTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CRYPTO_MINING" => Some(Self::CryptoMining),
-"LEAKED_CREDENTIALS" => Some(Self::LeakedCredentials),
-"PHISHING" => Some(Self::Phishing),
-"MALWARE" => Some(Self::Malware),
-"NO_ABUSE" => Some(Self::NoAbuse),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ActionType {
-Unspecified = 0,
-Notify = 1,
-ProjectSuspension = 2,
-Reinstate = 3,
-Warn = 4,
-ResourceSuspension = 5,
-}
-impl ActionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-ActionType::Notify => "NOTIFY",
-ActionType::ProjectSuspension => "PROJECT_SUSPENSION",
-ActionType::Reinstate => "REINSTATE",
-ActionType::Warn => "WARN",
-ActionType::ResourceSuspension => "RESOURCE_SUSPENSION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NOTIFY" => Some(Self::Notify),
-"PROJECT_SUSPENSION" => Some(Self::ProjectSuspension),
-"REINSTATE" => Some(Self::Reinstate),
-"WARN" => Some(Self::Warn),
-"RESOURCE_SUSPENSION" => Some(Self::ResourceSuspension),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum EventType {
-#[prost(message, tag = "4")]
-CryptoMiningEvent(super::CryptoMiningEvent),
-#[prost(message, tag = "5")]
-LeakedCredentialEvent(super::LeakedCredentialEvent),
-#[prost(message, tag = "6")]
-HarmfulContentEvent(super::HarmfulContentEvent),
-#[prost(message, tag = "8")]
-ReinstatementEvent(super::ReinstatementEvent),
-#[prost(message, tag = "9")]
-DecisionEscalationEvent(super::DecisionEscalationEvent),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DetectionType {
+        Unspecified = 0,
+        CryptoMining = 1,
+        LeakedCredentials = 2,
+        Phishing = 3,
+        Malware = 4,
+        NoAbuse = 5,
+    }
+    impl DetectionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DetectionType::Unspecified => "DETECTION_TYPE_UNSPECIFIED",
+                DetectionType::CryptoMining => "CRYPTO_MINING",
+                DetectionType::LeakedCredentials => "LEAKED_CREDENTIALS",
+                DetectionType::Phishing => "PHISHING",
+                DetectionType::Malware => "MALWARE",
+                DetectionType::NoAbuse => "NO_ABUSE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DETECTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CRYPTO_MINING" => Some(Self::CryptoMining),
+                "LEAKED_CREDENTIALS" => Some(Self::LeakedCredentials),
+                "PHISHING" => Some(Self::Phishing),
+                "MALWARE" => Some(Self::Malware),
+                "NO_ABUSE" => Some(Self::NoAbuse),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ActionType {
+        Unspecified = 0,
+        Notify = 1,
+        ProjectSuspension = 2,
+        Reinstate = 3,
+        Warn = 4,
+        ResourceSuspension = 5,
+    }
+    impl ActionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+                ActionType::Notify => "NOTIFY",
+                ActionType::ProjectSuspension => "PROJECT_SUSPENSION",
+                ActionType::Reinstate => "REINSTATE",
+                ActionType::Warn => "WARN",
+                ActionType::ResourceSuspension => "RESOURCE_SUSPENSION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NOTIFY" => Some(Self::Notify),
+                "PROJECT_SUSPENSION" => Some(Self::ProjectSuspension),
+                "REINSTATE" => Some(Self::Reinstate),
+                "WARN" => Some(Self::Warn),
+                "RESOURCE_SUSPENSION" => Some(Self::ResourceSuspension),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum EventType {
+        #[prost(message, tag = "4")]
+        CryptoMiningEvent(super::CryptoMiningEvent),
+        #[prost(message, tag = "5")]
+        LeakedCredentialEvent(super::LeakedCredentialEvent),
+        #[prost(message, tag = "6")]
+        HarmfulContentEvent(super::HarmfulContentEvent),
+        #[prost(message, tag = "8")]
+        ReinstatementEvent(super::ReinstatementEvent),
+        #[prost(message, tag = "9")]
+        DecisionEscalationEvent(super::DecisionEscalationEvent),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoMiningEvent {
-#[prost(string, repeated, tag = "1")]
-pub vm_resource: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "2")]
-pub detected_mining_start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub detected_mining_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, repeated, tag = "1")]
+    pub vm_resource: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub detected_mining_start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub detected_mining_end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LeakedCredentialEvent {
-#[prost(string, tag = "3")]
-pub detected_uri: ::prost::alloc::string::String,
-#[prost(oneof = "leaked_credential_event::CredentialType", tags = "1, 2")]
-pub credential_type: ::core::option::Option<leaked_credential_event::CredentialType>,
+    #[prost(string, tag = "3")]
+    pub detected_uri: ::prost::alloc::string::String,
+    #[prost(oneof = "leaked_credential_event::CredentialType", tags = "1, 2")]
+    pub credential_type: ::core::option::Option<leaked_credential_event::CredentialType>,
 }
 /// Nested message and enum types in `LeakedCredentialEvent`.
 pub mod leaked_credential_event {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum CredentialType {
-#[prost(message, tag = "1")]
-ServiceAccountCredential(super::ServiceAccountCredential),
-#[prost(message, tag = "2")]
-ApiKeyCredential(super::ApiKeyCredential),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum CredentialType {
+        #[prost(message, tag = "1")]
+        ServiceAccountCredential(super::ServiceAccountCredential),
+        #[prost(message, tag = "2")]
+        ApiKeyCredential(super::ApiKeyCredential),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccountCredential {
-#[prost(string, tag = "1")]
-pub service_account: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub key_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub service_account: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub key_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApiKeyCredential {
-#[prost(string, tag = "1")]
-pub api_key: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub api_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HarmfulContentEvent {
-#[prost(string, repeated, tag = "1")]
-pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]

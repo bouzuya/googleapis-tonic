@@ -2,976 +2,1195 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Form {
-#[prost(string, tag = "1")]
-pub action_uri: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub action_uri: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutdatedLibrary {
-#[prost(string, tag = "1")]
-pub library_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub learn_more_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub library_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub learn_more_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViolatingResource {
-#[prost(string, tag = "1")]
-pub content_type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub content_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub resource_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerableParameters {
-#[prost(string, repeated, tag = "1")]
-pub parameter_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "1")]
+    pub parameter_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerableHeaders {
-#[prost(message, repeated, tag = "1")]
-pub headers: ::prost::alloc::vec::Vec<vulnerable_headers::Header>,
-#[prost(message, repeated, tag = "2")]
-pub missing_headers: ::prost::alloc::vec::Vec<vulnerable_headers::Header>,
+    #[prost(message, repeated, tag = "1")]
+    pub headers: ::prost::alloc::vec::Vec<vulnerable_headers::Header>,
+    #[prost(message, repeated, tag = "2")]
+    pub missing_headers: ::prost::alloc::vec::Vec<vulnerable_headers::Header>,
 }
 /// Nested message and enum types in `VulnerableHeaders`.
 pub mod vulnerable_headers {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Header {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub value: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Header {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub value: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Xss {
-#[prost(string, repeated, tag = "1")]
-pub stack_traces: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "2")]
-pub error_message: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "1")]
+    pub stack_traces: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub error_message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Finding {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub finding_type: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub http_method: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub fuzzed_url: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub body: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub reproduction_url: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub frame_url: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub final_url: ::prost::alloc::string::String,
-#[prost(string, tag = "10")]
-pub tracking_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "16")]
-pub form: ::core::option::Option<Form>,
-#[prost(message, optional, tag = "11")]
-pub outdated_library: ::core::option::Option<OutdatedLibrary>,
-#[prost(message, optional, tag = "12")]
-pub violating_resource: ::core::option::Option<ViolatingResource>,
-#[prost(message, optional, tag = "15")]
-pub vulnerable_headers: ::core::option::Option<VulnerableHeaders>,
-#[prost(message, optional, tag = "13")]
-pub vulnerable_parameters: ::core::option::Option<VulnerableParameters>,
-#[prost(message, optional, tag = "14")]
-pub xss: ::core::option::Option<Xss>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub finding_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub http_method: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub fuzzed_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub body: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub reproduction_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub frame_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub final_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub tracking_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "16")]
+    pub form: ::core::option::Option<Form>,
+    #[prost(message, optional, tag = "11")]
+    pub outdated_library: ::core::option::Option<OutdatedLibrary>,
+    #[prost(message, optional, tag = "12")]
+    pub violating_resource: ::core::option::Option<ViolatingResource>,
+    #[prost(message, optional, tag = "15")]
+    pub vulnerable_headers: ::core::option::Option<VulnerableHeaders>,
+    #[prost(message, optional, tag = "13")]
+    pub vulnerable_parameters: ::core::option::Option<VulnerableParameters>,
+    #[prost(message, optional, tag = "14")]
+    pub xss: ::core::option::Option<Xss>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FindingTypeStats {
-#[prost(string, tag = "1")]
-pub finding_type: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub finding_count: i32,
+    #[prost(string, tag = "1")]
+    pub finding_type: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub finding_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScanConfigError {
-#[prost(enumeration = "scan_config_error::Code", tag = "1")]
-pub code: i32,
-#[prost(string, tag = "2")]
-pub field_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "scan_config_error::Code", tag = "1")]
+    pub code: i32,
+    #[prost(string, tag = "2")]
+    pub field_name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ScanConfigError`.
 pub mod scan_config_error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-InternalError = 1,
-AppengineApiBackendError = 2,
-AppengineApiNotAccessible = 3,
-AppengineDefaultHostMissing = 4,
-CannotUseGoogleComAccount = 6,
-CannotUseOwnerAccount = 7,
-ComputeApiBackendError = 8,
-ComputeApiNotAccessible = 9,
-CustomLoginUrlDoesNotBelongToCurrentProject = 10,
-CustomLoginUrlMalformed = 11,
-CustomLoginUrlMappedToNonRoutableAddress = 12,
-CustomLoginUrlMappedToUnreservedAddress = 13,
-CustomLoginUrlHasNonRoutableIpAddress = 14,
-CustomLoginUrlHasUnreservedIpAddress = 15,
-DuplicateScanName = 16,
-InvalidFieldValue = 18,
-FailedToAuthenticateToTarget = 19,
-FindingTypeUnspecified = 20,
-ForbiddenToScanCompute = 21,
-ForbiddenUpdateToManagedScan = 43,
-MalformedFilter = 22,
-MalformedResourceName = 23,
-ProjectInactive = 24,
-RequiredField = 25,
-ResourceNameInconsistent = 26,
-ScanAlreadyRunning = 27,
-ScanNotRunning = 28,
-SeedUrlDoesNotBelongToCurrentProject = 29,
-SeedUrlMalformed = 30,
-SeedUrlMappedToNonRoutableAddress = 31,
-SeedUrlMappedToUnreservedAddress = 32,
-SeedUrlHasNonRoutableIpAddress = 33,
-SeedUrlHasUnreservedIpAddress = 35,
-ServiceAccountNotConfigured = 36,
-TooManyScans = 37,
-UnableToResolveProjectInfo = 38,
-UnsupportedBlacklistPatternFormat = 39,
-UnsupportedFilter = 40,
-UnsupportedFindingType = 41,
-UnsupportedUrlScheme = 42,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::InternalError => "INTERNAL_ERROR",
-Code::AppengineApiBackendError => "APPENGINE_API_BACKEND_ERROR",
-Code::AppengineApiNotAccessible => "APPENGINE_API_NOT_ACCESSIBLE",
-Code::AppengineDefaultHostMissing => "APPENGINE_DEFAULT_HOST_MISSING",
-Code::CannotUseGoogleComAccount => "CANNOT_USE_GOOGLE_COM_ACCOUNT",
-Code::CannotUseOwnerAccount => "CANNOT_USE_OWNER_ACCOUNT",
-Code::ComputeApiBackendError => "COMPUTE_API_BACKEND_ERROR",
-Code::ComputeApiNotAccessible => "COMPUTE_API_NOT_ACCESSIBLE",
-Code::CustomLoginUrlDoesNotBelongToCurrentProject => "CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT",
-Code::CustomLoginUrlMalformed => "CUSTOM_LOGIN_URL_MALFORMED",
-Code::CustomLoginUrlMappedToNonRoutableAddress => "CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS",
-Code::CustomLoginUrlMappedToUnreservedAddress => "CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS",
-Code::CustomLoginUrlHasNonRoutableIpAddress => "CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
-Code::CustomLoginUrlHasUnreservedIpAddress => "CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS",
-Code::DuplicateScanName => "DUPLICATE_SCAN_NAME",
-Code::InvalidFieldValue => "INVALID_FIELD_VALUE",
-Code::FailedToAuthenticateToTarget => "FAILED_TO_AUTHENTICATE_TO_TARGET",
-Code::FindingTypeUnspecified => "FINDING_TYPE_UNSPECIFIED",
-Code::ForbiddenToScanCompute => "FORBIDDEN_TO_SCAN_COMPUTE",
-Code::ForbiddenUpdateToManagedScan => "FORBIDDEN_UPDATE_TO_MANAGED_SCAN",
-Code::MalformedFilter => "MALFORMED_FILTER",
-Code::MalformedResourceName => "MALFORMED_RESOURCE_NAME",
-Code::ProjectInactive => "PROJECT_INACTIVE",
-Code::RequiredField => "REQUIRED_FIELD",
-Code::ResourceNameInconsistent => "RESOURCE_NAME_INCONSISTENT",
-Code::ScanAlreadyRunning => "SCAN_ALREADY_RUNNING",
-Code::ScanNotRunning => "SCAN_NOT_RUNNING",
-Code::SeedUrlDoesNotBelongToCurrentProject => "SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT",
-Code::SeedUrlMalformed => "SEED_URL_MALFORMED",
-Code::SeedUrlMappedToNonRoutableAddress => "SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS",
-Code::SeedUrlMappedToUnreservedAddress => "SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS",
-Code::SeedUrlHasNonRoutableIpAddress => "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
-Code::SeedUrlHasUnreservedIpAddress => "SEED_URL_HAS_UNRESERVED_IP_ADDRESS",
-Code::ServiceAccountNotConfigured => "SERVICE_ACCOUNT_NOT_CONFIGURED",
-Code::TooManyScans => "TOO_MANY_SCANS",
-Code::UnableToResolveProjectInfo => "UNABLE_TO_RESOLVE_PROJECT_INFO",
-Code::UnsupportedBlacklistPatternFormat => "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT",
-Code::UnsupportedFilter => "UNSUPPORTED_FILTER",
-Code::UnsupportedFindingType => "UNSUPPORTED_FINDING_TYPE",
-Code::UnsupportedUrlScheme => "UNSUPPORTED_URL_SCHEME",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"INTERNAL_ERROR" => Some(Self::InternalError),
-"APPENGINE_API_BACKEND_ERROR" => Some(Self::AppengineApiBackendError),
-"APPENGINE_API_NOT_ACCESSIBLE" => Some(Self::AppengineApiNotAccessible),
-"APPENGINE_DEFAULT_HOST_MISSING" => Some(Self::AppengineDefaultHostMissing),
-"CANNOT_USE_GOOGLE_COM_ACCOUNT" => Some(Self::CannotUseGoogleComAccount),
-"CANNOT_USE_OWNER_ACCOUNT" => Some(Self::CannotUseOwnerAccount),
-"COMPUTE_API_BACKEND_ERROR" => Some(Self::ComputeApiBackendError),
-"COMPUTE_API_NOT_ACCESSIBLE" => Some(Self::ComputeApiNotAccessible),
-"CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT" => Some(Self::CustomLoginUrlDoesNotBelongToCurrentProject),
-"CUSTOM_LOGIN_URL_MALFORMED" => Some(Self::CustomLoginUrlMalformed),
-"CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS" => Some(Self::CustomLoginUrlMappedToNonRoutableAddress),
-"CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS" => Some(Self::CustomLoginUrlMappedToUnreservedAddress),
-"CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS" => Some(Self::CustomLoginUrlHasNonRoutableIpAddress),
-"CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS" => Some(Self::CustomLoginUrlHasUnreservedIpAddress),
-"DUPLICATE_SCAN_NAME" => Some(Self::DuplicateScanName),
-"INVALID_FIELD_VALUE" => Some(Self::InvalidFieldValue),
-"FAILED_TO_AUTHENTICATE_TO_TARGET" => Some(Self::FailedToAuthenticateToTarget),
-"FINDING_TYPE_UNSPECIFIED" => Some(Self::FindingTypeUnspecified),
-"FORBIDDEN_TO_SCAN_COMPUTE" => Some(Self::ForbiddenToScanCompute),
-"FORBIDDEN_UPDATE_TO_MANAGED_SCAN" => Some(Self::ForbiddenUpdateToManagedScan),
-"MALFORMED_FILTER" => Some(Self::MalformedFilter),
-"MALFORMED_RESOURCE_NAME" => Some(Self::MalformedResourceName),
-"PROJECT_INACTIVE" => Some(Self::ProjectInactive),
-"REQUIRED_FIELD" => Some(Self::RequiredField),
-"RESOURCE_NAME_INCONSISTENT" => Some(Self::ResourceNameInconsistent),
-"SCAN_ALREADY_RUNNING" => Some(Self::ScanAlreadyRunning),
-"SCAN_NOT_RUNNING" => Some(Self::ScanNotRunning),
-"SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT" => Some(Self::SeedUrlDoesNotBelongToCurrentProject),
-"SEED_URL_MALFORMED" => Some(Self::SeedUrlMalformed),
-"SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS" => Some(Self::SeedUrlMappedToNonRoutableAddress),
-"SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS" => Some(Self::SeedUrlMappedToUnreservedAddress),
-"SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS" => Some(Self::SeedUrlHasNonRoutableIpAddress),
-"SEED_URL_HAS_UNRESERVED_IP_ADDRESS" => Some(Self::SeedUrlHasUnreservedIpAddress),
-"SERVICE_ACCOUNT_NOT_CONFIGURED" => Some(Self::ServiceAccountNotConfigured),
-"TOO_MANY_SCANS" => Some(Self::TooManyScans),
-"UNABLE_TO_RESOLVE_PROJECT_INFO" => Some(Self::UnableToResolveProjectInfo),
-"UNSUPPORTED_BLACKLIST_PATTERN_FORMAT" => Some(Self::UnsupportedBlacklistPatternFormat),
-"UNSUPPORTED_FILTER" => Some(Self::UnsupportedFilter),
-"UNSUPPORTED_FINDING_TYPE" => Some(Self::UnsupportedFindingType),
-"UNSUPPORTED_URL_SCHEME" => Some(Self::UnsupportedUrlScheme),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Code {
+        Unspecified = 0,
+        InternalError = 1,
+        AppengineApiBackendError = 2,
+        AppengineApiNotAccessible = 3,
+        AppengineDefaultHostMissing = 4,
+        CannotUseGoogleComAccount = 6,
+        CannotUseOwnerAccount = 7,
+        ComputeApiBackendError = 8,
+        ComputeApiNotAccessible = 9,
+        CustomLoginUrlDoesNotBelongToCurrentProject = 10,
+        CustomLoginUrlMalformed = 11,
+        CustomLoginUrlMappedToNonRoutableAddress = 12,
+        CustomLoginUrlMappedToUnreservedAddress = 13,
+        CustomLoginUrlHasNonRoutableIpAddress = 14,
+        CustomLoginUrlHasUnreservedIpAddress = 15,
+        DuplicateScanName = 16,
+        InvalidFieldValue = 18,
+        FailedToAuthenticateToTarget = 19,
+        FindingTypeUnspecified = 20,
+        ForbiddenToScanCompute = 21,
+        ForbiddenUpdateToManagedScan = 43,
+        MalformedFilter = 22,
+        MalformedResourceName = 23,
+        ProjectInactive = 24,
+        RequiredField = 25,
+        ResourceNameInconsistent = 26,
+        ScanAlreadyRunning = 27,
+        ScanNotRunning = 28,
+        SeedUrlDoesNotBelongToCurrentProject = 29,
+        SeedUrlMalformed = 30,
+        SeedUrlMappedToNonRoutableAddress = 31,
+        SeedUrlMappedToUnreservedAddress = 32,
+        SeedUrlHasNonRoutableIpAddress = 33,
+        SeedUrlHasUnreservedIpAddress = 35,
+        ServiceAccountNotConfigured = 36,
+        TooManyScans = 37,
+        UnableToResolveProjectInfo = 38,
+        UnsupportedBlacklistPatternFormat = 39,
+        UnsupportedFilter = 40,
+        UnsupportedFindingType = 41,
+        UnsupportedUrlScheme = 42,
+    }
+    impl Code {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Code::Unspecified => "CODE_UNSPECIFIED",
+                Code::InternalError => "INTERNAL_ERROR",
+                Code::AppengineApiBackendError => "APPENGINE_API_BACKEND_ERROR",
+                Code::AppengineApiNotAccessible => "APPENGINE_API_NOT_ACCESSIBLE",
+                Code::AppengineDefaultHostMissing => "APPENGINE_DEFAULT_HOST_MISSING",
+                Code::CannotUseGoogleComAccount => "CANNOT_USE_GOOGLE_COM_ACCOUNT",
+                Code::CannotUseOwnerAccount => "CANNOT_USE_OWNER_ACCOUNT",
+                Code::ComputeApiBackendError => "COMPUTE_API_BACKEND_ERROR",
+                Code::ComputeApiNotAccessible => "COMPUTE_API_NOT_ACCESSIBLE",
+                Code::CustomLoginUrlDoesNotBelongToCurrentProject => {
+                    "CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT"
+                }
+                Code::CustomLoginUrlMalformed => "CUSTOM_LOGIN_URL_MALFORMED",
+                Code::CustomLoginUrlMappedToNonRoutableAddress => {
+                    "CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS"
+                }
+                Code::CustomLoginUrlMappedToUnreservedAddress => {
+                    "CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS"
+                }
+                Code::CustomLoginUrlHasNonRoutableIpAddress => {
+                    "CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS"
+                }
+                Code::CustomLoginUrlHasUnreservedIpAddress => {
+                    "CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS"
+                }
+                Code::DuplicateScanName => "DUPLICATE_SCAN_NAME",
+                Code::InvalidFieldValue => "INVALID_FIELD_VALUE",
+                Code::FailedToAuthenticateToTarget => "FAILED_TO_AUTHENTICATE_TO_TARGET",
+                Code::FindingTypeUnspecified => "FINDING_TYPE_UNSPECIFIED",
+                Code::ForbiddenToScanCompute => "FORBIDDEN_TO_SCAN_COMPUTE",
+                Code::ForbiddenUpdateToManagedScan => "FORBIDDEN_UPDATE_TO_MANAGED_SCAN",
+                Code::MalformedFilter => "MALFORMED_FILTER",
+                Code::MalformedResourceName => "MALFORMED_RESOURCE_NAME",
+                Code::ProjectInactive => "PROJECT_INACTIVE",
+                Code::RequiredField => "REQUIRED_FIELD",
+                Code::ResourceNameInconsistent => "RESOURCE_NAME_INCONSISTENT",
+                Code::ScanAlreadyRunning => "SCAN_ALREADY_RUNNING",
+                Code::ScanNotRunning => "SCAN_NOT_RUNNING",
+                Code::SeedUrlDoesNotBelongToCurrentProject => {
+                    "SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT"
+                }
+                Code::SeedUrlMalformed => "SEED_URL_MALFORMED",
+                Code::SeedUrlMappedToNonRoutableAddress => {
+                    "SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS"
+                }
+                Code::SeedUrlMappedToUnreservedAddress => "SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS",
+                Code::SeedUrlHasNonRoutableIpAddress => "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS",
+                Code::SeedUrlHasUnreservedIpAddress => "SEED_URL_HAS_UNRESERVED_IP_ADDRESS",
+                Code::ServiceAccountNotConfigured => "SERVICE_ACCOUNT_NOT_CONFIGURED",
+                Code::TooManyScans => "TOO_MANY_SCANS",
+                Code::UnableToResolveProjectInfo => "UNABLE_TO_RESOLVE_PROJECT_INFO",
+                Code::UnsupportedBlacklistPatternFormat => "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT",
+                Code::UnsupportedFilter => "UNSUPPORTED_FILTER",
+                Code::UnsupportedFindingType => "UNSUPPORTED_FINDING_TYPE",
+                Code::UnsupportedUrlScheme => "UNSUPPORTED_URL_SCHEME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INTERNAL_ERROR" => Some(Self::InternalError),
+                "APPENGINE_API_BACKEND_ERROR" => Some(Self::AppengineApiBackendError),
+                "APPENGINE_API_NOT_ACCESSIBLE" => Some(Self::AppengineApiNotAccessible),
+                "APPENGINE_DEFAULT_HOST_MISSING" => Some(Self::AppengineDefaultHostMissing),
+                "CANNOT_USE_GOOGLE_COM_ACCOUNT" => Some(Self::CannotUseGoogleComAccount),
+                "CANNOT_USE_OWNER_ACCOUNT" => Some(Self::CannotUseOwnerAccount),
+                "COMPUTE_API_BACKEND_ERROR" => Some(Self::ComputeApiBackendError),
+                "COMPUTE_API_NOT_ACCESSIBLE" => Some(Self::ComputeApiNotAccessible),
+                "CUSTOM_LOGIN_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT" => {
+                    Some(Self::CustomLoginUrlDoesNotBelongToCurrentProject)
+                }
+                "CUSTOM_LOGIN_URL_MALFORMED" => Some(Self::CustomLoginUrlMalformed),
+                "CUSTOM_LOGIN_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS" => {
+                    Some(Self::CustomLoginUrlMappedToNonRoutableAddress)
+                }
+                "CUSTOM_LOGIN_URL_MAPPED_TO_UNRESERVED_ADDRESS" => {
+                    Some(Self::CustomLoginUrlMappedToUnreservedAddress)
+                }
+                "CUSTOM_LOGIN_URL_HAS_NON_ROUTABLE_IP_ADDRESS" => {
+                    Some(Self::CustomLoginUrlHasNonRoutableIpAddress)
+                }
+                "CUSTOM_LOGIN_URL_HAS_UNRESERVED_IP_ADDRESS" => {
+                    Some(Self::CustomLoginUrlHasUnreservedIpAddress)
+                }
+                "DUPLICATE_SCAN_NAME" => Some(Self::DuplicateScanName),
+                "INVALID_FIELD_VALUE" => Some(Self::InvalidFieldValue),
+                "FAILED_TO_AUTHENTICATE_TO_TARGET" => Some(Self::FailedToAuthenticateToTarget),
+                "FINDING_TYPE_UNSPECIFIED" => Some(Self::FindingTypeUnspecified),
+                "FORBIDDEN_TO_SCAN_COMPUTE" => Some(Self::ForbiddenToScanCompute),
+                "FORBIDDEN_UPDATE_TO_MANAGED_SCAN" => Some(Self::ForbiddenUpdateToManagedScan),
+                "MALFORMED_FILTER" => Some(Self::MalformedFilter),
+                "MALFORMED_RESOURCE_NAME" => Some(Self::MalformedResourceName),
+                "PROJECT_INACTIVE" => Some(Self::ProjectInactive),
+                "REQUIRED_FIELD" => Some(Self::RequiredField),
+                "RESOURCE_NAME_INCONSISTENT" => Some(Self::ResourceNameInconsistent),
+                "SCAN_ALREADY_RUNNING" => Some(Self::ScanAlreadyRunning),
+                "SCAN_NOT_RUNNING" => Some(Self::ScanNotRunning),
+                "SEED_URL_DOES_NOT_BELONG_TO_CURRENT_PROJECT" => {
+                    Some(Self::SeedUrlDoesNotBelongToCurrentProject)
+                }
+                "SEED_URL_MALFORMED" => Some(Self::SeedUrlMalformed),
+                "SEED_URL_MAPPED_TO_NON_ROUTABLE_ADDRESS" => {
+                    Some(Self::SeedUrlMappedToNonRoutableAddress)
+                }
+                "SEED_URL_MAPPED_TO_UNRESERVED_ADDRESS" => {
+                    Some(Self::SeedUrlMappedToUnreservedAddress)
+                }
+                "SEED_URL_HAS_NON_ROUTABLE_IP_ADDRESS" => {
+                    Some(Self::SeedUrlHasNonRoutableIpAddress)
+                }
+                "SEED_URL_HAS_UNRESERVED_IP_ADDRESS" => Some(Self::SeedUrlHasUnreservedIpAddress),
+                "SERVICE_ACCOUNT_NOT_CONFIGURED" => Some(Self::ServiceAccountNotConfigured),
+                "TOO_MANY_SCANS" => Some(Self::TooManyScans),
+                "UNABLE_TO_RESOLVE_PROJECT_INFO" => Some(Self::UnableToResolveProjectInfo),
+                "UNSUPPORTED_BLACKLIST_PATTERN_FORMAT" => {
+                    Some(Self::UnsupportedBlacklistPatternFormat)
+                }
+                "UNSUPPORTED_FILTER" => Some(Self::UnsupportedFilter),
+                "UNSUPPORTED_FINDING_TYPE" => Some(Self::UnsupportedFindingType),
+                "UNSUPPORTED_URL_SCHEME" => Some(Self::UnsupportedUrlScheme),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScanRunErrorTrace {
-#[prost(enumeration = "scan_run_error_trace::Code", tag = "1")]
-pub code: i32,
-#[prost(message, optional, tag = "2")]
-pub scan_config_error: ::core::option::Option<ScanConfigError>,
-#[prost(int32, tag = "3")]
-pub most_common_http_error_code: i32,
+    #[prost(enumeration = "scan_run_error_trace::Code", tag = "1")]
+    pub code: i32,
+    #[prost(message, optional, tag = "2")]
+    pub scan_config_error: ::core::option::Option<ScanConfigError>,
+    #[prost(int32, tag = "3")]
+    pub most_common_http_error_code: i32,
 }
 /// Nested message and enum types in `ScanRunErrorTrace`.
 pub mod scan_run_error_trace {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-InternalError = 1,
-ScanConfigIssue = 2,
-AuthenticationConfigIssue = 3,
-TimedOutWhileScanning = 4,
-TooManyRedirects = 5,
-TooManyHttpErrors = 6,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::InternalError => "INTERNAL_ERROR",
-Code::ScanConfigIssue => "SCAN_CONFIG_ISSUE",
-Code::AuthenticationConfigIssue => "AUTHENTICATION_CONFIG_ISSUE",
-Code::TimedOutWhileScanning => "TIMED_OUT_WHILE_SCANNING",
-Code::TooManyRedirects => "TOO_MANY_REDIRECTS",
-Code::TooManyHttpErrors => "TOO_MANY_HTTP_ERRORS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"INTERNAL_ERROR" => Some(Self::InternalError),
-"SCAN_CONFIG_ISSUE" => Some(Self::ScanConfigIssue),
-"AUTHENTICATION_CONFIG_ISSUE" => Some(Self::AuthenticationConfigIssue),
-"TIMED_OUT_WHILE_SCANNING" => Some(Self::TimedOutWhileScanning),
-"TOO_MANY_REDIRECTS" => Some(Self::TooManyRedirects),
-"TOO_MANY_HTTP_ERRORS" => Some(Self::TooManyHttpErrors),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Code {
+        Unspecified = 0,
+        InternalError = 1,
+        ScanConfigIssue = 2,
+        AuthenticationConfigIssue = 3,
+        TimedOutWhileScanning = 4,
+        TooManyRedirects = 5,
+        TooManyHttpErrors = 6,
+    }
+    impl Code {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Code::Unspecified => "CODE_UNSPECIFIED",
+                Code::InternalError => "INTERNAL_ERROR",
+                Code::ScanConfigIssue => "SCAN_CONFIG_ISSUE",
+                Code::AuthenticationConfigIssue => "AUTHENTICATION_CONFIG_ISSUE",
+                Code::TimedOutWhileScanning => "TIMED_OUT_WHILE_SCANNING",
+                Code::TooManyRedirects => "TOO_MANY_REDIRECTS",
+                Code::TooManyHttpErrors => "TOO_MANY_HTTP_ERRORS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INTERNAL_ERROR" => Some(Self::InternalError),
+                "SCAN_CONFIG_ISSUE" => Some(Self::ScanConfigIssue),
+                "AUTHENTICATION_CONFIG_ISSUE" => Some(Self::AuthenticationConfigIssue),
+                "TIMED_OUT_WHILE_SCANNING" => Some(Self::TimedOutWhileScanning),
+                "TOO_MANY_REDIRECTS" => Some(Self::TooManyRedirects),
+                "TOO_MANY_HTTP_ERRORS" => Some(Self::TooManyHttpErrors),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ScanRunWarningTrace {
-#[prost(enumeration = "scan_run_warning_trace::Code", tag = "1")]
-pub code: i32,
+    #[prost(enumeration = "scan_run_warning_trace::Code", tag = "1")]
+    pub code: i32,
 }
 /// Nested message and enum types in `ScanRunWarningTrace`.
 pub mod scan_run_warning_trace {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-Unspecified = 0,
-InsufficientCrawlResults = 1,
-TooManyCrawlResults = 2,
-TooManyFuzzTasks = 3,
-BlockedByIap = 4,
-}
-impl Code {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Code::Unspecified => "CODE_UNSPECIFIED",
-Code::InsufficientCrawlResults => "INSUFFICIENT_CRAWL_RESULTS",
-Code::TooManyCrawlResults => "TOO_MANY_CRAWL_RESULTS",
-Code::TooManyFuzzTasks => "TOO_MANY_FUZZ_TASKS",
-Code::BlockedByIap => "BLOCKED_BY_IAP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"INSUFFICIENT_CRAWL_RESULTS" => Some(Self::InsufficientCrawlResults),
-"TOO_MANY_CRAWL_RESULTS" => Some(Self::TooManyCrawlResults),
-"TOO_MANY_FUZZ_TASKS" => Some(Self::TooManyFuzzTasks),
-"BLOCKED_BY_IAP" => Some(Self::BlockedByIap),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Code {
+        Unspecified = 0,
+        InsufficientCrawlResults = 1,
+        TooManyCrawlResults = 2,
+        TooManyFuzzTasks = 3,
+        BlockedByIap = 4,
+    }
+    impl Code {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Code::Unspecified => "CODE_UNSPECIFIED",
+                Code::InsufficientCrawlResults => "INSUFFICIENT_CRAWL_RESULTS",
+                Code::TooManyCrawlResults => "TOO_MANY_CRAWL_RESULTS",
+                Code::TooManyFuzzTasks => "TOO_MANY_FUZZ_TASKS",
+                Code::BlockedByIap => "BLOCKED_BY_IAP",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INSUFFICIENT_CRAWL_RESULTS" => Some(Self::InsufficientCrawlResults),
+                "TOO_MANY_CRAWL_RESULTS" => Some(Self::TooManyCrawlResults),
+                "TOO_MANY_FUZZ_TASKS" => Some(Self::TooManyFuzzTasks),
+                "BLOCKED_BY_IAP" => Some(Self::BlockedByIap),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScanRun {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "scan_run::ExecutionState", tag = "2")]
-pub execution_state: i32,
-#[prost(enumeration = "scan_run::ResultState", tag = "3")]
-pub result_state: i32,
-#[prost(message, optional, tag = "4")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int64, tag = "6")]
-pub urls_crawled_count: i64,
-#[prost(int64, tag = "7")]
-pub urls_tested_count: i64,
-#[prost(bool, tag = "8")]
-pub has_vulnerabilities: bool,
-#[prost(int32, tag = "9")]
-pub progress_percent: i32,
-#[prost(message, optional, tag = "10")]
-pub error_trace: ::core::option::Option<ScanRunErrorTrace>,
-#[prost(message, repeated, tag = "11")]
-pub warning_traces: ::prost::alloc::vec::Vec<ScanRunWarningTrace>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "scan_run::ExecutionState", tag = "2")]
+    pub execution_state: i32,
+    #[prost(enumeration = "scan_run::ResultState", tag = "3")]
+    pub result_state: i32,
+    #[prost(message, optional, tag = "4")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "6")]
+    pub urls_crawled_count: i64,
+    #[prost(int64, tag = "7")]
+    pub urls_tested_count: i64,
+    #[prost(bool, tag = "8")]
+    pub has_vulnerabilities: bool,
+    #[prost(int32, tag = "9")]
+    pub progress_percent: i32,
+    #[prost(message, optional, tag = "10")]
+    pub error_trace: ::core::option::Option<ScanRunErrorTrace>,
+    #[prost(message, repeated, tag = "11")]
+    pub warning_traces: ::prost::alloc::vec::Vec<ScanRunWarningTrace>,
 }
 /// Nested message and enum types in `ScanRun`.
 pub mod scan_run {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ExecutionState {
-Unspecified = 0,
-Queued = 1,
-Scanning = 2,
-Finished = 3,
-}
-impl ExecutionState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExecutionState::Unspecified => "EXECUTION_STATE_UNSPECIFIED",
-ExecutionState::Queued => "QUEUED",
-ExecutionState::Scanning => "SCANNING",
-ExecutionState::Finished => "FINISHED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXECUTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"QUEUED" => Some(Self::Queued),
-"SCANNING" => Some(Self::Scanning),
-"FINISHED" => Some(Self::Finished),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ResultState {
-Unspecified = 0,
-Success = 1,
-Error = 2,
-Killed = 3,
-}
-impl ResultState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResultState::Unspecified => "RESULT_STATE_UNSPECIFIED",
-ResultState::Success => "SUCCESS",
-ResultState::Error => "ERROR",
-ResultState::Killed => "KILLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESULT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCESS" => Some(Self::Success),
-"ERROR" => Some(Self::Error),
-"KILLED" => Some(Self::Killed),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ExecutionState {
+        Unspecified = 0,
+        Queued = 1,
+        Scanning = 2,
+        Finished = 3,
+    }
+    impl ExecutionState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ExecutionState::Unspecified => "EXECUTION_STATE_UNSPECIFIED",
+                ExecutionState::Queued => "QUEUED",
+                ExecutionState::Scanning => "SCANNING",
+                ExecutionState::Finished => "FINISHED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXECUTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "QUEUED" => Some(Self::Queued),
+                "SCANNING" => Some(Self::Scanning),
+                "FINISHED" => Some(Self::Finished),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ResultState {
+        Unspecified = 0,
+        Success = 1,
+        Error = 2,
+        Killed = 3,
+    }
+    impl ResultState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ResultState::Unspecified => "RESULT_STATE_UNSPECIFIED",
+                ResultState::Success => "SUCCESS",
+                ResultState::Error => "ERROR",
+                ResultState::Killed => "KILLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RESULT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCESS" => Some(Self::Success),
+                "ERROR" => Some(Self::Error),
+                "KILLED" => Some(Self::Killed),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScanConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub max_qps: i32,
-#[prost(string, repeated, tag = "4")]
-pub starting_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub authentication: ::core::option::Option<scan_config::Authentication>,
-#[prost(enumeration = "scan_config::UserAgent", tag = "6")]
-pub user_agent: i32,
-#[prost(string, repeated, tag = "7")]
-pub blacklist_patterns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "8")]
-pub schedule: ::core::option::Option<scan_config::Schedule>,
-#[prost(enumeration = "scan_config::TargetPlatform", repeated, tag = "9")]
-pub target_platforms: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "scan_config::ExportToSecurityCommandCenter", tag = "10")]
-pub export_to_security_command_center: i32,
-#[prost(message, optional, tag = "11")]
-pub latest_run: ::core::option::Option<ScanRun>,
-#[prost(enumeration = "scan_config::RiskLevel", tag = "12")]
-pub risk_level: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub max_qps: i32,
+    #[prost(string, repeated, tag = "4")]
+    pub starting_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub authentication: ::core::option::Option<scan_config::Authentication>,
+    #[prost(enumeration = "scan_config::UserAgent", tag = "6")]
+    pub user_agent: i32,
+    #[prost(string, repeated, tag = "7")]
+    pub blacklist_patterns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub schedule: ::core::option::Option<scan_config::Schedule>,
+    #[prost(enumeration = "scan_config::TargetPlatform", repeated, tag = "9")]
+    pub target_platforms: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "scan_config::ExportToSecurityCommandCenter", tag = "10")]
+    pub export_to_security_command_center: i32,
+    #[prost(message, optional, tag = "11")]
+    pub latest_run: ::core::option::Option<ScanRun>,
+    #[prost(enumeration = "scan_config::RiskLevel", tag = "12")]
+    pub risk_level: i32,
 }
 /// Nested message and enum types in `ScanConfig`.
 pub mod scan_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Authentication {
-#[prost(oneof = "authentication::Authentication", tags = "1, 2")]
-pub authentication: ::core::option::Option<authentication::Authentication>,
-}
-/// Nested message and enum types in `Authentication`.
-pub mod authentication {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GoogleAccount {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub password: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomAccount {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub password: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub login_url: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Authentication {
-#[prost(message, tag = "1")]
-GoogleAccount(GoogleAccount),
-#[prost(message, tag = "2")]
-CustomAccount(CustomAccount),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Schedule {
-#[prost(message, optional, tag = "1")]
-pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int32, tag = "2")]
-pub interval_duration_days: i32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum UserAgent {
-Unspecified = 0,
-ChromeLinux = 1,
-ChromeAndroid = 2,
-SafariIphone = 3,
-}
-impl UserAgent {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-UserAgent::Unspecified => "USER_AGENT_UNSPECIFIED",
-UserAgent::ChromeLinux => "CHROME_LINUX",
-UserAgent::ChromeAndroid => "CHROME_ANDROID",
-UserAgent::SafariIphone => "SAFARI_IPHONE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"USER_AGENT_UNSPECIFIED" => Some(Self::Unspecified),
-"CHROME_LINUX" => Some(Self::ChromeLinux),
-"CHROME_ANDROID" => Some(Self::ChromeAndroid),
-"SAFARI_IPHONE" => Some(Self::SafariIphone),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TargetPlatform {
-Unspecified = 0,
-AppEngine = 1,
-Compute = 2,
-}
-impl TargetPlatform {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TargetPlatform::Unspecified => "TARGET_PLATFORM_UNSPECIFIED",
-TargetPlatform::AppEngine => "APP_ENGINE",
-TargetPlatform::Compute => "COMPUTE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TARGET_PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
-"APP_ENGINE" => Some(Self::AppEngine),
-"COMPUTE" => Some(Self::Compute),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum RiskLevel {
-Unspecified = 0,
-Normal = 1,
-Low = 2,
-}
-impl RiskLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RiskLevel::Unspecified => "RISK_LEVEL_UNSPECIFIED",
-RiskLevel::Normal => "NORMAL",
-RiskLevel::Low => "LOW",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RISK_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"NORMAL" => Some(Self::Normal),
-"LOW" => Some(Self::Low),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ExportToSecurityCommandCenter {
-Unspecified = 0,
-Enabled = 1,
-Disabled = 2,
-}
-impl ExportToSecurityCommandCenter {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExportToSecurityCommandCenter::Unspecified => "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED",
-ExportToSecurityCommandCenter::Enabled => "ENABLED",
-ExportToSecurityCommandCenter::Disabled => "DISABLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED" => Some(Self::Unspecified),
-"ENABLED" => Some(Self::Enabled),
-"DISABLED" => Some(Self::Disabled),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Authentication {
+        #[prost(oneof = "authentication::Authentication", tags = "1, 2")]
+        pub authentication: ::core::option::Option<authentication::Authentication>,
+    }
+    /// Nested message and enum types in `Authentication`.
+    pub mod authentication {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct GoogleAccount {
+            #[prost(string, tag = "1")]
+            pub username: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub password: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct CustomAccount {
+            #[prost(string, tag = "1")]
+            pub username: ::prost::alloc::string::String,
+            #[prost(string, tag = "2")]
+            pub password: ::prost::alloc::string::String,
+            #[prost(string, tag = "3")]
+            pub login_url: ::prost::alloc::string::String,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Authentication {
+            #[prost(message, tag = "1")]
+            GoogleAccount(GoogleAccount),
+            #[prost(message, tag = "2")]
+            CustomAccount(CustomAccount),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Schedule {
+        #[prost(message, optional, tag = "1")]
+        pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(int32, tag = "2")]
+        pub interval_duration_days: i32,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum UserAgent {
+        Unspecified = 0,
+        ChromeLinux = 1,
+        ChromeAndroid = 2,
+        SafariIphone = 3,
+    }
+    impl UserAgent {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                UserAgent::Unspecified => "USER_AGENT_UNSPECIFIED",
+                UserAgent::ChromeLinux => "CHROME_LINUX",
+                UserAgent::ChromeAndroid => "CHROME_ANDROID",
+                UserAgent::SafariIphone => "SAFARI_IPHONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "USER_AGENT_UNSPECIFIED" => Some(Self::Unspecified),
+                "CHROME_LINUX" => Some(Self::ChromeLinux),
+                "CHROME_ANDROID" => Some(Self::ChromeAndroid),
+                "SAFARI_IPHONE" => Some(Self::SafariIphone),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TargetPlatform {
+        Unspecified = 0,
+        AppEngine = 1,
+        Compute = 2,
+    }
+    impl TargetPlatform {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TargetPlatform::Unspecified => "TARGET_PLATFORM_UNSPECIFIED",
+                TargetPlatform::AppEngine => "APP_ENGINE",
+                TargetPlatform::Compute => "COMPUTE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TARGET_PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
+                "APP_ENGINE" => Some(Self::AppEngine),
+                "COMPUTE" => Some(Self::Compute),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum RiskLevel {
+        Unspecified = 0,
+        Normal = 1,
+        Low = 2,
+    }
+    impl RiskLevel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RiskLevel::Unspecified => "RISK_LEVEL_UNSPECIFIED",
+                RiskLevel::Normal => "NORMAL",
+                RiskLevel::Low => "LOW",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RISK_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+                "NORMAL" => Some(Self::Normal),
+                "LOW" => Some(Self::Low),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ExportToSecurityCommandCenter {
+        Unspecified = 0,
+        Enabled = 1,
+        Disabled = 2,
+    }
+    impl ExportToSecurityCommandCenter {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ExportToSecurityCommandCenter::Unspecified => {
+                    "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED"
+                }
+                ExportToSecurityCommandCenter::Enabled => "ENABLED",
+                ExportToSecurityCommandCenter::Disabled => "DISABLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENABLED" => Some(Self::Enabled),
+                "DISABLED" => Some(Self::Disabled),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CrawledUrl {
-#[prost(string, tag = "1")]
-pub http_method: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub body: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub http_method: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub body: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateScanConfigRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub scan_config: ::core::option::Option<ScanConfig>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub scan_config: ::core::option::Option<ScanConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteScanConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetScanConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListScanConfigsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateScanConfigRequest {
-#[prost(message, optional, tag = "2")]
-pub scan_config: ::core::option::Option<ScanConfig>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub scan_config: ::core::option::Option<ScanConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListScanConfigsResponse {
-#[prost(message, repeated, tag = "1")]
-pub scan_configs: ::prost::alloc::vec::Vec<ScanConfig>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub scan_configs: ::prost::alloc::vec::Vec<ScanConfig>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartScanRunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetScanRunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListScanRunsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListScanRunsResponse {
-#[prost(message, repeated, tag = "1")]
-pub scan_runs: ::prost::alloc::vec::Vec<ScanRun>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub scan_runs: ::prost::alloc::vec::Vec<ScanRun>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopScanRunRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCrawledUrlsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCrawledUrlsResponse {
-#[prost(message, repeated, tag = "1")]
-pub crawled_urls: ::prost::alloc::vec::Vec<CrawledUrl>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub crawled_urls: ::prost::alloc::vec::Vec<CrawledUrl>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFindingRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFindingsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFindingsResponse {
-#[prost(message, repeated, tag = "1")]
-pub findings: ::prost::alloc::vec::Vec<Finding>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub findings: ::prost::alloc::vec::Vec<Finding>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFindingTypeStatsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFindingTypeStatsResponse {
-#[prost(message, repeated, tag = "1")]
-pub finding_type_stats: ::prost::alloc::vec::Vec<FindingTypeStats>,
+    #[prost(message, repeated, tag = "1")]
+    pub finding_type_stats: ::prost::alloc::vec::Vec<FindingTypeStats>,
 }
 /// Generated client implementations.
 pub mod web_security_scanner_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Cloud Web Security Scanner Service identifies security vulnerabilities in web
-/// applications hosted on Google Cloud Platform. It crawls your application, and
-/// attempts to exercise as many user inputs and event handlers as possible.
-#[derive(Debug, Clone)]
-pub struct WebSecurityScannerClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> WebSecurityScannerClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> WebSecurityScannerClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-WebSecurityScannerClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Creates a new ScanConfig.
-pub async fn create_scan_config(&mut self, request: impl tonic::IntoRequest<super::CreateScanConfigRequest>) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/CreateScanConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "CreateScanConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes an existing ScanConfig and its child resources.
-pub async fn delete_scan_config(&mut self, request: impl tonic::IntoRequest<super::DeleteScanConfigRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/DeleteScanConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "DeleteScanConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a ScanConfig.
-pub async fn get_scan_config(&mut self, request: impl tonic::IntoRequest<super::GetScanConfigRequest>) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "GetScanConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists ScanConfigs under a given project.
-pub async fn list_scan_configs(&mut self, request: impl tonic::IntoRequest<super::ListScanConfigsRequest>) -> std::result::Result<tonic::Response<super::ListScanConfigsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanConfigs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "ListScanConfigs"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a ScanConfig. This method support partial update of a ScanConfig.
-pub async fn update_scan_config(&mut self, request: impl tonic::IntoRequest<super::UpdateScanConfigRequest>) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/UpdateScanConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "UpdateScanConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Start a ScanRun according to the given ScanConfig.
-pub async fn start_scan_run(&mut self, request: impl tonic::IntoRequest<super::StartScanRunRequest>) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StartScanRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "StartScanRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a ScanRun.
-pub async fn get_scan_run(&mut self, request: impl tonic::IntoRequest<super::GetScanRunRequest>) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "GetScanRun"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
-/// stop time.
-pub async fn list_scan_runs(&mut self, request: impl tonic::IntoRequest<super::ListScanRunsRequest>) -> std::result::Result<tonic::Response<super::ListScanRunsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanRuns");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "ListScanRuns"));
-self.inner.unary(req, path, codec).await
-}
-/// Stops a ScanRun. The stopped ScanRun is returned.
-pub async fn stop_scan_run(&mut self, request: impl tonic::IntoRequest<super::StopScanRunRequest>) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StopScanRun");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "StopScanRun"));
-self.inner.unary(req, path, codec).await
-}
-/// List CrawledUrls under a given ScanRun.
-pub async fn list_crawled_urls(&mut self, request: impl tonic::IntoRequest<super::ListCrawledUrlsRequest>) -> std::result::Result<tonic::Response<super::ListCrawledUrlsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListCrawledUrls");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "ListCrawledUrls"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a Finding.
-pub async fn get_finding(&mut self, request: impl tonic::IntoRequest<super::GetFindingRequest>) -> std::result::Result<tonic::Response<super::Finding>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetFinding");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "GetFinding"));
-self.inner.unary(req, path, codec).await
-}
-/// List Findings under a given ScanRun.
-pub async fn list_findings(&mut self, request: impl tonic::IntoRequest<super::ListFindingsRequest>) -> std::result::Result<tonic::Response<super::ListFindingsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindings");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "ListFindings"));
-self.inner.unary(req, path, codec).await
-}
-/// List all FindingTypeStats under a given ScanRun.
-pub async fn list_finding_type_stats(&mut self, request: impl tonic::IntoRequest<super::ListFindingTypeStatsRequest>) -> std::result::Result<tonic::Response<super::ListFindingTypeStatsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindingTypeStats");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.websecurityscanner.v1beta.WebSecurityScanner", "ListFindingTypeStats"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Cloud Web Security Scanner Service identifies security vulnerabilities in web
+    /// applications hosted on Google Cloud Platform. It crawls your application, and
+    /// attempts to exercise as many user inputs and event handlers as possible.
+    #[derive(Debug, Clone)]
+    pub struct WebSecurityScannerClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> WebSecurityScannerClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> WebSecurityScannerClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            WebSecurityScannerClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Creates a new ScanConfig.
+        pub async fn create_scan_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateScanConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/CreateScanConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "CreateScanConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an existing ScanConfig and its child resources.
+        pub async fn delete_scan_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteScanConfigRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/DeleteScanConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "DeleteScanConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a ScanConfig.
+        pub async fn get_scan_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetScanConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "GetScanConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists ScanConfigs under a given project.
+        pub async fn list_scan_configs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListScanConfigsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListScanConfigsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanConfigs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "ListScanConfigs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a ScanConfig. This method support partial update of a ScanConfig.
+        pub async fn update_scan_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateScanConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/UpdateScanConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "UpdateScanConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Start a ScanRun according to the given ScanConfig.
+        pub async fn start_scan_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StartScanRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StartScanRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "StartScanRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a ScanRun.
+        pub async fn get_scan_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetScanRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetScanRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "GetScanRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
+        /// stop time.
+        pub async fn list_scan_runs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListScanRunsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListScanRunsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListScanRuns",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "ListScanRuns",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Stops a ScanRun. The stopped ScanRun is returned.
+        pub async fn stop_scan_run(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StopScanRunRequest>,
+        ) -> std::result::Result<tonic::Response<super::ScanRun>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/StopScanRun",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "StopScanRun",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List CrawledUrls under a given ScanRun.
+        pub async fn list_crawled_urls(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListCrawledUrlsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListCrawledUrlsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListCrawledUrls",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "ListCrawledUrls",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a Finding.
+        pub async fn get_finding(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFindingRequest>,
+        ) -> std::result::Result<tonic::Response<super::Finding>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/GetFinding",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "GetFinding",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List Findings under a given ScanRun.
+        pub async fn list_findings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFindingsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListFindingsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "ListFindings",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// List all FindingTypeStats under a given ScanRun.
+        pub async fn list_finding_type_stats(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFindingTypeStatsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListFindingTypeStatsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.websecurityscanner.v1beta.WebSecurityScanner/ListFindingTypeStats",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.websecurityscanner.v1beta.WebSecurityScanner",
+                "ListFindingTypeStats",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

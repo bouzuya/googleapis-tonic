@@ -2,1197 +2,1243 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpannerAsyncActionRequest {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
-#[prost(message, optional, tag = "2")]
-pub action: ::core::option::Option<SpannerAction>,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
+    #[prost(message, optional, tag = "2")]
+    pub action: ::core::option::Option<SpannerAction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpannerAsyncActionResponse {
-#[prost(int32, tag = "1")]
-pub action_id: i32,
-#[prost(message, optional, tag = "2")]
-pub outcome: ::core::option::Option<SpannerActionOutcome>,
+    #[prost(int32, tag = "1")]
+    pub action_id: i32,
+    #[prost(message, optional, tag = "2")]
+    pub outcome: ::core::option::Option<SpannerActionOutcome>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpannerAction {
-#[prost(string, tag = "1")]
-pub database_path: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub spanner_options: ::core::option::Option<SpannerOptions>,
-#[prost(oneof = "spanner_action::Action", tags = "10, 11, 20, 21, 22, 23, 24, 25, 27, 30, 40, 41, 42, 43, 44, 50, 51")]
-pub action: ::core::option::Option<spanner_action::Action>,
+    #[prost(string, tag = "1")]
+    pub database_path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub spanner_options: ::core::option::Option<SpannerOptions>,
+    #[prost(
+        oneof = "spanner_action::Action",
+        tags = "10, 11, 20, 21, 22, 23, 24, 25, 27, 30, 40, 41, 42, 43, 44, 50, 51"
+    )]
+    pub action: ::core::option::Option<spanner_action::Action>,
 }
 /// Nested message and enum types in `SpannerAction`.
 pub mod spanner_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Action {
-#[prost(message, tag = "10")]
-Start(super::StartTransactionAction),
-#[prost(message, tag = "11")]
-Finish(super::FinishTransactionAction),
-#[prost(message, tag = "20")]
-Read(super::ReadAction),
-#[prost(message, tag = "21")]
-Query(super::QueryAction),
-#[prost(message, tag = "22")]
-Mutation(super::MutationAction),
-#[prost(message, tag = "23")]
-Dml(super::DmlAction),
-#[prost(message, tag = "24")]
-BatchDml(super::BatchDmlAction),
-#[prost(message, tag = "25")]
-Write(super::WriteMutationsAction),
-#[prost(message, tag = "27")]
-PartitionedUpdate(super::PartitionedUpdateAction),
-#[prost(message, tag = "30")]
-Admin(super::AdminAction),
-#[prost(message, tag = "40")]
-StartBatchTxn(super::StartBatchTransactionAction),
-#[prost(message, tag = "41")]
-CloseBatchTxn(super::CloseBatchTransactionAction),
-#[prost(message, tag = "42")]
-GenerateDbPartitionsRead(super::GenerateDbPartitionsForReadAction),
-#[prost(message, tag = "43")]
-GenerateDbPartitionsQuery(super::GenerateDbPartitionsForQueryAction),
-#[prost(message, tag = "44")]
-ExecutePartition(super::ExecutePartitionAction),
-#[prost(message, tag = "50")]
-ExecuteChangeStreamQuery(super::ExecuteChangeStreamQuery),
-#[prost(message, tag = "51")]
-QueryCancellation(super::QueryCancellationAction),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        #[prost(message, tag = "10")]
+        Start(super::StartTransactionAction),
+        #[prost(message, tag = "11")]
+        Finish(super::FinishTransactionAction),
+        #[prost(message, tag = "20")]
+        Read(super::ReadAction),
+        #[prost(message, tag = "21")]
+        Query(super::QueryAction),
+        #[prost(message, tag = "22")]
+        Mutation(super::MutationAction),
+        #[prost(message, tag = "23")]
+        Dml(super::DmlAction),
+        #[prost(message, tag = "24")]
+        BatchDml(super::BatchDmlAction),
+        #[prost(message, tag = "25")]
+        Write(super::WriteMutationsAction),
+        #[prost(message, tag = "27")]
+        PartitionedUpdate(super::PartitionedUpdateAction),
+        #[prost(message, tag = "30")]
+        Admin(super::AdminAction),
+        #[prost(message, tag = "40")]
+        StartBatchTxn(super::StartBatchTransactionAction),
+        #[prost(message, tag = "41")]
+        CloseBatchTxn(super::CloseBatchTransactionAction),
+        #[prost(message, tag = "42")]
+        GenerateDbPartitionsRead(super::GenerateDbPartitionsForReadAction),
+        #[prost(message, tag = "43")]
+        GenerateDbPartitionsQuery(super::GenerateDbPartitionsForQueryAction),
+        #[prost(message, tag = "44")]
+        ExecutePartition(super::ExecutePartitionAction),
+        #[prost(message, tag = "50")]
+        ExecuteChangeStreamQuery(super::ExecuteChangeStreamQuery),
+        #[prost(message, tag = "51")]
+        QueryCancellation(super::QueryCancellationAction),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadAction {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "2")]
-pub index: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub keys: ::core::option::Option<KeySet>,
-#[prost(int32, tag = "5")]
-pub limit: i32,
+    #[prost(string, tag = "1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub index: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub keys: ::core::option::Option<KeySet>,
+    #[prost(int32, tag = "5")]
+    pub limit: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAction {
-#[prost(string, tag = "1")]
-pub sql: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub params: ::prost::alloc::vec::Vec<query_action::Parameter>,
+    #[prost(string, tag = "1")]
+    pub sql: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub params: ::prost::alloc::vec::Vec<query_action::Parameter>,
 }
 /// Nested message and enum types in `QueryAction`.
 pub mod query_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Parameter {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub r#type: ::core::option::Option<super::super::super::v1::Type>,
-#[prost(message, optional, tag = "3")]
-pub value: ::core::option::Option<super::Value>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Parameter {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub r#type: ::core::option::Option<super::super::super::v1::Type>,
+        #[prost(message, optional, tag = "3")]
+        pub value: ::core::option::Option<super::Value>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DmlAction {
-#[prost(message, optional, tag = "1")]
-pub update: ::core::option::Option<QueryAction>,
-#[prost(bool, optional, tag = "2")]
-pub autocommit_if_supported: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "1")]
+    pub update: ::core::option::Option<QueryAction>,
+    #[prost(bool, optional, tag = "2")]
+    pub autocommit_if_supported: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDmlAction {
-#[prost(message, repeated, tag = "1")]
-pub updates: ::prost::alloc::vec::Vec<QueryAction>,
+    #[prost(message, repeated, tag = "1")]
+    pub updates: ::prost::alloc::vec::Vec<QueryAction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-#[prost(message, optional, tag = "12")]
-pub array_type: ::core::option::Option<super::super::v1::Type>,
-#[prost(oneof = "value::ValueType", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11")]
-pub value_type: ::core::option::Option<value::ValueType>,
+    #[prost(message, optional, tag = "12")]
+    pub array_type: ::core::option::Option<super::super::v1::Type>,
+    #[prost(oneof = "value::ValueType", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11")]
+    pub value_type: ::core::option::Option<value::ValueType>,
 }
 /// Nested message and enum types in `Value`.
 pub mod value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ValueType {
-#[prost(bool, tag = "1")]
-IsNull(bool),
-#[prost(int64, tag = "2")]
-IntValue(i64),
-#[prost(bool, tag = "3")]
-BoolValue(bool),
-#[prost(double, tag = "4")]
-DoubleValue(f64),
-#[prost(bytes, tag = "5")]
-BytesValue(::prost::alloc::vec::Vec<u8>),
-#[prost(string, tag = "6")]
-StringValue(::prost::alloc::string::String),
-#[prost(message, tag = "7")]
-StructValue(super::ValueList),
-#[prost(message, tag = "8")]
-TimestampValue(::prost_types::Timestamp),
-#[prost(int32, tag = "9")]
-DateDaysValue(i32),
-#[prost(bool, tag = "10")]
-IsCommitTimestamp(bool),
-#[prost(message, tag = "11")]
-ArrayValue(super::ValueList),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ValueType {
+        #[prost(bool, tag = "1")]
+        IsNull(bool),
+        #[prost(int64, tag = "2")]
+        IntValue(i64),
+        #[prost(bool, tag = "3")]
+        BoolValue(bool),
+        #[prost(double, tag = "4")]
+        DoubleValue(f64),
+        #[prost(bytes, tag = "5")]
+        BytesValue(::prost::alloc::vec::Vec<u8>),
+        #[prost(string, tag = "6")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(message, tag = "7")]
+        StructValue(super::ValueList),
+        #[prost(message, tag = "8")]
+        TimestampValue(::prost_types::Timestamp),
+        #[prost(int32, tag = "9")]
+        DateDaysValue(i32),
+        #[prost(bool, tag = "10")]
+        IsCommitTimestamp(bool),
+        #[prost(message, tag = "11")]
+        ArrayValue(super::ValueList),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyRange {
-#[prost(message, optional, tag = "1")]
-pub start: ::core::option::Option<ValueList>,
-#[prost(message, optional, tag = "2")]
-pub limit: ::core::option::Option<ValueList>,
-#[prost(enumeration = "key_range::Type", optional, tag = "3")]
-pub r#type: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "1")]
+    pub start: ::core::option::Option<ValueList>,
+    #[prost(message, optional, tag = "2")]
+    pub limit: ::core::option::Option<ValueList>,
+    #[prost(enumeration = "key_range::Type", optional, tag = "3")]
+    pub r#type: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `KeyRange`.
 pub mod key_range {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-Unspecified = 0,
-ClosedClosed = 1,
-ClosedOpen = 2,
-OpenClosed = 3,
-OpenOpen = 4,
-}
-impl Type {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Type::Unspecified => "TYPE_UNSPECIFIED",
-Type::ClosedClosed => "CLOSED_CLOSED",
-Type::ClosedOpen => "CLOSED_OPEN",
-Type::OpenClosed => "OPEN_CLOSED",
-Type::OpenOpen => "OPEN_OPEN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"CLOSED_CLOSED" => Some(Self::ClosedClosed),
-"CLOSED_OPEN" => Some(Self::ClosedOpen),
-"OPEN_CLOSED" => Some(Self::OpenClosed),
-"OPEN_OPEN" => Some(Self::OpenOpen),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Type {
+        Unspecified = 0,
+        ClosedClosed = 1,
+        ClosedOpen = 2,
+        OpenClosed = 3,
+        OpenOpen = 4,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::ClosedClosed => "CLOSED_CLOSED",
+                Type::ClosedOpen => "CLOSED_OPEN",
+                Type::OpenClosed => "OPEN_CLOSED",
+                Type::OpenOpen => "OPEN_OPEN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLOSED_CLOSED" => Some(Self::ClosedClosed),
+                "CLOSED_OPEN" => Some(Self::ClosedOpen),
+                "OPEN_CLOSED" => Some(Self::OpenClosed),
+                "OPEN_OPEN" => Some(Self::OpenOpen),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeySet {
-#[prost(message, repeated, tag = "1")]
-pub point: ::prost::alloc::vec::Vec<ValueList>,
-#[prost(message, repeated, tag = "2")]
-pub range: ::prost::alloc::vec::Vec<KeyRange>,
-#[prost(bool, tag = "3")]
-pub all: bool,
+    #[prost(message, repeated, tag = "1")]
+    pub point: ::prost::alloc::vec::Vec<ValueList>,
+    #[prost(message, repeated, tag = "2")]
+    pub range: ::prost::alloc::vec::Vec<KeyRange>,
+    #[prost(bool, tag = "3")]
+    pub all: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValueList {
-#[prost(message, repeated, tag = "1")]
-pub value: ::prost::alloc::vec::Vec<Value>,
+    #[prost(message, repeated, tag = "1")]
+    pub value: ::prost::alloc::vec::Vec<Value>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutationAction {
-#[prost(message, repeated, tag = "1")]
-pub r#mod: ::prost::alloc::vec::Vec<mutation_action::Mod>,
+    #[prost(message, repeated, tag = "1")]
+    pub r#mod: ::prost::alloc::vec::Vec<mutation_action::Mod>,
 }
 /// Nested message and enum types in `MutationAction`.
 pub mod mutation_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InsertArgs {
-#[prost(string, repeated, tag = "1")]
-pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "2")]
-pub r#type: ::prost::alloc::vec::Vec<super::super::super::v1::Type>,
-#[prost(message, repeated, tag = "3")]
-pub values: ::prost::alloc::vec::Vec<super::ValueList>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateArgs {
-#[prost(string, repeated, tag = "1")]
-pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "2")]
-pub r#type: ::prost::alloc::vec::Vec<super::super::super::v1::Type>,
-#[prost(message, repeated, tag = "3")]
-pub values: ::prost::alloc::vec::Vec<super::ValueList>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Mod {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub insert: ::core::option::Option<InsertArgs>,
-#[prost(message, optional, tag = "3")]
-pub update: ::core::option::Option<UpdateArgs>,
-#[prost(message, optional, tag = "4")]
-pub insert_or_update: ::core::option::Option<InsertArgs>,
-#[prost(message, optional, tag = "5")]
-pub replace: ::core::option::Option<InsertArgs>,
-#[prost(message, optional, tag = "6")]
-pub delete_keys: ::core::option::Option<super::KeySet>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InsertArgs {
+        #[prost(string, repeated, tag = "1")]
+        pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, repeated, tag = "2")]
+        pub r#type: ::prost::alloc::vec::Vec<super::super::super::v1::Type>,
+        #[prost(message, repeated, tag = "3")]
+        pub values: ::prost::alloc::vec::Vec<super::ValueList>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct UpdateArgs {
+        #[prost(string, repeated, tag = "1")]
+        pub column: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(message, repeated, tag = "2")]
+        pub r#type: ::prost::alloc::vec::Vec<super::super::super::v1::Type>,
+        #[prost(message, repeated, tag = "3")]
+        pub values: ::prost::alloc::vec::Vec<super::ValueList>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Mod {
+        #[prost(string, tag = "1")]
+        pub table: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub insert: ::core::option::Option<InsertArgs>,
+        #[prost(message, optional, tag = "3")]
+        pub update: ::core::option::Option<UpdateArgs>,
+        #[prost(message, optional, tag = "4")]
+        pub insert_or_update: ::core::option::Option<InsertArgs>,
+        #[prost(message, optional, tag = "5")]
+        pub replace: ::core::option::Option<InsertArgs>,
+        #[prost(message, optional, tag = "6")]
+        pub delete_keys: ::core::option::Option<super::KeySet>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteMutationsAction {
-#[prost(message, optional, tag = "1")]
-pub mutation: ::core::option::Option<MutationAction>,
+    #[prost(message, optional, tag = "1")]
+    pub mutation: ::core::option::Option<MutationAction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionedUpdateAction {
-#[prost(message, optional, tag = "1")]
-pub options: ::core::option::Option<partitioned_update_action::ExecutePartitionedUpdateOptions>,
-#[prost(message, optional, tag = "2")]
-pub update: ::core::option::Option<QueryAction>,
+    #[prost(message, optional, tag = "1")]
+    pub options: ::core::option::Option<partitioned_update_action::ExecutePartitionedUpdateOptions>,
+    #[prost(message, optional, tag = "2")]
+    pub update: ::core::option::Option<QueryAction>,
 }
 /// Nested message and enum types in `PartitionedUpdateAction`.
 pub mod partitioned_update_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecutePartitionedUpdateOptions {
-#[prost(enumeration = "super::super::super::v1::request_options::Priority", optional, tag = "1")]
-pub rpc_priority: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "2")]
-pub tag: ::core::option::Option<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ExecutePartitionedUpdateOptions {
+        #[prost(
+            enumeration = "super::super::super::v1::request_options::Priority",
+            optional,
+            tag = "1"
+        )]
+        pub rpc_priority: ::core::option::Option<i32>,
+        #[prost(string, optional, tag = "2")]
+        pub tag: ::core::option::Option<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartTransactionAction {
-#[prost(message, optional, tag = "1")]
-pub concurrency: ::core::option::Option<Concurrency>,
-#[prost(message, repeated, tag = "2")]
-pub table: ::prost::alloc::vec::Vec<TableMetadata>,
-#[prost(string, tag = "3")]
-pub transaction_seed: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub execution_options: ::core::option::Option<TransactionExecutionOptions>,
+    #[prost(message, optional, tag = "1")]
+    pub concurrency: ::core::option::Option<Concurrency>,
+    #[prost(message, repeated, tag = "2")]
+    pub table: ::prost::alloc::vec::Vec<TableMetadata>,
+    #[prost(string, tag = "3")]
+    pub transaction_seed: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub execution_options: ::core::option::Option<TransactionExecutionOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Concurrency {
-#[prost(bool, tag = "7")]
-pub snapshot_epoch_read: bool,
-#[prost(string, tag = "8")]
-pub snapshot_epoch_root_table: ::prost::alloc::string::String,
-#[prost(int64, tag = "9")]
-pub batch_read_timestamp_micros: i64,
-#[prost(oneof = "concurrency::ConcurrencyMode", tags = "1, 2, 3, 4, 5, 6")]
-pub concurrency_mode: ::core::option::Option<concurrency::ConcurrencyMode>,
+    #[prost(bool, tag = "7")]
+    pub snapshot_epoch_read: bool,
+    #[prost(string, tag = "8")]
+    pub snapshot_epoch_root_table: ::prost::alloc::string::String,
+    #[prost(int64, tag = "9")]
+    pub batch_read_timestamp_micros: i64,
+    #[prost(oneof = "concurrency::ConcurrencyMode", tags = "1, 2, 3, 4, 5, 6")]
+    pub concurrency_mode: ::core::option::Option<concurrency::ConcurrencyMode>,
 }
 /// Nested message and enum types in `Concurrency`.
 pub mod concurrency {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ConcurrencyMode {
-#[prost(double, tag = "1")]
-StalenessSeconds(f64),
-#[prost(int64, tag = "2")]
-MinReadTimestampMicros(i64),
-#[prost(double, tag = "3")]
-MaxStalenessSeconds(f64),
-#[prost(int64, tag = "4")]
-ExactTimestampMicros(i64),
-#[prost(bool, tag = "5")]
-Strong(bool),
-#[prost(bool, tag = "6")]
-Batch(bool),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ConcurrencyMode {
+        #[prost(double, tag = "1")]
+        StalenessSeconds(f64),
+        #[prost(int64, tag = "2")]
+        MinReadTimestampMicros(i64),
+        #[prost(double, tag = "3")]
+        MaxStalenessSeconds(f64),
+        #[prost(int64, tag = "4")]
+        ExactTimestampMicros(i64),
+        #[prost(bool, tag = "5")]
+        Strong(bool),
+        #[prost(bool, tag = "6")]
+        Batch(bool),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableMetadata {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "2")]
-pub column: ::prost::alloc::vec::Vec<ColumnMetadata>,
-#[prost(message, repeated, tag = "3")]
-pub key_column: ::prost::alloc::vec::Vec<ColumnMetadata>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub column: ::prost::alloc::vec::Vec<ColumnMetadata>,
+    #[prost(message, repeated, tag = "3")]
+    pub key_column: ::prost::alloc::vec::Vec<ColumnMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnMetadata {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub r#type: ::core::option::Option<super::super::v1::Type>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub r#type: ::core::option::Option<super::super::v1::Type>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TransactionExecutionOptions {
-#[prost(bool, tag = "1")]
-pub optimistic: bool,
+    #[prost(bool, tag = "1")]
+    pub optimistic: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FinishTransactionAction {
-#[prost(enumeration = "finish_transaction_action::Mode", tag = "1")]
-pub mode: i32,
+    #[prost(enumeration = "finish_transaction_action::Mode", tag = "1")]
+    pub mode: i32,
 }
 /// Nested message and enum types in `FinishTransactionAction`.
 pub mod finish_transaction_action {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Mode {
-Unspecified = 0,
-Commit = 1,
-Abandon = 2,
-}
-impl Mode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Mode::Unspecified => "MODE_UNSPECIFIED",
-Mode::Commit => "COMMIT",
-Mode::Abandon => "ABANDON",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MODE_UNSPECIFIED" => Some(Self::Unspecified),
-"COMMIT" => Some(Self::Commit),
-"ABANDON" => Some(Self::Abandon),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Mode {
+        Unspecified = 0,
+        Commit = 1,
+        Abandon = 2,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::Commit => "COMMIT",
+                Mode::Abandon => "ABANDON",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "COMMIT" => Some(Self::Commit),
+                "ABANDON" => Some(Self::Abandon),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdminAction {
-#[prost(oneof = "admin_action::Action", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28")]
-pub action: ::core::option::Option<admin_action::Action>,
+    #[prost(
+        oneof = "admin_action::Action",
+        tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28"
+    )]
+    pub action: ::core::option::Option<admin_action::Action>,
 }
 /// Nested message and enum types in `AdminAction`.
 pub mod admin_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Action {
-#[prost(message, tag = "1")]
-CreateUserInstanceConfig(super::CreateUserInstanceConfigAction),
-#[prost(message, tag = "2")]
-UpdateUserInstanceConfig(super::UpdateUserInstanceConfigAction),
-#[prost(message, tag = "3")]
-DeleteUserInstanceConfig(super::DeleteUserInstanceConfigAction),
-#[prost(message, tag = "4")]
-GetCloudInstanceConfig(super::GetCloudInstanceConfigAction),
-#[prost(message, tag = "5")]
-ListInstanceConfigs(super::ListCloudInstanceConfigsAction),
-#[prost(message, tag = "6")]
-CreateCloudInstance(super::CreateCloudInstanceAction),
-#[prost(message, tag = "7")]
-UpdateCloudInstance(super::UpdateCloudInstanceAction),
-#[prost(message, tag = "8")]
-DeleteCloudInstance(super::DeleteCloudInstanceAction),
-#[prost(message, tag = "9")]
-ListCloudInstances(super::ListCloudInstancesAction),
-#[prost(message, tag = "10")]
-GetCloudInstance(super::GetCloudInstanceAction),
-#[prost(message, tag = "11")]
-CreateCloudDatabase(super::CreateCloudDatabaseAction),
-#[prost(message, tag = "12")]
-UpdateCloudDatabaseDdl(super::UpdateCloudDatabaseDdlAction),
-#[prost(message, tag = "27")]
-UpdateCloudDatabase(super::UpdateCloudDatabaseAction),
-#[prost(message, tag = "13")]
-DropCloudDatabase(super::DropCloudDatabaseAction),
-#[prost(message, tag = "14")]
-ListCloudDatabases(super::ListCloudDatabasesAction),
-#[prost(message, tag = "15")]
-ListCloudDatabaseOperations(super::ListCloudDatabaseOperationsAction),
-#[prost(message, tag = "16")]
-RestoreCloudDatabase(super::RestoreCloudDatabaseAction),
-#[prost(message, tag = "17")]
-GetCloudDatabase(super::GetCloudDatabaseAction),
-#[prost(message, tag = "18")]
-CreateCloudBackup(super::CreateCloudBackupAction),
-#[prost(message, tag = "19")]
-CopyCloudBackup(super::CopyCloudBackupAction),
-#[prost(message, tag = "20")]
-GetCloudBackup(super::GetCloudBackupAction),
-#[prost(message, tag = "21")]
-UpdateCloudBackup(super::UpdateCloudBackupAction),
-#[prost(message, tag = "22")]
-DeleteCloudBackup(super::DeleteCloudBackupAction),
-#[prost(message, tag = "23")]
-ListCloudBackups(super::ListCloudBackupsAction),
-#[prost(message, tag = "24")]
-ListCloudBackupOperations(super::ListCloudBackupOperationsAction),
-#[prost(message, tag = "25")]
-GetOperation(super::GetOperationAction),
-#[prost(message, tag = "26")]
-CancelOperation(super::CancelOperationAction),
-#[prost(message, tag = "28")]
-ChangeQuorumCloudDatabase(super::ChangeQuorumCloudDatabaseAction),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        #[prost(message, tag = "1")]
+        CreateUserInstanceConfig(super::CreateUserInstanceConfigAction),
+        #[prost(message, tag = "2")]
+        UpdateUserInstanceConfig(super::UpdateUserInstanceConfigAction),
+        #[prost(message, tag = "3")]
+        DeleteUserInstanceConfig(super::DeleteUserInstanceConfigAction),
+        #[prost(message, tag = "4")]
+        GetCloudInstanceConfig(super::GetCloudInstanceConfigAction),
+        #[prost(message, tag = "5")]
+        ListInstanceConfigs(super::ListCloudInstanceConfigsAction),
+        #[prost(message, tag = "6")]
+        CreateCloudInstance(super::CreateCloudInstanceAction),
+        #[prost(message, tag = "7")]
+        UpdateCloudInstance(super::UpdateCloudInstanceAction),
+        #[prost(message, tag = "8")]
+        DeleteCloudInstance(super::DeleteCloudInstanceAction),
+        #[prost(message, tag = "9")]
+        ListCloudInstances(super::ListCloudInstancesAction),
+        #[prost(message, tag = "10")]
+        GetCloudInstance(super::GetCloudInstanceAction),
+        #[prost(message, tag = "11")]
+        CreateCloudDatabase(super::CreateCloudDatabaseAction),
+        #[prost(message, tag = "12")]
+        UpdateCloudDatabaseDdl(super::UpdateCloudDatabaseDdlAction),
+        #[prost(message, tag = "27")]
+        UpdateCloudDatabase(super::UpdateCloudDatabaseAction),
+        #[prost(message, tag = "13")]
+        DropCloudDatabase(super::DropCloudDatabaseAction),
+        #[prost(message, tag = "14")]
+        ListCloudDatabases(super::ListCloudDatabasesAction),
+        #[prost(message, tag = "15")]
+        ListCloudDatabaseOperations(super::ListCloudDatabaseOperationsAction),
+        #[prost(message, tag = "16")]
+        RestoreCloudDatabase(super::RestoreCloudDatabaseAction),
+        #[prost(message, tag = "17")]
+        GetCloudDatabase(super::GetCloudDatabaseAction),
+        #[prost(message, tag = "18")]
+        CreateCloudBackup(super::CreateCloudBackupAction),
+        #[prost(message, tag = "19")]
+        CopyCloudBackup(super::CopyCloudBackupAction),
+        #[prost(message, tag = "20")]
+        GetCloudBackup(super::GetCloudBackupAction),
+        #[prost(message, tag = "21")]
+        UpdateCloudBackup(super::UpdateCloudBackupAction),
+        #[prost(message, tag = "22")]
+        DeleteCloudBackup(super::DeleteCloudBackupAction),
+        #[prost(message, tag = "23")]
+        ListCloudBackups(super::ListCloudBackupsAction),
+        #[prost(message, tag = "24")]
+        ListCloudBackupOperations(super::ListCloudBackupOperationsAction),
+        #[prost(message, tag = "25")]
+        GetOperation(super::GetOperationAction),
+        #[prost(message, tag = "26")]
+        CancelOperation(super::CancelOperationAction),
+        #[prost(message, tag = "28")]
+        ChangeQuorumCloudDatabase(super::ChangeQuorumCloudDatabaseAction),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateUserInstanceConfigAction {
-#[prost(string, tag = "1")]
-pub user_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub base_config_id: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub replicas: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::ReplicaInfo>,
+    #[prost(string, tag = "1")]
+    pub user_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub base_config_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub replicas: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::ReplicaInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateUserInstanceConfigAction {
-#[prost(string, tag = "1")]
-pub user_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "3")]
-pub display_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(map = "string, string", tag = "4")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub user_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "3")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "4")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCloudInstanceConfigAction {
-#[prost(string, tag = "1")]
-pub instance_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteUserInstanceConfigAction {
-#[prost(string, tag = "1")]
-pub user_config_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub user_config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudInstanceConfigsAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(int32, optional, tag = "2")]
-pub page_size: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "3")]
-pub page_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(int32, optional, tag = "2")]
+    pub page_size: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "3")]
+    pub page_token: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCloudInstanceAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub instance_config_id: ::prost::alloc::string::String,
-#[prost(int32, optional, tag = "4")]
-pub node_count: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "6")]
-pub processing_units: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "7")]
-pub autoscaling_config: ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
-#[prost(map = "string, string", tag = "5")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub instance_config_id: ::prost::alloc::string::String,
+    #[prost(int32, optional, tag = "4")]
+    pub node_count: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "6")]
+    pub processing_units: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "7")]
+    pub autoscaling_config:
+        ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
+    #[prost(map = "string, string", tag = "5")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCloudInstanceAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "3")]
-pub display_name: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "4")]
-pub node_count: ::core::option::Option<i32>,
-#[prost(int32, optional, tag = "5")]
-pub processing_units: ::core::option::Option<i32>,
-#[prost(message, optional, tag = "7")]
-pub autoscaling_config: ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
-#[prost(map = "string, string", tag = "6")]
-pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "3")]
+    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "4")]
+    pub node_count: ::core::option::Option<i32>,
+    #[prost(int32, optional, tag = "5")]
+    pub processing_units: ::core::option::Option<i32>,
+    #[prost(message, optional, tag = "7")]
+    pub autoscaling_config:
+        ::core::option::Option<super::super::admin::instance::v1::AutoscalingConfig>,
+    #[prost(map = "string, string", tag = "6")]
+    pub labels:
+        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCloudInstanceAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCloudDatabaseAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub sdl_statement: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, optional, tag = "5")]
-pub encryption_config: ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
-#[prost(string, optional, tag = "6")]
-pub dialect: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(bytes = "vec", optional, tag = "7")]
-pub proto_descriptors: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub sdl_statement: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub encryption_config:
+        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    #[prost(string, optional, tag = "6")]
+    pub dialect: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bytes = "vec", optional, tag = "7")]
+    pub proto_descriptors: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCloudDatabaseDdlAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "4")]
-pub sdl_statement: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "5")]
-pub operation_id: ::prost::alloc::string::String,
-#[prost(bytes = "vec", optional, tag = "6")]
-pub proto_descriptors: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "4")]
+    pub sdl_statement: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "5")]
+    pub operation_id: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", optional, tag = "6")]
+    pub proto_descriptors: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCloudDatabaseAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_name: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub enable_drop_protection: bool,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub enable_drop_protection: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DropCloudDatabaseAction {
-#[prost(string, tag = "1")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeQuorumCloudDatabaseAction {
-#[prost(string, optional, tag = "1")]
-pub database_uri: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "2")]
-pub serving_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "1")]
+    pub database_uri: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub serving_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudDatabasesAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudInstancesAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "2")]
-pub filter: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "3")]
-pub page_size: ::core::option::Option<i32>,
-#[prost(string, optional, tag = "4")]
-pub page_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub filter: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "3")]
+    pub page_size: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "4")]
+    pub page_token: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCloudInstanceAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudDatabaseOperationsAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreCloudDatabaseAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub backup_instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub database_instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub database_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub encryption_config: ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub backup_instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub database_instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub database_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub encryption_config:
+        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCloudDatabaseAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCloudBackupAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub database_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub version_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub encryption_config: ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub database_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub version_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub encryption_config:
+        ::core::option::Option<super::super::admin::database::v1::EncryptionConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CopyCloudBackupAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub source_backup: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub source_backup: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCloudBackupAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCloudBackupAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCloudBackupAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub backup_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub backup_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudBackupsAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCloudBackupOperationsAction {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub page_size: i32,
-#[prost(string, tag = "5")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub page_size: i32,
+    #[prost(string, tag = "5")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOperationAction {
-#[prost(string, tag = "1")]
-pub operation: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCancellationAction {
-#[prost(string, tag = "1")]
-pub long_running_sql: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub cancel_query: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub long_running_sql: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub cancel_query: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelOperationAction {
-#[prost(string, tag = "1")]
-pub operation: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub operation: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartBatchTransactionAction {
-#[prost(string, tag = "3")]
-pub cloud_database_role: ::prost::alloc::string::String,
-#[prost(oneof = "start_batch_transaction_action::Param", tags = "1, 2")]
-pub param: ::core::option::Option<start_batch_transaction_action::Param>,
+    #[prost(string, tag = "3")]
+    pub cloud_database_role: ::prost::alloc::string::String,
+    #[prost(oneof = "start_batch_transaction_action::Param", tags = "1, 2")]
+    pub param: ::core::option::Option<start_batch_transaction_action::Param>,
 }
 /// Nested message and enum types in `StartBatchTransactionAction`.
 pub mod start_batch_transaction_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Param {
-#[prost(message, tag = "1")]
-BatchTxnTime(::prost_types::Timestamp),
-#[prost(bytes, tag = "2")]
-Tid(::prost::alloc::vec::Vec<u8>),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Param {
+        #[prost(message, tag = "1")]
+        BatchTxnTime(::prost_types::Timestamp),
+        #[prost(bytes, tag = "2")]
+        Tid(::prost::alloc::vec::Vec<u8>),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CloseBatchTransactionAction {
-#[prost(bool, tag = "1")]
-pub cleanup: bool,
+    #[prost(bool, tag = "1")]
+    pub cleanup: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDbPartitionsForReadAction {
-#[prost(message, optional, tag = "1")]
-pub read: ::core::option::Option<ReadAction>,
-#[prost(message, repeated, tag = "2")]
-pub table: ::prost::alloc::vec::Vec<TableMetadata>,
-#[prost(int64, optional, tag = "3")]
-pub desired_bytes_per_partition: ::core::option::Option<i64>,
-#[prost(int64, optional, tag = "4")]
-pub max_partition_count: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "1")]
+    pub read: ::core::option::Option<ReadAction>,
+    #[prost(message, repeated, tag = "2")]
+    pub table: ::prost::alloc::vec::Vec<TableMetadata>,
+    #[prost(int64, optional, tag = "3")]
+    pub desired_bytes_per_partition: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "4")]
+    pub max_partition_count: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDbPartitionsForQueryAction {
-#[prost(message, optional, tag = "1")]
-pub query: ::core::option::Option<QueryAction>,
-#[prost(int64, optional, tag = "2")]
-pub desired_bytes_per_partition: ::core::option::Option<i64>,
+    #[prost(message, optional, tag = "1")]
+    pub query: ::core::option::Option<QueryAction>,
+    #[prost(int64, optional, tag = "2")]
+    pub desired_bytes_per_partition: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPartition {
-#[prost(bytes = "vec", tag = "1")]
-pub partition: ::prost::alloc::vec::Vec<u8>,
-#[prost(bytes = "vec", tag = "2")]
-pub partition_token: ::prost::alloc::vec::Vec<u8>,
-#[prost(string, optional, tag = "3")]
-pub table: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, optional, tag = "4")]
-pub index: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bytes = "vec", tag = "1")]
+    pub partition: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub partition_token: ::prost::alloc::vec::Vec<u8>,
+    #[prost(string, optional, tag = "3")]
+    pub table: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "4")]
+    pub index: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutePartitionAction {
-#[prost(message, optional, tag = "1")]
-pub partition: ::core::option::Option<BatchPartition>,
+    #[prost(message, optional, tag = "1")]
+    pub partition: ::core::option::Option<BatchPartition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecuteChangeStreamQuery {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, optional, tag = "4")]
-pub partition_token: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "5")]
-pub read_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "6")]
-pub heartbeat_milliseconds: ::core::option::Option<i32>,
-#[prost(int64, optional, tag = "7")]
-pub deadline_seconds: ::core::option::Option<i64>,
-#[prost(string, optional, tag = "8")]
-pub cloud_database_role: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, optional, tag = "4")]
+    pub partition_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub read_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "6")]
+    pub heartbeat_milliseconds: ::core::option::Option<i32>,
+    #[prost(int64, optional, tag = "7")]
+    pub deadline_seconds: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "8")]
+    pub cloud_database_role: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpannerActionOutcome {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(message, optional, tag = "2")]
-pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub read_result: ::core::option::Option<ReadResult>,
-#[prost(message, optional, tag = "4")]
-pub query_result: ::core::option::Option<QueryResult>,
-#[prost(bool, optional, tag = "5")]
-pub transaction_restarted: ::core::option::Option<bool>,
-#[prost(bytes = "vec", optional, tag = "6")]
-pub batch_txn_id: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
-#[prost(message, repeated, tag = "7")]
-pub db_partition: ::prost::alloc::vec::Vec<BatchPartition>,
-#[prost(message, optional, tag = "8")]
-pub admin_result: ::core::option::Option<AdminResult>,
-#[prost(int64, repeated, tag = "9")]
-pub dml_rows_modified: ::prost::alloc::vec::Vec<i64>,
-#[prost(message, repeated, tag = "10")]
-pub change_stream_records: ::prost::alloc::vec::Vec<ChangeStreamRecord>,
+    #[prost(message, optional, tag = "1")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, optional, tag = "2")]
+    pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub read_result: ::core::option::Option<ReadResult>,
+    #[prost(message, optional, tag = "4")]
+    pub query_result: ::core::option::Option<QueryResult>,
+    #[prost(bool, optional, tag = "5")]
+    pub transaction_restarted: ::core::option::Option<bool>,
+    #[prost(bytes = "vec", optional, tag = "6")]
+    pub batch_txn_id: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
+    #[prost(message, repeated, tag = "7")]
+    pub db_partition: ::prost::alloc::vec::Vec<BatchPartition>,
+    #[prost(message, optional, tag = "8")]
+    pub admin_result: ::core::option::Option<AdminResult>,
+    #[prost(int64, repeated, tag = "9")]
+    pub dml_rows_modified: ::prost::alloc::vec::Vec<i64>,
+    #[prost(message, repeated, tag = "10")]
+    pub change_stream_records: ::prost::alloc::vec::Vec<ChangeStreamRecord>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdminResult {
-#[prost(message, optional, tag = "1")]
-pub backup_response: ::core::option::Option<CloudBackupResponse>,
-#[prost(message, optional, tag = "2")]
-pub operation_response: ::core::option::Option<OperationResponse>,
-#[prost(message, optional, tag = "3")]
-pub database_response: ::core::option::Option<CloudDatabaseResponse>,
-#[prost(message, optional, tag = "4")]
-pub instance_response: ::core::option::Option<CloudInstanceResponse>,
-#[prost(message, optional, tag = "5")]
-pub instance_config_response: ::core::option::Option<CloudInstanceConfigResponse>,
+    #[prost(message, optional, tag = "1")]
+    pub backup_response: ::core::option::Option<CloudBackupResponse>,
+    #[prost(message, optional, tag = "2")]
+    pub operation_response: ::core::option::Option<OperationResponse>,
+    #[prost(message, optional, tag = "3")]
+    pub database_response: ::core::option::Option<CloudDatabaseResponse>,
+    #[prost(message, optional, tag = "4")]
+    pub instance_response: ::core::option::Option<CloudInstanceResponse>,
+    #[prost(message, optional, tag = "5")]
+    pub instance_config_response: ::core::option::Option<CloudInstanceConfigResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudBackupResponse {
-#[prost(message, repeated, tag = "1")]
-pub listed_backups: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Backup>,
-#[prost(message, repeated, tag = "2")]
-pub listed_backup_operations: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
-#[prost(string, tag = "3")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub backup: ::core::option::Option<super::super::admin::database::v1::Backup>,
+    #[prost(message, repeated, tag = "1")]
+    pub listed_backups: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Backup>,
+    #[prost(message, repeated, tag = "2")]
+    pub listed_backup_operations:
+        ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub backup: ::core::option::Option<super::super::admin::database::v1::Backup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationResponse {
-#[prost(message, repeated, tag = "1")]
-pub listed_operations: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub operation: ::core::option::Option<super::super::super::longrunning::Operation>,
+    #[prost(message, repeated, tag = "1")]
+    pub listed_operations: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub operation: ::core::option::Option<super::super::super::longrunning::Operation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudInstanceResponse {
-#[prost(message, repeated, tag = "1")]
-pub listed_instances: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::Instance>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub instance: ::core::option::Option<super::super::admin::instance::v1::Instance>,
+    #[prost(message, repeated, tag = "1")]
+    pub listed_instances: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::Instance>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub instance: ::core::option::Option<super::super::admin::instance::v1::Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudInstanceConfigResponse {
-#[prost(message, repeated, tag = "1")]
-pub listed_instance_configs: ::prost::alloc::vec::Vec<super::super::admin::instance::v1::InstanceConfig>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub instance_config: ::core::option::Option<super::super::admin::instance::v1::InstanceConfig>,
+    #[prost(message, repeated, tag = "1")]
+    pub listed_instance_configs:
+        ::prost::alloc::vec::Vec<super::super::admin::instance::v1::InstanceConfig>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub instance_config: ::core::option::Option<super::super::admin::instance::v1::InstanceConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudDatabaseResponse {
-#[prost(message, repeated, tag = "1")]
-pub listed_databases: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Database>,
-#[prost(message, repeated, tag = "2")]
-pub listed_database_operations: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
-#[prost(string, tag = "3")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub database: ::core::option::Option<super::super::admin::database::v1::Database>,
+    #[prost(message, repeated, tag = "1")]
+    pub listed_databases: ::prost::alloc::vec::Vec<super::super::admin::database::v1::Database>,
+    #[prost(message, repeated, tag = "2")]
+    pub listed_database_operations:
+        ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub database: ::core::option::Option<super::super::admin::database::v1::Database>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadResult {
-#[prost(string, tag = "1")]
-pub table: ::prost::alloc::string::String,
-#[prost(string, optional, tag = "2")]
-pub index: ::core::option::Option<::prost::alloc::string::String>,
-#[prost(int32, optional, tag = "3")]
-pub request_index: ::core::option::Option<i32>,
-#[prost(message, repeated, tag = "4")]
-pub row: ::prost::alloc::vec::Vec<ValueList>,
-#[prost(message, optional, tag = "5")]
-pub row_type: ::core::option::Option<super::super::v1::StructType>,
+    #[prost(string, tag = "1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub index: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "3")]
+    pub request_index: ::core::option::Option<i32>,
+    #[prost(message, repeated, tag = "4")]
+    pub row: ::prost::alloc::vec::Vec<ValueList>,
+    #[prost(message, optional, tag = "5")]
+    pub row_type: ::core::option::Option<super::super::v1::StructType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryResult {
-#[prost(message, repeated, tag = "1")]
-pub row: ::prost::alloc::vec::Vec<ValueList>,
-#[prost(message, optional, tag = "2")]
-pub row_type: ::core::option::Option<super::super::v1::StructType>,
+    #[prost(message, repeated, tag = "1")]
+    pub row: ::prost::alloc::vec::Vec<ValueList>,
+    #[prost(message, optional, tag = "2")]
+    pub row_type: ::core::option::Option<super::super::v1::StructType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeStreamRecord {
-#[prost(oneof = "change_stream_record::Record", tags = "1, 2, 3")]
-pub record: ::core::option::Option<change_stream_record::Record>,
+    #[prost(oneof = "change_stream_record::Record", tags = "1, 2, 3")]
+    pub record: ::core::option::Option<change_stream_record::Record>,
 }
 /// Nested message and enum types in `ChangeStreamRecord`.
 pub mod change_stream_record {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Record {
-#[prost(message, tag = "1")]
-DataChange(super::DataChangeRecord),
-#[prost(message, tag = "2")]
-ChildPartition(super::ChildPartitionsRecord),
-#[prost(message, tag = "3")]
-Heartbeat(super::HeartbeatRecord),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Record {
+        #[prost(message, tag = "1")]
+        DataChange(super::DataChangeRecord),
+        #[prost(message, tag = "2")]
+        ChildPartition(super::ChildPartitionsRecord),
+        #[prost(message, tag = "3")]
+        Heartbeat(super::HeartbeatRecord),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataChangeRecord {
-#[prost(message, optional, tag = "1")]
-pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "2")]
-pub record_sequence: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub transaction_id: ::prost::alloc::string::String,
-#[prost(bool, tag = "4")]
-pub is_last_record: bool,
-#[prost(string, tag = "5")]
-pub table: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "6")]
-pub column_types: ::prost::alloc::vec::Vec<data_change_record::ColumnType>,
-#[prost(message, repeated, tag = "7")]
-pub mods: ::prost::alloc::vec::Vec<data_change_record::Mod>,
-#[prost(string, tag = "8")]
-pub mod_type: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub value_capture_type: ::prost::alloc::string::String,
-#[prost(int64, tag = "10")]
-pub record_count: i64,
-#[prost(int64, tag = "11")]
-pub partition_count: i64,
-#[prost(string, tag = "12")]
-pub transaction_tag: ::prost::alloc::string::String,
-#[prost(bool, tag = "13")]
-pub is_system_transaction: bool,
+    #[prost(message, optional, tag = "1")]
+    pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "2")]
+    pub record_sequence: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub transaction_id: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub is_last_record: bool,
+    #[prost(string, tag = "5")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "6")]
+    pub column_types: ::prost::alloc::vec::Vec<data_change_record::ColumnType>,
+    #[prost(message, repeated, tag = "7")]
+    pub mods: ::prost::alloc::vec::Vec<data_change_record::Mod>,
+    #[prost(string, tag = "8")]
+    pub mod_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub value_capture_type: ::prost::alloc::string::String,
+    #[prost(int64, tag = "10")]
+    pub record_count: i64,
+    #[prost(int64, tag = "11")]
+    pub partition_count: i64,
+    #[prost(string, tag = "12")]
+    pub transaction_tag: ::prost::alloc::string::String,
+    #[prost(bool, tag = "13")]
+    pub is_system_transaction: bool,
 }
 /// Nested message and enum types in `DataChangeRecord`.
 pub mod data_change_record {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ColumnType {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(bool, tag = "3")]
-pub is_primary_key: bool,
-#[prost(int64, tag = "4")]
-pub ordinal_position: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Mod {
-#[prost(string, tag = "1")]
-pub keys: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub new_values: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub old_values: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ColumnType {
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub r#type: ::prost::alloc::string::String,
+        #[prost(bool, tag = "3")]
+        pub is_primary_key: bool,
+        #[prost(int64, tag = "4")]
+        pub ordinal_position: i64,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Mod {
+        #[prost(string, tag = "1")]
+        pub keys: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub new_values: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub old_values: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChildPartitionsRecord {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "2")]
-pub record_sequence: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub child_partitions: ::prost::alloc::vec::Vec<child_partitions_record::ChildPartition>,
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "2")]
+    pub record_sequence: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub child_partitions: ::prost::alloc::vec::Vec<child_partitions_record::ChildPartition>,
 }
 /// Nested message and enum types in `ChildPartitionsRecord`.
 pub mod child_partitions_record {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ChildPartition {
-#[prost(string, tag = "1")]
-pub token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub parent_partition_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ChildPartition {
+        #[prost(string, tag = "1")]
+        pub token: ::prost::alloc::string::String,
+        #[prost(string, repeated, tag = "2")]
+        pub parent_partition_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct HeartbeatRecord {
-#[prost(message, optional, tag = "1")]
-pub heartbeat_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub heartbeat_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpannerOptions {
-#[prost(message, optional, tag = "1")]
-pub session_pool_options: ::core::option::Option<SessionPoolOptions>,
+    #[prost(message, optional, tag = "1")]
+    pub session_pool_options: ::core::option::Option<SessionPoolOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SessionPoolOptions {
-#[prost(bool, tag = "1")]
-pub use_multiplexed: bool,
+    #[prost(bool, tag = "1")]
+    pub use_multiplexed: bool,
 }
 /// Generated client implementations.
 pub mod spanner_executor_proxy_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// Service that executes SpannerActions asynchronously.
-#[derive(Debug, Clone)]
-pub struct SpannerExecutorProxyClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> SpannerExecutorProxyClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> SpannerExecutorProxyClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-SpannerExecutorProxyClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// ExecuteActionAsync is a streaming call that starts executing a new Spanner
-/// action.
-///
-/// For each request, the server will reply with one or more responses, but
-/// only the last response will contain status in the outcome.
-///
-/// Responses can be matched to requests by action_id. It is allowed to have
-/// multiple actions in flight--in that case, actions are be executed in
-/// parallel.
-pub async fn execute_action_async(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::SpannerAsyncActionRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::SpannerAsyncActionResponse>>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.spanner.executor.v1.SpannerExecutorProxy/ExecuteActionAsync");
-let mut req = request.into_streaming_request();
-req.extensions_mut().insert(GrpcMethod::new("google.spanner.executor.v1.SpannerExecutorProxy", "ExecuteActionAsync"));
-self.inner.streaming(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// Service that executes SpannerActions asynchronously.
+    #[derive(Debug, Clone)]
+    pub struct SpannerExecutorProxyClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> SpannerExecutorProxyClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> SpannerExecutorProxyClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            SpannerExecutorProxyClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// ExecuteActionAsync is a streaming call that starts executing a new Spanner
+        /// action.
+        ///
+        /// For each request, the server will reply with one or more responses, but
+        /// only the last response will contain status in the outcome.
+        ///
+        /// Responses can be matched to requests by action_id. It is allowed to have
+        /// multiple actions in flight--in that case, actions are be executed in
+        /// parallel.
+        pub async fn execute_action_async(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<Message = super::SpannerAsyncActionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::SpannerAsyncActionResponse>>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.spanner.executor.v1.SpannerExecutorProxy/ExecuteActionAsync",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.spanner.executor.v1.SpannerExecutorProxy",
+                "ExecuteActionAsync",
+            ));
+            self.inner.streaming(req, path, codec).await
+        }
+    }
 }

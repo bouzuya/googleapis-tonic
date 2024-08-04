@@ -2,2264 +2,2294 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoType {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub version: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SensitivityScore {
-#[prost(enumeration = "sensitivity_score::SensitivityScoreLevel", tag = "1")]
-pub score: i32,
+    #[prost(enumeration = "sensitivity_score::SensitivityScoreLevel", tag = "1")]
+    pub score: i32,
 }
 /// Nested message and enum types in `SensitivityScore`.
 pub mod sensitivity_score {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SensitivityScoreLevel {
-SensitivityScoreUnspecified = 0,
-SensitivityLow = 10,
-SensitivityUnknown = 12,
-SensitivityModerate = 20,
-SensitivityHigh = 30,
-}
-impl SensitivityScoreLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SensitivityScoreLevel::SensitivityScoreUnspecified => "SENSITIVITY_SCORE_UNSPECIFIED",
-SensitivityScoreLevel::SensitivityLow => "SENSITIVITY_LOW",
-SensitivityScoreLevel::SensitivityUnknown => "SENSITIVITY_UNKNOWN",
-SensitivityScoreLevel::SensitivityModerate => "SENSITIVITY_MODERATE",
-SensitivityScoreLevel::SensitivityHigh => "SENSITIVITY_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SENSITIVITY_SCORE_UNSPECIFIED" => Some(Self::SensitivityScoreUnspecified),
-"SENSITIVITY_LOW" => Some(Self::SensitivityLow),
-"SENSITIVITY_UNKNOWN" => Some(Self::SensitivityUnknown),
-"SENSITIVITY_MODERATE" => Some(Self::SensitivityModerate),
-"SENSITIVITY_HIGH" => Some(Self::SensitivityHigh),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SensitivityScoreLevel {
+        SensitivityScoreUnspecified = 0,
+        SensitivityLow = 10,
+        SensitivityUnknown = 12,
+        SensitivityModerate = 20,
+        SensitivityHigh = 30,
+    }
+    impl SensitivityScoreLevel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SensitivityScoreLevel::SensitivityScoreUnspecified => {
+                    "SENSITIVITY_SCORE_UNSPECIFIED"
+                }
+                SensitivityScoreLevel::SensitivityLow => "SENSITIVITY_LOW",
+                SensitivityScoreLevel::SensitivityUnknown => "SENSITIVITY_UNKNOWN",
+                SensitivityScoreLevel::SensitivityModerate => "SENSITIVITY_MODERATE",
+                SensitivityScoreLevel::SensitivityHigh => "SENSITIVITY_HIGH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SENSITIVITY_SCORE_UNSPECIFIED" => Some(Self::SensitivityScoreUnspecified),
+                "SENSITIVITY_LOW" => Some(Self::SensitivityLow),
+                "SENSITIVITY_UNKNOWN" => Some(Self::SensitivityUnknown),
+                "SENSITIVITY_MODERATE" => Some(Self::SensitivityModerate),
+                "SENSITIVITY_HIGH" => Some(Self::SensitivityHigh),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StoredType {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomInfoType {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
-#[prost(enumeration = "Likelihood", tag = "6")]
-pub likelihood: i32,
-#[prost(message, repeated, tag = "7")]
-pub detection_rules: ::prost::alloc::vec::Vec<custom_info_type::DetectionRule>,
-#[prost(enumeration = "custom_info_type::ExclusionType", tag = "8")]
-pub exclusion_type: i32,
-#[prost(message, optional, tag = "9")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(oneof = "custom_info_type::Type", tags = "2, 3, 4, 5")]
-pub r#type: ::core::option::Option<custom_info_type::Type>,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[prost(enumeration = "Likelihood", tag = "6")]
+    pub likelihood: i32,
+    #[prost(message, repeated, tag = "7")]
+    pub detection_rules: ::prost::alloc::vec::Vec<custom_info_type::DetectionRule>,
+    #[prost(enumeration = "custom_info_type::ExclusionType", tag = "8")]
+    pub exclusion_type: i32,
+    #[prost(message, optional, tag = "9")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(oneof = "custom_info_type::Type", tags = "2, 3, 4, 5")]
+    pub r#type: ::core::option::Option<custom_info_type::Type>,
 }
 /// Nested message and enum types in `CustomInfoType`.
 pub mod custom_info_type {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dictionary {
-#[prost(oneof = "dictionary::Source", tags = "1, 3")]
-pub source: ::core::option::Option<dictionary::Source>,
-}
-/// Nested message and enum types in `Dictionary`.
-pub mod dictionary {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WordList {
-#[prost(string, repeated, tag = "1")]
-pub words: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-WordList(WordList),
-#[prost(message, tag = "3")]
-CloudStoragePath(super::super::CloudStoragePath),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Regex {
-#[prost(string, tag = "1")]
-pub pattern: ::prost::alloc::string::String,
-#[prost(int32, repeated, tag = "2")]
-pub group_indexes: ::prost::alloc::vec::Vec<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct SurrogateType {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DetectionRule {
-#[prost(oneof = "detection_rule::Type", tags = "1")]
-pub r#type: ::core::option::Option<detection_rule::Type>,
-}
-/// Nested message and enum types in `DetectionRule`.
-pub mod detection_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Proximity {
-#[prost(int32, tag = "1")]
-pub window_before: i32,
-#[prost(int32, tag = "2")]
-pub window_after: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LikelihoodAdjustment {
-#[prost(oneof = "likelihood_adjustment::Adjustment", tags = "1, 2")]
-pub adjustment: ::core::option::Option<likelihood_adjustment::Adjustment>,
-}
-/// Nested message and enum types in `LikelihoodAdjustment`.
-pub mod likelihood_adjustment {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Adjustment {
-#[prost(enumeration = "super::super::super::Likelihood", tag = "1")]
-FixedLikelihood(i32),
-#[prost(int32, tag = "2")]
-RelativeLikelihood(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HotwordRule {
-#[prost(message, optional, tag = "1")]
-pub hotword_regex: ::core::option::Option<super::Regex>,
-#[prost(message, optional, tag = "2")]
-pub proximity: ::core::option::Option<Proximity>,
-#[prost(message, optional, tag = "3")]
-pub likelihood_adjustment: ::core::option::Option<LikelihoodAdjustment>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-HotwordRule(HotwordRule),
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ExclusionType {
-Unspecified = 0,
-Exclude = 1,
-}
-impl ExclusionType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ExclusionType::Unspecified => "EXCLUSION_TYPE_UNSPECIFIED",
-ExclusionType::Exclude => "EXCLUSION_TYPE_EXCLUDE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EXCLUSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"EXCLUSION_TYPE_EXCLUDE" => Some(Self::Exclude),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "2")]
-Dictionary(Dictionary),
-#[prost(message, tag = "3")]
-Regex(Regex),
-#[prost(message, tag = "4")]
-SurrogateType(SurrogateType),
-#[prost(message, tag = "5")]
-StoredType(super::StoredType),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Dictionary {
+        #[prost(oneof = "dictionary::Source", tags = "1, 3")]
+        pub source: ::core::option::Option<dictionary::Source>,
+    }
+    /// Nested message and enum types in `Dictionary`.
+    pub mod dictionary {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct WordList {
+            #[prost(string, repeated, tag = "1")]
+            pub words: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Source {
+            #[prost(message, tag = "1")]
+            WordList(WordList),
+            #[prost(message, tag = "3")]
+            CloudStoragePath(super::super::CloudStoragePath),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Regex {
+        #[prost(string, tag = "1")]
+        pub pattern: ::prost::alloc::string::String,
+        #[prost(int32, repeated, tag = "2")]
+        pub group_indexes: ::prost::alloc::vec::Vec<i32>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct SurrogateType {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DetectionRule {
+        #[prost(oneof = "detection_rule::Type", tags = "1")]
+        pub r#type: ::core::option::Option<detection_rule::Type>,
+    }
+    /// Nested message and enum types in `DetectionRule`.
+    pub mod detection_rule {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct Proximity {
+            #[prost(int32, tag = "1")]
+            pub window_before: i32,
+            #[prost(int32, tag = "2")]
+            pub window_after: i32,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct LikelihoodAdjustment {
+            #[prost(oneof = "likelihood_adjustment::Adjustment", tags = "1, 2")]
+            pub adjustment: ::core::option::Option<likelihood_adjustment::Adjustment>,
+        }
+        /// Nested message and enum types in `LikelihoodAdjustment`.
+        pub mod likelihood_adjustment {
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+            pub enum Adjustment {
+                #[prost(enumeration = "super::super::super::Likelihood", tag = "1")]
+                FixedLikelihood(i32),
+                #[prost(int32, tag = "2")]
+                RelativeLikelihood(i32),
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct HotwordRule {
+            #[prost(message, optional, tag = "1")]
+            pub hotword_regex: ::core::option::Option<super::Regex>,
+            #[prost(message, optional, tag = "2")]
+            pub proximity: ::core::option::Option<Proximity>,
+            #[prost(message, optional, tag = "3")]
+            pub likelihood_adjustment: ::core::option::Option<LikelihoodAdjustment>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Type {
+            #[prost(message, tag = "1")]
+            HotwordRule(HotwordRule),
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ExclusionType {
+        Unspecified = 0,
+        Exclude = 1,
+    }
+    impl ExclusionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ExclusionType::Unspecified => "EXCLUSION_TYPE_UNSPECIFIED",
+                ExclusionType::Exclude => "EXCLUSION_TYPE_EXCLUDE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EXCLUSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "EXCLUSION_TYPE_EXCLUDE" => Some(Self::Exclude),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "2")]
+        Dictionary(Dictionary),
+        #[prost(message, tag = "3")]
+        Regex(Regex),
+        #[prost(message, tag = "4")]
+        SurrogateType(SurrogateType),
+        #[prost(message, tag = "5")]
+        StoredType(super::StoredType),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldId {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionId {
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub namespace_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub namespace_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KindExpression {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatastoreOptions {
-#[prost(message, optional, tag = "1")]
-pub partition_id: ::core::option::Option<PartitionId>,
-#[prost(message, optional, tag = "2")]
-pub kind: ::core::option::Option<KindExpression>,
+    #[prost(message, optional, tag = "1")]
+    pub partition_id: ::core::option::Option<PartitionId>,
+    #[prost(message, optional, tag = "2")]
+    pub kind: ::core::option::Option<KindExpression>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageRegexFileSet {
-#[prost(string, tag = "1")]
-pub bucket_name: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub include_regex: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, repeated, tag = "3")]
-pub exclude_regex: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "1")]
+    pub bucket_name: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub include_regex: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub exclude_regex: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageOptions {
-#[prost(message, optional, tag = "1")]
-pub file_set: ::core::option::Option<cloud_storage_options::FileSet>,
-#[prost(int64, tag = "4")]
-pub bytes_limit_per_file: i64,
-#[prost(int32, tag = "8")]
-pub bytes_limit_per_file_percent: i32,
-#[prost(enumeration = "FileType", repeated, tag = "5")]
-pub file_types: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "cloud_storage_options::SampleMethod", tag = "6")]
-pub sample_method: i32,
-#[prost(int32, tag = "7")]
-pub files_limit_percent: i32,
+    #[prost(message, optional, tag = "1")]
+    pub file_set: ::core::option::Option<cloud_storage_options::FileSet>,
+    #[prost(int64, tag = "4")]
+    pub bytes_limit_per_file: i64,
+    #[prost(int32, tag = "8")]
+    pub bytes_limit_per_file_percent: i32,
+    #[prost(enumeration = "FileType", repeated, tag = "5")]
+    pub file_types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "cloud_storage_options::SampleMethod", tag = "6")]
+    pub sample_method: i32,
+    #[prost(int32, tag = "7")]
+    pub files_limit_percent: i32,
 }
 /// Nested message and enum types in `CloudStorageOptions`.
 pub mod cloud_storage_options {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FileSet {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub regex_file_set: ::core::option::Option<super::CloudStorageRegexFileSet>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SampleMethod {
-Unspecified = 0,
-Top = 1,
-RandomStart = 2,
-}
-impl SampleMethod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SampleMethod::Unspecified => "SAMPLE_METHOD_UNSPECIFIED",
-SampleMethod::Top => "TOP",
-SampleMethod::RandomStart => "RANDOM_START",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SAMPLE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"TOP" => Some(Self::Top),
-"RANDOM_START" => Some(Self::RandomStart),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FileSet {
+        #[prost(string, tag = "1")]
+        pub url: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "2")]
+        pub regex_file_set: ::core::option::Option<super::CloudStorageRegexFileSet>,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SampleMethod {
+        Unspecified = 0,
+        Top = 1,
+        RandomStart = 2,
+    }
+    impl SampleMethod {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SampleMethod::Unspecified => "SAMPLE_METHOD_UNSPECIFIED",
+                SampleMethod::Top => "TOP",
+                SampleMethod::RandomStart => "RANDOM_START",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SAMPLE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "TOP" => Some(Self::Top),
+                "RANDOM_START" => Some(Self::RandomStart),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageFileSet {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStoragePath {
-#[prost(string, tag = "1")]
-pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryOptions {
-#[prost(message, optional, tag = "1")]
-pub table_reference: ::core::option::Option<BigQueryTable>,
-#[prost(message, repeated, tag = "2")]
-pub identifying_fields: ::prost::alloc::vec::Vec<FieldId>,
-#[prost(int64, tag = "3")]
-pub rows_limit: i64,
-#[prost(int32, tag = "6")]
-pub rows_limit_percent: i32,
-#[prost(enumeration = "big_query_options::SampleMethod", tag = "4")]
-pub sample_method: i32,
-#[prost(message, repeated, tag = "5")]
-pub excluded_fields: ::prost::alloc::vec::Vec<FieldId>,
-#[prost(message, repeated, tag = "7")]
-pub included_fields: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(message, optional, tag = "1")]
+    pub table_reference: ::core::option::Option<BigQueryTable>,
+    #[prost(message, repeated, tag = "2")]
+    pub identifying_fields: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(int64, tag = "3")]
+    pub rows_limit: i64,
+    #[prost(int32, tag = "6")]
+    pub rows_limit_percent: i32,
+    #[prost(enumeration = "big_query_options::SampleMethod", tag = "4")]
+    pub sample_method: i32,
+    #[prost(message, repeated, tag = "5")]
+    pub excluded_fields: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(message, repeated, tag = "7")]
+    pub included_fields: ::prost::alloc::vec::Vec<FieldId>,
 }
 /// Nested message and enum types in `BigQueryOptions`.
 pub mod big_query_options {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SampleMethod {
-Unspecified = 0,
-Top = 1,
-RandomStart = 2,
-}
-impl SampleMethod {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SampleMethod::Unspecified => "SAMPLE_METHOD_UNSPECIFIED",
-SampleMethod::Top => "TOP",
-SampleMethod::RandomStart => "RANDOM_START",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SAMPLE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-"TOP" => Some(Self::Top),
-"RANDOM_START" => Some(Self::RandomStart),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SampleMethod {
+        Unspecified = 0,
+        Top = 1,
+        RandomStart = 2,
+    }
+    impl SampleMethod {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SampleMethod::Unspecified => "SAMPLE_METHOD_UNSPECIFIED",
+                SampleMethod::Top => "TOP",
+                SampleMethod::RandomStart => "RANDOM_START",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SAMPLE_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "TOP" => Some(Self::Top),
+                "RANDOM_START" => Some(Self::RandomStart),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageConfig {
-#[prost(message, optional, tag = "6")]
-pub timespan_config: ::core::option::Option<storage_config::TimespanConfig>,
-#[prost(oneof = "storage_config::Type", tags = "2, 3, 4, 9")]
-pub r#type: ::core::option::Option<storage_config::Type>,
+    #[prost(message, optional, tag = "6")]
+    pub timespan_config: ::core::option::Option<storage_config::TimespanConfig>,
+    #[prost(oneof = "storage_config::Type", tags = "2, 3, 4, 9")]
+    pub r#type: ::core::option::Option<storage_config::Type>,
 }
 /// Nested message and enum types in `StorageConfig`.
 pub mod storage_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TimespanConfig {
-#[prost(message, optional, tag = "1")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "3")]
-pub timestamp_field: ::core::option::Option<super::FieldId>,
-#[prost(bool, tag = "4")]
-pub enable_auto_population_of_timespan_config: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "2")]
-DatastoreOptions(super::DatastoreOptions),
-#[prost(message, tag = "3")]
-CloudStorageOptions(super::CloudStorageOptions),
-#[prost(message, tag = "4")]
-BigQueryOptions(super::BigQueryOptions),
-#[prost(message, tag = "9")]
-HybridOptions(super::HybridOptions),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TimespanConfig {
+        #[prost(message, optional, tag = "1")]
+        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "2")]
+        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+        #[prost(message, optional, tag = "3")]
+        pub timestamp_field: ::core::option::Option<super::FieldId>,
+        #[prost(bool, tag = "4")]
+        pub enable_auto_population_of_timespan_config: bool,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "2")]
+        DatastoreOptions(super::DatastoreOptions),
+        #[prost(message, tag = "3")]
+        CloudStorageOptions(super::CloudStorageOptions),
+        #[prost(message, tag = "4")]
+        BigQueryOptions(super::BigQueryOptions),
+        #[prost(message, tag = "9")]
+        HybridOptions(super::HybridOptions),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridOptions {
-#[prost(string, tag = "1")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "2")]
-pub required_finding_label_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(btree_map = "string, string", tag = "3")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "4")]
-pub table_options: ::core::option::Option<TableOptions>,
+    #[prost(string, tag = "1")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub required_finding_label_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(btree_map = "string, string", tag = "3")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "4")]
+    pub table_options: ::core::option::Option<TableOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryKey {
-#[prost(message, optional, tag = "1")]
-pub table_reference: ::core::option::Option<BigQueryTable>,
-#[prost(int64, tag = "2")]
-pub row_number: i64,
+    #[prost(message, optional, tag = "1")]
+    pub table_reference: ::core::option::Option<BigQueryTable>,
+    #[prost(int64, tag = "2")]
+    pub row_number: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatastoreKey {
-#[prost(message, optional, tag = "1")]
-pub entity_key: ::core::option::Option<Key>,
+    #[prost(message, optional, tag = "1")]
+    pub entity_key: ::core::option::Option<Key>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Key {
-#[prost(message, optional, tag = "1")]
-pub partition_id: ::core::option::Option<PartitionId>,
-#[prost(message, repeated, tag = "2")]
-pub path: ::prost::alloc::vec::Vec<key::PathElement>,
+    #[prost(message, optional, tag = "1")]
+    pub partition_id: ::core::option::Option<PartitionId>,
+    #[prost(message, repeated, tag = "2")]
+    pub path: ::prost::alloc::vec::Vec<key::PathElement>,
 }
 /// Nested message and enum types in `Key`.
 pub mod key {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PathElement {
-#[prost(string, tag = "1")]
-pub kind: ::prost::alloc::string::String,
-#[prost(oneof = "path_element::IdType", tags = "2, 3")]
-pub id_type: ::core::option::Option<path_element::IdType>,
-}
-/// Nested message and enum types in `PathElement`.
-pub mod path_element {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum IdType {
-#[prost(int64, tag = "2")]
-Id(i64),
-#[prost(string, tag = "3")]
-Name(::prost::alloc::string::String),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PathElement {
+        #[prost(string, tag = "1")]
+        pub kind: ::prost::alloc::string::String,
+        #[prost(oneof = "path_element::IdType", tags = "2, 3")]
+        pub id_type: ::core::option::Option<path_element::IdType>,
+    }
+    /// Nested message and enum types in `PathElement`.
+    pub mod path_element {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum IdType {
+            #[prost(int64, tag = "2")]
+            Id(i64),
+            #[prost(string, tag = "3")]
+            Name(::prost::alloc::string::String),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordKey {
-#[prost(string, repeated, tag = "5")]
-pub id_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(oneof = "record_key::Type", tags = "2, 3")]
-pub r#type: ::core::option::Option<record_key::Type>,
+    #[prost(string, repeated, tag = "5")]
+    pub id_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(oneof = "record_key::Type", tags = "2, 3")]
+    pub r#type: ::core::option::Option<record_key::Type>,
 }
 /// Nested message and enum types in `RecordKey`.
 pub mod record_key {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "2")]
-DatastoreKey(super::DatastoreKey),
-#[prost(message, tag = "3")]
-BigQueryKey(super::BigQueryKey),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "2")]
+        DatastoreKey(super::DatastoreKey),
+        #[prost(message, tag = "3")]
+        BigQueryKey(super::BigQueryKey),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryTable {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub table_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableReference {
-#[prost(string, tag = "1")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub table_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryField {
-#[prost(message, optional, tag = "1")]
-pub table: ::core::option::Option<BigQueryTable>,
-#[prost(message, optional, tag = "2")]
-pub field: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "1")]
+    pub table: ::core::option::Option<BigQueryTable>,
+    #[prost(message, optional, tag = "2")]
+    pub field: ::core::option::Option<FieldId>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityId {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "1")]
+    pub field: ::core::option::Option<FieldId>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableOptions {
-#[prost(message, repeated, tag = "1")]
-pub identifying_fields: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(message, repeated, tag = "1")]
+    pub identifying_fields: ::prost::alloc::vec::Vec<FieldId>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Likelihood {
-Unspecified = 0,
-VeryUnlikely = 1,
-Unlikely = 2,
-Possible = 3,
-Likely = 4,
-VeryLikely = 5,
+    Unspecified = 0,
+    VeryUnlikely = 1,
+    Unlikely = 2,
+    Possible = 3,
+    Likely = 4,
+    VeryLikely = 5,
 }
 impl Likelihood {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Likelihood::Unspecified => "LIKELIHOOD_UNSPECIFIED",
-Likelihood::VeryUnlikely => "VERY_UNLIKELY",
-Likelihood::Unlikely => "UNLIKELY",
-Likelihood::Possible => "POSSIBLE",
-Likelihood::Likely => "LIKELY",
-Likelihood::VeryLikely => "VERY_LIKELY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LIKELIHOOD_UNSPECIFIED" => Some(Self::Unspecified),
-"VERY_UNLIKELY" => Some(Self::VeryUnlikely),
-"UNLIKELY" => Some(Self::Unlikely),
-"POSSIBLE" => Some(Self::Possible),
-"LIKELY" => Some(Self::Likely),
-"VERY_LIKELY" => Some(Self::VeryLikely),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Likelihood::Unspecified => "LIKELIHOOD_UNSPECIFIED",
+            Likelihood::VeryUnlikely => "VERY_UNLIKELY",
+            Likelihood::Unlikely => "UNLIKELY",
+            Likelihood::Possible => "POSSIBLE",
+            Likelihood::Likely => "LIKELY",
+            Likelihood::VeryLikely => "VERY_LIKELY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "LIKELIHOOD_UNSPECIFIED" => Some(Self::Unspecified),
+            "VERY_UNLIKELY" => Some(Self::VeryUnlikely),
+            "UNLIKELY" => Some(Self::Unlikely),
+            "POSSIBLE" => Some(Self::Possible),
+            "LIKELY" => Some(Self::Likely),
+            "VERY_LIKELY" => Some(Self::VeryLikely),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FileType {
-Unspecified = 0,
-BinaryFile = 1,
-TextFile = 2,
-Image = 3,
-Word = 5,
-Pdf = 6,
-Avro = 7,
-Csv = 8,
-Tsv = 9,
-Powerpoint = 11,
-Excel = 12,
+    Unspecified = 0,
+    BinaryFile = 1,
+    TextFile = 2,
+    Image = 3,
+    Word = 5,
+    Pdf = 6,
+    Avro = 7,
+    Csv = 8,
+    Tsv = 9,
+    Powerpoint = 11,
+    Excel = 12,
 }
 impl FileType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FileType::Unspecified => "FILE_TYPE_UNSPECIFIED",
-FileType::BinaryFile => "BINARY_FILE",
-FileType::TextFile => "TEXT_FILE",
-FileType::Image => "IMAGE",
-FileType::Word => "WORD",
-FileType::Pdf => "PDF",
-FileType::Avro => "AVRO",
-FileType::Csv => "CSV",
-FileType::Tsv => "TSV",
-FileType::Powerpoint => "POWERPOINT",
-FileType::Excel => "EXCEL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BINARY_FILE" => Some(Self::BinaryFile),
-"TEXT_FILE" => Some(Self::TextFile),
-"IMAGE" => Some(Self::Image),
-"WORD" => Some(Self::Word),
-"PDF" => Some(Self::Pdf),
-"AVRO" => Some(Self::Avro),
-"CSV" => Some(Self::Csv),
-"TSV" => Some(Self::Tsv),
-"POWERPOINT" => Some(Self::Powerpoint),
-"EXCEL" => Some(Self::Excel),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            FileType::Unspecified => "FILE_TYPE_UNSPECIFIED",
+            FileType::BinaryFile => "BINARY_FILE",
+            FileType::TextFile => "TEXT_FILE",
+            FileType::Image => "IMAGE",
+            FileType::Word => "WORD",
+            FileType::Pdf => "PDF",
+            FileType::Avro => "AVRO",
+            FileType::Csv => "CSV",
+            FileType::Tsv => "TSV",
+            FileType::Powerpoint => "POWERPOINT",
+            FileType::Excel => "EXCEL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "BINARY_FILE" => Some(Self::BinaryFile),
+            "TEXT_FILE" => Some(Self::TextFile),
+            "IMAGE" => Some(Self::Image),
+            "WORD" => Some(Self::Word),
+            "PDF" => Some(Self::Pdf),
+            "AVRO" => Some(Self::Avro),
+            "CSV" => Some(Self::Csv),
+            "TSV" => Some(Self::Tsv),
+            "POWERPOINT" => Some(Self::Powerpoint),
+            "EXCEL" => Some(Self::Excel),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExcludeInfoTypes {
-#[prost(message, repeated, tag = "1")]
-pub info_types: ::prost::alloc::vec::Vec<InfoType>,
+    #[prost(message, repeated, tag = "1")]
+    pub info_types: ::prost::alloc::vec::Vec<InfoType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExcludeByHotword {
-#[prost(message, optional, tag = "1")]
-pub hotword_regex: ::core::option::Option<custom_info_type::Regex>,
-#[prost(message, optional, tag = "2")]
-pub proximity: ::core::option::Option<custom_info_type::detection_rule::Proximity>,
+    #[prost(message, optional, tag = "1")]
+    pub hotword_regex: ::core::option::Option<custom_info_type::Regex>,
+    #[prost(message, optional, tag = "2")]
+    pub proximity: ::core::option::Option<custom_info_type::detection_rule::Proximity>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExclusionRule {
-#[prost(enumeration = "MatchingType", tag = "4")]
-pub matching_type: i32,
-#[prost(oneof = "exclusion_rule::Type", tags = "1, 2, 3, 5")]
-pub r#type: ::core::option::Option<exclusion_rule::Type>,
+    #[prost(enumeration = "MatchingType", tag = "4")]
+    pub matching_type: i32,
+    #[prost(oneof = "exclusion_rule::Type", tags = "1, 2, 3, 5")]
+    pub r#type: ::core::option::Option<exclusion_rule::Type>,
 }
 /// Nested message and enum types in `ExclusionRule`.
 pub mod exclusion_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-Dictionary(super::custom_info_type::Dictionary),
-#[prost(message, tag = "2")]
-Regex(super::custom_info_type::Regex),
-#[prost(message, tag = "3")]
-ExcludeInfoTypes(super::ExcludeInfoTypes),
-#[prost(message, tag = "5")]
-ExcludeByHotword(super::ExcludeByHotword),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        Dictionary(super::custom_info_type::Dictionary),
+        #[prost(message, tag = "2")]
+        Regex(super::custom_info_type::Regex),
+        #[prost(message, tag = "3")]
+        ExcludeInfoTypes(super::ExcludeInfoTypes),
+        #[prost(message, tag = "5")]
+        ExcludeByHotword(super::ExcludeByHotword),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectionRule {
-#[prost(oneof = "inspection_rule::Type", tags = "1, 2")]
-pub r#type: ::core::option::Option<inspection_rule::Type>,
+    #[prost(oneof = "inspection_rule::Type", tags = "1, 2")]
+    pub r#type: ::core::option::Option<inspection_rule::Type>,
 }
 /// Nested message and enum types in `InspectionRule`.
 pub mod inspection_rule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-HotwordRule(super::custom_info_type::detection_rule::HotwordRule),
-#[prost(message, tag = "2")]
-ExclusionRule(super::ExclusionRule),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        HotwordRule(super::custom_info_type::detection_rule::HotwordRule),
+        #[prost(message, tag = "2")]
+        ExclusionRule(super::ExclusionRule),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectionRuleSet {
-#[prost(message, repeated, tag = "1")]
-pub info_types: ::prost::alloc::vec::Vec<InfoType>,
-#[prost(message, repeated, tag = "2")]
-pub rules: ::prost::alloc::vec::Vec<InspectionRule>,
+    #[prost(message, repeated, tag = "1")]
+    pub info_types: ::prost::alloc::vec::Vec<InfoType>,
+    #[prost(message, repeated, tag = "2")]
+    pub rules: ::prost::alloc::vec::Vec<InspectionRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectConfig {
-#[prost(message, repeated, tag = "1")]
-pub info_types: ::prost::alloc::vec::Vec<InfoType>,
-#[prost(enumeration = "Likelihood", tag = "2")]
-pub min_likelihood: i32,
-#[prost(message, repeated, tag = "11")]
-pub min_likelihood_per_info_type: ::prost::alloc::vec::Vec<inspect_config::InfoTypeLikelihood>,
-#[prost(message, optional, tag = "3")]
-pub limits: ::core::option::Option<inspect_config::FindingLimits>,
-#[prost(bool, tag = "4")]
-pub include_quote: bool,
-#[prost(bool, tag = "5")]
-pub exclude_info_types: bool,
-#[prost(message, repeated, tag = "6")]
-pub custom_info_types: ::prost::alloc::vec::Vec<CustomInfoType>,
-#[prost(enumeration = "ContentOption", repeated, tag = "8")]
-pub content_options: ::prost::alloc::vec::Vec<i32>,
-#[prost(message, repeated, tag = "10")]
-pub rule_set: ::prost::alloc::vec::Vec<InspectionRuleSet>,
+    #[prost(message, repeated, tag = "1")]
+    pub info_types: ::prost::alloc::vec::Vec<InfoType>,
+    #[prost(enumeration = "Likelihood", tag = "2")]
+    pub min_likelihood: i32,
+    #[prost(message, repeated, tag = "11")]
+    pub min_likelihood_per_info_type: ::prost::alloc::vec::Vec<inspect_config::InfoTypeLikelihood>,
+    #[prost(message, optional, tag = "3")]
+    pub limits: ::core::option::Option<inspect_config::FindingLimits>,
+    #[prost(bool, tag = "4")]
+    pub include_quote: bool,
+    #[prost(bool, tag = "5")]
+    pub exclude_info_types: bool,
+    #[prost(message, repeated, tag = "6")]
+    pub custom_info_types: ::prost::alloc::vec::Vec<CustomInfoType>,
+    #[prost(enumeration = "ContentOption", repeated, tag = "8")]
+    pub content_options: ::prost::alloc::vec::Vec<i32>,
+    #[prost(message, repeated, tag = "10")]
+    pub rule_set: ::prost::alloc::vec::Vec<InspectionRuleSet>,
 }
 /// Nested message and enum types in `InspectConfig`.
 pub mod inspect_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InfoTypeLikelihood {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<super::InfoType>,
-#[prost(enumeration = "super::Likelihood", tag = "2")]
-pub min_likelihood: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FindingLimits {
-#[prost(int32, tag = "1")]
-pub max_findings_per_item: i32,
-#[prost(int32, tag = "2")]
-pub max_findings_per_request: i32,
-#[prost(message, repeated, tag = "3")]
-pub max_findings_per_info_type: ::prost::alloc::vec::Vec<finding_limits::InfoTypeLimit>,
-}
-/// Nested message and enum types in `FindingLimits`.
-pub mod finding_limits {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InfoTypeLimit {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<super::super::InfoType>,
-#[prost(int32, tag = "2")]
-pub max_findings: i32,
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InfoTypeLikelihood {
+        #[prost(message, optional, tag = "1")]
+        pub info_type: ::core::option::Option<super::InfoType>,
+        #[prost(enumeration = "super::Likelihood", tag = "2")]
+        pub min_likelihood: i32,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FindingLimits {
+        #[prost(int32, tag = "1")]
+        pub max_findings_per_item: i32,
+        #[prost(int32, tag = "2")]
+        pub max_findings_per_request: i32,
+        #[prost(message, repeated, tag = "3")]
+        pub max_findings_per_info_type: ::prost::alloc::vec::Vec<finding_limits::InfoTypeLimit>,
+    }
+    /// Nested message and enum types in `FindingLimits`.
+    pub mod finding_limits {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct InfoTypeLimit {
+            #[prost(message, optional, tag = "1")]
+            pub info_type: ::core::option::Option<super::super::InfoType>,
+            #[prost(int32, tag = "2")]
+            pub max_findings: i32,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ByteContentItem {
-#[prost(enumeration = "byte_content_item::BytesType", tag = "1")]
-pub r#type: i32,
-#[prost(bytes = "bytes", tag = "2")]
-pub data: ::prost::bytes::Bytes,
+    #[prost(enumeration = "byte_content_item::BytesType", tag = "1")]
+    pub r#type: i32,
+    #[prost(bytes = "bytes", tag = "2")]
+    pub data: ::prost::bytes::Bytes,
 }
 /// Nested message and enum types in `ByteContentItem`.
 pub mod byte_content_item {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BytesType {
-Unspecified = 0,
-Image = 6,
-ImageJpeg = 1,
-ImageBmp = 2,
-ImagePng = 3,
-ImageSvg = 4,
-TextUtf8 = 5,
-WordDocument = 7,
-Pdf = 8,
-PowerpointDocument = 9,
-ExcelDocument = 10,
-Avro = 11,
-Csv = 12,
-Tsv = 13,
-Audio = 15,
-Video = 16,
-Executable = 17,
-}
-impl BytesType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BytesType::Unspecified => "BYTES_TYPE_UNSPECIFIED",
-BytesType::Image => "IMAGE",
-BytesType::ImageJpeg => "IMAGE_JPEG",
-BytesType::ImageBmp => "IMAGE_BMP",
-BytesType::ImagePng => "IMAGE_PNG",
-BytesType::ImageSvg => "IMAGE_SVG",
-BytesType::TextUtf8 => "TEXT_UTF8",
-BytesType::WordDocument => "WORD_DOCUMENT",
-BytesType::Pdf => "PDF",
-BytesType::PowerpointDocument => "POWERPOINT_DOCUMENT",
-BytesType::ExcelDocument => "EXCEL_DOCUMENT",
-BytesType::Avro => "AVRO",
-BytesType::Csv => "CSV",
-BytesType::Tsv => "TSV",
-BytesType::Audio => "AUDIO",
-BytesType::Video => "VIDEO",
-BytesType::Executable => "EXECUTABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BYTES_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"IMAGE" => Some(Self::Image),
-"IMAGE_JPEG" => Some(Self::ImageJpeg),
-"IMAGE_BMP" => Some(Self::ImageBmp),
-"IMAGE_PNG" => Some(Self::ImagePng),
-"IMAGE_SVG" => Some(Self::ImageSvg),
-"TEXT_UTF8" => Some(Self::TextUtf8),
-"WORD_DOCUMENT" => Some(Self::WordDocument),
-"PDF" => Some(Self::Pdf),
-"POWERPOINT_DOCUMENT" => Some(Self::PowerpointDocument),
-"EXCEL_DOCUMENT" => Some(Self::ExcelDocument),
-"AVRO" => Some(Self::Avro),
-"CSV" => Some(Self::Csv),
-"TSV" => Some(Self::Tsv),
-"AUDIO" => Some(Self::Audio),
-"VIDEO" => Some(Self::Video),
-"EXECUTABLE" => Some(Self::Executable),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum BytesType {
+        Unspecified = 0,
+        Image = 6,
+        ImageJpeg = 1,
+        ImageBmp = 2,
+        ImagePng = 3,
+        ImageSvg = 4,
+        TextUtf8 = 5,
+        WordDocument = 7,
+        Pdf = 8,
+        PowerpointDocument = 9,
+        ExcelDocument = 10,
+        Avro = 11,
+        Csv = 12,
+        Tsv = 13,
+        Audio = 15,
+        Video = 16,
+        Executable = 17,
+    }
+    impl BytesType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                BytesType::Unspecified => "BYTES_TYPE_UNSPECIFIED",
+                BytesType::Image => "IMAGE",
+                BytesType::ImageJpeg => "IMAGE_JPEG",
+                BytesType::ImageBmp => "IMAGE_BMP",
+                BytesType::ImagePng => "IMAGE_PNG",
+                BytesType::ImageSvg => "IMAGE_SVG",
+                BytesType::TextUtf8 => "TEXT_UTF8",
+                BytesType::WordDocument => "WORD_DOCUMENT",
+                BytesType::Pdf => "PDF",
+                BytesType::PowerpointDocument => "POWERPOINT_DOCUMENT",
+                BytesType::ExcelDocument => "EXCEL_DOCUMENT",
+                BytesType::Avro => "AVRO",
+                BytesType::Csv => "CSV",
+                BytesType::Tsv => "TSV",
+                BytesType::Audio => "AUDIO",
+                BytesType::Video => "VIDEO",
+                BytesType::Executable => "EXECUTABLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BYTES_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "IMAGE" => Some(Self::Image),
+                "IMAGE_JPEG" => Some(Self::ImageJpeg),
+                "IMAGE_BMP" => Some(Self::ImageBmp),
+                "IMAGE_PNG" => Some(Self::ImagePng),
+                "IMAGE_SVG" => Some(Self::ImageSvg),
+                "TEXT_UTF8" => Some(Self::TextUtf8),
+                "WORD_DOCUMENT" => Some(Self::WordDocument),
+                "PDF" => Some(Self::Pdf),
+                "POWERPOINT_DOCUMENT" => Some(Self::PowerpointDocument),
+                "EXCEL_DOCUMENT" => Some(Self::ExcelDocument),
+                "AVRO" => Some(Self::Avro),
+                "CSV" => Some(Self::Csv),
+                "TSV" => Some(Self::Tsv),
+                "AUDIO" => Some(Self::Audio),
+                "VIDEO" => Some(Self::Video),
+                "EXECUTABLE" => Some(Self::Executable),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentItem {
-#[prost(oneof = "content_item::DataItem", tags = "3, 4, 5")]
-pub data_item: ::core::option::Option<content_item::DataItem>,
+    #[prost(oneof = "content_item::DataItem", tags = "3, 4, 5")]
+    pub data_item: ::core::option::Option<content_item::DataItem>,
 }
 /// Nested message and enum types in `ContentItem`.
 pub mod content_item {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DataItem {
-#[prost(string, tag = "3")]
-Value(::prost::alloc::string::String),
-#[prost(message, tag = "4")]
-Table(super::Table),
-#[prost(message, tag = "5")]
-ByteItem(super::ByteContentItem),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataItem {
+        #[prost(string, tag = "3")]
+        Value(::prost::alloc::string::String),
+        #[prost(message, tag = "4")]
+        Table(super::Table),
+        #[prost(message, tag = "5")]
+        ByteItem(super::ByteContentItem),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Table {
-#[prost(message, repeated, tag = "1")]
-pub headers: ::prost::alloc::vec::Vec<FieldId>,
-#[prost(message, repeated, tag = "2")]
-pub rows: ::prost::alloc::vec::Vec<table::Row>,
+    #[prost(message, repeated, tag = "1")]
+    pub headers: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(message, repeated, tag = "2")]
+    pub rows: ::prost::alloc::vec::Vec<table::Row>,
 }
 /// Nested message and enum types in `Table`.
 pub mod table {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Row {
-#[prost(message, repeated, tag = "1")]
-pub values: ::prost::alloc::vec::Vec<super::Value>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Row {
+        #[prost(message, repeated, tag = "1")]
+        pub values: ::prost::alloc::vec::Vec<super::Value>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectResult {
-#[prost(message, repeated, tag = "1")]
-pub findings: ::prost::alloc::vec::Vec<Finding>,
-#[prost(bool, tag = "2")]
-pub findings_truncated: bool,
+    #[prost(message, repeated, tag = "1")]
+    pub findings: ::prost::alloc::vec::Vec<Finding>,
+    #[prost(bool, tag = "2")]
+    pub findings_truncated: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Finding {
-#[prost(string, tag = "14")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub quote: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub info_type: ::core::option::Option<InfoType>,
-#[prost(enumeration = "Likelihood", tag = "3")]
-pub likelihood: i32,
-#[prost(message, optional, tag = "4")]
-pub location: ::core::option::Option<Location>,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub quote_info: ::core::option::Option<QuoteInfo>,
-#[prost(string, tag = "8")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "9")]
-pub trigger_name: ::prost::alloc::string::String,
-#[prost(btree_map = "string, string", tag = "10")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "11")]
-pub job_create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "13")]
-pub job_name: ::prost::alloc::string::String,
-#[prost(string, tag = "15")]
-pub finding_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "14")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub quote: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[prost(enumeration = "Likelihood", tag = "3")]
+    pub likelihood: i32,
+    #[prost(message, optional, tag = "4")]
+    pub location: ::core::option::Option<Location>,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub quote_info: ::core::option::Option<QuoteInfo>,
+    #[prost(string, tag = "8")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub trigger_name: ::prost::alloc::string::String,
+    #[prost(btree_map = "string, string", tag = "10")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "11")]
+    pub job_create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "13")]
+    pub job_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "15")]
+    pub finding_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Location {
-#[prost(message, optional, tag = "1")]
-pub byte_range: ::core::option::Option<Range>,
-#[prost(message, optional, tag = "2")]
-pub codepoint_range: ::core::option::Option<Range>,
-#[prost(message, repeated, tag = "7")]
-pub content_locations: ::prost::alloc::vec::Vec<ContentLocation>,
-#[prost(message, optional, tag = "8")]
-pub container: ::core::option::Option<Container>,
+    #[prost(message, optional, tag = "1")]
+    pub byte_range: ::core::option::Option<Range>,
+    #[prost(message, optional, tag = "2")]
+    pub codepoint_range: ::core::option::Option<Range>,
+    #[prost(message, repeated, tag = "7")]
+    pub content_locations: ::prost::alloc::vec::Vec<ContentLocation>,
+    #[prost(message, optional, tag = "8")]
+    pub container: ::core::option::Option<Container>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentLocation {
-#[prost(string, tag = "1")]
-pub container_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub container_timestamp: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub container_version: ::prost::alloc::string::String,
-#[prost(oneof = "content_location::Location", tags = "2, 3, 5, 8")]
-pub location: ::core::option::Option<content_location::Location>,
+    #[prost(string, tag = "1")]
+    pub container_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub container_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub container_version: ::prost::alloc::string::String,
+    #[prost(oneof = "content_location::Location", tags = "2, 3, 5, 8")]
+    pub location: ::core::option::Option<content_location::Location>,
 }
 /// Nested message and enum types in `ContentLocation`.
 pub mod content_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Location {
-#[prost(message, tag = "2")]
-RecordLocation(super::RecordLocation),
-#[prost(message, tag = "3")]
-ImageLocation(super::ImageLocation),
-#[prost(message, tag = "5")]
-DocumentLocation(super::DocumentLocation),
-#[prost(message, tag = "8")]
-MetadataLocation(super::MetadataLocation),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Location {
+        #[prost(message, tag = "2")]
+        RecordLocation(super::RecordLocation),
+        #[prost(message, tag = "3")]
+        ImageLocation(super::ImageLocation),
+        #[prost(message, tag = "5")]
+        DocumentLocation(super::DocumentLocation),
+        #[prost(message, tag = "8")]
+        MetadataLocation(super::MetadataLocation),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataLocation {
-#[prost(enumeration = "MetadataType", tag = "1")]
-pub r#type: i32,
-#[prost(oneof = "metadata_location::Label", tags = "3")]
-pub label: ::core::option::Option<metadata_location::Label>,
+    #[prost(enumeration = "MetadataType", tag = "1")]
+    pub r#type: i32,
+    #[prost(oneof = "metadata_location::Label", tags = "3")]
+    pub label: ::core::option::Option<metadata_location::Label>,
 }
 /// Nested message and enum types in `MetadataLocation`.
 pub mod metadata_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Label {
-#[prost(message, tag = "3")]
-StorageLabel(super::StorageMetadataLabel),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Label {
+        #[prost(message, tag = "3")]
+        StorageLabel(super::StorageMetadataLabel),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageMetadataLabel {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DocumentLocation {
-#[prost(int64, tag = "1")]
-pub file_offset: i64,
+    #[prost(int64, tag = "1")]
+    pub file_offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordLocation {
-#[prost(message, optional, tag = "1")]
-pub record_key: ::core::option::Option<RecordKey>,
-#[prost(message, optional, tag = "2")]
-pub field_id: ::core::option::Option<FieldId>,
-#[prost(message, optional, tag = "3")]
-pub table_location: ::core::option::Option<TableLocation>,
+    #[prost(message, optional, tag = "1")]
+    pub record_key: ::core::option::Option<RecordKey>,
+    #[prost(message, optional, tag = "2")]
+    pub field_id: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "3")]
+    pub table_location: ::core::option::Option<TableLocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TableLocation {
-#[prost(int64, tag = "1")]
-pub row_index: i64,
+    #[prost(int64, tag = "1")]
+    pub row_index: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Container {
-#[prost(string, tag = "1")]
-pub r#type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub full_path: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub root_path: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub relative_path: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "7")]
-pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub full_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub root_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub relative_path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "7")]
+    pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Range {
-#[prost(int64, tag = "1")]
-pub start: i64,
-#[prost(int64, tag = "2")]
-pub end: i64,
+    #[prost(int64, tag = "1")]
+    pub start: i64,
+    #[prost(int64, tag = "2")]
+    pub end: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageLocation {
-#[prost(message, repeated, tag = "1")]
-pub bounding_boxes: ::prost::alloc::vec::Vec<BoundingBox>,
+    #[prost(message, repeated, tag = "1")]
+    pub bounding_boxes: ::prost::alloc::vec::Vec<BoundingBox>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BoundingBox {
-#[prost(int32, tag = "1")]
-pub top: i32,
-#[prost(int32, tag = "2")]
-pub left: i32,
-#[prost(int32, tag = "3")]
-pub width: i32,
-#[prost(int32, tag = "4")]
-pub height: i32,
+    #[prost(int32, tag = "1")]
+    pub top: i32,
+    #[prost(int32, tag = "2")]
+    pub left: i32,
+    #[prost(int32, tag = "3")]
+    pub width: i32,
+    #[prost(int32, tag = "4")]
+    pub height: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedactImageRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub location_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[prost(message, repeated, tag = "5")]
-pub image_redaction_configs: ::prost::alloc::vec::Vec<redact_image_request::ImageRedactionConfig>,
-#[prost(bool, tag = "6")]
-pub include_findings: bool,
-#[prost(message, optional, tag = "7")]
-pub byte_item: ::core::option::Option<ByteContentItem>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub location_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(message, repeated, tag = "5")]
+    pub image_redaction_configs:
+        ::prost::alloc::vec::Vec<redact_image_request::ImageRedactionConfig>,
+    #[prost(bool, tag = "6")]
+    pub include_findings: bool,
+    #[prost(message, optional, tag = "7")]
+    pub byte_item: ::core::option::Option<ByteContentItem>,
 }
 /// Nested message and enum types in `RedactImageRequest`.
 pub mod redact_image_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImageRedactionConfig {
-#[prost(message, optional, tag = "3")]
-pub redaction_color: ::core::option::Option<super::Color>,
-#[prost(oneof = "image_redaction_config::Target", tags = "1, 2")]
-pub target: ::core::option::Option<image_redaction_config::Target>,
-}
-/// Nested message and enum types in `ImageRedactionConfig`.
-pub mod image_redaction_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Target {
-#[prost(message, tag = "1")]
-InfoType(super::super::InfoType),
-#[prost(bool, tag = "2")]
-RedactAllText(bool),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ImageRedactionConfig {
+        #[prost(message, optional, tag = "3")]
+        pub redaction_color: ::core::option::Option<super::Color>,
+        #[prost(oneof = "image_redaction_config::Target", tags = "1, 2")]
+        pub target: ::core::option::Option<image_redaction_config::Target>,
+    }
+    /// Nested message and enum types in `ImageRedactionConfig`.
+    pub mod image_redaction_config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Target {
+            #[prost(message, tag = "1")]
+            InfoType(super::super::InfoType),
+            #[prost(bool, tag = "2")]
+            RedactAllText(bool),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Color {
-#[prost(float, tag = "1")]
-pub red: f32,
-#[prost(float, tag = "2")]
-pub green: f32,
-#[prost(float, tag = "3")]
-pub blue: f32,
+    #[prost(float, tag = "1")]
+    pub red: f32,
+    #[prost(float, tag = "2")]
+    pub green: f32,
+    #[prost(float, tag = "3")]
+    pub blue: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedactImageResponse {
-#[prost(bytes = "bytes", tag = "1")]
-pub redacted_image: ::prost::bytes::Bytes,
-#[prost(string, tag = "2")]
-pub extracted_text: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub inspect_result: ::core::option::Option<InspectResult>,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub redacted_image: ::prost::bytes::Bytes,
+    #[prost(string, tag = "2")]
+    pub extracted_text: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub inspect_result: ::core::option::Option<InspectResult>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyContentRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub deidentify_config: ::core::option::Option<DeidentifyConfig>,
-#[prost(message, optional, tag = "3")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[prost(message, optional, tag = "4")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(string, tag = "5")]
-pub inspect_template_name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub deidentify_template_name: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub deidentify_config: ::core::option::Option<DeidentifyConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(string, tag = "5")]
+    pub inspect_template_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub deidentify_template_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyContentResponse {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(message, optional, tag = "2")]
-pub overview: ::core::option::Option<TransformationOverview>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(message, optional, tag = "2")]
+    pub overview: ::core::option::Option<TransformationOverview>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReidentifyContentRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub reidentify_config: ::core::option::Option<DeidentifyConfig>,
-#[prost(message, optional, tag = "3")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[prost(message, optional, tag = "4")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(string, tag = "5")]
-pub inspect_template_name: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub reidentify_template_name: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub reidentify_config: ::core::option::Option<DeidentifyConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(string, tag = "5")]
+    pub inspect_template_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub reidentify_template_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReidentifyContentResponse {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(message, optional, tag = "2")]
-pub overview: ::core::option::Option<TransformationOverview>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(message, optional, tag = "2")]
+    pub overview: ::core::option::Option<TransformationOverview>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectContentRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[prost(message, optional, tag = "3")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(string, tag = "4")]
-pub inspect_template_name: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(string, tag = "4")]
+    pub inspect_template_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectContentResponse {
-#[prost(message, optional, tag = "1")]
-pub result: ::core::option::Option<InspectResult>,
+    #[prost(message, optional, tag = "1")]
+    pub result: ::core::option::Option<InspectResult>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputStorageConfig {
-#[prost(enumeration = "output_storage_config::OutputSchema", tag = "3")]
-pub output_schema: i32,
-#[prost(oneof = "output_storage_config::Type", tags = "1")]
-pub r#type: ::core::option::Option<output_storage_config::Type>,
+    #[prost(enumeration = "output_storage_config::OutputSchema", tag = "3")]
+    pub output_schema: i32,
+    #[prost(oneof = "output_storage_config::Type", tags = "1")]
+    pub r#type: ::core::option::Option<output_storage_config::Type>,
 }
 /// Nested message and enum types in `OutputStorageConfig`.
 pub mod output_storage_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum OutputSchema {
-Unspecified = 0,
-BasicColumns = 1,
-GcsColumns = 2,
-DatastoreColumns = 3,
-BigQueryColumns = 4,
-AllColumns = 5,
-}
-impl OutputSchema {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-OutputSchema::Unspecified => "OUTPUT_SCHEMA_UNSPECIFIED",
-OutputSchema::BasicColumns => "BASIC_COLUMNS",
-OutputSchema::GcsColumns => "GCS_COLUMNS",
-OutputSchema::DatastoreColumns => "DATASTORE_COLUMNS",
-OutputSchema::BigQueryColumns => "BIG_QUERY_COLUMNS",
-OutputSchema::AllColumns => "ALL_COLUMNS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OUTPUT_SCHEMA_UNSPECIFIED" => Some(Self::Unspecified),
-"BASIC_COLUMNS" => Some(Self::BasicColumns),
-"GCS_COLUMNS" => Some(Self::GcsColumns),
-"DATASTORE_COLUMNS" => Some(Self::DatastoreColumns),
-"BIG_QUERY_COLUMNS" => Some(Self::BigQueryColumns),
-"ALL_COLUMNS" => Some(Self::AllColumns),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-Table(super::BigQueryTable),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum OutputSchema {
+        Unspecified = 0,
+        BasicColumns = 1,
+        GcsColumns = 2,
+        DatastoreColumns = 3,
+        BigQueryColumns = 4,
+        AllColumns = 5,
+    }
+    impl OutputSchema {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                OutputSchema::Unspecified => "OUTPUT_SCHEMA_UNSPECIFIED",
+                OutputSchema::BasicColumns => "BASIC_COLUMNS",
+                OutputSchema::GcsColumns => "GCS_COLUMNS",
+                OutputSchema::DatastoreColumns => "DATASTORE_COLUMNS",
+                OutputSchema::BigQueryColumns => "BIG_QUERY_COLUMNS",
+                OutputSchema::AllColumns => "ALL_COLUMNS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OUTPUT_SCHEMA_UNSPECIFIED" => Some(Self::Unspecified),
+                "BASIC_COLUMNS" => Some(Self::BasicColumns),
+                "GCS_COLUMNS" => Some(Self::GcsColumns),
+                "DATASTORE_COLUMNS" => Some(Self::DatastoreColumns),
+                "BIG_QUERY_COLUMNS" => Some(Self::BigQueryColumns),
+                "ALL_COLUMNS" => Some(Self::AllColumns),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        Table(super::BigQueryTable),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoTypeStats {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
-#[prost(int64, tag = "2")]
-pub count: i64,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[prost(int64, tag = "2")]
+    pub count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectDataSourceDetails {
-#[prost(message, optional, tag = "2")]
-pub requested_options: ::core::option::Option<inspect_data_source_details::RequestedOptions>,
-#[prost(message, optional, tag = "3")]
-pub result: ::core::option::Option<inspect_data_source_details::Result>,
+    #[prost(message, optional, tag = "2")]
+    pub requested_options: ::core::option::Option<inspect_data_source_details::RequestedOptions>,
+    #[prost(message, optional, tag = "3")]
+    pub result: ::core::option::Option<inspect_data_source_details::Result>,
 }
 /// Nested message and enum types in `InspectDataSourceDetails`.
 pub mod inspect_data_source_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestedOptions {
-#[prost(message, optional, tag = "1")]
-pub snapshot_inspect_template: ::core::option::Option<super::InspectTemplate>,
-#[prost(message, optional, tag = "3")]
-pub job_config: ::core::option::Option<super::InspectJobConfig>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Result {
-#[prost(int64, tag = "1")]
-pub processed_bytes: i64,
-#[prost(int64, tag = "2")]
-pub total_estimated_bytes: i64,
-#[prost(message, repeated, tag = "3")]
-pub info_type_stats: ::prost::alloc::vec::Vec<super::InfoTypeStats>,
-#[prost(int64, tag = "5")]
-pub num_rows_processed: i64,
-#[prost(message, optional, tag = "7")]
-pub hybrid_stats: ::core::option::Option<super::HybridInspectStatistics>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RequestedOptions {
+        #[prost(message, optional, tag = "1")]
+        pub snapshot_inspect_template: ::core::option::Option<super::InspectTemplate>,
+        #[prost(message, optional, tag = "3")]
+        pub job_config: ::core::option::Option<super::InspectJobConfig>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Result {
+        #[prost(int64, tag = "1")]
+        pub processed_bytes: i64,
+        #[prost(int64, tag = "2")]
+        pub total_estimated_bytes: i64,
+        #[prost(message, repeated, tag = "3")]
+        pub info_type_stats: ::prost::alloc::vec::Vec<super::InfoTypeStats>,
+        #[prost(int64, tag = "5")]
+        pub num_rows_processed: i64,
+        #[prost(message, optional, tag = "7")]
+        pub hybrid_stats: ::core::option::Option<super::HybridInspectStatistics>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfileBigQueryRowSchema {
-#[prost(oneof = "data_profile_big_query_row_schema::DataProfile", tags = "1, 2, 3")]
-pub data_profile: ::core::option::Option<data_profile_big_query_row_schema::DataProfile>,
+    #[prost(
+        oneof = "data_profile_big_query_row_schema::DataProfile",
+        tags = "1, 2, 3"
+    )]
+    pub data_profile: ::core::option::Option<data_profile_big_query_row_schema::DataProfile>,
 }
 /// Nested message and enum types in `DataProfileBigQueryRowSchema`.
 pub mod data_profile_big_query_row_schema {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum DataProfile {
-#[prost(message, tag = "1")]
-TableProfile(super::TableDataProfile),
-#[prost(message, tag = "2")]
-ColumnProfile(super::ColumnDataProfile),
-#[prost(message, tag = "3")]
-FileStoreProfile(super::FileStoreDataProfile),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataProfile {
+        #[prost(message, tag = "1")]
+        TableProfile(super::TableDataProfile),
+        #[prost(message, tag = "2")]
+        ColumnProfile(super::ColumnDataProfile),
+        #[prost(message, tag = "3")]
+        FileStoreProfile(super::FileStoreDataProfile),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct HybridInspectStatistics {
-#[prost(int64, tag = "1")]
-pub processed_count: i64,
-#[prost(int64, tag = "2")]
-pub aborted_count: i64,
-#[prost(int64, tag = "3")]
-pub pending_count: i64,
+    #[prost(int64, tag = "1")]
+    pub processed_count: i64,
+    #[prost(int64, tag = "2")]
+    pub aborted_count: i64,
+    #[prost(int64, tag = "3")]
+    pub pending_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActionDetails {
-#[prost(oneof = "action_details::Details", tags = "1")]
-pub details: ::core::option::Option<action_details::Details>,
+    #[prost(oneof = "action_details::Details", tags = "1")]
+    pub details: ::core::option::Option<action_details::Details>,
 }
 /// Nested message and enum types in `ActionDetails`.
 pub mod action_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Details {
-#[prost(message, tag = "1")]
-DeidentifyDetails(super::DeidentifyDataSourceDetails),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        #[prost(message, tag = "1")]
+        DeidentifyDetails(super::DeidentifyDataSourceDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeidentifyDataSourceStats {
-#[prost(int64, tag = "1")]
-pub transformed_bytes: i64,
-#[prost(int64, tag = "2")]
-pub transformation_count: i64,
-#[prost(int64, tag = "3")]
-pub transformation_error_count: i64,
+    #[prost(int64, tag = "1")]
+    pub transformed_bytes: i64,
+    #[prost(int64, tag = "2")]
+    pub transformation_count: i64,
+    #[prost(int64, tag = "3")]
+    pub transformation_error_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyDataSourceDetails {
-#[prost(message, optional, tag = "1")]
-pub requested_options: ::core::option::Option<deidentify_data_source_details::RequestedDeidentifyOptions>,
-#[prost(message, optional, tag = "2")]
-pub deidentify_stats: ::core::option::Option<DeidentifyDataSourceStats>,
+    #[prost(message, optional, tag = "1")]
+    pub requested_options:
+        ::core::option::Option<deidentify_data_source_details::RequestedDeidentifyOptions>,
+    #[prost(message, optional, tag = "2")]
+    pub deidentify_stats: ::core::option::Option<DeidentifyDataSourceStats>,
 }
 /// Nested message and enum types in `DeidentifyDataSourceDetails`.
 pub mod deidentify_data_source_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestedDeidentifyOptions {
-#[prost(message, optional, tag = "1")]
-pub snapshot_deidentify_template: ::core::option::Option<super::DeidentifyTemplate>,
-#[prost(message, optional, tag = "2")]
-pub snapshot_structured_deidentify_template: ::core::option::Option<super::DeidentifyTemplate>,
-#[prost(message, optional, tag = "3")]
-pub snapshot_image_redact_template: ::core::option::Option<super::DeidentifyTemplate>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RequestedDeidentifyOptions {
+        #[prost(message, optional, tag = "1")]
+        pub snapshot_deidentify_template: ::core::option::Option<super::DeidentifyTemplate>,
+        #[prost(message, optional, tag = "2")]
+        pub snapshot_structured_deidentify_template:
+            ::core::option::Option<super::DeidentifyTemplate>,
+        #[prost(message, optional, tag = "3")]
+        pub snapshot_image_redact_template: ::core::option::Option<super::DeidentifyTemplate>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoTypeDescription {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(enumeration = "InfoTypeSupportedBy", repeated, tag = "3")]
-pub supported_by: ::prost::alloc::vec::Vec<i32>,
-#[prost(string, tag = "4")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "9")]
-pub versions: ::prost::alloc::vec::Vec<VersionDescription>,
-#[prost(message, repeated, tag = "10")]
-pub categories: ::prost::alloc::vec::Vec<InfoTypeCategory>,
-#[prost(message, optional, tag = "11")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "InfoTypeSupportedBy", repeated, tag = "3")]
+    pub supported_by: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "9")]
+    pub versions: ::prost::alloc::vec::Vec<VersionDescription>,
+    #[prost(message, repeated, tag = "10")]
+    pub categories: ::prost::alloc::vec::Vec<InfoTypeCategory>,
+    #[prost(message, optional, tag = "11")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct InfoTypeCategory {
-#[prost(oneof = "info_type_category::Category", tags = "1, 2, 3")]
-pub category: ::core::option::Option<info_type_category::Category>,
+    #[prost(oneof = "info_type_category::Category", tags = "1, 2, 3")]
+    pub category: ::core::option::Option<info_type_category::Category>,
 }
 /// Nested message and enum types in `InfoTypeCategory`.
 pub mod info_type_category {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum LocationCategory {
-LocationUnspecified = 0,
-Global = 1,
-Argentina = 2,
-Armenia = 51,
-Australia = 3,
-Azerbaijan = 48,
-Belarus = 50,
-Belgium = 4,
-Brazil = 5,
-Canada = 6,
-Chile = 7,
-China = 8,
-Colombia = 9,
-Croatia = 42,
-Denmark = 10,
-France = 11,
-Finland = 12,
-Germany = 13,
-HongKong = 14,
-India = 15,
-Indonesia = 16,
-Ireland = 17,
-Israel = 18,
-Italy = 19,
-Japan = 20,
-Kazakhstan = 47,
-Korea = 21,
-Mexico = 22,
-TheNetherlands = 23,
-NewZealand = 41,
-Norway = 24,
-Paraguay = 25,
-Peru = 26,
-Poland = 27,
-Portugal = 28,
-Russia = 44,
-Singapore = 29,
-SouthAfrica = 30,
-Spain = 31,
-Sweden = 32,
-Switzerland = 43,
-Taiwan = 33,
-Thailand = 34,
-Turkey = 35,
-Ukraine = 45,
-UnitedKingdom = 36,
-UnitedStates = 37,
-Uruguay = 38,
-Uzbekistan = 46,
-Venezuela = 39,
-Internal = 40,
-}
-impl LocationCategory {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LocationCategory::LocationUnspecified => "LOCATION_UNSPECIFIED",
-LocationCategory::Global => "GLOBAL",
-LocationCategory::Argentina => "ARGENTINA",
-LocationCategory::Armenia => "ARMENIA",
-LocationCategory::Australia => "AUSTRALIA",
-LocationCategory::Azerbaijan => "AZERBAIJAN",
-LocationCategory::Belarus => "BELARUS",
-LocationCategory::Belgium => "BELGIUM",
-LocationCategory::Brazil => "BRAZIL",
-LocationCategory::Canada => "CANADA",
-LocationCategory::Chile => "CHILE",
-LocationCategory::China => "CHINA",
-LocationCategory::Colombia => "COLOMBIA",
-LocationCategory::Croatia => "CROATIA",
-LocationCategory::Denmark => "DENMARK",
-LocationCategory::France => "FRANCE",
-LocationCategory::Finland => "FINLAND",
-LocationCategory::Germany => "GERMANY",
-LocationCategory::HongKong => "HONG_KONG",
-LocationCategory::India => "INDIA",
-LocationCategory::Indonesia => "INDONESIA",
-LocationCategory::Ireland => "IRELAND",
-LocationCategory::Israel => "ISRAEL",
-LocationCategory::Italy => "ITALY",
-LocationCategory::Japan => "JAPAN",
-LocationCategory::Kazakhstan => "KAZAKHSTAN",
-LocationCategory::Korea => "KOREA",
-LocationCategory::Mexico => "MEXICO",
-LocationCategory::TheNetherlands => "THE_NETHERLANDS",
-LocationCategory::NewZealand => "NEW_ZEALAND",
-LocationCategory::Norway => "NORWAY",
-LocationCategory::Paraguay => "PARAGUAY",
-LocationCategory::Peru => "PERU",
-LocationCategory::Poland => "POLAND",
-LocationCategory::Portugal => "PORTUGAL",
-LocationCategory::Russia => "RUSSIA",
-LocationCategory::Singapore => "SINGAPORE",
-LocationCategory::SouthAfrica => "SOUTH_AFRICA",
-LocationCategory::Spain => "SPAIN",
-LocationCategory::Sweden => "SWEDEN",
-LocationCategory::Switzerland => "SWITZERLAND",
-LocationCategory::Taiwan => "TAIWAN",
-LocationCategory::Thailand => "THAILAND",
-LocationCategory::Turkey => "TURKEY",
-LocationCategory::Ukraine => "UKRAINE",
-LocationCategory::UnitedKingdom => "UNITED_KINGDOM",
-LocationCategory::UnitedStates => "UNITED_STATES",
-LocationCategory::Uruguay => "URUGUAY",
-LocationCategory::Uzbekistan => "UZBEKISTAN",
-LocationCategory::Venezuela => "VENEZUELA",
-LocationCategory::Internal => "INTERNAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LOCATION_UNSPECIFIED" => Some(Self::LocationUnspecified),
-"GLOBAL" => Some(Self::Global),
-"ARGENTINA" => Some(Self::Argentina),
-"ARMENIA" => Some(Self::Armenia),
-"AUSTRALIA" => Some(Self::Australia),
-"AZERBAIJAN" => Some(Self::Azerbaijan),
-"BELARUS" => Some(Self::Belarus),
-"BELGIUM" => Some(Self::Belgium),
-"BRAZIL" => Some(Self::Brazil),
-"CANADA" => Some(Self::Canada),
-"CHILE" => Some(Self::Chile),
-"CHINA" => Some(Self::China),
-"COLOMBIA" => Some(Self::Colombia),
-"CROATIA" => Some(Self::Croatia),
-"DENMARK" => Some(Self::Denmark),
-"FRANCE" => Some(Self::France),
-"FINLAND" => Some(Self::Finland),
-"GERMANY" => Some(Self::Germany),
-"HONG_KONG" => Some(Self::HongKong),
-"INDIA" => Some(Self::India),
-"INDONESIA" => Some(Self::Indonesia),
-"IRELAND" => Some(Self::Ireland),
-"ISRAEL" => Some(Self::Israel),
-"ITALY" => Some(Self::Italy),
-"JAPAN" => Some(Self::Japan),
-"KAZAKHSTAN" => Some(Self::Kazakhstan),
-"KOREA" => Some(Self::Korea),
-"MEXICO" => Some(Self::Mexico),
-"THE_NETHERLANDS" => Some(Self::TheNetherlands),
-"NEW_ZEALAND" => Some(Self::NewZealand),
-"NORWAY" => Some(Self::Norway),
-"PARAGUAY" => Some(Self::Paraguay),
-"PERU" => Some(Self::Peru),
-"POLAND" => Some(Self::Poland),
-"PORTUGAL" => Some(Self::Portugal),
-"RUSSIA" => Some(Self::Russia),
-"SINGAPORE" => Some(Self::Singapore),
-"SOUTH_AFRICA" => Some(Self::SouthAfrica),
-"SPAIN" => Some(Self::Spain),
-"SWEDEN" => Some(Self::Sweden),
-"SWITZERLAND" => Some(Self::Switzerland),
-"TAIWAN" => Some(Self::Taiwan),
-"THAILAND" => Some(Self::Thailand),
-"TURKEY" => Some(Self::Turkey),
-"UKRAINE" => Some(Self::Ukraine),
-"UNITED_KINGDOM" => Some(Self::UnitedKingdom),
-"UNITED_STATES" => Some(Self::UnitedStates),
-"URUGUAY" => Some(Self::Uruguay),
-"UZBEKISTAN" => Some(Self::Uzbekistan),
-"VENEZUELA" => Some(Self::Venezuela),
-"INTERNAL" => Some(Self::Internal),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum IndustryCategory {
-IndustryUnspecified = 0,
-Finance = 1,
-Health = 2,
-Telecommunications = 3,
-}
-impl IndustryCategory {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-IndustryCategory::IndustryUnspecified => "INDUSTRY_UNSPECIFIED",
-IndustryCategory::Finance => "FINANCE",
-IndustryCategory::Health => "HEALTH",
-IndustryCategory::Telecommunications => "TELECOMMUNICATIONS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INDUSTRY_UNSPECIFIED" => Some(Self::IndustryUnspecified),
-"FINANCE" => Some(Self::Finance),
-"HEALTH" => Some(Self::Health),
-"TELECOMMUNICATIONS" => Some(Self::Telecommunications),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TypeCategory {
-TypeUnspecified = 0,
-Pii = 1,
-Spii = 2,
-Demographic = 3,
-Credential = 4,
-GovernmentId = 5,
-Document = 6,
-ContextualInformation = 7,
-}
-impl TypeCategory {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TypeCategory::TypeUnspecified => "TYPE_UNSPECIFIED",
-TypeCategory::Pii => "PII",
-TypeCategory::Spii => "SPII",
-TypeCategory::Demographic => "DEMOGRAPHIC",
-TypeCategory::Credential => "CREDENTIAL",
-TypeCategory::GovernmentId => "GOVERNMENT_ID",
-TypeCategory::Document => "DOCUMENT",
-TypeCategory::ContextualInformation => "CONTEXTUAL_INFORMATION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TYPE_UNSPECIFIED" => Some(Self::TypeUnspecified),
-"PII" => Some(Self::Pii),
-"SPII" => Some(Self::Spii),
-"DEMOGRAPHIC" => Some(Self::Demographic),
-"CREDENTIAL" => Some(Self::Credential),
-"GOVERNMENT_ID" => Some(Self::GovernmentId),
-"DOCUMENT" => Some(Self::Document),
-"CONTEXTUAL_INFORMATION" => Some(Self::ContextualInformation),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Category {
-#[prost(enumeration = "LocationCategory", tag = "1")]
-LocationCategory(i32),
-#[prost(enumeration = "IndustryCategory", tag = "2")]
-IndustryCategory(i32),
-#[prost(enumeration = "TypeCategory", tag = "3")]
-TypeCategory(i32),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum LocationCategory {
+        LocationUnspecified = 0,
+        Global = 1,
+        Argentina = 2,
+        Armenia = 51,
+        Australia = 3,
+        Azerbaijan = 48,
+        Belarus = 50,
+        Belgium = 4,
+        Brazil = 5,
+        Canada = 6,
+        Chile = 7,
+        China = 8,
+        Colombia = 9,
+        Croatia = 42,
+        Denmark = 10,
+        France = 11,
+        Finland = 12,
+        Germany = 13,
+        HongKong = 14,
+        India = 15,
+        Indonesia = 16,
+        Ireland = 17,
+        Israel = 18,
+        Italy = 19,
+        Japan = 20,
+        Kazakhstan = 47,
+        Korea = 21,
+        Mexico = 22,
+        TheNetherlands = 23,
+        NewZealand = 41,
+        Norway = 24,
+        Paraguay = 25,
+        Peru = 26,
+        Poland = 27,
+        Portugal = 28,
+        Russia = 44,
+        Singapore = 29,
+        SouthAfrica = 30,
+        Spain = 31,
+        Sweden = 32,
+        Switzerland = 43,
+        Taiwan = 33,
+        Thailand = 34,
+        Turkey = 35,
+        Ukraine = 45,
+        UnitedKingdom = 36,
+        UnitedStates = 37,
+        Uruguay = 38,
+        Uzbekistan = 46,
+        Venezuela = 39,
+        Internal = 40,
+    }
+    impl LocationCategory {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                LocationCategory::LocationUnspecified => "LOCATION_UNSPECIFIED",
+                LocationCategory::Global => "GLOBAL",
+                LocationCategory::Argentina => "ARGENTINA",
+                LocationCategory::Armenia => "ARMENIA",
+                LocationCategory::Australia => "AUSTRALIA",
+                LocationCategory::Azerbaijan => "AZERBAIJAN",
+                LocationCategory::Belarus => "BELARUS",
+                LocationCategory::Belgium => "BELGIUM",
+                LocationCategory::Brazil => "BRAZIL",
+                LocationCategory::Canada => "CANADA",
+                LocationCategory::Chile => "CHILE",
+                LocationCategory::China => "CHINA",
+                LocationCategory::Colombia => "COLOMBIA",
+                LocationCategory::Croatia => "CROATIA",
+                LocationCategory::Denmark => "DENMARK",
+                LocationCategory::France => "FRANCE",
+                LocationCategory::Finland => "FINLAND",
+                LocationCategory::Germany => "GERMANY",
+                LocationCategory::HongKong => "HONG_KONG",
+                LocationCategory::India => "INDIA",
+                LocationCategory::Indonesia => "INDONESIA",
+                LocationCategory::Ireland => "IRELAND",
+                LocationCategory::Israel => "ISRAEL",
+                LocationCategory::Italy => "ITALY",
+                LocationCategory::Japan => "JAPAN",
+                LocationCategory::Kazakhstan => "KAZAKHSTAN",
+                LocationCategory::Korea => "KOREA",
+                LocationCategory::Mexico => "MEXICO",
+                LocationCategory::TheNetherlands => "THE_NETHERLANDS",
+                LocationCategory::NewZealand => "NEW_ZEALAND",
+                LocationCategory::Norway => "NORWAY",
+                LocationCategory::Paraguay => "PARAGUAY",
+                LocationCategory::Peru => "PERU",
+                LocationCategory::Poland => "POLAND",
+                LocationCategory::Portugal => "PORTUGAL",
+                LocationCategory::Russia => "RUSSIA",
+                LocationCategory::Singapore => "SINGAPORE",
+                LocationCategory::SouthAfrica => "SOUTH_AFRICA",
+                LocationCategory::Spain => "SPAIN",
+                LocationCategory::Sweden => "SWEDEN",
+                LocationCategory::Switzerland => "SWITZERLAND",
+                LocationCategory::Taiwan => "TAIWAN",
+                LocationCategory::Thailand => "THAILAND",
+                LocationCategory::Turkey => "TURKEY",
+                LocationCategory::Ukraine => "UKRAINE",
+                LocationCategory::UnitedKingdom => "UNITED_KINGDOM",
+                LocationCategory::UnitedStates => "UNITED_STATES",
+                LocationCategory::Uruguay => "URUGUAY",
+                LocationCategory::Uzbekistan => "UZBEKISTAN",
+                LocationCategory::Venezuela => "VENEZUELA",
+                LocationCategory::Internal => "INTERNAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LOCATION_UNSPECIFIED" => Some(Self::LocationUnspecified),
+                "GLOBAL" => Some(Self::Global),
+                "ARGENTINA" => Some(Self::Argentina),
+                "ARMENIA" => Some(Self::Armenia),
+                "AUSTRALIA" => Some(Self::Australia),
+                "AZERBAIJAN" => Some(Self::Azerbaijan),
+                "BELARUS" => Some(Self::Belarus),
+                "BELGIUM" => Some(Self::Belgium),
+                "BRAZIL" => Some(Self::Brazil),
+                "CANADA" => Some(Self::Canada),
+                "CHILE" => Some(Self::Chile),
+                "CHINA" => Some(Self::China),
+                "COLOMBIA" => Some(Self::Colombia),
+                "CROATIA" => Some(Self::Croatia),
+                "DENMARK" => Some(Self::Denmark),
+                "FRANCE" => Some(Self::France),
+                "FINLAND" => Some(Self::Finland),
+                "GERMANY" => Some(Self::Germany),
+                "HONG_KONG" => Some(Self::HongKong),
+                "INDIA" => Some(Self::India),
+                "INDONESIA" => Some(Self::Indonesia),
+                "IRELAND" => Some(Self::Ireland),
+                "ISRAEL" => Some(Self::Israel),
+                "ITALY" => Some(Self::Italy),
+                "JAPAN" => Some(Self::Japan),
+                "KAZAKHSTAN" => Some(Self::Kazakhstan),
+                "KOREA" => Some(Self::Korea),
+                "MEXICO" => Some(Self::Mexico),
+                "THE_NETHERLANDS" => Some(Self::TheNetherlands),
+                "NEW_ZEALAND" => Some(Self::NewZealand),
+                "NORWAY" => Some(Self::Norway),
+                "PARAGUAY" => Some(Self::Paraguay),
+                "PERU" => Some(Self::Peru),
+                "POLAND" => Some(Self::Poland),
+                "PORTUGAL" => Some(Self::Portugal),
+                "RUSSIA" => Some(Self::Russia),
+                "SINGAPORE" => Some(Self::Singapore),
+                "SOUTH_AFRICA" => Some(Self::SouthAfrica),
+                "SPAIN" => Some(Self::Spain),
+                "SWEDEN" => Some(Self::Sweden),
+                "SWITZERLAND" => Some(Self::Switzerland),
+                "TAIWAN" => Some(Self::Taiwan),
+                "THAILAND" => Some(Self::Thailand),
+                "TURKEY" => Some(Self::Turkey),
+                "UKRAINE" => Some(Self::Ukraine),
+                "UNITED_KINGDOM" => Some(Self::UnitedKingdom),
+                "UNITED_STATES" => Some(Self::UnitedStates),
+                "URUGUAY" => Some(Self::Uruguay),
+                "UZBEKISTAN" => Some(Self::Uzbekistan),
+                "VENEZUELA" => Some(Self::Venezuela),
+                "INTERNAL" => Some(Self::Internal),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum IndustryCategory {
+        IndustryUnspecified = 0,
+        Finance = 1,
+        Health = 2,
+        Telecommunications = 3,
+    }
+    impl IndustryCategory {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IndustryCategory::IndustryUnspecified => "INDUSTRY_UNSPECIFIED",
+                IndustryCategory::Finance => "FINANCE",
+                IndustryCategory::Health => "HEALTH",
+                IndustryCategory::Telecommunications => "TELECOMMUNICATIONS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INDUSTRY_UNSPECIFIED" => Some(Self::IndustryUnspecified),
+                "FINANCE" => Some(Self::Finance),
+                "HEALTH" => Some(Self::Health),
+                "TELECOMMUNICATIONS" => Some(Self::Telecommunications),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TypeCategory {
+        TypeUnspecified = 0,
+        Pii = 1,
+        Spii = 2,
+        Demographic = 3,
+        Credential = 4,
+        GovernmentId = 5,
+        Document = 6,
+        ContextualInformation = 7,
+    }
+    impl TypeCategory {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TypeCategory::TypeUnspecified => "TYPE_UNSPECIFIED",
+                TypeCategory::Pii => "PII",
+                TypeCategory::Spii => "SPII",
+                TypeCategory::Demographic => "DEMOGRAPHIC",
+                TypeCategory::Credential => "CREDENTIAL",
+                TypeCategory::GovernmentId => "GOVERNMENT_ID",
+                TypeCategory::Document => "DOCUMENT",
+                TypeCategory::ContextualInformation => "CONTEXTUAL_INFORMATION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::TypeUnspecified),
+                "PII" => Some(Self::Pii),
+                "SPII" => Some(Self::Spii),
+                "DEMOGRAPHIC" => Some(Self::Demographic),
+                "CREDENTIAL" => Some(Self::Credential),
+                "GOVERNMENT_ID" => Some(Self::GovernmentId),
+                "DOCUMENT" => Some(Self::Document),
+                "CONTEXTUAL_INFORMATION" => Some(Self::ContextualInformation),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Category {
+        #[prost(enumeration = "LocationCategory", tag = "1")]
+        LocationCategory(i32),
+        #[prost(enumeration = "IndustryCategory", tag = "2")]
+        IndustryCategory(i32),
+        #[prost(enumeration = "TypeCategory", tag = "3")]
+        TypeCategory(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VersionDescription {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInfoTypesRequest {
-#[prost(string, tag = "4")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub language_code: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub filter: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInfoTypesResponse {
-#[prost(message, repeated, tag = "1")]
-pub info_types: ::prost::alloc::vec::Vec<InfoTypeDescription>,
+    #[prost(message, repeated, tag = "1")]
+    pub info_types: ::prost::alloc::vec::Vec<InfoTypeDescription>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RiskAnalysisJobConfig {
-#[prost(message, optional, tag = "1")]
-pub privacy_metric: ::core::option::Option<PrivacyMetric>,
-#[prost(message, optional, tag = "2")]
-pub source_table: ::core::option::Option<BigQueryTable>,
-#[prost(message, repeated, tag = "3")]
-pub actions: ::prost::alloc::vec::Vec<Action>,
+    #[prost(message, optional, tag = "1")]
+    pub privacy_metric: ::core::option::Option<PrivacyMetric>,
+    #[prost(message, optional, tag = "2")]
+    pub source_table: ::core::option::Option<BigQueryTable>,
+    #[prost(message, repeated, tag = "3")]
+    pub actions: ::prost::alloc::vec::Vec<Action>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuasiId {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<FieldId>,
-#[prost(oneof = "quasi_id::Tag", tags = "2, 3, 4")]
-pub tag: ::core::option::Option<quasi_id::Tag>,
+    #[prost(message, optional, tag = "1")]
+    pub field: ::core::option::Option<FieldId>,
+    #[prost(oneof = "quasi_id::Tag", tags = "2, 3, 4")]
+    pub tag: ::core::option::Option<quasi_id::Tag>,
 }
 /// Nested message and enum types in `QuasiId`.
 pub mod quasi_id {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Tag {
-#[prost(message, tag = "2")]
-InfoType(super::InfoType),
-#[prost(string, tag = "3")]
-CustomTag(::prost::alloc::string::String),
-#[prost(message, tag = "4")]
-Inferred(()),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Tag {
+        #[prost(message, tag = "2")]
+        InfoType(super::InfoType),
+        #[prost(string, tag = "3")]
+        CustomTag(::prost::alloc::string::String),
+        #[prost(message, tag = "4")]
+        Inferred(()),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatisticalTable {
-#[prost(message, optional, tag = "3")]
-pub table: ::core::option::Option<BigQueryTable>,
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<statistical_table::QuasiIdentifierField>,
-#[prost(message, optional, tag = "2")]
-pub relative_frequency: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "3")]
+    pub table: ::core::option::Option<BigQueryTable>,
+    #[prost(message, repeated, tag = "1")]
+    pub quasi_ids: ::prost::alloc::vec::Vec<statistical_table::QuasiIdentifierField>,
+    #[prost(message, optional, tag = "2")]
+    pub relative_frequency: ::core::option::Option<FieldId>,
 }
 /// Nested message and enum types in `StatisticalTable`.
 pub mod statistical_table {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QuasiIdentifierField {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::FieldId>,
-#[prost(string, tag = "2")]
-pub custom_tag: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct QuasiIdentifierField {
+        #[prost(message, optional, tag = "1")]
+        pub field: ::core::option::Option<super::FieldId>,
+        #[prost(string, tag = "2")]
+        pub custom_tag: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivacyMetric {
-#[prost(oneof = "privacy_metric::Type", tags = "1, 2, 3, 4, 5, 6")]
-pub r#type: ::core::option::Option<privacy_metric::Type>,
+    #[prost(oneof = "privacy_metric::Type", tags = "1, 2, 3, 4, 5, 6")]
+    pub r#type: ::core::option::Option<privacy_metric::Type>,
 }
 /// Nested message and enum types in `PrivacyMetric`.
 pub mod privacy_metric {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NumericalStatsConfig {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::FieldId>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CategoricalStatsConfig {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::FieldId>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KAnonymityConfig {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<super::FieldId>,
-#[prost(message, optional, tag = "2")]
-pub entity_id: ::core::option::Option<super::EntityId>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LDiversityConfig {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<super::FieldId>,
-#[prost(message, optional, tag = "2")]
-pub sensitive_attribute: ::core::option::Option<super::FieldId>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KMapEstimationConfig {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<k_map_estimation_config::TaggedField>,
-#[prost(string, tag = "2")]
-pub region_code: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub auxiliary_tables: ::prost::alloc::vec::Vec<k_map_estimation_config::AuxiliaryTable>,
-}
-/// Nested message and enum types in `KMapEstimationConfig`.
-pub mod k_map_estimation_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TaggedField {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::super::FieldId>,
-#[prost(oneof = "tagged_field::Tag", tags = "2, 3, 4")]
-pub tag: ::core::option::Option<tagged_field::Tag>,
-}
-/// Nested message and enum types in `TaggedField`.
-pub mod tagged_field {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Tag {
-#[prost(message, tag = "2")]
-InfoType(super::super::super::InfoType),
-#[prost(string, tag = "3")]
-CustomTag(::prost::alloc::string::String),
-#[prost(message, tag = "4")]
-Inferred(()),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AuxiliaryTable {
-#[prost(message, optional, tag = "3")]
-pub table: ::core::option::Option<super::super::BigQueryTable>,
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<auxiliary_table::QuasiIdField>,
-#[prost(message, optional, tag = "2")]
-pub relative_frequency: ::core::option::Option<super::super::FieldId>,
-}
-/// Nested message and enum types in `AuxiliaryTable`.
-pub mod auxiliary_table {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QuasiIdField {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::super::super::FieldId>,
-#[prost(string, tag = "2")]
-pub custom_tag: ::prost::alloc::string::String,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeltaPresenceEstimationConfig {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids: ::prost::alloc::vec::Vec<super::QuasiId>,
-#[prost(string, tag = "2")]
-pub region_code: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub auxiliary_tables: ::prost::alloc::vec::Vec<super::StatisticalTable>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-NumericalStatsConfig(NumericalStatsConfig),
-#[prost(message, tag = "2")]
-CategoricalStatsConfig(CategoricalStatsConfig),
-#[prost(message, tag = "3")]
-KAnonymityConfig(KAnonymityConfig),
-#[prost(message, tag = "4")]
-LDiversityConfig(LDiversityConfig),
-#[prost(message, tag = "5")]
-KMapEstimationConfig(KMapEstimationConfig),
-#[prost(message, tag = "6")]
-DeltaPresenceEstimationConfig(DeltaPresenceEstimationConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NumericalStatsConfig {
+        #[prost(message, optional, tag = "1")]
+        pub field: ::core::option::Option<super::FieldId>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CategoricalStatsConfig {
+        #[prost(message, optional, tag = "1")]
+        pub field: ::core::option::Option<super::FieldId>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KAnonymityConfig {
+        #[prost(message, repeated, tag = "1")]
+        pub quasi_ids: ::prost::alloc::vec::Vec<super::FieldId>,
+        #[prost(message, optional, tag = "2")]
+        pub entity_id: ::core::option::Option<super::EntityId>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LDiversityConfig {
+        #[prost(message, repeated, tag = "1")]
+        pub quasi_ids: ::prost::alloc::vec::Vec<super::FieldId>,
+        #[prost(message, optional, tag = "2")]
+        pub sensitive_attribute: ::core::option::Option<super::FieldId>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KMapEstimationConfig {
+        #[prost(message, repeated, tag = "1")]
+        pub quasi_ids: ::prost::alloc::vec::Vec<k_map_estimation_config::TaggedField>,
+        #[prost(string, tag = "2")]
+        pub region_code: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "3")]
+        pub auxiliary_tables: ::prost::alloc::vec::Vec<k_map_estimation_config::AuxiliaryTable>,
+    }
+    /// Nested message and enum types in `KMapEstimationConfig`.
+    pub mod k_map_estimation_config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct TaggedField {
+            #[prost(message, optional, tag = "1")]
+            pub field: ::core::option::Option<super::super::FieldId>,
+            #[prost(oneof = "tagged_field::Tag", tags = "2, 3, 4")]
+            pub tag: ::core::option::Option<tagged_field::Tag>,
+        }
+        /// Nested message and enum types in `TaggedField`.
+        pub mod tagged_field {
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum Tag {
+                #[prost(message, tag = "2")]
+                InfoType(super::super::super::InfoType),
+                #[prost(string, tag = "3")]
+                CustomTag(::prost::alloc::string::String),
+                #[prost(message, tag = "4")]
+                Inferred(()),
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct AuxiliaryTable {
+            #[prost(message, optional, tag = "3")]
+            pub table: ::core::option::Option<super::super::BigQueryTable>,
+            #[prost(message, repeated, tag = "1")]
+            pub quasi_ids: ::prost::alloc::vec::Vec<auxiliary_table::QuasiIdField>,
+            #[prost(message, optional, tag = "2")]
+            pub relative_frequency: ::core::option::Option<super::super::FieldId>,
+        }
+        /// Nested message and enum types in `AuxiliaryTable`.
+        pub mod auxiliary_table {
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct QuasiIdField {
+                #[prost(message, optional, tag = "1")]
+                pub field: ::core::option::Option<super::super::super::FieldId>,
+                #[prost(string, tag = "2")]
+                pub custom_tag: ::prost::alloc::string::String,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DeltaPresenceEstimationConfig {
+        #[prost(message, repeated, tag = "1")]
+        pub quasi_ids: ::prost::alloc::vec::Vec<super::QuasiId>,
+        #[prost(string, tag = "2")]
+        pub region_code: ::prost::alloc::string::String,
+        #[prost(message, repeated, tag = "3")]
+        pub auxiliary_tables: ::prost::alloc::vec::Vec<super::StatisticalTable>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        NumericalStatsConfig(NumericalStatsConfig),
+        #[prost(message, tag = "2")]
+        CategoricalStatsConfig(CategoricalStatsConfig),
+        #[prost(message, tag = "3")]
+        KAnonymityConfig(KAnonymityConfig),
+        #[prost(message, tag = "4")]
+        LDiversityConfig(LDiversityConfig),
+        #[prost(message, tag = "5")]
+        KMapEstimationConfig(KMapEstimationConfig),
+        #[prost(message, tag = "6")]
+        DeltaPresenceEstimationConfig(DeltaPresenceEstimationConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeDataSourceRiskDetails {
-#[prost(message, optional, tag = "1")]
-pub requested_privacy_metric: ::core::option::Option<PrivacyMetric>,
-#[prost(message, optional, tag = "2")]
-pub requested_source_table: ::core::option::Option<BigQueryTable>,
-#[prost(message, optional, tag = "10")]
-pub requested_options: ::core::option::Option<analyze_data_source_risk_details::RequestedRiskAnalysisOptions>,
-#[prost(oneof = "analyze_data_source_risk_details::Result", tags = "3, 4, 5, 6, 7, 9")]
-pub result: ::core::option::Option<analyze_data_source_risk_details::Result>,
+    #[prost(message, optional, tag = "1")]
+    pub requested_privacy_metric: ::core::option::Option<PrivacyMetric>,
+    #[prost(message, optional, tag = "2")]
+    pub requested_source_table: ::core::option::Option<BigQueryTable>,
+    #[prost(message, optional, tag = "10")]
+    pub requested_options:
+        ::core::option::Option<analyze_data_source_risk_details::RequestedRiskAnalysisOptions>,
+    #[prost(
+        oneof = "analyze_data_source_risk_details::Result",
+        tags = "3, 4, 5, 6, 7, 9"
+    )]
+    pub result: ::core::option::Option<analyze_data_source_risk_details::Result>,
 }
 /// Nested message and enum types in `AnalyzeDataSourceRiskDetails`.
 pub mod analyze_data_source_risk_details {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NumericalStatsResult {
-#[prost(message, optional, tag = "1")]
-pub min_value: ::core::option::Option<super::Value>,
-#[prost(message, optional, tag = "2")]
-pub max_value: ::core::option::Option<super::Value>,
-#[prost(message, repeated, tag = "4")]
-pub quantile_values: ::prost::alloc::vec::Vec<super::Value>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CategoricalStatsResult {
-#[prost(message, repeated, tag = "5")]
-pub value_frequency_histogram_buckets: ::prost::alloc::vec::Vec<categorical_stats_result::CategoricalStatsHistogramBucket>,
-}
-/// Nested message and enum types in `CategoricalStatsResult`.
-pub mod categorical_stats_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CategoricalStatsHistogramBucket {
-#[prost(int64, tag = "1")]
-pub value_frequency_lower_bound: i64,
-#[prost(int64, tag = "2")]
-pub value_frequency_upper_bound: i64,
-#[prost(int64, tag = "3")]
-pub bucket_size: i64,
-#[prost(message, repeated, tag = "4")]
-pub bucket_values: ::prost::alloc::vec::Vec<super::super::ValueFrequency>,
-#[prost(int64, tag = "5")]
-pub bucket_value_count: i64,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KAnonymityResult {
-#[prost(message, repeated, tag = "5")]
-pub equivalence_class_histogram_buckets: ::prost::alloc::vec::Vec<k_anonymity_result::KAnonymityHistogramBucket>,
-}
-/// Nested message and enum types in `KAnonymityResult`.
-pub mod k_anonymity_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KAnonymityEquivalenceClass {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
-#[prost(int64, tag = "2")]
-pub equivalence_class_size: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KAnonymityHistogramBucket {
-#[prost(int64, tag = "1")]
-pub equivalence_class_size_lower_bound: i64,
-#[prost(int64, tag = "2")]
-pub equivalence_class_size_upper_bound: i64,
-#[prost(int64, tag = "3")]
-pub bucket_size: i64,
-#[prost(message, repeated, tag = "4")]
-pub bucket_values: ::prost::alloc::vec::Vec<KAnonymityEquivalenceClass>,
-#[prost(int64, tag = "5")]
-pub bucket_value_count: i64,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LDiversityResult {
-#[prost(message, repeated, tag = "5")]
-pub sensitive_value_frequency_histogram_buckets: ::prost::alloc::vec::Vec<l_diversity_result::LDiversityHistogramBucket>,
-}
-/// Nested message and enum types in `LDiversityResult`.
-pub mod l_diversity_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LDiversityEquivalenceClass {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
-#[prost(int64, tag = "2")]
-pub equivalence_class_size: i64,
-#[prost(int64, tag = "3")]
-pub num_distinct_sensitive_values: i64,
-#[prost(message, repeated, tag = "4")]
-pub top_sensitive_values: ::prost::alloc::vec::Vec<super::super::ValueFrequency>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LDiversityHistogramBucket {
-#[prost(int64, tag = "1")]
-pub sensitive_value_frequency_lower_bound: i64,
-#[prost(int64, tag = "2")]
-pub sensitive_value_frequency_upper_bound: i64,
-#[prost(int64, tag = "3")]
-pub bucket_size: i64,
-#[prost(message, repeated, tag = "4")]
-pub bucket_values: ::prost::alloc::vec::Vec<LDiversityEquivalenceClass>,
-#[prost(int64, tag = "5")]
-pub bucket_value_count: i64,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KMapEstimationResult {
-#[prost(message, repeated, tag = "1")]
-pub k_map_estimation_histogram: ::prost::alloc::vec::Vec<k_map_estimation_result::KMapEstimationHistogramBucket>,
-}
-/// Nested message and enum types in `KMapEstimationResult`.
-pub mod k_map_estimation_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KMapEstimationQuasiIdValues {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
-#[prost(int64, tag = "2")]
-pub estimated_anonymity: i64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KMapEstimationHistogramBucket {
-#[prost(int64, tag = "1")]
-pub min_anonymity: i64,
-#[prost(int64, tag = "2")]
-pub max_anonymity: i64,
-#[prost(int64, tag = "5")]
-pub bucket_size: i64,
-#[prost(message, repeated, tag = "6")]
-pub bucket_values: ::prost::alloc::vec::Vec<KMapEstimationQuasiIdValues>,
-#[prost(int64, tag = "7")]
-pub bucket_value_count: i64,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeltaPresenceEstimationResult {
-#[prost(message, repeated, tag = "1")]
-pub delta_presence_estimation_histogram: ::prost::alloc::vec::Vec<delta_presence_estimation_result::DeltaPresenceEstimationHistogramBucket>,
-}
-/// Nested message and enum types in `DeltaPresenceEstimationResult`.
-pub mod delta_presence_estimation_result {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeltaPresenceEstimationQuasiIdValues {
-#[prost(message, repeated, tag = "1")]
-pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
-#[prost(double, tag = "2")]
-pub estimated_probability: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeltaPresenceEstimationHistogramBucket {
-#[prost(double, tag = "1")]
-pub min_probability: f64,
-#[prost(double, tag = "2")]
-pub max_probability: f64,
-#[prost(int64, tag = "5")]
-pub bucket_size: i64,
-#[prost(message, repeated, tag = "6")]
-pub bucket_values: ::prost::alloc::vec::Vec<DeltaPresenceEstimationQuasiIdValues>,
-#[prost(int64, tag = "7")]
-pub bucket_value_count: i64,
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestedRiskAnalysisOptions {
-#[prost(message, optional, tag = "1")]
-pub job_config: ::core::option::Option<super::RiskAnalysisJobConfig>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Result {
-#[prost(message, tag = "3")]
-NumericalStatsResult(NumericalStatsResult),
-#[prost(message, tag = "4")]
-CategoricalStatsResult(CategoricalStatsResult),
-#[prost(message, tag = "5")]
-KAnonymityResult(KAnonymityResult),
-#[prost(message, tag = "6")]
-LDiversityResult(LDiversityResult),
-#[prost(message, tag = "7")]
-KMapEstimationResult(KMapEstimationResult),
-#[prost(message, tag = "9")]
-DeltaPresenceEstimationResult(DeltaPresenceEstimationResult),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NumericalStatsResult {
+        #[prost(message, optional, tag = "1")]
+        pub min_value: ::core::option::Option<super::Value>,
+        #[prost(message, optional, tag = "2")]
+        pub max_value: ::core::option::Option<super::Value>,
+        #[prost(message, repeated, tag = "4")]
+        pub quantile_values: ::prost::alloc::vec::Vec<super::Value>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct CategoricalStatsResult {
+        #[prost(message, repeated, tag = "5")]
+        pub value_frequency_histogram_buckets:
+            ::prost::alloc::vec::Vec<categorical_stats_result::CategoricalStatsHistogramBucket>,
+    }
+    /// Nested message and enum types in `CategoricalStatsResult`.
+    pub mod categorical_stats_result {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct CategoricalStatsHistogramBucket {
+            #[prost(int64, tag = "1")]
+            pub value_frequency_lower_bound: i64,
+            #[prost(int64, tag = "2")]
+            pub value_frequency_upper_bound: i64,
+            #[prost(int64, tag = "3")]
+            pub bucket_size: i64,
+            #[prost(message, repeated, tag = "4")]
+            pub bucket_values: ::prost::alloc::vec::Vec<super::super::ValueFrequency>,
+            #[prost(int64, tag = "5")]
+            pub bucket_value_count: i64,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KAnonymityResult {
+        #[prost(message, repeated, tag = "5")]
+        pub equivalence_class_histogram_buckets:
+            ::prost::alloc::vec::Vec<k_anonymity_result::KAnonymityHistogramBucket>,
+    }
+    /// Nested message and enum types in `KAnonymityResult`.
+    pub mod k_anonymity_result {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct KAnonymityEquivalenceClass {
+            #[prost(message, repeated, tag = "1")]
+            pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
+            #[prost(int64, tag = "2")]
+            pub equivalence_class_size: i64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct KAnonymityHistogramBucket {
+            #[prost(int64, tag = "1")]
+            pub equivalence_class_size_lower_bound: i64,
+            #[prost(int64, tag = "2")]
+            pub equivalence_class_size_upper_bound: i64,
+            #[prost(int64, tag = "3")]
+            pub bucket_size: i64,
+            #[prost(message, repeated, tag = "4")]
+            pub bucket_values: ::prost::alloc::vec::Vec<KAnonymityEquivalenceClass>,
+            #[prost(int64, tag = "5")]
+            pub bucket_value_count: i64,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct LDiversityResult {
+        #[prost(message, repeated, tag = "5")]
+        pub sensitive_value_frequency_histogram_buckets:
+            ::prost::alloc::vec::Vec<l_diversity_result::LDiversityHistogramBucket>,
+    }
+    /// Nested message and enum types in `LDiversityResult`.
+    pub mod l_diversity_result {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct LDiversityEquivalenceClass {
+            #[prost(message, repeated, tag = "1")]
+            pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
+            #[prost(int64, tag = "2")]
+            pub equivalence_class_size: i64,
+            #[prost(int64, tag = "3")]
+            pub num_distinct_sensitive_values: i64,
+            #[prost(message, repeated, tag = "4")]
+            pub top_sensitive_values: ::prost::alloc::vec::Vec<super::super::ValueFrequency>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct LDiversityHistogramBucket {
+            #[prost(int64, tag = "1")]
+            pub sensitive_value_frequency_lower_bound: i64,
+            #[prost(int64, tag = "2")]
+            pub sensitive_value_frequency_upper_bound: i64,
+            #[prost(int64, tag = "3")]
+            pub bucket_size: i64,
+            #[prost(message, repeated, tag = "4")]
+            pub bucket_values: ::prost::alloc::vec::Vec<LDiversityEquivalenceClass>,
+            #[prost(int64, tag = "5")]
+            pub bucket_value_count: i64,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct KMapEstimationResult {
+        #[prost(message, repeated, tag = "1")]
+        pub k_map_estimation_histogram:
+            ::prost::alloc::vec::Vec<k_map_estimation_result::KMapEstimationHistogramBucket>,
+    }
+    /// Nested message and enum types in `KMapEstimationResult`.
+    pub mod k_map_estimation_result {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct KMapEstimationQuasiIdValues {
+            #[prost(message, repeated, tag = "1")]
+            pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
+            #[prost(int64, tag = "2")]
+            pub estimated_anonymity: i64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct KMapEstimationHistogramBucket {
+            #[prost(int64, tag = "1")]
+            pub min_anonymity: i64,
+            #[prost(int64, tag = "2")]
+            pub max_anonymity: i64,
+            #[prost(int64, tag = "5")]
+            pub bucket_size: i64,
+            #[prost(message, repeated, tag = "6")]
+            pub bucket_values: ::prost::alloc::vec::Vec<KMapEstimationQuasiIdValues>,
+            #[prost(int64, tag = "7")]
+            pub bucket_value_count: i64,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DeltaPresenceEstimationResult {
+        #[prost(message, repeated, tag = "1")]
+        pub delta_presence_estimation_histogram: ::prost::alloc::vec::Vec<
+            delta_presence_estimation_result::DeltaPresenceEstimationHistogramBucket,
+        >,
+    }
+    /// Nested message and enum types in `DeltaPresenceEstimationResult`.
+    pub mod delta_presence_estimation_result {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DeltaPresenceEstimationQuasiIdValues {
+            #[prost(message, repeated, tag = "1")]
+            pub quasi_ids_values: ::prost::alloc::vec::Vec<super::super::Value>,
+            #[prost(double, tag = "2")]
+            pub estimated_probability: f64,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DeltaPresenceEstimationHistogramBucket {
+            #[prost(double, tag = "1")]
+            pub min_probability: f64,
+            #[prost(double, tag = "2")]
+            pub max_probability: f64,
+            #[prost(int64, tag = "5")]
+            pub bucket_size: i64,
+            #[prost(message, repeated, tag = "6")]
+            pub bucket_values: ::prost::alloc::vec::Vec<DeltaPresenceEstimationQuasiIdValues>,
+            #[prost(int64, tag = "7")]
+            pub bucket_value_count: i64,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RequestedRiskAnalysisOptions {
+        #[prost(message, optional, tag = "1")]
+        pub job_config: ::core::option::Option<super::RiskAnalysisJobConfig>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Result {
+        #[prost(message, tag = "3")]
+        NumericalStatsResult(NumericalStatsResult),
+        #[prost(message, tag = "4")]
+        CategoricalStatsResult(CategoricalStatsResult),
+        #[prost(message, tag = "5")]
+        KAnonymityResult(KAnonymityResult),
+        #[prost(message, tag = "6")]
+        LDiversityResult(LDiversityResult),
+        #[prost(message, tag = "7")]
+        KMapEstimationResult(KMapEstimationResult),
+        #[prost(message, tag = "9")]
+        DeltaPresenceEstimationResult(DeltaPresenceEstimationResult),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValueFrequency {
-#[prost(message, optional, tag = "1")]
-pub value: ::core::option::Option<Value>,
-#[prost(int64, tag = "2")]
-pub count: i64,
+    #[prost(message, optional, tag = "1")]
+    pub value: ::core::option::Option<Value>,
+    #[prost(int64, tag = "2")]
+    pub count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-#[prost(oneof = "value::Type", tags = "1, 2, 3, 4, 5, 6, 7, 8")]
-pub r#type: ::core::option::Option<value::Type>,
+    #[prost(oneof = "value::Type", tags = "1, 2, 3, 4, 5, 6, 7, 8")]
+    pub r#type: ::core::option::Option<value::Type>,
 }
 /// Nested message and enum types in `Value`.
 pub mod value {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(int64, tag = "1")]
-IntegerValue(i64),
-#[prost(double, tag = "2")]
-FloatValue(f64),
-#[prost(string, tag = "3")]
-StringValue(::prost::alloc::string::String),
-#[prost(bool, tag = "4")]
-BooleanValue(bool),
-#[prost(message, tag = "5")]
-TimestampValue(::prost_types::Timestamp),
-#[prost(message, tag = "6")]
-TimeValue(super::super::super::super::r#type::TimeOfDay),
-#[prost(message, tag = "7")]
-DateValue(super::super::super::super::r#type::Date),
-#[prost(enumeration = "super::super::super::super::r#type::DayOfWeek", tag = "8")]
-DayOfWeekValue(i32),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(int64, tag = "1")]
+        IntegerValue(i64),
+        #[prost(double, tag = "2")]
+        FloatValue(f64),
+        #[prost(string, tag = "3")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(bool, tag = "4")]
+        BooleanValue(bool),
+        #[prost(message, tag = "5")]
+        TimestampValue(::prost_types::Timestamp),
+        #[prost(message, tag = "6")]
+        TimeValue(super::super::super::super::r#type::TimeOfDay),
+        #[prost(message, tag = "7")]
+        DateValue(super::super::super::super::r#type::Date),
+        #[prost(
+            enumeration = "super::super::super::super::r#type::DayOfWeek",
+            tag = "8"
+        )]
+        DayOfWeekValue(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct QuoteInfo {
-#[prost(oneof = "quote_info::ParsedQuote", tags = "2")]
-pub parsed_quote: ::core::option::Option<quote_info::ParsedQuote>,
+    #[prost(oneof = "quote_info::ParsedQuote", tags = "2")]
+    pub parsed_quote: ::core::option::Option<quote_info::ParsedQuote>,
 }
 /// Nested message and enum types in `QuoteInfo`.
 pub mod quote_info {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum ParsedQuote {
-#[prost(message, tag = "2")]
-DateTime(super::DateTime),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ParsedQuote {
+        #[prost(message, tag = "2")]
+        DateTime(super::DateTime),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DateTime {
-#[prost(message, optional, tag = "1")]
-pub date: ::core::option::Option<super::super::super::r#type::Date>,
-#[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "2")]
-pub day_of_week: i32,
-#[prost(message, optional, tag = "3")]
-pub time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-#[prost(message, optional, tag = "4")]
-pub time_zone: ::core::option::Option<date_time::TimeZone>,
+    #[prost(message, optional, tag = "1")]
+    pub date: ::core::option::Option<super::super::super::r#type::Date>,
+    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "2")]
+    pub day_of_week: i32,
+    #[prost(message, optional, tag = "3")]
+    pub time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
+    #[prost(message, optional, tag = "4")]
+    pub time_zone: ::core::option::Option<date_time::TimeZone>,
 }
 /// Nested message and enum types in `DateTime`.
 pub mod date_time {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TimeZone {
-#[prost(int32, tag = "1")]
-pub offset_minutes: i32,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct TimeZone {
+        #[prost(int32, tag = "1")]
+        pub offset_minutes: i32,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyConfig {
-#[prost(message, optional, tag = "3")]
-pub transformation_error_handling: ::core::option::Option<TransformationErrorHandling>,
-#[prost(oneof = "deidentify_config::Transformation", tags = "1, 2, 4")]
-pub transformation: ::core::option::Option<deidentify_config::Transformation>,
+    #[prost(message, optional, tag = "3")]
+    pub transformation_error_handling: ::core::option::Option<TransformationErrorHandling>,
+    #[prost(oneof = "deidentify_config::Transformation", tags = "1, 2, 4")]
+    pub transformation: ::core::option::Option<deidentify_config::Transformation>,
 }
 /// Nested message and enum types in `DeidentifyConfig`.
 pub mod deidentify_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Transformation {
-#[prost(message, tag = "1")]
-InfoTypeTransformations(super::InfoTypeTransformations),
-#[prost(message, tag = "2")]
-RecordTransformations(super::RecordTransformations),
-#[prost(message, tag = "4")]
-ImageTransformations(super::ImageTransformations),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transformation {
+        #[prost(message, tag = "1")]
+        InfoTypeTransformations(super::InfoTypeTransformations),
+        #[prost(message, tag = "2")]
+        RecordTransformations(super::RecordTransformations),
+        #[prost(message, tag = "4")]
+        ImageTransformations(super::ImageTransformations),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageTransformations {
-#[prost(message, repeated, tag = "2")]
-pub transforms: ::prost::alloc::vec::Vec<image_transformations::ImageTransformation>,
+    #[prost(message, repeated, tag = "2")]
+    pub transforms: ::prost::alloc::vec::Vec<image_transformations::ImageTransformation>,
 }
 /// Nested message and enum types in `ImageTransformations`.
 pub mod image_transformations {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImageTransformation {
-#[prost(message, optional, tag = "3")]
-pub redaction_color: ::core::option::Option<super::Color>,
-#[prost(oneof = "image_transformation::Target", tags = "4, 5, 6")]
-pub target: ::core::option::Option<image_transformation::Target>,
-}
-/// Nested message and enum types in `ImageTransformation`.
-pub mod image_transformation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SelectedInfoTypes {
-#[prost(message, repeated, tag = "5")]
-pub info_types: ::prost::alloc::vec::Vec<super::super::InfoType>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AllInfoTypes {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AllText {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Target {
-#[prost(message, tag = "4")]
-SelectedInfoTypes(SelectedInfoTypes),
-#[prost(message, tag = "5")]
-AllInfoTypes(AllInfoTypes),
-#[prost(message, tag = "6")]
-AllText(AllText),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ImageTransformation {
+        #[prost(message, optional, tag = "3")]
+        pub redaction_color: ::core::option::Option<super::Color>,
+        #[prost(oneof = "image_transformation::Target", tags = "4, 5, 6")]
+        pub target: ::core::option::Option<image_transformation::Target>,
+    }
+    /// Nested message and enum types in `ImageTransformation`.
+    pub mod image_transformation {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct SelectedInfoTypes {
+            #[prost(message, repeated, tag = "5")]
+            pub info_types: ::prost::alloc::vec::Vec<super::super::InfoType>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct AllInfoTypes {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct AllText {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Target {
+            #[prost(message, tag = "4")]
+            SelectedInfoTypes(SelectedInfoTypes),
+            #[prost(message, tag = "5")]
+            AllInfoTypes(AllInfoTypes),
+            #[prost(message, tag = "6")]
+            AllText(AllText),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TransformationErrorHandling {
-#[prost(oneof = "transformation_error_handling::Mode", tags = "1, 2")]
-pub mode: ::core::option::Option<transformation_error_handling::Mode>,
+    #[prost(oneof = "transformation_error_handling::Mode", tags = "1, 2")]
+    pub mode: ::core::option::Option<transformation_error_handling::Mode>,
 }
 /// Nested message and enum types in `TransformationErrorHandling`.
 pub mod transformation_error_handling {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ThrowError {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LeaveUntransformed {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Mode {
-#[prost(message, tag = "1")]
-ThrowError(ThrowError),
-#[prost(message, tag = "2")]
-LeaveUntransformed(LeaveUntransformed),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ThrowError {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LeaveUntransformed {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Mode {
+        #[prost(message, tag = "1")]
+        ThrowError(ThrowError),
+        #[prost(message, tag = "2")]
+        LeaveUntransformed(LeaveUntransformed),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrimitiveTransformation {
-#[prost(oneof = "primitive_transformation::Transformation", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13")]
-pub transformation: ::core::option::Option<primitive_transformation::Transformation>,
+    #[prost(
+        oneof = "primitive_transformation::Transformation",
+        tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13"
+    )]
+    pub transformation: ::core::option::Option<primitive_transformation::Transformation>,
 }
 /// Nested message and enum types in `PrimitiveTransformation`.
 pub mod primitive_transformation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Transformation {
-#[prost(message, tag = "1")]
-ReplaceConfig(super::ReplaceValueConfig),
-#[prost(message, tag = "2")]
-RedactConfig(super::RedactConfig),
-#[prost(message, tag = "3")]
-CharacterMaskConfig(super::CharacterMaskConfig),
-#[prost(message, tag = "4")]
-CryptoReplaceFfxFpeConfig(super::CryptoReplaceFfxFpeConfig),
-#[prost(message, tag = "5")]
-FixedSizeBucketingConfig(super::FixedSizeBucketingConfig),
-#[prost(message, tag = "6")]
-BucketingConfig(super::BucketingConfig),
-#[prost(message, tag = "7")]
-ReplaceWithInfoTypeConfig(super::ReplaceWithInfoTypeConfig),
-#[prost(message, tag = "8")]
-TimePartConfig(super::TimePartConfig),
-#[prost(message, tag = "9")]
-CryptoHashConfig(super::CryptoHashConfig),
-#[prost(message, tag = "11")]
-DateShiftConfig(super::DateShiftConfig),
-#[prost(message, tag = "12")]
-CryptoDeterministicConfig(super::CryptoDeterministicConfig),
-#[prost(message, tag = "13")]
-ReplaceDictionaryConfig(super::ReplaceDictionaryConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transformation {
+        #[prost(message, tag = "1")]
+        ReplaceConfig(super::ReplaceValueConfig),
+        #[prost(message, tag = "2")]
+        RedactConfig(super::RedactConfig),
+        #[prost(message, tag = "3")]
+        CharacterMaskConfig(super::CharacterMaskConfig),
+        #[prost(message, tag = "4")]
+        CryptoReplaceFfxFpeConfig(super::CryptoReplaceFfxFpeConfig),
+        #[prost(message, tag = "5")]
+        FixedSizeBucketingConfig(super::FixedSizeBucketingConfig),
+        #[prost(message, tag = "6")]
+        BucketingConfig(super::BucketingConfig),
+        #[prost(message, tag = "7")]
+        ReplaceWithInfoTypeConfig(super::ReplaceWithInfoTypeConfig),
+        #[prost(message, tag = "8")]
+        TimePartConfig(super::TimePartConfig),
+        #[prost(message, tag = "9")]
+        CryptoHashConfig(super::CryptoHashConfig),
+        #[prost(message, tag = "11")]
+        DateShiftConfig(super::DateShiftConfig),
+        #[prost(message, tag = "12")]
+        CryptoDeterministicConfig(super::CryptoDeterministicConfig),
+        #[prost(message, tag = "13")]
+        ReplaceDictionaryConfig(super::ReplaceDictionaryConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimePartConfig {
-#[prost(enumeration = "time_part_config::TimePart", tag = "1")]
-pub part_to_extract: i32,
+    #[prost(enumeration = "time_part_config::TimePart", tag = "1")]
+    pub part_to_extract: i32,
 }
 /// Nested message and enum types in `TimePartConfig`.
 pub mod time_part_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TimePart {
-Unspecified = 0,
-Year = 1,
-Month = 2,
-DayOfMonth = 3,
-DayOfWeek = 4,
-WeekOfYear = 5,
-HourOfDay = 6,
-}
-impl TimePart {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TimePart::Unspecified => "TIME_PART_UNSPECIFIED",
-TimePart::Year => "YEAR",
-TimePart::Month => "MONTH",
-TimePart::DayOfMonth => "DAY_OF_MONTH",
-TimePart::DayOfWeek => "DAY_OF_WEEK",
-TimePart::WeekOfYear => "WEEK_OF_YEAR",
-TimePart::HourOfDay => "HOUR_OF_DAY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TIME_PART_UNSPECIFIED" => Some(Self::Unspecified),
-"YEAR" => Some(Self::Year),
-"MONTH" => Some(Self::Month),
-"DAY_OF_MONTH" => Some(Self::DayOfMonth),
-"DAY_OF_WEEK" => Some(Self::DayOfWeek),
-"WEEK_OF_YEAR" => Some(Self::WeekOfYear),
-"HOUR_OF_DAY" => Some(Self::HourOfDay),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TimePart {
+        Unspecified = 0,
+        Year = 1,
+        Month = 2,
+        DayOfMonth = 3,
+        DayOfWeek = 4,
+        WeekOfYear = 5,
+        HourOfDay = 6,
+    }
+    impl TimePart {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TimePart::Unspecified => "TIME_PART_UNSPECIFIED",
+                TimePart::Year => "YEAR",
+                TimePart::Month => "MONTH",
+                TimePart::DayOfMonth => "DAY_OF_MONTH",
+                TimePart::DayOfWeek => "DAY_OF_WEEK",
+                TimePart::WeekOfYear => "WEEK_OF_YEAR",
+                TimePart::HourOfDay => "HOUR_OF_DAY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TIME_PART_UNSPECIFIED" => Some(Self::Unspecified),
+                "YEAR" => Some(Self::Year),
+                "MONTH" => Some(Self::Month),
+                "DAY_OF_MONTH" => Some(Self::DayOfMonth),
+                "DAY_OF_WEEK" => Some(Self::DayOfWeek),
+                "WEEK_OF_YEAR" => Some(Self::WeekOfYear),
+                "HOUR_OF_DAY" => Some(Self::HourOfDay),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoHashConfig {
-#[prost(message, optional, tag = "1")]
-pub crypto_key: ::core::option::Option<CryptoKey>,
+    #[prost(message, optional, tag = "1")]
+    pub crypto_key: ::core::option::Option<CryptoKey>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoDeterministicConfig {
-#[prost(message, optional, tag = "1")]
-pub crypto_key: ::core::option::Option<CryptoKey>,
-#[prost(message, optional, tag = "2")]
-pub surrogate_info_type: ::core::option::Option<InfoType>,
-#[prost(message, optional, tag = "3")]
-pub context: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "1")]
+    pub crypto_key: ::core::option::Option<CryptoKey>,
+    #[prost(message, optional, tag = "2")]
+    pub surrogate_info_type: ::core::option::Option<InfoType>,
+    #[prost(message, optional, tag = "3")]
+    pub context: ::core::option::Option<FieldId>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplaceValueConfig {
-#[prost(message, optional, tag = "1")]
-pub new_value: ::core::option::Option<Value>,
+    #[prost(message, optional, tag = "1")]
+    pub new_value: ::core::option::Option<Value>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReplaceDictionaryConfig {
-#[prost(oneof = "replace_dictionary_config::Type", tags = "1")]
-pub r#type: ::core::option::Option<replace_dictionary_config::Type>,
+    #[prost(oneof = "replace_dictionary_config::Type", tags = "1")]
+    pub r#type: ::core::option::Option<replace_dictionary_config::Type>,
 }
 /// Nested message and enum types in `ReplaceDictionaryConfig`.
 pub mod replace_dictionary_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-WordList(super::custom_info_type::dictionary::WordList),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        WordList(super::custom_info_type::dictionary::WordList),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2270,501 +2300,504 @@ pub struct RedactConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CharsToIgnore {
-#[prost(oneof = "chars_to_ignore::Characters", tags = "1, 2")]
-pub characters: ::core::option::Option<chars_to_ignore::Characters>,
+    #[prost(oneof = "chars_to_ignore::Characters", tags = "1, 2")]
+    pub characters: ::core::option::Option<chars_to_ignore::Characters>,
 }
 /// Nested message and enum types in `CharsToIgnore`.
 pub mod chars_to_ignore {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CommonCharsToIgnore {
-Unspecified = 0,
-Numeric = 1,
-AlphaUpperCase = 2,
-AlphaLowerCase = 3,
-Punctuation = 4,
-Whitespace = 5,
-}
-impl CommonCharsToIgnore {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CommonCharsToIgnore::Unspecified => "COMMON_CHARS_TO_IGNORE_UNSPECIFIED",
-CommonCharsToIgnore::Numeric => "NUMERIC",
-CommonCharsToIgnore::AlphaUpperCase => "ALPHA_UPPER_CASE",
-CommonCharsToIgnore::AlphaLowerCase => "ALPHA_LOWER_CASE",
-CommonCharsToIgnore::Punctuation => "PUNCTUATION",
-CommonCharsToIgnore::Whitespace => "WHITESPACE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COMMON_CHARS_TO_IGNORE_UNSPECIFIED" => Some(Self::Unspecified),
-"NUMERIC" => Some(Self::Numeric),
-"ALPHA_UPPER_CASE" => Some(Self::AlphaUpperCase),
-"ALPHA_LOWER_CASE" => Some(Self::AlphaLowerCase),
-"PUNCTUATION" => Some(Self::Punctuation),
-"WHITESPACE" => Some(Self::Whitespace),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Characters {
-#[prost(string, tag = "1")]
-CharactersToSkip(::prost::alloc::string::String),
-#[prost(enumeration = "CommonCharsToIgnore", tag = "2")]
-CommonCharactersToIgnore(i32),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum CommonCharsToIgnore {
+        Unspecified = 0,
+        Numeric = 1,
+        AlphaUpperCase = 2,
+        AlphaLowerCase = 3,
+        Punctuation = 4,
+        Whitespace = 5,
+    }
+    impl CommonCharsToIgnore {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CommonCharsToIgnore::Unspecified => "COMMON_CHARS_TO_IGNORE_UNSPECIFIED",
+                CommonCharsToIgnore::Numeric => "NUMERIC",
+                CommonCharsToIgnore::AlphaUpperCase => "ALPHA_UPPER_CASE",
+                CommonCharsToIgnore::AlphaLowerCase => "ALPHA_LOWER_CASE",
+                CommonCharsToIgnore::Punctuation => "PUNCTUATION",
+                CommonCharsToIgnore::Whitespace => "WHITESPACE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COMMON_CHARS_TO_IGNORE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NUMERIC" => Some(Self::Numeric),
+                "ALPHA_UPPER_CASE" => Some(Self::AlphaUpperCase),
+                "ALPHA_LOWER_CASE" => Some(Self::AlphaLowerCase),
+                "PUNCTUATION" => Some(Self::Punctuation),
+                "WHITESPACE" => Some(Self::Whitespace),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Characters {
+        #[prost(string, tag = "1")]
+        CharactersToSkip(::prost::alloc::string::String),
+        #[prost(enumeration = "CommonCharsToIgnore", tag = "2")]
+        CommonCharactersToIgnore(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CharacterMaskConfig {
-#[prost(string, tag = "1")]
-pub masking_character: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub number_to_mask: i32,
-#[prost(bool, tag = "3")]
-pub reverse_order: bool,
-#[prost(message, repeated, tag = "4")]
-pub characters_to_ignore: ::prost::alloc::vec::Vec<CharsToIgnore>,
+    #[prost(string, tag = "1")]
+    pub masking_character: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub number_to_mask: i32,
+    #[prost(bool, tag = "3")]
+    pub reverse_order: bool,
+    #[prost(message, repeated, tag = "4")]
+    pub characters_to_ignore: ::prost::alloc::vec::Vec<CharsToIgnore>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FixedSizeBucketingConfig {
-#[prost(message, optional, tag = "1")]
-pub lower_bound: ::core::option::Option<Value>,
-#[prost(message, optional, tag = "2")]
-pub upper_bound: ::core::option::Option<Value>,
-#[prost(double, tag = "3")]
-pub bucket_size: f64,
+    #[prost(message, optional, tag = "1")]
+    pub lower_bound: ::core::option::Option<Value>,
+    #[prost(message, optional, tag = "2")]
+    pub upper_bound: ::core::option::Option<Value>,
+    #[prost(double, tag = "3")]
+    pub bucket_size: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BucketingConfig {
-#[prost(message, repeated, tag = "1")]
-pub buckets: ::prost::alloc::vec::Vec<bucketing_config::Bucket>,
+    #[prost(message, repeated, tag = "1")]
+    pub buckets: ::prost::alloc::vec::Vec<bucketing_config::Bucket>,
 }
 /// Nested message and enum types in `BucketingConfig`.
 pub mod bucketing_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Bucket {
-#[prost(message, optional, tag = "1")]
-pub min: ::core::option::Option<super::Value>,
-#[prost(message, optional, tag = "2")]
-pub max: ::core::option::Option<super::Value>,
-#[prost(message, optional, tag = "3")]
-pub replacement_value: ::core::option::Option<super::Value>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Bucket {
+        #[prost(message, optional, tag = "1")]
+        pub min: ::core::option::Option<super::Value>,
+        #[prost(message, optional, tag = "2")]
+        pub max: ::core::option::Option<super::Value>,
+        #[prost(message, optional, tag = "3")]
+        pub replacement_value: ::core::option::Option<super::Value>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoReplaceFfxFpeConfig {
-#[prost(message, optional, tag = "1")]
-pub crypto_key: ::core::option::Option<CryptoKey>,
-#[prost(message, optional, tag = "2")]
-pub context: ::core::option::Option<FieldId>,
-#[prost(message, optional, tag = "8")]
-pub surrogate_info_type: ::core::option::Option<InfoType>,
-#[prost(oneof = "crypto_replace_ffx_fpe_config::Alphabet", tags = "4, 5, 6")]
-pub alphabet: ::core::option::Option<crypto_replace_ffx_fpe_config::Alphabet>,
+    #[prost(message, optional, tag = "1")]
+    pub crypto_key: ::core::option::Option<CryptoKey>,
+    #[prost(message, optional, tag = "2")]
+    pub context: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "8")]
+    pub surrogate_info_type: ::core::option::Option<InfoType>,
+    #[prost(oneof = "crypto_replace_ffx_fpe_config::Alphabet", tags = "4, 5, 6")]
+    pub alphabet: ::core::option::Option<crypto_replace_ffx_fpe_config::Alphabet>,
 }
 /// Nested message and enum types in `CryptoReplaceFfxFpeConfig`.
 pub mod crypto_replace_ffx_fpe_config {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum FfxCommonNativeAlphabet {
-Unspecified = 0,
-Numeric = 1,
-Hexadecimal = 2,
-UpperCaseAlphaNumeric = 3,
-AlphaNumeric = 4,
-}
-impl FfxCommonNativeAlphabet {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-FfxCommonNativeAlphabet::Unspecified => "FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED",
-FfxCommonNativeAlphabet::Numeric => "NUMERIC",
-FfxCommonNativeAlphabet::Hexadecimal => "HEXADECIMAL",
-FfxCommonNativeAlphabet::UpperCaseAlphaNumeric => "UPPER_CASE_ALPHA_NUMERIC",
-FfxCommonNativeAlphabet::AlphaNumeric => "ALPHA_NUMERIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED" => Some(Self::Unspecified),
-"NUMERIC" => Some(Self::Numeric),
-"HEXADECIMAL" => Some(Self::Hexadecimal),
-"UPPER_CASE_ALPHA_NUMERIC" => Some(Self::UpperCaseAlphaNumeric),
-"ALPHA_NUMERIC" => Some(Self::AlphaNumeric),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Alphabet {
-#[prost(enumeration = "FfxCommonNativeAlphabet", tag = "4")]
-CommonAlphabet(i32),
-#[prost(string, tag = "5")]
-CustomAlphabet(::prost::alloc::string::String),
-#[prost(int32, tag = "6")]
-Radix(i32),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum FfxCommonNativeAlphabet {
+        Unspecified = 0,
+        Numeric = 1,
+        Hexadecimal = 2,
+        UpperCaseAlphaNumeric = 3,
+        AlphaNumeric = 4,
+    }
+    impl FfxCommonNativeAlphabet {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                FfxCommonNativeAlphabet::Unspecified => "FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED",
+                FfxCommonNativeAlphabet::Numeric => "NUMERIC",
+                FfxCommonNativeAlphabet::Hexadecimal => "HEXADECIMAL",
+                FfxCommonNativeAlphabet::UpperCaseAlphaNumeric => "UPPER_CASE_ALPHA_NUMERIC",
+                FfxCommonNativeAlphabet::AlphaNumeric => "ALPHA_NUMERIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED" => Some(Self::Unspecified),
+                "NUMERIC" => Some(Self::Numeric),
+                "HEXADECIMAL" => Some(Self::Hexadecimal),
+                "UPPER_CASE_ALPHA_NUMERIC" => Some(Self::UpperCaseAlphaNumeric),
+                "ALPHA_NUMERIC" => Some(Self::AlphaNumeric),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Alphabet {
+        #[prost(enumeration = "FfxCommonNativeAlphabet", tag = "4")]
+        CommonAlphabet(i32),
+        #[prost(string, tag = "5")]
+        CustomAlphabet(::prost::alloc::string::String),
+        #[prost(int32, tag = "6")]
+        Radix(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoKey {
-#[prost(oneof = "crypto_key::Source", tags = "1, 2, 3")]
-pub source: ::core::option::Option<crypto_key::Source>,
+    #[prost(oneof = "crypto_key::Source", tags = "1, 2, 3")]
+    pub source: ::core::option::Option<crypto_key::Source>,
 }
 /// Nested message and enum types in `CryptoKey`.
 pub mod crypto_key {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "1")]
-Transient(super::TransientCryptoKey),
-#[prost(message, tag = "2")]
-Unwrapped(super::UnwrappedCryptoKey),
-#[prost(message, tag = "3")]
-KmsWrapped(super::KmsWrappedCryptoKey),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "1")]
+        Transient(super::TransientCryptoKey),
+        #[prost(message, tag = "2")]
+        Unwrapped(super::UnwrappedCryptoKey),
+        #[prost(message, tag = "3")]
+        KmsWrapped(super::KmsWrappedCryptoKey),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransientCryptoKey {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnwrappedCryptoKey {
-#[prost(bytes = "bytes", tag = "1")]
-pub key: ::prost::bytes::Bytes,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub key: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KmsWrappedCryptoKey {
-#[prost(bytes = "bytes", tag = "1")]
-pub wrapped_key: ::prost::bytes::Bytes,
-#[prost(string, tag = "2")]
-pub crypto_key_name: ::prost::alloc::string::String,
+    #[prost(bytes = "bytes", tag = "1")]
+    pub wrapped_key: ::prost::bytes::Bytes,
+    #[prost(string, tag = "2")]
+    pub crypto_key_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateShiftConfig {
-#[prost(int32, tag = "1")]
-pub upper_bound_days: i32,
-#[prost(int32, tag = "2")]
-pub lower_bound_days: i32,
-#[prost(message, optional, tag = "3")]
-pub context: ::core::option::Option<FieldId>,
-#[prost(oneof = "date_shift_config::Method", tags = "4")]
-pub method: ::core::option::Option<date_shift_config::Method>,
+    #[prost(int32, tag = "1")]
+    pub upper_bound_days: i32,
+    #[prost(int32, tag = "2")]
+    pub lower_bound_days: i32,
+    #[prost(message, optional, tag = "3")]
+    pub context: ::core::option::Option<FieldId>,
+    #[prost(oneof = "date_shift_config::Method", tags = "4")]
+    pub method: ::core::option::Option<date_shift_config::Method>,
 }
 /// Nested message and enum types in `DateShiftConfig`.
 pub mod date_shift_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Method {
-#[prost(message, tag = "4")]
-CryptoKey(super::CryptoKey),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Method {
+        #[prost(message, tag = "4")]
+        CryptoKey(super::CryptoKey),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoTypeTransformations {
-#[prost(message, repeated, tag = "1")]
-pub transformations: ::prost::alloc::vec::Vec<info_type_transformations::InfoTypeTransformation>,
+    #[prost(message, repeated, tag = "1")]
+    pub transformations:
+        ::prost::alloc::vec::Vec<info_type_transformations::InfoTypeTransformation>,
 }
 /// Nested message and enum types in `InfoTypeTransformations`.
 pub mod info_type_transformations {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InfoTypeTransformation {
-#[prost(message, repeated, tag = "1")]
-pub info_types: ::prost::alloc::vec::Vec<super::InfoType>,
-#[prost(message, optional, tag = "2")]
-pub primitive_transformation: ::core::option::Option<super::PrimitiveTransformation>,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InfoTypeTransformation {
+        #[prost(message, repeated, tag = "1")]
+        pub info_types: ::prost::alloc::vec::Vec<super::InfoType>,
+        #[prost(message, optional, tag = "2")]
+        pub primitive_transformation: ::core::option::Option<super::PrimitiveTransformation>,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldTransformation {
-#[prost(message, repeated, tag = "1")]
-pub fields: ::prost::alloc::vec::Vec<FieldId>,
-#[prost(message, optional, tag = "3")]
-pub condition: ::core::option::Option<RecordCondition>,
-#[prost(oneof = "field_transformation::Transformation", tags = "4, 5")]
-pub transformation: ::core::option::Option<field_transformation::Transformation>,
+    #[prost(message, repeated, tag = "1")]
+    pub fields: ::prost::alloc::vec::Vec<FieldId>,
+    #[prost(message, optional, tag = "3")]
+    pub condition: ::core::option::Option<RecordCondition>,
+    #[prost(oneof = "field_transformation::Transformation", tags = "4, 5")]
+    pub transformation: ::core::option::Option<field_transformation::Transformation>,
 }
 /// Nested message and enum types in `FieldTransformation`.
 pub mod field_transformation {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Transformation {
-#[prost(message, tag = "4")]
-PrimitiveTransformation(super::PrimitiveTransformation),
-#[prost(message, tag = "5")]
-InfoTypeTransformations(super::InfoTypeTransformations),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Transformation {
+        #[prost(message, tag = "4")]
+        PrimitiveTransformation(super::PrimitiveTransformation),
+        #[prost(message, tag = "5")]
+        InfoTypeTransformations(super::InfoTypeTransformations),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordTransformations {
-#[prost(message, repeated, tag = "1")]
-pub field_transformations: ::prost::alloc::vec::Vec<FieldTransformation>,
-#[prost(message, repeated, tag = "2")]
-pub record_suppressions: ::prost::alloc::vec::Vec<RecordSuppression>,
+    #[prost(message, repeated, tag = "1")]
+    pub field_transformations: ::prost::alloc::vec::Vec<FieldTransformation>,
+    #[prost(message, repeated, tag = "2")]
+    pub record_suppressions: ::prost::alloc::vec::Vec<RecordSuppression>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordSuppression {
-#[prost(message, optional, tag = "1")]
-pub condition: ::core::option::Option<RecordCondition>,
+    #[prost(message, optional, tag = "1")]
+    pub condition: ::core::option::Option<RecordCondition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordCondition {
-#[prost(message, optional, tag = "3")]
-pub expressions: ::core::option::Option<record_condition::Expressions>,
+    #[prost(message, optional, tag = "3")]
+    pub expressions: ::core::option::Option<record_condition::Expressions>,
 }
 /// Nested message and enum types in `RecordCondition`.
 pub mod record_condition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Condition {
-#[prost(message, optional, tag = "1")]
-pub field: ::core::option::Option<super::FieldId>,
-#[prost(enumeration = "super::RelationalOperator", tag = "3")]
-pub operator: i32,
-#[prost(message, optional, tag = "4")]
-pub value: ::core::option::Option<super::Value>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Conditions {
-#[prost(message, repeated, tag = "1")]
-pub conditions: ::prost::alloc::vec::Vec<Condition>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Expressions {
-#[prost(enumeration = "expressions::LogicalOperator", tag = "1")]
-pub logical_operator: i32,
-#[prost(oneof = "expressions::Type", tags = "3")]
-pub r#type: ::core::option::Option<expressions::Type>,
-}
-/// Nested message and enum types in `Expressions`.
-pub mod expressions {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum LogicalOperator {
-Unspecified = 0,
-And = 1,
-}
-impl LogicalOperator {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-LogicalOperator::Unspecified => "LOGICAL_OPERATOR_UNSPECIFIED",
-LogicalOperator::And => "AND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LOGICAL_OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
-"AND" => Some(Self::And),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "3")]
-Conditions(super::Conditions),
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Condition {
+        #[prost(message, optional, tag = "1")]
+        pub field: ::core::option::Option<super::FieldId>,
+        #[prost(enumeration = "super::RelationalOperator", tag = "3")]
+        pub operator: i32,
+        #[prost(message, optional, tag = "4")]
+        pub value: ::core::option::Option<super::Value>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Conditions {
+        #[prost(message, repeated, tag = "1")]
+        pub conditions: ::prost::alloc::vec::Vec<Condition>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Expressions {
+        #[prost(enumeration = "expressions::LogicalOperator", tag = "1")]
+        pub logical_operator: i32,
+        #[prost(oneof = "expressions::Type", tags = "3")]
+        pub r#type: ::core::option::Option<expressions::Type>,
+    }
+    /// Nested message and enum types in `Expressions`.
+    pub mod expressions {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum LogicalOperator {
+            Unspecified = 0,
+            And = 1,
+        }
+        impl LogicalOperator {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    LogicalOperator::Unspecified => "LOGICAL_OPERATOR_UNSPECIFIED",
+                    LogicalOperator::And => "AND",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "LOGICAL_OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+                    "AND" => Some(Self::And),
+                    _ => None,
+                }
+            }
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Type {
+            #[prost(message, tag = "3")]
+            Conditions(super::Conditions),
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationOverview {
-#[prost(int64, tag = "2")]
-pub transformed_bytes: i64,
-#[prost(message, repeated, tag = "3")]
-pub transformation_summaries: ::prost::alloc::vec::Vec<TransformationSummary>,
+    #[prost(int64, tag = "2")]
+    pub transformed_bytes: i64,
+    #[prost(message, repeated, tag = "3")]
+    pub transformation_summaries: ::prost::alloc::vec::Vec<TransformationSummary>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationSummary {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
-#[prost(message, optional, tag = "2")]
-pub field: ::core::option::Option<FieldId>,
-#[prost(message, optional, tag = "3")]
-pub transformation: ::core::option::Option<PrimitiveTransformation>,
-#[prost(message, repeated, tag = "5")]
-pub field_transformations: ::prost::alloc::vec::Vec<FieldTransformation>,
-#[prost(message, optional, tag = "6")]
-pub record_suppress: ::core::option::Option<RecordSuppression>,
-#[prost(message, repeated, tag = "4")]
-pub results: ::prost::alloc::vec::Vec<transformation_summary::SummaryResult>,
-#[prost(int64, tag = "7")]
-pub transformed_bytes: i64,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[prost(message, optional, tag = "2")]
+    pub field: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "3")]
+    pub transformation: ::core::option::Option<PrimitiveTransformation>,
+    #[prost(message, repeated, tag = "5")]
+    pub field_transformations: ::prost::alloc::vec::Vec<FieldTransformation>,
+    #[prost(message, optional, tag = "6")]
+    pub record_suppress: ::core::option::Option<RecordSuppression>,
+    #[prost(message, repeated, tag = "4")]
+    pub results: ::prost::alloc::vec::Vec<transformation_summary::SummaryResult>,
+    #[prost(int64, tag = "7")]
+    pub transformed_bytes: i64,
 }
 /// Nested message and enum types in `TransformationSummary`.
 pub mod transformation_summary {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SummaryResult {
-#[prost(int64, tag = "1")]
-pub count: i64,
-#[prost(enumeration = "TransformationResultCode", tag = "2")]
-pub code: i32,
-#[prost(string, tag = "3")]
-pub details: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum TransformationResultCode {
-Unspecified = 0,
-Success = 1,
-Error = 2,
-}
-impl TransformationResultCode {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransformationResultCode::Unspecified => "TRANSFORMATION_RESULT_CODE_UNSPECIFIED",
-TransformationResultCode::Success => "SUCCESS",
-TransformationResultCode::Error => "ERROR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRANSFORMATION_RESULT_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-"SUCCESS" => Some(Self::Success),
-"ERROR" => Some(Self::Error),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SummaryResult {
+        #[prost(int64, tag = "1")]
+        pub count: i64,
+        #[prost(enumeration = "TransformationResultCode", tag = "2")]
+        pub code: i32,
+        #[prost(string, tag = "3")]
+        pub details: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum TransformationResultCode {
+        Unspecified = 0,
+        Success = 1,
+        Error = 2,
+    }
+    impl TransformationResultCode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                TransformationResultCode::Unspecified => "TRANSFORMATION_RESULT_CODE_UNSPECIFIED",
+                TransformationResultCode::Success => "SUCCESS",
+                TransformationResultCode::Error => "ERROR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TRANSFORMATION_RESULT_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SUCCESS" => Some(Self::Success),
+                "ERROR" => Some(Self::Error),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationDescription {
-#[prost(enumeration = "TransformationType", tag = "1")]
-pub r#type: i32,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub condition: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub info_type: ::core::option::Option<InfoType>,
+    #[prost(enumeration = "TransformationType", tag = "1")]
+    pub r#type: i32,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub condition: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub info_type: ::core::option::Option<InfoType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationDetails {
-#[prost(string, tag = "1")]
-pub resource_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub container_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "3")]
-pub transformation: ::prost::alloc::vec::Vec<TransformationDescription>,
-#[prost(message, optional, tag = "4")]
-pub status_details: ::core::option::Option<TransformationResultStatus>,
-#[prost(int64, tag = "5")]
-pub transformed_bytes: i64,
-#[prost(message, optional, tag = "6")]
-pub transformation_location: ::core::option::Option<TransformationLocation>,
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub container_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub transformation: ::prost::alloc::vec::Vec<TransformationDescription>,
+    #[prost(message, optional, tag = "4")]
+    pub status_details: ::core::option::Option<TransformationResultStatus>,
+    #[prost(int64, tag = "5")]
+    pub transformed_bytes: i64,
+    #[prost(message, optional, tag = "6")]
+    pub transformation_location: ::core::option::Option<TransformationLocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationLocation {
-#[prost(enumeration = "TransformationContainerType", tag = "3")]
-pub container_type: i32,
-#[prost(oneof = "transformation_location::LocationType", tags = "1, 2")]
-pub location_type: ::core::option::Option<transformation_location::LocationType>,
+    #[prost(enumeration = "TransformationContainerType", tag = "3")]
+    pub container_type: i32,
+    #[prost(oneof = "transformation_location::LocationType", tags = "1, 2")]
+    pub location_type: ::core::option::Option<transformation_location::LocationType>,
 }
 /// Nested message and enum types in `TransformationLocation`.
 pub mod transformation_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum LocationType {
-#[prost(string, tag = "1")]
-FindingId(::prost::alloc::string::String),
-#[prost(message, tag = "2")]
-RecordTransformation(super::RecordTransformation),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum LocationType {
+        #[prost(string, tag = "1")]
+        FindingId(::prost::alloc::string::String),
+        #[prost(message, tag = "2")]
+        RecordTransformation(super::RecordTransformation),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecordTransformation {
-#[prost(message, optional, tag = "1")]
-pub field_id: ::core::option::Option<FieldId>,
-#[prost(message, optional, tag = "2")]
-pub container_timestamp: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "3")]
-pub container_version: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "1")]
+    pub field_id: ::core::option::Option<FieldId>,
+    #[prost(message, optional, tag = "2")]
+    pub container_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "3")]
+    pub container_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationResultStatus {
-#[prost(enumeration = "TransformationResultStatusType", tag = "1")]
-pub result_status_type: i32,
-#[prost(message, optional, tag = "2")]
-pub details: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(enumeration = "TransformationResultStatusType", tag = "1")]
+    pub result_status_type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub details: ::core::option::Option<super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationDetailsStorageConfig {
-#[prost(oneof = "transformation_details_storage_config::Type", tags = "1")]
-pub r#type: ::core::option::Option<transformation_details_storage_config::Type>,
+    #[prost(oneof = "transformation_details_storage_config::Type", tags = "1")]
+    pub r#type: ::core::option::Option<transformation_details_storage_config::Type>,
 }
 /// Nested message and enum types in `TransformationDetailsStorageConfig`.
 pub mod transformation_details_storage_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-Table(super::BigQueryTable),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        Table(super::BigQueryTable),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Schedule {
-#[prost(oneof = "schedule::Option", tags = "1")]
-pub option: ::core::option::Option<schedule::Option>,
+    #[prost(oneof = "schedule::Option", tags = "1")]
+    pub option: ::core::option::Option<schedule::Option>,
 }
 /// Nested message and enum types in `Schedule`.
 pub mod schedule {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Option {
-#[prost(message, tag = "1")]
-RecurrencePeriodDuration(::prost_types::Duration),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Option {
+        #[prost(message, tag = "1")]
+        RecurrencePeriodDuration(::prost_types::Duration),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2772,588 +2805,591 @@ pub struct Manual {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectTemplate {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeidentifyTemplate {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "4")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "5")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "6")]
-pub deidentify_config: ::core::option::Option<DeidentifyConfig>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "6")]
+    pub deidentify_config: ::core::option::Option<DeidentifyConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Error {
-#[prost(message, optional, tag = "1")]
-pub details: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(message, repeated, tag = "2")]
-pub timestamps: ::prost::alloc::vec::Vec<::prost_types::Timestamp>,
-#[prost(enumeration = "error::ErrorExtraInfo", tag = "4")]
-pub extra_info: i32,
+    #[prost(message, optional, tag = "1")]
+    pub details: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, repeated, tag = "2")]
+    pub timestamps: ::prost::alloc::vec::Vec<::prost_types::Timestamp>,
+    #[prost(enumeration = "error::ErrorExtraInfo", tag = "4")]
+    pub extra_info: i32,
 }
 /// Nested message and enum types in `Error`.
 pub mod error {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ErrorExtraInfo {
-ErrorInfoUnspecified = 0,
-ImageScanUnavailableInRegion = 1,
-FileStoreClusterUnsupported = 2,
-}
-impl ErrorExtraInfo {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ErrorExtraInfo::ErrorInfoUnspecified => "ERROR_INFO_UNSPECIFIED",
-ErrorExtraInfo::ImageScanUnavailableInRegion => "IMAGE_SCAN_UNAVAILABLE_IN_REGION",
-ErrorExtraInfo::FileStoreClusterUnsupported => "FILE_STORE_CLUSTER_UNSUPPORTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ERROR_INFO_UNSPECIFIED" => Some(Self::ErrorInfoUnspecified),
-"IMAGE_SCAN_UNAVAILABLE_IN_REGION" => Some(Self::ImageScanUnavailableInRegion),
-"FILE_STORE_CLUSTER_UNSUPPORTED" => Some(Self::FileStoreClusterUnsupported),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ErrorExtraInfo {
+        ErrorInfoUnspecified = 0,
+        ImageScanUnavailableInRegion = 1,
+        FileStoreClusterUnsupported = 2,
+    }
+    impl ErrorExtraInfo {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ErrorExtraInfo::ErrorInfoUnspecified => "ERROR_INFO_UNSPECIFIED",
+                ErrorExtraInfo::ImageScanUnavailableInRegion => "IMAGE_SCAN_UNAVAILABLE_IN_REGION",
+                ErrorExtraInfo::FileStoreClusterUnsupported => "FILE_STORE_CLUSTER_UNSUPPORTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ERROR_INFO_UNSPECIFIED" => Some(Self::ErrorInfoUnspecified),
+                "IMAGE_SCAN_UNAVAILABLE_IN_REGION" => Some(Self::ImageScanUnavailableInRegion),
+                "FILE_STORE_CLUSTER_UNSUPPORTED" => Some(Self::FileStoreClusterUnsupported),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobTrigger {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub description: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "5")]
-pub triggers: ::prost::alloc::vec::Vec<job_trigger::Trigger>,
-#[prost(message, repeated, tag = "6")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "9")]
-pub last_run_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "job_trigger::Status", tag = "10")]
-pub status: i32,
-#[prost(oneof = "job_trigger::Job", tags = "4")]
-pub job: ::core::option::Option<job_trigger::Job>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub triggers: ::prost::alloc::vec::Vec<job_trigger::Trigger>,
+    #[prost(message, repeated, tag = "6")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "9")]
+    pub last_run_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "job_trigger::Status", tag = "10")]
+    pub status: i32,
+    #[prost(oneof = "job_trigger::Job", tags = "4")]
+    pub job: ::core::option::Option<job_trigger::Job>,
 }
 /// Nested message and enum types in `JobTrigger`.
 pub mod job_trigger {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Trigger {
-#[prost(oneof = "trigger::Trigger", tags = "1, 2")]
-pub trigger: ::core::option::Option<trigger::Trigger>,
-}
-/// Nested message and enum types in `Trigger`.
-pub mod trigger {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Trigger {
-#[prost(message, tag = "1")]
-Schedule(super::super::Schedule),
-#[prost(message, tag = "2")]
-Manual(super::super::Manual),
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Status {
-Unspecified = 0,
-Healthy = 1,
-Paused = 2,
-Cancelled = 3,
-}
-impl Status {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Status::Unspecified => "STATUS_UNSPECIFIED",
-Status::Healthy => "HEALTHY",
-Status::Paused => "PAUSED",
-Status::Cancelled => "CANCELLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"HEALTHY" => Some(Self::Healthy),
-"PAUSED" => Some(Self::Paused),
-"CANCELLED" => Some(Self::Cancelled),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Job {
-#[prost(message, tag = "4")]
-InspectJob(super::InspectJobConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Trigger {
+        #[prost(oneof = "trigger::Trigger", tags = "1, 2")]
+        pub trigger: ::core::option::Option<trigger::Trigger>,
+    }
+    /// Nested message and enum types in `Trigger`.
+    pub mod trigger {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Trigger {
+            #[prost(message, tag = "1")]
+            Schedule(super::super::Schedule),
+            #[prost(message, tag = "2")]
+            Manual(super::super::Manual),
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Status {
+        Unspecified = 0,
+        Healthy = 1,
+        Paused = 2,
+        Cancelled = 3,
+    }
+    impl Status {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Status::Unspecified => "STATUS_UNSPECIFIED",
+                Status::Healthy => "HEALTHY",
+                Status::Paused => "PAUSED",
+                Status::Cancelled => "CANCELLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "HEALTHY" => Some(Self::Healthy),
+                "PAUSED" => Some(Self::Paused),
+                "CANCELLED" => Some(Self::Cancelled),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Job {
+        #[prost(message, tag = "4")]
+        InspectJob(super::InspectJobConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Action {
-#[prost(oneof = "action::Action", tags = "1, 2, 3, 5, 7, 8, 9")]
-pub action: ::core::option::Option<action::Action>,
+    #[prost(oneof = "action::Action", tags = "1, 2, 3, 5, 7, 8, 9")]
+    pub action: ::core::option::Option<action::Action>,
 }
 /// Nested message and enum types in `Action`.
 pub mod action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SaveFindings {
-#[prost(message, optional, tag = "1")]
-pub output_config: ::core::option::Option<super::OutputStorageConfig>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PublishToPubSub {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PublishSummaryToCscc {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PublishFindingsToCloudDataCatalog {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Deidentify {
-#[prost(message, optional, tag = "7")]
-pub transformation_config: ::core::option::Option<super::TransformationConfig>,
-#[prost(message, optional, tag = "3")]
-pub transformation_details_storage_config: ::core::option::Option<super::TransformationDetailsStorageConfig>,
-#[prost(enumeration = "super::FileType", repeated, tag = "8")]
-pub file_types_to_transform: ::prost::alloc::vec::Vec<i32>,
-#[prost(oneof = "deidentify::Output", tags = "9")]
-pub output: ::core::option::Option<deidentify::Output>,
-}
-/// Nested message and enum types in `Deidentify`.
-pub mod deidentify {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Output {
-#[prost(string, tag = "9")]
-CloudStorageOutput(::prost::alloc::string::String),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct JobNotificationEmails {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PublishToStackdriver {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Action {
-#[prost(message, tag = "1")]
-SaveFindings(SaveFindings),
-#[prost(message, tag = "2")]
-PubSub(PublishToPubSub),
-#[prost(message, tag = "3")]
-PublishSummaryToCscc(PublishSummaryToCscc),
-#[prost(message, tag = "5")]
-PublishFindingsToCloudDataCatalog(PublishFindingsToCloudDataCatalog),
-#[prost(message, tag = "7")]
-Deidentify(Deidentify),
-#[prost(message, tag = "8")]
-JobNotificationEmails(JobNotificationEmails),
-#[prost(message, tag = "9")]
-PublishToStackdriver(PublishToStackdriver),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SaveFindings {
+        #[prost(message, optional, tag = "1")]
+        pub output_config: ::core::option::Option<super::OutputStorageConfig>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PublishToPubSub {
+        #[prost(string, tag = "1")]
+        pub topic: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PublishSummaryToCscc {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PublishFindingsToCloudDataCatalog {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Deidentify {
+        #[prost(message, optional, tag = "7")]
+        pub transformation_config: ::core::option::Option<super::TransformationConfig>,
+        #[prost(message, optional, tag = "3")]
+        pub transformation_details_storage_config:
+            ::core::option::Option<super::TransformationDetailsStorageConfig>,
+        #[prost(enumeration = "super::FileType", repeated, tag = "8")]
+        pub file_types_to_transform: ::prost::alloc::vec::Vec<i32>,
+        #[prost(oneof = "deidentify::Output", tags = "9")]
+        pub output: ::core::option::Option<deidentify::Output>,
+    }
+    /// Nested message and enum types in `Deidentify`.
+    pub mod deidentify {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Output {
+            #[prost(string, tag = "9")]
+            CloudStorageOutput(::prost::alloc::string::String),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct JobNotificationEmails {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PublishToStackdriver {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        #[prost(message, tag = "1")]
+        SaveFindings(SaveFindings),
+        #[prost(message, tag = "2")]
+        PubSub(PublishToPubSub),
+        #[prost(message, tag = "3")]
+        PublishSummaryToCscc(PublishSummaryToCscc),
+        #[prost(message, tag = "5")]
+        PublishFindingsToCloudDataCatalog(PublishFindingsToCloudDataCatalog),
+        #[prost(message, tag = "7")]
+        Deidentify(Deidentify),
+        #[prost(message, tag = "8")]
+        JobNotificationEmails(JobNotificationEmails),
+        #[prost(message, tag = "9")]
+        PublishToStackdriver(PublishToStackdriver),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransformationConfig {
-#[prost(string, tag = "1")]
-pub deidentify_template: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub structured_deidentify_template: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub image_redact_template: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub deidentify_template: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub structured_deidentify_template: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub image_redact_template: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInspectTemplateRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub inspect_template: ::core::option::Option<InspectTemplate>,
-#[prost(string, tag = "3")]
-pub template_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_template: ::core::option::Option<InspectTemplate>,
+    #[prost(string, tag = "3")]
+    pub template_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInspectTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub inspect_template: ::core::option::Option<InspectTemplate>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_template: ::core::option::Option<InspectTemplate>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInspectTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInspectTemplatesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInspectTemplatesResponse {
-#[prost(message, repeated, tag = "1")]
-pub inspect_templates: ::prost::alloc::vec::Vec<InspectTemplate>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub inspect_templates: ::prost::alloc::vec::Vec<InspectTemplate>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInspectTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub job_trigger: ::core::option::Option<JobTrigger>,
-#[prost(string, tag = "3")]
-pub trigger_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub job_trigger: ::core::option::Option<JobTrigger>,
+    #[prost(string, tag = "3")]
+    pub trigger_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActivateJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub job_trigger: ::core::option::Option<JobTrigger>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub job_trigger: ::core::option::Option<JobTrigger>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDiscoveryConfigRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub discovery_config: ::core::option::Option<DiscoveryConfig>,
-#[prost(string, tag = "3")]
-pub config_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub discovery_config: ::core::option::Option<DiscoveryConfig>,
+    #[prost(string, tag = "3")]
+    pub config_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDiscoveryConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub discovery_config: ::core::option::Option<DiscoveryConfig>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub discovery_config: ::core::option::Option<DiscoveryConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDiscoveryConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveryConfigsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveryConfigsResponse {
-#[prost(message, repeated, tag = "1")]
-pub discovery_configs: ::prost::alloc::vec::Vec<DiscoveryConfig>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub discovery_configs: ::prost::alloc::vec::Vec<DiscoveryConfig>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDiscoveryConfigRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDlpJobRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub job_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location_id: ::prost::alloc::string::String,
-#[prost(oneof = "create_dlp_job_request::Job", tags = "2, 3")]
-pub job: ::core::option::Option<create_dlp_job_request::Job>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub job_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location_id: ::prost::alloc::string::String,
+    #[prost(oneof = "create_dlp_job_request::Job", tags = "2, 3")]
+    pub job: ::core::option::Option<create_dlp_job_request::Job>,
 }
 /// Nested message and enum types in `CreateDlpJobRequest`.
 pub mod create_dlp_job_request {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Job {
-#[prost(message, tag = "2")]
-InspectJob(super::InspectJobConfig),
-#[prost(message, tag = "3")]
-RiskJob(super::RiskAnalysisJobConfig),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Job {
+        #[prost(message, tag = "2")]
+        InspectJob(super::InspectJobConfig),
+        #[prost(message, tag = "3")]
+        RiskJob(super::RiskAnalysisJobConfig),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobTriggersRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
-#[prost(enumeration = "DlpJobType", tag = "6")]
-pub r#type: i32,
-#[prost(string, tag = "7")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(enumeration = "DlpJobType", tag = "6")]
+    pub r#type: i32,
+    #[prost(string, tag = "7")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobTriggersResponse {
-#[prost(message, repeated, tag = "1")]
-pub job_triggers: ::prost::alloc::vec::Vec<JobTrigger>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub job_triggers: ::prost::alloc::vec::Vec<JobTrigger>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InspectJobConfig {
-#[prost(message, optional, tag = "1")]
-pub storage_config: ::core::option::Option<StorageConfig>,
-#[prost(message, optional, tag = "2")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[prost(string, tag = "3")]
-pub inspect_template_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub actions: ::prost::alloc::vec::Vec<Action>,
+    #[prost(message, optional, tag = "1")]
+    pub storage_config: ::core::option::Option<StorageConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[prost(string, tag = "3")]
+    pub inspect_template_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub actions: ::prost::alloc::vec::Vec<Action>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfileAction {
-#[prost(oneof = "data_profile_action::Action", tags = "1, 2")]
-pub action: ::core::option::Option<data_profile_action::Action>,
+    #[prost(oneof = "data_profile_action::Action", tags = "1, 2")]
+    pub action: ::core::option::Option<data_profile_action::Action>,
 }
 /// Nested message and enum types in `DataProfileAction`.
 pub mod data_profile_action {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Export {
-#[prost(message, optional, tag = "1")]
-pub profile_table: ::core::option::Option<super::BigQueryTable>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PubSubNotification {
-#[prost(string, tag = "1")]
-pub topic: ::prost::alloc::string::String,
-#[prost(enumeration = "EventType", tag = "2")]
-pub event: i32,
-#[prost(message, optional, tag = "3")]
-pub pubsub_condition: ::core::option::Option<super::DataProfilePubSubCondition>,
-#[prost(enumeration = "pub_sub_notification::DetailLevel", tag = "4")]
-pub detail_of_message: i32,
-}
-/// Nested message and enum types in `PubSubNotification`.
-pub mod pub_sub_notification {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DetailLevel {
-Unspecified = 0,
-TableProfile = 1,
-ResourceName = 2,
-FileStoreProfile = 3,
-}
-impl DetailLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DetailLevel::Unspecified => "DETAIL_LEVEL_UNSPECIFIED",
-DetailLevel::TableProfile => "TABLE_PROFILE",
-DetailLevel::ResourceName => "RESOURCE_NAME",
-DetailLevel::FileStoreProfile => "FILE_STORE_PROFILE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DETAIL_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"TABLE_PROFILE" => Some(Self::TableProfile),
-"RESOURCE_NAME" => Some(Self::ResourceName),
-"FILE_STORE_PROFILE" => Some(Self::FileStoreProfile),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EventType {
-Unspecified = 0,
-NewProfile = 1,
-ChangedProfile = 2,
-ScoreIncreased = 3,
-ErrorChanged = 4,
-}
-impl EventType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-EventType::NewProfile => "NEW_PROFILE",
-EventType::ChangedProfile => "CHANGED_PROFILE",
-EventType::ScoreIncreased => "SCORE_INCREASED",
-EventType::ErrorChanged => "ERROR_CHANGED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"NEW_PROFILE" => Some(Self::NewProfile),
-"CHANGED_PROFILE" => Some(Self::ChangedProfile),
-"SCORE_INCREASED" => Some(Self::ScoreIncreased),
-"ERROR_CHANGED" => Some(Self::ErrorChanged),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Action {
-#[prost(message, tag = "1")]
-ExportData(Export),
-#[prost(message, tag = "2")]
-PubSubNotification(PubSubNotification),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Export {
+        #[prost(message, optional, tag = "1")]
+        pub profile_table: ::core::option::Option<super::BigQueryTable>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PubSubNotification {
+        #[prost(string, tag = "1")]
+        pub topic: ::prost::alloc::string::String,
+        #[prost(enumeration = "EventType", tag = "2")]
+        pub event: i32,
+        #[prost(message, optional, tag = "3")]
+        pub pubsub_condition: ::core::option::Option<super::DataProfilePubSubCondition>,
+        #[prost(enumeration = "pub_sub_notification::DetailLevel", tag = "4")]
+        pub detail_of_message: i32,
+    }
+    /// Nested message and enum types in `PubSubNotification`.
+    pub mod pub_sub_notification {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum DetailLevel {
+            Unspecified = 0,
+            TableProfile = 1,
+            ResourceName = 2,
+            FileStoreProfile = 3,
+        }
+        impl DetailLevel {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    DetailLevel::Unspecified => "DETAIL_LEVEL_UNSPECIFIED",
+                    DetailLevel::TableProfile => "TABLE_PROFILE",
+                    DetailLevel::ResourceName => "RESOURCE_NAME",
+                    DetailLevel::FileStoreProfile => "FILE_STORE_PROFILE",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "DETAIL_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+                    "TABLE_PROFILE" => Some(Self::TableProfile),
+                    "RESOURCE_NAME" => Some(Self::ResourceName),
+                    "FILE_STORE_PROFILE" => Some(Self::FileStoreProfile),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum EventType {
+        Unspecified = 0,
+        NewProfile = 1,
+        ChangedProfile = 2,
+        ScoreIncreased = 3,
+        ErrorChanged = 4,
+    }
+    impl EventType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+                EventType::NewProfile => "NEW_PROFILE",
+                EventType::ChangedProfile => "CHANGED_PROFILE",
+                EventType::ScoreIncreased => "SCORE_INCREASED",
+                EventType::ErrorChanged => "ERROR_CHANGED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "NEW_PROFILE" => Some(Self::NewProfile),
+                "CHANGED_PROFILE" => Some(Self::ChangedProfile),
+                "SCORE_INCREASED" => Some(Self::ScoreIncreased),
+                "ERROR_CHANGED" => Some(Self::ErrorChanged),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        #[prost(message, tag = "1")]
+        ExportData(Export),
+        #[prost(message, tag = "2")]
+        PubSubNotification(PubSubNotification),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfileJobConfig {
-#[prost(message, optional, tag = "1")]
-pub location: ::core::option::Option<DataProfileLocation>,
-#[prost(string, tag = "5")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "7")]
-pub inspect_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "6")]
-pub data_profile_actions: ::prost::alloc::vec::Vec<DataProfileAction>,
+    #[prost(message, optional, tag = "1")]
+    pub location: ::core::option::Option<DataProfileLocation>,
+    #[prost(string, tag = "5")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "7")]
+    pub inspect_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "6")]
+    pub data_profile_actions: ::prost::alloc::vec::Vec<DataProfileAction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryRegex {
-#[prost(string, tag = "1")]
-pub project_id_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub dataset_id_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub table_id_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub dataset_id_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub table_id_regex: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryRegexes {
-#[prost(message, repeated, tag = "1")]
-pub patterns: ::prost::alloc::vec::Vec<BigQueryRegex>,
+    #[prost(message, repeated, tag = "1")]
+    pub patterns: ::prost::alloc::vec::Vec<BigQueryRegex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryTableTypes {
-#[prost(enumeration = "BigQueryTableType", repeated, tag = "1")]
-pub types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "BigQueryTableType", repeated, tag = "1")]
+    pub types: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3361,298 +3397,299 @@ pub struct Disabled {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataProfileLocation {
-#[prost(oneof = "data_profile_location::Location", tags = "1, 2")]
-pub location: ::core::option::Option<data_profile_location::Location>,
+    #[prost(oneof = "data_profile_location::Location", tags = "1, 2")]
+    pub location: ::core::option::Option<data_profile_location::Location>,
 }
 /// Nested message and enum types in `DataProfileLocation`.
 pub mod data_profile_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Location {
-#[prost(int64, tag = "1")]
-OrganizationId(i64),
-#[prost(int64, tag = "2")]
-FolderId(i64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Location {
+        #[prost(int64, tag = "1")]
+        OrganizationId(i64),
+        #[prost(int64, tag = "2")]
+        FolderId(i64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryConfig {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "11")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub org_config: ::core::option::Option<discovery_config::OrgConfig>,
-#[prost(string, repeated, tag = "3")]
-pub inspect_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "4")]
-pub actions: ::prost::alloc::vec::Vec<DataProfileAction>,
-#[prost(message, repeated, tag = "5")]
-pub targets: ::prost::alloc::vec::Vec<DiscoveryTarget>,
-#[prost(message, repeated, tag = "6")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(message, optional, tag = "7")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "9")]
-pub last_run_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "discovery_config::Status", tag = "10")]
-pub status: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "11")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub org_config: ::core::option::Option<discovery_config::OrgConfig>,
+    #[prost(string, repeated, tag = "3")]
+    pub inspect_templates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "4")]
+    pub actions: ::prost::alloc::vec::Vec<DataProfileAction>,
+    #[prost(message, repeated, tag = "5")]
+    pub targets: ::prost::alloc::vec::Vec<DiscoveryTarget>,
+    #[prost(message, repeated, tag = "6")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "9")]
+    pub last_run_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "discovery_config::Status", tag = "10")]
+    pub status: i32,
 }
 /// Nested message and enum types in `DiscoveryConfig`.
 pub mod discovery_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OrgConfig {
-#[prost(message, optional, tag = "1")]
-pub location: ::core::option::Option<super::DiscoveryStartingLocation>,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Status {
-Unspecified = 0,
-Running = 1,
-Paused = 2,
-}
-impl Status {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Status::Unspecified => "STATUS_UNSPECIFIED",
-Status::Running => "RUNNING",
-Status::Paused => "PAUSED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNING" => Some(Self::Running),
-"PAUSED" => Some(Self::Paused),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OrgConfig {
+        #[prost(message, optional, tag = "1")]
+        pub location: ::core::option::Option<super::DiscoveryStartingLocation>,
+        #[prost(string, tag = "2")]
+        pub project_id: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Status {
+        Unspecified = 0,
+        Running = 1,
+        Paused = 2,
+    }
+    impl Status {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Status::Unspecified => "STATUS_UNSPECIFIED",
+                Status::Running => "RUNNING",
+                Status::Paused => "PAUSED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "PAUSED" => Some(Self::Paused),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryTarget {
-#[prost(oneof = "discovery_target::Target", tags = "1, 2, 3, 4")]
-pub target: ::core::option::Option<discovery_target::Target>,
+    #[prost(oneof = "discovery_target::Target", tags = "1, 2, 3, 4")]
+    pub target: ::core::option::Option<discovery_target::Target>,
 }
 /// Nested message and enum types in `DiscoveryTarget`.
 pub mod discovery_target {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Target {
-#[prost(message, tag = "1")]
-BigQueryTarget(super::BigQueryDiscoveryTarget),
-#[prost(message, tag = "2")]
-CloudSqlTarget(super::CloudSqlDiscoveryTarget),
-#[prost(message, tag = "3")]
-SecretsTarget(super::SecretsDiscoveryTarget),
-#[prost(message, tag = "4")]
-CloudStorageTarget(super::CloudStorageDiscoveryTarget),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Target {
+        #[prost(message, tag = "1")]
+        BigQueryTarget(super::BigQueryDiscoveryTarget),
+        #[prost(message, tag = "2")]
+        CloudSqlTarget(super::CloudSqlDiscoveryTarget),
+        #[prost(message, tag = "3")]
+        SecretsTarget(super::SecretsDiscoveryTarget),
+        #[prost(message, tag = "4")]
+        CloudStorageTarget(super::CloudStorageDiscoveryTarget),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryDiscoveryTarget {
-#[prost(message, optional, tag = "1")]
-pub filter: ::core::option::Option<DiscoveryBigQueryFilter>,
-#[prost(message, optional, tag = "2")]
-pub conditions: ::core::option::Option<DiscoveryBigQueryConditions>,
-#[prost(oneof = "big_query_discovery_target::Frequency", tags = "3, 4")]
-pub frequency: ::core::option::Option<big_query_discovery_target::Frequency>,
+    #[prost(message, optional, tag = "1")]
+    pub filter: ::core::option::Option<DiscoveryBigQueryFilter>,
+    #[prost(message, optional, tag = "2")]
+    pub conditions: ::core::option::Option<DiscoveryBigQueryConditions>,
+    #[prost(oneof = "big_query_discovery_target::Frequency", tags = "3, 4")]
+    pub frequency: ::core::option::Option<big_query_discovery_target::Frequency>,
 }
 /// Nested message and enum types in `BigQueryDiscoveryTarget`.
 pub mod big_query_discovery_target {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Frequency {
-#[prost(message, tag = "3")]
-Cadence(super::DiscoveryGenerationCadence),
-#[prost(message, tag = "4")]
-Disabled(super::Disabled),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Frequency {
+        #[prost(message, tag = "3")]
+        Cadence(super::DiscoveryGenerationCadence),
+        #[prost(message, tag = "4")]
+        Disabled(super::Disabled),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryBigQueryFilter {
-#[prost(oneof = "discovery_big_query_filter::Filter", tags = "1, 2, 3")]
-pub filter: ::core::option::Option<discovery_big_query_filter::Filter>,
+    #[prost(oneof = "discovery_big_query_filter::Filter", tags = "1, 2, 3")]
+    pub filter: ::core::option::Option<discovery_big_query_filter::Filter>,
 }
 /// Nested message and enum types in `DiscoveryBigQueryFilter`.
 pub mod discovery_big_query_filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AllOtherBigQueryTables {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Filter {
-#[prost(message, tag = "1")]
-Tables(super::BigQueryTableCollection),
-#[prost(message, tag = "2")]
-OtherTables(AllOtherBigQueryTables),
-#[prost(message, tag = "3")]
-TableReference(super::TableReference),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AllOtherBigQueryTables {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Filter {
+        #[prost(message, tag = "1")]
+        Tables(super::BigQueryTableCollection),
+        #[prost(message, tag = "2")]
+        OtherTables(AllOtherBigQueryTables),
+        #[prost(message, tag = "3")]
+        TableReference(super::TableReference),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryTableCollection {
-#[prost(oneof = "big_query_table_collection::Pattern", tags = "1")]
-pub pattern: ::core::option::Option<big_query_table_collection::Pattern>,
+    #[prost(oneof = "big_query_table_collection::Pattern", tags = "1")]
+    pub pattern: ::core::option::Option<big_query_table_collection::Pattern>,
 }
 /// Nested message and enum types in `BigQueryTableCollection`.
 pub mod big_query_table_collection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Pattern {
-#[prost(message, tag = "1")]
-IncludeRegexes(super::BigQueryRegexes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Pattern {
+        #[prost(message, tag = "1")]
+        IncludeRegexes(super::BigQueryRegexes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryBigQueryConditions {
-#[prost(message, optional, tag = "1")]
-pub created_after: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub or_conditions: ::core::option::Option<discovery_big_query_conditions::OrConditions>,
-#[prost(oneof = "discovery_big_query_conditions::IncludedTypes", tags = "2, 3")]
-pub included_types: ::core::option::Option<discovery_big_query_conditions::IncludedTypes>,
+    #[prost(message, optional, tag = "1")]
+    pub created_after: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub or_conditions: ::core::option::Option<discovery_big_query_conditions::OrConditions>,
+    #[prost(oneof = "discovery_big_query_conditions::IncludedTypes", tags = "2, 3")]
+    pub included_types: ::core::option::Option<discovery_big_query_conditions::IncludedTypes>,
 }
 /// Nested message and enum types in `DiscoveryBigQueryConditions`.
 pub mod discovery_big_query_conditions {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct OrConditions {
-#[prost(int32, tag = "1")]
-pub min_row_count: i32,
-#[prost(message, optional, tag = "2")]
-pub min_age: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum IncludedTypes {
-#[prost(message, tag = "2")]
-Types(super::BigQueryTableTypes),
-#[prost(enumeration = "super::BigQueryTableTypeCollection", tag = "3")]
-TypeCollection(i32),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct OrConditions {
+        #[prost(int32, tag = "1")]
+        pub min_row_count: i32,
+        #[prost(message, optional, tag = "2")]
+        pub min_age: ::core::option::Option<::prost_types::Duration>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum IncludedTypes {
+        #[prost(message, tag = "2")]
+        Types(super::BigQueryTableTypes),
+        #[prost(enumeration = "super::BigQueryTableTypeCollection", tag = "3")]
+        TypeCollection(i32),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryGenerationCadence {
-#[prost(message, optional, tag = "1")]
-pub schema_modified_cadence: ::core::option::Option<DiscoverySchemaModifiedCadence>,
-#[prost(message, optional, tag = "2")]
-pub table_modified_cadence: ::core::option::Option<DiscoveryTableModifiedCadence>,
-#[prost(message, optional, tag = "3")]
-pub inspect_template_modified_cadence: ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
+    #[prost(message, optional, tag = "1")]
+    pub schema_modified_cadence: ::core::option::Option<DiscoverySchemaModifiedCadence>,
+    #[prost(message, optional, tag = "2")]
+    pub table_modified_cadence: ::core::option::Option<DiscoveryTableModifiedCadence>,
+    #[prost(message, optional, tag = "3")]
+    pub inspect_template_modified_cadence:
+        ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryTableModifiedCadence {
-#[prost(enumeration = "BigQueryTableModification", repeated, tag = "1")]
-pub types: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
-pub frequency: i32,
+    #[prost(enumeration = "BigQueryTableModification", repeated, tag = "1")]
+    pub types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
+    pub frequency: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoverySchemaModifiedCadence {
-#[prost(enumeration = "BigQuerySchemaModification", repeated, tag = "1")]
-pub types: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
-pub frequency: i32,
+    #[prost(enumeration = "BigQuerySchemaModification", repeated, tag = "1")]
+    pub types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
+    pub frequency: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DiscoveryInspectTemplateModifiedCadence {
-#[prost(enumeration = "DataProfileUpdateFrequency", tag = "1")]
-pub frequency: i32,
+    #[prost(enumeration = "DataProfileUpdateFrequency", tag = "1")]
+    pub frequency: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudSqlDiscoveryTarget {
-#[prost(message, optional, tag = "1")]
-pub filter: ::core::option::Option<DiscoveryCloudSqlFilter>,
-#[prost(message, optional, tag = "2")]
-pub conditions: ::core::option::Option<DiscoveryCloudSqlConditions>,
-#[prost(oneof = "cloud_sql_discovery_target::Cadence", tags = "3, 4")]
-pub cadence: ::core::option::Option<cloud_sql_discovery_target::Cadence>,
+    #[prost(message, optional, tag = "1")]
+    pub filter: ::core::option::Option<DiscoveryCloudSqlFilter>,
+    #[prost(message, optional, tag = "2")]
+    pub conditions: ::core::option::Option<DiscoveryCloudSqlConditions>,
+    #[prost(oneof = "cloud_sql_discovery_target::Cadence", tags = "3, 4")]
+    pub cadence: ::core::option::Option<cloud_sql_discovery_target::Cadence>,
 }
 /// Nested message and enum types in `CloudSqlDiscoveryTarget`.
 pub mod cloud_sql_discovery_target {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Cadence {
-#[prost(message, tag = "3")]
-GenerationCadence(super::DiscoveryCloudSqlGenerationCadence),
-#[prost(message, tag = "4")]
-Disabled(super::Disabled),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Cadence {
+        #[prost(message, tag = "3")]
+        GenerationCadence(super::DiscoveryCloudSqlGenerationCadence),
+        #[prost(message, tag = "4")]
+        Disabled(super::Disabled),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudSqlFilter {
-#[prost(oneof = "discovery_cloud_sql_filter::Filter", tags = "1, 2, 3")]
-pub filter: ::core::option::Option<discovery_cloud_sql_filter::Filter>,
+    #[prost(oneof = "discovery_cloud_sql_filter::Filter", tags = "1, 2, 3")]
+    pub filter: ::core::option::Option<discovery_cloud_sql_filter::Filter>,
 }
 /// Nested message and enum types in `DiscoveryCloudSqlFilter`.
 pub mod discovery_cloud_sql_filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Filter {
-#[prost(message, tag = "1")]
-Collection(super::DatabaseResourceCollection),
-#[prost(message, tag = "2")]
-Others(super::AllOtherDatabaseResources),
-#[prost(message, tag = "3")]
-DatabaseResourceReference(super::DatabaseResourceReference),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Filter {
+        #[prost(message, tag = "1")]
+        Collection(super::DatabaseResourceCollection),
+        #[prost(message, tag = "2")]
+        Others(super::AllOtherDatabaseResources),
+        #[prost(message, tag = "3")]
+        DatabaseResourceReference(super::DatabaseResourceReference),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseResourceCollection {
-#[prost(oneof = "database_resource_collection::Pattern", tags = "1")]
-pub pattern: ::core::option::Option<database_resource_collection::Pattern>,
+    #[prost(oneof = "database_resource_collection::Pattern", tags = "1")]
+    pub pattern: ::core::option::Option<database_resource_collection::Pattern>,
 }
 /// Nested message and enum types in `DatabaseResourceCollection`.
 pub mod database_resource_collection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Pattern {
-#[prost(message, tag = "1")]
-IncludeRegexes(super::DatabaseResourceRegexes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Pattern {
+        #[prost(message, tag = "1")]
+        IncludeRegexes(super::DatabaseResourceRegexes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseResourceRegexes {
-#[prost(message, repeated, tag = "1")]
-pub patterns: ::prost::alloc::vec::Vec<DatabaseResourceRegex>,
+    #[prost(message, repeated, tag = "1")]
+    pub patterns: ::prost::alloc::vec::Vec<DatabaseResourceRegex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseResourceRegex {
-#[prost(string, tag = "1")]
-pub project_id_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub database_resource_name_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub database_resource_name_regex: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3660,137 +3697,159 @@ pub struct AllOtherDatabaseResources {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseResourceReference {
-#[prost(string, tag = "1")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub instance: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub database: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub database_resource: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub database: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub database_resource: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudSqlConditions {
-#[prost(enumeration = "discovery_cloud_sql_conditions::DatabaseEngine", repeated, packed = "false", tag = "1")]
-pub database_engines: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "discovery_cloud_sql_conditions::DatabaseResourceType", repeated, tag = "3")]
-pub types: ::prost::alloc::vec::Vec<i32>,
+    #[prost(
+        enumeration = "discovery_cloud_sql_conditions::DatabaseEngine",
+        repeated,
+        packed = "false",
+        tag = "1"
+    )]
+    pub database_engines: ::prost::alloc::vec::Vec<i32>,
+    #[prost(
+        enumeration = "discovery_cloud_sql_conditions::DatabaseResourceType",
+        repeated,
+        tag = "3"
+    )]
+    pub types: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `DiscoveryCloudSqlConditions`.
 pub mod discovery_cloud_sql_conditions {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DatabaseEngine {
-Unspecified = 0,
-AllSupportedDatabaseEngines = 1,
-Mysql = 2,
-Postgres = 3,
-}
-impl DatabaseEngine {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DatabaseEngine::Unspecified => "DATABASE_ENGINE_UNSPECIFIED",
-DatabaseEngine::AllSupportedDatabaseEngines => "ALL_SUPPORTED_DATABASE_ENGINES",
-DatabaseEngine::Mysql => "MYSQL",
-DatabaseEngine::Postgres => "POSTGRES",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATABASE_ENGINE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALL_SUPPORTED_DATABASE_ENGINES" => Some(Self::AllSupportedDatabaseEngines),
-"MYSQL" => Some(Self::Mysql),
-"POSTGRES" => Some(Self::Postgres),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DatabaseResourceType {
-Unspecified = 0,
-AllSupportedTypes = 1,
-Table = 2,
-}
-impl DatabaseResourceType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DatabaseResourceType::Unspecified => "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
-DatabaseResourceType::AllSupportedTypes => "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES",
-DatabaseResourceType::Table => "DATABASE_RESOURCE_TYPE_TABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATABASE_RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES" => Some(Self::AllSupportedTypes),
-"DATABASE_RESOURCE_TYPE_TABLE" => Some(Self::Table),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DatabaseEngine {
+        Unspecified = 0,
+        AllSupportedDatabaseEngines = 1,
+        Mysql = 2,
+        Postgres = 3,
+    }
+    impl DatabaseEngine {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DatabaseEngine::Unspecified => "DATABASE_ENGINE_UNSPECIFIED",
+                DatabaseEngine::AllSupportedDatabaseEngines => "ALL_SUPPORTED_DATABASE_ENGINES",
+                DatabaseEngine::Mysql => "MYSQL",
+                DatabaseEngine::Postgres => "POSTGRES",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATABASE_ENGINE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALL_SUPPORTED_DATABASE_ENGINES" => Some(Self::AllSupportedDatabaseEngines),
+                "MYSQL" => Some(Self::Mysql),
+                "POSTGRES" => Some(Self::Postgres),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DatabaseResourceType {
+        Unspecified = 0,
+        AllSupportedTypes = 1,
+        Table = 2,
+    }
+    impl DatabaseResourceType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DatabaseResourceType::Unspecified => "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
+                DatabaseResourceType::AllSupportedTypes => {
+                    "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES"
+                }
+                DatabaseResourceType::Table => "DATABASE_RESOURCE_TYPE_TABLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATABASE_RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES" => Some(Self::AllSupportedTypes),
+                "DATABASE_RESOURCE_TYPE_TABLE" => Some(Self::Table),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudSqlGenerationCadence {
-#[prost(message, optional, tag = "1")]
-pub schema_modified_cadence: ::core::option::Option<discovery_cloud_sql_generation_cadence::SchemaModifiedCadence>,
-#[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
-pub refresh_frequency: i32,
+    #[prost(message, optional, tag = "1")]
+    pub schema_modified_cadence:
+        ::core::option::Option<discovery_cloud_sql_generation_cadence::SchemaModifiedCadence>,
+    #[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
+    pub refresh_frequency: i32,
 }
 /// Nested message and enum types in `DiscoveryCloudSqlGenerationCadence`.
 pub mod discovery_cloud_sql_generation_cadence {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SchemaModifiedCadence {
-#[prost(enumeration = "schema_modified_cadence::CloudSqlSchemaModification", repeated, tag = "1")]
-pub types: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "super::DataProfileUpdateFrequency", tag = "2")]
-pub frequency: i32,
-}
-/// Nested message and enum types in `SchemaModifiedCadence`.
-pub mod schema_modified_cadence {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CloudSqlSchemaModification {
-SqlSchemaModificationUnspecified = 0,
-NewColumns = 1,
-RemovedColumns = 2,
-}
-impl CloudSqlSchemaModification {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CloudSqlSchemaModification::SqlSchemaModificationUnspecified => "SQL_SCHEMA_MODIFICATION_UNSPECIFIED",
-CloudSqlSchemaModification::NewColumns => "NEW_COLUMNS",
-CloudSqlSchemaModification::RemovedColumns => "REMOVED_COLUMNS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SQL_SCHEMA_MODIFICATION_UNSPECIFIED" => Some(Self::SqlSchemaModificationUnspecified),
-"NEW_COLUMNS" => Some(Self::NewColumns),
-"REMOVED_COLUMNS" => Some(Self::RemovedColumns),
-_ => None,
-}
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SchemaModifiedCadence {
+        #[prost(
+            enumeration = "schema_modified_cadence::CloudSqlSchemaModification",
+            repeated,
+            tag = "1"
+        )]
+        pub types: ::prost::alloc::vec::Vec<i32>,
+        #[prost(enumeration = "super::DataProfileUpdateFrequency", tag = "2")]
+        pub frequency: i32,
+    }
+    /// Nested message and enum types in `SchemaModifiedCadence`.
+    pub mod schema_modified_cadence {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum CloudSqlSchemaModification {
+            SqlSchemaModificationUnspecified = 0,
+            NewColumns = 1,
+            RemovedColumns = 2,
+        }
+        impl CloudSqlSchemaModification {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    CloudSqlSchemaModification::SqlSchemaModificationUnspecified => {
+                        "SQL_SCHEMA_MODIFICATION_UNSPECIFIED"
+                    }
+                    CloudSqlSchemaModification::NewColumns => "NEW_COLUMNS",
+                    CloudSqlSchemaModification::RemovedColumns => "REMOVED_COLUMNS",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SQL_SCHEMA_MODIFICATION_UNSPECIFIED" => {
+                        Some(Self::SqlSchemaModificationUnspecified)
+                    }
+                    "NEW_COLUMNS" => Some(Self::NewColumns),
+                    "REMOVED_COLUMNS" => Some(Self::RemovedColumns),
+                    _ => None,
+                }
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3798,228 +3857,245 @@ pub struct SecretsDiscoveryTarget {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageDiscoveryTarget {
-#[prost(message, optional, tag = "1")]
-pub filter: ::core::option::Option<DiscoveryCloudStorageFilter>,
-#[prost(message, optional, tag = "4")]
-pub conditions: ::core::option::Option<DiscoveryFileStoreConditions>,
-#[prost(oneof = "cloud_storage_discovery_target::Cadence", tags = "2, 3")]
-pub cadence: ::core::option::Option<cloud_storage_discovery_target::Cadence>,
+    #[prost(message, optional, tag = "1")]
+    pub filter: ::core::option::Option<DiscoveryCloudStorageFilter>,
+    #[prost(message, optional, tag = "4")]
+    pub conditions: ::core::option::Option<DiscoveryFileStoreConditions>,
+    #[prost(oneof = "cloud_storage_discovery_target::Cadence", tags = "2, 3")]
+    pub cadence: ::core::option::Option<cloud_storage_discovery_target::Cadence>,
 }
 /// Nested message and enum types in `CloudStorageDiscoveryTarget`.
 pub mod cloud_storage_discovery_target {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Cadence {
-#[prost(message, tag = "2")]
-GenerationCadence(super::DiscoveryCloudStorageGenerationCadence),
-#[prost(message, tag = "3")]
-Disabled(super::Disabled),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Cadence {
+        #[prost(message, tag = "2")]
+        GenerationCadence(super::DiscoveryCloudStorageGenerationCadence),
+        #[prost(message, tag = "3")]
+        Disabled(super::Disabled),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudStorageFilter {
-#[prost(oneof = "discovery_cloud_storage_filter::Filter", tags = "1, 2, 100")]
-pub filter: ::core::option::Option<discovery_cloud_storage_filter::Filter>,
+    #[prost(oneof = "discovery_cloud_storage_filter::Filter", tags = "1, 2, 100")]
+    pub filter: ::core::option::Option<discovery_cloud_storage_filter::Filter>,
 }
 /// Nested message and enum types in `DiscoveryCloudStorageFilter`.
 pub mod discovery_cloud_storage_filter {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Filter {
-#[prost(message, tag = "1")]
-Collection(super::FileStoreCollection),
-#[prost(message, tag = "2")]
-CloudStorageResourceReference(super::CloudStorageResourceReference),
-#[prost(message, tag = "100")]
-Others(super::AllOtherResources),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Filter {
+        #[prost(message, tag = "1")]
+        Collection(super::FileStoreCollection),
+        #[prost(message, tag = "2")]
+        CloudStorageResourceReference(super::CloudStorageResourceReference),
+        #[prost(message, tag = "100")]
+        Others(super::AllOtherResources),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStoreCollection {
-#[prost(oneof = "file_store_collection::Pattern", tags = "1")]
-pub pattern: ::core::option::Option<file_store_collection::Pattern>,
+    #[prost(oneof = "file_store_collection::Pattern", tags = "1")]
+    pub pattern: ::core::option::Option<file_store_collection::Pattern>,
 }
 /// Nested message and enum types in `FileStoreCollection`.
 pub mod file_store_collection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Pattern {
-#[prost(message, tag = "1")]
-IncludeRegexes(super::FileStoreRegexes),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Pattern {
+        #[prost(message, tag = "1")]
+        IncludeRegexes(super::FileStoreRegexes),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStoreRegexes {
-#[prost(message, repeated, tag = "1")]
-pub patterns: ::prost::alloc::vec::Vec<FileStoreRegex>,
+    #[prost(message, repeated, tag = "1")]
+    pub patterns: ::prost::alloc::vec::Vec<FileStoreRegex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStoreRegex {
-#[prost(oneof = "file_store_regex::ResourceRegex", tags = "1")]
-pub resource_regex: ::core::option::Option<file_store_regex::ResourceRegex>,
+    #[prost(oneof = "file_store_regex::ResourceRegex", tags = "1")]
+    pub resource_regex: ::core::option::Option<file_store_regex::ResourceRegex>,
 }
 /// Nested message and enum types in `FileStoreRegex`.
 pub mod file_store_regex {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum ResourceRegex {
-#[prost(message, tag = "1")]
-CloudStorageRegex(super::CloudStorageRegex),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ResourceRegex {
+        #[prost(message, tag = "1")]
+        CloudStorageRegex(super::CloudStorageRegex),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageRegex {
-#[prost(string, tag = "1")]
-pub project_id_regex: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub bucket_name_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub project_id_regex: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub bucket_name_regex: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudStorageResourceReference {
-#[prost(string, tag = "1")]
-pub bucket_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub bucket_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudStorageGenerationCadence {
-#[prost(enumeration = "DataProfileUpdateFrequency", tag = "1")]
-pub refresh_frequency: i32,
-#[prost(message, optional, tag = "2")]
-pub inspect_template_modified_cadence: ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
+    #[prost(enumeration = "DataProfileUpdateFrequency", tag = "1")]
+    pub refresh_frequency: i32,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_template_modified_cadence:
+        ::core::option::Option<DiscoveryInspectTemplateModifiedCadence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryCloudStorageConditions {
-#[prost(enumeration = "discovery_cloud_storage_conditions::CloudStorageObjectAttribute", repeated, packed = "false", tag = "1")]
-pub included_object_attributes: ::prost::alloc::vec::Vec<i32>,
-#[prost(enumeration = "discovery_cloud_storage_conditions::CloudStorageBucketAttribute", repeated, packed = "false", tag = "2")]
-pub included_bucket_attributes: ::prost::alloc::vec::Vec<i32>,
+    #[prost(
+        enumeration = "discovery_cloud_storage_conditions::CloudStorageObjectAttribute",
+        repeated,
+        packed = "false",
+        tag = "1"
+    )]
+    pub included_object_attributes: ::prost::alloc::vec::Vec<i32>,
+    #[prost(
+        enumeration = "discovery_cloud_storage_conditions::CloudStorageBucketAttribute",
+        repeated,
+        packed = "false",
+        tag = "2"
+    )]
+    pub included_bucket_attributes: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `DiscoveryCloudStorageConditions`.
 pub mod discovery_cloud_storage_conditions {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CloudStorageObjectAttribute {
-Unspecified = 0,
-AllSupportedObjects = 1,
-Standard = 2,
-Nearline = 3,
-Coldline = 4,
-Archive = 5,
-Regional = 6,
-MultiRegional = 7,
-DurableReducedAvailability = 8,
-}
-impl CloudStorageObjectAttribute {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CloudStorageObjectAttribute::Unspecified => "CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED",
-CloudStorageObjectAttribute::AllSupportedObjects => "ALL_SUPPORTED_OBJECTS",
-CloudStorageObjectAttribute::Standard => "STANDARD",
-CloudStorageObjectAttribute::Nearline => "NEARLINE",
-CloudStorageObjectAttribute::Coldline => "COLDLINE",
-CloudStorageObjectAttribute::Archive => "ARCHIVE",
-CloudStorageObjectAttribute::Regional => "REGIONAL",
-CloudStorageObjectAttribute::MultiRegional => "MULTI_REGIONAL",
-CloudStorageObjectAttribute::DurableReducedAvailability => "DURABLE_REDUCED_AVAILABILITY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALL_SUPPORTED_OBJECTS" => Some(Self::AllSupportedObjects),
-"STANDARD" => Some(Self::Standard),
-"NEARLINE" => Some(Self::Nearline),
-"COLDLINE" => Some(Self::Coldline),
-"ARCHIVE" => Some(Self::Archive),
-"REGIONAL" => Some(Self::Regional),
-"MULTI_REGIONAL" => Some(Self::MultiRegional),
-"DURABLE_REDUCED_AVAILABILITY" => Some(Self::DurableReducedAvailability),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CloudStorageBucketAttribute {
-Unspecified = 0,
-AllSupportedBuckets = 1,
-AutoclassDisabled = 2,
-AutoclassEnabled = 3,
-}
-impl CloudStorageBucketAttribute {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CloudStorageBucketAttribute::Unspecified => "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED",
-CloudStorageBucketAttribute::AllSupportedBuckets => "ALL_SUPPORTED_BUCKETS",
-CloudStorageBucketAttribute::AutoclassDisabled => "AUTOCLASS_DISABLED",
-CloudStorageBucketAttribute::AutoclassEnabled => "AUTOCLASS_ENABLED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
-"ALL_SUPPORTED_BUCKETS" => Some(Self::AllSupportedBuckets),
-"AUTOCLASS_DISABLED" => Some(Self::AutoclassDisabled),
-"AUTOCLASS_ENABLED" => Some(Self::AutoclassEnabled),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum CloudStorageObjectAttribute {
+        Unspecified = 0,
+        AllSupportedObjects = 1,
+        Standard = 2,
+        Nearline = 3,
+        Coldline = 4,
+        Archive = 5,
+        Regional = 6,
+        MultiRegional = 7,
+        DurableReducedAvailability = 8,
+    }
+    impl CloudStorageObjectAttribute {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CloudStorageObjectAttribute::Unspecified => {
+                    "CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED"
+                }
+                CloudStorageObjectAttribute::AllSupportedObjects => "ALL_SUPPORTED_OBJECTS",
+                CloudStorageObjectAttribute::Standard => "STANDARD",
+                CloudStorageObjectAttribute::Nearline => "NEARLINE",
+                CloudStorageObjectAttribute::Coldline => "COLDLINE",
+                CloudStorageObjectAttribute::Archive => "ARCHIVE",
+                CloudStorageObjectAttribute::Regional => "REGIONAL",
+                CloudStorageObjectAttribute::MultiRegional => "MULTI_REGIONAL",
+                CloudStorageObjectAttribute::DurableReducedAvailability => {
+                    "DURABLE_REDUCED_AVAILABILITY"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALL_SUPPORTED_OBJECTS" => Some(Self::AllSupportedObjects),
+                "STANDARD" => Some(Self::Standard),
+                "NEARLINE" => Some(Self::Nearline),
+                "COLDLINE" => Some(Self::Coldline),
+                "ARCHIVE" => Some(Self::Archive),
+                "REGIONAL" => Some(Self::Regional),
+                "MULTI_REGIONAL" => Some(Self::MultiRegional),
+                "DURABLE_REDUCED_AVAILABILITY" => Some(Self::DurableReducedAvailability),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum CloudStorageBucketAttribute {
+        Unspecified = 0,
+        AllSupportedBuckets = 1,
+        AutoclassDisabled = 2,
+        AutoclassEnabled = 3,
+    }
+    impl CloudStorageBucketAttribute {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CloudStorageBucketAttribute::Unspecified => {
+                    "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED"
+                }
+                CloudStorageBucketAttribute::AllSupportedBuckets => "ALL_SUPPORTED_BUCKETS",
+                CloudStorageBucketAttribute::AutoclassDisabled => "AUTOCLASS_DISABLED",
+                CloudStorageBucketAttribute::AutoclassEnabled => "AUTOCLASS_ENABLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALL_SUPPORTED_BUCKETS" => Some(Self::AllSupportedBuckets),
+                "AUTOCLASS_DISABLED" => Some(Self::AutoclassDisabled),
+                "AUTOCLASS_ENABLED" => Some(Self::AutoclassEnabled),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryFileStoreConditions {
-#[prost(message, optional, tag = "1")]
-pub created_after: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "2")]
-pub min_age: ::core::option::Option<::prost_types::Duration>,
-#[prost(oneof = "discovery_file_store_conditions::Conditions", tags = "3")]
-pub conditions: ::core::option::Option<discovery_file_store_conditions::Conditions>,
+    #[prost(message, optional, tag = "1")]
+    pub created_after: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub min_age: ::core::option::Option<::prost_types::Duration>,
+    #[prost(oneof = "discovery_file_store_conditions::Conditions", tags = "3")]
+    pub conditions: ::core::option::Option<discovery_file_store_conditions::Conditions>,
 }
 /// Nested message and enum types in `DiscoveryFileStoreConditions`.
 pub mod discovery_file_store_conditions {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Conditions {
-#[prost(message, tag = "3")]
-CloudStorageConditions(super::DiscoveryCloudStorageConditions),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Conditions {
+        #[prost(message, tag = "3")]
+        CloudStorageConditions(super::DiscoveryCloudStorageConditions),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DiscoveryStartingLocation {
-#[prost(oneof = "discovery_starting_location::Location", tags = "1, 2")]
-pub location: ::core::option::Option<discovery_starting_location::Location>,
+    #[prost(oneof = "discovery_starting_location::Location", tags = "1, 2")]
+    pub location: ::core::option::Option<discovery_starting_location::Location>,
 }
 /// Nested message and enum types in `DiscoveryStartingLocation`.
 pub mod discovery_starting_location {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Location {
-#[prost(int64, tag = "1")]
-OrganizationId(i64),
-#[prost(int64, tag = "2")]
-FolderId(i64),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Location {
+        #[prost(int64, tag = "1")]
+        OrganizationId(i64),
+        #[prost(int64, tag = "2")]
+        FolderId(i64),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4027,367 +4103,370 @@ pub struct AllOtherResources {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DlpJob {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "DlpJobType", tag = "2")]
-pub r#type: i32,
-#[prost(enumeration = "dlp_job::JobState", tag = "3")]
-pub state: i32,
-#[prost(message, optional, tag = "6")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "7")]
-pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "8")]
-pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "15")]
-pub last_modified: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "10")]
-pub job_trigger_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "11")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(message, repeated, tag = "12")]
-pub action_details: ::prost::alloc::vec::Vec<ActionDetails>,
-#[prost(oneof = "dlp_job::Details", tags = "4, 5")]
-pub details: ::core::option::Option<dlp_job::Details>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "DlpJobType", tag = "2")]
+    pub r#type: i32,
+    #[prost(enumeration = "dlp_job::JobState", tag = "3")]
+    pub state: i32,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "7")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "15")]
+    pub last_modified: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "10")]
+    pub job_trigger_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "11")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(message, repeated, tag = "12")]
+    pub action_details: ::prost::alloc::vec::Vec<ActionDetails>,
+    #[prost(oneof = "dlp_job::Details", tags = "4, 5")]
+    pub details: ::core::option::Option<dlp_job::Details>,
 }
 /// Nested message and enum types in `DlpJob`.
 pub mod dlp_job {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum JobState {
-Unspecified = 0,
-Pending = 1,
-Running = 2,
-Done = 3,
-Canceled = 4,
-Failed = 5,
-Active = 6,
-}
-impl JobState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-JobState::Unspecified => "JOB_STATE_UNSPECIFIED",
-JobState::Pending => "PENDING",
-JobState::Running => "RUNNING",
-JobState::Done => "DONE",
-JobState::Canceled => "CANCELED",
-JobState::Failed => "FAILED",
-JobState::Active => "ACTIVE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"JOB_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-"CANCELED" => Some(Self::Canceled),
-"FAILED" => Some(Self::Failed),
-"ACTIVE" => Some(Self::Active),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Details {
-#[prost(message, tag = "4")]
-RiskDetails(super::AnalyzeDataSourceRiskDetails),
-#[prost(message, tag = "5")]
-InspectDetails(super::InspectDataSourceDetails),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum JobState {
+        Unspecified = 0,
+        Pending = 1,
+        Running = 2,
+        Done = 3,
+        Canceled = 4,
+        Failed = 5,
+        Active = 6,
+    }
+    impl JobState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                JobState::Unspecified => "JOB_STATE_UNSPECIFIED",
+                JobState::Pending => "PENDING",
+                JobState::Running => "RUNNING",
+                JobState::Done => "DONE",
+                JobState::Canceled => "CANCELED",
+                JobState::Failed => "FAILED",
+                JobState::Active => "ACTIVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "JOB_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                "CANCELED" => Some(Self::Canceled),
+                "FAILED" => Some(Self::Failed),
+                "ACTIVE" => Some(Self::Active),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        #[prost(message, tag = "4")]
+        RiskDetails(super::AnalyzeDataSourceRiskDetails),
+        #[prost(message, tag = "5")]
+        InspectDetails(super::InspectDataSourceDetails),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDlpJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDlpJobsRequest {
-#[prost(string, tag = "4")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "1")]
-pub filter: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(enumeration = "DlpJobType", tag = "5")]
-pub r#type: i32,
-#[prost(string, tag = "6")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(enumeration = "DlpJobType", tag = "5")]
+    pub r#type: i32,
+    #[prost(string, tag = "6")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDlpJobsResponse {
-#[prost(message, repeated, tag = "1")]
-pub jobs: ::prost::alloc::vec::Vec<DlpJob>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub jobs: ::prost::alloc::vec::Vec<DlpJob>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelDlpJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FinishDlpJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDlpJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDeidentifyTemplateRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub deidentify_template: ::core::option::Option<DeidentifyTemplate>,
-#[prost(string, tag = "3")]
-pub template_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub deidentify_template: ::core::option::Option<DeidentifyTemplate>,
+    #[prost(string, tag = "3")]
+    pub template_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDeidentifyTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub deidentify_template: ::core::option::Option<DeidentifyTemplate>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub deidentify_template: ::core::option::Option<DeidentifyTemplate>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDeidentifyTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeidentifyTemplatesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDeidentifyTemplatesResponse {
-#[prost(message, repeated, tag = "1")]
-pub deidentify_templates: ::prost::alloc::vec::Vec<DeidentifyTemplate>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub deidentify_templates: ::prost::alloc::vec::Vec<DeidentifyTemplate>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDeidentifyTemplateRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LargeCustomDictionaryConfig {
-#[prost(message, optional, tag = "1")]
-pub output_path: ::core::option::Option<CloudStoragePath>,
-#[prost(oneof = "large_custom_dictionary_config::Source", tags = "2, 3")]
-pub source: ::core::option::Option<large_custom_dictionary_config::Source>,
+    #[prost(message, optional, tag = "1")]
+    pub output_path: ::core::option::Option<CloudStoragePath>,
+    #[prost(oneof = "large_custom_dictionary_config::Source", tags = "2, 3")]
+    pub source: ::core::option::Option<large_custom_dictionary_config::Source>,
 }
 /// Nested message and enum types in `LargeCustomDictionaryConfig`.
 pub mod large_custom_dictionary_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Source {
-#[prost(message, tag = "2")]
-CloudStorageFileSet(super::CloudStorageFileSet),
-#[prost(message, tag = "3")]
-BigQueryField(super::BigQueryField),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        #[prost(message, tag = "2")]
+        CloudStorageFileSet(super::CloudStorageFileSet),
+        #[prost(message, tag = "3")]
+        BigQueryField(super::BigQueryField),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LargeCustomDictionaryStats {
-#[prost(int64, tag = "1")]
-pub approx_num_phrases: i64,
+    #[prost(int64, tag = "1")]
+    pub approx_num_phrases: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StoredInfoTypeConfig {
-#[prost(string, tag = "1")]
-pub display_name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(oneof = "stored_info_type_config::Type", tags = "3, 4, 5")]
-pub r#type: ::core::option::Option<stored_info_type_config::Type>,
+    #[prost(string, tag = "1")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(oneof = "stored_info_type_config::Type", tags = "3, 4, 5")]
+    pub r#type: ::core::option::Option<stored_info_type_config::Type>,
 }
 /// Nested message and enum types in `StoredInfoTypeConfig`.
 pub mod stored_info_type_config {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "3")]
-LargeCustomDictionary(super::LargeCustomDictionaryConfig),
-#[prost(message, tag = "4")]
-Dictionary(super::custom_info_type::Dictionary),
-#[prost(message, tag = "5")]
-Regex(super::custom_info_type::Regex),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "3")]
+        LargeCustomDictionary(super::LargeCustomDictionaryConfig),
+        #[prost(message, tag = "4")]
+        Dictionary(super::custom_info_type::Dictionary),
+        #[prost(message, tag = "5")]
+        Regex(super::custom_info_type::Regex),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StoredInfoTypeStats {
-#[prost(oneof = "stored_info_type_stats::Type", tags = "1")]
-pub r#type: ::core::option::Option<stored_info_type_stats::Type>,
+    #[prost(oneof = "stored_info_type_stats::Type", tags = "1")]
+    pub r#type: ::core::option::Option<stored_info_type_stats::Type>,
 }
 /// Nested message and enum types in `StoredInfoTypeStats`.
 pub mod stored_info_type_stats {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Type {
-#[prost(message, tag = "1")]
-LargeCustomDictionary(super::LargeCustomDictionaryStats),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "1")]
+        LargeCustomDictionary(super::LargeCustomDictionaryStats),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StoredInfoTypeVersion {
-#[prost(message, optional, tag = "1")]
-pub config: ::core::option::Option<StoredInfoTypeConfig>,
-#[prost(message, optional, tag = "2")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "StoredInfoTypeState", tag = "3")]
-pub state: i32,
-#[prost(message, repeated, tag = "4")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(message, optional, tag = "5")]
-pub stats: ::core::option::Option<StoredInfoTypeStats>,
+    #[prost(message, optional, tag = "1")]
+    pub config: ::core::option::Option<StoredInfoTypeConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "StoredInfoTypeState", tag = "3")]
+    pub state: i32,
+    #[prost(message, repeated, tag = "4")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(message, optional, tag = "5")]
+    pub stats: ::core::option::Option<StoredInfoTypeStats>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StoredInfoType {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub current_version: ::core::option::Option<StoredInfoTypeVersion>,
-#[prost(message, repeated, tag = "3")]
-pub pending_versions: ::prost::alloc::vec::Vec<StoredInfoTypeVersion>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub current_version: ::core::option::Option<StoredInfoTypeVersion>,
+    #[prost(message, repeated, tag = "3")]
+    pub pending_versions: ::prost::alloc::vec::Vec<StoredInfoTypeVersion>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateStoredInfoTypeRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub config: ::core::option::Option<StoredInfoTypeConfig>,
-#[prost(string, tag = "3")]
-pub stored_info_type_id: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub config: ::core::option::Option<StoredInfoTypeConfig>,
+    #[prost(string, tag = "3")]
+    pub stored_info_type_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateStoredInfoTypeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub config: ::core::option::Option<StoredInfoTypeConfig>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub config: ::core::option::Option<StoredInfoTypeConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetStoredInfoTypeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStoredInfoTypesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub location_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStoredInfoTypesResponse {
-#[prost(message, repeated, tag = "1")]
-pub stored_info_types: ::prost::alloc::vec::Vec<StoredInfoType>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub stored_info_types: ::prost::alloc::vec::Vec<StoredInfoType>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteStoredInfoTypeRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridInspectJobTriggerRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub hybrid_item: ::core::option::Option<HybridContentItem>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub hybrid_item: ::core::option::Option<HybridContentItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridInspectDlpJobRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub hybrid_item: ::core::option::Option<HybridContentItem>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub hybrid_item: ::core::option::Option<HybridContentItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridContentItem {
-#[prost(message, optional, tag = "1")]
-pub item: ::core::option::Option<ContentItem>,
-#[prost(message, optional, tag = "2")]
-pub finding_details: ::core::option::Option<HybridFindingDetails>,
+    #[prost(message, optional, tag = "1")]
+    pub item: ::core::option::Option<ContentItem>,
+    #[prost(message, optional, tag = "2")]
+    pub finding_details: ::core::option::Option<HybridFindingDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HybridFindingDetails {
-#[prost(message, optional, tag = "1")]
-pub container_details: ::core::option::Option<Container>,
-#[prost(int64, tag = "2")]
-pub file_offset: i64,
-#[prost(int64, tag = "3")]
-pub row_offset: i64,
-#[prost(message, optional, tag = "4")]
-pub table_options: ::core::option::Option<TableOptions>,
-#[prost(btree_map = "string, string", tag = "5")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "1")]
+    pub container_details: ::core::option::Option<Container>,
+    #[prost(int64, tag = "2")]
+    pub file_offset: i64,
+    #[prost(int64, tag = "3")]
+    pub row_offset: i64,
+    #[prost(message, optional, tag = "4")]
+    pub table_options: ::core::option::Option<TableOptions>,
+    #[prost(btree_map = "string, string", tag = "5")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -4395,811 +4474,822 @@ pub struct HybridInspectResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProjectDataProfilesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProjectDataProfilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub project_data_profiles: ::prost::alloc::vec::Vec<ProjectDataProfile>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub project_data_profiles: ::prost::alloc::vec::Vec<ProjectDataProfile>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTableDataProfilesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTableDataProfilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub table_data_profiles: ::prost::alloc::vec::Vec<TableDataProfile>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub table_data_profiles: ::prost::alloc::vec::Vec<TableDataProfile>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListColumnDataProfilesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListColumnDataProfilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub column_data_profiles: ::prost::alloc::vec::Vec<ColumnDataProfile>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub column_data_profiles: ::prost::alloc::vec::Vec<ColumnDataProfile>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataRiskLevel {
-#[prost(enumeration = "data_risk_level::DataRiskLevelScore", tag = "1")]
-pub score: i32,
+    #[prost(enumeration = "data_risk_level::DataRiskLevelScore", tag = "1")]
+    pub score: i32,
 }
 /// Nested message and enum types in `DataRiskLevel`.
 pub mod data_risk_level {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DataRiskLevelScore {
-RiskScoreUnspecified = 0,
-RiskLow = 10,
-RiskUnknown = 12,
-RiskModerate = 20,
-RiskHigh = 30,
-}
-impl DataRiskLevelScore {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataRiskLevelScore::RiskScoreUnspecified => "RISK_SCORE_UNSPECIFIED",
-DataRiskLevelScore::RiskLow => "RISK_LOW",
-DataRiskLevelScore::RiskUnknown => "RISK_UNKNOWN",
-DataRiskLevelScore::RiskModerate => "RISK_MODERATE",
-DataRiskLevelScore::RiskHigh => "RISK_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RISK_SCORE_UNSPECIFIED" => Some(Self::RiskScoreUnspecified),
-"RISK_LOW" => Some(Self::RiskLow),
-"RISK_UNKNOWN" => Some(Self::RiskUnknown),
-"RISK_MODERATE" => Some(Self::RiskModerate),
-"RISK_HIGH" => Some(Self::RiskHigh),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DataRiskLevelScore {
+        RiskScoreUnspecified = 0,
+        RiskLow = 10,
+        RiskUnknown = 12,
+        RiskModerate = 20,
+        RiskHigh = 30,
+    }
+    impl DataRiskLevelScore {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DataRiskLevelScore::RiskScoreUnspecified => "RISK_SCORE_UNSPECIFIED",
+                DataRiskLevelScore::RiskLow => "RISK_LOW",
+                DataRiskLevelScore::RiskUnknown => "RISK_UNKNOWN",
+                DataRiskLevelScore::RiskModerate => "RISK_MODERATE",
+                DataRiskLevelScore::RiskHigh => "RISK_HIGH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RISK_SCORE_UNSPECIFIED" => Some(Self::RiskScoreUnspecified),
+                "RISK_LOW" => Some(Self::RiskLow),
+                "RISK_UNKNOWN" => Some(Self::RiskUnknown),
+                "RISK_MODERATE" => Some(Self::RiskModerate),
+                "RISK_HIGH" => Some(Self::RiskHigh),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProjectDataProfile {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "3")]
-pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "4")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(message, optional, tag = "5")]
-pub data_risk_level: ::core::option::Option<DataRiskLevel>,
-#[prost(message, optional, tag = "7")]
-pub profile_status: ::core::option::Option<ProfileStatus>,
-#[prost(int64, tag = "9")]
-pub table_data_profile_count: i64,
-#[prost(int64, tag = "10")]
-pub file_store_data_profile_count: i64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(message, optional, tag = "5")]
+    pub data_risk_level: ::core::option::Option<DataRiskLevel>,
+    #[prost(message, optional, tag = "7")]
+    pub profile_status: ::core::option::Option<ProfileStatus>,
+    #[prost(int64, tag = "9")]
+    pub table_data_profile_count: i64,
+    #[prost(int64, tag = "10")]
+    pub file_store_data_profile_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfileConfigSnapshot {
-#[prost(message, optional, tag = "2")]
-pub inspect_config: ::core::option::Option<InspectConfig>,
-#[deprecated]
-#[prost(message, optional, tag = "3")]
-pub data_profile_job: ::core::option::Option<DataProfileJobConfig>,
-#[prost(message, optional, tag = "4")]
-pub discovery_config: ::core::option::Option<DiscoveryConfig>,
-#[prost(string, tag = "5")]
-pub inspect_template_name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "6")]
-pub inspect_template_modified_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "2")]
+    pub inspect_config: ::core::option::Option<InspectConfig>,
+    #[deprecated]
+    #[prost(message, optional, tag = "3")]
+    pub data_profile_job: ::core::option::Option<DataProfileJobConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub discovery_config: ::core::option::Option<DiscoveryConfig>,
+    #[prost(string, tag = "5")]
+    pub inspect_template_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "6")]
+    pub inspect_template_modified_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableDataProfile {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "36")]
-pub data_source_type: ::core::option::Option<DataSourceType>,
-#[prost(string, tag = "2")]
-pub project_data_profile: ::prost::alloc::string::String,
-#[prost(string, tag = "24")]
-pub dataset_project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "29")]
-pub dataset_location: ::prost::alloc::string::String,
-#[prost(string, tag = "25")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "26")]
-pub table_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub full_resource: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "21")]
-pub profile_status: ::core::option::Option<ProfileStatus>,
-#[prost(enumeration = "table_data_profile::State", tag = "22")]
-pub state: i32,
-#[prost(message, optional, tag = "5")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(message, optional, tag = "6")]
-pub data_risk_level: ::core::option::Option<DataRiskLevel>,
-#[prost(message, repeated, tag = "27")]
-pub predicted_info_types: ::prost::alloc::vec::Vec<InfoTypeSummary>,
-#[prost(message, repeated, tag = "28")]
-pub other_info_types: ::prost::alloc::vec::Vec<OtherInfoTypeSummary>,
-#[prost(message, optional, tag = "7")]
-pub config_snapshot: ::core::option::Option<DataProfileConfigSnapshot>,
-#[prost(message, optional, tag = "8")]
-pub last_modified_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "9")]
-pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int64, tag = "10")]
-pub scanned_column_count: i64,
-#[prost(int64, tag = "11")]
-pub failed_column_count: i64,
-#[prost(int64, tag = "12")]
-pub table_size_bytes: i64,
-#[prost(int64, tag = "13")]
-pub row_count: i64,
-#[prost(enumeration = "EncryptionStatus", tag = "14")]
-pub encryption_status: i32,
-#[prost(enumeration = "ResourceVisibility", tag = "15")]
-pub resource_visibility: i32,
-#[prost(message, optional, tag = "16")]
-pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(btree_map = "string, string", tag = "17")]
-pub resource_labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, optional, tag = "23")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "36")]
+    pub data_source_type: ::core::option::Option<DataSourceType>,
+    #[prost(string, tag = "2")]
+    pub project_data_profile: ::prost::alloc::string::String,
+    #[prost(string, tag = "24")]
+    pub dataset_project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "29")]
+    pub dataset_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "25")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "26")]
+    pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub full_resource: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "21")]
+    pub profile_status: ::core::option::Option<ProfileStatus>,
+    #[prost(enumeration = "table_data_profile::State", tag = "22")]
+    pub state: i32,
+    #[prost(message, optional, tag = "5")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(message, optional, tag = "6")]
+    pub data_risk_level: ::core::option::Option<DataRiskLevel>,
+    #[prost(message, repeated, tag = "27")]
+    pub predicted_info_types: ::prost::alloc::vec::Vec<InfoTypeSummary>,
+    #[prost(message, repeated, tag = "28")]
+    pub other_info_types: ::prost::alloc::vec::Vec<OtherInfoTypeSummary>,
+    #[prost(message, optional, tag = "7")]
+    pub config_snapshot: ::core::option::Option<DataProfileConfigSnapshot>,
+    #[prost(message, optional, tag = "8")]
+    pub last_modified_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "9")]
+    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "10")]
+    pub scanned_column_count: i64,
+    #[prost(int64, tag = "11")]
+    pub failed_column_count: i64,
+    #[prost(int64, tag = "12")]
+    pub table_size_bytes: i64,
+    #[prost(int64, tag = "13")]
+    pub row_count: i64,
+    #[prost(enumeration = "EncryptionStatus", tag = "14")]
+    pub encryption_status: i32,
+    #[prost(enumeration = "ResourceVisibility", tag = "15")]
+    pub resource_visibility: i32,
+    #[prost(message, optional, tag = "16")]
+    pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(btree_map = "string, string", tag = "17")]
+    pub resource_labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "23")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `TableDataProfile`.
 pub mod table_data_profile {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Running = 1,
-Done = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Running => "RUNNING",
-State::Done => "DONE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Running = 1,
+        Done = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Running => "RUNNING",
+                State::Done => "DONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProfileStatus {
-#[prost(message, optional, tag = "1")]
-pub status: ::core::option::Option<super::super::super::rpc::Status>,
-#[prost(message, optional, tag = "3")]
-pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "1")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    #[prost(message, optional, tag = "3")]
+    pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InfoTypeSummary {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
-#[deprecated]
-#[prost(int32, tag = "2")]
-pub estimated_prevalence: i32,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[deprecated]
+    #[prost(int32, tag = "2")]
+    pub estimated_prevalence: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OtherInfoTypeSummary {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
-#[prost(int32, tag = "2")]
-pub estimated_prevalence: i32,
-#[prost(bool, tag = "3")]
-pub excluded_from_analysis: bool,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
+    #[prost(int32, tag = "2")]
+    pub estimated_prevalence: i32,
+    #[prost(bool, tag = "3")]
+    pub excluded_from_analysis: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnDataProfile {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "17")]
-pub profile_status: ::core::option::Option<ProfileStatus>,
-#[prost(enumeration = "column_data_profile::State", tag = "18")]
-pub state: i32,
-#[prost(message, optional, tag = "3")]
-pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "4")]
-pub table_data_profile: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub table_full_resource: ::prost::alloc::string::String,
-#[prost(string, tag = "19")]
-pub dataset_project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "20")]
-pub dataset_location: ::prost::alloc::string::String,
-#[prost(string, tag = "21")]
-pub dataset_id: ::prost::alloc::string::String,
-#[prost(string, tag = "22")]
-pub table_id: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub column: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(message, optional, tag = "8")]
-pub data_risk_level: ::core::option::Option<DataRiskLevel>,
-#[prost(message, optional, tag = "9")]
-pub column_info_type: ::core::option::Option<InfoTypeSummary>,
-#[prost(message, repeated, tag = "10")]
-pub other_matches: ::prost::alloc::vec::Vec<OtherInfoTypeSummary>,
-#[prost(enumeration = "NullPercentageLevel", tag = "23")]
-pub estimated_null_percentage: i32,
-#[prost(enumeration = "UniquenessScoreLevel", tag = "24")]
-pub estimated_uniqueness_score: i32,
-#[prost(double, tag = "13")]
-pub free_text_score: f64,
-#[prost(enumeration = "column_data_profile::ColumnDataType", tag = "14")]
-pub column_type: i32,
-#[prost(enumeration = "column_data_profile::ColumnPolicyState", tag = "15")]
-pub policy_state: i32,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "17")]
+    pub profile_status: ::core::option::Option<ProfileStatus>,
+    #[prost(enumeration = "column_data_profile::State", tag = "18")]
+    pub state: i32,
+    #[prost(message, optional, tag = "3")]
+    pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "4")]
+    pub table_data_profile: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub table_full_resource: ::prost::alloc::string::String,
+    #[prost(string, tag = "19")]
+    pub dataset_project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "20")]
+    pub dataset_location: ::prost::alloc::string::String,
+    #[prost(string, tag = "21")]
+    pub dataset_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "22")]
+    pub table_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub column: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(message, optional, tag = "8")]
+    pub data_risk_level: ::core::option::Option<DataRiskLevel>,
+    #[prost(message, optional, tag = "9")]
+    pub column_info_type: ::core::option::Option<InfoTypeSummary>,
+    #[prost(message, repeated, tag = "10")]
+    pub other_matches: ::prost::alloc::vec::Vec<OtherInfoTypeSummary>,
+    #[prost(enumeration = "NullPercentageLevel", tag = "23")]
+    pub estimated_null_percentage: i32,
+    #[prost(enumeration = "UniquenessScoreLevel", tag = "24")]
+    pub estimated_uniqueness_score: i32,
+    #[prost(double, tag = "13")]
+    pub free_text_score: f64,
+    #[prost(enumeration = "column_data_profile::ColumnDataType", tag = "14")]
+    pub column_type: i32,
+    #[prost(enumeration = "column_data_profile::ColumnPolicyState", tag = "15")]
+    pub policy_state: i32,
 }
 /// Nested message and enum types in `ColumnDataProfile`.
 pub mod column_data_profile {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Running = 1,
-Done = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Running => "RUNNING",
-State::Done => "DONE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ColumnDataType {
-Unspecified = 0,
-TypeInt64 = 1,
-TypeBool = 2,
-TypeFloat64 = 3,
-TypeString = 4,
-TypeBytes = 5,
-TypeTimestamp = 6,
-TypeDate = 7,
-TypeTime = 8,
-TypeDatetime = 9,
-TypeGeography = 10,
-TypeNumeric = 11,
-TypeRecord = 12,
-TypeBignumeric = 13,
-TypeJson = 14,
-TypeInterval = 15,
-TypeRangeDate = 16,
-TypeRangeDatetime = 17,
-TypeRangeTimestamp = 18,
-}
-impl ColumnDataType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ColumnDataType::Unspecified => "COLUMN_DATA_TYPE_UNSPECIFIED",
-ColumnDataType::TypeInt64 => "TYPE_INT64",
-ColumnDataType::TypeBool => "TYPE_BOOL",
-ColumnDataType::TypeFloat64 => "TYPE_FLOAT64",
-ColumnDataType::TypeString => "TYPE_STRING",
-ColumnDataType::TypeBytes => "TYPE_BYTES",
-ColumnDataType::TypeTimestamp => "TYPE_TIMESTAMP",
-ColumnDataType::TypeDate => "TYPE_DATE",
-ColumnDataType::TypeTime => "TYPE_TIME",
-ColumnDataType::TypeDatetime => "TYPE_DATETIME",
-ColumnDataType::TypeGeography => "TYPE_GEOGRAPHY",
-ColumnDataType::TypeNumeric => "TYPE_NUMERIC",
-ColumnDataType::TypeRecord => "TYPE_RECORD",
-ColumnDataType::TypeBignumeric => "TYPE_BIGNUMERIC",
-ColumnDataType::TypeJson => "TYPE_JSON",
-ColumnDataType::TypeInterval => "TYPE_INTERVAL",
-ColumnDataType::TypeRangeDate => "TYPE_RANGE_DATE",
-ColumnDataType::TypeRangeDatetime => "TYPE_RANGE_DATETIME",
-ColumnDataType::TypeRangeTimestamp => "TYPE_RANGE_TIMESTAMP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COLUMN_DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"TYPE_INT64" => Some(Self::TypeInt64),
-"TYPE_BOOL" => Some(Self::TypeBool),
-"TYPE_FLOAT64" => Some(Self::TypeFloat64),
-"TYPE_STRING" => Some(Self::TypeString),
-"TYPE_BYTES" => Some(Self::TypeBytes),
-"TYPE_TIMESTAMP" => Some(Self::TypeTimestamp),
-"TYPE_DATE" => Some(Self::TypeDate),
-"TYPE_TIME" => Some(Self::TypeTime),
-"TYPE_DATETIME" => Some(Self::TypeDatetime),
-"TYPE_GEOGRAPHY" => Some(Self::TypeGeography),
-"TYPE_NUMERIC" => Some(Self::TypeNumeric),
-"TYPE_RECORD" => Some(Self::TypeRecord),
-"TYPE_BIGNUMERIC" => Some(Self::TypeBignumeric),
-"TYPE_JSON" => Some(Self::TypeJson),
-"TYPE_INTERVAL" => Some(Self::TypeInterval),
-"TYPE_RANGE_DATE" => Some(Self::TypeRangeDate),
-"TYPE_RANGE_DATETIME" => Some(Self::TypeRangeDatetime),
-"TYPE_RANGE_TIMESTAMP" => Some(Self::TypeRangeTimestamp),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ColumnPolicyState {
-Unspecified = 0,
-ColumnPolicyTagged = 1,
-}
-impl ColumnPolicyState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ColumnPolicyState::Unspecified => "COLUMN_POLICY_STATE_UNSPECIFIED",
-ColumnPolicyState::ColumnPolicyTagged => "COLUMN_POLICY_TAGGED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"COLUMN_POLICY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"COLUMN_POLICY_TAGGED" => Some(Self::ColumnPolicyTagged),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Running = 1,
+        Done = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Running => "RUNNING",
+                State::Done => "DONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ColumnDataType {
+        Unspecified = 0,
+        TypeInt64 = 1,
+        TypeBool = 2,
+        TypeFloat64 = 3,
+        TypeString = 4,
+        TypeBytes = 5,
+        TypeTimestamp = 6,
+        TypeDate = 7,
+        TypeTime = 8,
+        TypeDatetime = 9,
+        TypeGeography = 10,
+        TypeNumeric = 11,
+        TypeRecord = 12,
+        TypeBignumeric = 13,
+        TypeJson = 14,
+        TypeInterval = 15,
+        TypeRangeDate = 16,
+        TypeRangeDatetime = 17,
+        TypeRangeTimestamp = 18,
+    }
+    impl ColumnDataType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ColumnDataType::Unspecified => "COLUMN_DATA_TYPE_UNSPECIFIED",
+                ColumnDataType::TypeInt64 => "TYPE_INT64",
+                ColumnDataType::TypeBool => "TYPE_BOOL",
+                ColumnDataType::TypeFloat64 => "TYPE_FLOAT64",
+                ColumnDataType::TypeString => "TYPE_STRING",
+                ColumnDataType::TypeBytes => "TYPE_BYTES",
+                ColumnDataType::TypeTimestamp => "TYPE_TIMESTAMP",
+                ColumnDataType::TypeDate => "TYPE_DATE",
+                ColumnDataType::TypeTime => "TYPE_TIME",
+                ColumnDataType::TypeDatetime => "TYPE_DATETIME",
+                ColumnDataType::TypeGeography => "TYPE_GEOGRAPHY",
+                ColumnDataType::TypeNumeric => "TYPE_NUMERIC",
+                ColumnDataType::TypeRecord => "TYPE_RECORD",
+                ColumnDataType::TypeBignumeric => "TYPE_BIGNUMERIC",
+                ColumnDataType::TypeJson => "TYPE_JSON",
+                ColumnDataType::TypeInterval => "TYPE_INTERVAL",
+                ColumnDataType::TypeRangeDate => "TYPE_RANGE_DATE",
+                ColumnDataType::TypeRangeDatetime => "TYPE_RANGE_DATETIME",
+                ColumnDataType::TypeRangeTimestamp => "TYPE_RANGE_TIMESTAMP",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COLUMN_DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "TYPE_INT64" => Some(Self::TypeInt64),
+                "TYPE_BOOL" => Some(Self::TypeBool),
+                "TYPE_FLOAT64" => Some(Self::TypeFloat64),
+                "TYPE_STRING" => Some(Self::TypeString),
+                "TYPE_BYTES" => Some(Self::TypeBytes),
+                "TYPE_TIMESTAMP" => Some(Self::TypeTimestamp),
+                "TYPE_DATE" => Some(Self::TypeDate),
+                "TYPE_TIME" => Some(Self::TypeTime),
+                "TYPE_DATETIME" => Some(Self::TypeDatetime),
+                "TYPE_GEOGRAPHY" => Some(Self::TypeGeography),
+                "TYPE_NUMERIC" => Some(Self::TypeNumeric),
+                "TYPE_RECORD" => Some(Self::TypeRecord),
+                "TYPE_BIGNUMERIC" => Some(Self::TypeBignumeric),
+                "TYPE_JSON" => Some(Self::TypeJson),
+                "TYPE_INTERVAL" => Some(Self::TypeInterval),
+                "TYPE_RANGE_DATE" => Some(Self::TypeRangeDate),
+                "TYPE_RANGE_DATETIME" => Some(Self::TypeRangeDatetime),
+                "TYPE_RANGE_TIMESTAMP" => Some(Self::TypeRangeTimestamp),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ColumnPolicyState {
+        Unspecified = 0,
+        ColumnPolicyTagged = 1,
+    }
+    impl ColumnPolicyState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ColumnPolicyState::Unspecified => "COLUMN_POLICY_STATE_UNSPECIFIED",
+                ColumnPolicyState::ColumnPolicyTagged => "COLUMN_POLICY_TAGGED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COLUMN_POLICY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "COLUMN_POLICY_TAGGED" => Some(Self::ColumnPolicyTagged),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStoreDataProfile {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub data_source_type: ::core::option::Option<DataSourceType>,
-#[prost(string, tag = "3")]
-pub project_data_profile: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub file_store_location: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "19")]
-pub data_storage_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-#[prost(string, tag = "20")]
-pub location_type: ::prost::alloc::string::String,
-#[prost(string, tag = "6")]
-pub file_store_path: ::prost::alloc::string::String,
-#[prost(string, tag = "24")]
-pub full_resource: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "7")]
-pub config_snapshot: ::core::option::Option<DataProfileConfigSnapshot>,
-#[prost(message, optional, tag = "8")]
-pub profile_status: ::core::option::Option<ProfileStatus>,
-#[prost(enumeration = "file_store_data_profile::State", tag = "9")]
-pub state: i32,
-#[prost(message, optional, tag = "10")]
-pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(enumeration = "ResourceVisibility", tag = "11")]
-pub resource_visibility: i32,
-#[prost(message, optional, tag = "12")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(message, optional, tag = "13")]
-pub data_risk_level: ::core::option::Option<DataRiskLevel>,
-#[prost(message, optional, tag = "14")]
-pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, optional, tag = "15")]
-pub last_modified_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(message, repeated, tag = "16")]
-pub file_cluster_summaries: ::prost::alloc::vec::Vec<FileClusterSummary>,
-#[prost(btree_map = "string, message", tag = "17")]
-pub resource_attributes: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
-#[prost(btree_map = "string, string", tag = "18")]
-pub resource_labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(message, repeated, tag = "21")]
-pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
-#[prost(bool, tag = "23")]
-pub file_store_is_empty: bool,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub data_source_type: ::core::option::Option<DataSourceType>,
+    #[prost(string, tag = "3")]
+    pub project_data_profile: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub file_store_location: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "19")]
+    pub data_storage_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "20")]
+    pub location_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub file_store_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "24")]
+    pub full_resource: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "7")]
+    pub config_snapshot: ::core::option::Option<DataProfileConfigSnapshot>,
+    #[prost(message, optional, tag = "8")]
+    pub profile_status: ::core::option::Option<ProfileStatus>,
+    #[prost(enumeration = "file_store_data_profile::State", tag = "9")]
+    pub state: i32,
+    #[prost(message, optional, tag = "10")]
+    pub profile_last_generated: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(enumeration = "ResourceVisibility", tag = "11")]
+    pub resource_visibility: i32,
+    #[prost(message, optional, tag = "12")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(message, optional, tag = "13")]
+    pub data_risk_level: ::core::option::Option<DataRiskLevel>,
+    #[prost(message, optional, tag = "14")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "15")]
+    pub last_modified_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, repeated, tag = "16")]
+    pub file_cluster_summaries: ::prost::alloc::vec::Vec<FileClusterSummary>,
+    #[prost(btree_map = "string, message", tag = "17")]
+    pub resource_attributes:
+        ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Value>,
+    #[prost(btree_map = "string, string", tag = "18")]
+    pub resource_labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, repeated, tag = "21")]
+    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
+    #[prost(bool, tag = "23")]
+    pub file_store_is_empty: bool,
 }
 /// Nested message and enum types in `FileStoreDataProfile`.
 pub mod file_store_data_profile {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum State {
-Unspecified = 0,
-Running = 1,
-Done = 2,
-}
-impl State {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-State::Unspecified => "STATE_UNSPECIFIED",
-State::Running => "RUNNING",
-State::Done => "DONE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"RUNNING" => Some(Self::Running),
-"DONE" => Some(Self::Done),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Running = 1,
+        Done = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Running => "RUNNING",
+                State::Done => "DONE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "DONE" => Some(Self::Done),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStoreInfoTypeSummary {
-#[prost(message, optional, tag = "1")]
-pub info_type: ::core::option::Option<InfoType>,
+    #[prost(message, optional, tag = "1")]
+    pub info_type: ::core::option::Option<InfoType>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileExtensionInfo {
-#[prost(string, tag = "1")]
-pub file_extension: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub file_extension: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileClusterSummary {
-#[prost(message, optional, tag = "1")]
-pub file_cluster_type: ::core::option::Option<FileClusterType>,
-#[prost(message, repeated, tag = "2")]
-pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
-#[prost(message, optional, tag = "3")]
-pub sensitivity_score: ::core::option::Option<SensitivityScore>,
-#[prost(message, optional, tag = "4")]
-pub data_risk_level: ::core::option::Option<DataRiskLevel>,
-#[prost(message, repeated, tag = "6")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(message, repeated, tag = "7")]
-pub file_extensions_scanned: ::prost::alloc::vec::Vec<FileExtensionInfo>,
-#[prost(message, repeated, tag = "8")]
-pub file_extensions_seen: ::prost::alloc::vec::Vec<FileExtensionInfo>,
-#[prost(bool, tag = "9")]
-pub no_files_exist: bool,
+    #[prost(message, optional, tag = "1")]
+    pub file_cluster_type: ::core::option::Option<FileClusterType>,
+    #[prost(message, repeated, tag = "2")]
+    pub file_store_info_type_summaries: ::prost::alloc::vec::Vec<FileStoreInfoTypeSummary>,
+    #[prost(message, optional, tag = "3")]
+    pub sensitivity_score: ::core::option::Option<SensitivityScore>,
+    #[prost(message, optional, tag = "4")]
+    pub data_risk_level: ::core::option::Option<DataRiskLevel>,
+    #[prost(message, repeated, tag = "6")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(message, repeated, tag = "7")]
+    pub file_extensions_scanned: ::prost::alloc::vec::Vec<FileExtensionInfo>,
+    #[prost(message, repeated, tag = "8")]
+    pub file_extensions_seen: ::prost::alloc::vec::Vec<FileExtensionInfo>,
+    #[prost(bool, tag = "9")]
+    pub no_files_exist: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProjectDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFileStoreDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFileStoreDataProfilesRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(int32, tag = "3")]
-pub page_size: i32,
-#[prost(string, tag = "4")]
-pub order_by: ::prost::alloc::string::String,
-#[prost(string, tag = "5")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub order_by: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFileStoreDataProfilesResponse {
-#[prost(message, repeated, tag = "1")]
-pub file_store_data_profiles: ::prost::alloc::vec::Vec<FileStoreDataProfile>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub file_store_data_profiles: ::prost::alloc::vec::Vec<FileStoreDataProfile>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFileStoreDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTableDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetColumnDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfilePubSubCondition {
-#[prost(message, optional, tag = "1")]
-pub expressions: ::core::option::Option<data_profile_pub_sub_condition::PubSubExpressions>,
+    #[prost(message, optional, tag = "1")]
+    pub expressions: ::core::option::Option<data_profile_pub_sub_condition::PubSubExpressions>,
 }
 /// Nested message and enum types in `DataProfilePubSubCondition`.
 pub mod data_profile_pub_sub_condition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PubSubCondition {
-#[prost(oneof = "pub_sub_condition::Value", tags = "1, 2")]
-pub value: ::core::option::Option<pub_sub_condition::Value>,
-}
-/// Nested message and enum types in `PubSubCondition`.
-pub mod pub_sub_condition {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Value {
-#[prost(enumeration = "super::ProfileScoreBucket", tag = "1")]
-MinimumRiskScore(i32),
-#[prost(enumeration = "super::ProfileScoreBucket", tag = "2")]
-MinimumSensitivityScore(i32),
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PubSubExpressions {
-#[prost(enumeration = "pub_sub_expressions::PubSubLogicalOperator", tag = "1")]
-pub logical_operator: i32,
-#[prost(message, repeated, tag = "2")]
-pub conditions: ::prost::alloc::vec::Vec<PubSubCondition>,
-}
-/// Nested message and enum types in `PubSubExpressions`.
-pub mod pub_sub_expressions {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum PubSubLogicalOperator {
-LogicalOperatorUnspecified = 0,
-Or = 1,
-And = 2,
-}
-impl PubSubLogicalOperator {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-PubSubLogicalOperator::LogicalOperatorUnspecified => "LOGICAL_OPERATOR_UNSPECIFIED",
-PubSubLogicalOperator::Or => "OR",
-PubSubLogicalOperator::And => "AND",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"LOGICAL_OPERATOR_UNSPECIFIED" => Some(Self::LogicalOperatorUnspecified),
-"OR" => Some(Self::Or),
-"AND" => Some(Self::And),
-_ => None,
-}
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ProfileScoreBucket {
-Unspecified = 0,
-High = 1,
-MediumOrHigh = 2,
-}
-impl ProfileScoreBucket {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ProfileScoreBucket::Unspecified => "PROFILE_SCORE_BUCKET_UNSPECIFIED",
-ProfileScoreBucket::High => "HIGH",
-ProfileScoreBucket::MediumOrHigh => "MEDIUM_OR_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"PROFILE_SCORE_BUCKET_UNSPECIFIED" => Some(Self::Unspecified),
-"HIGH" => Some(Self::High),
-"MEDIUM_OR_HIGH" => Some(Self::MediumOrHigh),
-_ => None,
-}
-}
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct PubSubCondition {
+        #[prost(oneof = "pub_sub_condition::Value", tags = "1, 2")]
+        pub value: ::core::option::Option<pub_sub_condition::Value>,
+    }
+    /// Nested message and enum types in `PubSubCondition`.
+    pub mod pub_sub_condition {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Value {
+            #[prost(enumeration = "super::ProfileScoreBucket", tag = "1")]
+            MinimumRiskScore(i32),
+            #[prost(enumeration = "super::ProfileScoreBucket", tag = "2")]
+            MinimumSensitivityScore(i32),
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct PubSubExpressions {
+        #[prost(enumeration = "pub_sub_expressions::PubSubLogicalOperator", tag = "1")]
+        pub logical_operator: i32,
+        #[prost(message, repeated, tag = "2")]
+        pub conditions: ::prost::alloc::vec::Vec<PubSubCondition>,
+    }
+    /// Nested message and enum types in `PubSubExpressions`.
+    pub mod pub_sub_expressions {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum PubSubLogicalOperator {
+            LogicalOperatorUnspecified = 0,
+            Or = 1,
+            And = 2,
+        }
+        impl PubSubLogicalOperator {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    PubSubLogicalOperator::LogicalOperatorUnspecified => {
+                        "LOGICAL_OPERATOR_UNSPECIFIED"
+                    }
+                    PubSubLogicalOperator::Or => "OR",
+                    PubSubLogicalOperator::And => "AND",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "LOGICAL_OPERATOR_UNSPECIFIED" => Some(Self::LogicalOperatorUnspecified),
+                    "OR" => Some(Self::Or),
+                    "AND" => Some(Self::And),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum ProfileScoreBucket {
+        Unspecified = 0,
+        High = 1,
+        MediumOrHigh = 2,
+    }
+    impl ProfileScoreBucket {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ProfileScoreBucket::Unspecified => "PROFILE_SCORE_BUCKET_UNSPECIFIED",
+                ProfileScoreBucket::High => "HIGH",
+                ProfileScoreBucket::MediumOrHigh => "MEDIUM_OR_HIGH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROFILE_SCORE_BUCKET_UNSPECIFIED" => Some(Self::Unspecified),
+                "HIGH" => Some(Self::High),
+                "MEDIUM_OR_HIGH" => Some(Self::MediumOrHigh),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataProfilePubSubMessage {
-#[prost(message, optional, tag = "1")]
-pub profile: ::core::option::Option<TableDataProfile>,
-#[prost(message, optional, tag = "3")]
-pub file_store_profile: ::core::option::Option<FileStoreDataProfile>,
-#[prost(enumeration = "data_profile_action::EventType", tag = "2")]
-pub event: i32,
+    #[prost(message, optional, tag = "1")]
+    pub profile: ::core::option::Option<TableDataProfile>,
+    #[prost(message, optional, tag = "3")]
+    pub file_store_profile: ::core::option::Option<FileStoreDataProfile>,
+    #[prost(enumeration = "data_profile_action::EventType", tag = "2")]
+    pub event: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateConnectionRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub connection: ::core::option::Option<Connection>,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub connection: ::core::option::Option<Connection>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConnectionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchConnectionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConnectionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub connections: ::prost::alloc::vec::Vec<Connection>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub connections: ::prost::alloc::vec::Vec<Connection>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchConnectionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub connections: ::prost::alloc::vec::Vec<Connection>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "1")]
+    pub connections: ::prost::alloc::vec::Vec<Connection>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub connection: ::core::option::Option<Connection>,
-#[prost(message, optional, tag = "3")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub connection: ::core::option::Option<Connection>,
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteConnectionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Connection {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(enumeration = "ConnectionState", tag = "2")]
-pub state: i32,
-#[prost(message, repeated, tag = "3")]
-pub errors: ::prost::alloc::vec::Vec<Error>,
-#[prost(oneof = "connection::Properties", tags = "4")]
-pub properties: ::core::option::Option<connection::Properties>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(enumeration = "ConnectionState", tag = "2")]
+    pub state: i32,
+    #[prost(message, repeated, tag = "3")]
+    pub errors: ::prost::alloc::vec::Vec<Error>,
+    #[prost(oneof = "connection::Properties", tags = "4")]
+    pub properties: ::core::option::Option<connection::Properties>,
 }
 /// Nested message and enum types in `Connection`.
 pub mod connection {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Properties {
-#[prost(message, tag = "4")]
-CloudSql(super::CloudSqlProperties),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Properties {
+        #[prost(message, tag = "4")]
+        CloudSql(super::CloudSqlProperties),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretManagerCredential {
-#[prost(string, tag = "1")]
-pub username: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub password_secret_version_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub password_secret_version_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -5207,1497 +5297,2268 @@ pub struct CloudSqlIamCredential {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudSqlProperties {
-#[prost(string, tag = "1")]
-pub connection_name: ::prost::alloc::string::String,
-#[prost(int32, tag = "4")]
-pub max_connections: i32,
-#[prost(enumeration = "cloud_sql_properties::DatabaseEngine", tag = "7")]
-pub database_engine: i32,
-#[prost(oneof = "cloud_sql_properties::Credential", tags = "2, 3")]
-pub credential: ::core::option::Option<cloud_sql_properties::Credential>,
+    #[prost(string, tag = "1")]
+    pub connection_name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "4")]
+    pub max_connections: i32,
+    #[prost(enumeration = "cloud_sql_properties::DatabaseEngine", tag = "7")]
+    pub database_engine: i32,
+    #[prost(oneof = "cloud_sql_properties::Credential", tags = "2, 3")]
+    pub credential: ::core::option::Option<cloud_sql_properties::Credential>,
 }
 /// Nested message and enum types in `CloudSqlProperties`.
 pub mod cloud_sql_properties {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DatabaseEngine {
-Unknown = 0,
-Mysql = 1,
-Postgres = 2,
-}
-impl DatabaseEngine {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DatabaseEngine::Unknown => "DATABASE_ENGINE_UNKNOWN",
-DatabaseEngine::Mysql => "DATABASE_ENGINE_MYSQL",
-DatabaseEngine::Postgres => "DATABASE_ENGINE_POSTGRES",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DATABASE_ENGINE_UNKNOWN" => Some(Self::Unknown),
-"DATABASE_ENGINE_MYSQL" => Some(Self::Mysql),
-"DATABASE_ENGINE_POSTGRES" => Some(Self::Postgres),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Credential {
-#[prost(message, tag = "2")]
-UsernamePassword(super::SecretManagerCredential),
-#[prost(message, tag = "3")]
-CloudSqlIam(super::CloudSqlIamCredential),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DatabaseEngine {
+        Unknown = 0,
+        Mysql = 1,
+        Postgres = 2,
+    }
+    impl DatabaseEngine {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DatabaseEngine::Unknown => "DATABASE_ENGINE_UNKNOWN",
+                DatabaseEngine::Mysql => "DATABASE_ENGINE_MYSQL",
+                DatabaseEngine::Postgres => "DATABASE_ENGINE_POSTGRES",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATABASE_ENGINE_UNKNOWN" => Some(Self::Unknown),
+                "DATABASE_ENGINE_MYSQL" => Some(Self::Mysql),
+                "DATABASE_ENGINE_POSTGRES" => Some(Self::Postgres),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Credential {
+        #[prost(message, tag = "2")]
+        UsernamePassword(super::SecretManagerCredential),
+        #[prost(message, tag = "3")]
+        CloudSqlIam(super::CloudSqlIamCredential),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTableDataProfileRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSourceType {
-#[prost(string, tag = "1")]
-pub data_source: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub data_source: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FileClusterType {
-#[prost(oneof = "file_cluster_type::FileClusterType", tags = "1")]
-pub file_cluster_type: ::core::option::Option<file_cluster_type::FileClusterType>,
+    #[prost(oneof = "file_cluster_type::FileClusterType", tags = "1")]
+    pub file_cluster_type: ::core::option::Option<file_cluster_type::FileClusterType>,
 }
 /// Nested message and enum types in `FileClusterType`.
 pub mod file_cluster_type {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Cluster {
-Unspecified = 0,
-Unknown = 1,
-Text = 2,
-StructuredData = 3,
-SourceCode = 4,
-RichDocument = 5,
-Image = 6,
-Archive = 7,
-Multimedia = 8,
-Executable = 9,
-}
-impl Cluster {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-Cluster::Unspecified => "CLUSTER_UNSPECIFIED",
-Cluster::Unknown => "CLUSTER_UNKNOWN",
-Cluster::Text => "CLUSTER_TEXT",
-Cluster::StructuredData => "CLUSTER_STRUCTURED_DATA",
-Cluster::SourceCode => "CLUSTER_SOURCE_CODE",
-Cluster::RichDocument => "CLUSTER_RICH_DOCUMENT",
-Cluster::Image => "CLUSTER_IMAGE",
-Cluster::Archive => "CLUSTER_ARCHIVE",
-Cluster::Multimedia => "CLUSTER_MULTIMEDIA",
-Cluster::Executable => "CLUSTER_EXECUTABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLUSTER_UNSPECIFIED" => Some(Self::Unspecified),
-"CLUSTER_UNKNOWN" => Some(Self::Unknown),
-"CLUSTER_TEXT" => Some(Self::Text),
-"CLUSTER_STRUCTURED_DATA" => Some(Self::StructuredData),
-"CLUSTER_SOURCE_CODE" => Some(Self::SourceCode),
-"CLUSTER_RICH_DOCUMENT" => Some(Self::RichDocument),
-"CLUSTER_IMAGE" => Some(Self::Image),
-"CLUSTER_ARCHIVE" => Some(Self::Archive),
-"CLUSTER_MULTIMEDIA" => Some(Self::Multimedia),
-"CLUSTER_EXECUTABLE" => Some(Self::Executable),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum FileClusterType {
-#[prost(enumeration = "Cluster", tag = "1")]
-Cluster(i32),
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum Cluster {
+        Unspecified = 0,
+        Unknown = 1,
+        Text = 2,
+        StructuredData = 3,
+        SourceCode = 4,
+        RichDocument = 5,
+        Image = 6,
+        Archive = 7,
+        Multimedia = 8,
+        Executable = 9,
+    }
+    impl Cluster {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Cluster::Unspecified => "CLUSTER_UNSPECIFIED",
+                Cluster::Unknown => "CLUSTER_UNKNOWN",
+                Cluster::Text => "CLUSTER_TEXT",
+                Cluster::StructuredData => "CLUSTER_STRUCTURED_DATA",
+                Cluster::SourceCode => "CLUSTER_SOURCE_CODE",
+                Cluster::RichDocument => "CLUSTER_RICH_DOCUMENT",
+                Cluster::Image => "CLUSTER_IMAGE",
+                Cluster::Archive => "CLUSTER_ARCHIVE",
+                Cluster::Multimedia => "CLUSTER_MULTIMEDIA",
+                Cluster::Executable => "CLUSTER_EXECUTABLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLUSTER_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLUSTER_UNKNOWN" => Some(Self::Unknown),
+                "CLUSTER_TEXT" => Some(Self::Text),
+                "CLUSTER_STRUCTURED_DATA" => Some(Self::StructuredData),
+                "CLUSTER_SOURCE_CODE" => Some(Self::SourceCode),
+                "CLUSTER_RICH_DOCUMENT" => Some(Self::RichDocument),
+                "CLUSTER_IMAGE" => Some(Self::Image),
+                "CLUSTER_ARCHIVE" => Some(Self::Archive),
+                "CLUSTER_MULTIMEDIA" => Some(Self::Multimedia),
+                "CLUSTER_EXECUTABLE" => Some(Self::Executable),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum FileClusterType {
+        #[prost(enumeration = "Cluster", tag = "1")]
+        Cluster(i32),
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransformationResultStatusType {
-StateTypeUnspecified = 0,
-InvalidTransform = 1,
-BigqueryMaxRowSizeExceeded = 2,
-MetadataUnretrievable = 3,
-Success = 4,
+    StateTypeUnspecified = 0,
+    InvalidTransform = 1,
+    BigqueryMaxRowSizeExceeded = 2,
+    MetadataUnretrievable = 3,
+    Success = 4,
 }
 impl TransformationResultStatusType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransformationResultStatusType::StateTypeUnspecified => "STATE_TYPE_UNSPECIFIED",
-TransformationResultStatusType::InvalidTransform => "INVALID_TRANSFORM",
-TransformationResultStatusType::BigqueryMaxRowSizeExceeded => "BIGQUERY_MAX_ROW_SIZE_EXCEEDED",
-TransformationResultStatusType::MetadataUnretrievable => "METADATA_UNRETRIEVABLE",
-TransformationResultStatusType::Success => "SUCCESS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STATE_TYPE_UNSPECIFIED" => Some(Self::StateTypeUnspecified),
-"INVALID_TRANSFORM" => Some(Self::InvalidTransform),
-"BIGQUERY_MAX_ROW_SIZE_EXCEEDED" => Some(Self::BigqueryMaxRowSizeExceeded),
-"METADATA_UNRETRIEVABLE" => Some(Self::MetadataUnretrievable),
-"SUCCESS" => Some(Self::Success),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TransformationResultStatusType::StateTypeUnspecified => "STATE_TYPE_UNSPECIFIED",
+            TransformationResultStatusType::InvalidTransform => "INVALID_TRANSFORM",
+            TransformationResultStatusType::BigqueryMaxRowSizeExceeded => {
+                "BIGQUERY_MAX_ROW_SIZE_EXCEEDED"
+            }
+            TransformationResultStatusType::MetadataUnretrievable => "METADATA_UNRETRIEVABLE",
+            TransformationResultStatusType::Success => "SUCCESS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "STATE_TYPE_UNSPECIFIED" => Some(Self::StateTypeUnspecified),
+            "INVALID_TRANSFORM" => Some(Self::InvalidTransform),
+            "BIGQUERY_MAX_ROW_SIZE_EXCEEDED" => Some(Self::BigqueryMaxRowSizeExceeded),
+            "METADATA_UNRETRIEVABLE" => Some(Self::MetadataUnretrievable),
+            "SUCCESS" => Some(Self::Success),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransformationContainerType {
-TransformUnknownContainer = 0,
-TransformBody = 1,
-TransformMetadata = 2,
-TransformTable = 3,
+    TransformUnknownContainer = 0,
+    TransformBody = 1,
+    TransformMetadata = 2,
+    TransformTable = 3,
 }
 impl TransformationContainerType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransformationContainerType::TransformUnknownContainer => "TRANSFORM_UNKNOWN_CONTAINER",
-TransformationContainerType::TransformBody => "TRANSFORM_BODY",
-TransformationContainerType::TransformMetadata => "TRANSFORM_METADATA",
-TransformationContainerType::TransformTable => "TRANSFORM_TABLE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRANSFORM_UNKNOWN_CONTAINER" => Some(Self::TransformUnknownContainer),
-"TRANSFORM_BODY" => Some(Self::TransformBody),
-"TRANSFORM_METADATA" => Some(Self::TransformMetadata),
-"TRANSFORM_TABLE" => Some(Self::TransformTable),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TransformationContainerType::TransformUnknownContainer => "TRANSFORM_UNKNOWN_CONTAINER",
+            TransformationContainerType::TransformBody => "TRANSFORM_BODY",
+            TransformationContainerType::TransformMetadata => "TRANSFORM_METADATA",
+            TransformationContainerType::TransformTable => "TRANSFORM_TABLE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TRANSFORM_UNKNOWN_CONTAINER" => Some(Self::TransformUnknownContainer),
+            "TRANSFORM_BODY" => Some(Self::TransformBody),
+            "TRANSFORM_METADATA" => Some(Self::TransformMetadata),
+            "TRANSFORM_TABLE" => Some(Self::TransformTable),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransformationType {
-Unspecified = 0,
-RecordSuppression = 1,
-ReplaceValue = 2,
-ReplaceDictionary = 15,
-Redact = 3,
-CharacterMask = 4,
-CryptoReplaceFfxFpe = 5,
-FixedSizeBucketing = 6,
-Bucketing = 7,
-ReplaceWithInfoType = 8,
-TimePart = 9,
-CryptoHash = 10,
-DateShift = 12,
-CryptoDeterministicConfig = 13,
-RedactImage = 14,
+    Unspecified = 0,
+    RecordSuppression = 1,
+    ReplaceValue = 2,
+    ReplaceDictionary = 15,
+    Redact = 3,
+    CharacterMask = 4,
+    CryptoReplaceFfxFpe = 5,
+    FixedSizeBucketing = 6,
+    Bucketing = 7,
+    ReplaceWithInfoType = 8,
+    TimePart = 9,
+    CryptoHash = 10,
+    DateShift = 12,
+    CryptoDeterministicConfig = 13,
+    RedactImage = 14,
 }
 impl TransformationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-TransformationType::Unspecified => "TRANSFORMATION_TYPE_UNSPECIFIED",
-TransformationType::RecordSuppression => "RECORD_SUPPRESSION",
-TransformationType::ReplaceValue => "REPLACE_VALUE",
-TransformationType::ReplaceDictionary => "REPLACE_DICTIONARY",
-TransformationType::Redact => "REDACT",
-TransformationType::CharacterMask => "CHARACTER_MASK",
-TransformationType::CryptoReplaceFfxFpe => "CRYPTO_REPLACE_FFX_FPE",
-TransformationType::FixedSizeBucketing => "FIXED_SIZE_BUCKETING",
-TransformationType::Bucketing => "BUCKETING",
-TransformationType::ReplaceWithInfoType => "REPLACE_WITH_INFO_TYPE",
-TransformationType::TimePart => "TIME_PART",
-TransformationType::CryptoHash => "CRYPTO_HASH",
-TransformationType::DateShift => "DATE_SHIFT",
-TransformationType::CryptoDeterministicConfig => "CRYPTO_DETERMINISTIC_CONFIG",
-TransformationType::RedactImage => "REDACT_IMAGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TRANSFORMATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"RECORD_SUPPRESSION" => Some(Self::RecordSuppression),
-"REPLACE_VALUE" => Some(Self::ReplaceValue),
-"REPLACE_DICTIONARY" => Some(Self::ReplaceDictionary),
-"REDACT" => Some(Self::Redact),
-"CHARACTER_MASK" => Some(Self::CharacterMask),
-"CRYPTO_REPLACE_FFX_FPE" => Some(Self::CryptoReplaceFfxFpe),
-"FIXED_SIZE_BUCKETING" => Some(Self::FixedSizeBucketing),
-"BUCKETING" => Some(Self::Bucketing),
-"REPLACE_WITH_INFO_TYPE" => Some(Self::ReplaceWithInfoType),
-"TIME_PART" => Some(Self::TimePart),
-"CRYPTO_HASH" => Some(Self::CryptoHash),
-"DATE_SHIFT" => Some(Self::DateShift),
-"CRYPTO_DETERMINISTIC_CONFIG" => Some(Self::CryptoDeterministicConfig),
-"REDACT_IMAGE" => Some(Self::RedactImage),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TransformationType::Unspecified => "TRANSFORMATION_TYPE_UNSPECIFIED",
+            TransformationType::RecordSuppression => "RECORD_SUPPRESSION",
+            TransformationType::ReplaceValue => "REPLACE_VALUE",
+            TransformationType::ReplaceDictionary => "REPLACE_DICTIONARY",
+            TransformationType::Redact => "REDACT",
+            TransformationType::CharacterMask => "CHARACTER_MASK",
+            TransformationType::CryptoReplaceFfxFpe => "CRYPTO_REPLACE_FFX_FPE",
+            TransformationType::FixedSizeBucketing => "FIXED_SIZE_BUCKETING",
+            TransformationType::Bucketing => "BUCKETING",
+            TransformationType::ReplaceWithInfoType => "REPLACE_WITH_INFO_TYPE",
+            TransformationType::TimePart => "TIME_PART",
+            TransformationType::CryptoHash => "CRYPTO_HASH",
+            TransformationType::DateShift => "DATE_SHIFT",
+            TransformationType::CryptoDeterministicConfig => "CRYPTO_DETERMINISTIC_CONFIG",
+            TransformationType::RedactImage => "REDACT_IMAGE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TRANSFORMATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "RECORD_SUPPRESSION" => Some(Self::RecordSuppression),
+            "REPLACE_VALUE" => Some(Self::ReplaceValue),
+            "REPLACE_DICTIONARY" => Some(Self::ReplaceDictionary),
+            "REDACT" => Some(Self::Redact),
+            "CHARACTER_MASK" => Some(Self::CharacterMask),
+            "CRYPTO_REPLACE_FFX_FPE" => Some(Self::CryptoReplaceFfxFpe),
+            "FIXED_SIZE_BUCKETING" => Some(Self::FixedSizeBucketing),
+            "BUCKETING" => Some(Self::Bucketing),
+            "REPLACE_WITH_INFO_TYPE" => Some(Self::ReplaceWithInfoType),
+            "TIME_PART" => Some(Self::TimePart),
+            "CRYPTO_HASH" => Some(Self::CryptoHash),
+            "DATE_SHIFT" => Some(Self::DateShift),
+            "CRYPTO_DETERMINISTIC_CONFIG" => Some(Self::CryptoDeterministicConfig),
+            "REDACT_IMAGE" => Some(Self::RedactImage),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BigQueryTableTypeCollection {
-BigQueryCollectionUnspecified = 0,
-BigQueryCollectionAllTypes = 1,
-BigQueryCollectionOnlySupportedTypes = 2,
+    BigQueryCollectionUnspecified = 0,
+    BigQueryCollectionAllTypes = 1,
+    BigQueryCollectionOnlySupportedTypes = 2,
 }
 impl BigQueryTableTypeCollection {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BigQueryTableTypeCollection::BigQueryCollectionUnspecified => "BIG_QUERY_COLLECTION_UNSPECIFIED",
-BigQueryTableTypeCollection::BigQueryCollectionAllTypes => "BIG_QUERY_COLLECTION_ALL_TYPES",
-BigQueryTableTypeCollection::BigQueryCollectionOnlySupportedTypes => "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BIG_QUERY_COLLECTION_UNSPECIFIED" => Some(Self::BigQueryCollectionUnspecified),
-"BIG_QUERY_COLLECTION_ALL_TYPES" => Some(Self::BigQueryCollectionAllTypes),
-"BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES" => Some(Self::BigQueryCollectionOnlySupportedTypes),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BigQueryTableTypeCollection::BigQueryCollectionUnspecified => {
+                "BIG_QUERY_COLLECTION_UNSPECIFIED"
+            }
+            BigQueryTableTypeCollection::BigQueryCollectionAllTypes => {
+                "BIG_QUERY_COLLECTION_ALL_TYPES"
+            }
+            BigQueryTableTypeCollection::BigQueryCollectionOnlySupportedTypes => {
+                "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "BIG_QUERY_COLLECTION_UNSPECIFIED" => Some(Self::BigQueryCollectionUnspecified),
+            "BIG_QUERY_COLLECTION_ALL_TYPES" => Some(Self::BigQueryCollectionAllTypes),
+            "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES" => {
+                Some(Self::BigQueryCollectionOnlySupportedTypes)
+            }
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BigQueryTableType {
-Unspecified = 0,
-Table = 1,
-ExternalBigLake = 2,
+    Unspecified = 0,
+    Table = 1,
+    ExternalBigLake = 2,
 }
 impl BigQueryTableType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BigQueryTableType::Unspecified => "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
-BigQueryTableType::Table => "BIG_QUERY_TABLE_TYPE_TABLE",
-BigQueryTableType::ExternalBigLake => "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"BIG_QUERY_TABLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"BIG_QUERY_TABLE_TYPE_TABLE" => Some(Self::Table),
-"BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE" => Some(Self::ExternalBigLake),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BigQueryTableType::Unspecified => "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
+            BigQueryTableType::Table => "BIG_QUERY_TABLE_TYPE_TABLE",
+            BigQueryTableType::ExternalBigLake => "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "BIG_QUERY_TABLE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "BIG_QUERY_TABLE_TYPE_TABLE" => Some(Self::Table),
+            "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE" => Some(Self::ExternalBigLake),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DataProfileUpdateFrequency {
-UpdateFrequencyUnspecified = 0,
-UpdateFrequencyNever = 1,
-UpdateFrequencyDaily = 2,
-UpdateFrequencyMonthly = 4,
+    UpdateFrequencyUnspecified = 0,
+    UpdateFrequencyNever = 1,
+    UpdateFrequencyDaily = 2,
+    UpdateFrequencyMonthly = 4,
 }
 impl DataProfileUpdateFrequency {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DataProfileUpdateFrequency::UpdateFrequencyUnspecified => "UPDATE_FREQUENCY_UNSPECIFIED",
-DataProfileUpdateFrequency::UpdateFrequencyNever => "UPDATE_FREQUENCY_NEVER",
-DataProfileUpdateFrequency::UpdateFrequencyDaily => "UPDATE_FREQUENCY_DAILY",
-DataProfileUpdateFrequency::UpdateFrequencyMonthly => "UPDATE_FREQUENCY_MONTHLY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UPDATE_FREQUENCY_UNSPECIFIED" => Some(Self::UpdateFrequencyUnspecified),
-"UPDATE_FREQUENCY_NEVER" => Some(Self::UpdateFrequencyNever),
-"UPDATE_FREQUENCY_DAILY" => Some(Self::UpdateFrequencyDaily),
-"UPDATE_FREQUENCY_MONTHLY" => Some(Self::UpdateFrequencyMonthly),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DataProfileUpdateFrequency::UpdateFrequencyUnspecified => {
+                "UPDATE_FREQUENCY_UNSPECIFIED"
+            }
+            DataProfileUpdateFrequency::UpdateFrequencyNever => "UPDATE_FREQUENCY_NEVER",
+            DataProfileUpdateFrequency::UpdateFrequencyDaily => "UPDATE_FREQUENCY_DAILY",
+            DataProfileUpdateFrequency::UpdateFrequencyMonthly => "UPDATE_FREQUENCY_MONTHLY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UPDATE_FREQUENCY_UNSPECIFIED" => Some(Self::UpdateFrequencyUnspecified),
+            "UPDATE_FREQUENCY_NEVER" => Some(Self::UpdateFrequencyNever),
+            "UPDATE_FREQUENCY_DAILY" => Some(Self::UpdateFrequencyDaily),
+            "UPDATE_FREQUENCY_MONTHLY" => Some(Self::UpdateFrequencyMonthly),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BigQueryTableModification {
-TableModificationUnspecified = 0,
-TableModifiedTimestamp = 1,
+    TableModificationUnspecified = 0,
+    TableModifiedTimestamp = 1,
 }
 impl BigQueryTableModification {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BigQueryTableModification::TableModificationUnspecified => "TABLE_MODIFICATION_UNSPECIFIED",
-BigQueryTableModification::TableModifiedTimestamp => "TABLE_MODIFIED_TIMESTAMP",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"TABLE_MODIFICATION_UNSPECIFIED" => Some(Self::TableModificationUnspecified),
-"TABLE_MODIFIED_TIMESTAMP" => Some(Self::TableModifiedTimestamp),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BigQueryTableModification::TableModificationUnspecified => {
+                "TABLE_MODIFICATION_UNSPECIFIED"
+            }
+            BigQueryTableModification::TableModifiedTimestamp => "TABLE_MODIFIED_TIMESTAMP",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TABLE_MODIFICATION_UNSPECIFIED" => Some(Self::TableModificationUnspecified),
+            "TABLE_MODIFIED_TIMESTAMP" => Some(Self::TableModifiedTimestamp),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BigQuerySchemaModification {
-SchemaModificationUnspecified = 0,
-SchemaNewColumns = 1,
-SchemaRemovedColumns = 2,
+    SchemaModificationUnspecified = 0,
+    SchemaNewColumns = 1,
+    SchemaRemovedColumns = 2,
 }
 impl BigQuerySchemaModification {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-BigQuerySchemaModification::SchemaModificationUnspecified => "SCHEMA_MODIFICATION_UNSPECIFIED",
-BigQuerySchemaModification::SchemaNewColumns => "SCHEMA_NEW_COLUMNS",
-BigQuerySchemaModification::SchemaRemovedColumns => "SCHEMA_REMOVED_COLUMNS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SCHEMA_MODIFICATION_UNSPECIFIED" => Some(Self::SchemaModificationUnspecified),
-"SCHEMA_NEW_COLUMNS" => Some(Self::SchemaNewColumns),
-"SCHEMA_REMOVED_COLUMNS" => Some(Self::SchemaRemovedColumns),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BigQuerySchemaModification::SchemaModificationUnspecified => {
+                "SCHEMA_MODIFICATION_UNSPECIFIED"
+            }
+            BigQuerySchemaModification::SchemaNewColumns => "SCHEMA_NEW_COLUMNS",
+            BigQuerySchemaModification::SchemaRemovedColumns => "SCHEMA_REMOVED_COLUMNS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "SCHEMA_MODIFICATION_UNSPECIFIED" => Some(Self::SchemaModificationUnspecified),
+            "SCHEMA_NEW_COLUMNS" => Some(Self::SchemaNewColumns),
+            "SCHEMA_REMOVED_COLUMNS" => Some(Self::SchemaRemovedColumns),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RelationalOperator {
-Unspecified = 0,
-EqualTo = 1,
-NotEqualTo = 2,
-GreaterThan = 3,
-LessThan = 4,
-GreaterThanOrEquals = 5,
-LessThanOrEquals = 6,
-Exists = 7,
+    Unspecified = 0,
+    EqualTo = 1,
+    NotEqualTo = 2,
+    GreaterThan = 3,
+    LessThan = 4,
+    GreaterThanOrEquals = 5,
+    LessThanOrEquals = 6,
+    Exists = 7,
 }
 impl RelationalOperator {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-RelationalOperator::Unspecified => "RELATIONAL_OPERATOR_UNSPECIFIED",
-RelationalOperator::EqualTo => "EQUAL_TO",
-RelationalOperator::NotEqualTo => "NOT_EQUAL_TO",
-RelationalOperator::GreaterThan => "GREATER_THAN",
-RelationalOperator::LessThan => "LESS_THAN",
-RelationalOperator::GreaterThanOrEquals => "GREATER_THAN_OR_EQUALS",
-RelationalOperator::LessThanOrEquals => "LESS_THAN_OR_EQUALS",
-RelationalOperator::Exists => "EXISTS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RELATIONAL_OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
-"EQUAL_TO" => Some(Self::EqualTo),
-"NOT_EQUAL_TO" => Some(Self::NotEqualTo),
-"GREATER_THAN" => Some(Self::GreaterThan),
-"LESS_THAN" => Some(Self::LessThan),
-"GREATER_THAN_OR_EQUALS" => Some(Self::GreaterThanOrEquals),
-"LESS_THAN_OR_EQUALS" => Some(Self::LessThanOrEquals),
-"EXISTS" => Some(Self::Exists),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            RelationalOperator::Unspecified => "RELATIONAL_OPERATOR_UNSPECIFIED",
+            RelationalOperator::EqualTo => "EQUAL_TO",
+            RelationalOperator::NotEqualTo => "NOT_EQUAL_TO",
+            RelationalOperator::GreaterThan => "GREATER_THAN",
+            RelationalOperator::LessThan => "LESS_THAN",
+            RelationalOperator::GreaterThanOrEquals => "GREATER_THAN_OR_EQUALS",
+            RelationalOperator::LessThanOrEquals => "LESS_THAN_OR_EQUALS",
+            RelationalOperator::Exists => "EXISTS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RELATIONAL_OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+            "EQUAL_TO" => Some(Self::EqualTo),
+            "NOT_EQUAL_TO" => Some(Self::NotEqualTo),
+            "GREATER_THAN" => Some(Self::GreaterThan),
+            "LESS_THAN" => Some(Self::LessThan),
+            "GREATER_THAN_OR_EQUALS" => Some(Self::GreaterThanOrEquals),
+            "LESS_THAN_OR_EQUALS" => Some(Self::LessThanOrEquals),
+            "EXISTS" => Some(Self::Exists),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MatchingType {
-Unspecified = 0,
-FullMatch = 1,
-PartialMatch = 2,
-InverseMatch = 3,
+    Unspecified = 0,
+    FullMatch = 1,
+    PartialMatch = 2,
+    InverseMatch = 3,
 }
 impl MatchingType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MatchingType::Unspecified => "MATCHING_TYPE_UNSPECIFIED",
-MatchingType::FullMatch => "MATCHING_TYPE_FULL_MATCH",
-MatchingType::PartialMatch => "MATCHING_TYPE_PARTIAL_MATCH",
-MatchingType::InverseMatch => "MATCHING_TYPE_INVERSE_MATCH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"MATCHING_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"MATCHING_TYPE_FULL_MATCH" => Some(Self::FullMatch),
-"MATCHING_TYPE_PARTIAL_MATCH" => Some(Self::PartialMatch),
-"MATCHING_TYPE_INVERSE_MATCH" => Some(Self::InverseMatch),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MatchingType::Unspecified => "MATCHING_TYPE_UNSPECIFIED",
+            MatchingType::FullMatch => "MATCHING_TYPE_FULL_MATCH",
+            MatchingType::PartialMatch => "MATCHING_TYPE_PARTIAL_MATCH",
+            MatchingType::InverseMatch => "MATCHING_TYPE_INVERSE_MATCH",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MATCHING_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MATCHING_TYPE_FULL_MATCH" => Some(Self::FullMatch),
+            "MATCHING_TYPE_PARTIAL_MATCH" => Some(Self::PartialMatch),
+            "MATCHING_TYPE_INVERSE_MATCH" => Some(Self::InverseMatch),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ContentOption {
-ContentUnspecified = 0,
-ContentText = 1,
-ContentImage = 2,
+    ContentUnspecified = 0,
+    ContentText = 1,
+    ContentImage = 2,
 }
 impl ContentOption {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ContentOption::ContentUnspecified => "CONTENT_UNSPECIFIED",
-ContentOption::ContentText => "CONTENT_TEXT",
-ContentOption::ContentImage => "CONTENT_IMAGE",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONTENT_UNSPECIFIED" => Some(Self::ContentUnspecified),
-"CONTENT_TEXT" => Some(Self::ContentText),
-"CONTENT_IMAGE" => Some(Self::ContentImage),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ContentOption::ContentUnspecified => "CONTENT_UNSPECIFIED",
+            ContentOption::ContentText => "CONTENT_TEXT",
+            ContentOption::ContentImage => "CONTENT_IMAGE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONTENT_UNSPECIFIED" => Some(Self::ContentUnspecified),
+            "CONTENT_TEXT" => Some(Self::ContentText),
+            "CONTENT_IMAGE" => Some(Self::ContentImage),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum MetadataType {
-MetadatatypeUnspecified = 0,
-StorageMetadata = 2,
+    MetadatatypeUnspecified = 0,
+    StorageMetadata = 2,
 }
 impl MetadataType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-MetadataType::MetadatatypeUnspecified => "METADATATYPE_UNSPECIFIED",
-MetadataType::StorageMetadata => "STORAGE_METADATA",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"METADATATYPE_UNSPECIFIED" => Some(Self::MetadatatypeUnspecified),
-"STORAGE_METADATA" => Some(Self::StorageMetadata),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            MetadataType::MetadatatypeUnspecified => "METADATATYPE_UNSPECIFIED",
+            MetadataType::StorageMetadata => "STORAGE_METADATA",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "METADATATYPE_UNSPECIFIED" => Some(Self::MetadatatypeUnspecified),
+            "STORAGE_METADATA" => Some(Self::StorageMetadata),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum InfoTypeSupportedBy {
-EnumTypeUnspecified = 0,
-Inspect = 1,
-RiskAnalysis = 2,
+    EnumTypeUnspecified = 0,
+    Inspect = 1,
+    RiskAnalysis = 2,
 }
 impl InfoTypeSupportedBy {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-InfoTypeSupportedBy::EnumTypeUnspecified => "ENUM_TYPE_UNSPECIFIED",
-InfoTypeSupportedBy::Inspect => "INSPECT",
-InfoTypeSupportedBy::RiskAnalysis => "RISK_ANALYSIS",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENUM_TYPE_UNSPECIFIED" => Some(Self::EnumTypeUnspecified),
-"INSPECT" => Some(Self::Inspect),
-"RISK_ANALYSIS" => Some(Self::RiskAnalysis),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            InfoTypeSupportedBy::EnumTypeUnspecified => "ENUM_TYPE_UNSPECIFIED",
+            InfoTypeSupportedBy::Inspect => "INSPECT",
+            InfoTypeSupportedBy::RiskAnalysis => "RISK_ANALYSIS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ENUM_TYPE_UNSPECIFIED" => Some(Self::EnumTypeUnspecified),
+            "INSPECT" => Some(Self::Inspect),
+            "RISK_ANALYSIS" => Some(Self::RiskAnalysis),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DlpJobType {
-Unspecified = 0,
-InspectJob = 1,
-RiskAnalysisJob = 2,
+    Unspecified = 0,
+    InspectJob = 1,
+    RiskAnalysisJob = 2,
 }
 impl DlpJobType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DlpJobType::Unspecified => "DLP_JOB_TYPE_UNSPECIFIED",
-DlpJobType::InspectJob => "INSPECT_JOB",
-DlpJobType::RiskAnalysisJob => "RISK_ANALYSIS_JOB",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DLP_JOB_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-"INSPECT_JOB" => Some(Self::InspectJob),
-"RISK_ANALYSIS_JOB" => Some(Self::RiskAnalysisJob),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DlpJobType::Unspecified => "DLP_JOB_TYPE_UNSPECIFIED",
+            DlpJobType::InspectJob => "INSPECT_JOB",
+            DlpJobType::RiskAnalysisJob => "RISK_ANALYSIS_JOB",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DLP_JOB_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "INSPECT_JOB" => Some(Self::InspectJob),
+            "RISK_ANALYSIS_JOB" => Some(Self::RiskAnalysisJob),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum StoredInfoTypeState {
-Unspecified = 0,
-Pending = 1,
-Ready = 2,
-Failed = 3,
-Invalid = 4,
+    Unspecified = 0,
+    Pending = 1,
+    Ready = 2,
+    Failed = 3,
+    Invalid = 4,
 }
 impl StoredInfoTypeState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-StoredInfoTypeState::Unspecified => "STORED_INFO_TYPE_STATE_UNSPECIFIED",
-StoredInfoTypeState::Pending => "PENDING",
-StoredInfoTypeState::Ready => "READY",
-StoredInfoTypeState::Failed => "FAILED",
-StoredInfoTypeState::Invalid => "INVALID",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"STORED_INFO_TYPE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"PENDING" => Some(Self::Pending),
-"READY" => Some(Self::Ready),
-"FAILED" => Some(Self::Failed),
-"INVALID" => Some(Self::Invalid),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            StoredInfoTypeState::Unspecified => "STORED_INFO_TYPE_STATE_UNSPECIFIED",
+            StoredInfoTypeState::Pending => "PENDING",
+            StoredInfoTypeState::Ready => "READY",
+            StoredInfoTypeState::Failed => "FAILED",
+            StoredInfoTypeState::Invalid => "INVALID",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "STORED_INFO_TYPE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "PENDING" => Some(Self::Pending),
+            "READY" => Some(Self::Ready),
+            "FAILED" => Some(Self::Failed),
+            "INVALID" => Some(Self::Invalid),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ResourceVisibility {
-Unspecified = 0,
-Public = 10,
-Inconclusive = 15,
-Restricted = 20,
+    Unspecified = 0,
+    Public = 10,
+    Inconclusive = 15,
+    Restricted = 20,
 }
 impl ResourceVisibility {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ResourceVisibility::Unspecified => "RESOURCE_VISIBILITY_UNSPECIFIED",
-ResourceVisibility::Public => "RESOURCE_VISIBILITY_PUBLIC",
-ResourceVisibility::Inconclusive => "RESOURCE_VISIBILITY_INCONCLUSIVE",
-ResourceVisibility::Restricted => "RESOURCE_VISIBILITY_RESTRICTED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"RESOURCE_VISIBILITY_UNSPECIFIED" => Some(Self::Unspecified),
-"RESOURCE_VISIBILITY_PUBLIC" => Some(Self::Public),
-"RESOURCE_VISIBILITY_INCONCLUSIVE" => Some(Self::Inconclusive),
-"RESOURCE_VISIBILITY_RESTRICTED" => Some(Self::Restricted),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ResourceVisibility::Unspecified => "RESOURCE_VISIBILITY_UNSPECIFIED",
+            ResourceVisibility::Public => "RESOURCE_VISIBILITY_PUBLIC",
+            ResourceVisibility::Inconclusive => "RESOURCE_VISIBILITY_INCONCLUSIVE",
+            ResourceVisibility::Restricted => "RESOURCE_VISIBILITY_RESTRICTED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESOURCE_VISIBILITY_UNSPECIFIED" => Some(Self::Unspecified),
+            "RESOURCE_VISIBILITY_PUBLIC" => Some(Self::Public),
+            "RESOURCE_VISIBILITY_INCONCLUSIVE" => Some(Self::Inconclusive),
+            "RESOURCE_VISIBILITY_RESTRICTED" => Some(Self::Restricted),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EncryptionStatus {
-Unspecified = 0,
-EncryptionGoogleManaged = 1,
-EncryptionCustomerManaged = 2,
+    Unspecified = 0,
+    EncryptionGoogleManaged = 1,
+    EncryptionCustomerManaged = 2,
 }
 impl EncryptionStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-EncryptionStatus::Unspecified => "ENCRYPTION_STATUS_UNSPECIFIED",
-EncryptionStatus::EncryptionGoogleManaged => "ENCRYPTION_GOOGLE_MANAGED",
-EncryptionStatus::EncryptionCustomerManaged => "ENCRYPTION_CUSTOMER_MANAGED",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"ENCRYPTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"ENCRYPTION_GOOGLE_MANAGED" => Some(Self::EncryptionGoogleManaged),
-"ENCRYPTION_CUSTOMER_MANAGED" => Some(Self::EncryptionCustomerManaged),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            EncryptionStatus::Unspecified => "ENCRYPTION_STATUS_UNSPECIFIED",
+            EncryptionStatus::EncryptionGoogleManaged => "ENCRYPTION_GOOGLE_MANAGED",
+            EncryptionStatus::EncryptionCustomerManaged => "ENCRYPTION_CUSTOMER_MANAGED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ENCRYPTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+            "ENCRYPTION_GOOGLE_MANAGED" => Some(Self::EncryptionGoogleManaged),
+            "ENCRYPTION_CUSTOMER_MANAGED" => Some(Self::EncryptionCustomerManaged),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum NullPercentageLevel {
-Unspecified = 0,
-NullPercentageVeryLow = 1,
-NullPercentageLow = 2,
-NullPercentageMedium = 3,
-NullPercentageHigh = 4,
+    Unspecified = 0,
+    NullPercentageVeryLow = 1,
+    NullPercentageLow = 2,
+    NullPercentageMedium = 3,
+    NullPercentageHigh = 4,
 }
 impl NullPercentageLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-NullPercentageLevel::Unspecified => "NULL_PERCENTAGE_LEVEL_UNSPECIFIED",
-NullPercentageLevel::NullPercentageVeryLow => "NULL_PERCENTAGE_VERY_LOW",
-NullPercentageLevel::NullPercentageLow => "NULL_PERCENTAGE_LOW",
-NullPercentageLevel::NullPercentageMedium => "NULL_PERCENTAGE_MEDIUM",
-NullPercentageLevel::NullPercentageHigh => "NULL_PERCENTAGE_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"NULL_PERCENTAGE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"NULL_PERCENTAGE_VERY_LOW" => Some(Self::NullPercentageVeryLow),
-"NULL_PERCENTAGE_LOW" => Some(Self::NullPercentageLow),
-"NULL_PERCENTAGE_MEDIUM" => Some(Self::NullPercentageMedium),
-"NULL_PERCENTAGE_HIGH" => Some(Self::NullPercentageHigh),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            NullPercentageLevel::Unspecified => "NULL_PERCENTAGE_LEVEL_UNSPECIFIED",
+            NullPercentageLevel::NullPercentageVeryLow => "NULL_PERCENTAGE_VERY_LOW",
+            NullPercentageLevel::NullPercentageLow => "NULL_PERCENTAGE_LOW",
+            NullPercentageLevel::NullPercentageMedium => "NULL_PERCENTAGE_MEDIUM",
+            NullPercentageLevel::NullPercentageHigh => "NULL_PERCENTAGE_HIGH",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "NULL_PERCENTAGE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "NULL_PERCENTAGE_VERY_LOW" => Some(Self::NullPercentageVeryLow),
+            "NULL_PERCENTAGE_LOW" => Some(Self::NullPercentageLow),
+            "NULL_PERCENTAGE_MEDIUM" => Some(Self::NullPercentageMedium),
+            "NULL_PERCENTAGE_HIGH" => Some(Self::NullPercentageHigh),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum UniquenessScoreLevel {
-Unspecified = 0,
-UniquenessScoreLow = 1,
-UniquenessScoreMedium = 2,
-UniquenessScoreHigh = 3,
+    Unspecified = 0,
+    UniquenessScoreLow = 1,
+    UniquenessScoreMedium = 2,
+    UniquenessScoreHigh = 3,
 }
 impl UniquenessScoreLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-UniquenessScoreLevel::Unspecified => "UNIQUENESS_SCORE_LEVEL_UNSPECIFIED",
-UniquenessScoreLevel::UniquenessScoreLow => "UNIQUENESS_SCORE_LOW",
-UniquenessScoreLevel::UniquenessScoreMedium => "UNIQUENESS_SCORE_MEDIUM",
-UniquenessScoreLevel::UniquenessScoreHigh => "UNIQUENESS_SCORE_HIGH",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"UNIQUENESS_SCORE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"UNIQUENESS_SCORE_LOW" => Some(Self::UniquenessScoreLow),
-"UNIQUENESS_SCORE_MEDIUM" => Some(Self::UniquenessScoreMedium),
-"UNIQUENESS_SCORE_HIGH" => Some(Self::UniquenessScoreHigh),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            UniquenessScoreLevel::Unspecified => "UNIQUENESS_SCORE_LEVEL_UNSPECIFIED",
+            UniquenessScoreLevel::UniquenessScoreLow => "UNIQUENESS_SCORE_LOW",
+            UniquenessScoreLevel::UniquenessScoreMedium => "UNIQUENESS_SCORE_MEDIUM",
+            UniquenessScoreLevel::UniquenessScoreHigh => "UNIQUENESS_SCORE_HIGH",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNIQUENESS_SCORE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "UNIQUENESS_SCORE_LOW" => Some(Self::UniquenessScoreLow),
+            "UNIQUENESS_SCORE_MEDIUM" => Some(Self::UniquenessScoreMedium),
+            "UNIQUENESS_SCORE_HIGH" => Some(Self::UniquenessScoreHigh),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ConnectionState {
-Unspecified = 0,
-MissingCredentials = 1,
-Available = 2,
-Error = 3,
+    Unspecified = 0,
+    MissingCredentials = 1,
+    Available = 2,
+    Error = 3,
 }
 impl ConnectionState {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-ConnectionState::Unspecified => "CONNECTION_STATE_UNSPECIFIED",
-ConnectionState::MissingCredentials => "MISSING_CREDENTIALS",
-ConnectionState::Available => "AVAILABLE",
-ConnectionState::Error => "ERROR",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CONNECTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-"MISSING_CREDENTIALS" => Some(Self::MissingCredentials),
-"AVAILABLE" => Some(Self::Available),
-"ERROR" => Some(Self::Error),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ConnectionState::Unspecified => "CONNECTION_STATE_UNSPECIFIED",
+            ConnectionState::MissingCredentials => "MISSING_CREDENTIALS",
+            ConnectionState::Available => "AVAILABLE",
+            ConnectionState::Error => "ERROR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONNECTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "MISSING_CREDENTIALS" => Some(Self::MissingCredentials),
+            "AVAILABLE" => Some(Self::Available),
+            "ERROR" => Some(Self::Error),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod dlp_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// The Cloud Data Loss Prevention (DLP) API is a service that allows clients
-/// to detect the presence of Personally Identifiable Information (PII) and other
-/// privacy-sensitive data in user-supplied, unstructured data streams, like text
-/// blocks or images.
-/// The service also includes methods for sensitive data redaction and
-/// scheduling of data scans on Google Cloud Platform based data sets.
-///
-/// To learn more about concepts and find how-to guides see
-/// https://cloud.google.com/sensitive-data-protection/docs/.
-#[derive(Debug, Clone)]
-pub struct DlpServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> DlpServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> DlpServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-DlpServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Finds potentially sensitive info in content.
-/// This method has limits on input size, processing time, and output size.
-///
-/// When no InfoTypes or CustomInfoTypes are specified in this request, the
-/// system will automatically choose what detectors to run. By default this may
-/// be all types, but may change over time as detectors are updated.
-///
-/// For how to guides, see
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
-pub async fn inspect_content(&mut self, request: impl tonic::IntoRequest<super::InspectContentRequest>) -> std::result::Result<tonic::Response<super::InspectContentResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/InspectContent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "InspectContent"));
-self.inner.unary(req, path, codec).await
-}
-/// Redacts potentially sensitive info from an image.
-/// This method has limits on input size, processing time, and output size.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
-/// to learn more.
-///
-/// When no InfoTypes or CustomInfoTypes are specified in this request, the
-/// system will automatically choose what detectors to run. By default this may
-/// be all types, but may change over time as detectors are updated.
-pub async fn redact_image(&mut self, request: impl tonic::IntoRequest<super::RedactImageRequest>) -> std::result::Result<tonic::Response<super::RedactImageResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/RedactImage");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "RedactImage"));
-self.inner.unary(req, path, codec).await
-}
-/// De-identifies potentially sensitive info from a ContentItem.
-/// This method has limits on input size and output size.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
-/// to learn more.
-///
-/// When no InfoTypes or CustomInfoTypes are specified in this request, the
-/// system will automatically choose what detectors to run. By default this may
-/// be all types, but may change over time as detectors are updated.
-pub async fn deidentify_content(&mut self, request: impl tonic::IntoRequest<super::DeidentifyContentRequest>) -> std::result::Result<tonic::Response<super::DeidentifyContentResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeidentifyContent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeidentifyContent"));
-self.inner.unary(req, path, codec).await
-}
-/// Re-identifies content that has been de-identified.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
-/// to learn more.
-pub async fn reidentify_content(&mut self, request: impl tonic::IntoRequest<super::ReidentifyContentRequest>) -> std::result::Result<tonic::Response<super::ReidentifyContentResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ReidentifyContent");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ReidentifyContent"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a list of the sensitive information types that DLP API
-/// supports. See
-/// https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
-/// to learn more.
-pub async fn list_info_types(&mut self, request: impl tonic::IntoRequest<super::ListInfoTypesRequest>) -> std::result::Result<tonic::Response<super::ListInfoTypesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListInfoTypes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListInfoTypes"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates an InspectTemplate for reusing frequently used configuration
-/// for inspecting content, images, and storage.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
-/// to learn more.
-pub async fn create_inspect_template(&mut self, request: impl tonic::IntoRequest<super::CreateInspectTemplateRequest>) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateInspectTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateInspectTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the InspectTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
-/// to learn more.
-pub async fn update_inspect_template(&mut self, request: impl tonic::IntoRequest<super::UpdateInspectTemplateRequest>) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateInspectTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateInspectTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets an InspectTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
-/// to learn more.
-pub async fn get_inspect_template(&mut self, request: impl tonic::IntoRequest<super::GetInspectTemplateRequest>) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetInspectTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetInspectTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists InspectTemplates.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
-/// to learn more.
-pub async fn list_inspect_templates(&mut self, request: impl tonic::IntoRequest<super::ListInspectTemplatesRequest>) -> std::result::Result<tonic::Response<super::ListInspectTemplatesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListInspectTemplates");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListInspectTemplates"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes an InspectTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
-/// to learn more.
-pub async fn delete_inspect_template(&mut self, request: impl tonic::IntoRequest<super::DeleteInspectTemplateRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteInspectTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteInspectTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a DeidentifyTemplate for reusing frequently used configuration
-/// for de-identifying content, images, and storage.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
-/// to learn more.
-pub async fn create_deidentify_template(&mut self, request: impl tonic::IntoRequest<super::CreateDeidentifyTemplateRequest>) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateDeidentifyTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateDeidentifyTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the DeidentifyTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
-/// to learn more.
-pub async fn update_deidentify_template(&mut self, request: impl tonic::IntoRequest<super::UpdateDeidentifyTemplateRequest>) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateDeidentifyTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateDeidentifyTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a DeidentifyTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
-/// to learn more.
-pub async fn get_deidentify_template(&mut self, request: impl tonic::IntoRequest<super::GetDeidentifyTemplateRequest>) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetDeidentifyTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetDeidentifyTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists DeidentifyTemplates.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
-/// to learn more.
-pub async fn list_deidentify_templates(&mut self, request: impl tonic::IntoRequest<super::ListDeidentifyTemplatesRequest>) -> std::result::Result<tonic::Response<super::ListDeidentifyTemplatesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListDeidentifyTemplates");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListDeidentifyTemplates"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a DeidentifyTemplate.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
-/// to learn more.
-pub async fn delete_deidentify_template(&mut self, request: impl tonic::IntoRequest<super::DeleteDeidentifyTemplateRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteDeidentifyTemplate");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteDeidentifyTemplate"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a job trigger to run DLP actions such as scanning storage for
-/// sensitive information on a set schedule.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
-/// to learn more.
-pub async fn create_job_trigger(&mut self, request: impl tonic::IntoRequest<super::CreateJobTriggerRequest>) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a job trigger.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
-/// to learn more.
-pub async fn update_job_trigger(&mut self, request: impl tonic::IntoRequest<super::UpdateJobTriggerRequest>) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Inspect hybrid content and store findings to a trigger. The inspection
-/// will be processed asynchronously. To review the findings monitor the
-/// jobs within the trigger.
-pub async fn hybrid_inspect_job_trigger(&mut self, request: impl tonic::IntoRequest<super::HybridInspectJobTriggerRequest>) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "HybridInspectJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a job trigger.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
-/// to learn more.
-pub async fn get_job_trigger(&mut self, request: impl tonic::IntoRequest<super::GetJobTriggerRequest>) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists job triggers.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
-/// to learn more.
-pub async fn list_job_triggers(&mut self, request: impl tonic::IntoRequest<super::ListJobTriggersRequest>) -> std::result::Result<tonic::Response<super::ListJobTriggersResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListJobTriggers");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListJobTriggers"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a job trigger.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
-/// to learn more.
-pub async fn delete_job_trigger(&mut self, request: impl tonic::IntoRequest<super::DeleteJobTriggerRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Activate a job trigger. Causes the immediate execute of a trigger
-/// instead of waiting on the trigger event to occur.
-pub async fn activate_job_trigger(&mut self, request: impl tonic::IntoRequest<super::ActivateJobTriggerRequest>) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ActivateJobTrigger");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ActivateJobTrigger"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a config for discovery to scan and profile storage.
-pub async fn create_discovery_config(&mut self, request: impl tonic::IntoRequest<super::CreateDiscoveryConfigRequest>) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateDiscoveryConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateDiscoveryConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates a discovery configuration.
-pub async fn update_discovery_config(&mut self, request: impl tonic::IntoRequest<super::UpdateDiscoveryConfigRequest>) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateDiscoveryConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateDiscoveryConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a discovery configuration.
-pub async fn get_discovery_config(&mut self, request: impl tonic::IntoRequest<super::GetDiscoveryConfigRequest>) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetDiscoveryConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetDiscoveryConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists discovery configurations.
-pub async fn list_discovery_configs(&mut self, request: impl tonic::IntoRequest<super::ListDiscoveryConfigsRequest>) -> std::result::Result<tonic::Response<super::ListDiscoveryConfigsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListDiscoveryConfigs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListDiscoveryConfigs"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a discovery configuration.
-pub async fn delete_discovery_config(&mut self, request: impl tonic::IntoRequest<super::DeleteDiscoveryConfigRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteDiscoveryConfig");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteDiscoveryConfig"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new job to inspect storage or calculate risk metrics.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
-/// to learn more.
-///
-/// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
-/// system will automatically choose what detectors to run. By default this may
-/// be all types, but may change over time as detectors are updated.
-pub async fn create_dlp_job(&mut self, request: impl tonic::IntoRequest<super::CreateDlpJobRequest>) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists DlpJobs that match the specified filter in the request.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
-/// to learn more.
-pub async fn list_dlp_jobs(&mut self, request: impl tonic::IntoRequest<super::ListDlpJobsRequest>) -> std::result::Result<tonic::Response<super::ListDlpJobsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListDlpJobs");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListDlpJobs"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the latest state of a long-running DlpJob.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
-/// to learn more.
-pub async fn get_dlp_job(&mut self, request: impl tonic::IntoRequest<super::GetDlpJobRequest>) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a long-running DlpJob. This method indicates that the client is
-/// no longer interested in the DlpJob result. The job will be canceled if
-/// possible.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
-/// to learn more.
-pub async fn delete_dlp_job(&mut self, request: impl tonic::IntoRequest<super::DeleteDlpJobRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Starts asynchronous cancellation on a long-running DlpJob. The server
-/// makes a best effort to cancel the DlpJob, but success is not
-/// guaranteed.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
-/// and
-/// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
-/// to learn more.
-pub async fn cancel_dlp_job(&mut self, request: impl tonic::IntoRequest<super::CancelDlpJobRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CancelDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CancelDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a pre-built stored infoType to be used for inspection.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
-/// to learn more.
-pub async fn create_stored_info_type(&mut self, request: impl tonic::IntoRequest<super::CreateStoredInfoTypeRequest>) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateStoredInfoType");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateStoredInfoType"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates the stored infoType by creating a new version. The existing version
-/// will continue to be used until the new version is ready.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
-/// to learn more.
-pub async fn update_stored_info_type(&mut self, request: impl tonic::IntoRequest<super::UpdateStoredInfoTypeRequest>) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateStoredInfoType");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateStoredInfoType"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a stored infoType.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
-/// to learn more.
-pub async fn get_stored_info_type(&mut self, request: impl tonic::IntoRequest<super::GetStoredInfoTypeRequest>) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetStoredInfoType");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetStoredInfoType"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists stored infoTypes.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
-/// to learn more.
-pub async fn list_stored_info_types(&mut self, request: impl tonic::IntoRequest<super::ListStoredInfoTypesRequest>) -> std::result::Result<tonic::Response<super::ListStoredInfoTypesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListStoredInfoTypes");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListStoredInfoTypes"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a stored infoType.
-/// See
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
-/// to learn more.
-pub async fn delete_stored_info_type(&mut self, request: impl tonic::IntoRequest<super::DeleteStoredInfoTypeRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteStoredInfoType"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists project data profiles for an organization.
-pub async fn list_project_data_profiles(&mut self, request: impl tonic::IntoRequest<super::ListProjectDataProfilesRequest>) -> std::result::Result<tonic::Response<super::ListProjectDataProfilesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListProjectDataProfiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListProjectDataProfiles"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists table data profiles for an organization.
-pub async fn list_table_data_profiles(&mut self, request: impl tonic::IntoRequest<super::ListTableDataProfilesRequest>) -> std::result::Result<tonic::Response<super::ListTableDataProfilesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListTableDataProfiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListTableDataProfiles"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists column data profiles for an organization.
-pub async fn list_column_data_profiles(&mut self, request: impl tonic::IntoRequest<super::ListColumnDataProfilesRequest>) -> std::result::Result<tonic::Response<super::ListColumnDataProfilesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListColumnDataProfiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListColumnDataProfiles"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a project data profile.
-pub async fn get_project_data_profile(&mut self, request: impl tonic::IntoRequest<super::GetProjectDataProfileRequest>) -> std::result::Result<tonic::Response<super::ProjectDataProfile>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetProjectDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetProjectDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists file store data profiles for an organization.
-pub async fn list_file_store_data_profiles(&mut self, request: impl tonic::IntoRequest<super::ListFileStoreDataProfilesRequest>) -> std::result::Result<tonic::Response<super::ListFileStoreDataProfilesResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListFileStoreDataProfiles");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListFileStoreDataProfiles"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a file store data profile.
-pub async fn get_file_store_data_profile(&mut self, request: impl tonic::IntoRequest<super::GetFileStoreDataProfileRequest>) -> std::result::Result<tonic::Response<super::FileStoreDataProfile>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetFileStoreDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetFileStoreDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a FileStoreDataProfile. Will not prevent the profile from being
-/// regenerated if the resource is still included in a discovery configuration.
-pub async fn delete_file_store_data_profile(&mut self, request: impl tonic::IntoRequest<super::DeleteFileStoreDataProfileRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteFileStoreDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteFileStoreDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a table data profile.
-pub async fn get_table_data_profile(&mut self, request: impl tonic::IntoRequest<super::GetTableDataProfileRequest>) -> std::result::Result<tonic::Response<super::TableDataProfile>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetTableDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetTableDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets a column data profile.
-pub async fn get_column_data_profile(&mut self, request: impl tonic::IntoRequest<super::GetColumnDataProfileRequest>) -> std::result::Result<tonic::Response<super::ColumnDataProfile>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetColumnDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetColumnDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a TableDataProfile. Will not prevent the profile from being
-/// regenerated if the table is still included in a discovery configuration.
-pub async fn delete_table_data_profile(&mut self, request: impl tonic::IntoRequest<super::DeleteTableDataProfileRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteTableDataProfile");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteTableDataProfile"));
-self.inner.unary(req, path, codec).await
-}
-/// Inspect hybrid content and store findings to a job.
-/// To review the findings, inspect the job. Inspection will occur
-/// asynchronously.
-pub async fn hybrid_inspect_dlp_job(&mut self, request: impl tonic::IntoRequest<super::HybridInspectDlpJobRequest>) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "HybridInspectDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Finish a running hybrid DlpJob. Triggers the finalization steps and running
-/// of any enabled actions that have not yet run.
-pub async fn finish_dlp_job(&mut self, request: impl tonic::IntoRequest<super::FinishDlpJobRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/FinishDlpJob");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "FinishDlpJob"));
-self.inner.unary(req, path, codec).await
-}
-/// Create a Connection to an external data source.
-pub async fn create_connection(&mut self, request: impl tonic::IntoRequest<super::CreateConnectionRequest>) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/CreateConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "CreateConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Get a Connection by name.
-pub async fn get_connection(&mut self, request: impl tonic::IntoRequest<super::GetConnectionRequest>) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "GetConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Lists Connections in a parent.
-pub async fn list_connections(&mut self, request: impl tonic::IntoRequest<super::ListConnectionsRequest>) -> std::result::Result<tonic::Response<super::ListConnectionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/ListConnections");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "ListConnections"));
-self.inner.unary(req, path, codec).await
-}
-/// Searches for Connections in a parent.
-pub async fn search_connections(&mut self, request: impl tonic::IntoRequest<super::SearchConnectionsRequest>) -> std::result::Result<tonic::Response<super::SearchConnectionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/SearchConnections");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "SearchConnections"));
-self.inner.unary(req, path, codec).await
-}
-/// Delete a Connection.
-pub async fn delete_connection(&mut self, request: impl tonic::IntoRequest<super::DeleteConnectionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/DeleteConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "DeleteConnection"));
-self.inner.unary(req, path, codec).await
-}
-/// Update a Connection.
-pub async fn update_connection(&mut self, request: impl tonic::IntoRequest<super::UpdateConnectionRequest>) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/UpdateConnection");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.privacy.dlp.v2.DlpService", "UpdateConnection"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// The Cloud Data Loss Prevention (DLP) API is a service that allows clients
+    /// to detect the presence of Personally Identifiable Information (PII) and other
+    /// privacy-sensitive data in user-supplied, unstructured data streams, like text
+    /// blocks or images.
+    /// The service also includes methods for sensitive data redaction and
+    /// scheduling of data scans on Google Cloud Platform based data sets.
+    ///
+    /// To learn more about concepts and find how-to guides see
+    /// https://cloud.google.com/sensitive-data-protection/docs/.
+    #[derive(Debug, Clone)]
+    pub struct DlpServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> DlpServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> DlpServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            DlpServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Finds potentially sensitive info in content.
+        /// This method has limits on input size, processing time, and output size.
+        ///
+        /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+        /// system will automatically choose what detectors to run. By default this may
+        /// be all types, but may change over time as detectors are updated.
+        ///
+        /// For how to guides, see
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+        pub async fn inspect_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::InspectContentRequest>,
+        ) -> std::result::Result<tonic::Response<super::InspectContentResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/InspectContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "InspectContent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Redacts potentially sensitive info from an image.
+        /// This method has limits on input size, processing time, and output size.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+        /// to learn more.
+        ///
+        /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+        /// system will automatically choose what detectors to run. By default this may
+        /// be all types, but may change over time as detectors are updated.
+        pub async fn redact_image(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RedactImageRequest>,
+        ) -> std::result::Result<tonic::Response<super::RedactImageResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/RedactImage",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "RedactImage",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// De-identifies potentially sensitive info from a ContentItem.
+        /// This method has limits on input size and output size.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+        /// to learn more.
+        ///
+        /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+        /// system will automatically choose what detectors to run. By default this may
+        /// be all types, but may change over time as detectors are updated.
+        pub async fn deidentify_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeidentifyContentRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeidentifyContentResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeidentifyContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeidentifyContent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Re-identifies content that has been de-identified.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
+        /// to learn more.
+        pub async fn reidentify_content(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReidentifyContentRequest>,
+        ) -> std::result::Result<tonic::Response<super::ReidentifyContentResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ReidentifyContent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ReidentifyContent",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a list of the sensitive information types that DLP API
+        /// supports. See
+        /// https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+        /// to learn more.
+        pub async fn list_info_types(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListInfoTypesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListInfoTypesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListInfoTypes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListInfoTypes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an InspectTemplate for reusing frequently used configuration
+        /// for inspecting content, images, and storage.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+        /// to learn more.
+        pub async fn create_inspect_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateInspectTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateInspectTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateInspectTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the InspectTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+        /// to learn more.
+        pub async fn update_inspect_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateInspectTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateInspectTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateInspectTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets an InspectTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+        /// to learn more.
+        pub async fn get_inspect_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetInspectTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::InspectTemplate>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetInspectTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetInspectTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists InspectTemplates.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+        /// to learn more.
+        pub async fn list_inspect_templates(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListInspectTemplatesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListInspectTemplatesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListInspectTemplates",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListInspectTemplates",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an InspectTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+        /// to learn more.
+        pub async fn delete_inspect_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteInspectTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteInspectTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteInspectTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a DeidentifyTemplate for reusing frequently used configuration
+        /// for de-identifying content, images, and storage.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+        /// to learn more.
+        pub async fn create_deidentify_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDeidentifyTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateDeidentifyTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateDeidentifyTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the DeidentifyTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+        /// to learn more.
+        pub async fn update_deidentify_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDeidentifyTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateDeidentifyTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateDeidentifyTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a DeidentifyTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+        /// to learn more.
+        pub async fn get_deidentify_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDeidentifyTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<super::DeidentifyTemplate>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetDeidentifyTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetDeidentifyTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists DeidentifyTemplates.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+        /// to learn more.
+        pub async fn list_deidentify_templates(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDeidentifyTemplatesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListDeidentifyTemplatesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListDeidentifyTemplates",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListDeidentifyTemplates",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a DeidentifyTemplate.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+        /// to learn more.
+        pub async fn delete_deidentify_template(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDeidentifyTemplateRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteDeidentifyTemplate",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteDeidentifyTemplate",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a job trigger to run DLP actions such as scanning storage for
+        /// sensitive information on a set schedule.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+        /// to learn more.
+        pub async fn create_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a job trigger.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+        /// to learn more.
+        pub async fn update_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Inspect hybrid content and store findings to a trigger. The inspection
+        /// will be processed asynchronously. To review the findings monitor the
+        /// jobs within the trigger.
+        pub async fn hybrid_inspect_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::HybridInspectJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "HybridInspectJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a job trigger.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+        /// to learn more.
+        pub async fn get_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::JobTrigger>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists job triggers.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+        /// to learn more.
+        pub async fn list_job_triggers(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListJobTriggersRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListJobTriggersResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListJobTriggers",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListJobTriggers",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a job trigger.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+        /// to learn more.
+        pub async fn delete_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Activate a job trigger. Causes the immediate execute of a trigger
+        /// instead of waiting on the trigger event to occur.
+        pub async fn activate_job_trigger(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ActivateJobTriggerRequest>,
+        ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ActivateJobTrigger",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ActivateJobTrigger",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a config for discovery to scan and profile storage.
+        pub async fn create_discovery_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDiscoveryConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateDiscoveryConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateDiscoveryConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a discovery configuration.
+        pub async fn update_discovery_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateDiscoveryConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateDiscoveryConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateDiscoveryConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a discovery configuration.
+        pub async fn get_discovery_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDiscoveryConfigRequest>,
+        ) -> std::result::Result<tonic::Response<super::DiscoveryConfig>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetDiscoveryConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetDiscoveryConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists discovery configurations.
+        pub async fn list_discovery_configs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDiscoveryConfigsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDiscoveryConfigsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListDiscoveryConfigs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListDiscoveryConfigs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a discovery configuration.
+        pub async fn delete_discovery_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDiscoveryConfigRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteDiscoveryConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteDiscoveryConfig",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new job to inspect storage or calculate risk metrics.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+        /// to learn more.
+        ///
+        /// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+        /// system will automatically choose what detectors to run. By default this may
+        /// be all types, but may change over time as detectors are updated.
+        pub async fn create_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateDlpJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists DlpJobs that match the specified filter in the request.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+        /// to learn more.
+        pub async fn list_dlp_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDlpJobsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListDlpJobsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListDlpJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListDlpJobs",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the latest state of a long-running DlpJob.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+        /// to learn more.
+        pub async fn get_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::DlpJob>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/google.privacy.dlp.v2.DlpService/GetDlpJob");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a long-running DlpJob. This method indicates that the client is
+        /// no longer interested in the DlpJob result. The job will be canceled if
+        /// possible.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+        /// to learn more.
+        pub async fn delete_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteDlpJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Starts asynchronous cancellation on a long-running DlpJob. The server
+        /// makes a best effort to cancel the DlpJob, but success is not
+        /// guaranteed.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+        /// and
+        /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+        /// to learn more.
+        pub async fn cancel_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CancelDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CancelDlpJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CancelDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a pre-built stored infoType to be used for inspection.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+        /// to learn more.
+        pub async fn create_stored_info_type(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateStoredInfoTypeRequest>,
+        ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateStoredInfoType",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateStoredInfoType",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the stored infoType by creating a new version. The existing version
+        /// will continue to be used until the new version is ready.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+        /// to learn more.
+        pub async fn update_stored_info_type(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateStoredInfoTypeRequest>,
+        ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateStoredInfoType",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateStoredInfoType",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a stored infoType.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+        /// to learn more.
+        pub async fn get_stored_info_type(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStoredInfoTypeRequest>,
+        ) -> std::result::Result<tonic::Response<super::StoredInfoType>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetStoredInfoType",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetStoredInfoType",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists stored infoTypes.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+        /// to learn more.
+        pub async fn list_stored_info_types(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListStoredInfoTypesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListStoredInfoTypesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListStoredInfoTypes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListStoredInfoTypes",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a stored infoType.
+        /// See
+        /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+        /// to learn more.
+        pub async fn delete_stored_info_type(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteStoredInfoTypeRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteStoredInfoType",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists project data profiles for an organization.
+        pub async fn list_project_data_profiles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProjectDataProfilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListProjectDataProfilesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListProjectDataProfiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListProjectDataProfiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists table data profiles for an organization.
+        pub async fn list_table_data_profiles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListTableDataProfilesRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListTableDataProfilesResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListTableDataProfiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListTableDataProfiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists column data profiles for an organization.
+        pub async fn list_column_data_profiles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListColumnDataProfilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListColumnDataProfilesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListColumnDataProfiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListColumnDataProfiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a project data profile.
+        pub async fn get_project_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProjectDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<super::ProjectDataProfile>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetProjectDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetProjectDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists file store data profiles for an organization.
+        pub async fn list_file_store_data_profiles(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFileStoreDataProfilesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListFileStoreDataProfilesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListFileStoreDataProfiles",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListFileStoreDataProfiles",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a file store data profile.
+        pub async fn get_file_store_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFileStoreDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<super::FileStoreDataProfile>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetFileStoreDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetFileStoreDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a FileStoreDataProfile. Will not prevent the profile from being
+        /// regenerated if the resource is still included in a discovery configuration.
+        pub async fn delete_file_store_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteFileStoreDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteFileStoreDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteFileStoreDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a table data profile.
+        pub async fn get_table_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTableDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<super::TableDataProfile>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetTableDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetTableDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a column data profile.
+        pub async fn get_column_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetColumnDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<super::ColumnDataProfile>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetColumnDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetColumnDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a TableDataProfile. Will not prevent the profile from being
+        /// regenerated if the table is still included in a discovery configuration.
+        pub async fn delete_table_data_profile(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteTableDataProfileRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteTableDataProfile",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteTableDataProfile",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Inspect hybrid content and store findings to a job.
+        /// To review the findings, inspect the job. Inspection will occur
+        /// asynchronously.
+        pub async fn hybrid_inspect_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::HybridInspectDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<super::HybridInspectResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "HybridInspectDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Finish a running hybrid DlpJob. Triggers the finalization steps and running
+        /// of any enabled actions that have not yet run.
+        pub async fn finish_dlp_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FinishDlpJobRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/FinishDlpJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "FinishDlpJob",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Create a Connection to an external data source.
+        pub async fn create_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/CreateConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "CreateConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get a Connection by name.
+        pub async fn get_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/GetConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "GetConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists Connections in a parent.
+        pub async fn list_connections(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListConnectionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListConnectionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/ListConnections",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "ListConnections",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Searches for Connections in a parent.
+        pub async fn search_connections(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SearchConnectionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::SearchConnectionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/SearchConnections",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "SearchConnections",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Delete a Connection.
+        pub async fn delete_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/DeleteConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "DeleteConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update a Connection.
+        pub async fn update_connection(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateConnectionRequest>,
+        ) -> std::result::Result<tonic::Response<super::Connection>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.privacy.dlp.v2.DlpService/UpdateConnection",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.privacy.dlp.v2.DlpService",
+                "UpdateConnection",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }

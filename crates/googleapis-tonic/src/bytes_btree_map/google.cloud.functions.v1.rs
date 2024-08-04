@@ -2,701 +2,888 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadataV1 {
-#[prost(string, tag = "1")]
-pub target: ::prost::alloc::string::String,
-#[prost(enumeration = "OperationType", tag = "2")]
-pub r#type: i32,
-#[prost(message, optional, tag = "3")]
-pub request: ::core::option::Option<::prost_types::Any>,
-#[prost(int64, tag = "4")]
-pub version_id: i64,
-#[prost(message, optional, tag = "5")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(string, tag = "6")]
-pub build_id: ::prost::alloc::string::String,
-#[prost(string, tag = "7")]
-pub source_token: ::prost::alloc::string::String,
-#[prost(string, tag = "8")]
-pub build_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub target: ::prost::alloc::string::String,
+    #[prost(enumeration = "OperationType", tag = "2")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "3")]
+    pub request: ::core::option::Option<::prost_types::Any>,
+    #[prost(int64, tag = "4")]
+    pub version_id: i64,
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(string, tag = "6")]
+    pub build_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "7")]
+    pub source_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
+    pub build_name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OperationType {
-OperationUnspecified = 0,
-CreateFunction = 1,
-UpdateFunction = 2,
-DeleteFunction = 3,
+    OperationUnspecified = 0,
+    CreateFunction = 1,
+    UpdateFunction = 2,
+    DeleteFunction = 3,
 }
 impl OperationType {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-OperationType::OperationUnspecified => "OPERATION_UNSPECIFIED",
-OperationType::CreateFunction => "CREATE_FUNCTION",
-OperationType::UpdateFunction => "UPDATE_FUNCTION",
-OperationType::DeleteFunction => "DELETE_FUNCTION",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"OPERATION_UNSPECIFIED" => Some(Self::OperationUnspecified),
-"CREATE_FUNCTION" => Some(Self::CreateFunction),
-"UPDATE_FUNCTION" => Some(Self::UpdateFunction),
-"DELETE_FUNCTION" => Some(Self::DeleteFunction),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            OperationType::OperationUnspecified => "OPERATION_UNSPECIFIED",
+            OperationType::CreateFunction => "CREATE_FUNCTION",
+            OperationType::UpdateFunction => "UPDATE_FUNCTION",
+            OperationType::DeleteFunction => "DELETE_FUNCTION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATION_UNSPECIFIED" => Some(Self::OperationUnspecified),
+            "CREATE_FUNCTION" => Some(Self::CreateFunction),
+            "UPDATE_FUNCTION" => Some(Self::UpdateFunction),
+            "DELETE_FUNCTION" => Some(Self::DeleteFunction),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudFunction {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub description: ::prost::alloc::string::String,
-#[prost(enumeration = "CloudFunctionStatus", tag = "7")]
-pub status: i32,
-#[prost(string, tag = "8")]
-pub entry_point: ::prost::alloc::string::String,
-#[prost(string, tag = "19")]
-pub runtime: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "9")]
-pub timeout: ::core::option::Option<::prost_types::Duration>,
-#[prost(int32, tag = "10")]
-pub available_memory_mb: i32,
-#[prost(string, tag = "11")]
-pub service_account_email: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "12")]
-pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-#[prost(int64, tag = "14")]
-pub version_id: i64,
-#[prost(btree_map = "string, string", tag = "15")]
-pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(btree_map = "string, string", tag = "17")]
-pub environment_variables: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[prost(btree_map = "string, string", tag = "28")]
-pub build_environment_variables: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-#[deprecated]
-#[prost(string, tag = "18")]
-pub network: ::prost::alloc::string::String,
-#[prost(int32, tag = "20")]
-pub max_instances: i32,
-#[prost(int32, tag = "32")]
-pub min_instances: i32,
-#[prost(string, tag = "22")]
-pub vpc_connector: ::prost::alloc::string::String,
-#[prost(enumeration = "cloud_function::VpcConnectorEgressSettings", tag = "23")]
-pub vpc_connector_egress_settings: i32,
-#[prost(enumeration = "cloud_function::IngressSettings", tag = "24")]
-pub ingress_settings: i32,
-#[prost(string, tag = "25")]
-pub kms_key_name: ::prost::alloc::string::String,
-#[prost(string, tag = "26")]
-pub build_worker_pool: ::prost::alloc::string::String,
-#[prost(string, tag = "27")]
-pub build_id: ::prost::alloc::string::String,
-#[prost(string, tag = "33")]
-pub build_name: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "29")]
-pub secret_environment_variables: ::prost::alloc::vec::Vec<SecretEnvVar>,
-#[prost(message, repeated, tag = "30")]
-pub secret_volumes: ::prost::alloc::vec::Vec<SecretVolume>,
-#[prost(string, tag = "31")]
-pub source_token: ::prost::alloc::string::String,
-#[prost(string, tag = "34")]
-pub docker_repository: ::prost::alloc::string::String,
-#[prost(enumeration = "cloud_function::DockerRegistry", tag = "35")]
-pub docker_registry: i32,
-#[prost(oneof = "cloud_function::SourceCode", tags = "3, 4, 16")]
-pub source_code: ::core::option::Option<cloud_function::SourceCode>,
-#[prost(oneof = "cloud_function::Trigger", tags = "5, 6")]
-pub trigger: ::core::option::Option<cloud_function::Trigger>,
-#[prost(oneof = "cloud_function::RuntimeUpdatePolicy", tags = "40, 41")]
-pub runtime_update_policy: ::core::option::Option<cloud_function::RuntimeUpdatePolicy>,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(enumeration = "CloudFunctionStatus", tag = "7")]
+    pub status: i32,
+    #[prost(string, tag = "8")]
+    pub entry_point: ::prost::alloc::string::String,
+    #[prost(string, tag = "19")]
+    pub runtime: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "9")]
+    pub timeout: ::core::option::Option<::prost_types::Duration>,
+    #[prost(int32, tag = "10")]
+    pub available_memory_mb: i32,
+    #[prost(string, tag = "11")]
+    pub service_account_email: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "12")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(int64, tag = "14")]
+    pub version_id: i64,
+    #[prost(btree_map = "string, string", tag = "15")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(btree_map = "string, string", tag = "17")]
+    pub environment_variables: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(btree_map = "string, string", tag = "28")]
+    pub build_environment_variables: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[deprecated]
+    #[prost(string, tag = "18")]
+    pub network: ::prost::alloc::string::String,
+    #[prost(int32, tag = "20")]
+    pub max_instances: i32,
+    #[prost(int32, tag = "32")]
+    pub min_instances: i32,
+    #[prost(string, tag = "22")]
+    pub vpc_connector: ::prost::alloc::string::String,
+    #[prost(enumeration = "cloud_function::VpcConnectorEgressSettings", tag = "23")]
+    pub vpc_connector_egress_settings: i32,
+    #[prost(enumeration = "cloud_function::IngressSettings", tag = "24")]
+    pub ingress_settings: i32,
+    #[prost(string, tag = "25")]
+    pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "26")]
+    pub build_worker_pool: ::prost::alloc::string::String,
+    #[prost(string, tag = "27")]
+    pub build_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "33")]
+    pub build_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "29")]
+    pub secret_environment_variables: ::prost::alloc::vec::Vec<SecretEnvVar>,
+    #[prost(message, repeated, tag = "30")]
+    pub secret_volumes: ::prost::alloc::vec::Vec<SecretVolume>,
+    #[prost(string, tag = "31")]
+    pub source_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "34")]
+    pub docker_repository: ::prost::alloc::string::String,
+    #[prost(enumeration = "cloud_function::DockerRegistry", tag = "35")]
+    pub docker_registry: i32,
+    #[prost(oneof = "cloud_function::SourceCode", tags = "3, 4, 16")]
+    pub source_code: ::core::option::Option<cloud_function::SourceCode>,
+    #[prost(oneof = "cloud_function::Trigger", tags = "5, 6")]
+    pub trigger: ::core::option::Option<cloud_function::Trigger>,
+    #[prost(oneof = "cloud_function::RuntimeUpdatePolicy", tags = "40, 41")]
+    pub runtime_update_policy: ::core::option::Option<cloud_function::RuntimeUpdatePolicy>,
 }
 /// Nested message and enum types in `CloudFunction`.
 pub mod cloud_function {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AutomaticUpdatePolicy {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OnDeployUpdatePolicy {
-#[prost(string, tag = "1")]
-pub runtime_version: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum VpcConnectorEgressSettings {
-Unspecified = 0,
-PrivateRangesOnly = 1,
-AllTraffic = 2,
-}
-impl VpcConnectorEgressSettings {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-VpcConnectorEgressSettings::Unspecified => "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
-VpcConnectorEgressSettings::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
-VpcConnectorEgressSettings::AllTraffic => "ALL_TRAFFIC",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
-"PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
-"ALL_TRAFFIC" => Some(Self::AllTraffic),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum IngressSettings {
-Unspecified = 0,
-AllowAll = 1,
-AllowInternalOnly = 2,
-AllowInternalAndGclb = 3,
-}
-impl IngressSettings {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-IngressSettings::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
-IngressSettings::AllowAll => "ALLOW_ALL",
-IngressSettings::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
-IngressSettings::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"INGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
-"ALLOW_ALL" => Some(Self::AllowAll),
-"ALLOW_INTERNAL_ONLY" => Some(Self::AllowInternalOnly),
-"ALLOW_INTERNAL_AND_GCLB" => Some(Self::AllowInternalAndGclb),
-_ => None,
-}
-}
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum DockerRegistry {
-Unspecified = 0,
-ContainerRegistry = 1,
-ArtifactRegistry = 2,
-}
-impl DockerRegistry {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-DockerRegistry::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
-DockerRegistry::ContainerRegistry => "CONTAINER_REGISTRY",
-DockerRegistry::ArtifactRegistry => "ARTIFACT_REGISTRY",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"DOCKER_REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
-"CONTAINER_REGISTRY" => Some(Self::ContainerRegistry),
-"ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
-_ => None,
-}
-}
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum SourceCode {
-#[prost(string, tag = "3")]
-SourceArchiveUrl(::prost::alloc::string::String),
-#[prost(message, tag = "4")]
-SourceRepository(super::SourceRepository),
-#[prost(string, tag = "16")]
-SourceUploadUrl(::prost::alloc::string::String),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum Trigger {
-#[prost(message, tag = "5")]
-HttpsTrigger(super::HttpsTrigger),
-#[prost(message, tag = "6")]
-EventTrigger(super::EventTrigger),
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Oneof)]
-pub enum RuntimeUpdatePolicy {
-#[prost(message, tag = "40")]
-AutomaticUpdatePolicy(AutomaticUpdatePolicy),
-#[prost(message, tag = "41")]
-OnDeployUpdatePolicy(OnDeployUpdatePolicy),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct AutomaticUpdatePolicy {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OnDeployUpdatePolicy {
+        #[prost(string, tag = "1")]
+        pub runtime_version: ::prost::alloc::string::String,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum VpcConnectorEgressSettings {
+        Unspecified = 0,
+        PrivateRangesOnly = 1,
+        AllTraffic = 2,
+    }
+    impl VpcConnectorEgressSettings {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VpcConnectorEgressSettings::Unspecified => {
+                    "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED"
+                }
+                VpcConnectorEgressSettings::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
+                VpcConnectorEgressSettings::AllTraffic => "ALL_TRAFFIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
+                "PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
+                "ALL_TRAFFIC" => Some(Self::AllTraffic),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum IngressSettings {
+        Unspecified = 0,
+        AllowAll = 1,
+        AllowInternalOnly = 2,
+        AllowInternalAndGclb = 3,
+    }
+    impl IngressSettings {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IngressSettings::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
+                IngressSettings::AllowAll => "ALLOW_ALL",
+                IngressSettings::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
+                IngressSettings::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALLOW_ALL" => Some(Self::AllowAll),
+                "ALLOW_INTERNAL_ONLY" => Some(Self::AllowInternalOnly),
+                "ALLOW_INTERNAL_AND_GCLB" => Some(Self::AllowInternalAndGclb),
+                _ => None,
+            }
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum DockerRegistry {
+        Unspecified = 0,
+        ContainerRegistry = 1,
+        ArtifactRegistry = 2,
+    }
+    impl DockerRegistry {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DockerRegistry::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
+                DockerRegistry::ContainerRegistry => "CONTAINER_REGISTRY",
+                DockerRegistry::ArtifactRegistry => "ARTIFACT_REGISTRY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DOCKER_REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
+                "CONTAINER_REGISTRY" => Some(Self::ContainerRegistry),
+                "ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum SourceCode {
+        #[prost(string, tag = "3")]
+        SourceArchiveUrl(::prost::alloc::string::String),
+        #[prost(message, tag = "4")]
+        SourceRepository(super::SourceRepository),
+        #[prost(string, tag = "16")]
+        SourceUploadUrl(::prost::alloc::string::String),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Trigger {
+        #[prost(message, tag = "5")]
+        HttpsTrigger(super::HttpsTrigger),
+        #[prost(message, tag = "6")]
+        EventTrigger(super::EventTrigger),
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RuntimeUpdatePolicy {
+        #[prost(message, tag = "40")]
+        AutomaticUpdatePolicy(AutomaticUpdatePolicy),
+        #[prost(message, tag = "41")]
+        OnDeployUpdatePolicy(OnDeployUpdatePolicy),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceRepository {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub deployed_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub deployed_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpsTrigger {
-#[prost(string, tag = "1")]
-pub url: ::prost::alloc::string::String,
-#[prost(enumeration = "https_trigger::SecurityLevel", tag = "2")]
-pub security_level: i32,
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
+    #[prost(enumeration = "https_trigger::SecurityLevel", tag = "2")]
+    pub security_level: i32,
 }
 /// Nested message and enum types in `HttpsTrigger`.
 pub mod https_trigger {
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SecurityLevel {
-Unspecified = 0,
-SecureAlways = 1,
-SecureOptional = 2,
-}
-impl SecurityLevel {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-SecurityLevel::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
-SecurityLevel::SecureAlways => "SECURE_ALWAYS",
-SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"SECURITY_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-"SECURE_ALWAYS" => Some(Self::SecureAlways),
-"SECURE_OPTIONAL" => Some(Self::SecureOptional),
-_ => None,
-}
-}
-}
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum SecurityLevel {
+        Unspecified = 0,
+        SecureAlways = 1,
+        SecureOptional = 2,
+    }
+    impl SecurityLevel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SecurityLevel::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
+                SecurityLevel::SecureAlways => "SECURE_ALWAYS",
+                SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SECURITY_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+                "SECURE_ALWAYS" => Some(Self::SecureAlways),
+                "SECURE_OPTIONAL" => Some(Self::SecureOptional),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventTrigger {
-#[prost(string, tag = "1")]
-pub event_type: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub resource: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub service: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "5")]
-pub failure_policy: ::core::option::Option<FailurePolicy>,
+    #[prost(string, tag = "1")]
+    pub event_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub resource: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "5")]
+    pub failure_policy: ::core::option::Option<FailurePolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FailurePolicy {
-#[prost(oneof = "failure_policy::Action", tags = "1")]
-pub action: ::core::option::Option<failure_policy::Action>,
+    #[prost(oneof = "failure_policy::Action", tags = "1")]
+    pub action: ::core::option::Option<failure_policy::Action>,
 }
 /// Nested message and enum types in `FailurePolicy`.
 pub mod failure_policy {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Retry {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-pub enum Action {
-#[prost(message, tag = "1")]
-Retry(Retry),
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Retry {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Action {
+        #[prost(message, tag = "1")]
+        Retry(Retry),
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretEnvVar {
-#[prost(string, tag = "1")]
-pub key: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub secret: ::prost::alloc::string::String,
-#[prost(string, tag = "4")]
-pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub secret: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretVolume {
-#[prost(string, tag = "1")]
-pub mount_path: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub project_id: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub secret: ::prost::alloc::string::String,
-#[prost(message, repeated, tag = "4")]
-pub versions: ::prost::alloc::vec::Vec<secret_volume::SecretVersion>,
+    #[prost(string, tag = "1")]
+    pub mount_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub secret: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub versions: ::prost::alloc::vec::Vec<secret_volume::SecretVersion>,
 }
 /// Nested message and enum types in `SecretVolume`.
 pub mod secret_volume {
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SecretVersion {
-#[prost(string, tag = "1")]
-pub version: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub path: ::prost::alloc::string::String,
-}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SecretVersion {
+        #[prost(string, tag = "1")]
+        pub version: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub path: ::prost::alloc::string::String,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFunctionRequest {
-#[prost(string, tag = "1")]
-pub location: ::prost::alloc::string::String,
-#[prost(message, optional, tag = "2")]
-pub function: ::core::option::Option<CloudFunction>,
+    #[prost(string, tag = "1")]
+    pub location: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub function: ::core::option::Option<CloudFunction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFunctionRequest {
-#[prost(message, optional, tag = "1")]
-pub function: ::core::option::Option<CloudFunction>,
-#[prost(message, optional, tag = "2")]
-pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "1")]
+    pub function: ::core::option::Option<CloudFunction>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFunctionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(int64, tag = "2")]
-pub version_id: i64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int64, tag = "2")]
+    pub version_id: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFunctionsRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(int32, tag = "2")]
-pub page_size: i32,
-#[prost(string, tag = "3")]
-pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFunctionsResponse {
-#[prost(message, repeated, tag = "1")]
-pub functions: ::prost::alloc::vec::Vec<CloudFunction>,
-#[prost(string, tag = "2")]
-pub next_page_token: ::prost::alloc::string::String,
-#[prost(string, repeated, tag = "3")]
-pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "1")]
+    pub functions: ::prost::alloc::vec::Vec<CloudFunction>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFunctionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CallFunctionRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub data: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub data: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CallFunctionResponse {
-#[prost(string, tag = "1")]
-pub execution_id: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub result: ::prost::alloc::string::String,
-#[prost(string, tag = "3")]
-pub error: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub execution_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub result: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub error: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateUploadUrlRequest {
-#[prost(string, tag = "1")]
-pub parent: ::prost::alloc::string::String,
-#[prost(string, tag = "2")]
-pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub kms_key_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateUploadUrlResponse {
-#[prost(string, tag = "1")]
-pub upload_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub upload_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDownloadUrlRequest {
-#[prost(string, tag = "1")]
-pub name: ::prost::alloc::string::String,
-#[prost(uint64, tag = "2")]
-pub version_id: u64,
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub version_id: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDownloadUrlResponse {
-#[prost(string, tag = "1")]
-pub download_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "1")]
+    pub download_url: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CloudFunctionStatus {
-Unspecified = 0,
-Active = 1,
-Offline = 2,
-DeployInProgress = 3,
-DeleteInProgress = 4,
-Unknown = 5,
+    Unspecified = 0,
+    Active = 1,
+    Offline = 2,
+    DeployInProgress = 3,
+    DeleteInProgress = 4,
+    Unknown = 5,
 }
 impl CloudFunctionStatus {
-/// String value of the enum field names used in the ProtoBuf definition.
-///
-/// The values are not transformed in any way and thus are considered stable
-/// (if the ProtoBuf definition does not change) and safe for programmatic use.
-pub fn as_str_name(&self) -> &'static str {
-match self {
-CloudFunctionStatus::Unspecified => "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
-CloudFunctionStatus::Active => "ACTIVE",
-CloudFunctionStatus::Offline => "OFFLINE",
-CloudFunctionStatus::DeployInProgress => "DEPLOY_IN_PROGRESS",
-CloudFunctionStatus::DeleteInProgress => "DELETE_IN_PROGRESS",
-CloudFunctionStatus::Unknown => "UNKNOWN",
-}
-}
-/// Creates an enum from field names used in the ProtoBuf definition.
-pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-match value {
-"CLOUD_FUNCTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-"ACTIVE" => Some(Self::Active),
-"OFFLINE" => Some(Self::Offline),
-"DEPLOY_IN_PROGRESS" => Some(Self::DeployInProgress),
-"DELETE_IN_PROGRESS" => Some(Self::DeleteInProgress),
-"UNKNOWN" => Some(Self::Unknown),
-_ => None,
-}
-}
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            CloudFunctionStatus::Unspecified => "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
+            CloudFunctionStatus::Active => "ACTIVE",
+            CloudFunctionStatus::Offline => "OFFLINE",
+            CloudFunctionStatus::DeployInProgress => "DEPLOY_IN_PROGRESS",
+            CloudFunctionStatus::DeleteInProgress => "DELETE_IN_PROGRESS",
+            CloudFunctionStatus::Unknown => "UNKNOWN",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CLOUD_FUNCTION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+            "ACTIVE" => Some(Self::Active),
+            "OFFLINE" => Some(Self::Offline),
+            "DEPLOY_IN_PROGRESS" => Some(Self::DeployInProgress),
+            "DELETE_IN_PROGRESS" => Some(Self::DeleteInProgress),
+            "UNKNOWN" => Some(Self::Unknown),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod cloud_functions_service_client {
-#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-use tonic::codegen::http::Uri;
-use tonic::codegen::*;
-/// A service that application uses to manipulate triggers and functions.
-#[derive(Debug, Clone)]
-pub struct CloudFunctionsServiceClient<T> {
-inner: tonic::client::Grpc<T>,
-}
-impl<T> CloudFunctionsServiceClient<T>
-where
-T: tonic::client::GrpcService<tonic::body::BoxBody>,
-T::Error: Into<StdError>,
-T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-<T::ResponseBody as Body>::Error: Into<StdError> + Send,
-{
-pub fn new(inner: T) -> Self {
-let inner = tonic::client::Grpc::new(inner);
-Self { inner }
-}
-pub fn with_origin(inner: T, origin: Uri) -> Self {
-let inner = tonic::client::Grpc::with_origin(inner, origin);
-Self { inner }
-}
-pub fn with_interceptor<F>(inner: T, interceptor: F) -> CloudFunctionsServiceClient<InterceptedService<T, F>>
-where
-F: tonic::service::Interceptor,
-T::ResponseBody: Default,
-T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
-<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
-{
-CloudFunctionsServiceClient::new(InterceptedService::new(inner, interceptor))
-}
-/// Compress requests with the given encoding.
-///
-/// This requires the server to support it otherwise it might respond with an
-/// error.
-#[must_use]
-pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.send_compressed(encoding);
-self
-}
-/// Enable decompressing responses.
-#[must_use]
-pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-self.inner = self.inner.accept_compressed(encoding);
-self
-}
-/// Limits the maximum size of a decoded message.
-///
-/// Default: `4MB`
-#[must_use]
-pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_decoding_message_size(limit);
-self
-}
-/// Limits the maximum size of an encoded message.
-///
-/// Default: `usize::MAX`
-#[must_use]
-pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-self.inner = self.inner.max_encoding_message_size(limit);
-self
-}
-/// Returns a list of functions that belong to the requested project.
-pub async fn list_functions(&mut self, request: impl tonic::IntoRequest<super::ListFunctionsRequest>) -> std::result::Result<tonic::Response<super::ListFunctionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/ListFunctions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "ListFunctions"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a function with the given name from the requested project.
-pub async fn get_function(&mut self, request: impl tonic::IntoRequest<super::GetFunctionRequest>) -> std::result::Result<tonic::Response<super::CloudFunction>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/GetFunction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "GetFunction"));
-self.inner.unary(req, path, codec).await
-}
-/// Creates a new function. If a function with the given name already exists in
-/// the specified project, the long running operation will return
-/// `ALREADY_EXISTS` error.
-pub async fn create_function(&mut self, request: impl tonic::IntoRequest<super::CreateFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/CreateFunction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "CreateFunction"));
-self.inner.unary(req, path, codec).await
-}
-/// Updates existing function.
-pub async fn update_function(&mut self, request: impl tonic::IntoRequest<super::UpdateFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/UpdateFunction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "UpdateFunction"));
-self.inner.unary(req, path, codec).await
-}
-/// Deletes a function with the given name from the specified project. If the
-/// given function is used by some trigger, the trigger will be updated to
-/// remove this function.
-pub async fn delete_function(&mut self, request: impl tonic::IntoRequest<super::DeleteFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/DeleteFunction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "DeleteFunction"));
-self.inner.unary(req, path, codec).await
-}
-/// Synchronously invokes a deployed Cloud Function. To be used for testing
-/// purposes as very limited traffic is allowed. For more information on
-/// the actual limits, refer to
-/// [Rate Limits](https://cloud.google.com/functions/quotas#rate_limits).
-pub async fn call_function(&mut self, request: impl tonic::IntoRequest<super::CallFunctionRequest>) -> std::result::Result<tonic::Response<super::CallFunctionResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/CallFunction");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "CallFunction"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a signed URL for uploading a function source code.
-/// For more information about the signed URL usage see:
-/// https://cloud.google.com/storage/docs/access-control/signed-urls.
-/// Once the function source code upload is complete, the used signed
-/// URL should be provided in CreateFunction or UpdateFunction request
-/// as a reference to the function source code.
-///
-/// When uploading source code to the generated signed URL, please follow
-/// these restrictions:
-///
-/// * Source file type should be a zip file.
-/// * Source file size should not exceed 100MB limit.
-/// * No credentials should be attached - the signed URLs provide access to the
-///   target bucket using internal service identity; if credentials were
-///   attached, the identity from the credentials would be used, but that
-///   identity does not have permissions to upload files to the URL.
-///
-/// When making a HTTP PUT request, these two headers need to be specified:
-///
-/// * `content-type: application/zip`
-/// * `x-goog-content-length-range: 0,104857600`
-///
-/// And this header SHOULD NOT be specified:
-///
-/// * `Authorization: Bearer YOUR_TOKEN`
-pub async fn generate_upload_url(&mut self, request: impl tonic::IntoRequest<super::GenerateUploadUrlRequest>) -> std::result::Result<tonic::Response<super::GenerateUploadUrlResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/GenerateUploadUrl");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "GenerateUploadUrl"));
-self.inner.unary(req, path, codec).await
-}
-/// Returns a signed URL for downloading deployed function source code.
-/// The URL is only valid for a limited period and should be used within
-/// minutes after generation.
-/// For more information about the signed URL usage see:
-/// https://cloud.google.com/storage/docs/access-control/signed-urls
-pub async fn generate_download_url(&mut self, request: impl tonic::IntoRequest<super::GenerateDownloadUrlRequest>) -> std::result::Result<tonic::Response<super::GenerateDownloadUrlResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/GenerateDownloadUrl");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "GenerateDownloadUrl"));
-self.inner.unary(req, path, codec).await
-}
-/// Sets the IAM access control policy on the specified function.
-/// Replaces any existing policy.
-pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/SetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "SetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Gets the IAM access control policy for a function.
-/// Returns an empty policy if the function exists and does not have a policy
-/// set.
-pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/GetIamPolicy");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "GetIamPolicy"));
-self.inner.unary(req, path, codec).await
-}
-/// Tests the specified permissions against the IAM access control policy
-/// for a function.
-/// If the function does not exist, this will return an empty set of
-/// permissions, not a NOT_FOUND error.
-pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
-self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
-let codec = tonic::codec::ProstCodec::default();
-let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v1.CloudFunctionsService/TestIamPermissions");
-let mut req = request.into_request();
-req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v1.CloudFunctionsService", "TestIamPermissions"));
-self.inner.unary(req, path, codec).await
-}
-}
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
+    /// A service that application uses to manipulate triggers and functions.
+    #[derive(Debug, Clone)]
+    pub struct CloudFunctionsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CloudFunctionsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CloudFunctionsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
+        {
+            CloudFunctionsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Returns a list of functions that belong to the requested project.
+        pub async fn list_functions(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListFunctionsRequest>,
+        ) -> std::result::Result<tonic::Response<super::ListFunctionsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/ListFunctions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "ListFunctions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a function with the given name from the requested project.
+        pub async fn get_function(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFunctionRequest>,
+        ) -> std::result::Result<tonic::Response<super::CloudFunction>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/GetFunction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "GetFunction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new function. If a function with the given name already exists in
+        /// the specified project, the long running operation will return
+        /// `ALREADY_EXISTS` error.
+        pub async fn create_function(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateFunctionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/CreateFunction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "CreateFunction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates existing function.
+        pub async fn update_function(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateFunctionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/UpdateFunction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "UpdateFunction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a function with the given name from the specified project. If the
+        /// given function is used by some trigger, the trigger will be updated to
+        /// remove this function.
+        pub async fn delete_function(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteFunctionRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/DeleteFunction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "DeleteFunction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Synchronously invokes a deployed Cloud Function. To be used for testing
+        /// purposes as very limited traffic is allowed. For more information on
+        /// the actual limits, refer to
+        /// [Rate Limits](https://cloud.google.com/functions/quotas#rate_limits).
+        pub async fn call_function(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CallFunctionRequest>,
+        ) -> std::result::Result<tonic::Response<super::CallFunctionResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/CallFunction",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "CallFunction",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a signed URL for uploading a function source code.
+        /// For more information about the signed URL usage see:
+        /// https://cloud.google.com/storage/docs/access-control/signed-urls.
+        /// Once the function source code upload is complete, the used signed
+        /// URL should be provided in CreateFunction or UpdateFunction request
+        /// as a reference to the function source code.
+        ///
+        /// When uploading source code to the generated signed URL, please follow
+        /// these restrictions:
+        ///
+        /// * Source file type should be a zip file.
+        /// * Source file size should not exceed 100MB limit.
+        /// * No credentials should be attached - the signed URLs provide access to the
+        ///   target bucket using internal service identity; if credentials were
+        ///   attached, the identity from the credentials would be used, but that
+        ///   identity does not have permissions to upload files to the URL.
+        ///
+        /// When making a HTTP PUT request, these two headers need to be specified:
+        ///
+        /// * `content-type: application/zip`
+        /// * `x-goog-content-length-range: 0,104857600`
+        ///
+        /// And this header SHOULD NOT be specified:
+        ///
+        /// * `Authorization: Bearer YOUR_TOKEN`
+        pub async fn generate_upload_url(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateUploadUrlRequest>,
+        ) -> std::result::Result<tonic::Response<super::GenerateUploadUrlResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/GenerateUploadUrl",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "GenerateUploadUrl",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a signed URL for downloading deployed function source code.
+        /// The URL is only valid for a limited period and should be used within
+        /// minutes after generation.
+        /// For more information about the signed URL usage see:
+        /// https://cloud.google.com/storage/docs/access-control/signed-urls
+        pub async fn generate_download_url(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateDownloadUrlRequest>,
+        ) -> std::result::Result<tonic::Response<super::GenerateDownloadUrlResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/GenerateDownloadUrl",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "GenerateDownloadUrl",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Sets the IAM access control policy on the specified function.
+        /// Replaces any existing policy.
+        pub async fn set_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/SetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "SetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the IAM access control policy for a function.
+        /// Returns an empty policy if the function exists and does not have a policy
+        /// set.
+        pub async fn get_iam_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::Policy>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/GetIamPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "GetIamPolicy",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Tests the specified permissions against the IAM access control policy
+        /// for a function.
+        /// If the function does not exist, this will return an empty set of
+        /// permissions, not a NOT_FOUND error.
+        pub async fn test_iam_permissions(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::super::super::super::iam::v1::TestIamPermissionsRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.functions.v1.CloudFunctionsService/TestIamPermissions",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "google.cloud.functions.v1.CloudFunctionsService",
+                "TestIamPermissions",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
