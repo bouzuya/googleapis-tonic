@@ -61,7 +61,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &str) -> anyhow::Result<()> {
         "vec_u8_hash_map",
     ] {
         write_variant_dir(&googleapis_tonic_src_dir, &src_dir, variant, file_name)?;
-        write_variant_file(&src_dir, variant)?;
+        write_variant_file(&src_dir, variant, file_name)?;
     }
     fs::copy(
         googleapis_tonic_src_dir.join("lib.rs"),
@@ -127,20 +127,29 @@ fn write_variant_dir(
 }
 
 // crates/googleapis-tonic-{crate_name}/src/{variant}.rs
-fn write_variant_file(src_dir: &Path, variant: &str) -> anyhow::Result<()> {
+fn write_variant_file(src_dir: &Path, variant: &str, file_name: &str) -> anyhow::Result<()> {
     // FIXME:
     let variant_file = src_dir.join(format!("{}.rs", variant));
-    let variant_file_content = r#"pub mod cloud {
-    pub mod kubernetes {
-        pub mod security {
-            pub mod containersecurity_logging {
-                include!("{VARIANT}/cloud.kubernetes.security.containersecurity_logging.rs");
-            }
+    let variant_file_content = {
+        let mut s = String::new();
+        let mods = file_name
+            .split('.')
+            .filter(|it| it != &"rs")
+            .collect::<Vec<&str>>();
+        for (level, m) in mods.iter().enumerate() {
+            s.push_str(&"    ".repeat(level));
+            s.push_str("pub mod ");
+            s.push_str(m);
+            s.push_str(" {\n");
         }
-    }
-}
-"#
-    .replace("{VARIANT}", variant);
+        s.push_str(&"    ".repeat(mods.len()));
+        s.push_str(&format!("include!(\"{}/{}\");\n", variant, file_name));
+        for level in (0..mods.len()).rev() {
+            s.push_str(&"    ".repeat(level));
+            s.push_str("}\n");
+        }
+        s
+    };
     fs::write(variant_file, variant_file_content)?;
     Ok(())
 }
