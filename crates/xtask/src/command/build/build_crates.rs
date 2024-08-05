@@ -1,12 +1,20 @@
 use std::{
+    collections::{BTreeMap, BTreeSet},
     fs,
     path::{Path, PathBuf},
 };
 
 use anyhow::Context as _;
 
+use crate::{package_name::PackageName, proto_dir::ProtoDir};
+
+struct M {
+    include: bool,
+    modules: BTreeMap<String, M>,
+}
+
 // FIXME: geenerate googleapis-tonic-xxx crates
-pub fn build_crates(googleapis_tonic_src_dir: &str) -> anyhow::Result<()> {
+pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
     let googleapis_tonic_src_dir = PathBuf::from(googleapis_tonic_src_dir);
     // `"aaa.bbb.ccc.rs"`
     // aaa maybe contains `r#`
@@ -23,55 +31,74 @@ pub fn build_crates(googleapis_tonic_src_dir: &str) -> anyhow::Result<()> {
         file_names.push(file_name.to_owned());
     }
     file_names.sort();
-    // println!("{:#?}", file_names);
 
-    let file_name = &file_names[0];
+    for (package_name, deps) in proto_dir.dependencies() {
+        let crate_name = package_name_to_crate_name(package_name);
+        let file_name = format!("{}.rs", package_name_to_module_name(package_name));
 
-    let crate_name = format!(
-        "googleapis-tonic-{}",
-        file_name
-            .split('.')
-            .filter(|s| s != &"rs")
-            .collect::<Vec<&str>>()
-            .join("-")
-    );
-    // println!("{}", crate_name);
+        let mut modules = BTreeMap::new();
+        for dep in deps.iter().chain(std::iter::once(package_name)) {
+            let idents = dep
+                .to_string()
+                .split('.')
+                .map(ToString::to_string)
+                .collect::<Vec<String>>();
+            let idents_len = idents.len();
+            idents
+                .into_iter()
+                .enumerate()
+                .fold(&mut modules, |m, (i, s)| {
+                    &mut m
+                        .entry(s.to_owned())
+                        .or_insert(M {
+                            include: i == idents_len - 1,
+                            modules: BTreeMap::new(),
+                        })
+                        .modules
+                });
+        }
 
-    // crates/googleapis-tonic-{crate_name}/
-    //   src/
-    //     bytes_btree_map/    ... variant directory
-    //       {file_name}
-    //     bytes_hash_map/
-    //     vec_u8_btree_map/
-    //     vec_u8_hash_map/
-    //     bytes_btree_map.rs  ... variant file
-    //     bytes_hash_map.rs
-    //     lib.rs
-    //     vec_u8_btree_map.rs
-    //     vec_u8_hash_map.rs
-    //   Cargo.toml
-    let crate_dir = PathBuf::from("crates").join(&crate_name);
-    fs::create_dir_all(&crate_dir)?;
-    write_cargo_toml(&crate_dir, &crate_name)?;
-    let src_dir = crate_dir.join("src");
-    for variant in [
-        "bytes_btree_map",
-        "bytes_hash_map",
-        "vec_u8_btree_map",
-        "vec_u8_hash_map",
-    ] {
-        write_variant_dir(&googleapis_tonic_src_dir, &src_dir, variant, file_name)?;
-        write_variant_file(&src_dir, variant, file_name)?;
+        // crates/googleapis-tonic-{crate_name}/
+        //   src/
+        //     bytes_btree_map/    ... variant directory
+        //       {file_name}
+        //     bytes_hash_map/
+        //     vec_u8_btree_map/
+        //     vec_u8_hash_map/
+        //     bytes_btree_map.rs  ... variant file
+        //     bytes_hash_map.rs
+        //     lib.rs
+        //     vec_u8_btree_map.rs
+        //     vec_u8_hash_map.rs
+        //   Cargo.toml
+        let crate_dir = PathBuf::from("crates").join(&crate_name);
+        fs::create_dir_all(&crate_dir)?;
+        write_cargo_toml(&crate_dir, &crate_name, package_name, deps)?;
+        let src_dir = crate_dir.join("src");
+        for variant in [
+            "bytes_btree_map",
+            "bytes_hash_map",
+            "vec_u8_btree_map",
+            "vec_u8_hash_map",
+        ] {
+            write_variant_dir(&googleapis_tonic_src_dir, &src_dir, variant, &file_name)?;
+            write_variant_file(&src_dir, variant, &file_name, package_name, &modules)?;
+        }
+        fs::copy(
+            googleapis_tonic_src_dir.join("lib.rs"),
+            src_dir.join("lib.rs"),
+        )?;
     }
-    fs::copy(
-        googleapis_tonic_src_dir.join("lib.rs"),
-        src_dir.join("lib.rs"),
-    )?;
     Ok(())
 }
 
 // crates/googleapis-tonic-{crate_name}/Cargo.toml
-fn write_cargo_toml(crate_dir: &Path, crate_name: &str) -> anyhow::Result<()> {
+fn write_cargo_toml(
+    crate_dir: &Path,
+    crate_name: &str,
+    package_name: &PackageName,
+    deps: &BTreeSet<PackageName>,
+) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
 name = "{CRATE_NAME}"
@@ -90,6 +117,7 @@ tonic = { version = "0.12.1", default-features = false, features = [
   "codegen",
   "prost",
 ] }
+{DEPENDENCIES}
 
 [lints.clippy]
 non_minimal_cfg = "allow"
@@ -105,7 +133,22 @@ hash-map = []
 vec-u8 = []
 "#
     .replace("{CRATE_NAME}", crate_name)
-    .replace("{VERSION}", "0.0.0");
+    .replace("{VERSION}", "0.0.0")
+    .replace(
+        "{DEPENDENCIES}",
+        &deps
+            .iter()
+            .filter(|it| it != &package_name)
+            .map(|dep| {
+                format!(
+                    "{} = {{ path = \"../{}\" }}",
+                    package_name_to_crate_name(dep),
+                    package_name_to_crate_name(dep),
+                )
+            })
+            .collect::<Vec<String>>()
+            .join("\n"),
+    );
     fs::write(cargo_toml_path, cargo_toml_content)?;
     Ok(())
 }
@@ -127,29 +170,99 @@ fn write_variant_dir(
 }
 
 // crates/googleapis-tonic-{crate_name}/src/{variant}.rs
-fn write_variant_file(src_dir: &Path, variant: &str, file_name: &str) -> anyhow::Result<()> {
+fn write_variant_file(
+    src_dir: &Path,
+    variant: &str,
+    file_name: &str,
+    package_name: &PackageName,
+    modules: &BTreeMap<String, M>,
+) -> anyhow::Result<()> {
     // FIXME:
     let variant_file = src_dir.join(format!("{}.rs", variant));
     let variant_file_content = {
+        fn dfs(
+            modules: &BTreeMap<String, M>,
+            c: &mut Vec<String>,
+            s: &mut String,
+            variant: &str,
+            package_name: &PackageName,
+            file_name: &str,
+        ) {
+            let indent = "    ";
+            for (k, m) in modules {
+                s.push_str(&format!(
+                    "{}pub mod {} {{\n",
+                    indent.repeat(c.len()),
+                    // FIXME: other keywords
+                    if k == "type" {
+                        format!("r#{}", k)
+                    } else {
+                        k.to_owned()
+                    }
+                ));
+                c.push(k.to_owned());
+                if m.include {
+                    if c.join(".") == package_name.to_string() {
+                        s.push_str(&format!(
+                            "{}include!(\"{}/{}\");\n",
+                            indent.repeat(c.len()),
+                            variant,
+                            file_name
+                        ));
+                    } else {
+                        s.push_str(&format!(
+                            "{}pub(crate) use googleapis_tonic_{}::{}::*;\n",
+                            indent.repeat(c.len()),
+                            c.join("_"),
+                            c.iter()
+                                .map(|it| if it == "type" {
+                                    format!("r#{}", it)
+                                } else {
+                                    it.to_owned()
+                                })
+                                .collect::<Vec<String>>()
+                                .join("::"),
+                        ));
+                    }
+                }
+                dfs(&m.modules, c, s, variant, package_name, file_name);
+                c.pop();
+                s.push_str(&format!("{}}}\n", indent.repeat(c.len())));
+            }
+        }
+
         let mut s = String::new();
-        let mods = file_name
-            .split('.')
-            .filter(|it| it != &"rs")
-            .collect::<Vec<&str>>();
-        for (level, m) in mods.iter().enumerate() {
-            s.push_str(&"    ".repeat(level));
-            s.push_str("pub mod ");
-            s.push_str(m);
-            s.push_str(" {\n");
-        }
-        s.push_str(&"    ".repeat(mods.len()));
-        s.push_str(&format!("include!(\"{}/{}\");\n", variant, file_name));
-        for level in (0..mods.len()).rev() {
-            s.push_str(&"    ".repeat(level));
-            s.push_str("}\n");
-        }
+        let mut c = vec![];
+        dfs(modules, &mut c, &mut s, variant, package_name, file_name);
         s
     };
     fs::write(variant_file, variant_file_content)?;
     Ok(())
+}
+
+fn package_name_to_crate_name(package_name: &PackageName) -> String {
+    format!(
+        "googleapis-tonic-{}",
+        package_name
+            .to_string()
+            .split('.')
+            .collect::<Vec<&str>>()
+            .join("-")
+    )
+}
+
+fn package_name_to_module_name(package_name: &PackageName) -> String {
+    package_name
+        .to_string()
+        .split('.')
+        .map(|s| {
+            // FIXME: other keywords
+            if s == "type" {
+                format!("r#{}", s)
+            } else {
+                s.to_owned()
+            }
+        })
+        .collect::<Vec<String>>()
+        .join(".")
 }

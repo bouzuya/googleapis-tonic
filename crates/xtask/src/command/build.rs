@@ -77,14 +77,14 @@ pub fn execute() -> anyhow::Result<()> {
         fs::write(format!("{}/{}.rs", src_dir, root_mod_name), output)?;
     }
 
-    update_cargo_toml(src_dir, proto_dir)?;
+    update_cargo_toml(src_dir, &proto_dir)?;
 
-    build_crates::build_crates(src_dir)?;
+    build_crates::build_crates(src_dir, &proto_dir)?;
 
     Ok(())
 }
 
-fn build_features(proto_dir: ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
+fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
     let mut features = BTreeMap::new();
     features.insert(
         FeatureName::default(),
@@ -113,7 +113,7 @@ fn build_features(proto_dir: ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Feature
     features
 }
 
-fn update_cargo_toml(src_dir: &str, proto_dir: ProtoDir) -> anyhow::Result<()> {
+fn update_cargo_toml(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
     let cargo_toml_path = PathBuf::from(src_dir)
         .join("../Cargo.toml")
         .canonicalize()?;
