@@ -34,6 +34,9 @@ impl ProtoDir {
                 .or_default()
                 .extend(Self::proto_file_dependencies(&all_proto_files, proto_file)?);
         }
+        for (package_name, deps) in dependencies.iter_mut() {
+            deps.remove(package_name);
+        }
 
         Ok(Self {
             dependencies,
