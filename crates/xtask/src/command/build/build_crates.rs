@@ -4,8 +4,6 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use anyhow::Context as _;
-
 use crate::{package_name::PackageName, proto_dir::ProtoDir};
 
 struct M {
@@ -13,24 +11,8 @@ struct M {
     modules: BTreeMap<String, M>,
 }
 
-// FIXME: geenerate googleapis-tonic-xxx crates
 pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
     let googleapis_tonic_src_dir = PathBuf::from(googleapis_tonic_src_dir);
-    // `"aaa.bbb.ccc.rs"`
-    // aaa maybe contains `r#`
-    let mut file_names = vec![];
-    let out_dir = googleapis_tonic_src_dir.join("vec_u8_hash_map");
-    for dir_entry in fs::read_dir(out_dir)? {
-        let dir_entry = dir_entry?;
-        let path = dir_entry.path();
-        let file_name = path
-            .file_name()
-            .with_context(|| format!("file_name is None {}", path.display()))?
-            .to_str()
-            .with_context(|| format!("file_name is not utf-8 {}", path.display()))?;
-        file_names.push(file_name.to_owned());
-    }
-    file_names.sort();
 
     for (package_name, deps) in proto_dir.dependencies() {
         let crate_name = package_name_to_crate_name(package_name);
@@ -126,11 +108,8 @@ non_minimal_cfg = "allow"
 unused_imports = "allow"
 
 [features]
-btree-map = []
-bytes = []
 default = ["hash-map", "vec-u8"]
-hash-map = []
-vec-u8 = []
+{FEATURES}
 "#
     .replace("{CRATE_NAME}", crate_name)
     .replace("{VERSION}", "0.0.0")
@@ -140,15 +119,32 @@ vec-u8 = []
             .iter()
             .filter(|it| it != &package_name)
             .map(|dep| {
+                // FIXME: `path = "../{crate_name}"` => `version = "{version}"`
                 format!(
-                    "{} = {{ path = \"../{}\" }}",
+                    "{} = {{ path = \"../{}\", default-features = false }}",
                     package_name_to_crate_name(dep),
                     package_name_to_crate_name(dep),
                 )
             })
             .collect::<Vec<String>>()
             .join("\n"),
-    );
+    )
+    .replace("{FEATURES}", &{
+        ["btree-map", "bytes", "hash-map", "vec-u8"]
+            .into_iter()
+            .map(|feature| {
+                format!(
+                    r#"{} = [{}]"#,
+                    feature,
+                    deps.iter()
+                        .map(|dep| format!(r#""{}/{}""#, package_name_to_crate_name(dep), feature))
+                        .collect::<Vec<String>>()
+                        .join(", ")
+                )
+            })
+            .collect::<Vec<String>>()
+            .join("\n")
+    });
     fs::write(cargo_toml_path, cargo_toml_content)?;
     Ok(())
 }
@@ -177,7 +173,6 @@ fn write_variant_file(
     package_name: &PackageName,
     modules: &BTreeMap<String, M>,
 ) -> anyhow::Result<()> {
-    // FIXME:
     let variant_file = src_dir.join(format!("{}.rs", variant));
     let variant_file_content = {
         fn dfs(
