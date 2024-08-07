@@ -7,10 +7,10 @@ use std::{
 
 use anyhow::Context as _;
 
-use crate::{package_name::PackageName, proto_file::ProtoFile};
+use crate::{proto_file::ProtoFile, protobuf_package_name::ProtobufPackageName};
 
 pub struct ProtoDir {
-    dependencies: BTreeMap<PackageName, BTreeSet<PackageName>>,
+    dependencies: BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
     dir_path: PathBuf,
     proto_paths: Vec<PathBuf>,
 }
@@ -27,7 +27,8 @@ impl ProtoDir {
             all_proto_files.insert(path.strip_prefix(&dir_path)?.to_owned(), proto_file);
         }
 
-        let mut dependencies = BTreeMap::<PackageName, BTreeSet<PackageName>>::new();
+        let mut dependencies =
+            BTreeMap::<ProtobufPackageName, BTreeSet<ProtobufPackageName>>::new();
         for proto_file in all_proto_files.values() {
             dependencies
                 .entry(proto_file.package_name().to_owned())
@@ -45,7 +46,7 @@ impl ProtoDir {
         })
     }
 
-    pub fn dependencies(&self) -> &BTreeMap<PackageName, BTreeSet<PackageName>> {
+    pub fn dependencies(&self) -> &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>> {
         &self.dependencies
     }
 
@@ -60,7 +61,7 @@ impl ProtoDir {
     fn proto_file_dependencies(
         all_proto_files: &BTreeMap<PathBuf, ProtoFile>,
         proto_file: &ProtoFile,
-    ) -> anyhow::Result<BTreeSet<PackageName>> {
+    ) -> anyhow::Result<BTreeSet<ProtobufPackageName>> {
         proto_file
             .import_paths()
             .iter()
@@ -75,11 +76,11 @@ impl ProtoDir {
             })
             .try_fold(
                 {
-                    let mut set = BTreeSet::<PackageName>::new();
+                    let mut set = BTreeSet::<ProtobufPackageName>::new();
                     set.insert(proto_file.package_name().to_owned());
                     set
                 },
-                |mut acc, it| -> anyhow::Result<BTreeSet<PackageName>> {
+                |mut acc, it| -> anyhow::Result<BTreeSet<ProtobufPackageName>> {
                     acc.extend(Self::proto_file_dependencies(all_proto_files, it?)?);
                     Ok(acc)
                 },

@@ -4,7 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use crate::{package_name::PackageName, proto_dir::ProtoDir};
+use crate::{proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName};
 
 struct M {
     include: bool,
@@ -78,8 +78,8 @@ pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> any
 fn write_cargo_toml(
     crate_dir: &Path,
     crate_name: &str,
-    package_name: &PackageName,
-    deps: &BTreeSet<PackageName>,
+    package_name: &ProtobufPackageName,
+    deps: &BTreeSet<ProtobufPackageName>,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -170,7 +170,7 @@ fn write_variant_file(
     src_dir: &Path,
     variant: &str,
     file_name: &str,
-    package_name: &PackageName,
+    package_name: &ProtobufPackageName,
     modules: &BTreeMap<String, M>,
 ) -> anyhow::Result<()> {
     let variant_file = src_dir.join(format!("{}.rs", variant));
@@ -180,7 +180,7 @@ fn write_variant_file(
             c: &mut Vec<String>,
             s: &mut String,
             variant: &str,
-            package_name: &PackageName,
+            package_name: &ProtobufPackageName,
             file_name: &str,
         ) {
             let indent = "    ";
@@ -235,7 +235,7 @@ fn write_variant_file(
     Ok(())
 }
 
-fn package_name_to_crate_name(package_name: &PackageName) -> String {
+fn package_name_to_crate_name(package_name: &ProtobufPackageName) -> String {
     format!(
         "googleapis-tonic-{}",
         package_name
@@ -246,7 +246,7 @@ fn package_name_to_crate_name(package_name: &PackageName) -> String {
     )
 }
 
-fn package_name_to_module_name(package_name: &PackageName) -> String {
+fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
     package_name
         .to_string()
         .split('.')

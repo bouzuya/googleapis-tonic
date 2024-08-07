@@ -1,15 +1,15 @@
 use std::str::FromStr;
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct PackageName(String);
+pub struct ProtobufPackageName(String);
 
-impl std::fmt::Display for PackageName {
+impl std::fmt::Display for ProtobufPackageName {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.0.fmt(f)
     }
 }
 
-impl FromStr for PackageName {
+impl FromStr for ProtobufPackageName {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {

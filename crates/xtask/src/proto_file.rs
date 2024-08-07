@@ -2,12 +2,12 @@ use std::{collections::BTreeSet, path::PathBuf, str::FromStr};
 
 use anyhow::Context;
 
-use crate::package_name::PackageName;
+use crate::protobuf_package_name::ProtobufPackageName;
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ProtoFile {
     import_paths: BTreeSet<PathBuf>,
-    package_name: PackageName,
+    package_name: ProtobufPackageName,
 }
 
 impl ProtoFile {
@@ -15,7 +15,7 @@ impl ProtoFile {
         &self.import_paths
     }
 
-    pub fn package_name(&self) -> &PackageName {
+    pub fn package_name(&self) -> &ProtobufPackageName {
         &self.package_name
     }
 }
@@ -33,7 +33,7 @@ impl FromStr for ProtoFile {
                 let s = line.trim_start_matches("package ").trim_end_matches(";");
                 match package_name {
                     None => {
-                        package_name = Some(PackageName::from_str(s)?);
+                        package_name = Some(ProtobufPackageName::from_str(s)?);
                     }
                     Some(package_name) => {
                         anyhow::bail!("multiple package declarations: {} and {}", package_name, s)
@@ -70,7 +70,10 @@ mod tests {
 
         let proto_file = ProtoFile::from_str("package foo;")?;
         assert!(proto_file.import_paths().is_empty());
-        assert_eq!(proto_file.package_name(), &PackageName::from_str("foo")?);
+        assert_eq!(
+            proto_file.package_name(),
+            &ProtobufPackageName::from_str("foo")?
+        );
 
         let proto_file = ProtoFile::from_str(
             r#"
@@ -88,7 +91,10 @@ import weak "foo.proto";
             set.insert(PathBuf::from("foo.proto"));
             set
         });
-        assert_eq!(proto_file.package_name(), &PackageName::from_str("foo")?);
+        assert_eq!(
+            proto_file.package_name(),
+            &ProtobufPackageName::from_str("foo")?
+        );
         Ok(())
     }
 }

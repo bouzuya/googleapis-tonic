@@ -1,6 +1,9 @@
 use std::fmt::Display;
 
-use crate::{bytes_type::BytesType, ident::Ident, map_type::MapType, package_name::PackageName};
+use crate::{
+    bytes_type::BytesType, ident::Ident, map_type::MapType,
+    protobuf_package_name::ProtobufPackageName,
+};
 
 #[derive(Clone, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
 pub struct FeatureName(String);
@@ -48,8 +51,8 @@ impl From<MapType> for FeatureName {
     }
 }
 
-impl<'a> From<&'a PackageName> for FeatureName {
-    fn from(package_name: &'a PackageName) -> Self {
+impl<'a> From<&'a ProtobufPackageName> for FeatureName {
+    fn from(package_name: &'a ProtobufPackageName) -> Self {
         Self(
             package_name
                 .to_string()

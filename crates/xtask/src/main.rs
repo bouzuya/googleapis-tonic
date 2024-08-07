@@ -5,9 +5,9 @@ mod ident;
 mod map_type;
 mod module;
 mod modules;
-mod package_name;
 mod proto_dir;
 mod proto_file;
+mod protobuf_package_name;
 
 #[derive(clap::Parser)]
 struct Cli {
