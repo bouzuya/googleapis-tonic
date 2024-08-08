@@ -217,59 +217,61 @@ pub mod auto_suggestion_service_client {
     /// and TEMPLATE for full sentences. By default, both types are returned.
     ///
     /// Example Request:
-    /// ```
+    ///
+    /// ```text,
     /// GetSuggestions({
-    ///   parent: "locations/us/projects/my-project"
-    ///   scopes:
-    ///   "//bigquery.googleapis.com/projects/my-project/datasets/my-dataset/tables/my-table"
-    ///   query: "top it"
+    ///  parent: "locations/us/projects/my-project"
+    ///  scopes:
+    ///  "//bigquery.googleapis.com/projects/my-project/datasets/my-dataset/tables/my-table"
+    ///  query: "top it"
     /// })
     /// ```
     ///
     /// The service will retrieve information based on the given scope(s) and give
     /// suggestions based on that (e.g. "top item" for "top it" if "item" is a known
     /// dimension for the provided scope).
-    /// ```
+    ///
+    /// ```text,
     /// suggestions {
-    ///   suggestion_info {
-    ///     annotated_suggestion {
-    ///       text_formatted: "top item by sum of usd_revenue_net"
-    ///       markups {
-    ///         type: DIMENSION
-    ///         start_char_index: 4
-    ///         length: 4
-    ///       }
-    ///       markups {
-    ///         type: METRIC
-    ///         start_char_index: 19
-    ///         length: 15
-    ///       }
-    ///     }
-    ///     query_matches {
-    ///       start_char_index: 0
-    ///       length: 6
-    ///     }
-    ///   }
-    ///   suggestion_type: TEMPLATE
-    ///   ranking_score: 0.9
+    ///  suggestion_info {
+    ///    annotated_suggestion {
+    ///      text_formatted: "top item by sum of usd_revenue_net"
+    ///      markups {
+    ///        type: DIMENSION
+    ///        start_char_index: 4
+    ///        length: 4
+    ///      }
+    ///      markups {
+    ///        type: METRIC
+    ///        start_char_index: 19
+    ///        length: 15
+    ///      }
+    ///    }
+    ///    query_matches {
+    ///      start_char_index: 0
+    ///      length: 6
+    ///    }
+    ///  }
+    ///  suggestion_type: TEMPLATE
+    ///  ranking_score: 0.9
     /// }
     /// suggestions {
-    ///   suggestion_info {
-    ///     annotated_suggestion {
-    ///       text_formatted: "item"
-    ///       markups {
-    ///         type: DIMENSION
-    ///         start_char_index: 4
-    ///         length: 2
-    ///       }
-    ///     }
-    ///     query_matches {
-    ///       start_char_index: 0
-    ///       length: 6
-    ///     }
-    ///   }
-    ///   suggestion_type: ENTITY
-    ///   ranking_score: 0.8
+    ///  suggestion_info {
+    ///    annotated_suggestion {
+    ///      text_formatted: "item"
+    ///      markups {
+    ///        type: DIMENSION
+    ///        start_char_index: 4
+    ///        length: 2
+    ///      }
+    ///    }
+    ///    query_matches {
+    ///      start_char_index: 0
+    ///      length: 6
+    ///    }
+    ///  }
+    ///  suggestion_type: ENTITY
+    ///  ranking_score: 0.8
     /// }
     /// ```
     #[derive(Debug, Clone)]

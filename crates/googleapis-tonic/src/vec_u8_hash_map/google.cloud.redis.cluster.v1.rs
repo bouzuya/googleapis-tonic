@@ -578,16 +578,19 @@ pub mod cloud_redis_cluster_client {
     /// The `redis.googleapis.com` service implements the Google Cloud Memorystore
     /// for Redis API and defines the following resource model for managing Redis
     /// clusters:
+    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of Redis clusters, named: `/clusters/*`
     /// * As such, Redis clusters are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/clusters/{instance_id}`
+    ///  `/projects/{project_id}/locations/{location_id}/clusters/{instance_id}`
     ///
     /// Note that location_id must be a GCP `region`; for example:
+    ///
     /// * `projects/redpepper-1290/locations/us-central1/clusters/my-redis`
     ///
     /// We use API version selector for Flex APIs
+    ///
     /// * The versioning strategy is release-based versioning
     /// * Our backend CLH only deals with the superset version (called v1main)
     /// * Existing backend for Redis Gen1 and MRR is not touched.

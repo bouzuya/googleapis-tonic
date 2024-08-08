@@ -7349,11 +7349,11 @@ pub mod job_service_client {
         /// a variety of use cases.
         ///
         /// * The *Metadata* URI is used for most interactions, as it accepts the job
-        ///   configuration directly.
+        ///  configuration directly.
         /// * The *Upload* URI is ONLY for the case when you're sending both a load job
-        ///   configuration and a data stream together.  In this case, the Upload URI
-        ///   accepts the job configuration and the data as two distinct multipart MIME
-        ///   parts.
+        ///  configuration and a data stream together.  In this case, the Upload URI
+        ///  accepts the job configuration and the data as two distinct multipart MIME
+        ///  parts.
         pub async fn insert_job(
             &mut self,
             request: impl tonic::IntoRequest<super::InsertJobRequest>,

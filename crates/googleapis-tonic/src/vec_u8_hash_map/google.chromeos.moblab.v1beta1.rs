@@ -461,9 +461,9 @@ pub mod build_service_client {
         /// to a partner Google Cloud Storage bucket. The stage will be skipped if all
         /// the objects in the partner bucket are the same as in the internal bucket.
         /// Operation
-        /// <response:[StageBuildResponse][google.chromeos.moblab.v1beta1.StageBuildResponse],
-        ///            metadata:
-        ///           [StageBuildMetadata][google.chromeos.moblab.v1beta1.StageBuildMetadata]>
+        /// \<response:\[StageBuildResponse\]\[google.chromeos.moblab.v1beta1.StageBuildResponse\],
+        /// metadata:
+        /// \[StageBuildMetadata\]\[google.chromeos.moblab.v1beta1.StageBuildMetadata\]\>
         pub async fn stage_build(
             &mut self,
             request: impl tonic::IntoRequest<super::StageBuildRequest>,
@@ -500,12 +500,13 @@ pub mod build_service_client {
         /// and it will return an empty response.
         ///
         /// Evaluation rules:
-        ///   1. Stable channel build with label “Live”
-        ///   2. Beta channel build with label “Live”
-        ///   3. Dev channel build with label “Live”
-        ///   4. Most recent stable channel build with build status Pass
-        ///   5. Most recent beta channel build with build status Pass
-        ///   6. Most recent dev channel build with build status Pass
+        ///
+        /// 1. Stable channel build with label “Live”
+        /// 1. Beta channel build with label “Live”
+        /// 1. Dev channel build with label “Live”
+        /// 1. Most recent stable channel build with build status Pass
+        /// 1. Most recent beta channel build with build status Pass
+        /// 1. Most recent dev channel build with build status Pass
         pub async fn find_most_stable_build(
             &mut self,
             request: impl tonic::IntoRequest<super::FindMostStableBuildRequest>,

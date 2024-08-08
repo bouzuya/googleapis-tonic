@@ -1768,7 +1768,7 @@ pub mod environments_client {
         /// runs a single Composer component.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn list_workloads(
             &mut self,
             request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
@@ -1802,7 +1802,7 @@ pub mod environments_client {
         /// Creates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn create_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsSecretRequest>,
@@ -1837,7 +1837,7 @@ pub mod environments_client {
         /// Values of the "data" field in the response are cleared.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn get_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsSecretRequest>,
@@ -1871,7 +1871,7 @@ pub mod environments_client {
         /// Lists user workloads Secrets.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn list_user_workloads_secrets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsSecretsRequest>,
@@ -1905,7 +1905,7 @@ pub mod environments_client {
         /// Updates a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn update_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsSecretRequest>,
@@ -1939,7 +1939,7 @@ pub mod environments_client {
         /// Deletes a user workloads Secret.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn delete_user_workloads_secret(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsSecretRequest>,
@@ -1970,7 +1970,7 @@ pub mod environments_client {
         /// Creates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn create_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateUserWorkloadsConfigMapRequest>,
@@ -2004,7 +2004,7 @@ pub mod environments_client {
         /// Gets an existing user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn get_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::GetUserWorkloadsConfigMapRequest>,
@@ -2038,7 +2038,7 @@ pub mod environments_client {
         /// Lists user workloads ConfigMaps.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn list_user_workloads_config_maps(
             &mut self,
             request: impl tonic::IntoRequest<super::ListUserWorkloadsConfigMapsRequest>,
@@ -2072,7 +2072,7 @@ pub mod environments_client {
         /// Updates a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn update_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateUserWorkloadsConfigMapRequest>,
@@ -2106,7 +2106,7 @@ pub mod environments_client {
         /// Deletes a user workloads ConfigMap.
         ///
         /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
+        /// composer-3.*.*-airflow-*.*.\* and newer.
         pub async fn delete_user_workloads_config_map(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteUserWorkloadsConfigMapRequest>,

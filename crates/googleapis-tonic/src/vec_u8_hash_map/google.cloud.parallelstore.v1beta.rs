@@ -29,6 +29,10 @@ pub struct Instance {
     pub reserved_ip_range: ::prost::alloc::string::String,
     #[prost(string, tag = "14")]
     pub effective_reserved_ip_range: ::prost::alloc::string::String,
+    #[prost(enumeration = "FileStripeLevel", tag = "15")]
+    pub file_stripe_level: i32,
+    #[prost(enumeration = "DirectoryStripeLevel", tag = "16")]
+    pub directory_stripe_level: i32,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
@@ -360,6 +364,70 @@ impl TransferType {
         }
     }
 }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FileStripeLevel {
+    Unspecified = 0,
+    Min = 1,
+    Balanced = 2,
+    Max = 3,
+}
+impl FileStripeLevel {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            FileStripeLevel::Unspecified => "FILE_STRIPE_LEVEL_UNSPECIFIED",
+            FileStripeLevel::Min => "FILE_STRIPE_LEVEL_MIN",
+            FileStripeLevel::Balanced => "FILE_STRIPE_LEVEL_BALANCED",
+            FileStripeLevel::Max => "FILE_STRIPE_LEVEL_MAX",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "FILE_STRIPE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "FILE_STRIPE_LEVEL_MIN" => Some(Self::Min),
+            "FILE_STRIPE_LEVEL_BALANCED" => Some(Self::Balanced),
+            "FILE_STRIPE_LEVEL_MAX" => Some(Self::Max),
+            _ => None,
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DirectoryStripeLevel {
+    Unspecified = 0,
+    Min = 1,
+    Balanced = 2,
+    Max = 3,
+}
+impl DirectoryStripeLevel {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            DirectoryStripeLevel::Unspecified => "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED",
+            DirectoryStripeLevel::Min => "DIRECTORY_STRIPE_LEVEL_MIN",
+            DirectoryStripeLevel::Balanced => "DIRECTORY_STRIPE_LEVEL_BALANCED",
+            DirectoryStripeLevel::Max => "DIRECTORY_STRIPE_LEVEL_MAX",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+            "DIRECTORY_STRIPE_LEVEL_MIN" => Some(Self::Min),
+            "DIRECTORY_STRIPE_LEVEL_BALANCED" => Some(Self::Balanced),
+            "DIRECTORY_STRIPE_LEVEL_MAX" => Some(Self::Max),
+            _ => None,
+        }
+    }
+}
 /// Generated client implementations.
 pub mod parallelstore_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -372,13 +440,15 @@ pub mod parallelstore_client {
     ///
     /// The `parallelstore.googleapis.com` service implements the parallelstore API
     /// and defines the following resource model for managing instances:
+    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of instances named `/instances/*`.
     /// * Parallelstore instances are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///  `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     ///
     /// Note that location_id must be a Google Cloud `zone`; for example:
+    ///
     /// * `projects/12345/locations/us-central1-c/instances/my-parallelstore-share`
     #[derive(Debug, Clone)]
     pub struct ParallelstoreClient<T> {

@@ -527,8 +527,6 @@ pub struct RollbackTargetRequest {
     pub rollback_config: ::core::option::Option<RollbackTargetConfig>,
     #[prost(bool, tag = "7")]
     pub validate_only: bool,
-    #[prost(string, repeated, tag = "9")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -974,99 +972,6 @@ pub struct DeleteCustomTargetTypeRequest {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeployPolicy {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "8")]
-    pub suspended: bool,
-    #[prost(message, repeated, tag = "12")]
-    pub selectors: ::prost::alloc::vec::Vec<DeployPolicyResourceSelector>,
-    #[prost(message, repeated, tag = "10")]
-    pub rules: ::prost::alloc::vec::Vec<PolicyRule>,
-    #[prost(string, tag = "11")]
-    pub etag: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `DeployPolicy`.
-pub mod deploy_policy {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Invoker {
-        Unspecified = 0,
-        User = 1,
-        DeployAutomation = 2,
-    }
-    impl Invoker {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Invoker::Unspecified => "INVOKER_UNSPECIFIED",
-                Invoker::User => "USER",
-                Invoker::DeployAutomation => "DEPLOY_AUTOMATION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INVOKER_UNSPECIFIED" => Some(Self::Unspecified),
-                "USER" => Some(Self::User),
-                "DEPLOY_AUTOMATION" => Some(Self::DeployAutomation),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeployPolicyResourceSelector {
-    #[prost(message, optional, tag = "1")]
-    pub delivery_pipeline: ::core::option::Option<DeliveryPipelineAttribute>,
-    #[prost(message, optional, tag = "2")]
-    pub target: ::core::option::Option<TargetAttribute>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeliveryPipelineAttribute {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TargetAttribute {
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
@@ -1075,138 +980,6 @@ pub struct TargetAttribute {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PolicyRule {
-    #[prost(oneof = "policy_rule::Rule", tags = "1")]
-    pub rule: ::core::option::Option<policy_rule::Rule>,
-}
-/// Nested message and enum types in `PolicyRule`.
-pub mod policy_rule {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Rule {
-        #[prost(message, tag = "1")]
-        RestrictRollouts(super::RestrictRollout),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RestrictRollout {
-    #[prost(string, tag = "5")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "deploy_policy::Invoker",
-        repeated,
-        packed = "false",
-        tag = "6"
-    )]
-    pub invokers: ::prost::alloc::vec::Vec<i32>,
-    #[prost(enumeration = "restrict_rollout::Actions", repeated, tag = "3")]
-    pub actions: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "4")]
-    pub time_window: ::core::option::Option<TimeWindow>,
-}
-/// Nested message and enum types in `RestrictRollout`.
-pub mod restrict_rollout {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Actions {
-        Unspecified = 0,
-        Advance = 1,
-        Approve = 2,
-        Cancel = 3,
-        Create = 4,
-        IgnoreJob = 5,
-        RetryJob = 6,
-        Rollback = 7,
-        TerminateJobrun = 8,
-    }
-    impl Actions {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Actions::Unspecified => "ACTIONS_UNSPECIFIED",
-                Actions::Advance => "ADVANCE",
-                Actions::Approve => "APPROVE",
-                Actions::Cancel => "CANCEL",
-                Actions::Create => "CREATE",
-                Actions::IgnoreJob => "IGNORE_JOB",
-                Actions::RetryJob => "RETRY_JOB",
-                Actions::Rollback => "ROLLBACK",
-                Actions::TerminateJobrun => "TERMINATE_JOBRUN",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACTIONS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ADVANCE" => Some(Self::Advance),
-                "APPROVE" => Some(Self::Approve),
-                "CANCEL" => Some(Self::Cancel),
-                "CREATE" => Some(Self::Create),
-                "IGNORE_JOB" => Some(Self::IgnoreJob),
-                "RETRY_JOB" => Some(Self::RetryJob),
-                "ROLLBACK" => Some(Self::Rollback),
-                "TERMINATE_JOBRUN" => Some(Self::TerminateJobrun),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TimeWindow {
-    #[prost(string, tag = "1")]
-    pub time_zone: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub ranges: ::prost::alloc::vec::Vec<Range>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Range {
-    #[prost(message, optional, tag = "1")]
-    pub start_date: ::core::option::Option<super::super::super::r#type::Date>,
-    #[prost(message, optional, tag = "2")]
-    pub end_date: ::core::option::Option<super::super::super::r#type::Date>,
-    #[prost(message, optional, tag = "3")]
-    pub start_time_of_day: ::core::option::Option<
-        super::super::super::r#type::TimeOfDay,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub end_time_of_day: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", repeated, tag = "5")]
-    pub day_of_week: ::prost::alloc::vec::Vec<i32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PolicyViolation {
-    #[prost(message, repeated, tag = "1")]
-    pub policy_violation_details: ::prost::alloc::vec::Vec<PolicyViolationDetails>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PolicyViolationDetails {
-    #[prost(string, tag = "1")]
-    pub policy: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub rule_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub failure_message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1471,78 +1244,6 @@ pub mod release {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateDeployPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub deploy_policy_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub deploy_policy: ::core::option::Option<DeployPolicy>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub validate_only: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateDeployPolicyRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub deploy_policy: ::core::option::Option<DeployPolicy>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub allow_missing: bool,
-    #[prost(bool, tag = "5")]
-    pub validate_only: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteDeployPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub allow_missing: bool,
-    #[prost(bool, tag = "4")]
-    pub validate_only: bool,
-    #[prost(string, tag = "5")]
-    pub etag: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListDeployPoliciesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListDeployPoliciesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub deploy_policies: ::prost::alloc::vec::Vec<DeployPolicy>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetDeployPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildArtifact {
     #[prost(string, tag = "3")]
     pub image: ::prost::alloc::string::String,
@@ -1648,8 +1349,6 @@ pub struct CreateReleaseRequest {
     pub request_id: ::prost::alloc::string::String,
     #[prost(bool, tag = "5")]
     pub validate_only: bool,
-    #[prost(string, repeated, tag = "6")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2191,8 +1890,6 @@ pub struct CreateRolloutRequest {
     pub request_id: ::prost::alloc::string::String,
     #[prost(bool, tag = "5")]
     pub validate_only: bool,
-    #[prost(string, repeated, tag = "6")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, tag = "7")]
     pub starting_phase_id: ::prost::alloc::string::String,
 }
@@ -2221,8 +1918,6 @@ pub struct ApproveRolloutRequest {
     pub name: ::prost::alloc::string::String,
     #[prost(bool, tag = "2")]
     pub approved: bool,
-    #[prost(string, repeated, tag = "3")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2234,8 +1929,6 @@ pub struct AdvanceRolloutRequest {
     pub name: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub phase_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2245,8 +1938,6 @@ pub struct AdvanceRolloutResponse {}
 pub struct CancelRolloutRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2260,8 +1951,6 @@ pub struct IgnoreJobRequest {
     pub phase_id: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
     pub job_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2275,8 +1964,6 @@ pub struct RetryJobRequest {
     pub phase_id: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
     pub job_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2683,8 +2370,6 @@ pub struct GetJobRunRequest {
 pub struct TerminateJobRunRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub override_deploy_policy: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2911,8 +2596,6 @@ pub struct AutomationRun {
     pub state: i32,
     #[prost(string, tag = "9")]
     pub state_description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub policy_violation: ::core::option::Option<PolicyViolation>,
     #[prost(message, optional, tag = "11")]
     pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, tag = "12")]
@@ -3887,158 +3570,6 @@ pub mod cloud_deploy_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new DeployPolicy in a given project and location.
-        pub async fn create_deploy_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDeployPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.deploy.v1.CloudDeploy/CreateDeployPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.deploy.v1.CloudDeploy",
-                        "CreateDeployPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single DeployPolicy.
-        pub async fn update_deploy_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDeployPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.deploy.v1.CloudDeploy/UpdateDeployPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.deploy.v1.CloudDeploy",
-                        "UpdateDeployPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single DeployPolicy.
-        pub async fn delete_deploy_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDeployPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.deploy.v1.CloudDeploy/DeleteDeployPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.deploy.v1.CloudDeploy",
-                        "DeleteDeployPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists DeployPolicies in a given project and location.
-        pub async fn list_deploy_policies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDeployPoliciesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDeployPoliciesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.deploy.v1.CloudDeploy/ListDeployPolicies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.deploy.v1.CloudDeploy",
-                        "ListDeployPolicies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single DeployPolicy.
-        pub async fn get_deploy_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDeployPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::DeployPolicy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.deploy.v1.CloudDeploy/GetDeployPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.deploy.v1.CloudDeploy",
-                        "GetDeployPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
         /// Approves a Rollout.
         pub async fn approve_rollout(
             &mut self,
@@ -4761,121 +4292,4 @@ pub struct DeliveryPipelineNotificationEvent {
     pub delivery_pipeline: ::prost::alloc::string::String,
     #[prost(enumeration = "Type", tag = "3")]
     pub r#type: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeployPolicyEvaluationEvent {
-    #[prost(string, tag = "1")]
-    pub message: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub rule_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub rule: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub pipeline_uid: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub delivery_pipeline: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub target_uid: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(enumeration = "deploy_policy::Invoker", tag = "8")]
-    pub invoker: i32,
-    #[prost(string, tag = "9")]
-    pub deploy_policy: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub deploy_policy_uid: ::prost::alloc::string::String,
-    #[prost(bool, tag = "11")]
-    pub allowed: bool,
-    #[prost(enumeration = "deploy_policy_evaluation_event::PolicyVerdict", tag = "12")]
-    pub verdict: i32,
-    #[prost(
-        enumeration = "deploy_policy_evaluation_event::PolicyVerdictOverride",
-        repeated,
-        tag = "13"
-    )]
-    pub overrides: ::prost::alloc::vec::Vec<i32>,
-}
-/// Nested message and enum types in `DeployPolicyEvaluationEvent`.
-pub mod deploy_policy_evaluation_event {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PolicyVerdict {
-        Unspecified = 0,
-        AllowedByPolicy = 1,
-        DeniedByPolicy = 2,
-    }
-    impl PolicyVerdict {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PolicyVerdict::Unspecified => "POLICY_VERDICT_UNSPECIFIED",
-                PolicyVerdict::AllowedByPolicy => "ALLOWED_BY_POLICY",
-                PolicyVerdict::DeniedByPolicy => "DENIED_BY_POLICY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "POLICY_VERDICT_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALLOWED_BY_POLICY" => Some(Self::AllowedByPolicy),
-                "DENIED_BY_POLICY" => Some(Self::DeniedByPolicy),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PolicyVerdictOverride {
-        Unspecified = 0,
-        PolicyOverridden = 1,
-        PolicySuspended = 2,
-    }
-    impl PolicyVerdictOverride {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PolicyVerdictOverride::Unspecified => {
-                    "POLICY_VERDICT_OVERRIDE_UNSPECIFIED"
-                }
-                PolicyVerdictOverride::PolicyOverridden => "POLICY_OVERRIDDEN",
-                PolicyVerdictOverride::PolicySuspended => "POLICY_SUSPENDED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "POLICY_VERDICT_OVERRIDE_UNSPECIFIED" => Some(Self::Unspecified),
-                "POLICY_OVERRIDDEN" => Some(Self::PolicyOverridden),
-                "POLICY_SUSPENDED" => Some(Self::PolicySuspended),
-                _ => None,
-            }
-        }
-    }
 }

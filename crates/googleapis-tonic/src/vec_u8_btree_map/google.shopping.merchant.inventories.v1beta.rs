@@ -178,7 +178,7 @@ pub mod local_inventory_service_client {
         /// account.
         ///
         /// Replaces the full `LocalInventory` resource if an entry with the same
-        /// [`storeCode`][google.shopping.merchant.inventories.v1beta.LocalInventory.store_code]
+        /// \[`storeCode`\]\[google.shopping.merchant.inventories.v1beta.LocalInventory.store_code\]
         /// already exists for the product.
         ///
         /// It might take up to 30 minutes for the new or updated `LocalInventory`
@@ -418,7 +418,7 @@ pub mod regional_inventory_service_client {
         /// merchant account.
         ///
         /// Replaces the full `RegionalInventory` resource if an entry with the same
-        /// [`region`][google.shopping.merchant.inventories.v1beta.RegionalInventory.region]
+        /// \[`region`\]\[google.shopping.merchant.inventories.v1beta.RegionalInventory.region\]
         /// already exists for the product.
         ///
         /// It might take up to 30 minutes for the new or updated `RegionalInventory`

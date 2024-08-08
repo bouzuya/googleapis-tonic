@@ -736,7 +736,7 @@ pub mod variant_service_v1_client {
         /// When variants are merged, the call information from the new variant
         /// is added to the existing variant, and Variant info fields are merged
         /// as specified in
-        /// [infoMergeConfig][google.genomics.v1.ImportVariantsRequest.info_merge_config].
+        /// \[infoMergeConfig\]\[google.genomics.v1.ImportVariantsRequest.info_merge_config\].
         /// As a special case, for single-sample VCF files, QUAL and FILTER fields will
         /// be moved to the call level; these are sometimes interpreted in a
         /// call-specific context.
@@ -1157,7 +1157,7 @@ pub mod variant_service_v1_client {
         /// When variants are merged, the call information from the new variant
         /// is added to the existing variant. Variant info fields are merged as
         /// specified in the
-        /// [infoMergeConfig][google.genomics.v1.MergeVariantsRequest.info_merge_config]
+        /// \[infoMergeConfig\]\[google.genomics.v1.MergeVariantsRequest.info_merge_config\]
         /// field of the MergeVariantsRequest.
         ///
         /// Please exercise caution when using this method!  It is easy to introduce
@@ -1167,70 +1167,74 @@ pub mod variant_service_v1_client {
         /// both
         /// variants contain calls that belong to callsets with the same callset ID.
         ///
-        ///     // Existing variant - irrelevant fields trimmed for clarity
-        ///     {
-        ///         "variantSetId": "10473108253681171589",
-        ///         "referenceName": "1",
-        ///         "start": "10582",
-        ///         "referenceBases": "G",
-        ///         "alternateBases": [
-        ///             "A"
-        ///         ],
-        ///         "calls": [
-        ///             {
-        ///                 "callSetId": "10473108253681171589-0",
-        ///                 "callSetName": "CALLSET0",
-        ///                 "genotype": [
-        ///                     0,
-        ///                     1
-        ///                 ],
-        ///             }
-        ///         ]
-        ///     }
+        /// ```text
+        /// // Existing variant - irrelevant fields trimmed for clarity
+        /// {
+        ///     "variantSetId": "10473108253681171589",
+        ///     "referenceName": "1",
+        ///     "start": "10582",
+        ///     "referenceBases": "G",
+        ///     "alternateBases": [
+        ///         "A"
+        ///     ],
+        ///     "calls": [
+        ///         {
+        ///             "callSetId": "10473108253681171589-0",
+        ///             "callSetName": "CALLSET0",
+        ///             "genotype": [
+        ///                 0,
+        ///                 1
+        ///             ],
+        ///         }
+        ///     ]
+        /// }
         ///
-        ///     // New variant with conflicting call information
-        ///     {
-        ///         "variantSetId": "10473108253681171589",
-        ///         "referenceName": "1",
-        ///         "start": "10582",
-        ///         "referenceBases": "G",
-        ///         "alternateBases": [
-        ///             "A"
-        ///         ],
-        ///         "calls": [
-        ///             {
-        ///                 "callSetId": "10473108253681171589-0",
-        ///                 "callSetName": "CALLSET0",
-        ///                 "genotype": [
-        ///                     1,
-        ///                     1
-        ///                 ],
-        ///             }
-        ///         ]
-        ///     }
+        /// // New variant with conflicting call information
+        /// {
+        ///     "variantSetId": "10473108253681171589",
+        ///     "referenceName": "1",
+        ///     "start": "10582",
+        ///     "referenceBases": "G",
+        ///     "alternateBases": [
+        ///         "A"
+        ///     ],
+        ///     "calls": [
+        ///         {
+        ///             "callSetId": "10473108253681171589-0",
+        ///             "callSetName": "CALLSET0",
+        ///             "genotype": [
+        ///                 1,
+        ///                 1
+        ///             ],
+        ///         }
+        ///     ]
+        /// }
+        /// ```
         ///
         /// The resulting merged variant would overwrite the existing calls with those
         /// from the new variant:
         ///
-        ///     {
-        ///         "variantSetId": "10473108253681171589",
-        ///         "referenceName": "1",
-        ///         "start": "10582",
-        ///         "referenceBases": "G",
-        ///         "alternateBases": [
-        ///             "A"
-        ///         ],
-        ///         "calls": [
-        ///             {
-        ///                 "callSetId": "10473108253681171589-0",
-        ///                 "callSetName": "CALLSET0",
-        ///                 "genotype": [
-        ///                     1,
-        ///                     1
-        ///                 ],
-        ///             }
-        ///         ]
-        ///     }
+        /// ```text
+        /// {
+        ///     "variantSetId": "10473108253681171589",
+        ///     "referenceName": "1",
+        ///     "start": "10582",
+        ///     "referenceBases": "G",
+        ///     "alternateBases": [
+        ///         "A"
+        ///     ],
+        ///     "calls": [
+        ///         {
+        ///             "callSetId": "10473108253681171589-0",
+        ///             "callSetName": "CALLSET0",
+        ///             "genotype": [
+        ///                 1,
+        ///                 1
+        ///             ],
+        ///         }
+        ///     ]
+        /// }
+        /// ```
         ///
         /// This may be the desired outcome, but it is up to the user to determine if
         /// if that is indeed the case.
@@ -2159,7 +2163,7 @@ pub mod dataset_service_v1_client {
         /// reference sets, variant sets, call sets, annotation sets, etc.)
         /// This is reversible (up to one week after the deletion) via
         /// the
-        /// [datasets.undelete][google.genomics.v1.DatasetServiceV1.UndeleteDataset]
+        /// \[datasets.undelete\]\[google.genomics.v1.DatasetServiceV1.UndeleteDataset\]
         /// operation.
         ///
         /// For the definitions of datasets and other genomics resources, see
@@ -2972,8 +2976,8 @@ pub mod annotation_service_v1_client {
         ///
         /// The following fields are required:
         ///
-        ///   * [datasetId][google.genomics.v1.AnnotationSet.dataset_id]
-        ///   * [referenceSetId][google.genomics.v1.AnnotationSet.reference_set_id]
+        /// * \[datasetId\]\[google.genomics.v1.AnnotationSet.dataset_id\]
+        /// * \[referenceSetId\]\[google.genomics.v1.AnnotationSet.reference_set_id\]
         ///
         /// All other fields may be optionally specified, unless documented as being
         /// server-generated (for example, the `id` field).
@@ -3132,22 +3136,22 @@ pub mod annotation_service_v1_client {
         ///
         /// The following fields are required:
         ///
-        /// * [annotationSetId][google.genomics.v1.Annotation.annotation_set_id]
-        /// * [referenceName][google.genomics.v1.Annotation.reference_name] or
-        ///   [referenceId][google.genomics.v1.Annotation.reference_id]
+        /// * \[annotationSetId\]\[google.genomics.v1.Annotation.annotation_set_id\]
+        /// * \[referenceName\]\[google.genomics.v1.Annotation.reference_name\] or
+        ///  \[referenceId\]\[google.genomics.v1.Annotation.reference_id\]
         ///
         /// ### Transcripts
         ///
         /// For annotations of type TRANSCRIPT, the following fields of
-        /// [transcript][google.genomics.v1.Annotation.transcript] must be provided:
+        /// \[transcript\]\[google.genomics.v1.Annotation.transcript\] must be provided:
         ///
-        /// * [exons.start][google.genomics.v1.Transcript.Exon.start]
-        /// * [exons.end][google.genomics.v1.Transcript.Exon.end]
+        /// * \[exons.start\]\[google.genomics.v1.Transcript.Exon.start\]
+        /// * \[exons.end\]\[google.genomics.v1.Transcript.Exon.end\]
         ///
         /// All other fields may be optionally specified, unless documented as being
         /// server-generated (for example, the `id` field). The annotated
         /// range must be no longer than 100Mbp (mega base pairs). See the
-        /// [Annotation resource][google.genomics.v1.Annotation]
+        /// \[Annotation resource\]\[google.genomics.v1.Annotation\]
         /// for additional restrictions on each field.
         pub async fn create_annotation(
             &mut self,
@@ -3189,7 +3193,7 @@ pub mod annotation_service_v1_client {
         ///
         /// For details on the requirements for each individual annotation resource,
         /// see
-        /// [CreateAnnotation][google.genomics.v1.AnnotationServiceV1.CreateAnnotation].
+        /// \[CreateAnnotation\]\[google.genomics.v1.AnnotationServiceV1.CreateAnnotation\].
         pub async fn batch_create_annotations(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchCreateAnnotationsRequest>,
@@ -3830,13 +3834,13 @@ pub mod read_service_v1_client {
         ///
         /// ## Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import
         ///
-        /// - Tags will be converted to strings - tag types are not preserved
-        /// - Comments (`@CO`) in the input file header will not be preserved
-        /// - Original header order of references (`@SQ`) will not be preserved
-        /// - Any reverse stranded unmapped reads will be reverse complemented, and
-        /// their qualities (also the "BQ" and "OQ" tags, if any) will be reversed
-        /// - Unmapped reads will be stripped of positional information (reference name
-        /// and position)
+        /// * Tags will be converted to strings - tag types are not preserved
+        /// * Comments (`@CO`) in the input file header will not be preserved
+        /// * Original header order of references (`@SQ`) will not be preserved
+        /// * Any reverse stranded unmapped reads will be reverse complemented, and
+        ///  their qualities (also the "BQ" and "OQ" tags, if any) will be reversed
+        /// * Unmapped reads will be stripped of positional information (reference name
+        ///  and position)
         pub async fn import_read_group_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportReadGroupSetsRequest>,
@@ -3875,7 +3879,7 @@ pub mod read_service_v1_client {
         ///
         /// Note that currently there may be some differences between exported BAM
         /// files and the original BAM file at the time of import. See
-        /// [ImportReadGroupSets][google.genomics.v1.ReadServiceV1.ImportReadGroupSets]
+        /// \[ImportReadGroupSets\]\[google.genomics.v1.ReadServiceV1.ImportReadGroupSets\]
         /// for caveats.
         pub async fn export_read_group_set(
             &mut self,

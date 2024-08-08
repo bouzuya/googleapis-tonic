@@ -463,18 +463,19 @@ pub mod cloud_memcache_client {
     use tonic::codegen::http::Uri;
     /// Configures and manages Cloud Memorystore for Memcached instances.
     ///
-    ///
     /// The `memcache.googleapis.com` service implements the Google Cloud Memorystore
     /// for Memcached API and defines the following resource model for managing
     /// Memorystore Memcached (also called Memcached below) instances:
+    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of Memcached instances, named:
-    /// `/instances/*`
+    ///  `/instances/*`
     /// * As such, Memcached instances are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///  `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
     ///
     /// Note that location_id must be a GCP `region`; for example:
+    ///
     /// * `projects/my-memcached-project/locations/us-central1/instances/my-memcached`
     #[derive(Debug, Clone)]
     pub struct CloudMemcacheClient<T> {

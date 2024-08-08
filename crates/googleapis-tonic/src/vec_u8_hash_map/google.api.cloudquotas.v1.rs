@@ -368,10 +368,10 @@ pub mod cloud_quotas_client {
     /// The Cloud Quotas API is an infrastructure service for Google Cloud that lets
     /// service consumers list and manage their resource usage limits.
     ///
-    /// - List/Get the metadata and current status of the quotas for a service.
-    /// - Create/Update quota preferencess that declare the preferred quota values.
-    /// - Check the status of a quota preference request.
-    /// - List/Get pending and historical quota preference.
+    /// * List/Get the metadata and current status of the quotas for a service.
+    /// * Create/Update quota preferencess that declare the preferred quota values.
+    /// * Check the status of a quota preference request.
+    /// * List/Get pending and historical quota preference.
     #[derive(Debug, Clone)]
     pub struct CloudQuotasClient<T> {
         inner: tonic::client::Grpc<T>,

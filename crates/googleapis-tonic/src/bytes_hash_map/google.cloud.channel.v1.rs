@@ -2352,22 +2352,24 @@ pub mod cloud_channel_service_client {
     /// their customers, channel partners, entitlements, and reports.
     ///
     /// Using this service:
+    ///
     /// 1. Resellers and distributors can manage a customer entity.
-    /// 2. Distributors can register an authorized reseller in their channel and
-    ///    provide them with delegated admin access.
-    /// 3. Resellers and distributors can manage customer entitlements.
+    /// 1. Distributors can register an authorized reseller in their channel and
+    ///   provide them with delegated admin access.
+    /// 1. Resellers and distributors can manage customer entitlements.
     ///
     /// CloudChannelService exposes the following resources:
-    /// - [Customer][google.cloud.channel.v1.Customer]s: An entity-usually an
-    /// enterprise-managed by a reseller or distributor.
     ///
-    /// - [Entitlement][google.cloud.channel.v1.Entitlement]s: An entity that
-    /// provides a customer with the means to use a service. Entitlements are created
-    /// or updated as a result of a successful fulfillment.
+    /// * \[Customer\]\[google.cloud.channel.v1.Customer\]s: An entity-usually an
+    ///  enterprise-managed by a reseller or distributor.
     ///
-    /// - [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s: An
-    /// entity that identifies links between distributors and their indirect
-    /// resellers in a channel.
+    /// * \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s: An entity that
+    ///  provides a customer with the means to use a service. Entitlements are created
+    ///  or updated as a result of a successful fulfillment.
+    ///
+    /// * \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]s: An
+    ///  entity that identifies links between distributors and their indirect
+    ///  resellers in a channel.
     #[derive(Debug, Clone)]
     pub struct CloudChannelServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -2437,16 +2439,16 @@ pub mod cloud_channel_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// List [Customer][google.cloud.channel.v1.Customer]s.
+        /// List \[Customer\]\[google.cloud.channel.v1.Customer\]s.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
-        /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
+        /// List of \[Customer\]\[google.cloud.channel.v1.Customer\]s, or an empty list if
         /// there are no customers.
         pub async fn list_customers(
             &mut self,
@@ -2478,19 +2480,19 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
+        /// Returns the requested \[Customer\]\[google.cloud.channel.v1.Customer\]
         /// resource.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The customer resource doesn't exist. Usually the result of an
-        /// invalid name parameter.
+        ///  invalid name parameter.
         ///
         /// Return value:
-        /// The [Customer][google.cloud.channel.v1.Customer] resource.
+        /// The \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
         pub async fn get_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCustomerRequest>,
@@ -2524,18 +2526,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * INVALID_VALUE: Invalid domain value in the request.
         ///
         /// Return value:
         /// A list of
-        /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+        /// \[CloudIdentityCustomerAccount\]\[google.cloud.channel.v1.CloudIdentityCustomerAccount\]
         /// resources for the domain (may be empty)
         ///
         /// Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if
         /// no
-        /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+        /// \[CloudIdentityCustomerAccount\]\[google.cloud.channel.v1.CloudIdentityCustomerAccount\]
         /// resources match the domain.
         pub async fn check_cloud_identity_accounts_exist(
             &mut self,
@@ -2569,22 +2571,22 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
+        /// Creates a new \[Customer\]\[google.cloud.channel.v1.Customer\] resource under
         /// the reseller or distributor account.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The reseller account making the request is different from the
-        ///     reseller account in the API request.
-        ///     * You are not authorized to create a customer. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The reseller account making the request is different from the
+        ///    reseller account in the API request.
+        ///  * You are not authorized to create a customer. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT:
-        ///     * Required request parameters are missing or invalid.
-        ///     * Domain field value doesn't match the primary email domain.
+        ///  * Required request parameters are missing or invalid.
+        ///  * Domain field value doesn't match the primary email domain.
         ///
         /// Return value:
-        /// The newly created [Customer][google.cloud.channel.v1.Customer] resource.
+        /// The newly created \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
         pub async fn create_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerRequest>,
@@ -2612,19 +2614,19 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
+        /// Updates an existing \[Customer\]\[google.cloud.channel.v1.Customer\] resource
         /// for the reseller or distributor.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
-        /// for the name in the request.
+        /// * NOT_FOUND: No \[Customer\]\[google.cloud.channel.v1.Customer\] resource found
+        ///  for the name in the request.
         ///
         /// Return value:
-        /// The updated [Customer][google.cloud.channel.v1.Customer] resource.
+        /// The updated \[Customer\]\[google.cloud.channel.v1.Customer\] resource.
         pub async fn update_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCustomerRequest>,
@@ -2652,16 +2654,16 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
+        /// Deletes the given \[Customer\]\[google.cloud.channel.v1.Customer\] permanently.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        /// this customer.
+        ///  this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The customer has existing entitlements.
-        /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
-        /// for the name in the request.
+        /// * NOT_FOUND: No \[Customer\]\[google.cloud.channel.v1.Customer\] resource found
+        ///  for the name in the request.
         pub async fn delete_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRequest>,
@@ -2689,7 +2691,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
+        /// Imports a \[Customer\]\[google.cloud.channel.v1.Customer\] from the Cloud
         /// Identity associated with the provided Cloud Identity ID or domain before a
         /// TransferEntitlements call. If a linked Customer already exists and
         /// overwrite_if_exists is true, it will update that Customer's data.
@@ -2697,18 +2699,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The reseller account making the request is different from the
-        ///     reseller account in the API request.
-        ///     * You are not authorized to import the customer. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The reseller account making the request is different from the
+        ///    reseller account in the API request.
+        ///  * You are not authorized to import the customer. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
         /// * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
-        /// expired or invalid.
+        ///  expired or invalid.
         /// * ALREADY_EXISTS: A customer already exists and has conflicting critical
-        /// fields. Requires an overwrite.
+        ///  fields. Requires an overwrite.
         ///
         /// Return value:
-        /// The [Customer][google.cloud.channel.v1.Customer].
+        /// The \[Customer\]\[google.cloud.channel.v1.Customer\].
         pub async fn import_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportCustomerRequest>,
@@ -2741,25 +2743,25 @@ pub mod cloud_channel_service_client {
         ///
         /// Possible error codes:
         ///
-        /// *  PERMISSION_DENIED:
-        ///      * The customer doesn't belong to the reseller.
-        ///      * You are not authorized to provision cloud identity id. See
-        ///      https://support.google.com/channelservices/answer/9759265
-        /// *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        /// *  NOT_FOUND: The customer was not found.
-        /// *  ALREADY_EXISTS: The customer's primary email already exists. Retry
-        ///    after changing the customer's primary contact email.
+        /// * PERMISSION_DENIED:
+        ///  * The customer doesn't belong to the reseller.
+        ///  * You are not authorized to provision cloud identity id. See
+        ///    https://support.google.com/channelservices/answer/9759265
+        /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+        /// * NOT_FOUND: The customer was not found.
+        /// * ALREADY_EXISTS: The customer's primary email already exists. Retry
+        ///  after changing the customer's primary contact email.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata contains an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn provision_cloud_identity(
             &mut self,
             request: impl tonic::IntoRequest<super::ProvisionCloudIdentityRequest>,
@@ -2790,7 +2792,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
+        /// Lists \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s belonging to a
         /// customer.
         ///
         /// Possible error codes:
@@ -2800,7 +2802,7 @@ pub mod cloud_channel_service_client {
         ///
         /// Return value:
         /// A list of the customer's
-        /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
+        /// \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]s.
         pub async fn list_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementsRequest>,
@@ -2831,7 +2833,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
+        /// List \[TransferableSku\]\[google.cloud.channel.v1.TransferableSku\]s of a
         /// customer based on the Cloud Identity ID or Customer Name in the request.
         ///
         /// Use this method to list the entitlements information of an
@@ -2841,15 +2843,15 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The customer doesn't belong to the reseller and has no auth token.
-        ///     * The supplied auth token is invalid.
-        ///     * The reseller account making the request is different
-        ///     from the reseller account in the query.
+        ///  * The customer doesn't belong to the reseller and has no auth token.
+        ///  * The supplied auth token is invalid.
+        ///  * The reseller account making the request is different
+        ///    from the reseller account in the query.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
         /// A list of the customer's
-        /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
+        /// \[TransferableSku\]\[google.cloud.channel.v1.TransferableSku\].
         pub async fn list_transferable_skus(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTransferableSkusRequest>,
@@ -2880,7 +2882,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
+        /// List \[TransferableOffer\]\[google.cloud.channel.v1.TransferableOffer\]s of a
         /// customer based on Cloud Identity ID or Customer Name in the request.
         ///
         /// Use this method when a reseller gets the entitlement information of an
@@ -2890,17 +2892,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The customer doesn't belong to the reseller and has no auth token.
-        ///     * The customer provided incorrect reseller information when generating
-        ///     auth token.
-        ///     * The reseller account making the request is different
-        ///     from the reseller account in the query.
-        ///     * The reseller is not authorized to transact on this Product. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The customer doesn't belong to the reseller and has no auth token.
+        ///  * The customer provided incorrect reseller information when generating
+        ///    auth token.
+        ///  * The reseller account making the request is different
+        ///    from the reseller account in the query.
+        ///  * The reseller is not authorized to transact on this Product. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
-        /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
+        /// List of \[TransferableOffer\]\[google.cloud.channel.v1.TransferableOffer\] for
         /// the given customer and SKU.
         pub async fn list_transferable_offers(
             &mut self,
@@ -2932,7 +2934,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
+        /// Returns the requested \[Entitlement\]\[google.cloud.channel.v1.Entitlement\]
         /// resource.
         ///
         /// Possible error codes:
@@ -2942,7 +2944,7 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: The customer entitlement was not found.
         ///
         /// Return value:
-        /// The requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
+        /// The requested \[Entitlement\]\[google.cloud.channel.v1.Entitlement\] resource.
         pub async fn get_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::GetEntitlementRequest>,
@@ -2975,40 +2977,40 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The customer doesn't belong to the reseller.
-        ///     * The reseller is not authorized to transact on this Product. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The customer doesn't belong to the reseller.
+        ///  * The reseller is not authorized to transact on this Product. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT:
-        ///     * Required request parameters are missing or invalid.
-        ///     * There is already a customer entitlement for a SKU from the same
-        ///     product family.
+        ///  * Required request parameters are missing or invalid.
+        ///  * There is already a customer entitlement for a SKU from the same
+        ///    product family.
         /// * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact
-        /// Google Channel support for further troubleshooting.
+        ///  Google Channel support for further troubleshooting.
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS:
-        ///     * The SKU was already purchased for the customer.
-        ///     * The customer's primary email already exists. Retry
-        ///     after changing the customer's primary contact email.
+        ///  * The SKU was already purchased for the customer.
+        ///  * The customer's primary email already exists. Retry
+        ///    after changing the customer's primary contact email.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///     * The domain required for purchasing a SKU has not been verified.
-        ///     * A pre-requisite SKU required to purchase an Add-On SKU is missing.
-        ///     For example, Google Workspace Business Starter is required to purchase
-        ///     Vault or Drive.
-        ///     * (Developer accounts only) Reseller and resold domain must meet the
-        ///     following naming requirements:
-        ///         * Domain names must start with goog-test.
-        ///         * Domain names must include the reseller domain.
+        ///  * The domain required for purchasing a SKU has not been verified.
+        ///  * A pre-requisite SKU required to purchase an Add-On SKU is missing.
+        ///    For example, Google Workspace Business Starter is required to purchase
+        ///    Vault or Drive.
+        ///  * (Developer accounts only) Reseller and resold domain must meet the
+        ///    following naming requirements:
+        ///    * Domain names must start with goog-test.
+        ///    * Domain names must include the reseller domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn create_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateEntitlementRequest>,
@@ -3048,20 +3050,20 @@ pub mod cloud_channel_service_client {
         ///
         /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-        /// For example, the number of seats being changed is greater than the allowed
-        /// number of max seats, or decreasing seats for a commitment based plan.
+        ///  For example, the number of seats being changed is greater than the allowed
+        ///  number of max seats, or decreasing seats for a commitment based plan.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn change_parameters(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeParametersRequest>,
@@ -3103,18 +3105,18 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * NOT_COMMITMENT_PLAN: Renewal Settings are only applicable for a
-        /// commitment plan. Can't enable or disable renewals for non-commitment plans.
+        ///  commitment plan. Can't enable or disable renewals for non-commitment plans.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        ///   Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn change_renewal_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeRenewalSettingsRequest>,
@@ -3156,16 +3158,16 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Offer or Entitlement resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn change_offer(
             &mut self,
             request: impl tonic::IntoRequest<super::ChangeOfferRequest>,
@@ -3208,18 +3210,18 @@ pub mod cloud_channel_service_client {
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for
-        /// entitlement on trial plans.
+        ///  entitlement on trial plans.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn start_paid_service(
             &mut self,
             request: impl tonic::IntoRequest<super::StartPaidServiceRequest>,
@@ -3261,16 +3263,16 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: Entitlement resource not found.
         /// * NOT_ACTIVE: Entitlement is not active.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn suspend_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::SuspendEntitlementRequest>,
@@ -3308,17 +3310,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * FAILED_PRECONDITION: There are Google Cloud projects linked to the
-        /// Google Cloud entitlement's Cloud Billing subaccount.
+        ///  Google Cloud entitlement's Cloud Billing subaccount.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * DELETION_TYPE_NOT_ALLOWED: Cancel is only allowed for Google Workspace
-        /// add-ons, or entitlements for Google Cloud's development platform.
+        ///  add-ons, or entitlements for Google Cloud's development platform.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
@@ -3326,7 +3328,7 @@ pub mod cloud_channel_service_client {
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The response will contain
         /// google.protobuf.Empty on success. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn cancel_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::CancelEntitlementRequest>,
@@ -3366,24 +3368,24 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: Entitlement resource not found.
         /// * SUSPENSION_NOT_RESELLER_INITIATED: Can only activate reseller-initiated
-        /// suspensions and entitlements that have accepted the TOS.
+        ///  suspensions and entitlements that have accepted the TOS.
         /// * NOT_SUSPENDED: Can only activate suspended entitlements not in an ACTIVE
-        /// state.
+        ///  state.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn activate_entitlement(
             &mut self,
             request: impl tonic::IntoRequest<super::ActivateEntitlementRequest>,
@@ -3419,33 +3421,33 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The customer doesn't belong to the reseller.
-        ///     * The reseller is not authorized to transact on this Product. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The customer doesn't belong to the reseller.
+        ///  * The reseller is not authorized to transact on this Product. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///     * The SKU requires domain verification to transfer, but the domain is
-        ///     not verified.
-        ///     * An Add-On SKU (example, Vault or Drive) is missing the
-        ///     pre-requisite SKU (example, G Suite Basic).
-        ///     * (Developer accounts only) Reseller and resold domain must meet the
-        ///     following naming requirements:
-        ///         * Domain names must start with goog-test.
-        ///         * Domain names must include the reseller domain.
-        ///     * Specify all transferring entitlements.
+        ///  * The SKU requires domain verification to transfer, but the domain is
+        ///    not verified.
+        ///  * An Add-On SKU (example, Vault or Drive) is missing the
+        ///    pre-requisite SKU (example, G Suite Basic).
+        ///  * (Developer accounts only) Reseller and resold domain must meet the
+        ///    following naming requirements:
+        ///    * Domain names must start with goog-test.
+        ///    * Domain names must include the reseller domain.
+        ///  * Specify all transferring entitlements.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn transfer_entitlements(
             &mut self,
             request: impl tonic::IntoRequest<super::TransferEntitlementsRequest>,
@@ -3485,18 +3487,18 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: The customer or offer resource was not found.
         /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
         /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
-        ///     * The SKU requires domain verification to transfer, but the domain is
-        ///     not verified.
-        ///     * An Add-On SKU (example, Vault or Drive) is missing the
-        ///     pre-requisite SKU (example, G Suite Basic).
-        ///     * (Developer accounts only) Reseller and resold domain must meet the
-        ///     following naming requirements:
-        ///         * Domain names must start with goog-test.
-        ///         * Domain names must include the reseller domain.
+        ///  * The SKU requires domain verification to transfer, but the domain is
+        ///    not verified.
+        ///  * An Add-On SKU (example, Vault or Drive) is missing the
+        ///    pre-requisite SKU (example, G Suite Basic).
+        ///  * (Developer accounts only) Reseller and resold domain must meet the
+        ///    following naming requirements:
+        ///    * Domain names must start with goog-test.
+        ///    * Domain names must include the reseller domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
@@ -3504,7 +3506,7 @@ pub mod cloud_channel_service_client {
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The response will contain
         /// google.protobuf.Empty on success. The Operation metadata will contain an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         pub async fn transfer_entitlements_to_google(
             &mut self,
             request: impl tonic::IntoRequest<super::TransferEntitlementsToGoogleRequest>,
@@ -3535,18 +3537,18 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
+        /// List \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]s
         /// belonging to a distributor. You must be a distributor to call this method.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         ///
         /// Return value:
         /// The list of the distributor account's
-        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resources.
         pub async fn list_channel_partner_links(
             &mut self,
             request: impl tonic::IntoRequest<super::ListChannelPartnerLinksRequest>,
@@ -3578,19 +3580,19 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested
-        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resource.
         /// You must be a distributor to call this method.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: ChannelPartnerLink resource not found because of an
-        /// invalid channel partner link name.
+        ///  invalid channel partner link name.
         ///
         /// Return value:
-        /// The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+        /// The \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]
         /// resource.
         pub async fn get_channel_partner_link(
             &mut self,
@@ -3632,18 +3634,18 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * ALREADY_EXISTS: The ChannelPartnerLink sent in the request already
-        /// exists.
+        ///  exists.
         /// * NOT_FOUND: No Cloud Identity customer exists for provided domain.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
-        /// The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+        /// The new \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\]
         /// resource.
         pub async fn create_channel_partner_link(
             &mut self,
@@ -3682,21 +3684,21 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request is different
-        /// from the reseller account in the API request.
+        ///  from the reseller account in the API request.
         /// * INVALID_ARGUMENT:
-        ///     * Required request parameters are missing or invalid.
-        ///     * Link state cannot change from invited to active or suspended.
-        ///     * Cannot send reseller_cloud_identity_id, invite_url, or name in update
-        ///     mask.
+        ///  * Required request parameters are missing or invalid.
+        ///  * Link state cannot change from invited to active or suspended.
+        ///  * Cannot send reseller_cloud_identity_id, invite_url, or name in update
+        ///    mask.
         /// * NOT_FOUND: ChannelPartnerLink resource not found.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The updated
-        /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+        /// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] resource.
         pub async fn update_channel_partner_link(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateChannelPartnerLinkRequest>,
@@ -3733,16 +3735,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * NOT_FOUND: The
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// was not found.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  was not found.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn get_customer_repricing_config(
             &mut self,
@@ -3780,23 +3782,23 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * NOT_FOUND: The
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
         /// * Customer ID
-        /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-        /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-        /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
+        /// * \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\]
+        /// * \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// * \[CustomerRepricingConfig.update_time\]\[google.cloud.channel.v1.CustomerRepricingConfig.update_time\]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_customer_repricing_configs(
@@ -3831,45 +3833,45 @@ pub mod cloud_channel_service_client {
         }
         /// Creates a CustomerRepricingConfig. Call this method to set modifications
         /// for a specific customer's bill. You can only create configs if the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is a future month. If needed, you can create a config for the current
         /// month, with some restrictions.
         ///
         /// When creating a config for a future month, make sure there are no existing
         /// configs for that
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         ///
         /// The following restrictions are for creating configs in the current month.
         ///
         /// * This functionality is reserved for recovering from an erroneous config,
-        /// and should not be used for regular business cases.
+        ///  and should not be used for regular business cases.
         /// * The new config will not modify exports used with other configs.
-        /// Changes to the config may be immediate, but may take up to 24 hours.
+        ///  Changes to the config may be immediate, but may take up to 24 hours.
         /// * There is a limit of ten configs for any
-        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
-        /// for any
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\],
+        ///  for any
+        ///  \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         /// * The contained
-        /// [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
-        /// value must be different from the value used in the current config for a
-        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+        ///  \[CustomerRepricingConfig.repricing_config\]\[google.cloud.channel.v1.CustomerRepricingConfig.repricing_config\]
+        ///  value must be different from the value used in the current config for a
+        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\].
         ///
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        /// request. Also displays if the updated config is for the current month or
-        /// past months.
+        ///  request. Also displays if the updated config is for the current month or
+        ///  past months.
         /// * NOT_FOUND: The
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn create_customer_repricing_config(
             &mut self,
@@ -3906,11 +3908,11 @@ pub mod cloud_channel_service_client {
         /// CustomerRepricingConfig.
         ///
         /// You can only update configs if the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is a future month. To make changes to configs for the current month, use
-        /// [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
+        /// \[CreateCustomerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig\],
         /// taking note of its restrictions. You cannot update the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         ///
         /// When updating a config in the future:
         ///
@@ -3919,19 +3921,19 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        /// request. Also displays if the updated config is for the current month or
-        /// past months.
+        ///  request. Also displays if the updated config is for the current month or
+        ///  past months.
         /// * NOT_FOUND: The
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn update_customer_repricing_config(
             &mut self,
@@ -3964,22 +3966,22 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+        /// \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
         /// permanently. You can only delete configs if their
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is set to a date after the current month.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        /// this customer.
+        ///  this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// is active or in the past.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  is active or in the past.
         /// * NOT_FOUND: No
-        /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
-        /// found for the name in the request.
+        ///  \[CustomerRepricingConfig\]\[google.cloud.channel.v1.CustomerRepricingConfig\]
+        ///  found for the name in the request.
         pub async fn delete_customer_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteCustomerRepricingConfigRequest>,
@@ -4013,16 +4015,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * NOT_FOUND: The
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// was not found.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  was not found.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn get_channel_partner_repricing_config(
             &mut self,
@@ -4062,22 +4064,22 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * NOT_FOUND: The
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
         /// * Channel Partner ID
-        /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
-        /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
+        /// * \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
+        /// * \[ChannelPartnerRepricingConfig.update_time\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time\]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_channel_partner_repricing_configs(
@@ -4115,45 +4117,45 @@ pub mod cloud_channel_service_client {
         /// Creates a ChannelPartnerRepricingConfig. Call this method to set
         /// modifications for a specific ChannelPartner's bill. You can only create
         /// configs if the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is a future month. If needed, you can create a config for the current
         /// month, with some restrictions.
         ///
         /// When creating a config for a future month, make sure there are no existing
         /// configs for that
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         ///
         /// The following restrictions are for creating configs in the current month.
         ///
         /// * This functionality is reserved for recovering from an erroneous config,
-        /// and should not be used for regular business cases.
+        ///  and should not be used for regular business cases.
         /// * The new config will not modify exports used with other configs.
-        /// Changes to the config may be immediate, but may take up to 24 hours.
+        ///  Changes to the config may be immediate, but may take up to 24 hours.
         /// * There is a limit of ten configs for any ChannelPartner or
-        /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
-        /// for any
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        ///  \[RepricingConfig.EntitlementGranularity.entitlement\]\[google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement\],
+        ///  for any
+        ///  \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         /// * The contained
-        /// [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
-        /// value must be different from the value used in the current config for a
-        /// ChannelPartner.
+        ///  \[ChannelPartnerRepricingConfig.repricing_config\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config\]
+        ///  value must be different from the value used in the current config for a
+        ///  ChannelPartner.
         ///
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        /// request. Also displays if the updated config is for the current month or
-        /// past months.
+        ///  request. Also displays if the updated config is for the current month or
+        ///  past months.
         /// * NOT_FOUND: The
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn create_channel_partner_repricing_config(
             &mut self,
@@ -4192,11 +4194,11 @@ pub mod cloud_channel_service_client {
         /// the existing CustomerRepricingConfig.
         ///
         /// You can only update configs if the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is a future month. To make changes to configs for the current month, use
-        /// [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
+        /// \[CreateChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig\],
         /// taking note of its restrictions. You cannot update the
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\].
         ///
         /// When updating a config in the future:
         ///
@@ -4205,19 +4207,19 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different.
+        ///  being queried are different.
         /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
-        /// request. Also displays if the updated config is for the current month or
-        /// past months.
+        ///  request. Also displays if the updated config is for the current month or
+        ///  past months.
         /// * NOT_FOUND: The
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// specified does not exist or is not associated with the given account.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  specified does not exist or is not associated with the given account.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
         /// If successful, the updated
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
         /// resource, otherwise returns an error.
         pub async fn update_channel_partner_repricing_config(
             &mut self,
@@ -4252,22 +4254,22 @@ pub mod cloud_channel_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes the given
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+        /// \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
         /// permanently. You can only delete configs if their
-        /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+        /// \[RepricingConfig.effective_invoice_month\]\[google.cloud.channel.v1.RepricingConfig.effective_invoice_month\]
         /// is set to a date after the current month.
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The account making the request does not own
-        /// this customer.
+        ///  this customer.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * FAILED_PRECONDITION: The
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// is active or in the past.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  is active or in the past.
         /// * NOT_FOUND: No
-        /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
-        /// found for the name in the request.
+        ///  \[ChannelPartnerRepricingConfig\]\[google.cloud.channel.v1.ChannelPartnerRepricingConfig\]
+        ///  found for the name in the request.
         pub async fn delete_channel_partner_repricing_config(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4304,16 +4306,16 @@ pub mod cloud_channel_service_client {
         /// Possible Error Codes:
         ///
         /// * PERMISSION_DENIED: If the account making the request and the account
-        /// being queried are different, or the account doesn't exist.
+        ///  being queried are different, or the account doesn't exist.
         /// * INTERNAL: Any non-user error related to technical issues in the
-        /// backend. In this case, contact Cloud Channel support.
+        ///  backend. In this case, contact Cloud Channel support.
         ///
         /// Return Value:
-        /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+        /// If successful, the \[SkuGroup\]\[google.cloud.channel.v1.SkuGroup\] resources.
         /// The data for each resource is displayed in the alphabetical order of SKU
         /// group display name.
         /// The data for each resource is displayed in the ascending order of
-        /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+        /// \[SkuGroup.display_name\]\[google.cloud.channel.v1.SkuGroup.display_name\]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_sku_groups(
@@ -4357,12 +4359,12 @@ pub mod cloud_channel_service_client {
         /// backend. In this case, contact cloud channel support.
         ///
         /// Return Value:
-        /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+        /// If successful, the \[BillableSku\]\[google.cloud.channel.v1.BillableSku\]
         /// resources. The data for each resource is displayed in the ascending order
         /// of:
         ///
-        /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
-        /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+        /// * \[BillableSku.service_display_name\]\[google.cloud.channel.v1.BillableSku.service_display_name\]
+        /// * \[BillableSku.sku_display_name\]\[google.cloud.channel.v1.BillableSku.sku_display_name\]
         ///
         /// If unsuccessful, returns an error.
         pub async fn list_sku_group_billable_skus(
@@ -4395,7 +4397,7 @@ pub mod cloud_channel_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
+        /// Returns the requested \[Offer\]\[google.cloud.channel.v1.Offer\] resource.
         ///
         /// Possible error codes:
         ///
@@ -4404,7 +4406,7 @@ pub mod cloud_channel_service_client {
         /// * NOT_FOUND: Entitlement or offer was not found.
         ///
         /// Return value:
-        /// The [Offer][google.cloud.channel.v1.Offer] resource.
+        /// The \[Offer\]\[google.cloud.channel.v1.Offer\] resource.
         pub async fn lookup_offer(
             &mut self,
             request: impl tonic::IntoRequest<super::LookupOfferRequest>,
@@ -4584,9 +4586,9 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED:
-        ///     * The customer doesn't belong to the reseller
-        ///     * The reseller is not authorized to transact on this Product. See
-        ///     https://support.google.com/channelservices/answer/9759265
+        ///  * The customer doesn't belong to the reseller
+        ///  * The reseller is not authorized to transact on this Product. See
+        ///    https://support.google.com/channelservices/answer/9759265
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         pub async fn list_purchasable_offers(
             &mut self,
@@ -4663,18 +4665,18 @@ pub mod cloud_channel_service_client {
         /// Registers a service account with subscriber privileges on the Cloud Pub/Sub
         /// topic for this Channel Services account. After you create a
         /// subscriber, you get the events through
-        /// [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
+        /// \[SubscriberEvent\]\[google.cloud.channel.v1.SubscriberEvent\]
         ///
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        /// provided reseller account are different, or the impersonated user
-        /// is not a super admin.
+        ///  provided reseller account are different, or the impersonated user
+        ///  is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The topic name with the registered service email address.
@@ -4716,14 +4718,14 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        /// provided reseller account are different, or the impersonated user
-        /// is not a super admin.
+        ///  provided reseller account are different, or the impersonated user
+        ///  is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The topic resource doesn't exist.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// The topic name that unregistered the service email address.
@@ -4765,14 +4767,14 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        /// provided reseller account are different, or the impersonated user
-        /// is not a super admin.
+        ///  provided reseller account are different, or the impersonated user
+        ///  is not a super admin.
         /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
         /// * NOT_FOUND: The topic resource doesn't exist.
         /// * INTERNAL: Any non-user error related to a technical issue in the
-        /// backend. Contact Cloud Channel support.
+        ///  backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// Contact Cloud Channel support.
+        ///  Contact Cloud Channel support.
         ///
         /// Return value:
         /// A list of service email addresses.
@@ -4811,17 +4813,17 @@ pub mod cloud_channel_service_client {
         /// Possible error codes:
         ///
         /// * PERMISSION_DENIED: The reseller account making the request and the
-        /// provided reseller account are different.
+        ///  provided reseller account are different.
         /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
         /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
-        /// invalid name parameter.
+        ///  invalid name parameter.
         /// * INTERNAL: Any non-user error related to a technical issue in the backend.
-        /// In this case, contact CloudChannel support.
+        ///  In this case, contact CloudChannel support.
         /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
-        /// In this case, contact Cloud Channel support.
+        ///  In this case, contact Cloud Channel support.
         ///
         /// Return value:
-        /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
+        /// List of \[EntitlementChange\]\[google.cloud.channel.v1.EntitlementChange\]s.
         pub async fn list_entitlement_changes(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntitlementChangesRequest>,
@@ -5357,24 +5359,24 @@ pub mod cloud_channel_reports_service_client {
         ///
         /// * PERMISSION_DENIED: The user doesn't have access to this report.
         /// * INVALID_ARGUMENT: Required request parameters are missing
-        ///   or invalid.
+        ///  or invalid.
         /// * NOT_FOUND: The report identifier was not found.
         /// * INTERNAL: Any non-user error related to a technical issue
-        ///   in the backend. Contact Cloud Channel support.
+        ///  in the backend. Contact Cloud Channel support.
         /// * UNKNOWN: Any non-user error related to a technical issue
-        ///   in the backend. Contact Cloud Channel support.
+        ///  in the backend. Contact Cloud Channel support.
         ///
         /// Return value:
         /// The ID of a long-running operation.
         ///
         /// To get the results of the operation, call the GetOperation method of
         /// CloudChannelOperationsService. The Operation metadata contains an
-        /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
         ///
         /// To get the results of report generation, call
-        /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+        /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
         /// with the
-        /// [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
+        /// \[RunReportJobResponse.report_job\]\[google.cloud.channel.v1.RunReportJobResponse.report_job\].
         ///
         /// Deprecated: Please use [Export Channel Services data to
         /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
@@ -5410,7 +5412,7 @@ pub mod cloud_channel_reports_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Retrieves data generated by
-        /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+        /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
         ///
         /// Deprecated: Please use [Export Channel Services data to
         /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)

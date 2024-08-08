@@ -303,15 +303,17 @@ pub mod notifications_api_service_client {
         /// Creates a notification subscription for a merchant. We will allow the
         /// following types of notification subscriptions to exist together (per
         /// merchant as a subscriber per event type):
+        ///
         /// 1. Subscription for all managed accounts + subscription for self
-        /// 2. Multiple "partial" subscriptions for managed accounts + subscription
-        /// for self
+        /// 1. Multiple "partial" subscriptions for managed accounts + subscription
+        ///   for self
         ///
         /// we will not allow (per merchant as a subscriber per event type):
+        ///
         /// 1. multiple self subscriptions.
-        /// 2. multiple "all managed accounts" subscriptions.
-        /// 3. all and partial subscriptions at the same time.
-        /// 4. multiple partial subscriptions for the same target account
+        /// 1. multiple "all managed accounts" subscriptions.
+        /// 1. all and partial subscriptions at the same time.
+        /// 1. multiple partial subscriptions for the same target account
         pub async fn create_notification_subscription(
             &mut self,
             request: impl tonic::IntoRequest<

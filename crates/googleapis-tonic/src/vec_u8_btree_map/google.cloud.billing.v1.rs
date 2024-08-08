@@ -407,8 +407,7 @@ pub mod cloud_billing_client {
         ///
         /// The current authenticated user must have ownership privileges for both
         /// the
-        /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
-        /// ) and the [billing
+        /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo) and the [billing
         /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
         ///
         /// You can disable billing on the project by setting the

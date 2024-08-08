@@ -2008,6 +2008,111 @@ pub mod experiment_type_enum {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct OfflineConversionDiagnosticStatusEnum {}
+/// Nested message and enum types in `OfflineConversionDiagnosticStatusEnum`.
+pub mod offline_conversion_diagnostic_status_enum {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum OfflineConversionDiagnosticStatus {
+        Unspecified = 0,
+        Unknown = 1,
+        Excellent = 2,
+        Good = 3,
+        NeedsAttention = 4,
+        NoRecentUpload = 6,
+    }
+    impl OfflineConversionDiagnosticStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                OfflineConversionDiagnosticStatus::Unspecified => "UNSPECIFIED",
+                OfflineConversionDiagnosticStatus::Unknown => "UNKNOWN",
+                OfflineConversionDiagnosticStatus::Excellent => "EXCELLENT",
+                OfflineConversionDiagnosticStatus::Good => "GOOD",
+                OfflineConversionDiagnosticStatus::NeedsAttention => "NEEDS_ATTENTION",
+                OfflineConversionDiagnosticStatus::NoRecentUpload => "NO_RECENT_UPLOAD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "EXCELLENT" => Some(Self::Excellent),
+                "GOOD" => Some(Self::Good),
+                "NEEDS_ATTENTION" => Some(Self::NeedsAttention),
+                "NO_RECENT_UPLOAD" => Some(Self::NoRecentUpload),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct OfflineEventUploadClientEnum {}
+/// Nested message and enum types in `OfflineEventUploadClientEnum`.
+pub mod offline_event_upload_client_enum {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum OfflineEventUploadClient {
+        Unspecified = 0,
+        Unknown = 1,
+        GoogleAdsApi = 2,
+        GoogleAdsWebClient = 3,
+        AdsDataConnector = 4,
+    }
+    impl OfflineEventUploadClient {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                OfflineEventUploadClient::Unspecified => "UNSPECIFIED",
+                OfflineEventUploadClient::Unknown => "UNKNOWN",
+                OfflineEventUploadClient::GoogleAdsApi => "GOOGLE_ADS_API",
+                OfflineEventUploadClient::GoogleAdsWebClient => "GOOGLE_ADS_WEB_CLIENT",
+                OfflineEventUploadClient::AdsDataConnector => "ADS_DATA_CONNECTOR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "GOOGLE_ADS_API" => Some(Self::GoogleAdsApi),
+                "GOOGLE_ADS_WEB_CLIENT" => Some(Self::GoogleAdsWebClient),
+                "ADS_DATA_CONNECTOR" => Some(Self::AdsDataConnector),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CustomizerAttributeTypeEnum {}
 /// Nested message and enum types in `CustomizerAttributeTypeEnum`.
 pub mod customizer_attribute_type_enum {
@@ -5154,6 +5259,7 @@ pub mod bidding_strategy_type_enum {
         Unknown = 1,
         Commission = 16,
         EnhancedCpc = 2,
+        FixedCpm = 19,
         Invalid = 17,
         ManualCpa = 18,
         ManualCpc = 3,
@@ -5165,6 +5271,7 @@ pub mod bidding_strategy_type_enum {
         PercentCpc = 12,
         TargetCpa = 6,
         TargetCpm = 14,
+        TargetCpv = 20,
         TargetImpressionShare = 15,
         TargetOutrankShare = 7,
         TargetRoas = 8,
@@ -5181,6 +5288,7 @@ pub mod bidding_strategy_type_enum {
                 BiddingStrategyType::Unknown => "UNKNOWN",
                 BiddingStrategyType::Commission => "COMMISSION",
                 BiddingStrategyType::EnhancedCpc => "ENHANCED_CPC",
+                BiddingStrategyType::FixedCpm => "FIXED_CPM",
                 BiddingStrategyType::Invalid => "INVALID",
                 BiddingStrategyType::ManualCpa => "MANUAL_CPA",
                 BiddingStrategyType::ManualCpc => "MANUAL_CPC",
@@ -5194,6 +5302,7 @@ pub mod bidding_strategy_type_enum {
                 BiddingStrategyType::PercentCpc => "PERCENT_CPC",
                 BiddingStrategyType::TargetCpa => "TARGET_CPA",
                 BiddingStrategyType::TargetCpm => "TARGET_CPM",
+                BiddingStrategyType::TargetCpv => "TARGET_CPV",
                 BiddingStrategyType::TargetImpressionShare => "TARGET_IMPRESSION_SHARE",
                 BiddingStrategyType::TargetOutrankShare => "TARGET_OUTRANK_SHARE",
                 BiddingStrategyType::TargetRoas => "TARGET_ROAS",
@@ -5207,6 +5316,7 @@ pub mod bidding_strategy_type_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "COMMISSION" => Some(Self::Commission),
                 "ENHANCED_CPC" => Some(Self::EnhancedCpc),
+                "FIXED_CPM" => Some(Self::FixedCpm),
                 "INVALID" => Some(Self::Invalid),
                 "MANUAL_CPA" => Some(Self::ManualCpa),
                 "MANUAL_CPC" => Some(Self::ManualCpc),
@@ -5218,6 +5328,7 @@ pub mod bidding_strategy_type_enum {
                 "PERCENT_CPC" => Some(Self::PercentCpc),
                 "TARGET_CPA" => Some(Self::TargetCpa),
                 "TARGET_CPM" => Some(Self::TargetCpm),
+                "TARGET_CPV" => Some(Self::TargetCpv),
                 "TARGET_IMPRESSION_SHARE" => Some(Self::TargetImpressionShare),
                 "TARGET_OUTRANK_SHARE" => Some(Self::TargetOutrankShare),
                 "TARGET_ROAS" => Some(Self::TargetRoas),
@@ -7739,6 +7850,13 @@ pub mod user_list_customer_type_category_enum {
         PaidSubscribers = 8,
         LoyaltySignUps = 9,
         CartAbandoners = 10,
+        LoyaltyTier1Members = 11,
+        LoyaltyTier2Members = 12,
+        LoyaltyTier3Members = 13,
+        LoyaltyTier4Members = 14,
+        LoyaltyTier5Members = 15,
+        LoyaltyTier6Members = 16,
+        LoyaltyTier7Members = 17,
     }
     impl UserListCustomerTypeCategory {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -7762,6 +7880,27 @@ pub mod user_list_customer_type_category_enum {
                 UserListCustomerTypeCategory::PaidSubscribers => "PAID_SUBSCRIBERS",
                 UserListCustomerTypeCategory::LoyaltySignUps => "LOYALTY_SIGN_UPS",
                 UserListCustomerTypeCategory::CartAbandoners => "CART_ABANDONERS",
+                UserListCustomerTypeCategory::LoyaltyTier1Members => {
+                    "LOYALTY_TIER_1_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier2Members => {
+                    "LOYALTY_TIER_2_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier3Members => {
+                    "LOYALTY_TIER_3_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier4Members => {
+                    "LOYALTY_TIER_4_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier5Members => {
+                    "LOYALTY_TIER_5_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier6Members => {
+                    "LOYALTY_TIER_6_MEMBERS"
+                }
+                UserListCustomerTypeCategory::LoyaltyTier7Members => {
+                    "LOYALTY_TIER_7_MEMBERS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -7778,6 +7917,13 @@ pub mod user_list_customer_type_category_enum {
                 "PAID_SUBSCRIBERS" => Some(Self::PaidSubscribers),
                 "LOYALTY_SIGN_UPS" => Some(Self::LoyaltySignUps),
                 "CART_ABANDONERS" => Some(Self::CartAbandoners),
+                "LOYALTY_TIER_1_MEMBERS" => Some(Self::LoyaltyTier1Members),
+                "LOYALTY_TIER_2_MEMBERS" => Some(Self::LoyaltyTier2Members),
+                "LOYALTY_TIER_3_MEMBERS" => Some(Self::LoyaltyTier3Members),
+                "LOYALTY_TIER_4_MEMBERS" => Some(Self::LoyaltyTier4Members),
+                "LOYALTY_TIER_5_MEMBERS" => Some(Self::LoyaltyTier5Members),
+                "LOYALTY_TIER_6_MEMBERS" => Some(Self::LoyaltyTier6Members),
+                "LOYALTY_TIER_7_MEMBERS" => Some(Self::LoyaltyTier7Members),
                 _ => None,
             }
         }
@@ -11208,6 +11354,99 @@ pub mod asset_set_asset_status_enum {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FixedCpmGoalEnum {}
+/// Nested message and enum types in `FixedCpmGoalEnum`.
+pub mod fixed_cpm_goal_enum {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum FixedCpmGoal {
+        Unspecified = 0,
+        Unknown = 1,
+        Reach = 2,
+        TargetFrequency = 3,
+    }
+    impl FixedCpmGoal {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                FixedCpmGoal::Unspecified => "UNSPECIFIED",
+                FixedCpmGoal::Unknown => "UNKNOWN",
+                FixedCpmGoal::Reach => "REACH",
+                FixedCpmGoal::TargetFrequency => "TARGET_FREQUENCY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "REACH" => Some(Self::Reach),
+                "TARGET_FREQUENCY" => Some(Self::TargetFrequency),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FixedCpmTargetFrequencyTimeUnitEnum {}
+/// Nested message and enum types in `FixedCpmTargetFrequencyTimeUnitEnum`.
+pub mod fixed_cpm_target_frequency_time_unit_enum {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum FixedCpmTargetFrequencyTimeUnit {
+        Unspecified = 0,
+        Unknown = 1,
+        Monthly = 2,
+    }
+    impl FixedCpmTargetFrequencyTimeUnit {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                FixedCpmTargetFrequencyTimeUnit::Unspecified => "UNSPECIFIED",
+                FixedCpmTargetFrequencyTimeUnit::Unknown => "UNKNOWN",
+                FixedCpmTargetFrequencyTimeUnit::Monthly => "MONTHLY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "MONTHLY" => Some(Self::Monthly),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TargetFrequencyTimeUnitEnum {}
 /// Nested message and enum types in `TargetFrequencyTimeUnitEnum`.
 pub mod target_frequency_time_unit_enum {
@@ -13535,6 +13774,7 @@ pub mod change_status_resource_type_enum {
         CampaignAsset = 18,
         AdGroupAsset = 19,
         CombinedAudience = 20,
+        AssetGroup = 21,
     }
     impl ChangeStatusResourceType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -13562,6 +13802,7 @@ pub mod change_status_resource_type_enum {
                 ChangeStatusResourceType::CampaignAsset => "CAMPAIGN_ASSET",
                 ChangeStatusResourceType::AdGroupAsset => "AD_GROUP_ASSET",
                 ChangeStatusResourceType::CombinedAudience => "COMBINED_AUDIENCE",
+                ChangeStatusResourceType::AssetGroup => "ASSET_GROUP",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -13586,6 +13827,7 @@ pub mod change_status_resource_type_enum {
                 "CAMPAIGN_ASSET" => Some(Self::CampaignAsset),
                 "AD_GROUP_ASSET" => Some(Self::AdGroupAsset),
                 "COMBINED_AUDIENCE" => Some(Self::CombinedAudience),
+                "ASSET_GROUP" => Some(Self::AssetGroup),
                 _ => None,
             }
         }
@@ -13685,111 +13927,6 @@ pub mod goal_config_level_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "CUSTOMER" => Some(Self::Customer),
                 "CAMPAIGN" => Some(Self::Campaign),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct OfflineConversionDiagnosticStatusEnum {}
-/// Nested message and enum types in `OfflineConversionDiagnosticStatusEnum`.
-pub mod offline_conversion_diagnostic_status_enum {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OfflineConversionDiagnosticStatus {
-        Unspecified = 0,
-        Unknown = 1,
-        Excellent = 2,
-        Good = 3,
-        NeedsAttention = 4,
-        NoRecentUpload = 6,
-    }
-    impl OfflineConversionDiagnosticStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OfflineConversionDiagnosticStatus::Unspecified => "UNSPECIFIED",
-                OfflineConversionDiagnosticStatus::Unknown => "UNKNOWN",
-                OfflineConversionDiagnosticStatus::Excellent => "EXCELLENT",
-                OfflineConversionDiagnosticStatus::Good => "GOOD",
-                OfflineConversionDiagnosticStatus::NeedsAttention => "NEEDS_ATTENTION",
-                OfflineConversionDiagnosticStatus::NoRecentUpload => "NO_RECENT_UPLOAD",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "UNKNOWN" => Some(Self::Unknown),
-                "EXCELLENT" => Some(Self::Excellent),
-                "GOOD" => Some(Self::Good),
-                "NEEDS_ATTENTION" => Some(Self::NeedsAttention),
-                "NO_RECENT_UPLOAD" => Some(Self::NoRecentUpload),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct OfflineEventUploadClientEnum {}
-/// Nested message and enum types in `OfflineEventUploadClientEnum`.
-pub mod offline_event_upload_client_enum {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OfflineEventUploadClient {
-        Unspecified = 0,
-        Unknown = 1,
-        GoogleAdsApi = 2,
-        GoogleAdsWebClient = 3,
-        AdsDataConnector = 4,
-    }
-    impl OfflineEventUploadClient {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OfflineEventUploadClient::Unspecified => "UNSPECIFIED",
-                OfflineEventUploadClient::Unknown => "UNKNOWN",
-                OfflineEventUploadClient::GoogleAdsApi => "GOOGLE_ADS_API",
-                OfflineEventUploadClient::GoogleAdsWebClient => "GOOGLE_ADS_WEB_CLIENT",
-                OfflineEventUploadClient::AdsDataConnector => "ADS_DATA_CONNECTOR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "UNKNOWN" => Some(Self::Unknown),
-                "GOOGLE_ADS_API" => Some(Self::GoogleAdsApi),
-                "GOOGLE_ADS_WEB_CLIENT" => Some(Self::GoogleAdsWebClient),
-                "ADS_DATA_CONNECTOR" => Some(Self::AdsDataConnector),
                 _ => None,
             }
         }
@@ -24153,6 +24290,78 @@ pub mod budget_campaign_association_status_enum {
                 "UNKNOWN" => Some(Self::Unknown),
                 "ENABLED" => Some(Self::Enabled),
                 "REMOVED" => Some(Self::Removed),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AdFormatTypeEnum {}
+/// Nested message and enum types in `AdFormatTypeEnum`.
+pub mod ad_format_type_enum {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum AdFormatType {
+        Unspecified = 0,
+        Unknown = 1,
+        Other = 2,
+        Unsegmented = 3,
+        InstreamSkippable = 4,
+        InstreamNonSkippable = 5,
+        Infeed = 6,
+        Bumper = 7,
+        Outstream = 8,
+        Masthead = 9,
+        Audio = 10,
+        Shorts = 11,
+    }
+    impl AdFormatType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AdFormatType::Unspecified => "UNSPECIFIED",
+                AdFormatType::Unknown => "UNKNOWN",
+                AdFormatType::Other => "OTHER",
+                AdFormatType::Unsegmented => "UNSEGMENTED",
+                AdFormatType::InstreamSkippable => "INSTREAM_SKIPPABLE",
+                AdFormatType::InstreamNonSkippable => "INSTREAM_NON_SKIPPABLE",
+                AdFormatType::Infeed => "INFEED",
+                AdFormatType::Bumper => "BUMPER",
+                AdFormatType::Outstream => "OUTSTREAM",
+                AdFormatType::Masthead => "MASTHEAD",
+                AdFormatType::Audio => "AUDIO",
+                AdFormatType::Shorts => "SHORTS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "OTHER" => Some(Self::Other),
+                "UNSEGMENTED" => Some(Self::Unsegmented),
+                "INSTREAM_SKIPPABLE" => Some(Self::InstreamSkippable),
+                "INSTREAM_NON_SKIPPABLE" => Some(Self::InstreamNonSkippable),
+                "INFEED" => Some(Self::Infeed),
+                "BUMPER" => Some(Self::Bumper),
+                "OUTSTREAM" => Some(Self::Outstream),
+                "MASTHEAD" => Some(Self::Masthead),
+                "AUDIO" => Some(Self::Audio),
+                "SHORTS" => Some(Self::Shorts),
                 _ => None,
             }
         }

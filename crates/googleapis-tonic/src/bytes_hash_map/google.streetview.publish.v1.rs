@@ -797,24 +797,24 @@ pub mod street_view_publish_service_client {
         }
         /// Creates an upload session to start uploading photo bytes.  The method uses
         /// the upload URL of the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] to upload the bytes for
-        /// the [Photo][google.streetview.publish.v1.Photo].
+        /// \[UploadRef\]\[google.streetview.publish.v1.UploadRef\] to upload the bytes for
+        /// the \[Photo\]\[google.streetview.publish.v1.Photo\].
         ///
         /// In addition to the photo requirements shown in
         /// https://support.google.com/maps/answer/7012050?ref_topic=6275604,
         /// the photo must meet the following requirements:
         ///
         /// * Photo Sphere XMP metadata must be included in the photo metadata. See
-        /// https://developers.google.com/streetview/spherical-metadata for the
-        /// required fields.
+        ///  https://developers.google.com/streetview/spherical-metadata for the
+        ///  required fields.
         /// * The pixel size of the photo must meet the size requirements listed in
-        /// https://support.google.com/maps/answer/7012050?ref_topic=6275604, and
-        /// the photo must be a full 360 horizontally.
+        ///  https://support.google.com/maps/answer/7012050?ref_topic=6275604, and
+        ///  the photo must be a full 360 horizontally.
         ///
         /// After the upload completes, the method uses
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] with
-        /// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
-        /// to create the [Photo][google.streetview.publish.v1.Photo] object entry.
+        /// \[UploadRef\]\[google.streetview.publish.v1.UploadRef\] with
+        /// \[CreatePhoto\]\[google.streetview.publish.v1.StreetViewPublishService.CreatePhoto\]
+        /// to create the \[Photo\]\[google.streetview.publish.v1.Photo\] object entry.
         pub async fn start_upload(
             &mut self,
             request: impl tonic::IntoRequest<()>,
@@ -843,9 +843,9 @@ pub mod street_view_publish_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// After the client finishes uploading the photo with the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef],
-        /// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
-        /// publishes the uploaded [Photo][google.streetview.publish.v1.Photo] to
+        /// \[UploadRef\]\[google.streetview.publish.v1.UploadRef\],
+        /// \[CreatePhoto\]\[google.streetview.publish.v1.StreetViewPublishService.CreatePhoto\]
+        /// publishes the uploaded \[Photo\]\[google.streetview.publish.v1.Photo\] to
         /// Street View on Google Maps.
         ///
         /// Currently, the only way to set heading, pitch, and roll in CreatePhoto is
@@ -856,12 +856,12 @@ pub mod street_view_publish_service_client {
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed or if the uploaded photo is not a 360 photo.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
-        /// reference does not exist.
-        /// * [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
-        /// if the account has reached the storage limit.
+        /// * \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] if
+        ///  the request is malformed or if the uploaded photo is not a 360 photo.
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the upload
+        ///  reference does not exist.
+        /// * \[google.rpc.Code.RESOURCE_EXHAUSTED\]\[google.rpc.Code.RESOURCE_EXHAUSTED\]
+        ///  if the account has reached the storage limit.
         pub async fn create_photo(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePhotoRequest>,
@@ -890,18 +890,18 @@ pub mod street_view_publish_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
-        /// [Photo][google.streetview.publish.v1.Photo].
+        /// \[Photo\]\[google.streetview.publish.v1.Photo\].
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested
-        /// [Photo][google.streetview.publish.v1.Photo].
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// [Photo][google.streetview.publish.v1.Photo] does not exist.
-        /// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
-        /// requested [Photo][google.streetview.publish.v1.Photo] is still being
-        /// indexed.
+        /// * \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\] if
+        ///  the requesting user did not create the requested
+        ///  \[Photo\]\[google.streetview.publish.v1.Photo\].
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the requested
+        ///  \[Photo\]\[google.streetview.publish.v1.Photo\] does not exist.
+        /// * \[google.rpc.Code.UNAVAILABLE\]\[google.rpc.Code.UNAVAILABLE\] if the
+        ///  requested \[Photo\]\[google.streetview.publish.v1.Photo\] is still being
+        ///  indexed.
         pub async fn get_photo(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPhotoRequest>,
@@ -930,20 +930,20 @@ pub mod street_view_publish_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
-        /// [Photo][google.streetview.publish.v1.Photo] batch.
+        /// \[Photo\]\[google.streetview.publish.v1.Photo\] batch.
         ///
         /// Note that if
-        /// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
+        /// \[BatchGetPhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos\]
         /// fails, either critical fields are missing or there is an authentication
         /// error. Even if
-        /// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
+        /// \[BatchGetPhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos\]
         /// succeeds, individual photos in the batch may have failures.
         /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+        /// \[PhotoResponse.status\]\[google.streetview.publish.v1.PhotoResponse.status\]
         /// in
-        /// [BatchGetPhotosResponse.results][google.streetview.publish.v1.BatchGetPhotosResponse.results].
+        /// \[BatchGetPhotosResponse.results\]\[google.streetview.publish.v1.BatchGetPhotosResponse.results\].
         /// See
-        /// [GetPhoto][google.streetview.publish.v1.StreetViewPublishService.GetPhoto]
+        /// \[GetPhoto\]\[google.streetview.publish.v1.StreetViewPublishService.GetPhoto\]
         /// for specific failures that can occur per photo.
         pub async fn batch_get_photos(
             &mut self,
@@ -975,11 +975,12 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all the [Photos][google.streetview.publish.v1.Photo] that belong to
+        /// Lists all the \[Photos\]\[google.streetview.publish.v1.Photo\] that belong to
         /// the user.
         ///
+        /// >
         /// > Note: Recently created photos that are still
-        /// being indexed are not returned in the response.
+        /// > being indexed are not returned in the response.
         pub async fn list_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPhotosRequest>,
@@ -1010,26 +1011,26 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the metadata of a [Photo][google.streetview.publish.v1.Photo], such
+        /// Updates the metadata of a \[Photo\]\[google.streetview.publish.v1.Photo\], such
         /// as pose, place association, connections, etc. Changing the pixels of a
         /// photo is not supported.
         ///
         /// Only the fields specified in the
-        /// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
+        /// \[updateMask\]\[google.streetview.publish.v1.UpdatePhotoRequest.update_mask\]
         /// field are used. If `updateMask` is not present, the update applies to all
         /// fields.
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo.
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// photo does not exist.
-        /// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
-        /// requested [Photo][google.streetview.publish.v1.Photo] is still being
-        /// indexed.
+        /// * \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\] if
+        ///  the requesting user did not create the requested photo.
+        /// * \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] if
+        ///  the request is malformed.
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the requested
+        ///  photo does not exist.
+        /// * \[google.rpc.Code.UNAVAILABLE\]\[google.rpc.Code.UNAVAILABLE\] if the
+        ///  requested \[Photo\]\[google.streetview.publish.v1.Photo\] is still being
+        ///  indexed.
         pub async fn update_photo(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdatePhotoRequest>,
@@ -1057,39 +1058,40 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the metadata of [Photos][google.streetview.publish.v1.Photo], such
+        /// Updates the metadata of \[Photos\]\[google.streetview.publish.v1.Photo\], such
         /// as pose, place association, connections, etc. Changing the pixels of photos
         /// is not supported.
         ///
         /// Note that if
-        /// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
+        /// \[BatchUpdatePhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos\]
         /// fails, either critical fields are missing or there is an authentication
         /// error. Even if
-        /// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
+        /// \[BatchUpdatePhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos\]
         /// succeeds, individual photos in the batch may have failures.
         /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+        /// \[PhotoResponse.status\]\[google.streetview.publish.v1.PhotoResponse.status\]
         /// in
-        /// [BatchUpdatePhotosResponse.results][google.streetview.publish.v1.BatchUpdatePhotosResponse.results].
+        /// \[BatchUpdatePhotosResponse.results\]\[google.streetview.publish.v1.BatchUpdatePhotosResponse.results\].
         /// See
-        /// [UpdatePhoto][google.streetview.publish.v1.StreetViewPublishService.UpdatePhoto]
+        /// \[UpdatePhoto\]\[google.streetview.publish.v1.StreetViewPublishService.UpdatePhoto\]
         /// for specific failures that can occur per photo.
         ///
         /// Only the fields specified in
-        /// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
+        /// \[updateMask\]\[google.streetview.publish.v1.UpdatePhotoRequest.update_mask\]
         /// field are used. If `updateMask` is not present, the update applies to all
         /// fields.
         ///
         /// The number of
-        /// [UpdatePhotoRequest][google.streetview.publish.v1.UpdatePhotoRequest]
+        /// \[UpdatePhotoRequest\]\[google.streetview.publish.v1.UpdatePhotoRequest\]
         /// messages in a
-        /// [BatchUpdatePhotosRequest][google.streetview.publish.v1.BatchUpdatePhotosRequest]
+        /// \[BatchUpdatePhotosRequest\]\[google.streetview.publish.v1.BatchUpdatePhotosRequest\]
         /// must not exceed 20.
         ///
+        /// >
         /// > Note: To update
-        /// [Pose.altitude][google.streetview.publish.v1.Pose.altitude],
-        /// [Pose.latLngPair][google.streetview.publish.v1.Pose.lat_lng_pair] has to be
-        /// filled as well. Otherwise, the request will fail.
+        /// > \[Pose.altitude\]\[google.streetview.publish.v1.Pose.altitude\],
+        /// > \[Pose.latLngPair\]\[google.streetview.publish.v1.Pose.lat_lng_pair\] has to be
+        /// > filled as well. Otherwise, the request will fail.
         pub async fn batch_update_photos(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchUpdatePhotosRequest>,
@@ -1120,14 +1122,14 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [Photo][google.streetview.publish.v1.Photo] and its metadata.
+        /// Deletes a \[Photo\]\[google.streetview.publish.v1.Photo\] and its metadata.
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo ID
-        /// does not exist.
+        /// * \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\] if
+        ///  the requesting user did not create the requested photo.
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the photo ID
+        ///  does not exist.
         pub async fn delete_photo(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePhotoRequest>,
@@ -1155,21 +1157,21 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a list of [Photos][google.streetview.publish.v1.Photo] and their
+        /// Deletes a list of \[Photos\]\[google.streetview.publish.v1.Photo\] and their
         /// metadata.
         ///
         /// Note that if
-        /// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
+        /// \[BatchDeletePhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos\]
         /// fails, either critical fields are missing or there is an authentication
         /// error. Even if
-        /// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
+        /// \[BatchDeletePhotos\]\[google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos\]
         /// succeeds, individual photos in the batch may have failures.
         /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+        /// \[PhotoResponse.status\]\[google.streetview.publish.v1.PhotoResponse.status\]
         /// in
-        /// [BatchDeletePhotosResponse.results][google.streetview.publish.v1.BatchDeletePhotosResponse.status].
+        /// \[BatchDeletePhotosResponse.results\]\[google.streetview.publish.v1.BatchDeletePhotosResponse.status\].
         /// See
-        /// [DeletePhoto][google.streetview.publish.v1.StreetViewPublishService.DeletePhoto]
+        /// \[DeletePhoto\]\[google.streetview.publish.v1.StreetViewPublishService.DeletePhoto\]
         /// for specific failures that can occur per photo.
         pub async fn batch_delete_photos(
             &mut self,
@@ -1203,13 +1205,13 @@ pub mod street_view_publish_service_client {
         }
         /// Creates an upload session to start uploading photo sequence data.
         /// The upload URL of the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] is used to upload the
+        /// \[UploadRef\]\[google.streetview.publish.v1.UploadRef\] is used to upload the
         /// data for the `photoSequence`.
         ///
         /// After the upload is complete, the
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] is used with
-        /// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
-        /// to create the [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
+        /// \[UploadRef\]\[google.streetview.publish.v1.UploadRef\] is used with
+        /// \[CreatePhotoSequence\]\[google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence\]
+        /// to create the \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\]
         /// object entry.
         pub async fn start_photo_sequence_upload(
             &mut self,
@@ -1239,23 +1241,23 @@ pub mod street_view_publish_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// After the client finishes uploading the
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] with the
-        /// returned [UploadRef][google.streetview.publish.v1.UploadRef],
-        /// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
+        /// \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] with the
+        /// returned \[UploadRef\]\[google.streetview.publish.v1.UploadRef\],
+        /// \[CreatePhotoSequence\]\[google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence\]
         /// extracts a sequence of 360 photos from a video or Extensible Device
         /// Metadata (XDM, http://www.xdm.org/) to be published to Street View on
         /// Google Maps.
         ///
-        /// `CreatePhotoSequence` returns an [Operation][google.longrunning.Operation],
-        /// with the [PhotoSequence][google.streetview.publish.v1.PhotoSequence] Id set
+        /// `CreatePhotoSequence` returns an \[Operation\]\[google.longrunning.Operation\],
+        /// with the \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] Id set
         /// in the `Operation.name` field.
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
-        /// reference does not exist.
+        /// * \[google.rpc.Code.INVALID_ARGUMENT\]\[google.rpc.Code.INVALID_ARGUMENT\] if
+        ///  the request is malformed.
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the upload
+        ///  reference does not exist.
         pub async fn create_photo_sequence(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePhotoSequenceRequest>,
@@ -1287,27 +1289,27 @@ pub mod street_view_publish_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets the metadata of the specified
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] via the
-        /// [Operation][google.longrunning.Operation] interface.
+        /// \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] via the
+        /// \[Operation\]\[google.longrunning.Operation\] interface.
         ///
         /// This method returns the following three types of responses:
         ///
         /// * `Operation.done` = false, if the processing of
-        ///   [PhotoSequence][google.streetview.publish.v1.PhotoSequence] is not
-        ///   finished yet.
+        ///  \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] is not
+        ///  finished yet.
         /// * `Operation.done` = true and `Operation.error` is populated, if there was
-        ///   an error in processing.
+        ///  an error in processing.
         /// * `Operation.done` = true and `Operation.response` is poulated, which
-        ///   contains a [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
-        ///   message.
+        ///  contains a \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\]
+        ///  message.
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence].
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] does not exist.
+        /// * \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\] if
+        ///  the requesting user did not create the requested
+        ///  \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\].
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the requested
+        ///  \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] does not exist.
         pub async fn get_photo_sequence(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPhotoSequenceRequest>,
@@ -1338,7 +1340,7 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all the [PhotoSequences][google.streetview.publish.v1.PhotoSequence]
+        /// Lists all the \[PhotoSequences\]\[google.streetview.publish.v1.PhotoSequence\]
         /// that belong to the user, in descending CreatePhotoSequence timestamp order.
         pub async fn list_photo_sequences(
             &mut self,
@@ -1370,17 +1372,17 @@ pub mod street_view_publish_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [PhotoSequence][google.streetview.publish.v1.PhotoSequence] and
+        /// Deletes a \[PhotoSequence\]\[google.streetview.publish.v1.PhotoSequence\] and
         /// its metadata.
         ///
         /// This method returns the following error codes:
         ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo sequence.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo
-        /// sequence ID does not exist.
-        /// * [google.rpc.Code.FAILED_PRECONDITION][google.rpc.Code.FAILED_PRECONDITION] if the photo sequence ID is not
-        /// yet finished processing.
+        /// * \[google.rpc.Code.PERMISSION_DENIED\]\[google.rpc.Code.PERMISSION_DENIED\] if
+        ///  the requesting user did not create the requested photo sequence.
+        /// * \[google.rpc.Code.NOT_FOUND\]\[google.rpc.Code.NOT_FOUND\] if the photo
+        ///  sequence ID does not exist.
+        /// * \[google.rpc.Code.FAILED_PRECONDITION\]\[google.rpc.Code.FAILED_PRECONDITION\] if the photo sequence ID is not
+        ///  yet finished processing.
         pub async fn delete_photo_sequence(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePhotoSequenceRequest>,

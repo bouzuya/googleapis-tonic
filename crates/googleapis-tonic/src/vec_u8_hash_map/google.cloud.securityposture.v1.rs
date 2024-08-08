@@ -927,7 +927,7 @@ pub mod security_posture_client {
         /// Creates a new Posture resource.
         /// If a Posture with the specified name already exists in the specified
         /// organization and location, the long running operation returns a
-        /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+        /// \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
         pub async fn create_posture(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePostureRequest>,
@@ -1035,7 +1035,7 @@ pub mod security_posture_client {
         }
         /// Extracts existing policies on a workload as a posture.
         /// If a Posture on the given workload already exists, the long running
-        /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+        /// operation returns a \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
         pub async fn extract_posture(
             &mut self,
             request: impl tonic::IntoRequest<super::ExtractPostureRequest>,

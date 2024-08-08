@@ -131,9 +131,8 @@ pub mod connection_api_client {
         /// The client credentials need to be passed in the [gRPC
         /// Metadata](https://grpc.io/docs/guides/concepts.html#metadata). The Format
         /// of the header is:
-        ///   Key: "authorization"
-        ///   Value: "Checkin [client_id:secret]"
-        ///
+        /// Key: "authorization"
+        /// Value: "Checkin \[client_id:secret\]"
         ///
         /// The project's API key also needs to be sent to authorize the project.
         /// That can be set in the X-Goog-Api-Key Metadata header.

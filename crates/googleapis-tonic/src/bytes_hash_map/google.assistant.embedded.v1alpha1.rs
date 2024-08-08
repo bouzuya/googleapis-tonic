@@ -342,32 +342,32 @@ pub mod embedded_assistant_client {
         /// responds *What do you want to add?*. The sequence of streamed requests and
         /// responses in the first gRPC message could be:
         ///
-        /// *   ConverseRequest.config
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
-        /// *   ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
-        /// *   ConverseResponse.audio_out
-        /// *   ConverseResponse.audio_out
-        /// *   ConverseResponse.audio_out
+        /// * ConverseRequest.config
+        /// * ConverseRequest.audio_in
+        /// * ConverseRequest.audio_in
+        /// * ConverseRequest.audio_in
+        /// * ConverseRequest.audio_in
+        /// * ConverseResponse.event_type.END_OF_UTTERANCE
+        /// * ConverseResponse.result.microphone_mode.DIALOG_FOLLOW_ON
+        /// * ConverseResponse.audio_out
+        /// * ConverseResponse.audio_out
+        /// * ConverseResponse.audio_out
         ///
         /// The user then says *bagels* and the assistant responds
         /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
         /// connection call to the `Converse` method, again with streamed requests and
         /// responses, such as:
         ///
-        /// *   ConverseRequest.config
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseRequest.audio_in
-        /// *   ConverseResponse.event_type.END_OF_UTTERANCE
-        /// *   ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
-        /// *   ConverseResponse.audio_out
-        /// *   ConverseResponse.audio_out
-        /// *   ConverseResponse.audio_out
-        /// *   ConverseResponse.audio_out
+        /// * ConverseRequest.config
+        /// * ConverseRequest.audio_in
+        /// * ConverseRequest.audio_in
+        /// * ConverseRequest.audio_in
+        /// * ConverseResponse.event_type.END_OF_UTTERANCE
+        /// * ConverseResponse.result.microphone_mode.CLOSE_MICROPHONE
+        /// * ConverseResponse.audio_out
+        /// * ConverseResponse.audio_out
+        /// * ConverseResponse.audio_out
+        /// * ConverseResponse.audio_out
         ///
         /// Although the precise order of responses is not guaranteed, sequential
         /// ConverseResponse.audio_out messages will always contain sequential portions

@@ -998,7 +998,7 @@ pub mod data_transfer_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates transfer runs for a time range [start_time, end_time].
+        /// Creates transfer runs for a time range \[start_time, end_time\].
         /// For each date - or whatever granularity the data source supports - in the
         /// range, one transfer run is created.
         /// Note that runs are created per UTC time in the time range.

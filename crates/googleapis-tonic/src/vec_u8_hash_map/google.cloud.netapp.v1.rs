@@ -201,8 +201,16 @@ pub struct Volume {
     pub backup_config: ::core::option::Option<BackupConfig>,
     #[prost(enumeration = "RestrictedAction", repeated, packed = "false", tag = "31")]
     pub restricted_actions: ::prost::alloc::vec::Vec<i32>,
+    #[prost(bool, tag = "32")]
+    pub large_capacity: bool,
+    #[prost(bool, tag = "33")]
+    pub multiple_endpoints: bool,
     #[prost(message, optional, tag = "34")]
     pub tiering_policy: ::core::option::Option<TieringPolicy>,
+    #[prost(string, tag = "36")]
+    pub replica_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "37")]
+    pub zone: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
@@ -1608,6 +1616,8 @@ pub struct ActiveDirectory {
     pub password: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "12")]
     pub backup_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "22")]
+    pub administrators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "13")]
     pub security_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, tag = "14")]
@@ -1908,6 +1918,10 @@ pub struct StoragePool {
     #[deprecated]
     #[prost(bool, optional, tag = "17")]
     pub global_access_allowed: ::core::option::Option<bool>,
+    #[prost(string, tag = "20")]
+    pub replica_zone: ::prost::alloc::string::String,
+    #[prost(string, tag = "21")]
+    pub zone: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `StoragePool`.
 pub mod storage_pool {

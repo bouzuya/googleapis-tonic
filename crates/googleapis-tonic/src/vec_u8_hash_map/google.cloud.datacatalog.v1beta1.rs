@@ -958,7 +958,7 @@ pub mod data_catalog_client {
         /// locations.
         ///
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `parent` parameter (see [Data Catalog Resource Project]
+        /// the `parent` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn create_entry_group(
@@ -989,8 +989,8 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an EntryGroup. The user should enable the Data Catalog API in the
-        /// project identified by the `entry_group.name` parameter (see [Data Catalog
-        /// Resource Project]
+        /// project identified by the `entry_group.name` parameter (see \[Data Catalog
+        /// Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn update_entry_group(
@@ -1050,7 +1050,7 @@ pub mod data_catalog_client {
         }
         /// Deletes an EntryGroup. Only entry groups that do not contain entries can be
         /// deleted. Users should enable the Data Catalog API in the project
-        /// identified by the `name` parameter (see [Data Catalog Resource Project]
+        /// identified by the `name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn delete_entry_group(
@@ -1115,7 +1115,7 @@ pub mod data_catalog_client {
         /// be created.
         ///
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `parent` parameter (see [Data Catalog Resource Project]
+        /// the `parent` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         ///
@@ -1149,7 +1149,7 @@ pub mod data_catalog_client {
         }
         /// Updates an existing entry.
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `entry.name` parameter (see [Data Catalog Resource Project]
+        /// the `entry.name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn update_entry(
@@ -1180,10 +1180,10 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes an existing entry. Only entries created through
-        /// [CreateEntry][google.cloud.datacatalog.v1beta1.DataCatalog.CreateEntry]
+        /// \[CreateEntry\]\[google.cloud.datacatalog.v1beta1.DataCatalog.CreateEntry\]
         /// method can be deleted.
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
+        /// the `name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn delete_entry(
@@ -1366,7 +1366,7 @@ pub mod data_catalog_client {
         /// a template. The tag template fields are represented as separate resources
         /// and should be updated using their own create/update/delete methods.
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `tag_template.name` parameter (see [Data Catalog Resource Project]
+        /// the `tag_template.name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn update_tag_template(
@@ -1398,7 +1398,7 @@ pub mod data_catalog_client {
         }
         /// Deletes a tag template and all tags using the template.
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
+        /// the `name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn delete_tag_template(
@@ -1465,7 +1465,7 @@ pub mod data_catalog_client {
         }
         /// Updates a field in a tag template. This method cannot be used to update the
         /// field type. Users should enable the Data Catalog API in the project
-        /// identified by the `name` parameter (see [Data Catalog Resource Project]
+        /// identified by the `name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn update_tag_template_field(
@@ -1570,7 +1570,7 @@ pub mod data_catalog_client {
         }
         /// Deletes a field in a tag template and all uses of that field.
         /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
+        /// the `name` parameter (see \[Data Catalog Resource Project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
         /// more information).
         pub async fn delete_tag_template_field(
@@ -1600,7 +1600,7 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a tag on an [Entry][google.cloud.datacatalog.v1beta1.Entry].
+        /// Creates a tag on an \[Entry\]\[google.cloud.datacatalog.v1beta1.Entry\].
         /// Note: The project identified by the `parent` parameter for the
         /// [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters)
         /// and the
@@ -1690,8 +1690,8 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1beta1.Entry].
-        /// The [columns][google.cloud.datacatalog.v1beta1.Tag.column] in the response
+        /// Lists tags assigned to an \[Entry\]\[google.cloud.datacatalog.v1beta1.Entry\].
+        /// The \[columns\]\[google.cloud.datacatalog.v1beta1.Tag.column\] in the response
         /// are lowercased.
         pub async fn list_tags(
             &mut self,
@@ -1726,17 +1726,19 @@ pub mod data_catalog_client {
         /// Sets the access control policy for a resource. Replaces any existing
         /// policy.
         /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
+        ///
+        /// * Tag templates.
+        /// * Entries.
+        /// * Entry groups.
+        ///  Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+        ///  and any external Google Cloud Platform resources synced to Data Catalog.
         ///
         /// Callers must have following Google IAM permission
-        ///   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
-        ///     templates.
-        ///   - `datacatalog.entries.setIamPolicy` to set policies on entries.
-        ///   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+        ///
+        /// * `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+        ///  templates.
+        /// * `datacatalog.entries.setIamPolicy` to set policies on entries.
+        /// * `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1774,17 +1776,19 @@ pub mod data_catalog_client {
         /// if the resource exists but does not have a policy set on it.
         ///
         /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
+        ///
+        /// * Tag templates.
+        /// * Entries.
+        /// * Entry groups.
+        ///  Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+        ///  and any external Google Cloud Platform resources synced to Data Catalog.
         ///
         /// Callers must have following Google IAM permission
-        ///   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
-        ///     templates.
-        ///   - `datacatalog.entries.getIamPolicy` to get policies on entries.
-        ///   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+        ///
+        /// * `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+        ///  templates.
+        /// * `datacatalog.entries.getIamPolicy` to get policies on entries.
+        /// * `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1822,11 +1826,12 @@ pub mod data_catalog_client {
         /// (We don't return a `NOT_FOUND` error).
         ///
         /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
+        ///
+        /// * Tag templates.
+        /// * Entries.
+        /// * Entry groups.
+        ///  Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+        ///  and any external Google Cloud Platform resources synced to Data Catalog.
         ///
         /// A caller is not required to have Google IAM permission to make this
         /// request.

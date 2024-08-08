@@ -1140,7 +1140,7 @@ pub mod projects_client {
         /// that a newly created project may not appear in the results or recent
         /// updates to an existing project may not be reflected in the results. To
         /// retrieve the latest state of a project, use the
-        /// [GetProject][google.cloud.resourcemanager.v3.Projects.GetProject] method.
+        /// \[GetProject\]\[google.cloud.resourcemanager.v3.Projects.GetProject\] method.
         pub async fn search_projects(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchProjectsRequest>,
@@ -1256,8 +1256,6 @@ pub mod projects_client {
         /// If project has no current parent, or it currently does not have an
         /// associated organization resource, you will also need the
         /// `resourcemanager.projects.setIamPolicy` permission in the project.
-        ///
-        ///
         pub async fn move_project(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveProjectRequest>,
@@ -1292,28 +1290,28 @@ pub mod projects_client {
         /// `name` (for example, `projects/415104041262`) for deletion.
         ///
         /// This method will only affect the project if it has a lifecycle state of
-        /// [ACTIVE][google.cloud.resourcemanager.v3.Project.State.ACTIVE].
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Project.State.ACTIVE\].
         ///
         /// This method changes the Project's lifecycle state from
-        /// [ACTIVE][google.cloud.resourcemanager.v3.Project.State.ACTIVE]
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Project.State.ACTIVE\]
         /// to
-        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED].
+        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Project.State.DELETE_REQUESTED\].
         /// The deletion starts at an unspecified time,
         /// at which point the Project is no longer accessible.
         ///
         /// Until the deletion completes, you can check the lifecycle state
-        /// checked by retrieving the project with [GetProject]
-        /// [google.cloud.resourcemanager.v3.Projects.GetProject],
-        /// and the project remains visible to [ListProjects]
-        /// [google.cloud.resourcemanager.v3.Projects.ListProjects].
+        /// checked by retrieving the project with \[GetProject\]
+        /// \[google.cloud.resourcemanager.v3.Projects.GetProject\],
+        /// and the project remains visible to \[ListProjects\]
+        /// \[google.cloud.resourcemanager.v3.Projects.ListProjects\].
         /// However, you cannot update the project.
         ///
         /// After the deletion completes, the project is not retrievable by
-        /// the  [GetProject]
-        /// [google.cloud.resourcemanager.v3.Projects.GetProject],
-        /// [ListProjects]
-        /// [google.cloud.resourcemanager.v3.Projects.ListProjects], and
-        /// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
+        /// the  \[GetProject\]
+        /// \[google.cloud.resourcemanager.v3.Projects.GetProject\],
+        /// \[ListProjects\]
+        /// \[google.cloud.resourcemanager.v3.Projects.ListProjects\], and
+        /// \[SearchProjects\]\[google.cloud.resourcemanager.v3.Projects.SearchProjects\]
         /// methods.
         ///
         /// This method behaves idempotently, such that deleting a `DELETE_REQUESTED`
@@ -1354,8 +1352,8 @@ pub mod projects_client {
         /// Restores the project identified by the specified
         /// `name` (for example, `projects/415104041262`).
         /// You can only use this method for a project that has a lifecycle state of
-        /// [DELETE_REQUESTED]
-        /// [Projects.State.DELETE_REQUESTED].
+        /// \[DELETE_REQUESTED\]
+        /// \[Projects.State.DELETE_REQUESTED\].
         /// After deletion starts, the project cannot be restored.
         ///
         /// The caller must have `resourcemanager.projects.undelete` permission for
@@ -1437,35 +1435,35 @@ pub mod projects_client {
         ///
         /// The following constraints apply when using `setIamPolicy()`:
         ///
-        /// + Project does not support `allUsers` and `allAuthenticatedUsers` as
-        /// `members` in a `Binding` of a `Policy`.
+        /// * Project does not support `allUsers` and `allAuthenticatedUsers` as
+        ///  `members` in a `Binding` of a `Policy`.
         ///
-        /// + The owner role can be granted to a `user`, `serviceAccount`, or a group
-        /// that is part of an organization. For example,
-        /// group@myownpersonaldomain.com could be added as an owner to a project in
-        /// the myownpersonaldomain.com organization, but not the examplepetstore.com
-        /// organization.
+        /// * The owner role can be granted to a `user`, `serviceAccount`, or a group
+        ///  that is part of an organization. For example,
+        ///  group@myownpersonaldomain.com could be added as an owner to a project in
+        ///  the myownpersonaldomain.com organization, but not the examplepetstore.com
+        ///  organization.
         ///
-        /// + Service accounts can be made owners of a project directly
-        /// without any restrictions. However, to be added as an owner, a user must be
-        /// invited using the Cloud Platform console and must accept the invitation.
+        /// * Service accounts can be made owners of a project directly
+        ///  without any restrictions. However, to be added as an owner, a user must be
+        ///  invited using the Cloud Platform console and must accept the invitation.
         ///
-        /// + A user cannot be granted the owner role using `setIamPolicy()`. The user
-        /// must be granted the owner role using the Cloud Platform Console and must
-        /// explicitly accept the invitation.
+        /// * A user cannot be granted the owner role using `setIamPolicy()`. The user
+        ///  must be granted the owner role using the Cloud Platform Console and must
+        ///  explicitly accept the invitation.
         ///
-        /// + Invitations to grant the owner role cannot be sent using
-        /// `setIamPolicy()`;
-        /// they must be sent only using the Cloud Platform Console.
+        /// * Invitations to grant the owner role cannot be sent using
+        ///  `setIamPolicy()`;
+        ///  they must be sent only using the Cloud Platform Console.
         ///
-        /// + If the project is not part of an organization, there must be at least
-        /// one owner who has accepted the Terms of Service (ToS) agreement in the
-        /// policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
-        /// from the policy will fail. This restriction also applies to legacy
-        /// projects that no longer have owners who have accepted the ToS. Edits to
-        /// IAM policies will be rejected until the lack of a ToS-accepting owner is
-        /// rectified. If the project is part of an organization, you can remove all
-        /// owners, potentially making the organization inaccessible.
+        /// * If the project is not part of an organization, there must be at least
+        ///  one owner who has accepted the Terms of Service (ToS) agreement in the
+        ///  policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
+        ///  from the policy will fail. This restriction also applies to legacy
+        ///  projects that no longer have owners who have accepted the ToS. Edits to
+        ///  IAM policies will be rejected until the lack of a ToS-accepting owner is
+        ///  rectified. If the project is part of an organization, you can remove all
+        ///  owners, potentially making the organization inaccessible.
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2127,14 +2125,14 @@ pub mod folders_client {
         /// In order to succeed, the addition of this new folder must not violate
         /// the folder naming, height, or fanout constraints.
         ///
-        /// + The folder's `display_name` must be distinct from all other folders that
-        /// share its parent.
-        /// + The addition of the folder must not cause the active folder hierarchy
-        /// to exceed a height of 10. Note, the full active + deleted folder hierarchy
-        /// is allowed to reach a height of 20; this provides additional headroom when
-        /// moving folders that contain deleted folders.
-        /// + The addition of the folder must not cause the total number of folders
-        /// under its parent to exceed 300.
+        /// * The folder's `display_name` must be distinct from all other folders that
+        ///  share its parent.
+        /// * The addition of the folder must not cause the active folder hierarchy
+        ///  to exceed a height of 10. Note, the full active + deleted folder hierarchy
+        ///  is allowed to reach a height of 20; this provides additional headroom when
+        ///  moving folders that contain deleted folders.
+        /// * The addition of the folder must not cause the total number of folders
+        ///  under its parent to exceed 300.
         ///
         /// If the operation fails due to a folder constraint violation, some errors
         /// may be returned by the `CreateFolder` request, with status code
@@ -2179,7 +2177,7 @@ pub mod folders_client {
         /// Changes to the folder `display_name` will be rejected if they violate
         /// either the `display_name` formatting rules or the naming constraints
         /// described in the
-        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
         /// documentation.
         ///
         /// The folder's `display_name` must start and end with a letter or digit,
@@ -2236,7 +2234,7 @@ pub mod folders_client {
         /// `FolderOperation` message as an aid to stateless clients.
         /// Folder moves will be rejected if they violate either the naming, height,
         /// or fanout constraints described in the
-        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
         /// documentation. The caller must have `resourcemanager.folders.move`
         /// permission on the folder's current and proposed new parent.
         pub async fn move_folder(
@@ -2270,13 +2268,13 @@ pub mod folders_client {
             self.inner.unary(req, path, codec).await
         }
         /// Requests deletion of a folder. The folder is moved into the
-        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED\]
         /// state immediately, and is deleted approximately 30 days later. This method
         /// may only be called on an empty folder, where a folder is empty if it
         /// doesn't contain any folders or projects in the
-        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. If
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state. If
         /// called on a folder in
-        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED\]
         /// state the operation will result in a no-op success.
         /// The caller must have `resourcemanager.folders.delete` permission on the
         /// identified folder.
@@ -2312,13 +2310,13 @@ pub mod folders_client {
         }
         /// Cancels the deletion request for a folder. This method may be called on a
         /// folder in any state. If the folder is in the
-        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state the
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state the
         /// result will be a no-op success. In order to succeed, the folder's parent
         /// must be in the
-        /// [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v3.Folder.State.ACTIVE\] state. In
         /// addition, reintroducing the folder into the tree must not violate folder
         /// naming, height, and fanout constraints described in the
-        /// [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+        /// \[CreateFolder\]\[google.cloud.resourcemanager.v3.Folders.CreateFolder\]
         /// documentation. The caller must have `resourcemanager.folders.undelete`
         /// permission on the identified folder.
         pub async fn undelete_folder(

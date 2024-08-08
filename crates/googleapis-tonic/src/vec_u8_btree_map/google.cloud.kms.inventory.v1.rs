@@ -284,7 +284,7 @@ pub mod key_tracking_service_client {
             self
         }
         /// Returns aggregate information about the resources protected by the given
-        /// Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. Only resources within
+        /// Cloud KMS \[CryptoKey\]\[google.cloud.kms.v1.CryptoKey\]. Only resources within
         /// the same Cloud organization as the key will be returned. The project that
         /// holds the key must be part of an organization in order for this call to
         /// succeed.
@@ -319,7 +319,7 @@ pub mod key_tracking_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Returns metadata about the resources protected by the given Cloud KMS
-        /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
+        /// \[CryptoKey\]\[google.cloud.kms.v1.CryptoKey\] in the given Cloud organization.
         pub async fn search_protected_resources(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchProtectedResourcesRequest>,

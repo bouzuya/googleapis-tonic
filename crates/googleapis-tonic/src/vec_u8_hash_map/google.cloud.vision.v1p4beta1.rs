@@ -382,21 +382,21 @@ pub mod product_search_client {
     /// Manages Products and ProductSets of reference images for use in product
     /// search. It uses the following resource model:
     ///
-    /// - The API has a collection of
-    /// [ProductSet][google.cloud.vision.v1p4beta1.ProductSet] resources, named
-    /// `projects/*/locations/*/productSets/*`, which acts as a way to put different
-    /// products into groups to limit identification.
+    /// * The API has a collection of
+    ///  \[ProductSet\]\[google.cloud.vision.v1p4beta1.ProductSet\] resources, named
+    ///  `projects/*/locations/*/productSets/*`, which acts as a way to put different
+    ///  products into groups to limit identification.
     ///
     /// In parallel,
     ///
-    /// - The API has a collection of
-    /// [Product][google.cloud.vision.v1p4beta1.Product] resources, named
-    ///   `projects/*/locations/*/products/*`
+    /// * The API has a collection of
+    ///  \[Product\]\[google.cloud.vision.v1p4beta1.Product\] resources, named
+    ///  `projects/*/locations/*/products/*`
     ///
-    /// - Each [Product][google.cloud.vision.v1p4beta1.Product] has a collection of
-    /// [ReferenceImage][google.cloud.vision.v1p4beta1.ReferenceImage] resources,
-    /// named
-    ///   `projects/*/locations/*/products/*/referenceImages/*`
+    /// * Each \[Product\]\[google.cloud.vision.v1p4beta1.Product\] has a collection of
+    ///  \[ReferenceImage\]\[google.cloud.vision.v1p4beta1.ReferenceImage\] resources,
+    ///  named
+    ///  `projects/*/locations/*/products/*/referenceImages/*`
     #[derive(Debug, Clone)]
     pub struct ProductSearchClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -471,7 +471,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
-        ///   4096 characters.
+        ///  4096 characters.
         pub async fn create_product_set(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductSetRequest>,
@@ -504,7 +504,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
-        ///   than 1.
+        ///  than 1.
         pub async fn list_product_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductSetsRequest>,
@@ -574,7 +574,7 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the ProductSet does not exist.
         /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but
-        ///   missing from the request or longer than 4096 characters.
+        ///  missing from the request or longer than 4096 characters.
         pub async fn update_product_set(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProductSetRequest>,
@@ -638,7 +638,7 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
-        ///   characters.
+        ///  characters.
         /// * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if product_category is missing or invalid.
         pub async fn create_product(
@@ -746,9 +746,9 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the Product does not exist.
         /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but is
-        ///   missing from the request or longer than 4096 characters.
+        ///  missing from the request or longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if description is present in update_mask but is
-        ///   longer than 4096 characters.
+        ///  longer than 4096 characters.
         /// * Returns INVALID_ARGUMENT if product_category is present in update_mask.
         pub async fn update_product(
             &mut self,
@@ -823,10 +823,10 @@ pub mod product_search_client {
         /// Possible errors:
         ///
         /// * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
-        ///   characters.
+        ///  characters.
         /// * Returns INVALID_ARGUMENT if the product does not exist.
         /// * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
-        ///   compatible with the parent product's product_category is detected.
+        ///  compatible with the parent product's product_category is detected.
         /// * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
         pub async fn create_reference_image(
             &mut self,
@@ -895,7 +895,7 @@ pub mod product_search_client {
         ///
         /// * Returns NOT_FOUND if the parent product does not exist.
         /// * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
-        ///   than 1.
+        ///  than 1.
         pub async fn list_reference_images(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReferenceImagesRequest>,
@@ -1061,14 +1061,14 @@ pub mod product_search_client {
         /// Asynchronous API that imports a list of reference images to specified
         /// product sets based on a list of image information.
         ///
-        /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+        /// The \[google.longrunning.Operation\]\[google.longrunning.Operation\] API can be
         /// used to keep track of the progress and results of the request.
         /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
         /// `Operation.response` contains `ImportProductSetsResponse`. (results)
         ///
         /// The input source of this method is a csv file on Google Cloud Storage.
         /// For the format of the csv file please see
-        /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1p4beta1.ImportProductSetsGcsSource.csv_file_uri].
+        /// \[ImportProductSetsGcsSource.csv_file_uri\]\[google.cloud.vision.v1p4beta1.ImportProductSetsGcsSource.csv_file_uri\].
         pub async fn import_product_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportProductSetsRequest>,
@@ -1120,7 +1120,7 @@ pub mod product_search_client {
         /// ProductSet, you must wait until the PurgeProducts operation has finished
         /// for that ProductSet.
         ///
-        /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+        /// The \[google.longrunning.Operation\]\[google.longrunning.Operation\] API can be
         /// used to keep track of the progress and results of the request.
         /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
         pub async fn purge_products(

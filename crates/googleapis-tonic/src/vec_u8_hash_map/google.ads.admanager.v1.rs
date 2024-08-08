@@ -2333,6 +2333,7 @@ pub mod order_service_client {
         /// API to retrieve a list of `Order` objects.
         ///
         /// Fields used for literal matching in filter string:
+        ///
         /// * `order_id`
         /// * `display_name`
         /// * `external_order_id`

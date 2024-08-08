@@ -382,9 +382,9 @@ pub mod firestore_admin_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a composite index. This returns a [google.longrunning.Operation][google.longrunning.Operation]
+        /// Creates a composite index. This returns a \[google.longrunning.Operation\]\[google.longrunning.Operation\]
         /// which may be used to track the status of the creation. The metadata for
-        /// the operation will be the type [IndexOperationMetadata][google.firestore.admin.v1beta2.IndexOperationMetadata].
+        /// the operation will be the type \[IndexOperationMetadata\]\[google.firestore.admin.v1beta2.IndexOperationMetadata\].
         pub async fn create_index(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateIndexRequest>,
@@ -532,13 +532,13 @@ pub mod firestore_admin_client {
         }
         /// Updates a field configuration. Currently, field updates apply only to
         /// single field index configuration. However, calls to
-        /// [FirestoreAdmin.UpdateField][google.firestore.admin.v1beta2.FirestoreAdmin.UpdateField] should provide a field mask to avoid
+        /// \[FirestoreAdmin.UpdateField\]\[google.firestore.admin.v1beta2.FirestoreAdmin.UpdateField\] should provide a field mask to avoid
         /// changing any configuration that the caller isn't aware of. The field mask
         /// should be specified as: `{ paths: "index_config" }`.
         ///
-        /// This call returns a [google.longrunning.Operation][google.longrunning.Operation] which may be used to
+        /// This call returns a \[google.longrunning.Operation\]\[google.longrunning.Operation\] which may be used to
         /// track the status of the field update. The metadata for
-        /// the operation will be the type [FieldOperationMetadata][google.firestore.admin.v1beta2.FieldOperationMetadata].
+        /// the operation will be the type \[FieldOperationMetadata\]\[google.firestore.admin.v1beta2.FieldOperationMetadata\].
         ///
         /// To configure the default field settings for the database, use
         /// the special `Field` with resource name:
@@ -575,9 +575,9 @@ pub mod firestore_admin_client {
         }
         /// Lists the field configuration and metadata for this database.
         ///
-        /// Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] only supports listing fields
+        /// Currently, \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1beta2.FirestoreAdmin.ListFields\] only supports listing fields
         /// that have been explicitly overridden. To issue this query, call
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] with the filter set to
+        /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1beta2.FirestoreAdmin.ListFields\] with the filter set to
         /// `indexConfig.usesAncestorConfig:false`.
         pub async fn list_fields(
             &mut self,

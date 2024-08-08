@@ -473,10 +473,10 @@ pub mod timeseries_insights_controller_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists [DataSets][google.cloud.timeseriesinsights.v1.DataSet] under the project.
+        /// Lists \[DataSets\]\[google.cloud.timeseriesinsights.v1.DataSet\] under the project.
         ///
         /// The order of the results is unspecified but deterministic. Newly created
-        /// [DataSets][google.cloud.timeseriesinsights.v1.DataSet] will not necessarily be added to the end
+        /// \[DataSets\]\[google.cloud.timeseriesinsights.v1.DataSet\] will not necessarily be added to the end
         /// of this list.
         pub async fn list_data_sets(
             &mut self,
@@ -508,12 +508,12 @@ pub mod timeseries_insights_controller_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Create a [DataSet][google.cloud.timeseriesinsights.v1.DataSet] from data stored on Cloud
+        /// Create a \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\] from data stored on Cloud
         /// Storage.
         ///
         /// The data must stay immutable while we process the
-        /// [DataSet][google.cloud.timeseriesinsights.v1.DataSet] creation; otherwise, undefined outcomes
-        /// might result.  For more information, see [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
+        /// \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\] creation; otherwise, undefined outcomes
+        /// might result.  For more information, see \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\].
         pub async fn create_data_set(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDataSetRequest>,
@@ -541,9 +541,9 @@ pub mod timeseries_insights_controller_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Delete a [DataSet][google.cloud.timeseriesinsights.v1.DataSet] from the system.
+        /// Delete a \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\] from the system.
         ///
-        /// **NOTE**: If the [DataSet][google.cloud.timeseriesinsights.v1.DataSet] is still being
+        /// **NOTE**: If the \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\] is still being
         /// processed, it will be aborted and deleted.
         pub async fn delete_data_set(
             &mut self,
@@ -572,7 +572,7 @@ pub mod timeseries_insights_controller_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Append events to a `LOADED` [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
+        /// Append events to a `LOADED` \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\].
         pub async fn append_events(
             &mut self,
             request: impl tonic::IntoRequest<super::AppendEventsRequest>,
@@ -604,7 +604,7 @@ pub mod timeseries_insights_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Execute a Timeseries Insights query over a loaded
-        /// [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
+        /// \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\].
         pub async fn query_data_set(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDataSetRequest>,
@@ -635,7 +635,7 @@ pub mod timeseries_insights_controller_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Evaluate an explicit slice from a loaded [DataSet][google.cloud.timeseriesinsights.v1.DataSet].
+        /// Evaluate an explicit slice from a loaded \[DataSet\]\[google.cloud.timeseriesinsights.v1.DataSet\].
         pub async fn evaluate_slice(
             &mut self,
             request: impl tonic::IntoRequest<super::EvaluateSliceRequest>,

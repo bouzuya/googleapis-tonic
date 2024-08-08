@@ -747,20 +747,19 @@ pub mod privileged_access_manager_client {
     /// It defines the following resource model:
     ///
     /// * A collection of `Entitlement` resources. An entitlement allows configuring
-    ///   (among other things):
+    ///  (among other things):
     ///
-    ///   * Some kind of privileged access that users can request.
-    ///   * A set of users called _requesters_ who can request this access.
-    ///   * A maximum duration for which the access can be requested.
-    ///   * An optional approval workflow which must be satisfied before access is
-    ///     granted.
-    ///
+    ///  * Some kind of privileged access that users can request.
+    ///  * A set of users called *requesters* who can request this access.
+    ///  * A maximum duration for which the access can be requested.
+    ///  * An optional approval workflow which must be satisfied before access is
+    ///    granted.
     /// * A collection of `Grant` resources. A grant is a request by a requester to
-    ///   get the privileged access specified in an entitlement for some duration.
+    ///  get the privileged access specified in an entitlement for some duration.
     ///
-    ///   After the approval workflow as specified in the entitlement is satisfied,
-    ///   the specified access is given to the requester. The access is automatically
-    ///   taken back after the requested duration is over.
+    ///  After the approval workflow as specified in the entitlement is satisfied,
+    ///  the specified access is given to the requester. The access is automatically
+    ///  taken back after the requested duration is over.
     #[derive(Debug, Clone)]
     pub struct PrivilegedAccessManagerClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1029,15 +1028,15 @@ pub mod privileged_access_manager_client {
         ///
         /// The following fields are not supported for updates:
         ///
-        ///  * All immutable fields
-        ///  * Entitlement name
-        ///  * Resource name
-        ///  * Resource type
-        ///  * Adding an approval workflow in an entitlement which previously had no
-        ///    approval workflow.
-        ///  * Deleting the approval workflow from an entitlement.
-        ///  * Adding or deleting a step in the approval workflow (only one step is
-        ///    supported)
+        /// * All immutable fields
+        /// * Entitlement name
+        /// * Resource name
+        /// * Resource type
+        /// * Adding an approval workflow in an entitlement which previously had no
+        ///  approval workflow.
+        /// * Deleting the approval workflow from an entitlement.
+        /// * Adding or deleting a step in the approval workflow (only one step is
+        ///  supported)
         ///
         /// Note that updates are allowed on the list of approvers in an approval
         /// workflow step.

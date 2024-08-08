@@ -1121,9 +1121,9 @@ pub mod function_service_client {
         ///
         /// * Source file type should be a zip file.
         /// * No credentials should be attached - the signed URLs provide access to the
-        ///   target bucket using internal service identity; if credentials were
-        ///   attached, the identity from the credentials would be used, but that
-        ///   identity does not have permissions to upload files to the URL.
+        ///  target bucket using internal service identity; if credentials were
+        ///  attached, the identity from the credentials would be used, but that
+        ///  identity does not have permissions to upload files to the URL.
         ///
         /// When making a HTTP PUT request, these two headers need to be specified:
         ///

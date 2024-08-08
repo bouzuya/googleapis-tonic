@@ -29,6 +29,10 @@ pub struct Function {
     pub url: ::prost::alloc::string::String,
     #[prost(string, tag = "25")]
     pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(bool, tag = "27")]
+    pub satisfies_pzs: bool,
+    #[prost(message, optional, tag = "28")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Function`.
 pub mod function {
@@ -145,6 +149,8 @@ pub struct StorageSource {
     pub object: ::prost::alloc::string::String,
     #[prost(int64, tag = "3")]
     pub generation: i64,
+    #[prost(string, tag = "4")]
+    pub source_upload_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -176,7 +182,7 @@ pub mod repo_source {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Source {
-    #[prost(oneof = "source::Source", tags = "1, 2")]
+    #[prost(oneof = "source::Source", tags = "1, 2, 3")]
     pub source: ::core::option::Option<source::Source>,
 }
 /// Nested message and enum types in `Source`.
@@ -188,6 +194,8 @@ pub mod source {
         StorageSource(super::StorageSource),
         #[prost(message, tag = "2")]
         RepoSource(super::RepoSource),
+        #[prost(string, tag = "3")]
+        GitUri(::prost::alloc::string::String),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -197,6 +205,8 @@ pub struct SourceProvenance {
     pub resolved_storage_source: ::core::option::Option<StorageSource>,
     #[prost(message, optional, tag = "2")]
     pub resolved_repo_source: ::core::option::Option<RepoSource>,
+    #[prost(string, tag = "3")]
+    pub git_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -222,6 +232,10 @@ pub struct BuildConfig {
     pub docker_registry: i32,
     #[prost(string, tag = "7")]
     pub docker_repository: ::prost::alloc::string::String,
+    #[prost(string, tag = "27")]
+    pub service_account: ::prost::alloc::string::String,
+    #[prost(oneof = "build_config::RuntimeUpdatePolicy", tags = "40, 41")]
+    pub runtime_update_policy: ::core::option::Option<build_config::RuntimeUpdatePolicy>,
 }
 /// Nested message and enum types in `BuildConfig`.
 pub mod build_config {
@@ -263,6 +277,14 @@ pub mod build_config {
                 _ => None,
             }
         }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RuntimeUpdatePolicy {
+        #[prost(message, tag = "40")]
+        AutomaticUpdatePolicy(super::AutomaticUpdatePolicy),
+        #[prost(message, tag = "41")]
+        OnDeployUpdatePolicy(super::OnDeployUpdatePolicy),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -307,6 +329,8 @@ pub struct ServiceConfig {
     pub max_instance_request_concurrency: i32,
     #[prost(enumeration = "service_config::SecurityLevel", tag = "21")]
     pub security_level: i32,
+    #[prost(string, tag = "23")]
+    pub binary_authorization_policy: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ServiceConfig`.
 pub mod service_config {
@@ -487,6 +511,8 @@ pub struct EventTrigger {
     pub retry_policy: i32,
     #[prost(string, tag = "8")]
     pub channel: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub service: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `EventTrigger`.
 pub mod event_trigger {
@@ -545,6 +571,8 @@ pub struct EventFilter {
 pub struct GetFunctionRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub revision: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -601,6 +629,8 @@ pub struct GenerateUploadUrlRequest {
     pub parent: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub kms_key_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "Environment", tag = "3")]
+    pub environment: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -651,6 +681,14 @@ pub mod list_runtimes_response {
         pub warnings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         #[prost(enumeration = "super::Environment", tag = "4")]
         pub environment: i32,
+        #[prost(message, optional, tag = "6")]
+        pub deprecation_date: ::core::option::Option<
+            super::super::super::super::r#type::Date,
+        >,
+        #[prost(message, optional, tag = "7")]
+        pub decommission_date: ::core::option::Option<
+            super::super::super::super::r#type::Date,
+        >,
     }
     #[derive(
         Clone,
@@ -705,6 +743,15 @@ pub mod list_runtimes_response {
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticUpdatePolicy {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OnDeployUpdatePolicy {
+    #[prost(string, tag = "1")]
+    pub runtime_version: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
     #[prost(message, optional, tag = "1")]
@@ -725,6 +772,12 @@ pub struct OperationMetadata {
     pub request_resource: ::core::option::Option<::prost_types::Any>,
     #[prost(message, repeated, tag = "9")]
     pub stages: ::prost::alloc::vec::Vec<Stage>,
+    #[prost(string, tag = "10")]
+    pub source_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "13")]
+    pub build_name: ::prost::alloc::string::String,
+    #[prost(enumeration = "OperationType", tag = "11")]
+    pub operation_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -841,6 +894,38 @@ pub mod stage {
                 "COMPLETE" => Some(Self::Complete),
                 _ => None,
             }
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OperationType {
+    OperationtypeUnspecified = 0,
+    CreateFunction = 1,
+    UpdateFunction = 2,
+    DeleteFunction = 3,
+}
+impl OperationType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            OperationType::OperationtypeUnspecified => "OPERATIONTYPE_UNSPECIFIED",
+            OperationType::CreateFunction => "CREATE_FUNCTION",
+            OperationType::UpdateFunction => "UPDATE_FUNCTION",
+            OperationType::DeleteFunction => "DELETE_FUNCTION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATIONTYPE_UNSPECIFIED" => Some(Self::OperationtypeUnspecified),
+            "CREATE_FUNCTION" => Some(Self::CreateFunction),
+            "UPDATE_FUNCTION" => Some(Self::UpdateFunction),
+            "DELETE_FUNCTION" => Some(Self::DeleteFunction),
+            _ => None,
         }
     }
 }
@@ -1121,15 +1206,15 @@ pub mod function_service_client {
         ///
         /// * Source file type should be a zip file.
         /// * No credentials should be attached - the signed URLs provide access to the
-        ///   target bucket using internal service identity; if credentials were
-        ///   attached, the identity from the credentials would be used, but that
-        ///   identity does not have permissions to upload files to the URL.
+        ///  target bucket using internal service identity; if credentials were
+        ///  attached, the identity from the credentials would be used, but that
+        ///  identity does not have permissions to upload files to the URL.
         ///
-        /// When making a HTTP PUT request, these two headers need to be specified:
+        /// When making a HTTP PUT request, specify this header:
         ///
         /// * `content-type: application/zip`
         ///
-        /// And this header SHOULD NOT be specified:
+        /// Do not specify this header:
         ///
         /// * `Authorization: Bearer YOUR_TOKEN`
         pub async fn generate_upload_url(

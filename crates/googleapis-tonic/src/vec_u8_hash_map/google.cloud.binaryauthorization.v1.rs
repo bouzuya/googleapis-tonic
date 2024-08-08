@@ -460,8 +460,8 @@ pub mod binauthz_management_service_v1_client {
     ///
     /// This API implements a REST model with the following objects:
     ///
-    /// * [Policy][google.cloud.binaryauthorization.v1.Policy]
-    /// * [Attestor][google.cloud.binaryauthorization.v1.Attestor]
+    /// * \[Policy\]\[google.cloud.binaryauthorization.v1.Policy\]
+    /// * \[Attestor\]\[google.cloud.binaryauthorization.v1.Attestor\]
     #[derive(Debug, Clone)]
     pub struct BinauthzManagementServiceV1Client<T> {
         inner: tonic::client::Grpc<T>,
@@ -533,13 +533,13 @@ pub mod binauthz_management_service_v1_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest to
+        /// A \[policy\]\[google.cloud.binaryauthorization.v1.Policy\] specifies the \[attestors\]\[google.cloud.binaryauthorization.v1.Attestor\] that must attest to
         /// a container image, before the project is allowed to deploy that
         /// image. There is at most one policy per project. All image admission
         /// requests are permitted if a project has no policy.
         ///
-        /// Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this project. Returns a default
-        /// [policy][google.cloud.binaryauthorization.v1.Policy] if the project does not have one.
+        /// Gets the \[policy\]\[google.cloud.binaryauthorization.v1.Policy\] for this project. Returns a default
+        /// \[policy\]\[google.cloud.binaryauthorization.v1.Policy\] if the project does not have one.
         pub async fn get_policy(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPolicyRequest>,
@@ -567,8 +567,8 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates or updates a project's [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of the
-        /// new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is always updated as a whole, to avoid race
+        /// Creates or updates a project's \[policy\]\[google.cloud.binaryauthorization.v1.Policy\], and returns a copy of the
+        /// new \[policy\]\[google.cloud.binaryauthorization.v1.Policy\]. A policy is always updated as a whole, to avoid race
         /// conditions with concurrent policy enforcement (or management!)
         /// requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT
         /// if the request is malformed.
@@ -599,10 +599,10 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and returns a copy of the new
-        /// [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the project does not exist,
+        /// Creates an \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\], and returns a copy of the new
+        /// \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\]. Returns NOT_FOUND if the project does not exist,
         /// INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the
-        /// [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
+        /// \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\] already exists.
         pub async fn create_attestor(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAttestorRequest>,
@@ -630,8 +630,8 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
-        /// Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+        /// Gets an \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\].
+        /// Returns NOT_FOUND if the \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\] does not exist.
         pub async fn get_attestor(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAttestorRequest>,
@@ -659,8 +659,8 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an [attestor][google.cloud.binaryauthorization.v1.Attestor].
-        /// Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+        /// Updates an \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\].
+        /// Returns NOT_FOUND if the \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\] does not exist.
         pub async fn update_attestor(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateAttestorRequest>,
@@ -688,7 +688,7 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
+        /// Lists \[attestors\]\[google.cloud.binaryauthorization.v1.Attestor\].
         /// Returns INVALID_ARGUMENT if the project does not exist.
         pub async fn list_attestors(
             &mut self,
@@ -720,8 +720,8 @@ pub mod binauthz_management_service_v1_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the
-        /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+        /// Deletes an \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\]. Returns NOT_FOUND if the
+        /// \[attestor\]\[google.cloud.binaryauthorization.v1.Attestor\] does not exist.
         pub async fn delete_attestor(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAttestorRequest>,

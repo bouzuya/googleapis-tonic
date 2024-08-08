@@ -1011,19 +1011,21 @@ pub mod cloud_filestore_manager_client {
     ///
     /// The `file.googleapis.com` service implements the Filestore API and
     /// defines the following model for managing resources:
+    ///
     /// * The service works with a collection of cloud projects, named: `/projects/*`
     /// * Each project has a collection of available locations, named: `/locations/*`
     /// * Each location has a collection of instances and backups, named:
-    /// `/instances/*` and `/backups/*` respectively.
+    ///  `/instances/*` and `/backups/*` respectively.
     /// * As such, Filestore instances are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-    ///   backups are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/backup/{backup_id}`
+    ///  `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+    ///  backups are resources of the form:
+    ///  `/projects/{project_id}/locations/{location_id}/backup/{backup_id}`
     ///
     /// Note that location_id can represent a Google Cloud `zone` or `region`
     /// depending on the resource. for example: A zonal Filestore instance:
+    ///
     /// * `projects/my-project/locations/us-central1-c/instances/my-basic-tier-filer`
-    /// A regional Filestore instance:
+    ///  A regional Filestore instance:
     /// * `projects/my-project/locations/us-central1/instances/my-enterprise-filer`
     #[derive(Debug, Clone)]
     pub struct CloudFilestoreManagerClient<T> {

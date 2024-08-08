@@ -560,6 +560,171 @@ pub struct HotelPerformanceView {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OfflineConversionUploadClientSummary {
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::offline_event_upload_client_enum::OfflineEventUploadClient",
+        tag = "2"
+    )]
+    pub client: i32,
+    #[prost(
+        enumeration = "super::enums::offline_conversion_diagnostic_status_enum::OfflineConversionDiagnosticStatus",
+        tag = "3"
+    )]
+    pub status: i32,
+    #[prost(int64, tag = "4")]
+    pub total_event_count: i64,
+    #[prost(int64, tag = "5")]
+    pub successful_event_count: i64,
+    #[prost(double, tag = "6")]
+    pub success_rate: f64,
+    #[prost(int64, tag = "11")]
+    pub pending_event_count: i64,
+    #[prost(double, tag = "12")]
+    pub pending_rate: f64,
+    #[prost(string, tag = "7")]
+    pub last_upload_date_time: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "8")]
+    pub daily_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
+    #[prost(message, repeated, tag = "9")]
+    pub job_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
+    #[prost(message, repeated, tag = "10")]
+    pub alerts: ::prost::alloc::vec::Vec<OfflineConversionAlert>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OfflineConversionSummary {
+    #[prost(int64, tag = "3")]
+    pub successful_count: i64,
+    #[prost(int64, tag = "4")]
+    pub failed_count: i64,
+    #[prost(int64, tag = "5")]
+    pub pending_count: i64,
+    #[prost(oneof = "offline_conversion_summary::DimensionKey", tags = "1, 2")]
+    pub dimension_key: ::core::option::Option<offline_conversion_summary::DimensionKey>,
+}
+/// Nested message and enum types in `OfflineConversionSummary`.
+pub mod offline_conversion_summary {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DimensionKey {
+        #[prost(int64, tag = "1")]
+        JobId(i64),
+        #[prost(string, tag = "2")]
+        UploadDate(::prost::alloc::string::String),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct OfflineConversionAlert {
+    #[prost(message, optional, tag = "1")]
+    pub error: ::core::option::Option<OfflineConversionError>,
+    #[prost(double, tag = "2")]
+    pub error_percentage: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct OfflineConversionError {
+    #[prost(
+        oneof = "offline_conversion_error::ErrorCode",
+        tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+    )]
+    pub error_code: ::core::option::Option<offline_conversion_error::ErrorCode>,
+}
+/// Nested message and enum types in `OfflineConversionError`.
+pub mod offline_conversion_error {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum ErrorCode {
+        #[prost(
+            enumeration = "super::super::errors::collection_size_error_enum::CollectionSizeError",
+            tag = "1"
+        )]
+        CollectionSizeError(i32),
+        #[prost(
+            enumeration = "super::super::errors::conversion_adjustment_upload_error_enum::ConversionAdjustmentUploadError",
+            tag = "2"
+        )]
+        ConversionAdjustmentUploadError(i32),
+        #[prost(
+            enumeration = "super::super::errors::conversion_upload_error_enum::ConversionUploadError",
+            tag = "3"
+        )]
+        ConversionUploadError(i32),
+        #[prost(
+            enumeration = "super::super::errors::date_error_enum::DateError",
+            tag = "4"
+        )]
+        DateError(i32),
+        #[prost(
+            enumeration = "super::super::errors::distinct_error_enum::DistinctError",
+            tag = "5"
+        )]
+        DistinctError(i32),
+        #[prost(
+            enumeration = "super::super::errors::field_error_enum::FieldError",
+            tag = "6"
+        )]
+        FieldError(i32),
+        #[prost(
+            enumeration = "super::super::errors::mutate_error_enum::MutateError",
+            tag = "7"
+        )]
+        MutateError(i32),
+        #[prost(
+            enumeration = "super::super::errors::not_allowlisted_error_enum::NotAllowlistedError",
+            tag = "8"
+        )]
+        NotAllowlistedError(i32),
+        #[prost(
+            enumeration = "super::super::errors::string_format_error_enum::StringFormatError",
+            tag = "9"
+        )]
+        StringFormatError(i32),
+        #[prost(
+            enumeration = "super::super::errors::string_length_error_enum::StringLengthError",
+            tag = "10"
+        )]
+        StringLengthError(i32),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OfflineConversionUploadConversionActionSummary {
+    #[prost(string, tag = "1")]
+    pub resource_name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::offline_event_upload_client_enum::OfflineEventUploadClient",
+        tag = "2"
+    )]
+    pub client: i32,
+    #[prost(int64, tag = "3")]
+    pub conversion_action_id: i64,
+    #[prost(string, tag = "4")]
+    pub conversion_action_name: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::offline_conversion_diagnostic_status_enum::OfflineConversionDiagnosticStatus",
+        tag = "5"
+    )]
+    pub status: i32,
+    #[prost(int64, tag = "6")]
+    pub total_event_count: i64,
+    #[prost(int64, tag = "7")]
+    pub successful_event_count: i64,
+    #[prost(int64, tag = "8")]
+    pub pending_event_count: i64,
+    #[prost(string, tag = "9")]
+    pub last_upload_date_time: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "10")]
+    pub daily_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
+    #[prost(message, repeated, tag = "11")]
+    pub job_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
+    #[prost(message, repeated, tag = "12")]
+    pub alerts: ::prost::alloc::vec::Vec<OfflineConversionAlert>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdGroupCriterionCustomizer {
     #[prost(string, tag = "1")]
     pub resource_name: ::prost::alloc::string::String,
@@ -2885,6 +3050,10 @@ pub struct AdGroup {
     pub target_roas: ::core::option::Option<f64>,
     #[prost(int64, optional, tag = "45")]
     pub percent_cpc_bid_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "64")]
+    pub fixed_cpm_micros: ::core::option::Option<i64>,
+    #[prost(int64, optional, tag = "65")]
+    pub target_cpv_micros: ::core::option::Option<i64>,
     #[prost(bool, tag = "59")]
     pub optimized_targeting_enabled: bool,
     #[prost(
@@ -3396,6 +3565,8 @@ pub struct Campaign {
     pub demand_gen_campaign_settings: ::core::option::Option<
         campaign::DemandGenCampaignSettings,
     >,
+    #[prost(message, optional, tag = "94")]
+    pub video_campaign_settings: ::core::option::Option<campaign::VideoCampaignSettings>,
     #[prost(message, optional, tag = "39")]
     pub real_time_bidding_setting: ::core::option::Option<
         super::common::RealTimeBiddingSetting,
@@ -3502,7 +3673,7 @@ pub struct Campaign {
     pub keyword_match_type: i32,
     #[prost(
         oneof = "campaign::CampaignBiddingStrategy",
-        tags = "67, 49, 74, 24, 25, 37, 30, 31, 26, 48, 29, 27, 34, 41"
+        tags = "67, 49, 74, 24, 25, 37, 30, 31, 26, 48, 29, 27, 34, 41, 92, 93"
     )]
     pub campaign_bidding_strategy: ::core::option::Option<
         campaign::CampaignBiddingStrategy,
@@ -3684,6 +3855,27 @@ pub mod campaign {
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct VideoCampaignSettings {
+        #[prost(message, optional, tag = "1")]
+        pub video_ad_inventory_control: ::core::option::Option<
+            video_campaign_settings::VideoAdInventoryControl,
+        >,
+    }
+    /// Nested message and enum types in `VideoCampaignSettings`.
+    pub mod video_campaign_settings {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct VideoAdInventoryControl {
+            #[prost(bool, optional, tag = "1")]
+            pub allow_in_stream: ::core::option::Option<bool>,
+            #[prost(bool, optional, tag = "2")]
+            pub allow_in_feed: ::core::option::Option<bool>,
+            #[prost(bool, optional, tag = "3")]
+            pub allow_shorts: ::core::option::Option<bool>,
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct AssetAutomationSetting {
         #[prost(
             enumeration = "super::super::enums::asset_automation_type_enum::AssetAutomationType",
@@ -3729,6 +3921,10 @@ pub mod campaign {
         PercentCpc(super::super::common::PercentCpc),
         #[prost(message, tag = "41")]
         TargetCpm(super::super::common::TargetCpm),
+        #[prost(message, tag = "92")]
+        FixedCpm(super::super::common::FixedCpm),
+        #[prost(message, tag = "93")]
+        TargetCpv(super::super::common::TargetCpv),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -4431,6 +4627,8 @@ pub struct ChangeStatus {
     pub ad_group_asset: ::prost::alloc::string::String,
     #[prost(string, tag = "40")]
     pub combined_audience: ::prost::alloc::string::String,
+    #[prost(string, tag = "41")]
+    pub asset_group: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4596,131 +4794,6 @@ pub struct AdGroupAdLabel {
     pub ad_group_ad: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, optional, tag = "5")]
     pub label: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OfflineConversionUploadClientSummary {
-    #[prost(string, tag = "1")]
-    pub resource_name: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "super::enums::offline_event_upload_client_enum::OfflineEventUploadClient",
-        tag = "2"
-    )]
-    pub client: i32,
-    #[prost(
-        enumeration = "super::enums::offline_conversion_diagnostic_status_enum::OfflineConversionDiagnosticStatus",
-        tag = "3"
-    )]
-    pub status: i32,
-    #[prost(int64, tag = "4")]
-    pub total_event_count: i64,
-    #[prost(int64, tag = "5")]
-    pub successful_event_count: i64,
-    #[prost(double, tag = "6")]
-    pub success_rate: f64,
-    #[prost(string, tag = "7")]
-    pub last_upload_date_time: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "8")]
-    pub daily_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
-    #[prost(message, repeated, tag = "9")]
-    pub job_summaries: ::prost::alloc::vec::Vec<OfflineConversionSummary>,
-    #[prost(message, repeated, tag = "10")]
-    pub alerts: ::prost::alloc::vec::Vec<OfflineConversionAlert>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OfflineConversionSummary {
-    #[prost(int64, tag = "3")]
-    pub successful_count: i64,
-    #[prost(int64, tag = "4")]
-    pub failed_count: i64,
-    #[prost(oneof = "offline_conversion_summary::DimensionKey", tags = "1, 2")]
-    pub dimension_key: ::core::option::Option<offline_conversion_summary::DimensionKey>,
-}
-/// Nested message and enum types in `OfflineConversionSummary`.
-pub mod offline_conversion_summary {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum DimensionKey {
-        #[prost(int64, tag = "1")]
-        JobId(i64),
-        #[prost(string, tag = "2")]
-        UploadDate(::prost::alloc::string::String),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct OfflineConversionAlert {
-    #[prost(message, optional, tag = "1")]
-    pub error: ::core::option::Option<OfflineConversionError>,
-    #[prost(double, tag = "2")]
-    pub error_percentage: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct OfflineConversionError {
-    #[prost(
-        oneof = "offline_conversion_error::ErrorCode",
-        tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
-    )]
-    pub error_code: ::core::option::Option<offline_conversion_error::ErrorCode>,
-}
-/// Nested message and enum types in `OfflineConversionError`.
-pub mod offline_conversion_error {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum ErrorCode {
-        #[prost(
-            enumeration = "super::super::errors::collection_size_error_enum::CollectionSizeError",
-            tag = "1"
-        )]
-        CollectionSizeError(i32),
-        #[prost(
-            enumeration = "super::super::errors::conversion_adjustment_upload_error_enum::ConversionAdjustmentUploadError",
-            tag = "2"
-        )]
-        ConversionAdjustmentUploadError(i32),
-        #[prost(
-            enumeration = "super::super::errors::conversion_upload_error_enum::ConversionUploadError",
-            tag = "3"
-        )]
-        ConversionUploadError(i32),
-        #[prost(
-            enumeration = "super::super::errors::date_error_enum::DateError",
-            tag = "4"
-        )]
-        DateError(i32),
-        #[prost(
-            enumeration = "super::super::errors::distinct_error_enum::DistinctError",
-            tag = "5"
-        )]
-        DistinctError(i32),
-        #[prost(
-            enumeration = "super::super::errors::field_error_enum::FieldError",
-            tag = "6"
-        )]
-        FieldError(i32),
-        #[prost(
-            enumeration = "super::super::errors::mutate_error_enum::MutateError",
-            tag = "7"
-        )]
-        MutateError(i32),
-        #[prost(
-            enumeration = "super::super::errors::not_allowlisted_error_enum::NotAllowlistedError",
-            tag = "8"
-        )]
-        NotAllowlistedError(i32),
-        #[prost(
-            enumeration = "super::super::errors::string_format_error_enum::StringFormatError",
-            tag = "9"
-        )]
-        StringFormatError(i32),
-        #[prost(
-            enumeration = "super::super::errors::string_length_error_enum::StringLengthError",
-            tag = "10"
-        )]
-        StringLengthError(i32),
-    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

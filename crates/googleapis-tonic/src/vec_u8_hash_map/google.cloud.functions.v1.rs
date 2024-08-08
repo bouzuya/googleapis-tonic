@@ -120,6 +120,8 @@ pub struct CloudFunction {
     pub docker_repository: ::prost::alloc::string::String,
     #[prost(enumeration = "cloud_function::DockerRegistry", tag = "35")]
     pub docker_registry: i32,
+    #[prost(string, tag = "43")]
+    pub build_service_account: ::prost::alloc::string::String,
     #[prost(oneof = "cloud_function::SourceCode", tags = "3, 4, 16")]
     pub source_code: ::core::option::Option<cloud_function::SourceCode>,
     #[prost(oneof = "cloud_function::Trigger", tags = "5, 6")]
@@ -824,9 +826,9 @@ pub mod cloud_functions_service_client {
         /// * Source file type should be a zip file.
         /// * Source file size should not exceed 100MB limit.
         /// * No credentials should be attached - the signed URLs provide access to the
-        ///   target bucket using internal service identity; if credentials were
-        ///   attached, the identity from the credentials would be used, but that
-        ///   identity does not have permissions to upload files to the URL.
+        ///  target bucket using internal service identity; if credentials were
+        ///  attached, the identity from the credentials would be used, but that
+        ///  identity does not have permissions to upload files to the URL.
         ///
         /// When making a HTTP PUT request, these two headers need to be specified:
         ///

@@ -678,14 +678,15 @@ pub mod security_center_settings_service_client {
         /// CalculateEffectiveSettings looks up all of the Security Center
         /// Settings resources in the GCP resource hierarchy, and calculates the
         /// effective settings on that resource by applying the following rules:
-        ///  * Settings provided closer to the target resource take precedence over
-        ///    those further away (e.g. folder will override organization level
-        ///    settings).
-        ///  * Product defaults can be overridden at org, folder, project, and cluster
+        ///
+        /// * Settings provided closer to the target resource take precedence over
+        ///  those further away (e.g. folder will override organization level
+        ///  settings).
+        /// * Product defaults can be overridden at org, folder, project, and cluster
         ///  levels.
-        ///  * Detectors will be filtered out if they belong to a billing tier the
+        /// * Detectors will be filtered out if they belong to a billing tier the
         ///  customer
-        ///    has not configured.
+        ///  has not configured.
         pub async fn calculate_effective_settings(
             &mut self,
             request: impl tonic::IntoRequest<super::CalculateEffectiveSettingsRequest>,

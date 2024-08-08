@@ -2159,7 +2159,7 @@ pub mod data_catalog_client {
         /// Searches Data Catalog for multiple resources like entries and tags that
         /// match a query.
         ///
-        /// This is a [Custom Method]
+        /// This is a \[Custom Method\]
         /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
         /// all information on a resource, only its ID and high level fields. To get
         /// more information, you can subsequently call specific get methods.
@@ -2169,7 +2169,7 @@ pub mod data_catalog_client {
         /// result pages. Additionally, returned (and not returned) results can vary
         /// if you repeat search queries.
         ///
-        /// For more information, see [Data Catalog search syntax]
+        /// For more information, see \[Data Catalog search syntax\]
         /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
         pub async fn search_catalog(
             &mut self,
@@ -2454,7 +2454,7 @@ pub mod data_catalog_client {
         /// Deletes an existing entry.
         ///
         /// You can delete only the entries created by the
-        /// [CreateEntry][google.cloud.datacatalog.v1.DataCatalog.CreateEntry]
+        /// \[CreateEntry\]\[google.cloud.datacatalog.v1.DataCatalog.CreateEntry\]
         /// method.
         ///
         /// You must enable the Data Catalog API in the project identified by
@@ -2550,7 +2550,7 @@ pub mod data_catalog_client {
         ///
         /// Note: Currently, this method can list only custom entries.
         /// To get a list of both custom and automatically created entries, use
-        /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+        /// \[SearchCatalog\]\[google.cloud.datacatalog.v1.DataCatalog.SearchCatalog\].
         pub async fn list_entries(
             &mut self,
             request: impl tonic::IntoRequest<super::ListEntriesRequest>,
@@ -2582,7 +2582,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Modifies entry overview, part of the business context of an
-        /// [Entry][google.cloud.datacatalog.v1.Entry].
+        /// \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
         ///
         /// To call this method, you must have the `datacatalog.entries.updateOverview`
         /// IAM permission on the corresponding project.
@@ -2614,7 +2614,7 @@ pub mod data_catalog_client {
             self.inner.unary(req, path, codec).await
         }
         /// Modifies contacts, part of the business context of an
-        /// [Entry][google.cloud.datacatalog.v1.Entry].
+        /// \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
         ///
         /// To call this method, you must have the `datacatalog.entries.updateContacts`
         /// IAM permission on the corresponding project.
@@ -2649,7 +2649,7 @@ pub mod data_catalog_client {
         ///
         /// You must enable the Data Catalog API in the project identified by the
         /// `parent` parameter.
-        /// For more information, see [Data Catalog resource project]
+        /// For more information, see \[Data Catalog resource project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
         pub async fn create_tag_template(
             &mut self,
@@ -2850,7 +2850,7 @@ pub mod data_catalog_client {
         /// Renames a field in a tag template.
         ///
         /// You must enable the Data Catalog API in the project identified by the
-        /// `name` parameter. For more information, see [Data Catalog resource project]
+        /// `name` parameter. For more information, see \[Data Catalog resource project\]
         /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
         pub async fn rename_tag_template_field(
             &mut self,
@@ -2952,14 +2952,14 @@ pub mod data_catalog_client {
         }
         /// Creates a tag and assigns it to:
         ///
-        /// * An [Entry][google.cloud.datacatalog.v1.Entry] if the method name is
-        ///   `projects.locations.entryGroups.entries.tags.create`.
-        /// * Or [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]if the method
-        ///   name is `projects.locations.entryGroups.tags.create`.
+        /// * An \[Entry\]\[google.cloud.datacatalog.v1.Entry\] if the method name is
+        ///  `projects.locations.entryGroups.entries.tags.create`.
+        /// * Or \[EntryGroup\]\[google.cloud.datacatalog.v1.EntryGroup\]if the method
+        ///  name is `projects.locations.entryGroups.tags.create`.
         ///
-        /// Note: The project identified by the `parent` parameter for the [tag]
+        /// Note: The project identified by the `parent` parameter for the \[tag\]
         /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters)
-        /// and the [tag template]
+        /// and the \[tag template\]
         /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
         /// used to create the tag must be in the same organization.
         pub async fn create_tag(
@@ -3045,8 +3045,8 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
-        /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+        /// Lists tags assigned to an \[Entry\]\[google.cloud.datacatalog.v1.Entry\].
+        /// The \[columns\]\[google.cloud.datacatalog.v1.Tag.column\] in the response are
         /// lowercased.
         pub async fn list_tags(
             &mut self,
@@ -3080,17 +3080,17 @@ pub mod data_catalog_client {
         }
         /// `ReconcileTags` creates or updates a list of tags on the entry.
         /// If the
-        /// [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
+        /// \[ReconcileTagsRequest.force_delete_missing\]\[google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing\]
         /// parameter is set, the operation deletes tags not included in the input tag
         /// list.
         ///
-        /// `ReconcileTags` returns a [long-running operation]
-        /// [google.longrunning.Operation] resource that can be queried with
-        /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
-        /// to return [ReconcileTagsMetadata]
-        /// [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
-        /// a [ReconcileTagsResponse]
-        /// [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+        /// `ReconcileTags` returns a \[long-running operation\]
+        /// \[google.longrunning.Operation\] resource that can be queried with
+        /// \[Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
+        /// to return \[ReconcileTagsMetadata\]
+        /// \[google.cloud.datacatalog.v1.ReconcileTagsMetadata\] and
+        /// a \[ReconcileTagsResponse\]
+        /// \[google.cloud.datacatalog.v1.ReconcileTagsResponse\] message.
         pub async fn reconcile_tags(
             &mut self,
             request: impl tonic::IntoRequest<super::ReconcileTagsRequest>,
@@ -3121,7 +3121,7 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
+        /// Marks an \[Entry\]\[google.cloud.datacatalog.v1.Entry\] as starred by
         /// the current user. Starring information is private to each user.
         pub async fn star_entry(
             &mut self,
@@ -3153,7 +3153,7 @@ pub mod data_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
+        /// Marks an \[Entry\]\[google.cloud.datacatalog.v1.Entry\] as NOT starred by
         /// the current user. Starring information is private to each user.
         pub async fn unstar_entry(
             &mut self,
@@ -3190,8 +3190,8 @@ pub mod data_catalog_client {
         ///
         /// Supported resources are:
         ///
-        /// - Tag templates
-        /// - Entry groups
+        /// * Tag templates
+        /// * Entry groups
         ///
         /// Note: This method sets policies only within Data Catalog and can't be
         /// used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any
@@ -3199,9 +3199,9 @@ pub mod data_catalog_client {
         ///
         /// To call this method, you must have the following Google IAM permissions:
         ///
-        /// - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
-        ///   templates.
-        /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+        /// * `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+        ///  templates.
+        /// * `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -3239,22 +3239,22 @@ pub mod data_catalog_client {
         /// May return:
         ///
         /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
-        ///   permission to view it.
+        ///  permission to view it.
         /// * An empty policy if the resource exists but doesn't have a set policy.
         ///
         /// Supported resources are:
         ///
-        /// - Tag templates
-        /// - Entry groups
+        /// * Tag templates
+        /// * Entry groups
         ///
         /// Note: This method doesn't get policies from Google Cloud Platform
         /// resources ingested into Data Catalog.
         ///
         /// To call this method, you must have the following Google IAM permissions:
         ///
-        /// - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
-        ///   templates.
-        /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+        /// * `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+        ///  templates.
+        /// * `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -3293,8 +3293,8 @@ pub mod data_catalog_client {
         ///
         /// Supported resources are:
         ///
-        /// - Tag templates
-        /// - Entry groups
+        /// * Tag templates
+        /// * Entry groups
         ///
         /// Note: This method gets policies only within Data Catalog and can't be
         /// used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any
@@ -3343,15 +3343,15 @@ pub mod data_catalog_client {
         /// `ImportEntries` accepts source data snapshots of a third-party system.
         /// Snapshot should be delivered as a .wire or base65-encoded .txt file
         /// containing a sequence of Protocol Buffer messages of
-        /// [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
+        /// \[DumpItem\]\[google.cloud.datacatalog.v1.DumpItem\] type.
         ///
-        /// `ImportEntries` returns a [long-running operation]
-        /// [google.longrunning.Operation] resource that can be queried with
-        /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+        /// `ImportEntries` returns a \[long-running operation\]
+        /// \[google.longrunning.Operation\] resource that can be queried with
+        /// \[Operations.GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// to return
-        /// [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
+        /// \[ImportEntriesMetadata\]\[google.cloud.datacatalog.v1.ImportEntriesMetadata\]
         /// and an
-        /// [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
+        /// \[ImportEntriesResponse\]\[google.cloud.datacatalog.v1.ImportEntriesResponse\]
         /// message.
         pub async fn import_entries(
             &mut self,
@@ -3854,7 +3854,7 @@ pub mod policy_tag_manager_client {
         /// * All of its descendant policy tags, if any
         /// * Policies associated with the policy tag and its descendants
         /// * References from BigQuery table schema of the policy tag and its
-        ///   descendants
+        ///  descendants
         pub async fn delete_policy_tag(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePolicyTagRequest>,
@@ -4256,11 +4256,11 @@ pub mod policy_tag_manager_serialization_client {
         ///
         /// This operation automatically does the following:
         ///
-        /// - Deletes the existing policy tags that are missing from the
-        ///   `SerializedPolicyTag`.
-        /// - Creates policy tags that don't have resource names. They are considered
-        ///   new.
-        /// - Updates policy tags with valid resources names accordingly.
+        /// * Deletes the existing policy tags that are missing from the
+        ///  `SerializedPolicyTag`.
+        /// * Creates policy tags that don't have resource names. They are considered
+        ///  new.
+        /// * Updates policy tags with valid resources names accordingly.
         pub async fn replace_taxonomy(
             &mut self,
             request: impl tonic::IntoRequest<super::ReplaceTaxonomyRequest>,

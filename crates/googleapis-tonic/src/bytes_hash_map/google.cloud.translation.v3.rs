@@ -23,6 +23,395 @@ pub struct GcsOutputDestination {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GlossaryEntry {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(oneof = "glossary_entry::Data", tags = "2, 3")]
+    pub data: ::core::option::Option<glossary_entry::Data>,
+}
+/// Nested message and enum types in `GlossaryEntry`.
+pub mod glossary_entry {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GlossaryTermsPair {
+        #[prost(message, optional, tag = "1")]
+        pub source_term: ::core::option::Option<super::GlossaryTerm>,
+        #[prost(message, optional, tag = "2")]
+        pub target_term: ::core::option::Option<super::GlossaryTerm>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GlossaryTermsSet {
+        #[prost(message, repeated, tag = "1")]
+        pub terms: ::prost::alloc::vec::Vec<super::GlossaryTerm>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Data {
+        #[prost(message, tag = "2")]
+        TermsPair(GlossaryTermsPair),
+        #[prost(message, tag = "3")]
+        TermsSet(GlossaryTermsSet),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GlossaryTerm {
+    #[prost(string, tag = "1")]
+    pub language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub text: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OperationState {
+    Unspecified = 0,
+    Running = 1,
+    Succeeded = 2,
+    Failed = 3,
+    Cancelling = 4,
+    Cancelled = 5,
+}
+impl OperationState {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
+            OperationState::Running => "OPERATION_STATE_RUNNING",
+            OperationState::Succeeded => "OPERATION_STATE_SUCCEEDED",
+            OperationState::Failed => "OPERATION_STATE_FAILED",
+            OperationState::Cancelling => "OPERATION_STATE_CANCELLING",
+            OperationState::Cancelled => "OPERATION_STATE_CANCELLED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "OPERATION_STATE_RUNNING" => Some(Self::Running),
+            "OPERATION_STATE_SUCCEEDED" => Some(Self::Succeeded),
+            "OPERATION_STATE_FAILED" => Some(Self::Failed),
+            "OPERATION_STATE_CANCELLING" => Some(Self::Cancelling),
+            "OPERATION_STATE_CANCELLED" => Some(Self::Cancelled),
+            _ => None,
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportDataRequest {
+    #[prost(string, tag = "1")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub input_config: ::core::option::Option<DatasetInputConfig>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetInputConfig {
+    #[prost(message, repeated, tag = "1")]
+    pub input_files: ::prost::alloc::vec::Vec<dataset_input_config::InputFile>,
+}
+/// Nested message and enum types in `DatasetInputConfig`.
+pub mod dataset_input_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct InputFile {
+        #[prost(string, tag = "2")]
+        pub usage: ::prost::alloc::string::String,
+        #[prost(oneof = "input_file::Source", tags = "3")]
+        pub source: ::core::option::Option<input_file::Source>,
+    }
+    /// Nested message and enum types in `InputFile`.
+    pub mod input_file {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Source {
+            #[prost(message, tag = "3")]
+            GcsSource(super::super::GcsInputSource),
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportDataMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportDataRequest {
+    #[prost(string, tag = "1")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub output_config: ::core::option::Option<DatasetOutputConfig>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetOutputConfig {
+    #[prost(oneof = "dataset_output_config::Destination", tags = "1")]
+    pub destination: ::core::option::Option<dataset_output_config::Destination>,
+}
+/// Nested message and enum types in `DatasetOutputConfig`.
+pub mod dataset_output_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Destination {
+        #[prost(message, tag = "1")]
+        GcsDestination(super::GcsOutputDestination),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportDataMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteDatasetRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteDatasetMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetDatasetRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListDatasetsRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListDatasetsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub datasets: ::prost::alloc::vec::Vec<Dataset>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateDatasetRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub dataset: ::core::option::Option<Dataset>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateDatasetMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListExamplesRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListExamplesResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub examples: ::prost::alloc::vec::Vec<Example>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Example {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub source_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub target_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub usage: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchTransferResourcesResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub responses: ::prost::alloc::vec::Vec<
+        batch_transfer_resources_response::TransferResourceResponse,
+    >,
+}
+/// Nested message and enum types in `BatchTransferResourcesResponse`.
+pub mod batch_transfer_resources_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TransferResourceResponse {
+        #[prost(string, tag = "1")]
+        pub source: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub target: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub error: ::core::option::Option<super::super::super::super::rpc::Status>,
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Dataset {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub source_language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub target_language_code: ::prost::alloc::string::String,
+    #[prost(int32, tag = "5")]
+    pub example_count: i32,
+    #[prost(int32, tag = "6")]
+    pub train_example_count: i32,
+    #[prost(int32, tag = "7")]
+    pub validate_example_count: i32,
+    #[prost(int32, tag = "8")]
+    pub test_example_count: i32,
+    #[prost(message, optional, tag = "9")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateModelRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub model: ::core::option::Option<Model>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateModelMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListModelsRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListModelsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub models: ::prost::alloc::vec::Vec<Model>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetModelRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteModelRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteModelMetadata {
+    #[prost(enumeration = "OperationState", tag = "1")]
+    pub state: i32,
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "4")]
+    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Model {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub dataset: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub source_language_code: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub target_language_code: ::prost::alloc::string::String,
+    #[prost(int32, tag = "6")]
+    pub train_example_count: i32,
+    #[prost(int32, tag = "7")]
+    pub validate_example_count: i32,
+    #[prost(int32, tag = "12")]
+    pub test_example_count: i32,
+    #[prost(message, optional, tag = "8")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdaptiveMtDataset {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -88,6 +477,51 @@ pub struct AdaptiveMtTranslateRequest {
     pub dataset: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "3")]
     pub content: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub reference_sentence_config: ::core::option::Option<
+        adaptive_mt_translate_request::ReferenceSentenceConfig,
+    >,
+    #[prost(message, optional, tag = "7")]
+    pub glossary_config: ::core::option::Option<
+        adaptive_mt_translate_request::GlossaryConfig,
+    >,
+}
+/// Nested message and enum types in `AdaptiveMtTranslateRequest`.
+pub mod adaptive_mt_translate_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentencePair {
+        #[prost(string, tag = "1")]
+        pub source_sentence: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub target_sentence: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentencePairList {
+        #[prost(message, repeated, tag = "1")]
+        pub reference_sentence_pairs: ::prost::alloc::vec::Vec<ReferenceSentencePair>,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentenceConfig {
+        #[prost(message, repeated, tag = "1")]
+        pub reference_sentence_pair_lists: ::prost::alloc::vec::Vec<
+            ReferenceSentencePairList,
+        >,
+        #[prost(string, tag = "2")]
+        pub source_language_code: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub target_language_code: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GlossaryConfig {
+        #[prost(string, tag = "1")]
+        pub glossary: ::prost::alloc::string::String,
+        #[prost(bool, tag = "2")]
+        pub ignore_case: bool,
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -102,6 +536,8 @@ pub struct AdaptiveMtTranslateResponse {
     pub translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "4")]
+    pub glossary_translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -205,12 +641,10 @@ pub struct ListAdaptiveMtSentencesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TranslateTextGlossaryConfig {
-    #[prost(string, tag = "1")]
-    pub glossary: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub ignore_case: bool,
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TransliterationConfig {
+    #[prost(bool, tag = "1")]
+    pub enable_transliteration: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -229,6 +663,8 @@ pub struct TranslateTextRequest {
     pub model: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "7")]
     pub glossary_config: ::core::option::Option<TranslateTextGlossaryConfig>,
+    #[prost(message, optional, tag = "13")]
+    pub transliteration_config: ::core::option::Option<TransliterationConfig>,
     #[prost(map = "string, string", tag = "10")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -254,6 +690,30 @@ pub struct Translation {
     pub detected_language_code: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
     pub glossary_config: ::core::option::Option<TranslateTextGlossaryConfig>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RomanizeTextRequest {
+    #[prost(string, tag = "4")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "1")]
+    pub contents: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "2")]
+    pub source_language_code: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Romanization {
+    #[prost(string, tag = "1")]
+    pub romanized_text: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub detected_language_code: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RomanizeTextResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub romanizations: ::prost::alloc::vec::Vec<Romanization>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -632,6 +1092,14 @@ pub struct CreateGlossaryRequest {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateGlossaryRequest {
+    #[prost(message, optional, tag = "1")]
+    pub glossary: ::core::option::Option<Glossary>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGlossaryRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -664,6 +1132,50 @@ pub struct ListGlossariesResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetGlossaryEntryRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteGlossaryEntryRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListGlossaryEntriesRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListGlossaryEntriesResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub glossary_entries: ::prost::alloc::vec::Vec<GlossaryEntry>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateGlossaryEntryRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub glossary_entry: ::core::option::Option<GlossaryEntry>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateGlossaryEntryRequest {
+    #[prost(message, optional, tag = "1")]
+    pub glossary_entry: ::core::option::Option<GlossaryEntry>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGlossaryMetadata {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -674,6 +1186,67 @@ pub struct CreateGlossaryMetadata {
 }
 /// Nested message and enum types in `CreateGlossaryMetadata`.
 pub mod create_glossary_metadata {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Running = 1,
+        Succeeded = 2,
+        Failed = 3,
+        Cancelling = 4,
+        Cancelled = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Running => "RUNNING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+                State::Cancelling => "CANCELLING",
+                State::Cancelled => "CANCELLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RUNNING" => Some(Self::Running),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "CANCELLING" => Some(Self::Cancelling),
+                "CANCELLED" => Some(Self::Cancelled),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateGlossaryMetadata {
+    #[prost(message, optional, tag = "1")]
+    pub glossary: ::core::option::Option<Glossary>,
+    #[prost(enumeration = "update_glossary_metadata::State", tag = "2")]
+    pub state: i32,
+    #[prost(message, optional, tag = "3")]
+    pub submit_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `UpdateGlossaryMetadata`.
+pub mod update_glossary_metadata {
     #[derive(
         Clone,
         Copy,
@@ -958,6 +1531,14 @@ pub mod batch_translate_document_metadata {
         }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TranslateTextGlossaryConfig {
+    #[prost(string, tag = "1")]
+    pub glossary: ::prost::alloc::string::String,
+    #[prost(bool, tag = "2")]
+    pub ignore_case: bool,
+}
 /// Generated client implementations.
 pub mod translation_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -1060,6 +1641,37 @@ pub mod translation_service_client {
                     GrpcMethod::new(
                         "google.cloud.translation.v3.TranslationService",
                         "TranslateText",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Romanize input text written in non-Latin scripts to Latin text.
+        pub async fn romanize_text(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RomanizeTextRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RomanizeTextResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/RomanizeText",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "RomanizeText",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -1263,6 +1875,38 @@ pub mod translation_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Updates a glossary. A LRO is used since the update can be async if the
+        /// glossary's entry file is updated.
+        pub async fn update_glossary(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateGlossaryRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/UpdateGlossary",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "UpdateGlossary",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't
         /// exist.
         pub async fn list_glossaries(
@@ -1353,6 +1997,270 @@ pub mod translation_service_client {
                     GrpcMethod::new(
                         "google.cloud.translation.v3.TranslationService",
                         "DeleteGlossary",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a single glossary entry by the given id.
+        pub async fn get_glossary_entry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetGlossaryEntryRequest>,
+        ) -> std::result::Result<tonic::Response<super::GlossaryEntry>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/GetGlossaryEntry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "GetGlossaryEntry",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// List the entries for the glossary.
+        pub async fn list_glossary_entries(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListGlossaryEntriesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListGlossaryEntriesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ListGlossaryEntries",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ListGlossaryEntries",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a glossary entry.
+        pub async fn create_glossary_entry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateGlossaryEntryRequest>,
+        ) -> std::result::Result<tonic::Response<super::GlossaryEntry>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/CreateGlossaryEntry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "CreateGlossaryEntry",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a glossary entry.
+        pub async fn update_glossary_entry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateGlossaryEntryRequest>,
+        ) -> std::result::Result<tonic::Response<super::GlossaryEntry>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/UpdateGlossaryEntry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "UpdateGlossaryEntry",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single entry from the glossary
+        pub async fn delete_glossary_entry(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteGlossaryEntryRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/DeleteGlossaryEntry",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "DeleteGlossaryEntry",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a Dataset.
+        pub async fn create_dataset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateDatasetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/CreateDataset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "CreateDataset",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a Dataset.
+        pub async fn get_dataset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetDatasetRequest>,
+        ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/GetDataset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "GetDataset",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists datasets.
+        pub async fn list_datasets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListDatasetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ListDatasets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ListDatasets",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a dataset and all of its contents.
+        pub async fn delete_dataset(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteDatasetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/DeleteDataset",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "DeleteDataset",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -1656,6 +2564,220 @@ pub mod translation_service_client {
                     GrpcMethod::new(
                         "google.cloud.translation.v3.TranslationService",
                         "ListAdaptiveMtSentences",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Import sentence pairs into translation Dataset.
+        pub async fn import_data(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ImportDataRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ImportData",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ImportData",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Exports dataset's data to the provided output location.
+        pub async fn export_data(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ExportDataRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ExportData",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ExportData",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists sentence pairs in the dataset.
+        pub async fn list_examples(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListExamplesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListExamplesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ListExamples",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ListExamples",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a Model.
+        pub async fn create_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/CreateModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "CreateModel",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists models.
+        pub async fn list_models(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListModelsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListModelsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/ListModels",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "ListModels",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a model.
+        pub async fn get_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetModelRequest>,
+        ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/GetModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "GetModel",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a model.
+        pub async fn delete_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.translation.v3.TranslationService/DeleteModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.translation.v3.TranslationService",
+                        "DeleteModel",
                     ),
                 );
             self.inner.unary(req, path, codec).await

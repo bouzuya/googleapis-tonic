@@ -87,12 +87,12 @@ pub mod customer_service_client {
         /// user authenticating the call.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_accessible_customers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccessibleCustomersRequest>,
@@ -638,13 +638,13 @@ pub mod search_ads360_service_client {
         /// Returns all rows that match the search query.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchSearchAds360Request>,
@@ -678,13 +678,13 @@ pub mod search_ads360_service_client {
         /// Returns all rows that match the search stream query.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search_stream(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchSearchAds360StreamRequest>,
@@ -825,12 +825,12 @@ pub mod search_ads360_field_service_client {
         /// Returns just the requested field.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn get_search_ads360_field(
             &mut self,
             request: impl tonic::IntoRequest<super::GetSearchAds360FieldRequest>,
@@ -865,13 +865,13 @@ pub mod search_ads360_field_service_client {
         /// [query](/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details).
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search_search_ads360_fields(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchSearchAds360FieldsRequest>,

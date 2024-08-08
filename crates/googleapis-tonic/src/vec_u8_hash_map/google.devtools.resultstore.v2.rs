@@ -1604,13 +1604,13 @@ pub mod result_store_download_client {
         /// invocation; download_metadata; configurations; targets interleaving
         /// configured_targets and actions; file_sets.
         ///
-        /// - Invocation
-        /// - DownloadMetadata
-        /// - Configurations
-        /// - Targets
-        ///   └─ ConfiguredTargets
-        ///      └─Actions
-        /// - FileSets
+        /// * Invocation
+        /// * DownloadMetadata
+        /// * Configurations
+        /// * Targets
+        ///  └─ ConfiguredTargets
+        ///  └─Actions
+        /// * FileSets
         ///
         /// All child resources will be returned before the next parent
         /// resource is returned. For example, all actions under a configured_target
@@ -1619,9 +1619,10 @@ pub mod result_store_download_client {
         /// undefined, but stable.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation is not found.
-        /// - If the given invocation name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the invocation is not found.
+        /// * If the given invocation name is badly formatted.
+        /// * If no field mask was given.
         pub async fn export_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportInvocationRequest>,
@@ -1655,9 +1656,10 @@ pub mod result_store_download_client {
         /// Retrieves the invocation with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation is not found.
-        /// - If the given invocation name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the invocation is not found.
+        /// * If the given invocation name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::GetInvocationRequest>,
@@ -1690,10 +1692,10 @@ pub mod result_store_download_client {
         /// of results is not guaranteed when difference in timestamps is very small.
         /// Results may be stale. Results may be omitted.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If a query string is not provided
-        /// - If no field mask was given.
+        ///
+        /// * If a query string is not provided
+        /// * If no field mask was given.
         pub async fn search_invocations(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchInvocationsRequest>,
@@ -1727,8 +1729,9 @@ pub mod result_store_download_client {
         /// Retrieves the metadata for an invocation with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation is not found.
-        /// - If the given invocation name is badly formatted.
+        ///
+        /// * If the invocation is not found.
+        /// * If the given invocation name is badly formatted.
         pub async fn get_invocation_download_metadata(
             &mut self,
             request: impl tonic::IntoRequest<super::GetInvocationDownloadMetadataRequest>,
@@ -1762,9 +1765,10 @@ pub mod result_store_download_client {
         /// Retrieves the configuration with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the configuration or its parent invocation is not found.
-        /// - If the given configuration name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the configuration or its parent invocation is not found.
+        /// * If the given configuration name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_configuration(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConfigurationRequest>,
@@ -1798,9 +1802,10 @@ pub mod result_store_download_client {
         /// The order in which results are returned is undefined, but stable.
         ///
         /// An error will be reported in the following cases:
-        /// - If the parent invocation is not found.
-        /// - If the given parent invocation name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the parent invocation is not found.
+        /// * If the given parent invocation name is badly formatted.
+        /// * If no field mask was given.
         pub async fn list_configurations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConfigurationsRequest>,
@@ -1834,9 +1839,10 @@ pub mod result_store_download_client {
         /// Retrieves the target with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the target or its parent invocation is not found.
-        /// - If the given target name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the target or its parent invocation is not found.
+        /// * If the given target name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_target(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTargetRequest>,
@@ -1869,9 +1875,10 @@ pub mod result_store_download_client {
         /// The order in which results are returned is undefined, but stable.
         ///
         /// An error will be reported in the following cases:
-        /// - If the parent is not found.
-        /// - If the given parent name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the parent is not found.
+        /// * If the given parent name is badly formatted.
+        /// * If no field mask was given.
         pub async fn list_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTargetsRequest>,
@@ -1905,9 +1912,10 @@ pub mod result_store_download_client {
         /// Retrieves the configured target with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the configured target is not found.
-        /// - If the given name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the configured target is not found.
+        /// * If the given name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_configured_target(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConfiguredTargetRequest>,
@@ -1945,9 +1953,10 @@ pub mod result_store_download_client {
         /// consistent with ListTargets and ListConfigurations.
         ///
         /// An error will be reported in the following cases:
-        /// - If the parent is not found.
-        /// - If the given parent name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the parent is not found.
+        /// * If the given parent name is badly formatted.
+        /// * If no field mask was given.
         pub async fn list_configured_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListConfiguredTargetsRequest>,
@@ -1983,17 +1992,18 @@ pub mod result_store_download_client {
         /// ordering of results is not guaranteed when difference in timestamps is
         /// very small. Results may be stale. Results may be omitted.
         ///
-        ///
         /// Field masks are supported for only these fields and their subfields:
-        /// - configured_targets.name
-        /// - configured_targets.id
-        /// - configured_targets.status_attributes
-        /// - configured_targets.timing
-        /// - next_page_token
+        ///
+        /// * configured_targets.name
+        /// * configured_targets.id
+        /// * configured_targets.status_attributes
+        /// * configured_targets.timing
+        /// * next_page_token
         ///
         /// An error will be reported in the following cases:
-        /// - If a query string is not provided
-        /// - If no field mask was given.
+        ///
+        /// * If a query string is not provided
+        /// * If no field mask was given.
         pub async fn search_configured_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchConfiguredTargetsRequest>,
@@ -2027,9 +2037,10 @@ pub mod result_store_download_client {
         /// Retrieves the action with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the action is not found.
-        /// - If the given name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the action is not found.
+        /// * If the given name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_action(
             &mut self,
             request: impl tonic::IntoRequest<super::GetActionRequest>,
@@ -2067,9 +2078,10 @@ pub mod result_store_download_client {
         /// consistent with ListConfiguredTargets.
         ///
         /// An error will be reported in the following cases:
-        /// - If the parent is not found.
-        /// - If the given parent name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the parent is not found.
+        /// * If the given parent name is badly formatted.
+        /// * If no field mask was given.
         pub async fn list_actions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListActionsRequest>,
@@ -2107,8 +2119,9 @@ pub mod result_store_download_client {
         /// ListConfiguredTargets.
         ///
         /// An error will be reported in the following cases:
-        /// - If the given parent name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the given parent name is badly formatted.
+        /// * If no field mask was given.
         pub async fn batch_list_actions(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchListActionsRequest>,
@@ -2142,9 +2155,10 @@ pub mod result_store_download_client {
         /// Retrieves the file set with the given name.
         ///
         /// An error will be reported in the following cases:
-        /// - If the file set or its parent invocation is not found.
-        /// - If the given file set name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the file set or its parent invocation is not found.
+        /// * If the given file set name is badly formatted.
+        /// * If no field mask was given.
         pub async fn get_file_set(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFileSetRequest>,
@@ -2178,9 +2192,10 @@ pub mod result_store_download_client {
         /// The order in which results are returned is undefined, but stable.
         ///
         /// An error will be reported in the following cases:
-        /// - If the parent invocation is not found.
-        /// - If the given parent invocation name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If the parent invocation is not found.
+        /// * If the given parent invocation name is badly formatted.
+        /// * If no field mask was given.
         pub async fn list_file_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::ListFileSetsRequest>,
@@ -2216,10 +2231,11 @@ pub mod result_store_download_client {
         /// The order in which results are returned is undefined, and unstable.
         ///
         /// An error will be reported in the following cases:
-        /// - If page_token is too large to continue the calculation.
-        /// - If the resource is not found.
-        /// - If the given resource name is badly formatted.
-        /// - If no field mask was given.
+        ///
+        /// * If page_token is too large to continue the calculation.
+        /// * If the resource is not found.
+        /// * If the given resource name is badly formatted.
+        /// * If no field mask was given.
         pub async fn traverse_file_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::TraverseFileSetsRequest>,
@@ -2766,7 +2782,8 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If an invocation with the same ID already exists.
+        ///
+        /// * If an invocation with the same ID already exists.
         pub async fn create_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateInvocationRequest>,
@@ -2804,9 +2821,10 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation does not exist.
-        /// - If the invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the invocation does not exist.
+        /// * If the invocation is finalized.
+        /// * If no field mask was given.
         pub async fn update_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateInvocationRequest>,
@@ -2844,11 +2862,11 @@ pub mod result_store_upload_client {
         /// Returns an empty Invocation proto with only the name and ID fields
         /// populated.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If the invocation does not exist.
-        /// - If the invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the invocation does not exist.
+        /// * If the invocation is finalized.
+        /// * If no field mask was given.
         pub async fn merge_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeInvocationRequest>,
@@ -2883,8 +2901,9 @@ pub mod result_store_upload_client {
         /// finalized after a set period.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation does not exist.
-        /// - If the invocation is finalized.
+        ///
+        /// * If the invocation does not exist.
+        /// * If the invocation is finalized.
         pub async fn touch_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::TouchInvocationRequest>,
@@ -2923,7 +2942,8 @@ pub mod result_store_upload_client {
         /// this will be called automatically.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation does not exist.
+        ///
+        /// * If the invocation does not exist.
         pub async fn finalize_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeInvocationRequest>,
@@ -2959,8 +2979,9 @@ pub mod result_store_upload_client {
         /// services.
         ///
         /// An error will be reported in the following cases:
-        /// - If the invocation does not exist.
-        /// - If the invocation is not finalized.  This can be retried until it is.
+        ///
+        /// * If the invocation does not exist.
+        /// * If the invocation is not finalized.  This can be retried until it is.
         pub async fn delete_invocation(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInvocationRequest>,
@@ -2996,10 +3017,11 @@ pub mod result_store_upload_client {
         /// Returns an empty Target proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If no target ID is provided.
-        /// - If the parent invocation does not exist.
-        /// - If the parent invocation is finalized.
-        /// - If a target with the same name already exists.
+        ///
+        /// * If no target ID is provided.
+        /// * If the parent invocation does not exist.
+        /// * If the parent invocation is finalized.
+        /// * If a target with the same name already exists.
         pub async fn create_target(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTargetRequest>,
@@ -3036,9 +3058,10 @@ pub mod result_store_upload_client {
         /// Returns an empty Target proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the target does not exist.
-        /// - If the target or parent invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the target does not exist.
+        /// * If the target or parent invocation is finalized.
+        /// * If no field mask was given.
         pub async fn update_target(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTargetRequest>,
@@ -3075,11 +3098,11 @@ pub mod result_store_upload_client {
         ///
         /// Returns an empty Target proto with only the name and ID fields populated.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If the target does not exist.
-        /// - If the target or parent invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the target does not exist.
+        /// * If the target or parent invocation is finalized.
+        /// * If no field mask was given.
         pub async fn merge_target(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeTargetRequest>,
@@ -3112,7 +3135,8 @@ pub mod result_store_upload_client {
         /// idempotent API.
         ///
         /// An error will be reported in the following cases:
-        /// - If the target does not exist.
+        ///
+        /// * If the target does not exist.
         pub async fn finalize_target(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeTargetRequest>,
@@ -3153,10 +3177,11 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If no config ID is provided.
-        /// - If a configured target with the same ID already exists.
-        /// - If the parent target does not exist.
-        /// - If the parent target or invocation is finalized.
+        ///
+        /// * If no config ID is provided.
+        /// * If a configured target with the same ID already exists.
+        /// * If the parent target does not exist.
+        /// * If the parent target or invocation is finalized.
         pub async fn create_configured_target(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateConfiguredTargetRequest>,
@@ -3197,9 +3222,10 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the configured target does not exist.
-        /// - If the parent target or invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the configured target does not exist.
+        /// * If the parent target or invocation is finalized.
+        /// * If no field mask was given.
         pub async fn update_configured_target(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConfiguredTargetRequest>,
@@ -3240,11 +3266,11 @@ pub mod result_store_upload_client {
         /// Returns an empty ConfiguredTarget proto with only the name and ID fields
         /// populated.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If the configured target does not exist.
-        /// - If the parent target or invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the configured target does not exist.
+        /// * If the parent target or invocation is finalized.
+        /// * If no field mask was given.
         pub async fn merge_configured_target(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeConfiguredTargetRequest>,
@@ -3280,7 +3306,8 @@ pub mod result_store_upload_client {
         /// an implicitly idempotent API.
         ///
         /// An error will be reported in the following cases:
-        /// - If the configured target does not exist.
+        ///
+        /// * If the configured target does not exist.
         pub async fn finalize_configured_target(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeConfiguredTargetRequest>,
@@ -3319,10 +3346,11 @@ pub mod result_store_upload_client {
         /// Returns an empty Action proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If no action ID provided.
-        /// - If the parent configured target does not exist.
-        /// - If the parent target or invocation is finalized.
-        /// - If an action  with the same name already exists.
+        ///
+        /// * If no action ID provided.
+        /// * If the parent configured target does not exist.
+        /// * If the parent target or invocation is finalized.
+        /// * If an action  with the same name already exists.
         pub async fn create_action(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateActionRequest>,
@@ -3359,9 +3387,10 @@ pub mod result_store_upload_client {
         /// Returns an empty Action proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the action does not exist.
-        /// - If the parent target or invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the action does not exist.
+        /// * If the parent target or invocation is finalized.
+        /// * If no field mask was given.
         pub async fn update_action(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateActionRequest>,
@@ -3398,11 +3427,11 @@ pub mod result_store_upload_client {
         ///
         /// Returns an empty Action proto with only the name and ID fields populated.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If the action does not exist.
-        /// - If the parent target or invocation is finalized.
-        /// - If no field mask was given.
+        ///
+        /// * If the action does not exist.
+        /// * If the parent target or invocation is finalized.
+        /// * If no field mask was given.
         pub async fn merge_action(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeActionRequest>,
@@ -3441,10 +3470,11 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If no configuration ID is provided.
-        /// - If the parent invocation does not exist.
-        /// - If the parent invocation is finalized.
-        /// - If a configuration with the same name already exists.
+        ///
+        /// * If no configuration ID is provided.
+        /// * If the parent invocation does not exist.
+        /// * If the parent invocation is finalized.
+        /// * If a configuration with the same name already exists.
         pub async fn create_configuration(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateConfigurationRequest>,
@@ -3482,10 +3512,11 @@ pub mod result_store_upload_client {
         /// populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the configuration does not exist.
-        /// - If the parent invocation is finalized.
-        /// - If no field mask was given.
-        /// - If a given field mask path is not valid.
+        ///
+        /// * If the configuration does not exist.
+        /// * If the parent invocation is finalized.
+        /// * If no field mask was given.
+        /// * If a given field mask path is not valid.
         pub async fn update_configuration(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConfigurationRequest>,
@@ -3521,10 +3552,11 @@ pub mod result_store_upload_client {
         /// Returns an empty FileSet proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If no file set ID is provided.
-        /// - If a file set with the same name already exists.
-        /// - If the parent invocation does not exist.
-        /// - If the parent invocation is finalized.
+        ///
+        /// * If no file set ID is provided.
+        /// * If a file set with the same name already exists.
+        /// * If the parent invocation does not exist.
+        /// * If the parent invocation is finalized.
         pub async fn create_file_set(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateFileSetRequest>,
@@ -3561,10 +3593,11 @@ pub mod result_store_upload_client {
         /// Returns an empty FileSet proto with only the name and ID fields populated.
         ///
         /// An error will be reported in the following cases:
-        /// - If the file set does not exist.
-        /// - If the parent invocation is finalized.
-        /// - If no field mask was given.
-        /// - If a given field mask path is not valid.
+        ///
+        /// * If the file set does not exist.
+        /// * If the parent invocation is finalized.
+        /// * If no field mask was given.
+        /// * If a given field mask path is not valid.
         pub async fn update_file_set(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateFileSetRequest>,
@@ -3601,12 +3634,12 @@ pub mod result_store_upload_client {
         ///
         /// Returns an empty FileSet proto with only the name and ID fields populated.
         ///
-        ///
         /// An error will be reported in the following cases:
-        /// - If the file set does not exist.
-        /// - If the parent invocation is finalized.
-        /// - If a given field mask path is not valid.
-        /// - If no field mask was given.
+        ///
+        /// * If the file set does not exist.
+        /// * If the parent invocation is finalized.
+        /// * If a given field mask path is not valid.
+        /// * If no field mask was given.
         pub async fn merge_file_set(
             &mut self,
             request: impl tonic::IntoRequest<super::MergeFileSetRequest>,
@@ -3685,8 +3718,9 @@ pub mod result_store_upload_client {
         /// parameter or X-Goog-FieldMask HTTP/gRPC header.
         ///
         /// An error will be reported in the following case:
-        /// - If the invocation does not exist.
-        /// - If no field mask was given.
+        ///
+        /// * If the invocation does not exist.
+        /// * If no field mask was given.
         pub async fn get_invocation_upload_metadata(
             &mut self,
             request: impl tonic::IntoRequest<super::GetInvocationUploadMetadataRequest>,
@@ -3834,8 +3868,9 @@ pub mod result_store_file_download_client {
         /// returns a stream of bytes to be stitched together in order.
         ///
         /// An error will be reported in the following cases:
-        /// - If the File is not found.
-        /// - If the given File uri is badly formatted.
+        ///
+        /// * If the File is not found.
+        /// * If the given File uri is badly formatted.
         pub async fn get_file(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFileRequest>,
@@ -3869,8 +3904,9 @@ pub mod result_store_file_download_client {
         /// Retrieves the tail of a File with the given uri.
         ///
         /// An error will be reported in the following cases:
-        /// - If the File is not found.
-        /// - If the given File uri is badly formatted.
+        ///
+        /// * If the File is not found.
+        /// * If the given File uri is badly formatted.
         pub async fn get_file_tail(
             &mut self,
             request: impl tonic::IntoRequest<super::GetFileTailRequest>,

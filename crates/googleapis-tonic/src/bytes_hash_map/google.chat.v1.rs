@@ -2040,10 +2040,10 @@ pub mod chat_service_client {
         /// [authentication](https://developers.google.com/workspace/chat/authenticate-authorize)
         /// and supports the following authentication types:
         ///
-        /// - For text messages, user authentication or app authentication are
-        /// supported.
-        /// - For card messages, only app authentication is supported. (Only Chat apps
-        /// can create card messages.)
+        /// * For text messages, user authentication or app authentication are
+        ///  supported.
+        /// * For card messages, only app authentication is supported. (Only Chat apps
+        ///  can create card messages.)
         pub async fn create_message(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMessageRequest>,
@@ -2430,9 +2430,9 @@ pub mod chat_service_client {
         /// example, see [Create a
         /// space](https://developers.google.com/workspace/chat/create-spaces).
         ///
-        ///  If you receive the error message `ALREADY_EXISTS` when creating
-        ///  a space, try a different `displayName`. An existing space within
-        ///  the Google Workspace organization might already use this display name.
+        /// If you receive the error message `ALREADY_EXISTS` when creating
+        /// a space, try a different `displayName`. An existing space within
+        /// the Google Workspace organization might already use this display name.
         ///
         /// Requires [user
         /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -2684,26 +2684,26 @@ pub mod chat_service_client {
         /// human or app member, or set the `membership.group_member.name` for the
         /// group member.
         ///
-        /// - To add the calling app to a space or a direct message between two human
-        ///   users, use `users/app`. Unable to add other
-        ///   apps to the space.
+        /// * To add the calling app to a space or a direct message between two human
+        ///  users, use `users/app`. Unable to add other
+        ///  apps to the space.
         ///
-        /// - To add a human user, use `users/{user}`, where `{user}` can be the email
-        /// address for the user. For users in the same Workspace organization `{user}`
-        /// can also be the `id` for the person from the People API, or the `id` for
-        /// the user in the Directory API. For example, if the People API Person
-        /// profile ID for `user@example.com` is `123456789`, you can add the user to
-        /// the space by setting the `membership.member.name` to
-        /// `users/user@example.com` or `users/123456789`.
+        /// * To add a human user, use `users/{user}`, where `{user}` can be the email
+        ///  address for the user. For users in the same Workspace organization `{user}`
+        ///  can also be the `id` for the person from the People API, or the `id` for
+        ///  the user in the Directory API. For example, if the People API Person
+        ///  profile ID for `user@example.com` is `123456789`, you can add the user to
+        ///  the space by setting the `membership.member.name` to
+        ///  `users/user@example.com` or `users/123456789`.
         ///
-        /// - To add or invite a Google group in a named space, use
-        /// `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
-        /// Identity Groups API. For example, you can use [Cloud Identity Groups lookup
-        /// API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
-        /// to retrieve the ID `123456789` for group email `group@example.com`, then
-        /// you can add or invite the group to a named space by setting the
-        /// `membership.group_member.name` to `groups/123456789`. Group email is not
-        /// supported, and Google groups can only be added as members in named spaces.
+        /// * To add or invite a Google group in a named space, use
+        ///  `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
+        ///  Identity Groups API. For example, you can use [Cloud Identity Groups lookup
+        ///  API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
+        ///  to retrieve the ID `123456789` for group email `group@example.com`, then
+        ///  you can add or invite the group to a named space by setting the
+        ///  `membership.group_member.name` to `groups/123456789`. Group email is not
+        ///  supported, and Google groups can only be added as members in named spaces.
         pub async fn create_membership(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateMembershipRequest>,

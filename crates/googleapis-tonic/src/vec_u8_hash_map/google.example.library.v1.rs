@@ -124,11 +124,11 @@ pub mod library_service_client {
     /// resources and Book resources in the library. It defines the following
     /// resource model:
     ///
-    /// - The API has a collection of [Shelf][google.example.library.v1.Shelf]
-    ///   resources, named `shelves/*`
+    /// * The API has a collection of \[Shelf\]\[google.example.library.v1.Shelf\]
+    ///  resources, named `shelves/*`
     ///
-    /// - Each Shelf has a collection of [Book][google.example.library.v1.Book]
-    ///   resources, named `shelves/*/books/*`
+    /// * Each Shelf has a collection of \[Book\]\[google.example.library.v1.Book\]
+    ///  resources, named `shelves/*/books/*`
     #[derive(Debug, Clone)]
     pub struct LibraryServiceClient<T> {
         inner: tonic::client::Grpc<T>,

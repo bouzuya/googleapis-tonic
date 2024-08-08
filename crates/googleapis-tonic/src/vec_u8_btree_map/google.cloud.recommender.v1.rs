@@ -836,7 +836,7 @@ pub mod recommender_client {
             self
         }
         /// Lists insights for the specified Cloud Resource. Requires the
-        /// recommender.*.list IAM permission for the specified insight type.
+        /// recommender.\*.list IAM permission for the specified insight type.
         pub async fn list_insights(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInsightsRequest>,
@@ -867,7 +867,7 @@ pub mod recommender_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the requested insight. Requires the recommender.*.get IAM permission
+        /// Gets the requested insight. Requires the recommender.\*.get IAM permission
         /// for the specified insight type.
         pub async fn get_insight(
             &mut self,
@@ -901,7 +901,7 @@ pub mod recommender_client {
         /// on the insight. This stops the insight content from being updated.
         ///
         /// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
-        /// the recommender.*.update IAM permission for the specified insight.
+        /// the recommender.\*.update IAM permission for the specified insight.
         pub async fn mark_insight_accepted(
             &mut self,
             request: impl tonic::IntoRequest<super::MarkInsightAcceptedRequest>,
@@ -930,7 +930,7 @@ pub mod recommender_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists recommendations for the specified Cloud Resource. Requires the
-        /// recommender.*.list IAM permission for the specified recommender.
+        /// recommender.\*.list IAM permission for the specified recommender.
         pub async fn list_recommendations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRecommendationsRequest>,
@@ -961,7 +961,7 @@ pub mod recommender_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the requested recommendation. Requires the recommender.*.get
+        /// Gets the requested recommendation. Requires the recommender.\*.get
         /// IAM permission for the specified recommender.
         pub async fn get_recommendation(
             &mut self,
@@ -997,7 +997,7 @@ pub mod recommender_client {
         /// MarkRecommendationDismissed can be applied to recommendations in ACTIVE
         /// state.
         ///
-        /// Requires the recommender.*.update IAM permission for the specified
+        /// Requires the recommender.\*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_dismissed(
             &mut self,
@@ -1034,7 +1034,7 @@ pub mod recommender_client {
         /// MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
         /// SUCCEEDED, FAILED, or ACTIVE state.
         ///
-        /// Requires the recommender.*.update IAM permission for the specified
+        /// Requires the recommender.\*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_claimed(
             &mut self,
@@ -1072,7 +1072,7 @@ pub mod recommender_client {
         /// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
         /// CLAIMED, SUCCEEDED, or FAILED state.
         ///
-        /// Requires the recommender.*.update IAM permission for the specified
+        /// Requires the recommender.\*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_succeeded(
             &mut self,
@@ -1110,7 +1110,7 @@ pub mod recommender_client {
         /// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
         /// CLAIMED, SUCCEEDED, or FAILED state.
         ///
-        /// Requires the recommender.*.update IAM permission for the specified
+        /// Requires the recommender.\*.update IAM permission for the specified
         /// recommender.
         pub async fn mark_recommendation_failed(
             &mut self,

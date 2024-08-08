@@ -312,7 +312,7 @@ pub mod executions_client {
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Executions is used to start and manage running instances of
-    /// [Workflows][google.cloud.workflows.v1.Workflow] called executions.
+    /// \[Workflows\]\[google.cloud.workflows.v1.Workflow\] called executions.
     #[derive(Debug, Clone)]
     pub struct ExecutionsClient<T> {
         inner: tonic::client::Grpc<T>,

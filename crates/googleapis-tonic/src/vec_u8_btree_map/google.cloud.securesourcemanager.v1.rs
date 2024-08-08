@@ -312,11 +312,15 @@ pub mod secure_source_manager_client {
     /// instance, so you must connect to your instance's API hostname to access
     /// them. The API hostname looks like the following:
     ///
-    ///    https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
+    /// ```text
+    /// https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
+    /// ```
     ///
     /// For example,
     ///
-    ///    https://my-instance-702770452863-api.us-central1.sourcemanager.dev
+    /// ```text
+    /// https://my-instance-702770452863-api.us-central1.sourcemanager.dev
+    /// ```
     ///
     /// Data Plane endpoints are denoted with **Host: Data Plane**.
     ///

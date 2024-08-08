@@ -64,8 +64,8 @@ pub mod byte_stream_client {
     /// * `Read()`: Reads the contents of a resource.
     ///
     /// * `Write()`: Writes the contents of a resource. The client can call `Write()`
-    ///   multiple times with the same resource and can check the status of the write
-    ///   by calling `QueryWriteStatus()`.
+    ///  multiple times with the same resource and can check the status of the write
+    ///  by calling `QueryWriteStatus()`.
     ///
     /// #### Service parameters and metadata
     ///

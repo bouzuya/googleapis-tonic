@@ -1030,8 +1030,10 @@ pub mod mitre_attack {
         CommandAndScriptingInterpreter = 6,
         UnixShell = 7,
         Python = 59,
+        ExploitationForPrivilegeEscalation = 63,
         PermissionGroupsDiscovery = 18,
         CloudGroups = 19,
+        IndicatorRemovalFileDeletion = 64,
         ApplicationLayerProtocol = 45,
         Dns = 46,
         SoftwareDeploymentTools = 47,
@@ -1107,8 +1109,14 @@ pub mod mitre_attack {
                 }
                 Technique::UnixShell => "UNIX_SHELL",
                 Technique::Python => "PYTHON",
+                Technique::ExploitationForPrivilegeEscalation => {
+                    "EXPLOITATION_FOR_PRIVILEGE_ESCALATION"
+                }
                 Technique::PermissionGroupsDiscovery => "PERMISSION_GROUPS_DISCOVERY",
                 Technique::CloudGroups => "CLOUD_GROUPS",
+                Technique::IndicatorRemovalFileDeletion => {
+                    "INDICATOR_REMOVAL_FILE_DELETION"
+                }
                 Technique::ApplicationLayerProtocol => "APPLICATION_LAYER_PROTOCOL",
                 Technique::Dns => "DNS",
                 Technique::SoftwareDeploymentTools => "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1201,8 +1209,14 @@ pub mod mitre_attack {
                 }
                 "UNIX_SHELL" => Some(Self::UnixShell),
                 "PYTHON" => Some(Self::Python),
+                "EXPLOITATION_FOR_PRIVILEGE_ESCALATION" => {
+                    Some(Self::ExploitationForPrivilegeEscalation)
+                }
                 "PERMISSION_GROUPS_DISCOVERY" => Some(Self::PermissionGroupsDiscovery),
                 "CLOUD_GROUPS" => Some(Self::CloudGroups),
+                "INDICATOR_REMOVAL_FILE_DELETION" => {
+                    Some(Self::IndicatorRemovalFileDeletion)
+                }
                 "APPLICATION_LAYER_PROTOCOL" => Some(Self::ApplicationLayerProtocol),
                 "DNS" => Some(Self::Dns),
                 "SOFTWARE_DEPLOYMENT_TOOLS" => Some(Self::SoftwareDeploymentTools),
@@ -1418,6 +1432,8 @@ pub struct Cve {
     pub observed_in_the_wild: bool,
     #[prost(bool, tag = "8")]
     pub zero_day: bool,
+    #[prost(message, optional, tag = "9")]
+    pub exploit_release_date: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Cve`.
 pub mod cve {
@@ -1848,6 +1864,8 @@ pub struct Finding {
     pub severity: i32,
     #[prost(enumeration = "finding::Mute", tag = "15")]
     pub mute: i32,
+    #[prost(message, optional, tag = "53")]
+    pub mute_info: ::core::option::Option<finding::MuteInfo>,
     #[prost(enumeration = "finding::FindingClass", tag = "16")]
     pub finding_class: i32,
     #[prost(message, optional, tag = "17")]
@@ -1929,6 +1947,33 @@ pub struct Finding {
 }
 /// Nested message and enum types in `Finding`.
 pub mod finding {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MuteInfo {
+        #[prost(message, optional, tag = "1")]
+        pub static_mute: ::core::option::Option<mute_info::StaticMute>,
+        #[prost(message, repeated, tag = "2")]
+        pub dynamic_mute_records: ::prost::alloc::vec::Vec<mute_info::DynamicMuteRecord>,
+    }
+    /// Nested message and enum types in `MuteInfo`.
+    pub mod mute_info {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct StaticMute {
+            #[prost(enumeration = "super::Mute", tag = "1")]
+            pub state: i32,
+            #[prost(message, optional, tag = "2")]
+            pub apply_time: ::core::option::Option<::prost_types::Timestamp>,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct DynamicMuteRecord {
+            #[prost(string, tag = "1")]
+            pub mute_config: ::prost::alloc::string::String,
+            #[prost(message, optional, tag = "2")]
+            pub match_time: ::core::option::Option<::prost_types::Timestamp>,
+        }
+    }
     #[derive(
         Clone,
         Copy,
@@ -2681,6 +2726,8 @@ pub struct MuteConfig {
     pub most_recent_editor: ::prost::alloc::string::String,
     #[prost(enumeration = "mute_config::MuteConfigType", tag = "8")]
     pub r#type: i32,
+    #[prost(message, optional, tag = "9")]
+    pub expiry_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `MuteConfig`.
 pub mod mute_config {
@@ -2699,6 +2746,7 @@ pub mod mute_config {
     pub enum MuteConfigType {
         Unspecified = 0,
         Static = 1,
+        Dynamic = 2,
     }
     impl MuteConfigType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2709,6 +2757,7 @@ pub mod mute_config {
             match self {
                 MuteConfigType::Unspecified => "MUTE_CONFIG_TYPE_UNSPECIFIED",
                 MuteConfigType::Static => "STATIC",
+                MuteConfigType::Dynamic => "DYNAMIC",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2716,6 +2765,7 @@ pub mod mute_config {
             match value {
                 "MUTE_CONFIG_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                 "STATIC" => Some(Self::Static),
+                "DYNAMIC" => Some(Self::Dynamic),
                 _ => None,
             }
         }
@@ -2771,6 +2821,50 @@ pub struct BulkMuteFindingsRequest {
     pub parent: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub filter: ::prost::alloc::string::String,
+    #[prost(enumeration = "bulk_mute_findings_request::MuteState", tag = "3")]
+    pub mute_state: i32,
+}
+/// Nested message and enum types in `BulkMuteFindingsRequest`.
+pub mod bulk_mute_findings_request {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum MuteState {
+        Unspecified = 0,
+        Muted = 1,
+        Undefined = 2,
+    }
+    impl MuteState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                MuteState::Unspecified => "MUTE_STATE_UNSPECIFIED",
+                MuteState::Muted => "MUTED",
+                MuteState::Undefined => "UNDEFINED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MUTE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "MUTED" => Some(Self::Muted),
+                "UNDEFINED" => Some(Self::Undefined),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -3869,13 +3963,15 @@ pub mod security_center_client {
         /// To group across all sources provide a `-` as the source id.
         /// The following list shows some examples:
         ///
-        /// + `/v2/organizations/{organization_id}/sources/-/findings`
-        /// +
+        /// * `/v2/organizations/{organization_id}/sources/-/findings`
+        /// *
+        ///
         /// `/v2/organizations/{organization_id}/sources/-/locations/{location_id}/findings`
-        /// + `/v2/folders/{folder_id}/sources/-/findings`
-        /// + `/v2/folders/{folder_id}/sources/-/locations/{location_id}/findings`
-        /// + `/v2/projects/{project_id}/sources/-/findings`
-        /// + `/v2/projects/{project_id}/sources/-/locations/{location_id}/findings`
+        ///
+        /// * `/v2/folders/{folder_id}/sources/-/findings`
+        /// * `/v2/folders/{folder_id}/sources/-/locations/{location_id}/findings`
+        /// * `/v2/projects/{project_id}/sources/-/findings`
+        /// * `/v2/projects/{project_id}/sources/-/locations/{location_id}/findings`
         pub async fn group_findings(
             &mut self,
             request: impl tonic::IntoRequest<super::GroupFindingsRequest>,
@@ -3979,8 +4075,9 @@ pub mod security_center_client {
         /// id. If no location is specified, finding are assumed to be in global.
         /// The following list shows some examples:
         ///
-        /// + `/v2/organizations/{organization_id}/sources/-/findings`
-        /// +
+        /// * `/v2/organizations/{organization_id}/sources/-/findings`
+        /// *
+        ///
         /// `/v2/organizations/{organization_id}/sources/-/locations/{location_id}/findings`
         pub async fn list_findings(
             &mut self,

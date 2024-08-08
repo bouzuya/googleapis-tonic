@@ -277,6 +277,12 @@ pub struct BusinessProfileLocation {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdTextAsset {
+    #[prost(string, optional, tag = "4")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAds360TextAdInfo {
     #[prost(string, optional, tag = "1")]
     pub headline: ::core::option::Option<::prost::alloc::string::String>,
@@ -333,6 +339,10 @@ pub struct SearchAds360ResponsiveSearchAdInfo {
     pub path2: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(int64, optional, tag = "3")]
     pub ad_tracking_id: ::core::option::Option<i64>,
+    #[prost(message, repeated, tag = "4")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    #[prost(message, repeated, tag = "5")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -583,6 +593,8 @@ pub struct Metrics {
         tag = "80"
     )]
     pub historical_creative_quality_score: i32,
+    #[prost(double, optional, tag = "364")]
+    pub average_quality_score: ::core::option::Option<f64>,
     #[prost(
         enumeration = "super::enums::quality_score_bucket_enum::QualityScoreBucket",
         tag = "81"
@@ -707,6 +719,16 @@ pub struct Segments {
     pub day_of_week: i32,
     #[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
     pub device: i32,
+    #[prost(string, optional, tag = "118")]
+    pub geo_target_city: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "119")]
+    pub geo_target_country: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "122")]
+    pub geo_target_metro: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "126")]
+    pub geo_target_region: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "88")]
+    pub hour: ::core::option::Option<i32>,
     #[prost(message, optional, tag = "61")]
     pub keyword: ::core::option::Option<Keyword>,
     #[prost(string, optional, tag = "90")]

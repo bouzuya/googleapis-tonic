@@ -100,6 +100,7 @@
     feature = "google-cloud-apigateway-v1",
     feature = "google-cloud-apigeeconnect-v1",
     feature = "google-cloud-apigeeregistry-v1",
+    feature = "google-cloud-apihub-v1",
     feature = "google-cloud-apphub-v1",
     feature = "google-cloud-asset-v1",
     feature = "google-cloud-asset-v1p1beta1",
@@ -538,6 +539,7 @@ pub mod google {
         feature = "google-cloud-apigateway-v1",
         feature = "google-cloud-apigeeconnect-v1",
         feature = "google-cloud-apigeeregistry-v1",
+        feature = "google-cloud-apihub-v1",
         feature = "google-cloud-apphub-v1",
         feature = "google-cloud-asset-v1",
         feature = "google-cloud-asset-v1p1beta1",
@@ -5120,6 +5122,20 @@ pub mod google {
                 feature = "google-cloud-location",
             ))]
             include!("vec_u8_btree_map/google.cloud.location.rs");
+        }
+        #[cfg(any(
+            feature = "google-cloud-apihub-v1",
+        ))]
+        pub mod apihub {
+            #[cfg(any(
+                feature = "google-cloud-apihub-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-apihub-v1",
+                ))]
+                include!("vec_u8_btree_map/google.cloud.apihub.v1.rs");
+            }
         }
     }
     #[cfg(any(

@@ -384,14 +384,14 @@ pub mod folders_client {
         /// In order to succeed, the addition of this new Folder must not violate
         /// the Folder naming, height or fanout constraints.
         ///
-        /// + The Folder's display_name must be distinct from all other Folder's that
-        /// share its parent.
-        /// + The addition of the Folder must not cause the active Folder hierarchy
-        /// to exceed a height of 4. Note, the full active + deleted Folder hierarchy
-        /// is allowed to reach a height of 8; this provides additional headroom when
-        /// moving folders that contain deleted folders.
-        /// + The addition of the Folder must not cause the total number of Folders
-        /// under its parent to exceed 100.
+        /// * The Folder's display_name must be distinct from all other Folder's that
+        ///  share its parent.
+        /// * The addition of the Folder must not cause the active Folder hierarchy
+        ///  to exceed a height of 4. Note, the full active + deleted Folder hierarchy
+        ///  is allowed to reach a height of 8; this provides additional headroom when
+        ///  moving folders that contain deleted folders.
+        /// * The addition of the Folder must not cause the total number of Folders
+        ///  under its parent to exceed 100.
         ///
         /// If the operation fails due to a folder constraint violation, some errors
         /// may be returned by the CreateFolder request, with status code
@@ -435,12 +435,12 @@ pub mod folders_client {
         /// Updates a Folder, changing its display_name.
         /// Changes to the folder display_name will be rejected if they violate either
         /// the display_name formatting rules or naming constraints described in
-        /// the [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
+        /// the \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
         ///
         /// The Folder's display name must start and end with a letter or digit,
         /// may contain letters, digits, spaces, hyphens and underscores and can be
         /// no longer than 30 characters. This is captured by the regular expression:
-        /// [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+        /// \[\\p{L}\p{N}\](\[\\p{L}\p{N}\_- \]{0,28}\[\\p{L}\p{N}\])?.
         /// The caller must have `resourcemanager.folders.update` permission on the
         /// identified folder.
         ///
@@ -488,7 +488,7 @@ pub mod folders_client {
         /// FolderOperation message as an aid to stateless clients.
         /// Folder moves will be rejected if they violate either the naming, height
         /// or fanout constraints described in the
-        /// [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
+        /// \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
         /// The caller must have `resourcemanager.folders.move` permission on the
         /// folder's current and proposed new parent.
         pub async fn move_folder(
@@ -522,12 +522,12 @@ pub mod folders_client {
             self.inner.unary(req, path, codec).await
         }
         /// Requests deletion of a Folder. The Folder is moved into the
-        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED] state
+        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED\] state
         /// immediately, and is deleted approximately 30 days later. This method may
         /// only be called on an empty Folder in the
-        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state, where a Folder is empty if
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state, where a Folder is empty if
         /// it doesn't contain any Folders or Projects in the
-        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state.
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state.
         /// The caller must have `resourcemanager.folders.delete` permission on the
         /// identified folder.
         pub async fn delete_folder(
@@ -559,12 +559,12 @@ pub mod folders_client {
         }
         /// Cancels the deletion request for a Folder. This method may only be
         /// called on a Folder in the
-        /// [DELETE_REQUESTED][google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED] state.
+        /// \[DELETE_REQUESTED\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.DELETE_REQUESTED\] state.
         /// In order to succeed, the Folder's parent must be in the
-        /// [ACTIVE][google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE] state.
+        /// \[ACTIVE\]\[google.cloud.resourcemanager.v2.Folder.LifecycleState.ACTIVE\] state.
         /// In addition, reintroducing the folder into the tree must not violate
         /// folder naming, height and fanout constraints described in the
-        /// [CreateFolder][google.cloud.resourcemanager.v2.Folders.CreateFolder] documentation.
+        /// \[CreateFolder\]\[google.cloud.resourcemanager.v2.Folders.CreateFolder\] documentation.
         /// The caller must have `resourcemanager.folders.undelete` permission on the
         /// identified folder.
         pub async fn undelete_folder(

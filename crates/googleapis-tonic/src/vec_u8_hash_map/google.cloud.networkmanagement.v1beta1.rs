@@ -2675,3 +2675,498 @@ pub mod reachability_service_client {
         }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VpcFlowLogsConfig {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "vpc_flow_logs_config::State", optional, tag = "3")]
+    pub state: ::core::option::Option<i32>,
+    #[prost(
+        enumeration = "vpc_flow_logs_config::AggregationInterval",
+        optional,
+        tag = "4"
+    )]
+    pub aggregation_interval: ::core::option::Option<i32>,
+    #[prost(float, optional, tag = "5")]
+    pub flow_sampling: ::core::option::Option<f32>,
+    #[prost(enumeration = "vpc_flow_logs_config::Metadata", optional, tag = "6")]
+    pub metadata: ::core::option::Option<i32>,
+    #[prost(string, repeated, tag = "7")]
+    pub metadata_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "8")]
+    pub filter_expr: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "11")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "9")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(oneof = "vpc_flow_logs_config::TargetResource", tags = "102, 103")]
+    pub target_resource: ::core::option::Option<vpc_flow_logs_config::TargetResource>,
+}
+/// Nested message and enum types in `VpcFlowLogsConfig`.
+pub mod vpc_flow_logs_config {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        Unspecified = 0,
+        Enabled = 1,
+        Disabled = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Enabled => "ENABLED",
+                State::Disabled => "DISABLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENABLED" => Some(Self::Enabled),
+                "DISABLED" => Some(Self::Disabled),
+                _ => None,
+            }
+        }
+    }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum AggregationInterval {
+        Unspecified = 0,
+        Interval5Sec = 1,
+        Interval30Sec = 2,
+        Interval1Min = 3,
+        Interval5Min = 4,
+        Interval10Min = 5,
+        Interval15Min = 6,
+    }
+    impl AggregationInterval {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                AggregationInterval::Unspecified => "AGGREGATION_INTERVAL_UNSPECIFIED",
+                AggregationInterval::Interval5Sec => "INTERVAL_5_SEC",
+                AggregationInterval::Interval30Sec => "INTERVAL_30_SEC",
+                AggregationInterval::Interval1Min => "INTERVAL_1_MIN",
+                AggregationInterval::Interval5Min => "INTERVAL_5_MIN",
+                AggregationInterval::Interval10Min => "INTERVAL_10_MIN",
+                AggregationInterval::Interval15Min => "INTERVAL_15_MIN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "AGGREGATION_INTERVAL_UNSPECIFIED" => Some(Self::Unspecified),
+                "INTERVAL_5_SEC" => Some(Self::Interval5Sec),
+                "INTERVAL_30_SEC" => Some(Self::Interval30Sec),
+                "INTERVAL_1_MIN" => Some(Self::Interval1Min),
+                "INTERVAL_5_MIN" => Some(Self::Interval5Min),
+                "INTERVAL_10_MIN" => Some(Self::Interval10Min),
+                "INTERVAL_15_MIN" => Some(Self::Interval15Min),
+                _ => None,
+            }
+        }
+    }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Metadata {
+        Unspecified = 0,
+        IncludeAllMetadata = 1,
+        ExcludeAllMetadata = 2,
+        CustomMetadata = 3,
+    }
+    impl Metadata {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Metadata::Unspecified => "METADATA_UNSPECIFIED",
+                Metadata::IncludeAllMetadata => "INCLUDE_ALL_METADATA",
+                Metadata::ExcludeAllMetadata => "EXCLUDE_ALL_METADATA",
+                Metadata::CustomMetadata => "CUSTOM_METADATA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "METADATA_UNSPECIFIED" => Some(Self::Unspecified),
+                "INCLUDE_ALL_METADATA" => Some(Self::IncludeAllMetadata),
+                "EXCLUDE_ALL_METADATA" => Some(Self::ExcludeAllMetadata),
+                "CUSTOM_METADATA" => Some(Self::CustomMetadata),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TargetResource {
+        #[prost(string, tag = "102")]
+        InterconnectAttachment(::prost::alloc::string::String),
+        #[prost(string, tag = "103")]
+        VpnTunnel(::prost::alloc::string::String),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListVpcFlowLogsConfigsRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListVpcFlowLogsConfigsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub vpc_flow_logs_configs: ::prost::alloc::vec::Vec<VpcFlowLogsConfig>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetVpcFlowLogsConfigRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateVpcFlowLogsConfigRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub vpc_flow_logs_config_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub vpc_flow_logs_config: ::core::option::Option<VpcFlowLogsConfig>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateVpcFlowLogsConfigRequest {
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    #[prost(message, optional, tag = "2")]
+    pub vpc_flow_logs_config: ::core::option::Option<VpcFlowLogsConfig>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteVpcFlowLogsConfigRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod vpc_flow_logs_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// The VPC Flow Logs service in the Google Cloud Network Management API provides
+    /// configurations that generate Flow Logs. The service and the configuration
+    /// resources created using this service are global.
+    #[derive(Debug, Clone)]
+    pub struct VpcFlowLogsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> VpcFlowLogsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> VpcFlowLogsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            VpcFlowLogsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists all `VpcFlowLogsConfigs` in a given project.
+        pub async fn list_vpc_flow_logs_configs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListVpcFlowLogsConfigsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListVpcFlowLogsConfigsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkmanagement.v1beta1.VpcFlowLogsService/ListVpcFlowLogsConfigs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkmanagement.v1beta1.VpcFlowLogsService",
+                        "ListVpcFlowLogsConfigs",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets the details of a specific `VpcFlowLogsConfig`.
+        pub async fn get_vpc_flow_logs_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetVpcFlowLogsConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::VpcFlowLogsConfig>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkmanagement.v1beta1.VpcFlowLogsService/GetVpcFlowLogsConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkmanagement.v1beta1.VpcFlowLogsService",
+                        "GetVpcFlowLogsConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new `VpcFlowLogsConfig`.
+        /// If a configuration with the exact same settings already exists (even if the
+        /// ID is different), the creation fails.
+        /// Notes:
+        ///
+        /// 1. Creating a configuration with state=DISABLED will fail.
+        /// 1. The following fields are not considrered as `settings` for the purpose
+        ///   of the check mentioned above, therefore - creating another configuration
+        ///   with the same fields but different values for the following fields will
+        ///   fail as well:
+        ///
+        /// * name
+        /// * create_time
+        /// * update_time
+        /// * labels
+        /// * description
+        pub async fn create_vpc_flow_logs_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateVpcFlowLogsConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkmanagement.v1beta1.VpcFlowLogsService/CreateVpcFlowLogsConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkmanagement.v1beta1.VpcFlowLogsService",
+                        "CreateVpcFlowLogsConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an existing `VpcFlowLogsConfig`.
+        /// If a configuration with the exact same settings already exists (even if the
+        /// ID is different), the creation fails.
+        /// Notes:
+        ///
+        /// 1. The following fields are not considrered as `settings` for the purpose
+        ///   of the check mentioned above, therefore - updating another configuration
+        ///   with the same fields but different values for the following fields will
+        ///   fail as well:
+        ///
+        /// * name
+        /// * create_time
+        /// * update_time
+        /// * labels
+        /// * description
+        pub async fn update_vpc_flow_logs_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateVpcFlowLogsConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkmanagement.v1beta1.VpcFlowLogsService/UpdateVpcFlowLogsConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkmanagement.v1beta1.VpcFlowLogsService",
+                        "UpdateVpcFlowLogsConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a specific `VpcFlowLogsConfig`.
+        pub async fn delete_vpc_flow_logs_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteVpcFlowLogsConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkmanagement.v1beta1.VpcFlowLogsService/DeleteVpcFlowLogsConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkmanagement.v1beta1.VpcFlowLogsService",
+                        "DeleteVpcFlowLogsConfig",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}

@@ -149,7 +149,7 @@ pub mod lookup_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Returns a [service][google.cloud.servicedirectory.v1beta1.Service] and its
+        /// Returns a \[service\]\[google.cloud.servicedirectory.v1beta1.Service\] and its
         /// associated endpoints.
         /// Resolving a service is not considered an active developer method.
         pub async fn resolve_service(
@@ -348,18 +348,18 @@ pub mod registration_service_client {
     /// Service Directory API for registering services. It defines the following
     /// resource model:
     ///
-    /// - The API has a collection of
-    /// [Namespace][google.cloud.servicedirectory.v1beta1.Namespace]
-    /// resources, named `projects/*/locations/*/namespaces/*`.
+    /// * The API has a collection of
+    ///  \[Namespace\]\[google.cloud.servicedirectory.v1beta1.Namespace\]
+    ///  resources, named `projects/*/locations/*/namespaces/*`.
     ///
-    /// - Each Namespace has a collection of
-    /// [Service][google.cloud.servicedirectory.v1beta1.Service] resources, named
-    /// `projects/*/locations/*/namespaces/*/services/*`.
+    /// * Each Namespace has a collection of
+    ///  \[Service\]\[google.cloud.servicedirectory.v1beta1.Service\] resources, named
+    ///  `projects/*/locations/*/namespaces/*/services/*`.
     ///
-    /// - Each Service has a collection of
-    /// [Endpoint][google.cloud.servicedirectory.v1beta1.Endpoint]
-    /// resources, named
-    /// `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.
+    /// * Each Service has a collection of
+    ///  \[Endpoint\]\[google.cloud.servicedirectory.v1beta1.Endpoint\]
+    ///  resources, named
+    ///  `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.
     #[derive(Debug, Clone)]
     pub struct RegistrationServiceClient<T> {
         inner: tonic::client::Grpc<T>,

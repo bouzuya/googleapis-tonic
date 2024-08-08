@@ -507,34 +507,33 @@ pub mod embedded_assistant_client {
         /// responds *What do you want to add?*. The sequence of streamed requests and
         /// responses in the first gRPC message could be:
         ///
-        /// *   AssistRequest.config
-        /// *   AssistRequest.audio_in
-        /// *   AssistRequest.audio_in
-        /// *   AssistRequest.audio_in
-        /// *   AssistRequest.audio_in
-        /// *   AssistResponse.event_type.END_OF_UTTERANCE
-        /// *   AssistResponse.speech_results.transcript "add to my shopping list"
-        /// *   AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
-        /// *   AssistResponse.audio_out
-        /// *   AssistResponse.audio_out
-        /// *   AssistResponse.audio_out
-        ///
+        /// * AssistRequest.config
+        /// * AssistRequest.audio_in
+        /// * AssistRequest.audio_in
+        /// * AssistRequest.audio_in
+        /// * AssistRequest.audio_in
+        /// * AssistResponse.event_type.END_OF_UTTERANCE
+        /// * AssistResponse.speech_results.transcript "add to my shopping list"
+        /// * AssistResponse.dialog_state_out.microphone_mode.DIALOG_FOLLOW_ON
+        /// * AssistResponse.audio_out
+        /// * AssistResponse.audio_out
+        /// * AssistResponse.audio_out
         ///
         /// The user then says *bagels* and the Assistant responds
         /// *OK, I've added bagels to your shopping list*. This is sent as another gRPC
         /// connection call to the `Assist` method, again with streamed requests and
         /// responses, such as:
         ///
-        /// *   AssistRequest.config
-        /// *   AssistRequest.audio_in
-        /// *   AssistRequest.audio_in
-        /// *   AssistRequest.audio_in
-        /// *   AssistResponse.event_type.END_OF_UTTERANCE
-        /// *   AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
-        /// *   AssistResponse.audio_out
-        /// *   AssistResponse.audio_out
-        /// *   AssistResponse.audio_out
-        /// *   AssistResponse.audio_out
+        /// * AssistRequest.config
+        /// * AssistRequest.audio_in
+        /// * AssistRequest.audio_in
+        /// * AssistRequest.audio_in
+        /// * AssistResponse.event_type.END_OF_UTTERANCE
+        /// * AssistResponse.dialog_state_out.microphone_mode.CLOSE_MICROPHONE
+        /// * AssistResponse.audio_out
+        /// * AssistResponse.audio_out
+        /// * AssistResponse.audio_out
+        /// * AssistResponse.audio_out
         ///
         /// Although the precise order of responses is not guaranteed, sequential
         /// `AssistResponse.audio_out` messages will always contain sequential portions

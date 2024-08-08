@@ -882,8 +882,7 @@ pub mod conference_records_service_client {
         /// Lists the participants in a conference record, by default ordered by join
         /// time and in descending order. This API supports `fields` as standard
         /// parameters like every other API. However, when the `fields` request
-        /// parameter is omitted, this API defaults to `'participants/*,
-        /// next_page_token'`.
+        /// parameter is omitted, this API defaults to `'participants/*, next_page_token'`.
         pub async fn list_participants(
             &mut self,
             request: impl tonic::IntoRequest<super::ListParticipantsRequest>,

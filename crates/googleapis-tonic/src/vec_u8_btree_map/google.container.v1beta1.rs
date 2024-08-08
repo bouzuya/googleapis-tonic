@@ -6434,7 +6434,7 @@ pub mod cluster_manager_client {
         }
         /// SetNodePoolSizeRequest sets the size of a node pool. The new size will be
         /// used for all replicas, including future replicas created by modifying
-        /// [NodePool.locations][google.container.v1beta1.NodePool.locations].
+        /// \[NodePool.locations\]\[google.container.v1beta1.NodePool.locations\].
         pub async fn set_node_pool_size(
             &mut self,
             request: impl tonic::IntoRequest<super::SetNodePoolSizeRequest>,

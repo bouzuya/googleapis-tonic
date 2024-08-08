@@ -150,7 +150,7 @@ pub mod identity_aware_proxy_admin_v1_beta1_client {
         }
         /// Returns permissions that a caller has on the Identity-Aware Proxy protected
         /// resource. If the resource does not exist or the caller does not have
-        /// Identity-Aware Proxy permissions a [google.rpc.Code.PERMISSION_DENIED]
+        /// Identity-Aware Proxy permissions a \[google.rpc.Code.PERMISSION_DENIED\]
         /// will be returned.
         /// More information about managing access via IAP can be found at:
         /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api

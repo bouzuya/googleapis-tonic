@@ -2910,12 +2910,12 @@ pub mod branch_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// Service for [Branch][google.cloud.retail.v2alpha.Branch] Management
+    /// Service for \[Branch\]\[google.cloud.retail.v2alpha.Branch\] Management
     ///
-    /// [Branch][google.cloud.retail.v2alpha.Branch]es are automatically created when
-    /// a [Catalog][google.cloud.retail.v2alpha.Catalog] is created. There are fixed
+    /// \[Branch\]\[google.cloud.retail.v2alpha.Branch\]es are automatically created when
+    /// a \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\] is created. There are fixed
     /// three branches in each catalog, and may use
-    /// [ListBranches][google.cloud.retail.v2alpha.BranchService.ListBranches] method
+    /// \[ListBranches\]\[google.cloud.retail.v2alpha.BranchService.ListBranches\] method
     /// to get the details of all branches.
     #[derive(Debug, Clone)]
     pub struct BranchServiceClient<T> {
@@ -2986,8 +2986,8 @@ pub mod branch_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists all [Branch][google.cloud.retail.v2alpha.Branch]s under the specified
-        /// parent [Catalog][google.cloud.retail.v2alpha.Catalog].
+        /// Lists all \[Branch\]\[google.cloud.retail.v2alpha.Branch\]s under the specified
+        /// parent \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\].
         pub async fn list_branches(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBranchesRequest>,
@@ -3018,7 +3018,7 @@ pub mod branch_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Retrieves a [Branch][google.cloud.retail.v2alpha.Branch].
+        /// Retrieves a \[Branch\]\[google.cloud.retail.v2alpha.Branch\].
         pub async fn get_branch(
             &mut self,
             request: impl tonic::IntoRequest<super::GetBranchRequest>,
@@ -3457,7 +3457,7 @@ pub mod product_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// Service for ingesting [Product][google.cloud.retail.v2alpha.Product]
+    /// Service for ingesting \[Product\]\[google.cloud.retail.v2alpha.Product\]
     /// information of the customer's website.
     #[derive(Debug, Clone)]
     pub struct ProductServiceClient<T> {
@@ -3528,7 +3528,7 @@ pub mod product_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a [Product][google.cloud.retail.v2alpha.Product].
+        /// Creates a \[Product\]\[google.cloud.retail.v2alpha.Product\].
         pub async fn create_product(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductRequest>,
@@ -3556,7 +3556,7 @@ pub mod product_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a [Product][google.cloud.retail.v2alpha.Product].
+        /// Gets a \[Product\]\[google.cloud.retail.v2alpha.Product\].
         pub async fn get_product(
             &mut self,
             request: impl tonic::IntoRequest<super::GetProductRequest>,
@@ -3584,7 +3584,7 @@ pub mod product_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a list of [Product][google.cloud.retail.v2alpha.Product]s.
+        /// Gets a list of \[Product\]\[google.cloud.retail.v2alpha.Product\]s.
         pub async fn list_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListProductsRequest>,
@@ -3615,7 +3615,7 @@ pub mod product_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a [Product][google.cloud.retail.v2alpha.Product].
+        /// Updates a \[Product\]\[google.cloud.retail.v2alpha.Product\].
         pub async fn update_product(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateProductRequest>,
@@ -3643,7 +3643,7 @@ pub mod product_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [Product][google.cloud.retail.v2alpha.Product].
+        /// Deletes a \[Product\]\[google.cloud.retail.v2alpha.Product\].
         pub async fn delete_product(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteProductRequest>,
@@ -3672,21 +3672,21 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Permanently deletes all selected
-        /// [Product][google.cloud.retail.v2alpha.Product]s under a branch.
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\]s under a branch.
         ///
         /// This process is asynchronous. If the request is valid, the removal will be
         /// enqueued and processed offline. Depending on the number of
-        /// [Product][google.cloud.retail.v2alpha.Product]s, this operation could take
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\]s, this operation could take
         /// hours to complete. Before the operation completes, some
-        /// [Product][google.cloud.retail.v2alpha.Product]s may still be returned by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\]s may still be returned by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
-        /// Depending on the number of [Product][google.cloud.retail.v2alpha.Product]s,
+        /// Depending on the number of \[Product\]\[google.cloud.retail.v2alpha.Product\]s,
         /// this operation could take hours to complete. To get a sample of
-        /// [Product][google.cloud.retail.v2alpha.Product]s that would be deleted, set
-        /// [PurgeProductsRequest.force][google.cloud.retail.v2alpha.PurgeProductsRequest.force]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\]s that would be deleted, set
+        /// \[PurgeProductsRequest.force\]\[google.cloud.retail.v2alpha.PurgeProductsRequest.force\]
         /// to false.
         pub async fn purge_products(
             &mut self,
@@ -3718,13 +3718,13 @@ pub mod product_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Bulk import of multiple [Product][google.cloud.retail.v2alpha.Product]s.
+        /// Bulk import of multiple \[Product\]\[google.cloud.retail.v2alpha.Product\]s.
         ///
         /// Request processing may be synchronous.
         /// Non-existing items are created.
         ///
         /// Note that it is possible for a subset of the
-        /// [Product][google.cloud.retail.v2alpha.Product]s to be successfully updated.
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\]s to be successfully updated.
         pub async fn import_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ImportProductsRequest>,
@@ -3756,53 +3756,53 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates inventory information for a
-        /// [Product][google.cloud.retail.v2alpha.Product] while respecting the last
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] while respecting the last
         /// update timestamps of each inventory field.
         ///
         /// This process is asynchronous and does not require the
-        /// [Product][google.cloud.retail.v2alpha.Product] to exist before updating
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] to exist before updating
         /// fulfillment information. If the request is valid, the update is enqueued
         /// and processed downstream. As a consequence, when a response is returned,
         /// updates are not immediately manifested in the
-        /// [Product][google.cloud.retail.v2alpha.Product] queried by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] queried by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
         /// When inventory is updated with
-        /// [ProductService.CreateProduct][google.cloud.retail.v2alpha.ProductService.CreateProduct]
+        /// \[ProductService.CreateProduct\]\[google.cloud.retail.v2alpha.ProductService.CreateProduct\]
         /// and
-        /// [ProductService.UpdateProduct][google.cloud.retail.v2alpha.ProductService.UpdateProduct],
+        /// \[ProductService.UpdateProduct\]\[google.cloud.retail.v2alpha.ProductService.UpdateProduct\],
         /// the specified inventory field value(s) overwrite any existing value(s)
         /// while ignoring the last update time for this field. Furthermore, the last
         /// update times for the specified inventory fields are overwritten by the
         /// times of the
-        /// [ProductService.CreateProduct][google.cloud.retail.v2alpha.ProductService.CreateProduct]
+        /// \[ProductService.CreateProduct\]\[google.cloud.retail.v2alpha.ProductService.CreateProduct\]
         /// or
-        /// [ProductService.UpdateProduct][google.cloud.retail.v2alpha.ProductService.UpdateProduct]
+        /// \[ProductService.UpdateProduct\]\[google.cloud.retail.v2alpha.ProductService.UpdateProduct\]
         /// request.
         ///
         /// If no inventory fields are set in
-        /// [CreateProductRequest.product][google.cloud.retail.v2alpha.CreateProductRequest.product],
+        /// \[CreateProductRequest.product\]\[google.cloud.retail.v2alpha.CreateProductRequest.product\],
         /// then any pre-existing inventory information for this product is used.
         ///
         /// If no inventory fields are set in
-        /// [SetInventoryRequest.set_mask][google.cloud.retail.v2alpha.SetInventoryRequest.set_mask],
+        /// \[SetInventoryRequest.set_mask\]\[google.cloud.retail.v2alpha.SetInventoryRequest.set_mask\],
         /// then any existing inventory information is preserved.
         ///
         /// Pre-existing inventory information can only be updated with
-        /// [ProductService.SetInventory][google.cloud.retail.v2alpha.ProductService.SetInventory],
-        /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2alpha.ProductService.AddFulfillmentPlaces],
+        /// \[ProductService.SetInventory\]\[google.cloud.retail.v2alpha.ProductService.SetInventory\],
+        /// \[ProductService.AddFulfillmentPlaces\]\[google.cloud.retail.v2alpha.ProductService.AddFulfillmentPlaces\],
         /// and
-        /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2alpha.ProductService.RemoveFulfillmentPlaces].
+        /// \[ProductService.RemoveFulfillmentPlaces\]\[google.cloud.retail.v2alpha.ProductService.RemoveFulfillmentPlaces\].
         ///
-        /// The returned [Operation][google.longrunning.Operation]s is obsolete after
-        /// one day, and the [GetOperation][google.longrunning.Operations.GetOperation]
+        /// The returned \[Operation\]\[google.longrunning.Operation\]s is obsolete after
+        /// one day, and the \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// API returns `NOT_FOUND` afterwards.
         ///
         /// If conflicting updates are issued, the
-        /// [Operation][google.longrunning.Operation]s associated with the stale
-        /// updates are not marked as [done][google.longrunning.Operation.done] until
+        /// \[Operation\]\[google.longrunning.Operation\]s associated with the stale
+        /// updates are not marked as \[done\]\[google.longrunning.Operation.done\] until
         /// they are obsolete.
         pub async fn set_inventory(
             &mut self,
@@ -3835,34 +3835,34 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// We recommend that you use the
-        /// [ProductService.AddLocalInventories][google.cloud.retail.v2alpha.ProductService.AddLocalInventories]
+        /// \[ProductService.AddLocalInventories\]\[google.cloud.retail.v2alpha.ProductService.AddLocalInventories\]
         /// method instead of the
-        /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2alpha.ProductService.AddFulfillmentPlaces]
+        /// \[ProductService.AddFulfillmentPlaces\]\[google.cloud.retail.v2alpha.ProductService.AddFulfillmentPlaces\]
         /// method.
-        /// [ProductService.AddLocalInventories][google.cloud.retail.v2alpha.ProductService.AddLocalInventories]
+        /// \[ProductService.AddLocalInventories\]\[google.cloud.retail.v2alpha.ProductService.AddLocalInventories\]
         /// achieves the same results but provides more fine-grained control over
         /// ingesting local inventory data.
         ///
         /// Incrementally adds place IDs to
-        /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2alpha.FulfillmentInfo.place_ids].
+        /// \[Product.fulfillment_info.place_ids\]\[google.cloud.retail.v2alpha.FulfillmentInfo.place_ids\].
         ///
         /// This process is asynchronous and does not require the
-        /// [Product][google.cloud.retail.v2alpha.Product] to exist before updating
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] to exist before updating
         /// fulfillment information. If the request is valid, the update will be
         /// enqueued and processed downstream. As a consequence, when a response is
         /// returned, the added place IDs are not immediately manifested in the
-        /// [Product][google.cloud.retail.v2alpha.Product] queried by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] queried by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
-        /// The returned [Operation][google.longrunning.Operation]s will be obsolete
-        /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+        /// The returned \[Operation\]\[google.longrunning.Operation\]s will be obsolete
+        /// after 1 day, and \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// API will return NOT_FOUND afterwards.
         ///
         /// If conflicting updates are issued, the
-        /// [Operation][google.longrunning.Operation]s associated with the stale
-        /// updates will not be marked as [done][google.longrunning.Operation.done]
+        /// \[Operation\]\[google.longrunning.Operation\]s associated with the stale
+        /// updates will not be marked as \[done\]\[google.longrunning.Operation.done\]
         /// until being obsolete.
         pub async fn add_fulfillment_places(
             &mut self,
@@ -3895,34 +3895,34 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// We recommend that you use the
-        /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2alpha.ProductService.RemoveLocalInventories]
+        /// \[ProductService.RemoveLocalInventories\]\[google.cloud.retail.v2alpha.ProductService.RemoveLocalInventories\]
         /// method instead of the
-        /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2alpha.ProductService.RemoveFulfillmentPlaces]
+        /// \[ProductService.RemoveFulfillmentPlaces\]\[google.cloud.retail.v2alpha.ProductService.RemoveFulfillmentPlaces\]
         /// method.
-        /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2alpha.ProductService.RemoveLocalInventories]
+        /// \[ProductService.RemoveLocalInventories\]\[google.cloud.retail.v2alpha.ProductService.RemoveLocalInventories\]
         /// achieves the same results but provides more fine-grained control over
         /// ingesting local inventory data.
         ///
         /// Incrementally removes place IDs from a
-        /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2alpha.FulfillmentInfo.place_ids].
+        /// \[Product.fulfillment_info.place_ids\]\[google.cloud.retail.v2alpha.FulfillmentInfo.place_ids\].
         ///
         /// This process is asynchronous and does not require the
-        /// [Product][google.cloud.retail.v2alpha.Product] to exist before updating
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] to exist before updating
         /// fulfillment information. If the request is valid, the update will be
         /// enqueued and processed downstream. As a consequence, when a response is
         /// returned, the removed place IDs are not immediately manifested in the
-        /// [Product][google.cloud.retail.v2alpha.Product] queried by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] queried by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
-        /// The returned [Operation][google.longrunning.Operation]s will be obsolete
-        /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+        /// The returned \[Operation\]\[google.longrunning.Operation\]s will be obsolete
+        /// after 1 day, and \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// API will return NOT_FOUND afterwards.
         ///
         /// If conflicting updates are issued, the
-        /// [Operation][google.longrunning.Operation]s associated with the stale
-        /// updates will not be marked as [done][google.longrunning.Operation.done]
+        /// \[Operation\]\[google.longrunning.Operation\]s associated with the stale
+        /// updates will not be marked as \[done\]\[google.longrunning.Operation.done\]
         /// until being obsolete.
         pub async fn remove_fulfillment_places(
             &mut self,
@@ -3955,32 +3955,32 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates local inventory information for a
-        /// [Product][google.cloud.retail.v2alpha.Product] at a list of places, while
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] at a list of places, while
         /// respecting the last update timestamps of each inventory field.
         ///
         /// This process is asynchronous and does not require the
-        /// [Product][google.cloud.retail.v2alpha.Product] to exist before updating
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] to exist before updating
         /// inventory information. If the request is valid, the update will be enqueued
         /// and processed downstream. As a consequence, when a response is returned,
         /// updates are not immediately manifested in the
-        /// [Product][google.cloud.retail.v2alpha.Product] queried by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] queried by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
         /// Local inventory information can only be modified using this method.
-        /// [ProductService.CreateProduct][google.cloud.retail.v2alpha.ProductService.CreateProduct]
+        /// \[ProductService.CreateProduct\]\[google.cloud.retail.v2alpha.ProductService.CreateProduct\]
         /// and
-        /// [ProductService.UpdateProduct][google.cloud.retail.v2alpha.ProductService.UpdateProduct]
+        /// \[ProductService.UpdateProduct\]\[google.cloud.retail.v2alpha.ProductService.UpdateProduct\]
         /// has no effect on local inventories.
         ///
-        /// The returned [Operation][google.longrunning.Operation]s will be obsolete
-        /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+        /// The returned \[Operation\]\[google.longrunning.Operation\]s will be obsolete
+        /// after 1 day, and \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// API will return NOT_FOUND afterwards.
         ///
         /// If conflicting updates are issued, the
-        /// [Operation][google.longrunning.Operation]s associated with the stale
-        /// updates will not be marked as [done][google.longrunning.Operation.done]
+        /// \[Operation\]\[google.longrunning.Operation\]s associated with the stale
+        /// updates will not be marked as \[done\]\[google.longrunning.Operation.done\]
         /// until being obsolete.
         pub async fn add_local_inventories(
             &mut self,
@@ -4013,30 +4013,30 @@ pub mod product_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Remove local inventory information for a
-        /// [Product][google.cloud.retail.v2alpha.Product] at a list of places at a
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] at a list of places at a
         /// removal timestamp.
         ///
         /// This process is asynchronous. If the request is valid, the removal will be
         /// enqueued and processed downstream. As a consequence, when a response is
         /// returned, removals are not immediately manifested in the
-        /// [Product][google.cloud.retail.v2alpha.Product] queried by
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct]
+        /// \[Product\]\[google.cloud.retail.v2alpha.Product\] queried by
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\]
         /// or
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts].
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\].
         ///
         /// Local inventory information can only be removed using this method.
-        /// [ProductService.CreateProduct][google.cloud.retail.v2alpha.ProductService.CreateProduct]
+        /// \[ProductService.CreateProduct\]\[google.cloud.retail.v2alpha.ProductService.CreateProduct\]
         /// and
-        /// [ProductService.UpdateProduct][google.cloud.retail.v2alpha.ProductService.UpdateProduct]
+        /// \[ProductService.UpdateProduct\]\[google.cloud.retail.v2alpha.ProductService.UpdateProduct\]
         /// has no effect on local inventories.
         ///
-        /// The returned [Operation][google.longrunning.Operation]s will be obsolete
-        /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+        /// The returned \[Operation\]\[google.longrunning.Operation\]s will be obsolete
+        /// after 1 day, and \[GetOperation\]\[google.longrunning.Operations.GetOperation\]
         /// API will return NOT_FOUND afterwards.
         ///
         /// If conflicting updates are issued, the
-        /// [Operation][google.longrunning.Operation]s associated with the stale
-        /// updates will not be marked as [done][google.longrunning.Operation.done]
+        /// \[Operation\]\[google.longrunning.Operation\]s associated with the stale
+        /// updates will not be marked as \[done\]\[google.longrunning.Operation.done\]
         /// until being obsolete.
         pub async fn remove_local_inventories(
             &mut self,
@@ -4308,8 +4308,8 @@ pub mod serving_config_service_client {
         /// Creates a ServingConfig.
         ///
         /// A maximum of 100
-        /// [ServingConfig][google.cloud.retail.v2alpha.ServingConfig]s are allowed in
-        /// a [Catalog][google.cloud.retail.v2alpha.Catalog], otherwise a
+        /// \[ServingConfig\]\[google.cloud.retail.v2alpha.ServingConfig\]s are allowed in
+        /// a \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\], otherwise a
         /// FAILED_PRECONDITION error is returned.
         pub async fn create_serving_config(
             &mut self,
@@ -4874,7 +4874,7 @@ pub mod catalog_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists all the [Catalog][google.cloud.retail.v2alpha.Catalog]s associated
+        /// Lists all the \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\]s associated
         /// with the project.
         pub async fn list_catalogs(
             &mut self,
@@ -4906,7 +4906,7 @@ pub mod catalog_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the [Catalog][google.cloud.retail.v2alpha.Catalog]s.
+        /// Updates the \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\]s.
         pub async fn update_catalog(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCatalogRequest>,
@@ -4935,25 +4935,25 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Set a specified branch id as default branch. API methods such as
-        /// [SearchService.Search][google.cloud.retail.v2alpha.SearchService.Search],
-        /// [ProductService.GetProduct][google.cloud.retail.v2alpha.ProductService.GetProduct],
-        /// [ProductService.ListProducts][google.cloud.retail.v2alpha.ProductService.ListProducts]
+        /// \[SearchService.Search\]\[google.cloud.retail.v2alpha.SearchService.Search\],
+        /// \[ProductService.GetProduct\]\[google.cloud.retail.v2alpha.ProductService.GetProduct\],
+        /// \[ProductService.ListProducts\]\[google.cloud.retail.v2alpha.ProductService.ListProducts\]
         /// will treat requests using "default_branch" to the actual branch id set as
         /// default.
         ///
         /// For example, if `projects/*/locations/*/catalogs/*/branches/1` is set as
         /// default, setting
-        /// [SearchRequest.branch][google.cloud.retail.v2alpha.SearchRequest.branch] to
+        /// \[SearchRequest.branch\]\[google.cloud.retail.v2alpha.SearchRequest.branch\] to
         /// `projects/*/locations/*/catalogs/*/branches/default_branch` is equivalent
         /// to setting
-        /// [SearchRequest.branch][google.cloud.retail.v2alpha.SearchRequest.branch] to
+        /// \[SearchRequest.branch\]\[google.cloud.retail.v2alpha.SearchRequest.branch\] to
         /// `projects/*/locations/*/catalogs/*/branches/1`.
         ///
         /// Using multiple branches can be useful when developers would like
         /// to have a staging branch to test and verify for future usage. When it
         /// becomes ready, developers switch on the staging branch using this API while
         /// keeping using `projects/*/locations/*/catalogs/*/branches/default_branch`
-        /// as [SearchRequest.branch][google.cloud.retail.v2alpha.SearchRequest.branch]
+        /// as \[SearchRequest.branch\]\[google.cloud.retail.v2alpha.SearchRequest.branch\]
         /// to route the traffic to this staging branch.
         ///
         /// CAUTION: If you have live predict/search traffic, switching the default
@@ -4964,9 +4964,9 @@ pub mod catalog_service_client {
         ///
         /// * PredictionService will only return product IDs from branch {newBranch}.
         /// * SearchService will only return product IDs from branch {newBranch}
-        ///   (if branch is not explicitly set).
+        ///  (if branch is not explicitly set).
         /// * UserEventService will only join events with products from branch
-        ///   {newBranch}.
+        ///  {newBranch}.
         pub async fn set_default_branch(
             &mut self,
             request: impl tonic::IntoRequest<super::SetDefaultBranchRequest>,
@@ -4995,7 +4995,7 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Get which branch is currently default branch set by
-        /// [CatalogService.SetDefaultBranch][google.cloud.retail.v2alpha.CatalogService.SetDefaultBranch]
+        /// \[CatalogService.SetDefaultBranch\]\[google.cloud.retail.v2alpha.CatalogService.SetDefaultBranch\]
         /// method under a specified parent catalog.
         pub async fn get_default_branch(
             &mut self,
@@ -5027,7 +5027,7 @@ pub mod catalog_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a [CompletionConfig][google.cloud.retail.v2alpha.CompletionConfig].
+        /// Gets a \[CompletionConfig\]\[google.cloud.retail.v2alpha.CompletionConfig\].
         pub async fn get_completion_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetCompletionConfigRequest>,
@@ -5059,7 +5059,7 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates the
-        /// [CompletionConfig][google.cloud.retail.v2alpha.CompletionConfig]s.
+        /// \[CompletionConfig\]\[google.cloud.retail.v2alpha.CompletionConfig\]s.
         pub async fn update_completion_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateCompletionConfigRequest>,
@@ -5090,7 +5090,7 @@ pub mod catalog_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets an [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig].
+        /// Gets an \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\].
         pub async fn get_attributes_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetAttributesConfigRequest>,
@@ -5122,7 +5122,7 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates the
-        /// [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig].
+        /// \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\].
         ///
         /// The catalog attributes in the request will be updated in the catalog, or
         /// inserted if they do not exist. Existing catalog attributes not included in
@@ -5161,10 +5161,10 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Adds the specified
-        /// [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] to the
-        /// [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig].
+        /// \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] to the
+        /// \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\].
         ///
-        /// If the [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] to
+        /// If the \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] to
         /// add already exists, an ALREADY_EXISTS error is returned.
         pub async fn add_catalog_attribute(
             &mut self,
@@ -5197,10 +5197,10 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Removes the specified
-        /// [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] from the
-        /// [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig].
+        /// \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] from the
+        /// \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\].
         ///
-        /// If the [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] to
+        /// If the \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] to
         /// remove does not exist, a NOT_FOUND error is returned.
         pub async fn remove_catalog_attribute(
             &mut self,
@@ -5233,8 +5233,8 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Removes all specified
-        /// [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute]s from the
-        /// [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig].
+        /// \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\]s from the
+        /// \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\].
         pub async fn batch_remove_catalog_attributes(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchRemoveCatalogAttributesRequest>,
@@ -5266,12 +5266,12 @@ pub mod catalog_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Replaces the specified
-        /// [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] in the
-        /// [AttributesConfig][google.cloud.retail.v2alpha.AttributesConfig] by
+        /// \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] in the
+        /// \[AttributesConfig\]\[google.cloud.retail.v2alpha.AttributesConfig\] by
         /// updating the catalog attribute with the same
-        /// [CatalogAttribute.key][google.cloud.retail.v2alpha.CatalogAttribute.key].
+        /// \[CatalogAttribute.key\]\[google.cloud.retail.v2alpha.CatalogAttribute.key\].
         ///
-        /// If the [CatalogAttribute][google.cloud.retail.v2alpha.CatalogAttribute] to
+        /// If the \[CatalogAttribute\]\[google.cloud.retail.v2alpha.CatalogAttribute\] to
         /// replace does not exist, a NOT_FOUND error is returned.
         pub async fn replace_catalog_attribute(
             &mut self,
@@ -5411,8 +5411,8 @@ pub mod merchant_center_account_link_service_client {
             self
         }
         /// Lists all
-        /// [MerchantCenterAccountLink][google.cloud.retail.v2alpha.MerchantCenterAccountLink]s
-        /// under the specified parent [Catalog][google.cloud.retail.v2alpha.Catalog].
+        /// \[MerchantCenterAccountLink\]\[google.cloud.retail.v2alpha.MerchantCenterAccountLink\]s
+        /// under the specified parent \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\].
         pub async fn list_merchant_center_account_links(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -5446,7 +5446,7 @@ pub mod merchant_center_account_link_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a
-        /// [MerchantCenterAccountLink][google.cloud.retail.v2alpha.MerchantCenterAccountLink].
+        /// \[MerchantCenterAccountLink\]\[google.cloud.retail.v2alpha.MerchantCenterAccountLink\].
         pub async fn create_merchant_center_account_link(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -5480,9 +5480,9 @@ pub mod merchant_center_account_link_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a
-        /// [MerchantCenterAccountLink][google.cloud.retail.v2alpha.MerchantCenterAccountLink].
+        /// \[MerchantCenterAccountLink\]\[google.cloud.retail.v2alpha.MerchantCenterAccountLink\].
         /// If the
-        /// [MerchantCenterAccountLink][google.cloud.retail.v2alpha.MerchantCenterAccountLink]
+        /// \[MerchantCenterAccountLink\]\[google.cloud.retail.v2alpha.MerchantCenterAccountLink\]
         /// to delete does not exist, a NOT_FOUND error is returned.
         pub async fn delete_merchant_center_account_link(
             &mut self,
@@ -6124,7 +6124,7 @@ pub mod control_service_client {
         }
         /// Creates a Control.
         ///
-        /// If the [Control][google.cloud.retail.v2alpha.Control] to create already
+        /// If the \[Control\]\[google.cloud.retail.v2alpha.Control\] to create already
         /// exists, an ALREADY_EXISTS error is returned.
         pub async fn create_control(
             &mut self,
@@ -6155,7 +6155,7 @@ pub mod control_service_client {
         }
         /// Deletes a Control.
         ///
-        /// If the [Control][google.cloud.retail.v2alpha.Control] to delete does not
+        /// If the \[Control\]\[google.cloud.retail.v2alpha.Control\] to delete does not
         /// exist, a NOT_FOUND error is returned.
         pub async fn delete_control(
             &mut self,
@@ -6186,9 +6186,9 @@ pub mod control_service_client {
         }
         /// Updates a Control.
         ///
-        /// [Control][google.cloud.retail.v2alpha.Control] cannot be set to a different
+        /// \[Control\]\[google.cloud.retail.v2alpha.Control\] cannot be set to a different
         /// oneof field, if so an INVALID_ARGUMENT is returned. If the
-        /// [Control][google.cloud.retail.v2alpha.Control] to update does not exist, a
+        /// \[Control\]\[google.cloud.retail.v2alpha.Control\] to update does not exist, a
         /// NOT_FOUND error is returned.
         pub async fn update_control(
             &mut self,
@@ -6246,7 +6246,7 @@ pub mod control_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists all Controls by their parent
-        /// [Catalog][google.cloud.retail.v2alpha.Catalog].
+        /// \[Catalog\]\[google.cloud.retail.v2alpha.Catalog\].
         pub async fn list_controls(
             &mut self,
             request: impl tonic::IntoRequest<super::ListControlsRequest>,
@@ -6890,12 +6890,12 @@ pub mod project_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// The method enrolls a solution of type [Retail
-        /// Search][google.cloud.retail.v2alpha.SolutionType.SOLUTION_TYPE_SEARCH]
+        /// The method enrolls a solution of type \[Retail
+        /// Search\]\[google.cloud.retail.v2alpha.SolutionType.SOLUTION_TYPE_SEARCH\]
         /// into a project.
         ///
-        /// The [Recommendations AI solution
-        /// type][google.cloud.retail.v2alpha.SolutionType.SOLUTION_TYPE_RECOMMENDATION]
+        /// The \[Recommendations AI solution
+        /// type\]\[google.cloud.retail.v2alpha.SolutionType.SOLUTION_TYPE_RECOMMENDATION\]
         /// is enrolled by default when your project enables Retail API, so you don't
         /// need to call the enrollSolution method for recommendations.
         pub async fn enroll_solution(
@@ -6959,7 +6959,7 @@ pub mod project_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the [LoggingConfig][google.cloud.retail.v2alpha.LoggingConfig] of the
+        /// Gets the \[LoggingConfig\]\[google.cloud.retail.v2alpha.LoggingConfig\] of the
         /// requested project.
         pub async fn get_logging_config(
             &mut self,
@@ -6988,7 +6988,7 @@ pub mod project_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the [LoggingConfig][google.cloud.retail.v2alpha.LoggingConfig] of
+        /// Updates the \[LoggingConfig\]\[google.cloud.retail.v2alpha.LoggingConfig\] of
         /// the requested project.
         pub async fn update_logging_config(
             &mut self,
@@ -7017,7 +7017,7 @@ pub mod project_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Get the [AlertConfig][google.cloud.retail.v2alpha.AlertConfig] of the
+        /// Get the \[AlertConfig\]\[google.cloud.retail.v2alpha.AlertConfig\] of the
         /// requested project.
         pub async fn get_alert_config(
             &mut self,

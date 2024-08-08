@@ -741,6 +741,8 @@ pub struct Audience {
     pub exclusion_duration_mode: i32,
     #[prost(message, repeated, tag = "8")]
     pub filter_clauses: ::prost::alloc::vec::Vec<AudienceFilterClause>,
+    #[prost(message, optional, tag = "9")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Audience`.
 pub mod audience {
@@ -963,6 +965,8 @@ pub struct ChannelGroup {
     pub grouping_rule: ::prost::alloc::vec::Vec<GroupingRule>,
     #[prost(bool, tag = "5")]
     pub system_defined: bool,
+    #[prost(bool, tag = "6")]
+    pub primary: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -985,6 +989,20 @@ pub struct EventCreateRule {
     pub source_copy_parameters: bool,
     #[prost(message, repeated, tag = "5")]
     pub parameter_mutations: ::prost::alloc::vec::Vec<ParameterMutation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventEditRule {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub event_conditions: ::prost::alloc::vec::Vec<MatchingCondition>,
+    #[prost(message, repeated, tag = "4")]
+    pub parameter_mutations: ::prost::alloc::vec::Vec<ParameterMutation>,
+    #[prost(int64, tag = "5")]
+    pub processing_order: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1223,6 +1241,8 @@ pub struct Account {
     pub region_code: ::prost::alloc::string::String,
     #[prost(bool, tag = "6")]
     pub deleted: bool,
+    #[prost(string, tag = "7")]
+    pub gmp_organization: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1721,6 +1741,74 @@ pub mod conversion_event {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "CONVERSION_COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+                "ONCE_PER_EVENT" => Some(Self::OncePerEvent),
+                "ONCE_PER_SESSION" => Some(Self::OncePerSession),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeyEvent {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub event_name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(bool, tag = "4")]
+    pub deletable: bool,
+    #[prost(bool, tag = "5")]
+    pub custom: bool,
+    #[prost(enumeration = "key_event::CountingMethod", tag = "6")]
+    pub counting_method: i32,
+    #[prost(message, optional, tag = "7")]
+    pub default_value: ::core::option::Option<key_event::DefaultValue>,
+}
+/// Nested message and enum types in `KeyEvent`.
+pub mod key_event {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DefaultValue {
+        #[prost(double, tag = "1")]
+        pub numeric_value: f64,
+        #[prost(string, tag = "2")]
+        pub currency_code: ::prost::alloc::string::String,
+    }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum CountingMethod {
+        Unspecified = 0,
+        OncePerEvent = 1,
+        OncePerSession = 2,
+    }
+    impl CountingMethod {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CountingMethod::Unspecified => "COUNTING_METHOD_UNSPECIFIED",
+                CountingMethod::OncePerEvent => "ONCE_PER_EVENT",
+                CountingMethod::OncePerSession => "ONCE_PER_SESSION",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
                 "ONCE_PER_EVENT" => Some(Self::OncePerEvent),
                 "ONCE_PER_SESSION" => Some(Self::OncePerSession),
                 _ => None,
@@ -2435,6 +2523,8 @@ pub struct BigQueryLink {
     pub export_streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(string, repeated, tag = "8")]
     pub excluded_events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "10")]
+    pub dataset_location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2715,6 +2805,7 @@ pub enum ChangeHistoryResourceType {
     AttributionSettings = 20,
     ExpandedDataSet = 21,
     ChannelGroup = 22,
+    BigqueryLink = 23,
     EnhancedMeasurementSettings = 24,
     DataRedactionSettings = 25,
     SkadnetworkConversionValueSchema = 26,
@@ -2756,6 +2847,7 @@ impl ChangeHistoryResourceType {
             ChangeHistoryResourceType::AttributionSettings => "ATTRIBUTION_SETTINGS",
             ChangeHistoryResourceType::ExpandedDataSet => "EXPANDED_DATA_SET",
             ChangeHistoryResourceType::ChannelGroup => "CHANNEL_GROUP",
+            ChangeHistoryResourceType::BigqueryLink => "BIGQUERY_LINK",
             ChangeHistoryResourceType::EnhancedMeasurementSettings => {
                 "ENHANCED_MEASUREMENT_SETTINGS"
             }
@@ -2794,6 +2886,7 @@ impl ChangeHistoryResourceType {
             "ATTRIBUTION_SETTINGS" => Some(Self::AttributionSettings),
             "EXPANDED_DATA_SET" => Some(Self::ExpandedDataSet),
             "CHANNEL_GROUP" => Some(Self::ChannelGroup),
+            "BIGQUERY_LINK" => Some(Self::BigqueryLink),
             "ENHANCED_MEASUREMENT_SETTINGS" => Some(Self::EnhancedMeasurementSettings),
             "DATA_REDACTION_SETTINGS" => Some(Self::DataRedactionSettings),
             "SKADNETWORK_CONVERSION_VALUE_SCHEMA" => {
@@ -3634,6 +3727,52 @@ pub struct ListConversionEventsResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateKeyEventRequest {
+    #[prost(message, optional, tag = "1")]
+    pub key_event: ::core::option::Option<KeyEvent>,
+    #[prost(string, tag = "2")]
+    pub parent: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateKeyEventRequest {
+    #[prost(message, optional, tag = "1")]
+    pub key_event: ::core::option::Option<KeyEvent>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetKeyEventRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteKeyEventRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListKeyEventsRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListKeyEventsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub key_events: ::prost::alloc::vec::Vec<KeyEvent>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDisplayVideo360AdvertiserLinkRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -4263,6 +4402,14 @@ pub struct FetchAutomatedGa4ConfigurationOptOutResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateBigQueryLinkRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub bigquery_link: ::core::option::Option<BigQueryLink>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBigQueryLinkRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -4284,6 +4431,20 @@ pub struct ListBigQueryLinksResponse {
     pub bigquery_links: ::prost::alloc::vec::Vec<BigQueryLink>,
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateBigQueryLinkRequest {
+    #[prost(message, optional, tag = "1")]
+    pub bigquery_link: ::core::option::Option<BigQueryLink>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteBigQueryLinkRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4444,6 +4605,60 @@ pub struct ListEventCreateRulesResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateEventEditRuleRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub event_edit_rule: ::core::option::Option<EventEditRule>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateEventEditRuleRequest {
+    #[prost(message, optional, tag = "1")]
+    pub event_edit_rule: ::core::option::Option<EventEditRule>,
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteEventEditRuleRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetEventEditRuleRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListEventEditRulesRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListEventEditRulesResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub event_edit_rules: ::prost::alloc::vec::Vec<EventEditRule>,
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReorderEventEditRulesRequest {
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag = "2")]
+    pub event_edit_rules: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRollupPropertyRequest {
     #[prost(message, optional, tag = "1")]
     pub rollup_property: ::core::option::Option<Property>,
@@ -4498,9 +4713,7 @@ pub struct DeleteRollupPropertySourceLinkRequest {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateSubpropertyRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
+pub struct ProvisionSubpropertyRequest {
     #[prost(message, optional, tag = "2")]
     pub subproperty: ::core::option::Option<Property>,
     #[prost(message, optional, tag = "3")]
@@ -4508,7 +4721,7 @@ pub struct CreateSubpropertyRequest {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateSubpropertyResponse {
+pub struct ProvisionSubpropertyResponse {
     #[prost(message, optional, tag = "1")]
     pub subproperty: ::core::option::Option<Property>,
     #[prost(message, optional, tag = "2")]
@@ -5703,6 +5916,7 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Deprecated: Use `CreateKeyEvent` instead.
         /// Creates a conversion event with the specified attributes.
         pub async fn create_conversion_event(
             &mut self,
@@ -5734,6 +5948,7 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Deprecated: Use `UpdateKeyEvent` instead.
         /// Updates a conversion event with the specified attributes.
         pub async fn update_conversion_event(
             &mut self,
@@ -5765,6 +5980,7 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Deprecated: Use `GetKeyEvent` instead.
         /// Retrieve a single conversion event.
         pub async fn get_conversion_event(
             &mut self,
@@ -5796,6 +6012,7 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Deprecated: Use `DeleteKeyEvent` instead.
         /// Deletes a conversion event in a property.
         pub async fn delete_conversion_event(
             &mut self,
@@ -5824,6 +6041,7 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Deprecated: Use `ListKeyEvents` instead.
         /// Returns a list of conversion events in the specified parent property.
         ///
         /// Returns an empty list if no conversion events are found.
@@ -5853,6 +6071,150 @@ pub mod analytics_admin_service_client {
                     GrpcMethod::new(
                         "google.analytics.admin.v1alpha.AnalyticsAdminService",
                         "ListConversionEvents",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a Key Event.
+        pub async fn create_key_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateKeyEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateKeyEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "CreateKeyEvent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a Key Event.
+        pub async fn update_key_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateKeyEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateKeyEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "UpdateKeyEvent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieve a single Key Event.
+        pub async fn get_key_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetKeyEventRequest>,
+        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetKeyEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "GetKeyEvent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a Key Event.
+        pub async fn delete_key_event(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteKeyEventRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteKeyEvent",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "DeleteKeyEvent",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a list of Key Events in the specified parent property.
+        /// Returns an empty list if no Key Events are found.
+        pub async fn list_key_events(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListKeyEventsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListKeyEventsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListKeyEvents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "ListKeyEvents",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -6190,9 +6552,10 @@ pub mod analytics_admin_service_client {
         }
         /// Cancels a DisplayVideo360AdvertiserLinkProposal.
         /// Cancelling can mean either:
-        /// - Declining a proposal initiated from Display & Video 360
-        /// - Withdrawing a proposal initiated from Google Analytics
-        /// After being cancelled, a proposal will eventually be deleted automatically.
+        ///
+        /// * Declining a proposal initiated from Display & Video 360
+        /// * Withdrawing a proposal initiated from Google Analytics
+        ///  After being cancelled, a proposal will eventually be deleted automatically.
         pub async fn cancel_display_video360_advertiser_link_proposal(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -7765,6 +8128,34 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Creates a BigQueryLink.
+        pub async fn create_big_query_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateBigQueryLinkRequest>,
+        ) -> std::result::Result<tonic::Response<super::BigQueryLink>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateBigQueryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "CreateBigQueryLink",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Lookup for a single BigQuery Link.
         pub async fn get_big_query_link(
             &mut self,
@@ -7820,6 +8211,62 @@ pub mod analytics_admin_service_client {
                     GrpcMethod::new(
                         "google.analytics.admin.v1alpha.AnalyticsAdminService",
                         "ListBigQueryLinks",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a BigQueryLink on a property.
+        pub async fn delete_big_query_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteBigQueryLinkRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteBigQueryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "DeleteBigQueryLink",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates a BigQueryLink.
+        pub async fn update_big_query_link(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateBigQueryLinkRequest>,
+        ) -> std::result::Result<tonic::Response<super::BigQueryLink>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateBigQueryLink",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "UpdateBigQueryLink",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -8288,6 +8735,177 @@ pub mod analytics_admin_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Lookup for a single EventEditRule.
+        pub async fn get_event_edit_rule(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetEventEditRuleRequest>,
+        ) -> std::result::Result<tonic::Response<super::EventEditRule>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventEditRule",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "GetEventEditRule",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists EventEditRules on a web data stream.
+        pub async fn list_event_edit_rules(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListEventEditRulesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListEventEditRulesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventEditRules",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "ListEventEditRules",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates an EventEditRule.
+        pub async fn create_event_edit_rule(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateEventEditRuleRequest>,
+        ) -> std::result::Result<tonic::Response<super::EventEditRule>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventEditRule",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "CreateEventEditRule",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates an EventEditRule.
+        pub async fn update_event_edit_rule(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateEventEditRuleRequest>,
+        ) -> std::result::Result<tonic::Response<super::EventEditRule>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventEditRule",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "UpdateEventEditRule",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes an EventEditRule.
+        pub async fn delete_event_edit_rule(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteEventEditRuleRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventEditRule",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "DeleteEventEditRule",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Changes the processing order of event edit rules on the specified stream.
+        pub async fn reorder_event_edit_rules(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReorderEventEditRulesRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ReorderEventEditRules",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.admin.v1alpha.AnalyticsAdminService",
+                        "ReorderEventEditRules",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Updates a DataRedactionSettings on a property.
         pub async fn update_data_redaction_settings(
             &mut self,
@@ -8668,11 +9286,11 @@ pub mod analytics_admin_service_client {
         }
         /// Create a subproperty and a subproperty event filter that applies to the
         /// created subproperty.
-        pub async fn create_subproperty(
+        pub async fn provision_subproperty(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateSubpropertyRequest>,
+            request: impl tonic::IntoRequest<super::ProvisionSubpropertyRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::CreateSubpropertyResponse>,
+            tonic::Response<super::ProvisionSubpropertyResponse>,
             tonic::Status,
         > {
             self.inner
@@ -8686,14 +9304,14 @@ pub mod analytics_admin_service_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSubproperty",
+                "/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionSubproperty",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new(
                         "google.analytics.admin.v1alpha.AnalyticsAdminService",
-                        "CreateSubproperty",
+                        "ProvisionSubproperty",
                     ),
                 );
             self.inner.unary(req, path, codec).await

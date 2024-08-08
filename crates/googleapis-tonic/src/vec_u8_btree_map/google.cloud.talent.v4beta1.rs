@@ -2519,7 +2519,7 @@ pub mod job_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a list of [Job][google.cloud.talent.v4beta1.Job]s by filter.
+        /// Deletes a list of \[Job\]\[google.cloud.talent.v4beta1.Job\]s by filter.
         pub async fn batch_delete_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchDeleteJobsRequest>,
@@ -2576,10 +2576,10 @@ pub mod job_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Searches for jobs using the provided
-        /// [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+        /// \[SearchJobsRequest\]\[google.cloud.talent.v4beta1.SearchJobsRequest\].
         ///
         /// This call constrains the
-        /// [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
+        /// \[visibility\]\[google.cloud.talent.v4beta1.Job.visibility\] of jobs present in
         /// the database, and only returns jobs that the caller has permission to
         /// search against.
         pub async fn search_jobs(
@@ -2613,7 +2613,7 @@ pub mod job_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Searches for jobs using the provided
-        /// [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+        /// \[SearchJobsRequest\]\[google.cloud.talent.v4beta1.SearchJobsRequest\].
         ///
         /// This API call is intended for the use case of targeting passive job
         /// seekers (for example, job seekers who have signed up to receive email
@@ -2621,7 +2621,7 @@ pub mod job_service_client {
         /// adjustments that are targeted to passive job seekers.
         ///
         /// This call constrains the
-        /// [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
+        /// \[visibility\]\[google.cloud.talent.v4beta1.Job.visibility\] of jobs present in
         /// the database, and only returns jobs the caller has permission to search
         /// against.
         pub async fn search_jobs_for_alert(

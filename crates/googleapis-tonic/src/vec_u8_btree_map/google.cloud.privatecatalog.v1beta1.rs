@@ -234,24 +234,24 @@ pub mod private_catalog_client {
     /// `PrivateCatalog` allows catalog consumers to retrieve `Catalog`, `Product`
     /// and `Version` resources under a target resource context.
     ///
-    /// `Catalog` is computed based on the [Association][]s linked to the target
+    /// `Catalog` is computed based on the \[Association\]\[\]s linked to the target
     /// resource and its ancestors. Each association's
-    /// [google.cloud.privatecatalogproducer.v1beta.Catalog][] is transformed into a
+    /// \[google.cloud.privatecatalogproducer.v1beta.Catalog\]\[\] is transformed into a
     /// `Catalog`. If multiple associations have the same parent
-    /// [google.cloud.privatecatalogproducer.v1beta.Catalog][], they are
+    /// \[google.cloud.privatecatalogproducer.v1beta.Catalog\]\[\], they are
     /// de-duplicated into one `Catalog`. Users must have
     /// `cloudprivatecatalog.catalogTargets.get` IAM permission on the resource
     /// context in order to access catalogs. `Catalog` contains the resource name and
     /// a subset of data of the original
-    /// [google.cloud.privatecatalogproducer.v1beta.Catalog][].
+    /// \[google.cloud.privatecatalogproducer.v1beta.Catalog\]\[\].
     ///
     /// `Product` is child resource of the catalog. A `Product` contains the resource
     /// name and a subset of the data of the original
-    /// [google.cloud.privatecatalogproducer.v1beta.Product][].
+    /// \[google.cloud.privatecatalogproducer.v1beta.Product\]\[\].
     ///
     /// `Version` is child resource of the product. A `Version` contains the resource
     /// name and a subset of the data of the original
-    /// [google.cloud.privatecatalogproducer.v1beta.Version][].
+    /// \[google.cloud.privatecatalogproducer.v1beta.Version\]\[\].
     #[derive(Debug, Clone)]
     pub struct PrivateCatalogClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -321,7 +321,7 @@ pub mod private_catalog_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Search [Catalog][google.cloud.privatecatalog.v1beta1.Catalog] resources that consumers have access to, within the
+        /// Search \[Catalog\]\[google.cloud.privatecatalog.v1beta1.Catalog\] resources that consumers have access to, within the
         /// scope of the consumer cloud resource hierarchy context.
         pub async fn search_catalogs(
             &mut self,
@@ -353,7 +353,7 @@ pub mod private_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Search [Product][google.cloud.privatecatalog.v1beta1.Product] resources that consumers have access to, within the
+        /// Search \[Product\]\[google.cloud.privatecatalog.v1beta1.Product\] resources that consumers have access to, within the
         /// scope of the consumer cloud resource hierarchy context.
         pub async fn search_products(
             &mut self,
@@ -385,7 +385,7 @@ pub mod private_catalog_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Search [Version][google.cloud.privatecatalog.v1beta1.Version] resources that consumers have access to, within the
+        /// Search \[Version\]\[google.cloud.privatecatalog.v1beta1.Version\] resources that consumers have access to, within the
         /// scope of the consumer cloud resource hierarchy context.
         pub async fn search_versions(
             &mut self,

@@ -72,6 +72,25 @@ pub struct Metric {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Comparison {
+    #[prost(string, optional, tag = "1")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(oneof = "comparison::OneComparison", tags = "2, 3")]
+    pub one_comparison: ::core::option::Option<comparison::OneComparison>,
+}
+/// Nested message and enum types in `Comparison`.
+pub mod comparison {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum OneComparison {
+        #[prost(message, tag = "2")]
+        DimensionFilter(super::FilterExpression),
+        #[prost(string, tag = "3")]
+        Comparison(::prost::alloc::string::String),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterExpression {
     #[prost(oneof = "filter_expression::Expr", tags = "1, 2, 3, 4")]
     pub expr: ::core::option::Option<filter_expression::Expr>,
@@ -700,6 +719,16 @@ pub mod metric_metadata {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComparisonMetadata {
+    #[prost(string, tag = "1")]
+    pub api_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub ui_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DimensionCompatibility {
     #[prost(message, optional, tag = "1")]
     pub dimension_metadata: ::core::option::Option<DimensionMetadata>,
@@ -899,6 +928,8 @@ pub struct Metadata {
     pub dimensions: ::prost::alloc::vec::Vec<DimensionMetadata>,
     #[prost(message, repeated, tag = "2")]
     pub metrics: ::prost::alloc::vec::Vec<MetricMetadata>,
+    #[prost(message, repeated, tag = "4")]
+    pub comparisons: ::prost::alloc::vec::Vec<ComparisonMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -931,6 +962,8 @@ pub struct RunReportRequest {
     pub keep_empty_rows: bool,
     #[prost(bool, tag = "14")]
     pub return_property_quota: bool,
+    #[prost(message, repeated, tag = "15")]
+    pub comparisons: ::prost::alloc::vec::Vec<Comparison>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -981,6 +1014,8 @@ pub struct RunPivotReportRequest {
     pub keep_empty_rows: bool,
     #[prost(bool, tag = "11")]
     pub return_property_quota: bool,
+    #[prost(message, repeated, tag = "12")]
+    pub comparisons: ::prost::alloc::vec::Vec<Comparison>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -344,7 +344,7 @@ pub mod workload_identity_pools_client {
             self
         }
         /// Lists all non-deleted
-        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool]s in a
+        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\]s in a
         /// project. If `show_deleted` is set to `true`, then deleted pools are also
         /// listed.
         pub async fn list_workload_identity_pools(
@@ -378,7 +378,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an individual
-        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         pub async fn get_workload_identity_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::GetWorkloadIdentityPoolRequest>,
@@ -410,7 +410,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new
-        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         ///
         /// You cannot reuse the name of a deleted pool until 30 days after deletion.
         pub async fn create_workload_identity_pool(
@@ -444,7 +444,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing
-        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         pub async fn update_workload_identity_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWorkloadIdentityPoolRequest>,
@@ -476,7 +476,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a
-        /// [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         ///
         /// You cannot use a deleted pool to exchange external
         /// credentials for Google Cloud credentials. However, deletion does
@@ -517,7 +517,7 @@ pub mod workload_identity_pools_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Undeletes a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool],
+        /// Undeletes a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\],
         /// as long as it was deleted fewer than 30 days ago.
         pub async fn undelete_workload_identity_pool(
             &mut self,
@@ -550,8 +550,8 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists all non-deleted
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityPoolProvider]s
-        /// in a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityPoolProvider\]s
+        /// in a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         /// If `show_deleted` is set to `true`, then deleted providers are also listed.
         pub async fn list_workload_identity_pool_providers(
             &mut self,
@@ -586,7 +586,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets an individual
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityPoolProvider].
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityPoolProvider\].
         pub async fn get_workload_identity_pool_provider(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -620,8 +620,8 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider]
-        /// in a [WorkloadIdentityPool][google.iam.v1beta.WorkloadIdentityPool].
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\]
+        /// in a \[WorkloadIdentityPool\]\[google.iam.v1beta.WorkloadIdentityPool\].
         ///
         /// You cannot reuse the name of a deleted provider until 30 days after
         /// deletion.
@@ -658,7 +658,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an existing
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider].
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\].
         pub async fn update_workload_identity_pool_provider(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -692,7 +692,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider].
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\].
         /// Deleting a provider does not revoke credentials that have already been
         /// issued; they continue to grant access.
         /// You can undelete a provider for 30 days. After 30 days, deletion is
@@ -731,7 +731,7 @@ pub mod workload_identity_pools_client {
             self.inner.unary(req, path, codec).await
         }
         /// Undeletes a
-        /// [WorkloadIdentityPoolProvider][google.iam.v1beta.WorkloadIdentityProvider],
+        /// \[WorkloadIdentityPoolProvider\]\[google.iam.v1beta.WorkloadIdentityProvider\],
         /// as long as it was deleted fewer than 30 days ago.
         pub async fn undelete_workload_identity_pool_provider(
             &mut self,

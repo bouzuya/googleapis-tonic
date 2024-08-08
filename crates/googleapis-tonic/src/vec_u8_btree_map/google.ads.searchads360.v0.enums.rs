@@ -1979,6 +1979,7 @@ pub mod ad_type_enum {
         DiscoveryCarouselAd = 36,
         TravelAd = 37,
         DiscoveryVideoResponsiveAd = 38,
+        MultimediaAd = 43,
     }
     impl AdType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2021,6 +2022,7 @@ pub mod ad_type_enum {
                 AdType::DiscoveryCarouselAd => "DISCOVERY_CAROUSEL_AD",
                 AdType::TravelAd => "TRAVEL_AD",
                 AdType::DiscoveryVideoResponsiveAd => "DISCOVERY_VIDEO_RESPONSIVE_AD",
+                AdType::MultimediaAd => "MULTIMEDIA_AD",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2064,6 +2066,7 @@ pub mod ad_type_enum {
                 "DISCOVERY_CAROUSEL_AD" => Some(Self::DiscoveryCarouselAd),
                 "TRAVEL_AD" => Some(Self::TravelAd),
                 "DISCOVERY_VIDEO_RESPONSIVE_AD" => Some(Self::DiscoveryVideoResponsiveAd),
+                "MULTIMEDIA_AD" => Some(Self::MultimediaAd),
                 _ => None,
             }
         }
@@ -5114,6 +5117,7 @@ pub mod advertising_channel_sub_type_enum {
         AppCampaignForPreRegistration = 18,
         VideoReachTargetFrequency = 19,
         TravelActivities = 20,
+        SocialFacebookTrackingOnly = 21,
     }
     impl AdvertisingChannelSubType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5153,6 +5157,9 @@ pub mod advertising_channel_sub_type_enum {
                     "VIDEO_REACH_TARGET_FREQUENCY"
                 }
                 AdvertisingChannelSubType::TravelActivities => "TRAVEL_ACTIVITIES",
+                AdvertisingChannelSubType::SocialFacebookTrackingOnly => {
+                    "SOCIAL_FACEBOOK_TRACKING_ONLY"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5183,6 +5190,7 @@ pub mod advertising_channel_sub_type_enum {
                 }
                 "VIDEO_REACH_TARGET_FREQUENCY" => Some(Self::VideoReachTargetFrequency),
                 "TRAVEL_ACTIVITIES" => Some(Self::TravelActivities),
+                "SOCIAL_FACEBOOK_TRACKING_ONLY" => Some(Self::SocialFacebookTrackingOnly),
                 _ => None,
             }
         }
@@ -5220,6 +5228,7 @@ pub mod advertising_channel_type_enum {
         LocalServices = 11,
         Discovery = 12,
         Travel = 13,
+        Social = 15,
     }
     impl AdvertisingChannelType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5242,6 +5251,7 @@ pub mod advertising_channel_type_enum {
                 AdvertisingChannelType::LocalServices => "LOCAL_SERVICES",
                 AdvertisingChannelType::Discovery => "DISCOVERY",
                 AdvertisingChannelType::Travel => "TRAVEL",
+                AdvertisingChannelType::Social => "SOCIAL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5261,6 +5271,7 @@ pub mod advertising_channel_type_enum {
                 "LOCAL_SERVICES" => Some(Self::LocalServices),
                 "DISCOVERY" => Some(Self::Discovery),
                 "TRAVEL" => Some(Self::Travel),
+                "SOCIAL" => Some(Self::Social),
                 _ => None,
             }
         }

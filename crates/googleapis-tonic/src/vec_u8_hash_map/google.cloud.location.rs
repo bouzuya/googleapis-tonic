@@ -49,7 +49,7 @@ pub mod locations_client {
     use tonic::codegen::http::Uri;
     /// An abstract interface that provides location-related information for
     /// a service. Service-specific metadata is provided through the
-    /// [Location.metadata][google.cloud.location.Location.metadata] field.
+    /// \[Location.metadata\]\[google.cloud.location.Location.metadata\] field.
     #[derive(Debug, Clone)]
     pub struct LocationsClient<T> {
         inner: tonic::client::Grpc<T>,

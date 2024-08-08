@@ -527,7 +527,7 @@ pub mod lineage_client {
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     /// Lineage is used to track data flows between assets over time. You can
-    /// create [LineageEvents][google.cloud.datacatalog.lineage.v1.LineageEvent]
+    /// create \[LineageEvents\]\[google.cloud.datacatalog.lineage.v1.LineageEvent\]
     /// to record lineage between multiple sources and a single target, for
     /// example, when table data is based on data from multiple tables.
     #[derive(Debug, Clone)]
@@ -1090,7 +1090,7 @@ pub mod lineage_client {
         /// If you have specific link names, you can use this method to
         /// verify which LineageProcesses contribute to creating those links.
         /// See the
-        /// [SearchLinks][google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks]
+        /// \[SearchLinks\]\[google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks\]
         /// method for more information on how to retrieve link name.
         ///
         /// You can retrieve the LineageProcess information in every project where you

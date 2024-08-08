@@ -61,7 +61,7 @@ impl ProtoDir {
         }
         let mut emit_package_names = BTreeSet::<ProtobufPackageName>::new();
         for package_name in dependencies.keys() {
-            if emit_package_name_candidates.contains(&package_name) {
+            if emit_package_name_candidates.contains(package_name) {
                 emit_package_names.insert(package_name.to_owned());
             }
         }

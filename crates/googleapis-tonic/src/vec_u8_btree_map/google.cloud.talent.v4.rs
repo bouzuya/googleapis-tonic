@@ -2536,10 +2536,10 @@ pub mod job_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Searches for jobs using the provided
-        /// [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+        /// \[SearchJobsRequest\]\[google.cloud.talent.v4.SearchJobsRequest\].
         ///
         /// This call constrains the
-        /// [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+        /// \[visibility\]\[google.cloud.talent.v4.Job.visibility\] of jobs present in the
         /// database, and only returns jobs that the caller has permission to search
         /// against.
         pub async fn search_jobs(
@@ -2570,7 +2570,7 @@ pub mod job_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Searches for jobs using the provided
-        /// [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+        /// \[SearchJobsRequest\]\[google.cloud.talent.v4.SearchJobsRequest\].
         ///
         /// This API call is intended for the use case of targeting passive job
         /// seekers (for example, job seekers who have signed up to receive email
@@ -2578,7 +2578,7 @@ pub mod job_service_client {
         /// adjustments that are designed to specifically target passive job seekers.
         ///
         /// This call constrains the
-        /// [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+        /// \[visibility\]\[google.cloud.talent.v4.Job.visibility\] of jobs present in the
         /// database, and only returns jobs the caller has permission to search
         /// against.
         pub async fn search_jobs_for_alert(

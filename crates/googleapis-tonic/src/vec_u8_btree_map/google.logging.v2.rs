@@ -1697,7 +1697,7 @@ pub mod config_service_v2_client {
                 .insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetLink"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists all the exclusions on the _Default sink in a parent resource.
+        /// Lists all the exclusions on the \_Default sink in a parent resource.
         pub async fn list_exclusions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExclusionsRequest>,
@@ -1728,7 +1728,7 @@ pub mod config_service_v2_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the description of an exclusion in the _Default sink.
+        /// Gets the description of an exclusion in the \_Default sink.
         pub async fn get_exclusion(
             &mut self,
             request: impl tonic::IntoRequest<super::GetExclusionRequest>,
@@ -1753,7 +1753,7 @@ pub mod config_service_v2_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new exclusion in the _Default sink in a specified parent
+        /// Creates a new exclusion in the \_Default sink in a specified parent
         /// resource. Only log entries belonging to that resource can be excluded. You
         /// can have up to 10 exclusions in a resource.
         pub async fn create_exclusion(
@@ -1783,7 +1783,7 @@ pub mod config_service_v2_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Changes one or more properties of an existing exclusion in the _Default
+        /// Changes one or more properties of an existing exclusion in the \_Default
         /// sink.
         pub async fn update_exclusion(
             &mut self,
@@ -1812,7 +1812,7 @@ pub mod config_service_v2_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes an exclusion in the _Default sink.
+        /// Deletes an exclusion in the \_Default sink.
         pub async fn delete_exclusion(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteExclusionRequest>,
@@ -1883,7 +1883,7 @@ pub mod config_service_v2_client {
         /// Cloud organizations. Once configured, it applies to all projects and
         /// folders in the Google Cloud organization.
         ///
-        /// [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
+        /// \[UpdateCmekSettings\]\[google.logging.v2.ConfigServiceV2.UpdateCmekSettings\]
         /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
         /// account does not have the required
         /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
@@ -1959,7 +1959,7 @@ pub mod config_service_v2_client {
         /// Google Cloud organizations. Once configured, it applies to all projects and
         /// folders in the Google Cloud organization.
         ///
-        /// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+        /// \[UpdateSettings\]\[google.logging.v2.ConfigServiceV2.UpdateSettings\]
         /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
         /// account does not have the required
         /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
@@ -2356,7 +2356,7 @@ pub mod logging_service_v2_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Deletes all the log entries in a log for the _Default Log Bucket. The log
+        /// Deletes all the log entries in a log for the \_Default Log Bucket. The log
         /// reappears if it receives new entries. Log entries written shortly before
         /// the delete operation might not be deleted. Entries received after the
         /// delete operation with a timestamp before the operation will be deleted.

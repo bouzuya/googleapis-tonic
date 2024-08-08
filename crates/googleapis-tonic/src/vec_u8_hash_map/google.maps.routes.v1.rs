@@ -1274,26 +1274,25 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
+        ///  `X-Goog-FieldMask: *`
         /// * Field mask of Route-level duration, distance, and polyline (an example
-        /// production setup):
-        ///   `X-Goog-FieldMask:
-        ///   routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
+        ///  production setup):
+        ///  `X-Goog-FieldMask: routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
         ///
         /// Google discourage the use of the wildcard (`*`) response field mask, or
         /// specifying the field mask at the top level (`routes`), because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
+        ///  cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need
-        /// in your production job ensures stable latency performance. We might add
-        /// more response fields in the future, and those new fields might require
-        /// extra computation time. If you select all fields, or if you select all
-        /// fields at the top level, then you might experience performance degradation
-        /// because any new field we add will be automatically included in the
-        /// response.
+        ///  in your production job ensures stable latency performance. We might add
+        ///  more response fields in the future, and those new fields might require
+        ///  extra computation time. If you select all fields, or if you select all
+        ///  fields at the top level, then you might experience performance degradation
+        ///  because any new field we add will be automatically included in the
+        ///  response.
         /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
+        ///  size, and thus higher network throughput.
         pub async fn compute_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRoutesRequest>,
@@ -1339,26 +1338,25 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
+        ///  `X-Goog-FieldMask: *`
         /// * Field mask of route durations, distances, element status, condition, and
-        ///   element indices (an example production setup):
-        ///   `X-Goog-FieldMask:
-        ///   originIndex,destinationIndex,status,condition,distanceMeters,duration`
+        ///  element indices (an example production setup):
+        ///  `X-Goog-FieldMask: originIndex,destinationIndex,status,condition,distanceMeters,duration`
         ///
         /// It is critical that you include `status` in your field mask as otherwise
         /// all messages will appear to be OK. Google discourages the use of the
         /// wildcard (`*`) response field mask, because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
+        ///  cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need in your production job ensures
-        /// stable latency performance. We might add more response fields in the
-        /// future, and those new fields might require extra computation time. If you
-        /// select all fields, or if you select all fields at the top level, then you
-        /// might experience performance degradation because any new field we add will
-        /// be automatically included in the response.
+        ///  stable latency performance. We might add more response fields in the
+        ///  future, and those new fields might require extra computation time. If you
+        ///  select all fields, or if you select all fields at the top level, then you
+        ///  might experience performance degradation because any new field we add will
+        ///  be automatically included in the response.
         /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
+        ///  size, and thus higher network throughput.
         pub async fn compute_route_matrix(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeRouteMatrixRequest>,
@@ -1405,24 +1403,23 @@ pub mod routes_preferred_client {
         /// For example, in this method:
         ///
         /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
+        ///  `X-Goog-FieldMask: *`
         /// * Field mask of route distances, durations, token and toll info:
-        ///   `X-Goog-FieldMask:
-        ///   routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
+        ///  `X-Goog-FieldMask: routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
         ///
         /// Google discourages the use of the wildcard (`*`) response field mask, or
         /// specifying the field mask at the top level (`routes`), because:
         ///
         /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
+        ///  cycles, allowing us to return the result to you with a lower latency.
         /// * Selecting only the fields that you need in your production job ensures
-        /// stable latency performance. We might add more response fields in the
-        /// future, and those new fields might require extra computation time. If you
-        /// select all fields, or if you select all fields at the top level, then you
-        /// might experience performance degradation because any new field we add will
-        /// be automatically included in the response.
+        ///  stable latency performance. We might add more response fields in the
+        ///  future, and those new fields might require extra computation time. If you
+        ///  select all fields, or if you select all fields at the top level, then you
+        ///  might experience performance degradation because any new field we add will
+        ///  be automatically included in the response.
         /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
+        ///  size, and thus higher network throughput.
         pub async fn compute_custom_routes(
             &mut self,
             request: impl tonic::IntoRequest<super::ComputeCustomRoutesRequest>,

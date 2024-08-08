@@ -79,7 +79,7 @@ pub mod watcher_client {
     use tonic::codegen::http::Uri;
     /// The service that a client uses to connect to the watcher system.
     /// The errors returned by the service are in the canonical error space,
-    /// see [google.rpc.Code][].
+    /// see \[google.rpc.Code\]\[\].
     #[derive(Debug, Clone)]
     pub struct WatcherClient<T> {
         inner: tonic::client::Grpc<T>,

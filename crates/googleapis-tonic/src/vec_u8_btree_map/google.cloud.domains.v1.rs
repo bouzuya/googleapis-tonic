@@ -1003,7 +1003,6 @@ pub mod domains_client {
         /// Cloud Domains. For domains managed by Google Domains, transferring to Cloud
         /// Domains is not supported.
         ///
-        ///
         /// Use the returned values to call `TransferDomain`.
         pub async fn retrieve_transfer_parameters(
             &mut self,
@@ -1038,7 +1037,6 @@ pub mod domains_client {
         /// Transfers a domain name from another registrar to Cloud Domains.  For
         /// domains managed by Google Domains, transferring to Cloud Domains is not
         /// supported.
-        ///
         ///
         /// Before calling this method, go to the domain's current registrar to unlock
         /// the domain for transfer and retrieve the domain's transfer authorization

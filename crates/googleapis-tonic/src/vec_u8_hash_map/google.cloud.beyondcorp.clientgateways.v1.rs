@@ -156,7 +156,7 @@ pub mod client_gateways_service_client {
     /// The ClientGatewaysService exposes the following resources:
     ///
     /// * Client Gateways, named as follows:
-    ///   `projects/{project_id}/locations/{location_id}/clientGateways/{client_gateway_id}`.
+    ///  `projects/{project_id}/locations/{location_id}/clientGateways/{client_gateway_id}`.
     #[derive(Debug, Clone)]
     pub struct ClientGatewaysServiceClient<T> {
         inner: tonic::client::Grpc<T>,

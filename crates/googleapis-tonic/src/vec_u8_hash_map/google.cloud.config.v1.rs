@@ -1517,7 +1517,7 @@ pub mod config_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists [Deployment][google.cloud.config.v1.Deployment]s in a given project
+        /// Lists \[Deployment\]\[google.cloud.config.v1.Deployment\]s in a given project
         /// and location.
         pub async fn list_deployments(
             &mut self,
@@ -1546,7 +1546,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a [Deployment][google.cloud.config.v1.Deployment].
+        /// Gets details about a \[Deployment\]\[google.cloud.config.v1.Deployment\].
         pub async fn get_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDeploymentRequest>,
@@ -1571,7 +1571,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a [Deployment][google.cloud.config.v1.Deployment].
+        /// Creates a \[Deployment\]\[google.cloud.config.v1.Deployment\].
         pub async fn create_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDeploymentRequest>,
@@ -1599,7 +1599,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates a [Deployment][google.cloud.config.v1.Deployment].
+        /// Updates a \[Deployment\]\[google.cloud.config.v1.Deployment\].
         pub async fn update_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDeploymentRequest>,
@@ -1627,7 +1627,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [Deployment][google.cloud.config.v1.Deployment].
+        /// Deletes a \[Deployment\]\[google.cloud.config.v1.Deployment\].
         pub async fn delete_deployment(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteDeploymentRequest>,
@@ -1655,7 +1655,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [Revision][google.cloud.config.v1.Revision]s of a deployment.
+        /// Lists \[Revision\]\[google.cloud.config.v1.Revision\]s of a deployment.
         pub async fn list_revisions(
             &mut self,
             request: impl tonic::IntoRequest<super::ListRevisionsRequest>,
@@ -1683,7 +1683,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a [Revision][google.cloud.config.v1.Revision].
+        /// Gets details about a \[Revision\]\[google.cloud.config.v1.Revision\].
         pub async fn get_revision(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRevisionRequest>,
@@ -1706,7 +1706,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetRevision"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a [Resource][google.cloud.config.v1.Resource] deployed
+        /// Gets details about a \[Resource\]\[google.cloud.config.v1.Resource\] deployed
         /// by Infra Manager.
         pub async fn get_resource(
             &mut self,
@@ -1730,7 +1730,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetResource"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
+        /// Lists \[Resource\]\[google.cloud.config.v1.Resource\]s in a given revision.
         pub async fn list_resources(
             &mut self,
             request: impl tonic::IntoRequest<super::ListResourcesRequest>,
@@ -1946,7 +1946,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a [Preview][google.cloud.config.v1.Preview].
+        /// Creates a \[Preview\]\[google.cloud.config.v1.Preview\].
         pub async fn create_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::CreatePreviewRequest>,
@@ -1974,7 +1974,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details about a [Preview][google.cloud.config.v1.Preview].
+        /// Gets details about a \[Preview\]\[google.cloud.config.v1.Preview\].
         pub async fn get_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::GetPreviewRequest>,
@@ -1997,7 +1997,7 @@ pub mod config_client {
                 .insert(GrpcMethod::new("google.cloud.config.v1.Config", "GetPreview"));
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
+        /// Lists \[Preview\]\[google.cloud.config.v1.Preview\]s in a given project and
         /// location.
         pub async fn list_previews(
             &mut self,
@@ -2026,7 +2026,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [Preview][google.cloud.config.v1.Preview].
+        /// Deletes a \[Preview\]\[google.cloud.config.v1.Preview\].
         pub async fn delete_preview(
             &mut self,
             request: impl tonic::IntoRequest<super::DeletePreviewRequest>,
@@ -2054,7 +2054,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Export [Preview][google.cloud.config.v1.Preview] results.
+        /// Export \[Preview\]\[google.cloud.config.v1.Preview\] results.
         pub async fn export_preview_result(
             &mut self,
             request: impl tonic::IntoRequest<super::ExportPreviewResultRequest>,
@@ -2085,7 +2085,7 @@ pub mod config_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [TerraformVersion][google.cloud.config.v1.TerraformVersion]s in a
+        /// Lists \[TerraformVersion\]\[google.cloud.config.v1.TerraformVersion\]s in a
         /// given project and location.
         pub async fn list_terraform_versions(
             &mut self,
@@ -2118,7 +2118,7 @@ pub mod config_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets details about a
-        /// [TerraformVersion][google.cloud.config.v1.TerraformVersion].
+        /// \[TerraformVersion\]\[google.cloud.config.v1.TerraformVersion\].
         pub async fn get_terraform_version(
             &mut self,
             request: impl tonic::IntoRequest<super::GetTerraformVersionRequest>,

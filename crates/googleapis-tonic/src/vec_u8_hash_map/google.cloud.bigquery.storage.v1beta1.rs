@@ -513,8 +513,8 @@ pub mod big_query_storage_client {
         ///
         /// Moreover, the two child streams will be allocated back to back in the
         /// original Stream. Concretely, it is guaranteed that for streams Original,
-        /// Primary, and Residual, that Original[0-j] = Primary[0-j] and
-        /// Original[j-n] = Residual[0-m] once the streams have been read to
+        /// Primary, and Residual, that Original\[0-j\] = Primary\[0-j\] and
+        /// Original\[j-n\] = Residual\[0-m\] once the streams have been read to
         /// completion.
         ///
         /// This method is guaranteed to be idempotent.

@@ -1612,11 +1612,11 @@ pub mod model_service_client {
         }
         /// Creates a tuned model.
         /// Intermediate tuning progress (if any) is accessed through the
-        /// [google.longrunning.Operations] service.
+        /// \[google.longrunning.Operations\] service.
         ///
         /// Status and results can be accessed through the Operations service.
         /// Example:
-        ///   GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
+        /// GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
         pub async fn create_tuned_model(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateTunedModelRequest>,

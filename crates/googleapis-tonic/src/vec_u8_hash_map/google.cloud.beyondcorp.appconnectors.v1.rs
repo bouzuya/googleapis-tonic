@@ -297,7 +297,7 @@ pub mod app_connectors_service_client {
     /// The AppConnectorsService exposes the following resource:
     ///
     /// * AppConnectors, named as follows:
-    ///   `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
+    ///  `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`.
     ///
     /// The AppConnectorsService provides methods to manage
     /// (create/read/update/delete) BeyondCorp AppConnectors.

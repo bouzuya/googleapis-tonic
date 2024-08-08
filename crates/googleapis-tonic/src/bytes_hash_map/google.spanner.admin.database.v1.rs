@@ -115,6 +115,10 @@ pub struct Backup {
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(int64, tag = "5")]
     pub size_bytes: i64,
+    #[prost(int64, tag = "15")]
+    pub freeable_size_bytes: i64,
+    #[prost(int64, tag = "16")]
+    pub exclusive_size_bytes: i64,
     #[prost(enumeration = "backup::State", tag = "6")]
     pub state: i32,
     #[prost(string, repeated, tag = "7")]
@@ -131,6 +135,10 @@ pub struct Backup {
     pub max_expire_time: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(string, repeated, tag = "14")]
     pub backup_schedules: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, tag = "17")]
+    pub incremental_backup_chain_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "18")]
+    pub oldest_version_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Backup`.
 pub mod backup {
@@ -420,6 +428,9 @@ pub mod copy_backup_encryption_config {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FullBackupSpec {}
 #[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct IncrementalBackupSpec {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupScheduleSpec {
     #[prost(oneof = "backup_schedule_spec::ScheduleSpec", tags = "1")]
@@ -447,7 +458,7 @@ pub struct BackupSchedule {
     pub encryption_config: ::core::option::Option<CreateBackupEncryptionConfig>,
     #[prost(message, optional, tag = "9")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "backup_schedule::BackupTypeSpec", tags = "7")]
+    #[prost(oneof = "backup_schedule::BackupTypeSpec", tags = "7, 8")]
     pub backup_type_spec: ::core::option::Option<backup_schedule::BackupTypeSpec>,
 }
 /// Nested message and enum types in `BackupSchedule`.
@@ -457,6 +468,8 @@ pub mod backup_schedule {
     pub enum BackupTypeSpec {
         #[prost(message, tag = "7")]
         FullBackupSpec(super::FullBackupSpec),
+        #[prost(message, tag = "8")]
+        IncrementalBackupSpec(super::IncrementalBackupSpec),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -927,10 +940,11 @@ pub mod database_admin_client {
     /// Cloud Spanner Database Admin API
     ///
     /// The Cloud Spanner Database Admin API can be used to:
-    ///   * create, drop, and list databases
-    ///   * update the schema of pre-existing databases
-    ///   * create, delete, copy and list backups for a database
-    ///   * restore a database from an existing backup
+    ///
+    /// * create, drop, and list databases
+    /// * update the schema of pre-existing databases
+    /// * create, delete, copy and list backups for a database
+    /// * restore a database from an existing backup
     #[derive(Debug, Clone)]
     pub struct DatabaseAdminClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1032,13 +1046,13 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a new Cloud Spanner database and starts to prepare it for serving.
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format `<database_name>/operations/<operation_id>` and
         /// can be used to track preparation of the database. The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Database][google.spanner.admin.database.v1.Database], if successful.
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CreateDatabaseMetadata\]\[google.spanner.admin.database.v1.CreateDatabaseMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Database\]\[google.spanner.admin.database.v1.Database\], if successful.
         pub async fn create_database(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateDatabaseRequest>,
@@ -1098,41 +1112,41 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a Cloud Spanner database. The returned
-        /// [long-running operation][google.longrunning.Operation] can be used to track
+        /// \[long-running operation\]\[google.longrunning.Operation\] can be used to track
         /// the progress of updating the database. If the named database does not
         /// exist, returns `NOT_FOUND`.
         ///
         /// While the operation is pending:
         ///
-        ///   * The database's
-        ///     [reconciling][google.spanner.admin.database.v1.Database.reconciling]
-        ///     field is set to true.
-        ///   * Cancelling the operation is best-effort. If the cancellation succeeds,
-        ///     the operation metadata's
-        ///     [cancel_time][google.spanner.admin.database.v1.UpdateDatabaseMetadata.cancel_time]
-        ///     is set, the updates are reverted, and the operation terminates with a
-        ///     `CANCELLED` status.
-        ///   * New UpdateDatabase requests will return a `FAILED_PRECONDITION` error
-        ///     until the pending operation is done (returns successfully or with
-        ///     error).
-        ///   * Reading the database via the API continues to give the pre-request
-        ///     values.
+        /// * The database's
+        ///  \[reconciling\]\[google.spanner.admin.database.v1.Database.reconciling\]
+        ///  field is set to true.
+        /// * Cancelling the operation is best-effort. If the cancellation succeeds,
+        ///  the operation metadata's
+        ///  \[cancel_time\]\[google.spanner.admin.database.v1.UpdateDatabaseMetadata.cancel_time\]
+        ///  is set, the updates are reverted, and the operation terminates with a
+        ///  `CANCELLED` status.
+        /// * New UpdateDatabase requests will return a `FAILED_PRECONDITION` error
+        ///  until the pending operation is done (returns successfully or with
+        ///  error).
+        /// * Reading the database via the API continues to give the pre-request
+        ///  values.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * The new values are in effect and readable via the API.
-        ///   * The database's
-        ///     [reconciling][google.spanner.admin.database.v1.Database.reconciling]
-        ///     field becomes false.
+        /// * The new values are in effect and readable via the API.
+        /// * The database's
+        ///  \[reconciling\]\[google.spanner.admin.database.v1.Database.reconciling\]
+        ///  field becomes false.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `projects/<project>/instances/<instance>/databases/<database>/operations/<operation_id>`
         /// and can be used to track the database modification. The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [UpdateDatabaseMetadata][google.spanner.admin.database.v1.UpdateDatabaseMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Database][google.spanner.admin.database.v1.Database], if successful.
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[UpdateDatabaseMetadata\]\[google.spanner.admin.database.v1.UpdateDatabaseMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Database\]\[google.spanner.admin.database.v1.Database\], if successful.
         pub async fn update_database(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateDatabaseRequest>,
@@ -1165,11 +1179,11 @@ pub mod database_admin_client {
         }
         /// Updates the schema of a Cloud Spanner database by
         /// creating/altering/dropping tables, columns, indexes, etc. The returned
-        /// [long-running operation][google.longrunning.Operation] will have a name of
+        /// \[long-running operation\]\[google.longrunning.Operation\] will have a name of
         /// the format `<database_name>/operations/<operation_id>` and can be used to
         /// track execution of the schema change(s). The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[UpdateDatabaseDdlMetadata\]\[google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata\].
         /// The operation has no response.
         pub async fn update_database_ddl(
             &mut self,
@@ -1235,7 +1249,7 @@ pub mod database_admin_client {
         }
         /// Returns the schema of a Cloud Spanner database as a list of formatted
         /// DDL statements. This method does not show pending schema updates, those may
-        /// be queried using the [Operations][google.longrunning.Operations] API.
+        /// be queried using the \[Operations\]\[google.longrunning.Operations\] API.
         pub async fn get_database_ddl(
             &mut self,
             request: impl tonic::IntoRequest<super::GetDatabaseDdlRequest>,
@@ -1270,9 +1284,9 @@ pub mod database_admin_client {
         /// Replaces any existing policy.
         ///
         /// Authorization requires `spanner.databases.setIamPolicy`
-        /// permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
+        /// permission on \[resource\]\[google.iam.v1.SetIamPolicyRequest.resource\].
         /// For backups, authorization requires `spanner.backups.setIamPolicy`
-        /// permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
+        /// permission on \[resource\]\[google.iam.v1.SetIamPolicyRequest.resource\].
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1310,9 +1324,9 @@ pub mod database_admin_client {
         /// policy set.
         ///
         /// Authorization requires `spanner.databases.getIamPolicy` permission on
-        /// [resource][google.iam.v1.GetIamPolicyRequest.resource].
+        /// \[resource\]\[google.iam.v1.GetIamPolicyRequest.resource\].
         /// For backups, authorization requires `spanner.backups.getIamPolicy`
-        /// permission on [resource][google.iam.v1.GetIamPolicyRequest.resource].
+        /// permission on \[resource\]\[google.iam.v1.GetIamPolicyRequest.resource\].
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1390,14 +1404,14 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Starts creating a new Cloud Spanner Backup.
-        /// The returned backup [long-running operation][google.longrunning.Operation]
+        /// The returned backup \[long-running operation\]\[google.longrunning.Operation\]
         /// will have a name of the format
         /// `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
         /// and can be used to track creation of the backup. The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Backup][google.spanner.admin.database.v1.Backup], if successful.
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CreateBackupMetadata\]\[google.spanner.admin.database.v1.CreateBackupMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Backup\]\[google.spanner.admin.database.v1.Backup\], if successful.
         /// Cancelling the returned operation will stop the creation and delete the
         /// backup. There can be only one pending backup creation per database. Backup
         /// creation of different databases can run concurrently.
@@ -1432,15 +1446,15 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Starts copying a Cloud Spanner Backup.
-        /// The returned backup [long-running operation][google.longrunning.Operation]
+        /// The returned backup \[long-running operation\]\[google.longrunning.Operation\]
         /// will have a name of the format
         /// `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
         /// and can be used to track copying of the backup. The operation is associated
         /// with the destination backup.
-        /// The [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Backup][google.spanner.admin.database.v1.Backup], if successful.
+        /// The \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CopyBackupMetadata\]\[google.spanner.admin.database.v1.CopyBackupMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Backup\]\[google.spanner.admin.database.v1.Backup\], if successful.
         /// Cancelling the returned operation will stop the copying and delete the
         /// destination backup. Concurrent CopyBackup requests can run on the same
         /// source backup.
@@ -1475,7 +1489,7 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets metadata on a pending or completed
-        /// [Backup][google.spanner.admin.database.v1.Backup].
+        /// \[Backup\]\[google.spanner.admin.database.v1.Backup\].
         pub async fn get_backup(
             &mut self,
             request: impl tonic::IntoRequest<super::GetBackupRequest>,
@@ -1504,7 +1518,7 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a pending or completed
-        /// [Backup][google.spanner.admin.database.v1.Backup].
+        /// \[Backup\]\[google.spanner.admin.database.v1.Backup\].
         pub async fn update_backup(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateBackupRequest>,
@@ -1533,7 +1547,7 @@ pub mod database_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a pending or completed
-        /// [Backup][google.spanner.admin.database.v1.Backup].
+        /// \[Backup\]\[google.spanner.admin.database.v1.Backup\].
         pub async fn delete_backup(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteBackupRequest>,
@@ -1597,14 +1611,14 @@ pub mod database_admin_client {
         /// Create a new database by restoring from a completed backup. The new
         /// database must be in the same project and in an instance with the same
         /// instance configuration as the instance containing
-        /// the backup. The returned database [long-running
-        /// operation][google.longrunning.Operation] has a name of the format
+        /// the backup. The returned database \[long-running
+        /// operation\]\[google.longrunning.Operation\] has a name of the format
         /// `projects/<project>/instances/<instance>/databases/<database>/operations/<operation_id>`,
         /// and can be used to track the progress of the operation, and to cancel it.
-        /// The [metadata][google.longrunning.Operation.metadata] field type is
-        /// [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
-        /// The [response][google.longrunning.Operation.response] type
-        /// is [Database][google.spanner.admin.database.v1.Database], if
+        /// The \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[RestoreDatabaseMetadata\]\[google.spanner.admin.database.v1.RestoreDatabaseMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] type
+        /// is \[Database\]\[google.spanner.admin.database.v1.Database\], if
         /// successful. Cancelling the returned operation will stop the restore and
         /// delete the database.
         /// There can be only one database being restored into an instance at a time.
@@ -1641,11 +1655,11 @@ pub mod database_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists database [longrunning-operations][google.longrunning.Operation].
+        /// Lists database \[longrunning-operations\]\[google.longrunning.Operation\].
         /// A database operation has a name of the form
         /// `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`.
         /// The long-running operation
-        /// [metadata][google.longrunning.Operation.metadata] field type
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
         /// `metadata.type_url` describes the type of the metadata. Operations returned
         /// include those that have completed/failed/canceled within the last 7 days,
         /// and pending operations.
@@ -1679,11 +1693,11 @@ pub mod database_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists the backup [long-running operations][google.longrunning.Operation] in
+        /// Lists the backup \[long-running operations\]\[google.longrunning.Operation\] in
         /// the given instance. A backup operation has a name of the form
         /// `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation>`.
         /// The long-running operation
-        /// [metadata][google.longrunning.Operation.metadata] field type
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
         /// `metadata.type_url` describes the type of the metadata. Operations returned
         /// include those that have completed/failed/canceled within the last 7 days,
         /// and pending operations. Operations returned are ordered by

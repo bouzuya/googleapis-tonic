@@ -120,13 +120,13 @@ pub mod customer_lifecycle_goal_service_client {
         /// Process the given customer lifecycle configurations.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CustomerLifecycleGoalConfigError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CustomerLifecycleGoalConfigError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn configure_customer_lifecycle_goals(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -448,15 +448,15 @@ pub mod customer_label_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [LabelError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [LabelError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerLabelsRequest>,
@@ -1062,14 +1062,14 @@ pub mod conversion_upload_service_client {
         /// Processes the given click conversions.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ConversionUploadError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [PartialFailureError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ConversionUploadError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [PartialFailureError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn upload_click_conversions(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadClickConversionsRequest>,
@@ -1103,13 +1103,13 @@ pub mod conversion_upload_service_client {
         /// Processes the given call conversions.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [PartialFailureError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [PartialFailureError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn upload_call_conversions(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadCallConversionsRequest>,
@@ -1263,18 +1263,18 @@ pub mod customer_client_link_service_client {
         /// Creates or updates a customer client link. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [ManagerLinkError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [ManagerLinkError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_client_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerClientLinkRequest>,
@@ -1441,29 +1441,29 @@ pub mod shared_set_service_client {
         /// Creates, updates, or removes shared sets. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SharedSetError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SharedSetError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_shared_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateSharedSetsRequest>,
@@ -1642,15 +1642,15 @@ pub mod customer_service_client {
         /// Updates a customer. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [UrlFieldError]()
         pub async fn mutate_customer(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerRequest>,
@@ -1685,12 +1685,12 @@ pub mod customer_service_client {
         /// user authenticating the call.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_accessible_customers(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccessibleCustomersRequest>,
@@ -1724,17 +1724,17 @@ pub mod customer_service_client {
         /// Creates a new client under manager. The new client customer is returned.
         ///
         /// List of thrown errors:
-        ///   [AccessInvitationError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CurrencyCodeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [ManagerLinkError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [StringLengthError]()
-        ///   [TimeZoneError]()
+        /// [AccessInvitationError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CurrencyCodeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [ManagerLinkError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [StringLengthError]()
+        /// [TimeZoneError]()
         pub async fn create_customer_client(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateCustomerClientRequest>,
@@ -1904,22 +1904,22 @@ pub mod conversion_action_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ConversionActionError]()
-        ///   [CurrencyCodeError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ConversionActionError]()
+        /// [CurrencyCodeError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [StringLengthError]()
         pub async fn mutate_conversion_actions(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateConversionActionsRequest>,
@@ -2088,35 +2088,35 @@ pub mod campaign_criterion_service_client {
         /// Creates, updates, or removes criteria. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdxError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignCriterionError]()
-        ///   [CollectionSizeError]()
-        ///   [ContextError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [FunctionError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RegionCodeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AdxError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignCriterionError]()
+        /// [CollectionSizeError]()
+        /// [ContextError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [FunctionError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RegionCodeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_campaign_criteria(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignCriteriaRequest>,
@@ -2273,16 +2273,16 @@ pub mod ad_group_ad_label_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [LabelError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [LabelError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_ad_group_ad_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAdLabelsRequest>,
@@ -2416,6 +2416,8 @@ pub struct ListAudienceInsightsAttributesRequest {
     pub customer_insights_group: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "5")]
     pub location_country_filters: ::prost::alloc::vec::Vec<super::common::LocationInfo>,
+    #[prost(message, optional, tag = "6")]
+    pub youtube_reach_location: ::core::option::Option<super::common::LocationInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2433,6 +2435,54 @@ pub struct ListInsightsEligibleDatesResponse {
     pub data_months: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "2")]
     pub last_thirty_days: ::core::option::Option<super::common::DateRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerateAudienceOverlapInsightsRequest {
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub country_location: ::core::option::Option<super::common::LocationInfo>,
+    #[prost(message, optional, tag = "3")]
+    pub primary_attribute: ::core::option::Option<AudienceInsightsAttribute>,
+    #[prost(
+        enumeration = "super::enums::audience_insights_dimension_enum::AudienceInsightsDimension",
+        repeated,
+        packed = "false",
+        tag = "4"
+    )]
+    pub dimensions: ::prost::alloc::vec::Vec<i32>,
+    #[prost(string, tag = "5")]
+    pub customer_insights_group: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerateAudienceOverlapInsightsResponse {
+    #[prost(message, optional, tag = "1")]
+    pub primary_attribute_metadata: ::core::option::Option<
+        AudienceInsightsAttributeMetadata,
+    >,
+    #[prost(message, repeated, tag = "2")]
+    pub dimension_results: ::prost::alloc::vec::Vec<DimensionOverlapResult>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DimensionOverlapResult {
+    #[prost(
+        enumeration = "super::enums::audience_insights_dimension_enum::AudienceInsightsDimension",
+        tag = "1"
+    )]
+    pub dimension: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<AudienceOverlapItem>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AudienceOverlapItem {
+    #[prost(message, optional, tag = "1")]
+    pub attribute_metadata: ::core::option::Option<AudienceInsightsAttributeMetadata>,
+    #[prost(int64, tag = "2")]
+    pub potential_youtube_reach_intersection: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2535,6 +2585,8 @@ pub struct AudienceInsightsAttributeMetadata {
     pub display_name: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
     pub display_info: ::prost::alloc::string::String,
+    #[prost(int64, tag = "9")]
+    pub potential_youtube_reach: i64,
     #[prost(
         oneof = "audience_insights_attribute_metadata::DimensionMetadata",
         tags = "6, 7, 8"
@@ -2756,14 +2808,14 @@ pub mod audience_insights_service_client {
         /// Creates a saved report that can be viewed in the Insights Finder tool.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn generate_insights_finder_report(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateInsightsFinderReportRequest>,
@@ -2797,14 +2849,14 @@ pub mod audience_insights_service_client {
         /// Searches for audience attributes that can be used to generate insights.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn list_audience_insights_attributes(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2840,14 +2892,14 @@ pub mod audience_insights_service_client {
         /// Lists date ranges for which audience insights data can be requested.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn list_insights_eligible_dates(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInsightsEligibleDatesRequest>,
@@ -2883,15 +2935,15 @@ pub mod audience_insights_service_client {
         /// with its share of a baseline audience.
         ///
         /// List of thrown errors:
-        ///   [AudienceInsightsError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AudienceInsightsError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn generate_audience_composition_insights(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2928,15 +2980,15 @@ pub mod audience_insights_service_client {
         /// are relevant to the requested audience.
         ///
         /// List of thrown errors:
-        ///   [AudienceInsightsError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AudienceInsightsError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn generate_suggested_targeting_insights(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -2965,6 +3017,52 @@ pub mod audience_insights_service_client {
                     GrpcMethod::new(
                         "google.ads.googleads.v17.services.AudienceInsightsService",
                         "GenerateSuggestedTargetingInsights",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Returns a collection of audience attributes along with estimates of the
+        /// overlap between their potential YouTube reach and that of a given input
+        /// attribute.
+        ///
+        /// List of thrown errors:
+        /// [AudienceInsightsError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        pub async fn generate_audience_overlap_insights(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::GenerateAudienceOverlapInsightsRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateAudienceOverlapInsightsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v17.services.AudienceInsightsService/GenerateAudienceOverlapInsights",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v17.services.AudienceInsightsService",
+                        "GenerateAudienceOverlapInsights",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -3170,13 +3268,13 @@ pub mod experiment_service_client {
         /// Creates, updates, or removes experiments. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_experiments(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateExperimentsRequest>,
@@ -3212,13 +3310,13 @@ pub mod experiment_service_client {
         /// time of the request.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn end_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::EndExperimentRequest>,
@@ -3251,12 +3349,12 @@ pub mod experiment_service_client {
         /// Supports standard list paging.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_experiment_async_errors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListExperimentAsyncErrorsRequest>,
@@ -3290,14 +3388,14 @@ pub mod experiment_service_client {
         /// Graduates an experiment to a full campaign.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn graduate_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::GraduateExperimentRequest>,
@@ -3337,18 +3435,18 @@ pub mod experiment_service_client {
         /// experiment.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DateRangeError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DateRangeError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
         pub async fn schedule_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::ScheduleExperimentRequest>,
@@ -3388,13 +3486,13 @@ pub mod experiment_service_client {
         /// experiment.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn promote_experiment(
             &mut self,
             request: impl tonic::IntoRequest<super::PromoteExperimentRequest>,
@@ -3562,28 +3660,28 @@ pub mod customer_feed_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CustomerFeedError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [FunctionError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CustomerFeedError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [FunctionError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_customer_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerFeedsRequest>,
@@ -3751,28 +3849,28 @@ pub mod ad_group_feed_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AdGroupFeedError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FunctionError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AdGroupFeedError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FunctionError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_ad_group_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupFeedsRequest>,
@@ -4270,17 +4368,17 @@ pub mod user_data_service_client {
         /// Uploads the given user data.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [OfflineUserDataJobError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [UserDataError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [OfflineUserDataJobError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [UserDataError]()
         pub async fn upload_user_data(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadUserDataRequest>,
@@ -4435,11 +4533,11 @@ pub mod customer_sk_ad_network_conversion_value_schema_service_client {
         /// Creates or updates the CustomerSkAdNetworkConversionValueSchema.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [InternalError]()
+        /// [MutateError]()
         pub async fn mutate_customer_sk_ad_network_conversion_value_schema(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -4611,44 +4709,44 @@ pub mod ad_service_client {
         /// for TextAd, ExpandedDynamicSearchAd, GmailAd and ImageAd.
         ///
         /// List of thrown errors:
-        ///   [AdCustomizerError]()
-        ///   [AdError]()
-        ///   [AdSharingError]()
-        ///   [AdxError]()
-        ///   [AssetError]()
-        ///   [AssetLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FeedAttributeReferenceError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [FunctionError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [ImageError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MediaBundleError]()
-        ///   [MediaFileError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [PolicyFindingError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AdCustomizerError]()
+        /// [AdError]()
+        /// [AdSharingError]()
+        /// [AdxError]()
+        /// [AssetError]()
+        /// [AssetLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FeedAttributeReferenceError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [FunctionError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [ImageError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MediaBundleError]()
+        /// [MediaFileError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [PolicyFindingError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_ads(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdsRequest>,
@@ -4815,37 +4913,37 @@ pub mod ad_group_service_client {
         /// Creates, updates, or removes ad groups. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdGroupError]()
-        ///   [AdxError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BiddingError]()
-        ///   [BiddingStrategyError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MultiplierError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SettingError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AdGroupError]()
+        /// [AdxError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BiddingError]()
+        /// [BiddingStrategyError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MultiplierError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SettingError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_ad_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupsRequest>,
@@ -5015,29 +5113,29 @@ pub mod extension_feed_item_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CountryCodeError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [ExtensionFeedItemError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [ImageError]()
-        ///   [InternalError]()
-        ///   [LanguageCodeError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CountryCodeError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [ExtensionFeedItemError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [ImageError]()
+        /// [InternalError]()
+        /// [LanguageCodeError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [OperationAccessDeniedError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_extension_feed_items(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateExtensionFeedItemsRequest>,
@@ -5518,13 +5616,13 @@ pub mod experiment_arm_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ExperimentArmError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ExperimentArmError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_experiment_arms(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateExperimentArmsRequest>,
@@ -5689,26 +5787,26 @@ pub mod shared_criterion_service_client {
         /// Creates or removes shared criteria. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_shared_criteria(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateSharedCriteriaRequest>,
@@ -6040,28 +6138,28 @@ pub mod campaign_shared_set_service_client {
         /// Creates or removes campaign shared sets. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignSharedSetError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignSharedSetError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_campaign_shared_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignSharedSetsRequest>,
@@ -6192,12 +6290,12 @@ pub mod keyword_theme_constant_service_client {
         /// Returns KeywordThemeConstant suggestions by keyword themes.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn suggest_keyword_theme_constants(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestKeywordThemeConstantsRequest>,
@@ -6361,25 +6459,25 @@ pub mod feed_mapping_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FeedMappingError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FeedMappingError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_feed_mappings(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedMappingsRequest>,
@@ -6877,17 +6975,17 @@ pub mod customer_manager_link_service_client {
         /// Updates customer manager links. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [ManagerLinkError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [ManagerLinkError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_manager_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerManagerLinkRequest>,
@@ -6921,19 +7019,20 @@ pub mod customer_manager_link_service_client {
         /// Moves a client customer to a new manager customer.
         /// This simplifies the complex request that requires two operations to move
         /// a client customer to a new manager, for example:
+        ///
         /// 1. Update operation with Status INACTIVE (previous manager) and,
-        /// 2. Update operation with Status ACTIVE (new manager).
+        /// 1. Update operation with Status ACTIVE (new manager).
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn move_manager_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MoveManagerLinkRequest>,
@@ -7089,13 +7188,13 @@ pub mod customer_user_access_invitation_service_client {
         /// Creates or removes an access invitation.
         ///
         /// List of thrown errors:
-        ///   [AccessInvitationError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AccessInvitationError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_user_access_invitation(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -7425,17 +7524,17 @@ pub mod campaign_label_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [LabelError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [LabelError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_campaign_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignLabelsRequest>,
@@ -8050,14 +8149,14 @@ pub mod keyword_plan_idea_service_client {
         /// Returns a list of keyword ideas.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanIdeaError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanIdeaError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn generate_keyword_ideas(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateKeywordIdeasRequest>,
@@ -8091,13 +8190,13 @@ pub mod keyword_plan_idea_service_client {
         /// Returns a list of keyword historical metrics.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn generate_keyword_historical_metrics(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -8134,13 +8233,13 @@ pub mod keyword_plan_idea_service_client {
         /// (text, match type) for the given keywords.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn generate_ad_group_themes(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateAdGroupThemesRequest>,
@@ -8175,13 +8274,13 @@ pub mod keyword_plan_idea_service_client {
         /// forecast for the given campaign.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn generate_keyword_forecast_metrics(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -8341,12 +8440,12 @@ pub mod feed_item_set_link_service_client {
         /// Creates, updates, or removes feed item set links.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_feed_item_set_links(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemSetLinksRequest>,
@@ -8475,14 +8574,14 @@ pub mod invoice_service_client {
         /// Returns all invoices associated with a billing setup, for a given month.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [InvoiceError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [InvoiceError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_invoices(
             &mut self,
             request: impl tonic::IntoRequest<super::ListInvoicesRequest>,
@@ -8649,33 +8748,33 @@ pub mod asset_service_client {
         /// Creates assets. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AssetError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CurrencyCodeError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MediaUploadError]()
-        ///   [MutateError]()
-        ///   [NotAllowlistedError]()
-        ///   [NotEmptyError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
-        ///   [YoutubeVideoRegistrationError]()
+        /// [AssetError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CurrencyCodeError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MediaUploadError]()
+        /// [MutateError]()
+        /// [NotAllowlistedError]()
+        /// [NotEmptyError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
+        /// [YoutubeVideoRegistrationError]()
         pub async fn mutate_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAssetsRequest>,
@@ -9176,16 +9275,16 @@ pub mod offline_user_data_job_service_client {
         /// Creates an offline user data job.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [NotAllowlistedError]()
-        ///   [OfflineUserDataJobError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [NotAllowlistedError]()
+        /// [OfflineUserDataJobError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn create_offline_user_data_job(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateOfflineUserDataJobRequest>,
@@ -9219,16 +9318,16 @@ pub mod offline_user_data_job_service_client {
         /// Adds operations to the offline user data job.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [OfflineUserDataJobError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [OfflineUserDataJobError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn add_offline_user_data_job_operations(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -9267,14 +9366,14 @@ pub mod offline_user_data_job_service_client {
         /// result or failure information, if any.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [OfflineUserDataJobError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [OfflineUserDataJobError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn run_offline_user_data_job(
             &mut self,
             request: impl tonic::IntoRequest<super::RunOfflineUserDataJobRequest>,
@@ -9367,6 +9466,25 @@ pub struct MutateAdGroupAdResult {
     #[prost(message, optional, tag = "2")]
     pub ad_group_ad: ::core::option::Option<super::resources::AdGroupAd>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RemoveAutomaticallyCreatedAssetsRequest {
+    #[prost(string, tag = "1")]
+    pub ad_group_ad: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub assets_with_field_type: ::prost::alloc::vec::Vec<AssetsWithFieldType>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssetsWithFieldType {
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "super::enums::asset_field_type_enum::AssetFieldType",
+        tag = "2"
+    )]
+    pub asset_field_type: i32,
+}
 /// Generated client implementations.
 pub mod ad_group_ad_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -9445,49 +9563,49 @@ pub mod ad_group_ad_service_client {
         /// Creates, updates, or removes ads. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdCustomizerError]()
-        ///   [AdError]()
-        ///   [AdGroupAdError]()
-        ///   [AdSharingError]()
-        ///   [AdxError]()
-        ///   [AssetError]()
-        ///   [AssetLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FeedAttributeReferenceError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [FunctionError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [ImageError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MediaBundleError]()
-        ///   [MediaFileError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [PolicyFindingError]()
-        ///   [PolicyValidationParameterError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AdCustomizerError]()
+        /// [AdError]()
+        /// [AdGroupAdError]()
+        /// [AdSharingError]()
+        /// [AdxError]()
+        /// [AssetError]()
+        /// [AssetLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FeedAttributeReferenceError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [FunctionError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [ImageError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MediaBundleError]()
+        /// [MediaFileError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [PolicyFindingError]()
+        /// [PolicyValidationParameterError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_ad_group_ads(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAdsRequest>,
@@ -9514,6 +9632,47 @@ pub mod ad_group_ad_service_client {
                     GrpcMethod::new(
                         "google.ads.googleads.v17.services.AdGroupAdService",
                         "MutateAdGroupAds",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Remove automatically created assets from an ad.
+        ///
+        /// List of thrown errors:
+        /// [AdError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [AutomaticallyCreatedAssetRemovalError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        pub async fn remove_automatically_created_assets(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::RemoveAutomaticallyCreatedAssetsRequest,
+            >,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v17.services.AdGroupAdService/RemoveAutomaticallyCreatedAssets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v17.services.AdGroupAdService",
+                        "RemoveAutomaticallyCreatedAssets",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -9655,17 +9814,17 @@ pub mod ad_group_asset_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AssetLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ContextError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotAllowlistedError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AssetLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ContextError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotAllowlistedError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_ad_group_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupAssetsRequest>,
@@ -9837,29 +9996,29 @@ pub mod ad_group_bid_modifier_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdGroupBidModifierError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ContextError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AdGroupBidModifierError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ContextError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_ad_group_bid_modifiers(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupBidModifiersRequest>,
@@ -10018,14 +10177,14 @@ pub mod ad_group_criterion_label_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_ad_group_criterion_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupCriterionLabelsRequest>,
@@ -10198,39 +10357,39 @@ pub mod ad_group_criterion_service_client {
         /// Creates, updates, or removes criteria. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdGroupCriterionError]()
-        ///   [AdxError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BiddingError]()
-        ///   [BiddingStrategyError]()
-        ///   [CollectionSizeError]()
-        ///   [ContextError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MultiplierError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AdGroupCriterionError]()
+        /// [AdxError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BiddingError]()
+        /// [BiddingStrategyError]()
+        /// [CollectionSizeError]()
+        /// [ContextError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MultiplierError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_ad_group_criteria(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupCriteriaRequest>,
@@ -10404,34 +10563,34 @@ pub mod ad_group_extension_setting_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [ExtensionSettingError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [ExtensionSettingError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_ad_group_extension_settings(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -10590,17 +10749,17 @@ pub mod ad_group_label_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [LabelError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [LabelError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_ad_group_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdGroupLabelsRequest>,
@@ -10768,18 +10927,18 @@ pub mod ad_parameter_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AdParameterError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AdParameterError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_ad_parameters(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAdParametersRequest>,
@@ -11439,7 +11598,7 @@ pub mod audience_service_client {
         /// Creates audiences. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AudienceError]()
+        /// [AudienceError]()
         pub async fn mutate_audiences(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAudiencesRequest>,
@@ -11778,32 +11937,32 @@ pub mod bidding_strategy_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AdxError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BiddingError]()
-        ///   [BiddingStrategyError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AdxError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BiddingError]()
+        /// [BiddingStrategyError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_bidding_strategies(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateBiddingStrategiesRequest>,
@@ -11971,18 +12130,18 @@ pub mod campaign_asset_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AssetLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotAllowlistedError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AssetLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotAllowlistedError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_campaign_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignAssetsRequest>,
@@ -12154,28 +12313,28 @@ pub mod campaign_bid_modifier_service_client {
         /// Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ContextError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ContextError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_campaign_bid_modifiers(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignBidModifiersRequest>,
@@ -12343,23 +12502,23 @@ pub mod campaign_budget_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignBudgetError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignBudgetError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [OperationAccessDeniedError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [StringLengthError]()
         pub async fn mutate_campaign_budgets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignBudgetsRequest>,
@@ -12868,16 +13027,16 @@ pub mod campaign_draft_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignDraftError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignDraftError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_campaign_drafts(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignDraftsRequest>,
@@ -12911,21 +13070,21 @@ pub mod campaign_draft_service_client {
         /// Promotes the changes in a draft back to the base campaign.
         ///
         /// This method returns a Long Running Operation (LRO) indicating if the
-        /// Promote is done. Use [Operations.GetOperation] to poll the LRO until it
+        /// Promote is done. Use \[Operations.GetOperation\] to poll the LRO until it
         /// is done. Only a done status is returned in the response. See the status
         /// in the Campaign Draft resource to determine if the promotion was
         /// successful. If the LRO failed, use
-        /// [CampaignDraftService.ListCampaignDraftAsyncErrors][google.ads.googleads.v17.services.CampaignDraftService.ListCampaignDraftAsyncErrors]
+        /// \[CampaignDraftService.ListCampaignDraftAsyncErrors\]\[google.ads.googleads.v17.services.CampaignDraftService.ListCampaignDraftAsyncErrors\]
         /// to view the list of error reasons.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignDraftError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignDraftError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn promote_campaign_draft(
             &mut self,
             request: impl tonic::IntoRequest<super::PromoteCampaignDraftRequest>,
@@ -12961,12 +13120,12 @@ pub mod campaign_draft_service_client {
         /// Supports standard list paging.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_campaign_draft_async_errors(
             &mut self,
             request: impl tonic::IntoRequest<super::ListCampaignDraftAsyncErrorsRequest>,
@@ -13140,33 +13299,33 @@ pub mod campaign_extension_setting_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [ExtensionSettingError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [ExtensionSettingError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_campaign_extension_settings(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -13336,29 +13495,29 @@ pub mod campaign_feed_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignFeedError]()
-        ///   [CollectionSizeError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FunctionError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignFeedError]()
+        /// [CollectionSizeError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FunctionError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_campaign_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignFeedsRequest>,
@@ -13525,41 +13684,41 @@ pub mod campaign_service_client {
         /// Creates, updates, or removes campaigns. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AdxError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BiddingError]()
-        ///   [BiddingStrategyError]()
-        ///   [CampaignBudgetError]()
-        ///   [CampaignError]()
-        ///   [ContextError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DateRangeError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotAllowlistedError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RegionCodeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SettingError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AdxError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BiddingError]()
+        /// [BiddingStrategyError]()
+        /// [CampaignBudgetError]()
+        /// [CampaignError]()
+        /// [ContextError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DateRangeError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotAllowlistedError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RegionCodeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SettingError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_campaigns(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCampaignsRequest>,
@@ -13731,14 +13890,14 @@ pub mod conversion_custom_variable_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ConversionCustomVariableError]()
-        ///   [DatabaseError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ConversionCustomVariableError]()
+        /// [DatabaseError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_conversion_custom_variables(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -14077,15 +14236,15 @@ pub mod customer_asset_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AssetLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AssetLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_assets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerAssetsRequest>,
@@ -14424,31 +14583,31 @@ pub mod customer_extension_setting_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [ExtensionSettingError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [ExtensionSettingError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_customer_extension_settings(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -14619,16 +14778,16 @@ pub mod customer_negative_criterion_service_client {
         /// Creates or removes criteria. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_negative_criteria(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -14965,31 +15124,31 @@ pub mod feed_item_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FeedItemError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FeedItemError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
         pub async fn mutate_feed_items(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemsRequest>,
@@ -15150,13 +15309,13 @@ pub mod feed_item_set_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_feed_item_sets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemSetsRequest>,
@@ -15319,25 +15478,25 @@ pub mod feed_item_target_service_client {
         /// Creates or removes feed item targets. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CriterionError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FeedItemTargetError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NotEmptyError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CriterionError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FeedItemTargetError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NotEmptyError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_feed_item_targets(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedItemTargetsRequest>,
@@ -15505,30 +15664,30 @@ pub mod feed_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FeedError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FeedError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_feeds(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateFeedsRequest>,
@@ -15700,18 +15859,18 @@ pub mod keyword_plan_ad_group_keyword_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanAdGroupKeywordError]()
-        ///   [KeywordPlanError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanAdGroupKeywordError]()
+        /// [KeywordPlanError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_ad_group_keywords(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -15876,20 +16035,20 @@ pub mod keyword_plan_ad_group_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanAdGroupError]()
-        ///   [KeywordPlanError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanAdGroupError]()
+        /// [KeywordPlanError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_ad_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateKeywordPlanAdGroupsRequest>,
@@ -16060,17 +16219,17 @@ pub mod keyword_plan_campaign_keyword_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanAdGroupKeywordError]()
-        ///   [KeywordPlanCampaignKeywordError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanAdGroupKeywordError]()
+        /// [KeywordPlanCampaignKeywordError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_campaign_keywords(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -16235,21 +16394,21 @@ pub mod keyword_plan_campaign_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanCampaignError]()
-        ///   [KeywordPlanError]()
-        ///   [ListOperationError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanCampaignError]()
+        /// [KeywordPlanError]()
+        /// [ListOperationError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn mutate_keyword_plan_campaigns(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateKeywordPlanCampaignsRequest>,
@@ -16410,19 +16569,19 @@ pub mod keyword_plan_service_client {
         /// returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [KeywordPlanError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [StringLengthError]()
         pub async fn mutate_keyword_plans(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateKeywordPlansRequest>,
@@ -16589,29 +16748,29 @@ pub mod label_service_client {
         /// Creates, updates, or removes labels. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [IdError]()
-        ///   [InternalError]()
-        ///   [LabelError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotEmptyError]()
-        ///   [NullError]()
-        ///   [OperatorError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [IdError]()
+        /// [InternalError]()
+        /// [LabelError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotEmptyError]()
+        /// [NullError]()
+        /// [OperatorError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
         pub async fn mutate_labels(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateLabelsRequest>,
@@ -16782,17 +16941,17 @@ pub mod recommendation_subscription_service_client {
         /// Mutates given subscription with corresponding apply parameters.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RecommendationError]()
-        ///   [RequestError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RecommendationError]()
+        /// [RequestError]()
+        /// [UrlFieldError]()
         pub async fn mutate_recommendation_subscription(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -16954,13 +17113,13 @@ pub mod remarketing_action_service_client {
         /// Creates or updates remarketing actions. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ConversionActionError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ConversionActionError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_remarketing_actions(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateRemarketingActionsRequest>,
@@ -17383,26 +17542,26 @@ pub mod user_list_service_client {
         /// Creates or updates user lists. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CollectionSizeError]()
-        ///   [DatabaseError]()
-        ///   [DistinctError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NotAllowlistedError]()
-        ///   [NotEmptyError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UserListError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CollectionSizeError]()
+        /// [DatabaseError]()
+        /// [DistinctError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NotAllowlistedError]()
+        /// [NotEmptyError]()
+        /// [OperationAccessDeniedError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UserListError]()
         pub async fn mutate_user_lists(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateUserListsRequest>,
@@ -17901,6 +18060,10 @@ pub struct GoogleAdsRow {
     #[prost(message, optional, tag = "216")]
     pub offline_conversion_upload_client_summary: ::core::option::Option<
         super::resources::OfflineConversionUploadClientSummary,
+    >,
+    #[prost(message, optional, tag = "228")]
+    pub offline_conversion_upload_conversion_action_summary: ::core::option::Option<
+        super::resources::OfflineConversionUploadConversionActionSummary,
     >,
     #[prost(message, optional, tag = "137")]
     pub offline_user_data_job: ::core::option::Option<
@@ -18476,16 +18639,16 @@ pub mod google_ads_service_client {
         /// Returns all rows that match the search query.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ChangeEventError]()
-        ///   [ChangeStatusError]()
-        ///   [ClickViewError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ChangeEventError]()
+        /// [ChangeStatusError]()
+        /// [ClickViewError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsRequest>,
@@ -18519,16 +18682,16 @@ pub mod google_ads_service_client {
         /// Returns all rows that match the search stream query.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [ChangeEventError]()
-        ///   [ChangeStatusError]()
-        ///   [ClickViewError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [ChangeEventError]()
+        /// [ChangeStatusError]()
+        /// [ClickViewError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search_stream(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsStreamRequest>,
@@ -18569,9 +18732,9 @@ pub mod google_ads_service_client {
         /// This method is essentially a wrapper around a series of mutate methods. The
         /// only features it offers over calling those methods directly are:
         ///
-        /// - Atomic transactions
-        /// - Temp resource names (described below)
-        /// - Somewhat reduced latency over making a series of mutate calls
+        /// * Atomic transactions
+        /// * Temp resource names (described below)
+        /// * Somewhat reduced latency over making a series of mutate calls
         ///
         /// Note: Only resources that support atomic transactions are included, so this
         /// method can't replace all calls to individual services.
@@ -18597,13 +18760,13 @@ pub mod google_ads_service_client {
         ///
         /// Note:
         ///
-        /// - Resources must be created with a temp name before the name can be reused.
-        ///   For example, the previous CampaignBudget+Campaign example would fail if
-        ///   the mutate order was reversed.
-        /// - Temp names are not remembered across requests.
-        /// - There's no limit to the number of temp names in a request.
-        /// - Each temp name must use a unique negative number, even if the resource
-        ///   types differ.
+        /// * Resources must be created with a temp name before the name can be reused.
+        ///  For example, the previous CampaignBudget+Campaign example would fail if
+        ///  the mutate order was reversed.
+        /// * Temp names are not remembered across requests.
+        /// * There's no limit to the number of temp names in a request.
+        /// * Each temp name must use a unique negative number, even if the resource
+        ///  types differ.
         ///
         /// ## Latency
         ///
@@ -18614,65 +18777,65 @@ pub mod google_ads_service_client {
         /// mutating 1 campaign, 1 ad group, 1 campaign, 1 ad group is like 4 calls.
         ///
         /// List of thrown errors:
-        ///   [AdCustomizerError]()
-        ///   [AdError]()
-        ///   [AdGroupAdError]()
-        ///   [AdGroupCriterionError]()
-        ///   [AdGroupError]()
-        ///   [AssetError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BiddingError]()
-        ///   [CampaignBudgetError]()
-        ///   [CampaignCriterionError]()
-        ///   [CampaignError]()
-        ///   [CampaignExperimentError]()
-        ///   [CampaignSharedSetError]()
-        ///   [CollectionSizeError]()
-        ///   [ContextError]()
-        ///   [ConversionActionError]()
-        ///   [CriterionError]()
-        ///   [CustomerFeedError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [DateRangeError]()
-        ///   [DistinctError]()
-        ///   [ExtensionFeedItemError]()
-        ///   [ExtensionSettingError]()
-        ///   [FeedAttributeReferenceError]()
-        ///   [FeedError]()
-        ///   [FeedItemError]()
-        ///   [FeedItemSetError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [FunctionParsingError]()
-        ///   [HeaderError]()
-        ///   [ImageError]()
-        ///   [InternalError]()
-        ///   [KeywordPlanAdGroupKeywordError]()
-        ///   [KeywordPlanCampaignError]()
-        ///   [KeywordPlanError]()
-        ///   [LabelError]()
-        ///   [ListOperationError]()
-        ///   [MediaUploadError]()
-        ///   [MutateError]()
-        ///   [NewResourceCreationError]()
-        ///   [NullError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [PolicyFindingError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
-        ///   [SettingError]()
-        ///   [SharedSetError]()
-        ///   [SizeLimitError]()
-        ///   [StringFormatError]()
-        ///   [StringLengthError]()
-        ///   [UrlFieldError]()
-        ///   [UserListError]()
-        ///   [YoutubeVideoRegistrationError]()
+        /// [AdCustomizerError]()
+        /// [AdError]()
+        /// [AdGroupAdError]()
+        /// [AdGroupCriterionError]()
+        /// [AdGroupError]()
+        /// [AssetError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BiddingError]()
+        /// [CampaignBudgetError]()
+        /// [CampaignCriterionError]()
+        /// [CampaignError]()
+        /// [CampaignExperimentError]()
+        /// [CampaignSharedSetError]()
+        /// [CollectionSizeError]()
+        /// [ContextError]()
+        /// [ConversionActionError]()
+        /// [CriterionError]()
+        /// [CustomerFeedError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [DateRangeError]()
+        /// [DistinctError]()
+        /// [ExtensionFeedItemError]()
+        /// [ExtensionSettingError]()
+        /// [FeedAttributeReferenceError]()
+        /// [FeedError]()
+        /// [FeedItemError]()
+        /// [FeedItemSetError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [FunctionParsingError]()
+        /// [HeaderError]()
+        /// [ImageError]()
+        /// [InternalError]()
+        /// [KeywordPlanAdGroupKeywordError]()
+        /// [KeywordPlanCampaignError]()
+        /// [KeywordPlanError]()
+        /// [LabelError]()
+        /// [ListOperationError]()
+        /// [MediaUploadError]()
+        /// [MutateError]()
+        /// [NewResourceCreationError]()
+        /// [NullError]()
+        /// [OperationAccessDeniedError]()
+        /// [PolicyFindingError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
+        /// [SettingError]()
+        /// [SharedSetError]()
+        /// [SizeLimitError]()
+        /// [StringFormatError]()
+        /// [StringLengthError]()
+        /// [UrlFieldError]()
+        /// [UserListError]()
+        /// [YoutubeVideoRegistrationError]()
         pub async fn mutate(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateGoogleAdsRequest>,
@@ -18877,13 +19040,13 @@ pub mod batch_job_service_client {
         /// Mutates a batch job.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn mutate_batch_job(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateBatchJobRequest>,
@@ -18918,13 +19081,13 @@ pub mod batch_job_service_client {
         /// Supports standard list paging.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BatchJobError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BatchJobError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_batch_job_results(
             &mut self,
             request: impl tonic::IntoRequest<super::ListBatchJobResultsRequest>,
@@ -18962,13 +19125,13 @@ pub mod batch_job_service_client {
         /// ListBatchJobResults to get the results of the job.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BatchJobError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BatchJobError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn run_batch_job(
             &mut self,
             request: impl tonic::IntoRequest<super::RunBatchJobRequest>,
@@ -19002,14 +19165,14 @@ pub mod batch_job_service_client {
         /// Add operations to the batch job.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BatchJobError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ResourceCountLimitExceededError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BatchJobError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ResourceCountLimitExceededError]()
         pub async fn add_batch_job_operations(
             &mut self,
             request: impl tonic::IntoRequest<super::AddBatchJobOperationsRequest>,
@@ -19168,13 +19331,13 @@ pub mod user_list_customer_type_service_client {
         /// are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [UserListCustomerTypeError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [UserListCustomerTypeError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_user_list_customer_types(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateUserListCustomerTypesRequest>,
@@ -19316,15 +19479,15 @@ pub mod product_link_service_client {
         /// Creates a product link.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn create_product_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateProductLinkRequest>,
@@ -19358,14 +19521,14 @@ pub mod product_link_service_client {
         /// Removes a product link.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn remove_product_link(
             &mut self,
             request: impl tonic::IntoRequest<super::RemoveProductLinkRequest>,
@@ -19517,17 +19680,17 @@ pub mod custom_interest_service_client {
         /// Creates or updates custom interests. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CriterionError]()
-        ///   [CustomInterestError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [StringLengthError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CriterionError]()
+        /// [CustomInterestError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [StringLengthError]()
         pub async fn mutate_custom_interests(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomInterestsRequest>,
@@ -20068,16 +20231,16 @@ pub mod billing_setup_service_client {
         /// Creates a billing setup, or cancels an existing billing setup.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [BillingSetupError]()
-        ///   [DateError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [BillingSetupError]()
+        /// [DateError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_billing_setup(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateBillingSetupRequest>,
@@ -20250,16 +20413,16 @@ pub mod account_link_service_client {
         /// Creates an account link.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [ThirdPartyAppAnalyticsLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [ThirdPartyAppAnalyticsLinkError]()
         pub async fn create_account_link(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAccountLinkRequest>,
@@ -20296,15 +20459,15 @@ pub mod account_link_service_client {
         /// AccountLinkService.CreateAccountLink instead.
         ///
         /// List of thrown errors:
-        ///   [AccountLinkError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AccountLinkError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_account_link(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAccountLinkRequest>,
@@ -20761,12 +20924,12 @@ pub mod reach_plan_service_client {
         /// Returns the list of plannable locations (for example, countries).
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_plannable_locations(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPlannableLocationsRequest>,
@@ -20801,12 +20964,12 @@ pub mod reach_plan_service_client {
         /// targeting.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_plannable_products(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPlannableProductsRequest>,
@@ -20840,15 +21003,15 @@ pub mod reach_plan_service_client {
         /// Generates a reach forecast for a given targeting / product mix.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RangeError]()
-        ///   [ReachPlanError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RangeError]()
+        /// [ReachPlanError]()
+        /// [RequestError]()
         pub async fn generate_reach_forecast(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateReachForecastRequest>,
@@ -20875,6 +21038,174 @@ pub mod reach_plan_service_client {
                     GrpcMethod::new(
                         "google.ads.googleads.v17.services.ReachPlanService",
                         "GenerateReachForecast",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerateShareablePreviewsRequest {
+    #[prost(string, tag = "1")]
+    pub customer_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub shareable_previews: ::prost::alloc::vec::Vec<ShareablePreview>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ShareablePreview {
+    #[prost(message, optional, tag = "1")]
+    pub asset_group_identifier: ::core::option::Option<AssetGroupIdentifier>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AssetGroupIdentifier {
+    #[prost(int64, tag = "1")]
+    pub asset_group_id: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerateShareablePreviewsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub responses: ::prost::alloc::vec::Vec<ShareablePreviewOrError>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ShareablePreviewOrError {
+    #[prost(message, optional, tag = "3")]
+    pub asset_group_identifier: ::core::option::Option<AssetGroupIdentifier>,
+    #[prost(
+        oneof = "shareable_preview_or_error::GenerateShareablePreviewResponse",
+        tags = "1, 2"
+    )]
+    pub generate_shareable_preview_response: ::core::option::Option<
+        shareable_preview_or_error::GenerateShareablePreviewResponse,
+    >,
+}
+/// Nested message and enum types in `ShareablePreviewOrError`.
+pub mod shareable_preview_or_error {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum GenerateShareablePreviewResponse {
+        #[prost(message, tag = "1")]
+        ShareablePreviewResult(super::ShareablePreviewResult),
+        #[prost(message, tag = "2")]
+        PartialFailureError(super::super::super::super::super::rpc::Status),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ShareablePreviewResult {
+    #[prost(string, tag = "1")]
+    pub shareable_preview_url: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub expiration_date_time: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod shareable_preview_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to generate Shareable Previews.
+    #[derive(Debug, Clone)]
+    pub struct ShareablePreviewServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ShareablePreviewServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ShareablePreviewServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            ShareablePreviewServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Returns the requested Shareable Preview.
+        pub async fn generate_shareable_previews(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateShareablePreviewsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateShareablePreviewsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.ads.googleads.v17.services.ShareablePreviewService/GenerateShareablePreviews",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.ads.googleads.v17.services.ShareablePreviewService",
+                        "GenerateShareablePreviews",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -21157,13 +21488,13 @@ pub mod campaign_lifecycle_goal_service_client {
         /// Process the given campaign lifecycle configurations.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CampaignLifecycleGoalConfigError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CampaignLifecycleGoalConfigError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn configure_campaign_lifecycle_goals(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -21293,13 +21624,13 @@ pub mod payments_account_service_client {
         /// hierarchy, inclusive.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [PaymentsAccountError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [PaymentsAccountError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn list_payments_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListPaymentsAccountsRequest>,
@@ -21848,17 +22179,17 @@ pub mod recommendation_service_client {
         /// Applies given recommendations with corresponding apply parameters.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [FieldError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RecommendationError]()
-        ///   [RequestError]()
-        ///   [UrlFieldError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [FieldError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RecommendationError]()
+        /// [RequestError]()
+        /// [UrlFieldError]()
         pub async fn apply_recommendation(
             &mut self,
             request: impl tonic::IntoRequest<super::ApplyRecommendationRequest>,
@@ -21892,13 +22223,13 @@ pub mod recommendation_service_client {
         /// Dismisses given recommendations.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RecommendationError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RecommendationError]()
+        /// [RequestError]()
         pub async fn dismiss_recommendation(
             &mut self,
             request: impl tonic::IntoRequest<super::DismissRecommendationRequest>,
@@ -21932,13 +22263,13 @@ pub mod recommendation_service_client {
         /// Generates Recommendations based off the requested recommendation_types.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RecommendationError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RecommendationError]()
+        /// [RequestError]()
         pub async fn generate_recommendations(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateRecommendationsRequest>,
@@ -22108,15 +22439,15 @@ pub mod identity_verification_service_client {
             self
         }
         /// Starts Identity Verification for a given verification program type.
-        ///  Statuses are returned.
+        /// Statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn start_identity_verification(
             &mut self,
             request: impl tonic::IntoRequest<super::StartIdentityVerificationRequest>,
@@ -22147,12 +22478,12 @@ pub mod identity_verification_service_client {
         /// Returns Identity Verification information.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn get_identity_verification(
             &mut self,
             request: impl tonic::IntoRequest<super::GetIdentityVerificationRequest>,
@@ -22657,13 +22988,13 @@ pub mod geo_target_constant_service_client {
         /// Returns GeoTargetConstant suggestions by location name or by resource name.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [GeoTargetConstantSuggestionError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [GeoTargetConstantSuggestionError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn suggest_geo_target_constants(
             &mut self,
             request: impl tonic::IntoRequest<super::SuggestGeoTargetConstantsRequest>,
@@ -22816,15 +23147,15 @@ pub mod customer_user_access_service_client {
         /// statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CustomerUserAccessError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CustomerUserAccessError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_customer_user_access(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomerUserAccessRequest>,
@@ -22978,19 +23309,19 @@ pub mod custom_audience_service_client {
         /// Creates or updates custom audiences. Operation statuses are returned.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [CustomAudienceError]()
-        ///   [CustomInterestError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [OperationAccessDeniedError]()
-        ///   [PolicyViolationError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [CustomAudienceError]()
+        /// [CustomInterestError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [OperationAccessDeniedError]()
+        /// [PolicyViolationError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn mutate_custom_audiences(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateCustomAudiencesRequest>,
@@ -23114,12 +23445,12 @@ pub mod third_party_app_analytics_link_service_client {
         /// provided to the third party when setting up app analytics.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn regenerate_shareable_link_id(
             &mut self,
             request: impl tonic::IntoRequest<super::RegenerateShareableLinkIdRequest>,
@@ -23256,12 +23587,12 @@ pub mod google_ads_field_service_client {
         /// Returns just the requested field.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn get_google_ads_field(
             &mut self,
             request: impl tonic::IntoRequest<super::GetGoogleAdsFieldRequest>,
@@ -23295,13 +23626,13 @@ pub mod google_ads_field_service_client {
         /// Returns all fields that match the search query.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [QueryError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [QueryError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn search_google_ads_fields(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchGoogleAdsFieldsRequest>,
@@ -23464,19 +23795,19 @@ pub mod account_budget_proposal_service_client {
         /// are returned.
         ///
         /// List of thrown errors:
-        ///   [AccountBudgetProposalError]()
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [DatabaseError]()
-        ///   [DateError]()
-        ///   [FieldError]()
-        ///   [FieldMaskError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [MutateError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
-        ///   [StringLengthError]()
+        /// [AccountBudgetProposalError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [DatabaseError]()
+        /// [DateError]()
+        /// [FieldError]()
+        /// [FieldMaskError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [MutateError]()
+        /// [QuotaError]()
+        /// [RequestError]()
+        /// [StringLengthError]()
         pub async fn mutate_account_budget_proposal(
             &mut self,
             request: impl tonic::IntoRequest<super::MutateAccountBudgetProposalRequest>,
@@ -23671,13 +24002,13 @@ pub mod conversion_adjustment_upload_service_client {
         /// Processes the given conversion adjustments.
         ///
         /// List of thrown errors:
-        ///   [AuthenticationError]()
-        ///   [AuthorizationError]()
-        ///   [HeaderError]()
-        ///   [InternalError]()
-        ///   [PartialFailureError]()
-        ///   [QuotaError]()
-        ///   [RequestError]()
+        /// [AuthenticationError]()
+        /// [AuthorizationError]()
+        /// [HeaderError]()
+        /// [InternalError]()
+        /// [PartialFailureError]()
+        /// [QuotaError]()
+        /// [RequestError]()
         pub async fn upload_conversion_adjustments(
             &mut self,
             request: impl tonic::IntoRequest<super::UploadConversionAdjustmentsRequest>,

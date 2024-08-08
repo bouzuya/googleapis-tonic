@@ -1385,7 +1385,7 @@ pub mod jobs_v1_beta3_client {
         /// Creates a Cloud Dataflow job.
         ///
         /// To create a job, we recommend using `projects.locations.jobs.create` with a
-        /// [regional endpoint]
+        /// \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
         /// `projects.jobs.create` is not recommended, as your job will always start
         /// in `us-central1`.
@@ -1416,7 +1416,7 @@ pub mod jobs_v1_beta3_client {
         /// Gets the state of the specified Cloud Dataflow job.
         ///
         /// To get the state of a job, we recommend using `projects.locations.jobs.get`
-        /// with a [regional endpoint]
+        /// with a \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
         /// `projects.jobs.get` is not recommended, as you can only get the state of
         /// jobs that are running in `us-central1`.
@@ -1447,7 +1447,7 @@ pub mod jobs_v1_beta3_client {
         /// Updates the state of an existing Cloud Dataflow job.
         ///
         /// To update the state of an existing job, we recommend using
-        /// `projects.locations.jobs.update` with a [regional endpoint]
+        /// `projects.locations.jobs.update` with a \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
         /// `projects.jobs.update` is not recommended, as you can only update the state
         /// of jobs that are running in `us-central1`.
@@ -1478,7 +1478,7 @@ pub mod jobs_v1_beta3_client {
         /// List the jobs of a project.
         ///
         /// To list the jobs of a project in a region, we recommend using
-        /// `projects.locations.jobs.list` with a [regional endpoint]
+        /// `projects.locations.jobs.list` with a \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
         /// list the all jobs across all regions, use `projects.jobs.aggregated`. Using
         /// `projects.jobs.list` is not recommended, as you can only get the list of
@@ -1886,7 +1886,7 @@ pub mod metrics_v1_beta3_client {
         /// Request the job status.
         ///
         /// To request the status of a job, we recommend using
-        /// `projects.locations.jobs.getMetrics` with a [regional endpoint]
+        /// `projects.locations.jobs.getMetrics` with a \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
         /// `projects.jobs.getMetrics` is not recommended, as you can only request the
         /// status of jobs that are running in `us-central1`.
@@ -2389,7 +2389,7 @@ pub mod messages_v1_beta3_client {
         /// Request the job status.
         ///
         /// To request the status of a job, we recommend using
-        /// `projects.locations.jobs.messages.list` with a [regional endpoint]
+        /// `projects.locations.jobs.messages.list` with a \[regional endpoint\]
         /// (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
         /// `projects.jobs.messages.list` is not recommended, as you can only request
         /// the status of jobs that are running in `us-central1`.

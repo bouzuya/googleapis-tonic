@@ -1199,13 +1199,16 @@ pub mod dataproc_metastore_client {
     /// The Dataproc Metastore API defines the following resource model:
     ///
     /// * The service works with a collection of Google Cloud projects, named:
-    /// `/projects/*`
+    ///  `/projects/*`
+    ///
     /// * Each project has a collection of available locations, named: `/locations/*`
-    ///   (a location must refer to a Google Cloud `region`)
+    ///  (a location must refer to a Google Cloud `region`)
+    ///
     /// * Each location has a collection of services, named: `/services/*`
+    ///
     /// * Dataproc Metastore services are resources with names of the form:
     ///
-    ///   `/projects/{project_number}/locations/{location_id}/services/{service_id}`.
+    ///  `/projects/{project_number}/locations/{location_id}/services/{service_id}`.
     #[derive(Debug, Clone)]
     pub struct DataprocMetastoreClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -2030,12 +2033,13 @@ pub mod dataproc_metastore_federation_client {
     /// from the backend metastores are served at query time.
     ///
     /// The Dataproc Metastore Federation API defines the following resource model:
+    ///
     /// * The service works with a collection of Google Cloud projects.
     /// * Each project has a collection of available locations.
     /// * Each location has a collection of federations.
     /// * Dataproc Metastore Federations are resources with names of the
-    /// form:
-    /// `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
+    ///  form:
+    ///  `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
     #[derive(Debug, Clone)]
     pub struct DataprocMetastoreFederationClient<T> {
         inner: tonic::client::Grpc<T>,

@@ -1316,10 +1316,10 @@ pub mod firestore_admin_client {
             self
         }
         /// Creates a composite index. This returns a
-        /// [google.longrunning.Operation][google.longrunning.Operation] which may be
+        /// \[google.longrunning.Operation\]\[google.longrunning.Operation\] which may be
         /// used to track the status of the creation. The metadata for the operation
         /// will be the type
-        /// [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
+        /// \[IndexOperationMetadata\]\[google.firestore.admin.v1.IndexOperationMetadata\].
         pub async fn create_index(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateIndexRequest>,
@@ -1467,16 +1467,15 @@ pub mod firestore_admin_client {
         }
         /// Updates a field configuration. Currently, field updates apply only to
         /// single field index configuration. However, calls to
-        /// [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField]
+        /// \[FirestoreAdmin.UpdateField\]\[google.firestore.admin.v1.FirestoreAdmin.UpdateField\]
         /// should provide a field mask to avoid changing any configuration that the
-        /// caller isn't aware of. The field mask should be specified as: `{ paths:
-        /// "index_config" }`.
+        /// caller isn't aware of. The field mask should be specified as: `{ paths: "index_config" }`.
         ///
         /// This call returns a
-        /// [google.longrunning.Operation][google.longrunning.Operation] which may be
+        /// \[google.longrunning.Operation\]\[google.longrunning.Operation\] which may be
         /// used to track the status of the field update. The metadata for the
         /// operation will be the type
-        /// [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
+        /// \[FieldOperationMetadata\]\[google.firestore.admin.v1.FieldOperationMetadata\].
         ///
         /// To configure the default field settings for the database, use
         /// the special `Field` with resource name:
@@ -1514,10 +1513,10 @@ pub mod firestore_admin_client {
         /// Lists the field configuration and metadata for this database.
         ///
         /// Currently,
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+        /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
         /// only supports listing fields that have been explicitly overridden. To issue
         /// this query, call
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+        /// \[FirestoreAdmin.ListFields\]\[google.firestore.admin.v1.FirestoreAdmin.ListFields\]
         /// with the filter set to `indexConfig.usesAncestorConfig:false` or
         /// `ttlConfig:*`.
         pub async fn list_fields(
@@ -1907,17 +1906,17 @@ pub mod firestore_admin_client {
         ///
         /// The new database must be in the same cloud region or multi-region location
         /// as the existing backup. This behaves similar to
-        /// [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+        /// \[FirestoreAdmin.CreateDatabase\]\[google.firestore.admin.v1.FirestoreAdmin.CreateDatabase\]
         /// except instead of creating a new empty database, a new database is created
         /// with the database type, index configuration, and documents from an existing
         /// backup.
         ///
-        /// The [long-running operation][google.longrunning.Operation] can be used to
+        /// The \[long-running operation\]\[google.longrunning.Operation\] can be used to
         /// track the progress of the restore, with the Operation's
-        /// [metadata][google.longrunning.Operation.metadata] field type being the
-        /// [RestoreDatabaseMetadata][google.firestore.admin.v1.RestoreDatabaseMetadata].
-        /// The [response][google.longrunning.Operation.response] type is the
-        /// [Database][google.firestore.admin.v1.Database] if the restore was
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type being the
+        /// \[RestoreDatabaseMetadata\]\[google.firestore.admin.v1.RestoreDatabaseMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] type is the
+        /// \[Database\]\[google.firestore.admin.v1.Database\] if the restore was
         /// successful. The new database is not readable or writeable until the LRO has
         /// completed.
         pub async fn restore_database(

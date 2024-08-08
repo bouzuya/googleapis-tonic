@@ -276,13 +276,11 @@ pub mod consumer_procurement_service_client {
     /// ConsumerProcurementService allows customers to make purchases of products
     /// served by the Cloud Commerce platform.
     ///
-    ///
     /// When purchases are made, the
-    /// [ConsumerProcurementService][google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]
+    /// \[ConsumerProcurementService\]\[google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService\]
     /// programs the appropriate backends, including both Google's own
     /// infrastructure, as well as third-party systems, and to enable billing setup
     /// for charging for the procured item.
-    ///
     #[derive(Debug, Clone)]
     pub struct ConsumerProcurementServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -354,7 +352,7 @@ pub mod consumer_procurement_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a new [Order][google.cloud.commerce.consumer.procurement.v1.Order].
+        /// Creates a new \[Order\]\[google.cloud.commerce.consumer.procurement.v1.Order\].
         ///
         /// This API only supports GCP spend-based committed use
         /// discounts specified by GCP documentation.
@@ -362,7 +360,7 @@ pub mod consumer_procurement_service_client {
         /// The returned long-running operation is in-progress until the backend
         /// completes the creation of the resource. Once completed, the order is
         /// in
-        /// [OrderState.ORDER_STATE_ACTIVE][google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE].
+        /// \[OrderState.ORDER_STATE_ACTIVE\]\[google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE\].
         /// In case of failure, the order resource will be removed.
         pub async fn place_order(
             &mut self,
@@ -397,7 +395,7 @@ pub mod consumer_procurement_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Returns the requested
-        /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+        /// \[Order\]\[google.cloud.commerce.consumer.procurement.v1.Order\] resource.
         pub async fn get_order(
             &mut self,
             request: impl tonic::IntoRequest<super::GetOrderRequest>,
@@ -425,7 +423,7 @@ pub mod consumer_procurement_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
+        /// Lists \[Order\]\[google.cloud.commerce.consumer.procurement.v1.Order\]
         /// resources that the user has access to, within the scope of the parent
         /// resource.
         pub async fn list_orders(

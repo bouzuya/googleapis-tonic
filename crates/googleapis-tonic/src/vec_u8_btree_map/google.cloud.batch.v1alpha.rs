@@ -1019,6 +1019,8 @@ pub mod allocation_policy {
         pub install_gpu_drivers: bool,
         #[prost(bool, tag = "4")]
         pub install_ops_agent: bool,
+        #[prost(bool, tag = "5")]
+        pub block_project_ssh_keys: bool,
         #[prost(oneof = "instance_policy_or_template::PolicyTemplate", tags = "1, 2")]
         pub policy_template: ::core::option::Option<
             instance_policy_or_template::PolicyTemplate,
@@ -1213,6 +1215,17 @@ pub struct DeleteJobRequest {
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CancelJobRequest {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub request_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CancelJobResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobRequest {
@@ -1510,6 +1523,37 @@ pub mod batch_service_client {
                     GrpcMethod::new(
                         "google.cloud.batch.v1alpha.BatchService",
                         "DeleteJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Cancel a Job.
+        pub async fn cancel_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CancelJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.batch.v1alpha.BatchService/CancelJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.batch.v1alpha.BatchService",
+                        "CancelJob",
                     ),
                 );
             self.inner.unary(req, path, codec).await

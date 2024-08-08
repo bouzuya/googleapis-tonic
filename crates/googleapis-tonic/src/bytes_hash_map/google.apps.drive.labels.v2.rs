@@ -1665,9 +1665,9 @@ pub mod label_service_client {
         /// * `labels/{id}` - See `labels/{id}@latest`
         /// * `labels/{id}@latest` - Gets the latest revision of the label.
         /// * `labels/{id}@published` - Gets the current published revision of the
-        ///   label.
+        ///  label.
         /// * `labels/{id}@{revision_id}` - Gets the label at the specified revision
-        ///   ID.
+        ///  ID.
         pub async fn get_label(
             &mut self,
             request: impl tonic::IntoRequest<super::GetLabelRequest>,
@@ -1827,11 +1827,12 @@ pub mod label_service_client {
         /// that would invalidate or cause new restrictions on existing metadata
         /// related to the Label will be rejected. For example, the following changes
         /// to a Label will be rejected after the Label is published:
+        ///
         /// * The label cannot be directly deleted. It must be disabled first, then
-        ///   deleted.
+        ///  deleted.
         /// * Field.FieldType cannot be changed.
         /// * Changes to Field validation options cannot reject something that was
-        ///   previously accepted.
+        ///  previously accepted.
         /// * Reducing the max entries.
         pub async fn publish_label(
             &mut self,

@@ -1715,7 +1715,7 @@ pub mod cluster_controller_client {
             self
         }
         /// Creates a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn create_cluster(
             &mut self,
@@ -1748,10 +1748,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// The cluster must be in a
-        /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+        /// \[`RUNNING`\]\[google.cloud.dataproc.v1.ClusterStatus.State\] state or an error
         /// is returned.
         pub async fn update_cluster(
             &mut self,
@@ -1846,7 +1846,7 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a cluster in a project. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         pub async fn delete_cluster(
             &mut self,
@@ -1938,10 +1938,10 @@ pub mod cluster_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Gets cluster diagnostic information. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
         /// After the operation completes,
-        /// [Operation.response][google.longrunning.Operation.response]
+        /// \[Operation.response\]\[google.longrunning.Operation.response\]
         /// contains
         /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
         pub async fn diagnose_cluster(
@@ -3959,22 +3959,22 @@ pub mod workflow_template_service_client {
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// [operations.get][google.longrunning.Operations.GetOperation].
+        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// [Operation.response][google.longrunning.Operation.response] will be
-        /// [Empty][google.protobuf.Empty].
+        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
+        /// \[Empty\]\[google.protobuf.Empty\].
         pub async fn instantiate_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<super::InstantiateWorkflowTemplateRequest>,
@@ -4008,28 +4008,28 @@ pub mod workflow_template_service_client {
         /// Instantiates a template and begins execution.
         ///
         /// This method is equivalent to executing the sequence
-        /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
-        /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
-        /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+        /// \[CreateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate\],
+        /// \[InstantiateWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate\],
+        /// \[DeleteWorkflowTemplate\]\[google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate\].
         ///
         /// The returned Operation can be used to track execution of
         /// workflow by polling
-        /// [operations.get][google.longrunning.Operations.GetOperation].
+        /// \[operations.get\]\[google.longrunning.Operations.GetOperation\].
         /// The Operation will complete when entire workflow is finished.
         ///
         /// The running workflow can be aborted via
-        /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+        /// \[operations.cancel\]\[google.longrunning.Operations.CancelOperation\].
         /// This will cause any inflight jobs to be cancelled and workflow-owned
         /// clusters to be deleted.
         ///
-        /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+        /// The \[Operation.metadata\]\[google.longrunning.Operation.metadata\] will be
         /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
         /// Also see [Using
         /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
         ///
         /// On successful completion,
-        /// [Operation.response][google.longrunning.Operation.response] will be
-        /// [Empty][google.protobuf.Empty].
+        /// \[Operation.response\]\[google.longrunning.Operation.response\] will be
+        /// \[Empty\]\[google.protobuf.Empty\].
         pub async fn instantiate_inline_workflow_template(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -5364,7 +5364,7 @@ pub mod node_group_controller_client {
             self
         }
         /// Creates a node group in a cluster. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] is
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn create_node_group(
             &mut self,
@@ -5397,7 +5397,7 @@ pub mod node_group_controller_client {
             self.inner.unary(req, path, codec).await
         }
         /// Resizes a node group in a cluster. The returned
-        /// [Operation.metadata][google.longrunning.Operation.metadata] is
+        /// \[Operation.metadata\]\[google.longrunning.Operation.metadata\] is
         /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
         pub async fn resize_node_group(
             &mut self,

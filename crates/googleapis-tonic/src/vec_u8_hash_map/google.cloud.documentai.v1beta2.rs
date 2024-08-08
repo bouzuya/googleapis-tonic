@@ -1126,7 +1126,7 @@ pub mod document_understanding_service_client {
             self
         }
         /// LRO endpoint to batch process many documents. The output is written
-        /// to Cloud Storage as JSON in the [Document] format.
+        /// to Cloud Storage as JSON in the \[Document\] format.
         pub async fn batch_process_documents(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchProcessDocumentsRequest>,

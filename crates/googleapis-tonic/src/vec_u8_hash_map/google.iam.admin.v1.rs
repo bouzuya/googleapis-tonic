@@ -860,13 +860,13 @@ pub mod iam_client {
     /// You can use this service to work with all of the following resources:
     ///
     /// * **Service accounts**, which identify an application or a virtual machine
-    ///   (VM) instance rather than a person
+    ///  (VM) instance rather than a person
     /// * **Service account keys**, which service accounts use to authenticate with
-    ///   Google APIs
+    ///  Google APIs
     /// * **IAM policies for service accounts**, which specify the roles that a
-    ///   principal has for the service account
+    ///  principal has for the service account
     /// * **IAM custom roles**, which help you limit the number of permissions that
-    ///   you grant to principals
+    ///  you grant to principals
     ///
     /// In addition, you can use this service to complete the following tasks, among
     /// others:
@@ -953,7 +953,7 @@ pub mod iam_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
+        /// Lists every \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] that belongs to a specific project.
         pub async fn list_service_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceAccountsRequest>,
@@ -981,7 +981,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Gets a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn get_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountRequest>,
@@ -1004,7 +1004,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccount"));
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Creates a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn create_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceAccountRequest>,
@@ -1030,9 +1030,9 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// **Note:** We are in the process of deprecating this method. Use
-        /// [PatchServiceAccount][google.iam.admin.v1.IAM.PatchServiceAccount] instead.
+        /// \[PatchServiceAccount\]\[google.iam.admin.v1.IAM.PatchServiceAccount\] instead.
         ///
-        /// Updates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Updates a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         ///
         /// You can update only the `display_name` field.
         pub async fn update_service_account(
@@ -1059,7 +1059,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Patches a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Patches a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn patch_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::PatchServiceAccountRequest>,
@@ -1084,18 +1084,18 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Deletes a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         ///
         /// **Warning:** After you delete a service account, you might not be able to
         /// undelete it. If you know that you need to re-enable the service account in
-        /// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
+        /// the future, use \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\] instead.
         ///
         /// If you delete a service account, IAM permanently removes the service
         /// account 30 days later. Google Cloud cannot recover the service account
         /// after it is permanently removed, even if you file a support request.
         ///
         /// To help avoid unplanned outages, we recommend that you disable the service
-        /// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
+        /// account before you delete it. Use \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\] to disable the
         /// service account, then wait at least 24 hours and watch for unintended
         /// consequences. If there are no unintended consequences, you can delete the
         /// service account.
@@ -1123,7 +1123,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Restores a deleted [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Restores a deleted \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         ///
         /// **Important:** It is not always possible to restore a deleted service
         /// account. Use this method only as a last resort.
@@ -1158,8 +1158,8 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Enables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] that was disabled by
-        /// [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount].
+        /// Enables a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] that was disabled by
+        /// \[DisableServiceAccount\]\[google.iam.admin.v1.IAM.DisableServiceAccount\].
         ///
         /// If the service account is already enabled, then this method has no effect.
         ///
@@ -1190,14 +1190,14 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Disables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] immediately.
+        /// Disables a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\] immediately.
         ///
         /// If an application uses the service account to authenticate, that
         /// application can no longer call Google APIs or access Google Cloud
         /// resources. Existing access tokens for the service account are rejected, and
         /// requests for new access tokens will fail.
         ///
-        /// To re-enable the service account, use [EnableServiceAccount][google.iam.admin.v1.IAM.EnableServiceAccount]. After you
+        /// To re-enable the service account, use \[EnableServiceAccount\]\[google.iam.admin.v1.IAM.EnableServiceAccount\]. After you
         /// re-enable the service account, its existing access tokens will be accepted,
         /// and you can request new access tokens.
         ///
@@ -1205,7 +1205,7 @@ pub mod iam_client {
         /// account before you delete it. Use this method to disable the service
         /// account, then wait at least 24 hours and watch for unintended consequences.
         /// If there are no unintended consequences, you can delete the service account
-        /// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
+        /// with \[DeleteServiceAccount\]\[google.iam.admin.v1.IAM.DeleteServiceAccount\].
         pub async fn disable_service_account(
             &mut self,
             request: impl tonic::IntoRequest<super::DisableServiceAccountRequest>,
@@ -1230,7 +1230,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
+        /// Lists every \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\] for a service account.
         pub async fn list_service_account_keys(
             &mut self,
             request: impl tonic::IntoRequest<super::ListServiceAccountKeysRequest>,
@@ -1258,7 +1258,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+        /// Gets a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
         pub async fn get_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::GetServiceAccountKeyRequest>,
@@ -1286,7 +1286,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+        /// Creates a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
         pub async fn create_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateServiceAccountKeyRequest>,
@@ -1315,7 +1315,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Uploads the public key portion of a key pair that you manage, and
-        /// associates the public key with a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// associates the public key with a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         ///
         /// After you upload the public key, you can use the private key from the key
         /// pair as a service account key.
@@ -1346,7 +1346,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
+        /// Deletes a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\]. Deleting a service account key does not
         /// revoke short-lived credentials that have been issued based on the service
         /// account key.
         pub async fn delete_service_account_key(
@@ -1373,8 +1373,8 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
-        /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
+        /// Disable a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\]. A disabled service account key can be
+        /// re-enabled with \[EnableServiceAccountKey\]\[google.iam.admin.v1.IAM.EnableServiceAccountKey\].
         pub async fn disable_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::DisableServiceAccountKeyRequest>,
@@ -1402,7 +1402,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+        /// Enable a \[ServiceAccountKey\]\[google.iam.admin.v1.ServiceAccountKey\].
         pub async fn enable_service_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::EnableServiceAccountKeyRequest>,
@@ -1434,7 +1434,7 @@ pub mod iam_client {
         /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
         /// instructions.
         ///
-        /// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Signs a blob using the system-managed private key for a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn sign_blob(
             &mut self,
             request: impl tonic::IntoRequest<super::SignBlobRequest>,
@@ -1468,7 +1468,7 @@ pub mod iam_client {
         /// instructions.
         ///
         /// Signs a JSON Web Token (JWT) using the system-managed private key for a
-        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn sign_jwt(
             &mut self,
             request: impl tonic::IntoRequest<super::SignJwtRequest>,
@@ -1494,7 +1494,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignJwt"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
+        /// Gets the IAM policy that is attached to a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\]. This IAM
         /// policy specifies which principals have access to the service account.
         ///
         /// This method does not tell you whether the service account has been granted
@@ -1531,7 +1531,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetIamPolicy"));
             self.inner.unary(req, path, codec).await
         }
-        /// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// Sets the IAM policy that is attached to a \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         ///
         /// Use this method to grant or revoke access to the service account. For
         /// example, you could grant a principal the ability to impersonate the service
@@ -1541,9 +1541,9 @@ pub mod iam_client {
         /// To grant roles to a service account on a resource, follow these steps:
         ///
         /// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
-        /// 2. Edit the policy so that it binds the service account to an IAM role for
-        /// the resource.
-        /// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
+        /// 1. Edit the policy so that it binds the service account to an IAM role for
+        ///   the resource.
+        /// 1. Call the resource's `setIamPolicy` method to update its IAM policy.
         ///
         /// For detailed instructions, see
         /// [Manage access to project, folders, and
@@ -1578,7 +1578,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Tests whether the caller has the specified permissions on a
-        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+        /// \[ServiceAccount\]\[google.iam.admin.v1.ServiceAccount\].
         pub async fn test_iam_permissions(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1638,7 +1638,7 @@ pub mod iam_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
+        /// Lists every predefined \[Role\]\[google.iam.admin.v1.Role\] that IAM supports, or every custom role
         /// that is defined for an organization or project.
         pub async fn list_roles(
             &mut self,
@@ -1665,7 +1665,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListRoles"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the definition of a [Role][google.iam.admin.v1.Role].
+        /// Gets the definition of a \[Role\]\[google.iam.admin.v1.Role\].
         pub async fn get_role(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRoleRequest>,
@@ -1688,7 +1688,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Creates a new custom [Role][google.iam.admin.v1.Role].
+        /// Creates a new custom \[Role\]\[google.iam.admin.v1.Role\].
         pub async fn create_role(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateRoleRequest>,
@@ -1711,7 +1711,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Updates the definition of a custom [Role][google.iam.admin.v1.Role].
+        /// Updates the definition of a custom \[Role\]\[google.iam.admin.v1.Role\].
         pub async fn update_role(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateRoleRequest>,
@@ -1734,23 +1734,23 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes a custom [Role][google.iam.admin.v1.Role].
+        /// Deletes a custom \[Role\]\[google.iam.admin.v1.Role\].
         ///
         /// When you delete a custom role, the following changes occur immediately:
         ///
         /// * You cannot bind a principal to the custom role in an IAM
-        /// [Policy][google.iam.v1.Policy].
+        ///  \[Policy\]\[google.iam.v1.Policy\].
         /// * Existing bindings to the custom role are not changed, but they have no
-        /// effect.
-        /// * By default, the response from [ListRoles][google.iam.admin.v1.IAM.ListRoles] does not include the custom
-        /// role.
+        ///  effect.
+        /// * By default, the response from \[ListRoles\]\[google.iam.admin.v1.IAM.ListRoles\] does not include the custom
+        ///  role.
         ///
         /// You have 7 days to undelete the custom role. After 7 days, the following
         /// changes occur:
         ///
         /// * The custom role is permanently deleted and cannot be recovered.
         /// * If an IAM policy contains a binding to the custom role, the binding is
-        /// permanently removed.
+        ///  permanently removed.
         pub async fn delete_role(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteRoleRequest>,
@@ -1773,7 +1773,7 @@ pub mod iam_client {
                 .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteRole"));
             self.inner.unary(req, path, codec).await
         }
-        /// Undeletes a custom [Role][google.iam.admin.v1.Role].
+        /// Undeletes a custom \[Role\]\[google.iam.admin.v1.Role\].
         pub async fn undelete_role(
             &mut self,
             request: impl tonic::IntoRequest<super::UndeleteRoleRequest>,
@@ -1862,7 +1862,7 @@ pub mod iam_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lints, or validates, an IAM policy. Currently checks the
-        /// [google.iam.v1.Binding.condition][google.iam.v1.Binding.condition] field, which contains a condition
+        /// \[google.iam.v1.Binding.condition\]\[google.iam.v1.Binding.condition\] field, which contains a condition
         /// expression for a role binding.
         ///
         /// Successful calls to this method always return an HTTP `200 OK` status code,

@@ -1088,7 +1088,7 @@ pub mod prediction_service_client {
         }
         /// Makes a recommendation prediction. If using API Key based authentication,
         /// the API Key must be registered using the
-        /// [PredictionApiKeyRegistry][google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry]
+        /// \[PredictionApiKeyRegistry\]\[google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry\]
         /// service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
         pub async fn predict(
             &mut self,

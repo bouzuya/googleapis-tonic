@@ -805,8 +805,8 @@ pub mod big_query_read_client {
         ///
         /// Moreover, the two child streams will be allocated back-to-back in the
         /// original `ReadStream`. Concretely, it is guaranteed that for streams
-        /// original, primary, and residual, that original[0-j] = primary[0-j] and
-        /// original[j-n] = residual[0-m] once the streams have been read to
+        /// original, primary, and residual, that original\[0-j\] = primary\[0-j\] and
+        /// original\[j-n\] = residual\[0-m\] once the streams have been read to
         /// completion.
         pub async fn split_read_stream(
             &mut self,
@@ -849,10 +849,9 @@ pub mod big_query_write_client {
     ///
     /// The Write API can be used to write data to BigQuery.
     ///
-    ///
     /// The [google.cloud.bigquery.storage.v1
-    ///   API](/bigquery/docs/reference/storage/rpc/google.cloud.bigquery.storage.v1)
-    ///   should be used instead of the v1beta2 API for BigQueryWrite operations.
+    /// API](/bigquery/docs/reference/storage/rpc/google.cloud.bigquery.storage.v1)
+    /// should be used instead of the v1beta2 API for BigQueryWrite operations.
     #[derive(Debug, Clone)]
     pub struct BigQueryWriteClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -923,7 +922,7 @@ pub mod big_query_write_client {
             self
         }
         /// Creates a write stream to the given table.
-        /// Additionally, every table has a special COMMITTED stream named '_default'
+        /// Additionally, every table has a special COMMITTED stream named '\_default'
         /// to which data can be written. This stream doesn't need to be created using
         /// CreateWriteStream. It is a stream that can be used simultaneously by any
         /// number of clients. Data written to this stream is considered committed as
@@ -1033,7 +1032,7 @@ pub mod big_query_write_client {
             self.inner.unary(req, path, codec).await
         }
         /// Finalize a write stream so that no new data can be appended to the
-        /// stream. Finalize is not supported on the '_default' stream.
+        /// stream. Finalize is not supported on the '\_default' stream.
         pub async fn finalize_write_stream(
             &mut self,
             request: impl tonic::IntoRequest<super::FinalizeWriteStreamRequest>,
@@ -1104,7 +1103,7 @@ pub mod big_query_write_client {
         /// required in order for the rows to become available for reading. A
         /// Flush operation flushes up to any previously flushed offset in a BUFFERED
         /// stream, to the offset specified in the request.
-        /// Flush is not supported on the _default stream, since it is not BUFFERED.
+        /// Flush is not supported on the \_default stream, since it is not BUFFERED.
         pub async fn flush_rows(
             &mut self,
             request: impl tonic::IntoRequest<super::FlushRowsRequest>,

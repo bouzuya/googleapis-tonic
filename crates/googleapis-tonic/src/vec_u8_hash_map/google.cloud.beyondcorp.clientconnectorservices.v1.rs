@@ -265,7 +265,7 @@ pub mod client_connector_services_service_client {
     /// The ClientConnectorServicesService exposes the following resources:
     ///
     /// * Client Connector Services, named as follows:
-    ///   `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.
+    ///  `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.
     #[derive(Debug, Clone)]
     pub struct ClientConnectorServicesServiceClient<T> {
         inner: tonic::client::Grpc<T>,

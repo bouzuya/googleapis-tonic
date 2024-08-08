@@ -305,8 +305,8 @@ pub mod gke_hub_client {
     ///
     /// The GKE Hub service operates on the following resources:
     ///
-    /// * [Membership][google.cloud.gkehub.v1alpha.Membership]
-    /// * [Feature][google.cloud.gkehub.v1alpha.Feature]
+    /// * \[Membership\]\[google.cloud.gkehub.v1alpha.Membership\]
+    /// * \[Feature\]\[google.cloud.gkehub.v1alpha.Feature\]
     ///
     /// GKE Hub is currently only available in the global region.
     ///

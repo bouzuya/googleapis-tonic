@@ -1574,11 +1574,11 @@ pub mod storage_transfer_service_client {
         /// Updates a transfer job. Updating a job's transfer spec does not affect
         /// transfer operations that are running already.
         ///
-        /// **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
+        /// **Note:** The job's \[status\]\[google.storagetransfer.v1.TransferJob.status\]
         /// field can be modified using this RPC (for example, to set a job's status to
-        /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
-        /// [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
-        /// [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
+        /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\],
+        /// \[DISABLED\]\[google.storagetransfer.v1.TransferJob.Status.DISABLED\], or
+        /// \[ENABLED\]\[google.storagetransfer.v1.TransferJob.Status.ENABLED\]).
         pub async fn update_transfer_job(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateTransferJobRequest>,
@@ -1756,7 +1756,7 @@ pub mod storage_transfer_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Deletes a transfer job. Deleting a transfer job sets its status to
-        /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
+        /// \[DELETED\]\[google.storagetransfer.v1.TransferJob.Status.DELETED\].
         pub async fn delete_transfer_job(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteTransferJobRequest>,

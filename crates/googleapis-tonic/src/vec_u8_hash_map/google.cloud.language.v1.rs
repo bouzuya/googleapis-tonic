@@ -1561,7 +1561,7 @@ pub mod language_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Finds entities, similar to
-        /// [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities]
+        /// \[AnalyzeEntities\]\[google.cloud.language.v1.LanguageService.AnalyzeEntities\]
         /// in the text and analyzes sentiment associated with each entity and its
         /// mentions.
         pub async fn analyze_entity_sentiment(

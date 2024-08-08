@@ -3127,6 +3127,37 @@ pub struct PercentCpc {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FixedCpm {
+    #[prost(enumeration = "super::enums::fixed_cpm_goal_enum::FixedCpmGoal", tag = "1")]
+    pub goal: i32,
+    #[prost(oneof = "fixed_cpm::GoalInfo", tags = "2")]
+    pub goal_info: ::core::option::Option<fixed_cpm::GoalInfo>,
+}
+/// Nested message and enum types in `FixedCpm`.
+pub mod fixed_cpm {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum GoalInfo {
+        #[prost(message, tag = "2")]
+        TargetFrequencyInfo(super::FixedCpmTargetFrequencyGoalInfo),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FixedCpmTargetFrequencyGoalInfo {
+    #[prost(int64, tag = "1")]
+    pub target_count: i64,
+    #[prost(
+        enumeration = "super::enums::fixed_cpm_target_frequency_time_unit_enum::FixedCpmTargetFrequencyTimeUnit",
+        tag = "2"
+    )]
+    pub time_unit: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetCpv {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FrequencyCapEntry {
     #[prost(message, optional, tag = "1")]
     pub key: ::core::option::Option<FrequencyCapKey>,
@@ -4344,6 +4375,11 @@ pub struct Segments {
     )]
     pub ad_destination_type: i32,
     #[prost(
+        enumeration = "super::enums::ad_format_type_enum::AdFormatType",
+        tag = "191"
+    )]
+    pub ad_format_type: i32,
+    #[prost(
         enumeration = "super::enums::ad_network_type_enum::AdNetworkType",
         tag = "3"
     )]
@@ -4621,6 +4657,8 @@ pub struct Segments {
     pub sk_ad_network_source_type: i32,
     #[prost(int64, optional, tag = "154")]
     pub sk_ad_network_postback_sequence_index: ::core::option::Option<i64>,
+    #[prost(string, optional, tag = "192")]
+    pub sk_ad_network_version: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "139")]
     pub asset_interaction_target: ::core::option::Option<AssetInteractionTarget>,
     #[prost(

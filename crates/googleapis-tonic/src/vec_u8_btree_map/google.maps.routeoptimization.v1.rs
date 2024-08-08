@@ -1194,20 +1194,19 @@ pub mod route_optimization_client {
     ///
     /// Validity of certain types of fields:
     ///
-    ///   * `google.protobuf.Timestamp`
-    ///     * Times are in Unix time: seconds since 1970-01-01T00:00:00+00:00.
-    ///     * seconds must be in [0, 253402300799],
-    ///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
-    ///     * nanos must be unset or set to 0.
-    ///   * `google.protobuf.Duration`
-    ///     * seconds must be in [0, 253402300799],
-    ///       i.e. in [1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00].
-    ///     * nanos must be unset or set to 0.
-    ///   * `google.type.LatLng`
-    ///     * latitude must be in [-90.0, 90.0].
-    ///     * longitude must be in [-180.0, 180.0].
-    ///     * at least one of latitude and longitude must be non-zero.
-    ///
+    /// * `google.protobuf.Timestamp`
+    ///  * Times are in Unix time: seconds since 1970-01-01T00:00:00+00:00.
+    ///  * seconds must be in \[0, 253402300799\],
+    ///    i.e. in \[1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00\].
+    ///  * nanos must be unset or set to 0.
+    /// * `google.protobuf.Duration`
+    ///  * seconds must be in \[0, 253402300799\],
+    ///    i.e. in \[1970-01-01T00:00:00+00:00, 9999-12-31T23:59:59+00:00\].
+    ///  * nanos must be unset or set to 0.
+    /// * `google.type.LatLng`
+    ///  * latitude must be in \[-90.0, 90.0\].
+    ///  * longitude must be in \[-180.0, 180.0\].
+    ///  * at least one of latitude and longitude must be non-zero.
     #[derive(Debug, Clone)]
     pub struct RouteOptimizationClient<T> {
         inner: tonic::client::Grpc<T>,

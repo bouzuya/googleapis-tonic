@@ -489,12 +489,12 @@ pub mod simulator_client {
     /// Policy Simulator API service.
     ///
     /// Policy Simulator is a collection of endpoints for creating, running, and
-    /// viewing a [Replay][google.cloud.policysimulator.v1.Replay]. A
-    /// [Replay][google.cloud.policysimulator.v1.Replay] is a type of simulation that
+    /// viewing a \[Replay\]\[google.cloud.policysimulator.v1.Replay\]. A
+    /// \[Replay\]\[google.cloud.policysimulator.v1.Replay\] is a type of simulation that
     /// lets you see how your principals' access to resources might change if you
     /// changed your IAM policy.
     ///
-    /// During a [Replay][google.cloud.policysimulator.v1.Replay], Policy Simulator
+    /// During a \[Replay\]\[google.cloud.policysimulator.v1.Replay\], Policy Simulator
     /// re-evaluates, or replays, past access attempts under both the current policy
     /// and  your proposed policy, and compares those results to determine how your
     /// principals' access might change under the proposed policy.
@@ -567,7 +567,7 @@ pub mod simulator_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Gets the specified [Replay][google.cloud.policysimulator.v1.Replay]. Each
+        /// Gets the specified \[Replay\]\[google.cloud.policysimulator.v1.Replay\]. Each
         /// `Replay` is available for at least 7 days.
         pub async fn get_replay(
             &mut self,
@@ -596,8 +596,8 @@ pub mod simulator_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
-        /// the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
+        /// Creates and starts a \[Replay\]\[google.cloud.policysimulator.v1.Replay\] using
+        /// the given \[ReplayConfig\]\[google.cloud.policysimulator.v1.ReplayConfig\].
         pub async fn create_replay(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReplayRequest>,
@@ -629,7 +629,7 @@ pub mod simulator_client {
             self.inner.unary(req, path, codec).await
         }
         /// Lists the results of running a
-        /// [Replay][google.cloud.policysimulator.v1.Replay].
+        /// \[Replay\]\[google.cloud.policysimulator.v1.Replay\].
         pub async fn list_replay_results(
             &mut self,
             request: impl tonic::IntoRequest<super::ListReplayResultsRequest>,

@@ -497,7 +497,7 @@ pub mod alert_center_service_client {
         /// Creates new feedback for an alert. Attempting to create a feedback for
         /// a non-existent alert returns `NOT_FOUND` error. Attempting to create a
         /// feedback for an alert that is marked for deletion returns
-        /// `FAILED_PRECONDITION' error.
+        /// \`FAILED_PRECONDITION' error.
         pub async fn create_alert_feedback(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateAlertFeedbackRequest>,

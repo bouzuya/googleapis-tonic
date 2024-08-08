@@ -278,7 +278,7 @@ pub mod workflows_client {
         }
         /// Creates a new workflow. If a workflow with the specified name already
         /// exists in the specified project and location, the long running operation
-        /// will return [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+        /// will return \[ALREADY_EXISTS\]\[google.rpc.Code.ALREADY_EXISTS\] error.
         pub async fn create_workflow(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateWorkflowRequest>,

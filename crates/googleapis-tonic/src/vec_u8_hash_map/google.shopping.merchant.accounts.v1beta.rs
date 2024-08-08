@@ -1584,13 +1584,13 @@ pub mod homepage_service_client {
         /// exempts from verification) and return a successful response. If ownership
         /// can no longer be verified, it will return an error, but it won't clear the
         /// claim. In case of failure, a canonical error message will be returned:
-        ///    * PERMISSION_DENIED: user doesn't have the necessary permissions on this
-        ///    MC account;
-        ///    * FAILED_PRECONDITION:
-        ///      - The account is not a Merchant Center account;
-        ///      - MC account doesn't have a homepage;
-        ///      - claiming failed (in this case the error message will contain more
-        ///      details).
+        /// \* PERMISSION_DENIED: user doesn't have the necessary permissions on this
+        /// MC account;
+        /// \* FAILED_PRECONDITION:
+        /// - The account is not a Merchant Center account;
+        /// - MC account doesn't have a homepage;
+        /// - claiming failed (in this case the error message will contain more
+        /// details).
         pub async fn claim_homepage(
             &mut self,
             request: impl tonic::IntoRequest<super::ClaimHomepageRequest>,
@@ -1742,7 +1742,7 @@ pub mod account_tax_service_client {
     ///
     /// This API defines the following resource model:
     ///
-    /// - [AccountTax][google.shopping.merchant.accounts.v1main.AccountTax]
+    /// * \[AccountTax\]\[google.shopping.merchant.accounts.v1main.AccountTax\]
     #[derive(Debug, Clone)]
     pub struct AccountTaxServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -3467,7 +3467,7 @@ pub mod email_preferences_service_client {
         }
         /// Returns the email preferences for a Merchant Center account user.
         ///
-        /// Use the name=accounts/*/users/me/emailPreferences alias to get preferences
+        /// Use the name=accounts/\*/users/me/emailPreferences alias to get preferences
         /// for the authenticated user.
         pub async fn get_email_preferences(
             &mut self,
@@ -3507,7 +3507,7 @@ pub mod email_preferences_service_client {
         ///
         /// It is invalid for updates to specify an UNCONFIRMED opt-in status value.
         ///
-        /// Use the name=accounts/*/users/me/emailPreferences alias to update
+        /// Use the name=accounts/\*/users/me/emailPreferences alias to update
         /// preferences
         /// for the authenticated user.
         pub async fn update_email_preferences(
@@ -3643,7 +3643,7 @@ pub mod regions_service_client {
     ///
     /// This API defines the following resource model:
     ///
-    /// - [Region][google.shopping.merchant.accounts.v1main.Region]
+    /// * \[Region\]\[google.shopping.merchant.accounts.v1main.Region\]
     #[derive(Debug, Clone)]
     pub struct RegionsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -4130,9 +4130,10 @@ pub mod online_return_policy_service_client {
     use tonic::codegen::http::Uri;
     /// The service facilitates the management of a merchant's remorse return policy
     /// configuration, encompassing return policies for both ads and free listings
+    ///
     /// ## programs. This API defines the following resource model:
     ///
-    /// [OnlineReturnPolicy][google.shopping.merchant.accounts.v1.OnlineReturnPolicy]
+    /// \[OnlineReturnPolicy\]\[google.shopping.merchant.accounts.v1.OnlineReturnPolicy\]
     #[derive(Debug, Clone)]
     pub struct OnlineReturnPolicyServiceClient<T> {
         inner: tonic::client::Grpc<T>,

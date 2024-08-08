@@ -841,7 +841,7 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates an instance config and begins preparing it to be used. The
-        /// returned [long-running operation][google.longrunning.Operation]
+        /// returned \[long-running operation\]\[google.longrunning.Operation\]
         /// can be used to track the progress of preparing the new
         /// instance config. The instance config name is assigned by the caller. If the
         /// named instance config already exists, `CreateInstanceConfig` returns
@@ -849,38 +849,38 @@ pub mod instance_admin_client {
         ///
         /// Immediately after the request returns:
         ///
-        ///   * The instance config is readable via the API, with all requested
-        ///     attributes. The instance config's
-        ///     [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
-        ///     field is set to true. Its state is `CREATING`.
+        /// * The instance config is readable via the API, with all requested
+        ///  attributes. The instance config's
+        ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
+        ///  field is set to true. Its state is `CREATING`.
         ///
         /// While the operation is pending:
         ///
-        ///   * Cancelling the operation renders the instance config immediately
-        ///     unreadable via the API.
-        ///   * Except for deleting the creating resource, all other attempts to modify
-        ///     the instance config are rejected.
+        /// * Cancelling the operation renders the instance config immediately
+        ///  unreadable via the API.
+        /// * Except for deleting the creating resource, all other attempts to modify
+        ///  the instance config are rejected.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Instances can be created using the instance configuration.
-        ///   * The instance config's
-        ///   [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
-        ///   field becomes false. Its state becomes `READY`.
+        /// * Instances can be created using the instance configuration.
+        /// * The instance config's
+        ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
+        ///  field becomes false. Its state becomes `READY`.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_config_name>/operations/<operation_id>` and can be used to track
         /// creation of the instance config. The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CreateInstanceConfigMetadata\]\[google.spanner.admin.instance.v1.CreateInstanceConfigMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[InstanceConfig\]\[google.spanner.admin.instance.v1.InstanceConfig\], if
         /// successful.
         ///
         /// Authorization requires `spanner.instanceConfigs.create` permission on
         /// the resource
-        /// [parent][google.spanner.admin.instance.v1.CreateInstanceConfigRequest.parent].
+        /// \[parent\]\[google.spanner.admin.instance.v1.CreateInstanceConfigRequest.parent\].
         pub async fn create_instance_config(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateInstanceConfigRequest>,
@@ -912,7 +912,7 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an instance config. The returned
-        /// [long-running operation][google.longrunning.Operation] can be used to track
+        /// \[long-running operation\]\[google.longrunning.Operation\] can be used to track
         /// the progress of updating the instance. If the named instance config does
         /// not exist, returns `NOT_FOUND`.
         ///
@@ -920,41 +920,41 @@ pub mod instance_admin_client {
         ///
         /// Immediately after the request returns:
         ///
-        ///   * The instance config's
-        ///     [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
-        ///     field is set to true.
+        /// * The instance config's
+        ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
+        ///  field is set to true.
         ///
         /// While the operation is pending:
         ///
-        ///   * Cancelling the operation sets its metadata's
-        ///     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata.cancel_time].
-        ///     The operation is guaranteed to succeed at undoing all changes, after
-        ///     which point it terminates with a `CANCELLED` status.
-        ///   * All other attempts to modify the instance config are rejected.
-        ///   * Reading the instance config via the API continues to give the
-        ///     pre-request values.
+        /// * Cancelling the operation sets its metadata's
+        ///  \[cancel_time\]\[google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata.cancel_time\].
+        ///  The operation is guaranteed to succeed at undoing all changes, after
+        ///  which point it terminates with a `CANCELLED` status.
+        /// * All other attempts to modify the instance config are rejected.
+        /// * Reading the instance config via the API continues to give the
+        ///  pre-request values.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Creating instances using the instance configuration uses the new
-        ///     values.
-        ///   * The instance config's new values are readable via the API.
-        ///   * The instance config's
-        ///   [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
-        ///   field becomes false.
+        /// * Creating instances using the instance configuration uses the new
+        ///  values.
+        /// * The instance config's new values are readable via the API.
+        /// * The instance config's
+        ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
+        ///  field becomes false.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_config_name>/operations/<operation_id>` and can be used to track
         /// the instance config modification.  The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [UpdateInstanceConfigMetadata][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[UpdateInstanceConfigMetadata\]\[google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[InstanceConfig\]\[google.spanner.admin.instance.v1.InstanceConfig\], if
         /// successful.
         ///
         /// Authorization requires `spanner.instanceConfigs.update` permission on
-        /// the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
+        /// the resource \[name\]\[google.spanner.admin.instance.v1.InstanceConfig.name\].
         pub async fn update_instance_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateInstanceConfigRequest>,
@@ -992,7 +992,7 @@ pub mod instance_admin_client {
         /// Only user managed configurations can be deleted.
         ///
         /// Authorization requires `spanner.instanceConfigs.delete` permission on
-        /// the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
+        /// the resource \[name\]\[google.spanner.admin.instance.v1.InstanceConfig.name\].
         pub async fn delete_instance_config(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInstanceConfigRequest>,
@@ -1020,12 +1020,12 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists the user-managed instance config [long-running
-        /// operations][google.longrunning.Operation] in the given project. An instance
+        /// Lists the user-managed instance config \[long-running
+        /// operations\]\[google.longrunning.Operation\] in the given project. An instance
         /// config operation has a name of the form
         /// `projects/<project>/instanceConfigs/<instance_config>/operations/<operation>`.
         /// The long-running operation
-        /// [metadata][google.longrunning.Operation.metadata] field type
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
         /// `metadata.type_url` describes the type of the metadata. Operations returned
         /// include those that have completed/failed/canceled within the last 7 days,
         /// and pending operations. Operations returned are ordered by
@@ -1152,7 +1152,7 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates an instance and begins preparing it to begin serving. The
-        /// returned [long-running operation][google.longrunning.Operation]
+        /// returned \[long-running operation\]\[google.longrunning.Operation\]
         /// can be used to track the progress of preparing the new
         /// instance. The instance name is assigned by the caller. If the
         /// named instance already exists, `CreateInstance` returns
@@ -1160,31 +1160,31 @@ pub mod instance_admin_client {
         ///
         /// Immediately upon completion of this request:
         ///
-        ///   * The instance is readable via the API, with all requested attributes
-        ///     but no allocated resources. Its state is `CREATING`.
+        /// * The instance is readable via the API, with all requested attributes
+        ///  but no allocated resources. Its state is `CREATING`.
         ///
         /// Until completion of the returned operation:
         ///
-        ///   * Cancelling the operation renders the instance immediately unreadable
-        ///     via the API.
-        ///   * The instance can be deleted.
-        ///   * All other attempts to modify the instance are rejected.
+        /// * Cancelling the operation renders the instance immediately unreadable
+        ///  via the API.
+        /// * The instance can be deleted.
+        /// * All other attempts to modify the instance are rejected.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Billing for all successfully-allocated resources begins (some types
-        ///     may have lower than the requested levels).
-        ///   * Databases can be created in the instance.
-        ///   * The instance's allocated resource levels are readable via the API.
-        ///   * The instance's state becomes `READY`.
+        /// * Billing for all successfully-allocated resources begins (some types
+        ///  may have lower than the requested levels).
+        /// * Databases can be created in the instance.
+        /// * The instance's allocated resource levels are readable via the API.
+        /// * The instance's state becomes `READY`.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format `<instance_name>/operations/<operation_id>` and
         /// can be used to track creation of the instance.  The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Instance][google.spanner.admin.instance.v1.Instance], if successful.
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CreateInstanceMetadata\]\[google.spanner.admin.instance.v1.CreateInstanceMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Instance\]\[google.spanner.admin.instance.v1.Instance\], if successful.
         pub async fn create_instance(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateInstanceRequest>,
@@ -1216,45 +1216,45 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an instance, and begins allocating or releasing resources
-        /// as requested. The returned [long-running
-        /// operation][google.longrunning.Operation] can be used to track the
+        /// as requested. The returned \[long-running
+        /// operation\]\[google.longrunning.Operation\] can be used to track the
         /// progress of updating the instance. If the named instance does not
         /// exist, returns `NOT_FOUND`.
         ///
         /// Immediately upon completion of this request:
         ///
-        ///   * For resource types for which a decrease in the instance's allocation
-        ///     has been requested, billing is based on the newly-requested level.
+        /// * For resource types for which a decrease in the instance's allocation
+        ///  has been requested, billing is based on the newly-requested level.
         ///
         /// Until completion of the returned operation:
         ///
-        ///   * Cancelling the operation sets its metadata's
-        ///     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time],
-        ///     and begins restoring resources to their pre-request values. The
-        ///     operation is guaranteed to succeed at undoing all resource changes,
-        ///     after which point it terminates with a `CANCELLED` status.
-        ///   * All other attempts to modify the instance are rejected.
-        ///   * Reading the instance via the API continues to give the pre-request
-        ///     resource levels.
+        /// * Cancelling the operation sets its metadata's
+        ///  \[cancel_time\]\[google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time\],
+        ///  and begins restoring resources to their pre-request values. The
+        ///  operation is guaranteed to succeed at undoing all resource changes,
+        ///  after which point it terminates with a `CANCELLED` status.
+        /// * All other attempts to modify the instance are rejected.
+        /// * Reading the instance via the API continues to give the pre-request
+        ///  resource levels.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Billing begins for all successfully-allocated resources (some types
-        ///     may have lower than the requested levels).
-        ///   * All newly-reserved resources are available for serving the instance's
-        ///     tables.
-        ///   * The instance's new resource levels are readable via the API.
+        /// * Billing begins for all successfully-allocated resources (some types
+        ///  may have lower than the requested levels).
+        /// * All newly-reserved resources are available for serving the instance's
+        ///  tables.
+        /// * The instance's new resource levels are readable via the API.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format `<instance_name>/operations/<operation_id>` and
         /// can be used to track the instance modification.  The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [UpdateInstanceMetadata][google.spanner.admin.instance.v1.UpdateInstanceMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [Instance][google.spanner.admin.instance.v1.Instance], if successful.
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[UpdateInstanceMetadata\]\[google.spanner.admin.instance.v1.UpdateInstanceMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Instance\]\[google.spanner.admin.instance.v1.Instance\], if successful.
         ///
         /// Authorization requires `spanner.instances.update` permission on
-        /// the resource [name][google.spanner.admin.instance.v1.Instance.name].
+        /// the resource \[name\]\[google.spanner.admin.instance.v1.Instance.name\].
         pub async fn update_instance(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateInstanceRequest>,
@@ -1289,13 +1289,13 @@ pub mod instance_admin_client {
         ///
         /// Immediately upon completion of the request:
         ///
-        ///   * Billing ceases for all of the instance's reserved resources.
+        /// * Billing ceases for all of the instance's reserved resources.
         ///
         /// Soon afterward:
         ///
-        ///   * The instance and *all of its databases* immediately and
-        ///     irrevocably disappear from the API. All data in the databases
-        ///     is permanently deleted.
+        /// * The instance and *all of its databases* immediately and
+        ///  irrevocably disappear from the API. All data in the databases
+        ///  is permanently deleted.
         pub async fn delete_instance(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInstanceRequest>,
@@ -1327,7 +1327,7 @@ pub mod instance_admin_client {
         /// existing policy.
         ///
         /// Authorization requires `spanner.instances.setIamPolicy` on
-        /// [resource][google.iam.v1.SetIamPolicyRequest.resource].
+        /// \[resource\]\[google.iam.v1.SetIamPolicyRequest.resource\].
         pub async fn set_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1364,7 +1364,7 @@ pub mod instance_admin_client {
         /// policy if an instance exists but does not have a policy set.
         ///
         /// Authorization requires `spanner.instances.getIamPolicy` on
-        /// [resource][google.iam.v1.GetIamPolicyRequest.resource].
+        /// \[resource\]\[google.iam.v1.GetIamPolicyRequest.resource\].
         pub async fn get_iam_policy(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -1469,7 +1469,7 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates an instance partition and begins preparing it to be used. The
-        /// returned [long-running operation][google.longrunning.Operation]
+        /// returned \[long-running operation\]\[google.longrunning.Operation\]
         /// can be used to track the progress of preparing the new instance partition.
         /// The instance partition name is assigned by the caller. If the named
         /// instance partition already exists, `CreateInstancePartition` returns
@@ -1477,33 +1477,33 @@ pub mod instance_admin_client {
         ///
         /// Immediately upon completion of this request:
         ///
-        ///   * The instance partition is readable via the API, with all requested
-        ///     attributes but no allocated resources. Its state is `CREATING`.
+        /// * The instance partition is readable via the API, with all requested
+        ///  attributes but no allocated resources. Its state is `CREATING`.
         ///
         /// Until completion of the returned operation:
         ///
-        ///   * Cancelling the operation renders the instance partition immediately
-        ///     unreadable via the API.
-        ///   * The instance partition can be deleted.
-        ///   * All other attempts to modify the instance partition are rejected.
+        /// * Cancelling the operation renders the instance partition immediately
+        ///  unreadable via the API.
+        /// * The instance partition can be deleted.
+        /// * All other attempts to modify the instance partition are rejected.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Billing for all successfully-allocated resources begins (some types
-        ///     may have lower than the requested levels).
-        ///   * Databases can start using this instance partition.
-        ///   * The instance partition's allocated resource levels are readable via the
-        ///     API.
-        ///   * The instance partition's state becomes `READY`.
+        /// * Billing for all successfully-allocated resources begins (some types
+        ///  may have lower than the requested levels).
+        /// * Databases can start using this instance partition.
+        /// * The instance partition's allocated resource levels are readable via the
+        ///  API.
+        /// * The instance partition's state becomes `READY`.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_partition_name>/operations/<operation_id>` and can be used to
         /// track creation of the instance partition.  The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [CreateInstancePartitionMetadata][google.spanner.admin.instance.v1.CreateInstancePartitionMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[CreateInstancePartitionMetadata\]\[google.spanner.admin.instance.v1.CreateInstancePartitionMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[InstancePartition\]\[google.spanner.admin.instance.v1.InstancePartition\], if
         /// successful.
         pub async fn create_instance_partition(
             &mut self,
@@ -1541,7 +1541,7 @@ pub mod instance_admin_client {
         ///
         /// Authorization requires `spanner.instancePartitions.delete` permission on
         /// the resource
-        /// [name][google.spanner.admin.instance.v1.InstancePartition.name].
+        /// \[name\]\[google.spanner.admin.instance.v1.InstancePartition.name\].
         pub async fn delete_instance_partition(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteInstancePartitionRequest>,
@@ -1570,49 +1570,49 @@ pub mod instance_admin_client {
             self.inner.unary(req, path, codec).await
         }
         /// Updates an instance partition, and begins allocating or releasing resources
-        /// as requested. The returned [long-running
-        /// operation][google.longrunning.Operation] can be used to track the
+        /// as requested. The returned \[long-running
+        /// operation\]\[google.longrunning.Operation\] can be used to track the
         /// progress of updating the instance partition. If the named instance
         /// partition does not exist, returns `NOT_FOUND`.
         ///
         /// Immediately upon completion of this request:
         ///
-        ///   * For resource types for which a decrease in the instance partition's
-        ///   allocation has been requested, billing is based on the newly-requested
-        ///   level.
+        /// * For resource types for which a decrease in the instance partition's
+        ///  allocation has been requested, billing is based on the newly-requested
+        ///  level.
         ///
         /// Until completion of the returned operation:
         ///
-        ///   * Cancelling the operation sets its metadata's
-        ///     [cancel_time][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata.cancel_time],
-        ///     and begins restoring resources to their pre-request values. The
-        ///     operation is guaranteed to succeed at undoing all resource changes,
-        ///     after which point it terminates with a `CANCELLED` status.
-        ///   * All other attempts to modify the instance partition are rejected.
-        ///   * Reading the instance partition via the API continues to give the
-        ///     pre-request resource levels.
+        /// * Cancelling the operation sets its metadata's
+        ///  \[cancel_time\]\[google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata.cancel_time\],
+        ///  and begins restoring resources to their pre-request values. The
+        ///  operation is guaranteed to succeed at undoing all resource changes,
+        ///  after which point it terminates with a `CANCELLED` status.
+        /// * All other attempts to modify the instance partition are rejected.
+        /// * Reading the instance partition via the API continues to give the
+        ///  pre-request resource levels.
         ///
         /// Upon completion of the returned operation:
         ///
-        ///   * Billing begins for all successfully-allocated resources (some types
-        ///     may have lower than the requested levels).
-        ///   * All newly-reserved resources are available for serving the instance
-        ///     partition's tables.
-        ///   * The instance partition's new resource levels are readable via the API.
+        /// * Billing begins for all successfully-allocated resources (some types
+        ///  may have lower than the requested levels).
+        /// * All newly-reserved resources are available for serving the instance
+        ///  partition's tables.
+        /// * The instance partition's new resource levels are readable via the API.
         ///
-        /// The returned [long-running operation][google.longrunning.Operation] will
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_partition_name>/operations/<operation_id>` and can be used to
         /// track the instance partition modification. The
-        /// [metadata][google.longrunning.Operation.metadata] field type is
-        /// [UpdateInstancePartitionMetadata][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata].
-        /// The [response][google.longrunning.Operation.response] field type is
-        /// [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[UpdateInstancePartitionMetadata\]\[google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[InstancePartition\]\[google.spanner.admin.instance.v1.InstancePartition\], if
         /// successful.
         ///
         /// Authorization requires `spanner.instancePartitions.update` permission on
         /// the resource
-        /// [name][google.spanner.admin.instance.v1.InstancePartition.name].
+        /// \[name\]\[google.spanner.admin.instance.v1.InstancePartition.name\].
         pub async fn update_instance_partition(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateInstancePartitionRequest>,
@@ -1643,12 +1643,12 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists instance partition [long-running
-        /// operations][google.longrunning.Operation] in the given instance.
+        /// Lists instance partition \[long-running
+        /// operations\]\[google.longrunning.Operation\] in the given instance.
         /// An instance partition operation has a name of the form
         /// `projects/<project>/instances/<instance>/instancePartitions/<instance_partition>/operations/<operation>`.
         /// The long-running operation
-        /// [metadata][google.longrunning.Operation.metadata] field type
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
         /// `metadata.type_url` describes the type of the metadata. Operations returned
         /// include those that have completed/failed/canceled within the last 7 days,
         /// and pending operations. Operations returned are ordered by
@@ -1657,7 +1657,7 @@ pub mod instance_admin_client {
         ///
         /// Authorization requires `spanner.instancePartitionOperations.list`
         /// permission on the resource
-        /// [parent][google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest.parent].
+        /// \[parent\]\[google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest.parent\].
         pub async fn list_instance_partition_operations(
             &mut self,
             request: impl tonic::IntoRequest<

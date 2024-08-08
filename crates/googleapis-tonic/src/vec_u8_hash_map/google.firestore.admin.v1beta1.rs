@@ -334,7 +334,6 @@ pub mod firestore_admin_client {
     ///
     /// Operation: An Operation represents work being performed in the background.
     ///
-    ///
     /// # Services
     ///
     /// ## Index
@@ -437,15 +436,15 @@ pub mod firestore_admin_client {
         }
         /// Creates the specified index.
         /// A newly created index's initial state is `CREATING`. On completion of the
-        /// returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
+        /// returned \[google.longrunning.Operation\]\[google.longrunning.Operation\], the state will be `READY`.
         /// If the index already exists, the call will return an `ALREADY_EXISTS`
         /// status.
         ///
         /// During creation, the process could result in an error, in which case the
         /// index will move to the `ERROR` state. The process can be recovered by
         /// fixing the data that caused the error, removing the index with
-        /// [delete][google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex], then re-creating the index with
-        /// [create][google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex].
+        /// \[delete\]\[google.firestore.admin.v1beta1.FirestoreAdmin.DeleteIndex\], then re-creating the index with
+        /// \[create\]\[google.firestore.admin.v1beta1.FirestoreAdmin.CreateIndex\].
         ///
         /// Indexes with a single field cannot be created.
         pub async fn create_index(

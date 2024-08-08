@@ -559,13 +559,13 @@ pub mod reservation_service_client {
     /// parallelism. In a scan of a multi-partitioned table, a single slot operates
     /// on a single partition of the table. A reservation resource exists as a child
     /// resource of the admin project and location, e.g.:
-    ///   `projects/myproject/locations/US/reservations/reservationName`.
+    /// `projects/myproject/locations/US/reservations/reservationName`.
     ///
     /// A capacity commitment is a way to purchase compute capacity for BigQuery jobs
     /// (in the form of slots) with some committed period of usage. A capacity
     /// commitment resource exists as a child resource of the admin project and
     /// location, e.g.:
-    ///   `projects/myproject/locations/US/capacityCommitments/id`.
+    /// `projects/myproject/locations/US/capacityCommitments/id`.
     #[derive(Debug, Clone)]
     pub struct ReservationServiceClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -1034,10 +1034,10 @@ pub mod reservation_service_client {
         /// Example:
         ///
         /// * The organization `organizationA` contains two projects, `project1`
-        ///   and `project2`.
+        ///  and `project2`.
         /// * Assignments for all three entities (`organizationA`, `project1`, and
-        ///   `project2`) could all be created and mapped to the same or different
-        ///   reservations.
+        ///  `project2`) could all be created and mapped to the same or different
+        ///  reservations.
         ///
         /// "None" assignments represent an absence of the assignment. Projects
         /// assigned to None use on-demand pricing. To create a "None" assignment, use
@@ -1084,11 +1084,11 @@ pub mod reservation_service_client {
         /// Example:
         ///
         /// * Organization `organizationA` contains two projects, `project1` and
-        ///   `project2`.
+        ///  `project2`.
         /// * Reservation `res1` exists and was created previously.
         /// * CreateAssignment was used previously to define the following
-        ///   associations between entities and reservations: `<organizationA, res1>`
-        ///   and `<project1, res1>`
+        ///  associations between entities and reservations: `<organizationA, res1>`
+        ///  and `<project1, res1>`
         ///
         /// In this example, ListAssignments will just return the above two assignments
         /// for reservation `res1`, and no expansion/merge will happen.
@@ -1133,11 +1133,11 @@ pub mod reservation_service_client {
         /// Example:
         ///
         /// * Organization `organizationA` contains two projects, `project1` and
-        ///   `project2`.
+        ///  `project2`.
         /// * Reservation `res1` exists and was created previously.
         /// * CreateAssignment was used previously to define the following
-        ///   associations between entities and reservations: `<organizationA, res1>`
-        ///   and `<project1, res1>`
+        ///  associations between entities and reservations: `<organizationA, res1>`
+        ///  and `<project1, res1>`
         ///
         /// In this example, deletion of the `<organizationA, res1>` assignment won't
         /// affect the other assignment `<project1, res1>`. After said deletion,
@@ -1174,9 +1174,9 @@ pub mod reservation_service_client {
         /// region. If the request is about a project:
         ///
         /// 1. Assignments created on the project will be returned if they exist.
-        /// 2. Otherwise assignments created on the closest ancestor will be
-        ///    returned.
-        /// 3. Assignments for different JobTypes will all be returned.
+        /// 1. Otherwise assignments created on the closest ancestor will be
+        ///   returned.
+        /// 1. Assignments for different JobTypes will all be returned.
         ///
         /// The same logic applies if the request is about a folder.
         ///
@@ -1187,9 +1187,9 @@ pub mod reservation_service_client {
         /// differences:
         ///
         /// 1. permission on the assignee will be verified in this API.
-        /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
-        /// 3. Parent here is `projects/*/locations/*`, instead of
-        ///    `projects/*/locations/*reservations/*`.
+        /// 1. Hierarchy lookup (project->folder->organization) happens in this API.
+        /// 1. Parent here is `projects/*/locations/*`, instead of
+        ///   `projects/*/locations/*reservations/*`.
         ///
         /// **Note** "-" cannot be used for projects
         /// nor locations.
@@ -1227,9 +1227,9 @@ pub mod reservation_service_client {
         /// If the request is about a project:
         ///
         /// 1. Assignments created on the project will be returned if they exist.
-        /// 2. Otherwise assignments created on the closest ancestor will be
-        ///    returned.
-        /// 3. Assignments for different JobTypes will all be returned.
+        /// 1. Otherwise assignments created on the closest ancestor will be
+        ///   returned.
+        /// 1. Assignments for different JobTypes will all be returned.
         ///
         /// The same logic applies if the request is about a folder.
         ///
@@ -1240,9 +1240,9 @@ pub mod reservation_service_client {
         /// differences:
         ///
         /// 1. permission on the assignee will be verified in this API.
-        /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
-        /// 3. Parent here is `projects/*/locations/*`, instead of
-        ///    `projects/*/locations/*reservations/*`.
+        /// 1. Hierarchy lookup (project->folder->organization) happens in this API.
+        /// 1. Parent here is `projects/*/locations/*`, instead of
+        ///   `projects/*/locations/*reservations/*`.
         pub async fn search_all_assignments(
             &mut self,
             request: impl tonic::IntoRequest<super::SearchAllAssignmentsRequest>,

@@ -97,7 +97,7 @@ pub mod public_certificate_authority_service_client {
             self
         }
         /// Creates a new
-        /// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey]
+        /// \[ExternalAccountKey\]\[google.cloud.security.publicca.v1.ExternalAccountKey\]
         /// bound to the project.
         pub async fn create_external_account_key(
             &mut self,

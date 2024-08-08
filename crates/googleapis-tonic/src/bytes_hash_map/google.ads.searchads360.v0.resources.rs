@@ -498,6 +498,8 @@ pub struct CustomerManagerLink {
         tag = "5"
     )]
     pub status: i32,
+    #[prost(string, optional, tag = "8")]
+    pub start_time: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -312,7 +312,7 @@ pub mod app_connections_service_client {
     /// The AppConnectionsService exposes the following resources:
     ///
     /// * AppConnections, named as follows:
-    ///   `projects/{project_id}/locations/{location_id}/appConnections/{app_connection_id}`.
+    ///  `projects/{project_id}/locations/{location_id}/appConnections/{app_connection_id}`.
     ///
     /// The AppConnectionsService service provides methods to manage
     /// (create/read/update/delete) BeyondCorp AppConnections.

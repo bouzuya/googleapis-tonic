@@ -96,7 +96,7 @@ pub mod public_certificate_authority_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] bound to the project.
+        /// Creates a new \[ExternalAccountKey\]\[google.cloud.security.publicca.v1beta1.ExternalAccountKey\] bound to the project.
         pub async fn create_external_account_key(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateExternalAccountKeyRequest>,

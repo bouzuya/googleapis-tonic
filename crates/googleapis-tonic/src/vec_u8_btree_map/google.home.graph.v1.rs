@@ -265,10 +265,9 @@ pub mod home_graph_api_service_client {
         /// [intent](https://developers.home.google.com/cloud-to-cloud/intents/sync)
         /// to your smart home Action to update device metadata for the given user.
         ///
-        ///
         /// The third-party user's identity is passed via the `agent_user_id`
         /// (see
-        /// [RequestSyncDevicesRequest][google.home.graph.v1.RequestSyncDevicesRequest]).
+        /// \[RequestSyncDevicesRequest\]\[google.home.graph.v1.RequestSyncDevicesRequest\]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn request_sync_devices(
@@ -315,7 +314,7 @@ pub mod home_graph_api_service_client {
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
         /// (see
-        /// [ReportStateAndNotificationRequest][google.home.graph.v1.ReportStateAndNotificationRequest]).
+        /// \[ReportStateAndNotificationRequest\]\[google.home.graph.v1.ReportStateAndNotificationRequest\]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn report_state_and_notification(
@@ -357,7 +356,7 @@ pub mod home_graph_api_service_client {
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
         /// (see
-        /// [DeleteAgentUserRequest][google.home.graph.v1.DeleteAgentUserRequest]).
+        /// \[DeleteAgentUserRequest\]\[google.home.graph.v1.DeleteAgentUserRequest\]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn delete_agent_user(
@@ -391,7 +390,7 @@ pub mod home_graph_api_service_client {
         /// user's devices.
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see [QueryRequest][google.home.graph.v1.QueryRequest]).
+        /// (see \[QueryRequest\]\[google.home.graph.v1.QueryRequest\]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn query(
@@ -421,7 +420,7 @@ pub mod home_graph_api_service_client {
         /// Gets all the devices associated with the given third-party user.
         ///
         /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see [SyncRequest][google.home.graph.v1.SyncRequest]).
+        /// (see \[SyncRequest\]\[google.home.graph.v1.SyncRequest\]).
         /// This request must be authorized using service account credentials from your
         /// Actions console project.
         pub async fn sync(

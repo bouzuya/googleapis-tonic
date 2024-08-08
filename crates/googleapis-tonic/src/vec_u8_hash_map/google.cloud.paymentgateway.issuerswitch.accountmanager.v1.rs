@@ -398,22 +398,22 @@ pub mod account_manager_transactions_client {
         /// file into a configured target location. The returned `Operation` type has
         /// the following method-specific fields:
         ///
-        /// - `metadata`:
-        /// [ExportAccountManagerTransactionsMetadata][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata]
-        /// - `response`:
-        /// [ExportAccountManagerTransactionsResponse][google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse]
+        /// * `metadata`:
+        ///  \[ExportAccountManagerTransactionsMetadata\]\[google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsMetadata\]
+        /// * `response`:
+        ///  \[ExportAccountManagerTransactionsResponse\]\[google.cloud.paymentgateway.issuerswitch.accountmanager.v1.ExportAccountManagerTransactionsResponse\]
         ///
         /// The exported file will be in the standard CSV format where each row in the
         /// file represents a transaction. The file has the following fields in order:
         ///
         /// 1. `TransactionID`
-        ///     * **Min Length** - 35 characters
-        ///     * **Max Length** - 35 characters
-        ///     * **Description** - Account manager transaction ID.
+        ///   * **Min Length** - 35 characters
+        ///   * **Max Length** - 35 characters
+        ///   * **Description** - Account manager transaction ID.
         /// 1. `TransactionType`
-        ///     * **Min Length** - 22 characters
-        ///     * **Max Length** - 25 characters
-        ///     * **Description** - Type of the transaction. This will be one of
+        ///   * **Min Length** - 22 characters
+        ///   * **Max Length** - 25 characters
+        ///   * **Description** - Type of the transaction. This will be one of
         ///     `TRANSACTION_TYPE_CREDIT`, `TRANSACTION_TYPE_CREDIT_REVERSAL`,
         ///     `TRANSACTION_TYPE_DEBIT` or `TRANSACTION_TYPE_DEBIT_REVERSAL`. When
         ///     account manager is used for managing UPI Lite transactions, the CREDIT
@@ -422,75 +422,75 @@ pub mod account_manager_transactions_client {
         ///     transferred back the underlying bank account or for a Lite account
         ///     financial transaction which happened offline.
         /// 1. `AccountID`
-        ///     * **Min Length** - 35 characters
-        ///     * **Max Length** - 35 characters
-        ///     * **Description** - Account ID. When account manager is used for
+        ///   * **Min Length** - 35 characters
+        ///   * **Max Length** - 35 characters
+        ///   * **Description** - Account ID. When account manager is used for
         ///     managing UPI Lite transactions, this column will contain the Lite
         ///     Reference Number (LRN) of the UPI Lite account.
         /// 1. `State`
-        ///     * **Min Length** - 6 characters
-        ///     * **Max Length** - 12 characters
-        ///     * **Description** - State of the transaction. This will be one of
+        ///   * **Min Length** - 6 characters
+        ///   * **Max Length** - 12 characters
+        ///   * **Description** - State of the transaction. This will be one of
         ///     `SUCCEEDED` or `FAILED`.
         /// 1. `RRN`
-        ///     * **Min Length** - 12 characters
-        ///     * **Max Length** - 12 characters
-        ///     * **Description** - Retrieval reference number associated with the
+        ///   * **Min Length** - 12 characters
+        ///   * **Max Length** - 12 characters
+        ///   * **Description** - Retrieval reference number associated with the
         ///     transaction.
         /// 1. `PayerVPA`
-        ///     * **Min Length** - 3 characters
-        ///     * **Max Length** - 255 characters
-        ///     * **Description** - Virtual Payment Address (VPA) of the payer.
+        ///   * **Min Length** - 3 characters
+        ///   * **Max Length** - 255 characters
+        ///   * **Description** - Virtual Payment Address (VPA) of the payer.
         /// 1. `PayerIFSC`
-        ///     * **Min Length** - 11 characters
-        ///     * **Max Length** - 11 characters
-        ///     * **Description** - IFSC of the payer's bank account.
+        ///   * **Min Length** - 11 characters
+        ///   * **Max Length** - 11 characters
+        ///   * **Description** - IFSC of the payer's bank account.
         /// 1. `PayerAccountNumber`
-        ///     * **Min Length** - 1 characters
-        ///     * **Max Length** - 30 characters
-        ///     * **Description** - Payer's bank account number.
+        ///   * **Min Length** - 1 characters
+        ///   * **Max Length** - 30 characters
+        ///   * **Description** - Payer's bank account number.
         /// 1. `PayeeVPA`
-        ///     * **Min Length** - 3 characters
-        ///     * **Max Length** - 255 characters
-        ///     * **Description** - Virtual Payment Address (VPA) of the payee.
+        ///   * **Min Length** - 3 characters
+        ///   * **Max Length** - 255 characters
+        ///   * **Description** - Virtual Payment Address (VPA) of the payee.
         /// 1. `PayeeIFSC`
-        ///     * **Min Length** - 11 characters
-        ///     * **Max Length** - 11 characters
-        ///     * **Description** - IFSC of the payee's bank account.
+        ///   * **Min Length** - 11 characters
+        ///   * **Max Length** - 11 characters
+        ///   * **Description** - IFSC of the payee's bank account.
         /// 1. `PayeeAccountNumber`
-        ///     * **Min Length** - 1 characters
-        ///     * **Max Length** - 30 characters
-        ///     * **Description** - Payee's bank account number.
+        ///   * **Min Length** - 1 characters
+        ///   * **Max Length** - 30 characters
+        ///   * **Description** - Payee's bank account number.
         /// 1. `PayeeMCC`
-        ///     * **Min Length** - 4 characters
-        ///     * **Max Length** - 4 characters
-        ///     * **Description** - Payee's Merchant Category Code (MCC), only if the
+        ///   * **Min Length** - 4 characters
+        ///   * **Max Length** - 4 characters
+        ///   * **Description** - Payee's Merchant Category Code (MCC), only if the
         ///     payee is a merchant.
         /// 1. `PayeeMerchantID`
-        ///     * **Min Length** - 4 characters
-        ///     * **Max Length** - 4 characters
-        ///     * **Description** - Payee's merchant ID, only if the payee is a
+        ///   * **Min Length** - 4 characters
+        ///   * **Max Length** - 4 characters
+        ///   * **Description** - Payee's merchant ID, only if the payee is a
         ///     merchant.
         /// 1. `Currency`
-        ///     * **Min Length** - 3 characters
-        ///     * **Max Length** - 3 characters
-        ///     * **Description** - Currency of the amount involved in the transaction.
+        ///   * **Min Length** - 3 characters
+        ///   * **Max Length** - 3 characters
+        ///   * **Description** - Currency of the amount involved in the transaction.
         ///     The currency codes are defined in ISO 4217.
         /// 1. `Amount`
-        ///     * **Description** - Amount involved in the transaction.
+        ///   * **Description** - Amount involved in the transaction.
         /// 1. `Purpose`
-        ///     * **Min Length** - 1 characters
-        ///     * **Max Length** - 4 characters
-        ///     * **Description** - Purpose code associated with the transaction. When
+        ///   * **Min Length** - 1 characters
+        ///   * **Max Length** - 4 characters
+        ///   * **Description** - Purpose code associated with the transaction. When
         ///     account manager is used for managing UPI Lite transactions, this column
         ///     will contain one of the values from `41` (Lite account creation with
         ///     initial topup), `42` (Lite account topup), `43` (Lite account
         ///     disablement with balance transfer) or `44` (Lite account online
         ///     transaction).
         /// 1. `TransactionTime`
-        ///     * **Min Length** - 20 characters
-        ///     * **Max Length** - 20 characters
-        ///     * **Description** - Timestamp (in UTC) indicating the timestamp at
+        ///   * **Min Length** - 20 characters
+        ///   * **Max Length** - 20 characters
+        ///   * **Description** - Timestamp (in UTC) indicating the timestamp at
         ///     which the transaction took place. The format will be as per RFC-3339.
         ///     Example : 2022-11-22T23:00:05Z
         pub async fn export_account_manager_transactions(
