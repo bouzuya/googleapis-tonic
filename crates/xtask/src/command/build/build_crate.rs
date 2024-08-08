@@ -1,7 +1,7 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
-    path::PathBuf,
+    path::{Path, PathBuf},
     str::FromStr as _,
 };
 
@@ -12,7 +12,8 @@ use crate::map_type::MapType;
 use crate::modules::Modules;
 use crate::{bytes_type::BytesType, proto_dir::ProtoDir};
 
-pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
+pub fn build_crate(crates_dir: &Path, proto_dir: &ProtoDir) -> anyhow::Result<PathBuf> {
+    let src_dir = crates_dir.join("googleapis-tonic").join("src");
     for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
         MapType::values()
             .iter()
@@ -20,7 +21,7 @@ pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
             .collect::<Vec<(BytesType, MapType)>>()
     }) {
         let root_mod_name = format!("{}_{}", bytes_type.as_path_part(), map_type.as_path_part());
-        let out_dir = format!("{}/{}", src_dir, root_mod_name);
+        let out_dir = src_dir.join(&root_mod_name);
 
         let mut prost_config = prost_build::Config::new();
         let packages = proto_dir
@@ -43,7 +44,7 @@ pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
                 BytesType::VecU8 => vec![],
             })
             .emit_rerun_if_changed(false)
-            .out_dir(out_dir.as_str())
+            .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
             .compile_with_config(
                 prost_config,
@@ -52,7 +53,7 @@ pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
             )?;
 
         let mut file_names = vec![];
-        for dir_entry in fs::read_dir(out_dir.as_str())? {
+        for dir_entry in fs::read_dir(&out_dir)? {
             let dir_entry = dir_entry?;
             let path = dir_entry.path();
             let file_name = path
@@ -65,11 +66,11 @@ pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
 
         let modules = Modules::from_file_names(&file_names);
         let output = modules.to_rs_file_content(&format!("{}/", root_mod_name));
-        fs::write(format!("{}/{}.rs", src_dir, root_mod_name), output)?;
+        fs::write(src_dir.join(format!("{}.rs", root_mod_name)), output)?;
     }
 
-    update_cargo_toml(src_dir, proto_dir)?;
-    Ok(())
+    update_cargo_toml(&src_dir, proto_dir)?;
+    Ok(src_dir)
 }
 
 fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
@@ -101,10 +102,8 @@ fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Featur
     features
 }
 
-fn update_cargo_toml(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
-    let cargo_toml_path = PathBuf::from(src_dir)
-        .join("../Cargo.toml")
-        .canonicalize()?;
+fn update_cargo_toml(src_dir: &Path, proto_dir: &ProtoDir) -> anyhow::Result<()> {
+    let cargo_toml_path = src_dir.join("../Cargo.toml").canonicalize()?;
     let cargo_toml = fs::read_to_string(&cargo_toml_path)?;
     let mut document = toml_edit::DocumentMut::from_str(&cargo_toml)?;
     let table = document["features"]

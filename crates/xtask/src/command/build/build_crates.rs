@@ -14,9 +14,7 @@ struct M {
     modules: BTreeMap<String, M>,
 }
 
-pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
-    let googleapis_tonic_src_dir = PathBuf::from(googleapis_tonic_src_dir);
-
+pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> anyhow::Result<()> {
     let emit_package_names = proto_dir.emit_package_names();
     for package_name in emit_package_names {
         let deps = proto_dir
@@ -82,7 +80,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> any
             "vec_u8_hash_map",
         ] {
             write_variant_dir(
-                &googleapis_tonic_src_dir,
+                googleapis_tonic_src_dir,
                 &src_dir,
                 variant,
                 &include_package_names,
