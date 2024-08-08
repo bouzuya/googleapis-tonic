@@ -2,7 +2,10 @@ use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
     path::{Path, PathBuf},
+    str::FromStr as _,
 };
+
+use anyhow::Context;
 
 use crate::{proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName};
 
@@ -14,9 +17,24 @@ struct M {
 pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
     let googleapis_tonic_src_dir = PathBuf::from(googleapis_tonic_src_dir);
 
-    for (package_name, deps) in proto_dir.dependencies() {
+    let emit_package_names = proto_dir.emit_package_names();
+    for package_name in emit_package_names {
+        let deps = proto_dir
+            .dependencies()
+            .get(package_name)
+            .with_context(|| format!("dependencies not found: {:?}", package_name))?;
         let crate_name = package_name_to_crate_name(package_name);
-        let file_name = format!("{}.rs", package_name_to_module_name(package_name));
+        let dep_crate_names = deps
+            .iter()
+            .filter(|it| emit_package_names.contains(it))
+            .map(package_name_to_crate_name)
+            .collect::<BTreeSet<String>>();
+        let include_package_names = deps
+            .iter()
+            .filter(|it| !emit_package_names.contains(it))
+            .chain(std::iter::once(package_name))
+            .cloned()
+            .collect::<BTreeSet<ProtobufPackageName>>();
 
         let mut modules = BTreeMap::new();
         for dep in deps.iter().chain(std::iter::once(package_name)) {
@@ -55,7 +73,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> any
         //   Cargo.toml
         let crate_dir = PathBuf::from("crates").join(&crate_name);
         fs::create_dir_all(&crate_dir)?;
-        write_cargo_toml(&crate_dir, &crate_name, package_name, deps)?;
+        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names)?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",
@@ -63,8 +81,13 @@ pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> any
             "vec_u8_btree_map",
             "vec_u8_hash_map",
         ] {
-            write_variant_dir(&googleapis_tonic_src_dir, &src_dir, variant, &file_name)?;
-            write_variant_file(&src_dir, variant, &file_name, package_name, &modules)?;
+            write_variant_dir(
+                &googleapis_tonic_src_dir,
+                &src_dir,
+                variant,
+                &include_package_names,
+            )?;
+            write_variant_file(&src_dir, variant, &modules, &include_package_names)?;
         }
         fs::copy(
             googleapis_tonic_src_dir.join("lib.rs"),
@@ -78,8 +101,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &str, proto_dir: &ProtoDir) -> any
 fn write_cargo_toml(
     crate_dir: &Path,
     crate_name: &str,
-    package_name: &ProtobufPackageName,
-    deps: &BTreeSet<ProtobufPackageName>,
+    dep_crate_names: &BTreeSet<String>,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -115,15 +137,13 @@ default = ["hash-map", "vec-u8"]
     .replace("{VERSION}", "0.0.0")
     .replace(
         "{DEPENDENCIES}",
-        &deps
+        &dep_crate_names
             .iter()
-            .filter(|it| it != &package_name)
             .map(|dep| {
                 // FIXME: `path = "../{crate_name}"` => `version = "{version}"`
                 format!(
                     "{} = {{ path = \"../{}\", default-features = false }}",
-                    package_name_to_crate_name(dep),
-                    package_name_to_crate_name(dep),
+                    dep, dep,
                 )
             })
             .collect::<Vec<String>>()
@@ -136,8 +156,9 @@ default = ["hash-map", "vec-u8"]
                 format!(
                     r#"{} = [{}]"#,
                     feature,
-                    deps.iter()
-                        .map(|dep| format!(r#""{}/{}""#, package_name_to_crate_name(dep), feature))
+                    dep_crate_names
+                        .iter()
+                        .map(|dep| format!(r#""{}/{}""#, dep, feature))
                         .collect::<Vec<String>>()
                         .join(", ")
                 )
@@ -154,14 +175,19 @@ fn write_variant_dir(
     googleapis_tonic_src_dir: &Path,
     src_dir: &Path,
     variant: &str,
-    file_name: &str,
+    include_package_names: &BTreeSet<ProtobufPackageName>,
 ) -> anyhow::Result<()> {
     let variant_dir = src_dir.join(variant);
     fs::create_dir_all(&variant_dir)?;
-    fs::copy(
-        googleapis_tonic_src_dir.join(variant).join(file_name),
-        variant_dir.join(file_name),
-    )?;
+    for include in include_package_names {
+        let include_file_name = format!("{}.rs", package_name_to_module_name(include));
+        fs::copy(
+            googleapis_tonic_src_dir
+                .join(variant)
+                .join(&include_file_name),
+            variant_dir.join(&include_file_name),
+        )?;
+    }
     Ok(())
 }
 
@@ -169,9 +195,8 @@ fn write_variant_dir(
 fn write_variant_file(
     src_dir: &Path,
     variant: &str,
-    file_name: &str,
-    package_name: &ProtobufPackageName,
     modules: &BTreeMap<String, M>,
+    include_package_names: &BTreeSet<ProtobufPackageName>,
 ) -> anyhow::Result<()> {
     let variant_file = src_dir.join(format!("{}.rs", variant));
     let variant_file_content = {
@@ -180,8 +205,7 @@ fn write_variant_file(
             c: &mut Vec<String>,
             s: &mut String,
             variant: &str,
-            package_name: &ProtobufPackageName,
-            file_name: &str,
+            include_package_names: &BTreeSet<ProtobufPackageName>,
         ) {
             let indent = "    ";
             for (k, m) in modules {
@@ -197,12 +221,16 @@ fn write_variant_file(
                 ));
                 c.push(k.to_owned());
                 if m.include {
-                    if c.join(".") == package_name.to_string() {
+                    let current_package_name =
+                        ProtobufPackageName::from_str(&c.join(".")).expect("valid package name");
+                    if include_package_names.contains(&current_package_name) {
+                        let include_file_name =
+                            format!("{}.rs", package_name_to_module_name(&current_package_name));
                         s.push_str(&format!(
                             "{}include!(\"{}/{}\");\n",
                             indent.repeat(c.len()),
                             variant,
-                            file_name
+                            include_file_name
                         ));
                     } else {
                         s.push_str(&format!(
@@ -220,7 +248,7 @@ fn write_variant_file(
                         ));
                     }
                 }
-                dfs(&m.modules, c, s, variant, package_name, file_name);
+                dfs(&m.modules, c, s, variant, include_package_names);
                 c.pop();
                 s.push_str(&format!("{}}}\n", indent.repeat(c.len())));
             }
@@ -228,7 +256,7 @@ fn write_variant_file(
 
         let mut s = String::new();
         let mut c = vec![];
-        dfs(modules, &mut c, &mut s, variant, package_name, file_name);
+        dfs(modules, &mut c, &mut s, variant, include_package_names);
         s
     };
     fs::write(variant_file, variant_file_content)?;
