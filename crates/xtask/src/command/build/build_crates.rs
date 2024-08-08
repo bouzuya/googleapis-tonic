@@ -13,7 +13,11 @@ struct M {
     modules: BTreeMap<String, M>,
 }
 
-pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> anyhow::Result<()> {
+pub fn build_crates(
+    googleapis_tonic_src_dir: &Path,
+    proto_dir: &ProtoDir,
+    version: &str,
+) -> anyhow::Result<()> {
     let emit_package_names = proto_dir.emit_package_names();
     for package_name in emit_package_names {
         let deps = proto_dir
@@ -71,7 +75,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> an
         //   Cargo.toml
         let crate_dir = PathBuf::from("crates").join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
-        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names)?;
+        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names, version)?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",
@@ -100,6 +104,7 @@ fn write_cargo_toml(
     crate_dir: &Path,
     crate_name: &CrateName,
     dep_crate_names: &BTreeSet<CrateName>,
+    version: &str,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -135,7 +140,7 @@ default = ["hash-map", "vec-u8"]
 {FEATURES}
 "#
     .replace("{CRATE_NAME}", crate_name.as_ref())
-    .replace("{VERSION}", "0.0.0")
+    .replace("{VERSION}", version)
     .replace(
         "{DEPENDENCIES}",
         &dep_crate_names
