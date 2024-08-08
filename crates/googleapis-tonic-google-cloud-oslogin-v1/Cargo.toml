@@ -19,6 +19,9 @@ googleapis-tonic-google-api = { path = "../googleapis-tonic-google-api", default
 googleapis-tonic-google-cloud-oslogin-common = { path = "../googleapis-tonic-google-cloud-oslogin-common", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

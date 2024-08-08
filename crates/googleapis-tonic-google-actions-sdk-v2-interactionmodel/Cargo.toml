@@ -20,6 +20,9 @@ googleapis-tonic-google-actions-sdk-v2-interactionmodel-type = { path = "../goog
 googleapis-tonic-google-api = { path = "../googleapis-tonic-google-api", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

@@ -25,6 +25,9 @@ googleapis-tonic-google-apps-script-type-sheets = { path = "../googleapis-tonic-
 googleapis-tonic-google-apps-script-type-slides = { path = "../googleapis-tonic-google-apps-script-type-slides", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

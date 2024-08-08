@@ -124,6 +124,9 @@ tonic = { version = "0.12.1", default-features = false, features = [
 {DEPENDENCIES}
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

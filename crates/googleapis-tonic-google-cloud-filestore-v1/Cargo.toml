@@ -21,6 +21,9 @@ googleapis-tonic-google-longrunning = { path = "../googleapis-tonic-google-longr
 googleapis-tonic-google-rpc = { path = "../googleapis-tonic-google-rpc", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

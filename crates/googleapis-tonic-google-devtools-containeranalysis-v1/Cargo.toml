@@ -21,6 +21,9 @@ googleapis-tonic-google-type = { path = "../googleapis-tonic-google-type", defau
 googleapis-tonic-grafeas-v1 = { path = "../googleapis-tonic-grafeas-v1", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]

@@ -19,6 +19,9 @@ googleapis-tonic-google-ads-googleads-v17-common = { path = "../googleapis-tonic
 googleapis-tonic-google-ads-googleads-v17-enums = { path = "../googleapis-tonic-google-ads-googleads-v17-enums", default-features = false }
 
 [lints.clippy]
+doc_lazy_continuation = "allow"
+large_enum_variant = "allow"
+module_inception = "allow"
 non_minimal_cfg = "allow"
 
 [lints.rust]
