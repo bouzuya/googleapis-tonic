@@ -1,11 +1,10 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
+    fmt::Display,
     fs,
     path::{Path, PathBuf},
     str::FromStr as _,
 };
-
-use anyhow::Context;
 
 use crate::{proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName};
 
@@ -20,13 +19,14 @@ pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> an
         let deps = proto_dir
             .dependencies()
             .get(package_name)
-            .with_context(|| format!("dependencies not found: {:?}", package_name))?;
-        let crate_name = package_name_to_crate_name(package_name);
+            .cloned()
+            .unwrap_or_default();
+        let crate_name = CrateName::from_package_name(package_name);
         let dep_crate_names = deps
             .iter()
             .filter(|it| emit_package_names.contains(it))
-            .map(package_name_to_crate_name)
-            .collect::<BTreeSet<String>>();
+            .map(CrateName::from_package_name)
+            .collect::<BTreeSet<CrateName>>();
         let include_package_names = deps
             .iter()
             .filter(|it| !emit_package_names.contains(it))
@@ -69,7 +69,7 @@ pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> an
         //     vec_u8_btree_map.rs
         //     vec_u8_hash_map.rs
         //   Cargo.toml
-        let crate_dir = PathBuf::from("crates").join(&crate_name);
+        let crate_dir = PathBuf::from("crates").join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
         write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names)?;
         let src_dir = crate_dir.join("src");
@@ -98,8 +98,8 @@ pub fn build_crates(googleapis_tonic_src_dir: &Path, proto_dir: &ProtoDir) -> an
 // crates/googleapis-tonic-{crate_name}/Cargo.toml
 fn write_cargo_toml(
     crate_dir: &Path,
-    crate_name: &str,
-    dep_crate_names: &BTreeSet<String>,
+    crate_name: &CrateName,
+    dep_crate_names: &BTreeSet<CrateName>,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -134,7 +134,7 @@ unused_imports = "allow"
 default = ["hash-map", "vec-u8"]
 {FEATURES}
 "#
-    .replace("{CRATE_NAME}", crate_name)
+    .replace("{CRATE_NAME}", crate_name.as_ref())
     .replace("{VERSION}", "0.0.0")
     .replace(
         "{DEPENDENCIES}",
@@ -264,17 +264,6 @@ fn write_variant_file(
     Ok(())
 }
 
-fn package_name_to_crate_name(package_name: &ProtobufPackageName) -> String {
-    format!(
-        "googleapis-tonic-{}",
-        package_name
-            .to_string()
-            .split('.')
-            .collect::<Vec<&str>>()
-            .join("-")
-    )
-}
-
 fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
     package_name
         .to_string()
@@ -289,4 +278,35 @@ fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
         })
         .collect::<Vec<String>>()
         .join(".")
+}
+
+/// A crate name.
+///
+/// e.g. `googleapis-tonic-foo-bar-baz`
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd)]
+struct CrateName(String);
+
+impl CrateName {
+    fn from_package_name(package_name: &ProtobufPackageName) -> Self {
+        CrateName(format!(
+            "googleapis-tonic-{}",
+            package_name
+                .to_string()
+                .split('.')
+                .collect::<Vec<&str>>()
+                .join("-")
+        ))
+    }
+}
+
+impl AsRef<str> for CrateName {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl Display for CrateName {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.0.fmt(f)
+    }
 }
