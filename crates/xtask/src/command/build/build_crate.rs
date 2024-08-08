@@ -42,7 +42,6 @@ pub fn build_crate(src_dir: &str, proto_dir: &ProtoDir) -> anyhow::Result<()> {
                 BytesType::Bytes => vec!["."],
                 BytesType::VecU8 => vec![],
             })
-            .disable_comments(".")
             .emit_rerun_if_changed(false)
             .out_dir(out_dir.as_str())
             .protoc_arg("--experimental_allow_proto3_optional")
