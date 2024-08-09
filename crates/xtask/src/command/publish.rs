@@ -18,14 +18,13 @@ pub fn execute() -> anyhow::Result<()> {
 
     for crate_name in publish_order {
         let crate_dir = crates_dir.join(&crate_name);
-        let output = Command::new("cargo")
-            .args(["publish", "--dry-run"])
+        let status = Command::new("cargo")
+            .args(["publish"])
             .current_dir(&crate_dir)
-            .output()?;
-        if output.status.success() {
+            .status()?;
+        if status.success() {
             println!("{} published", crate_name);
         } else {
-            std::io::Write::write_all(&mut std::io::stderr(), &output.stderr)?;
             anyhow::bail!("{} failed", crate_name);
         }
     }
