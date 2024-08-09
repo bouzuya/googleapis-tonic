@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeMap, BTreeSet},
+    collections::{BTreeMap, BTreeSet, VecDeque},
     fs,
     path::{Path, PathBuf},
     str::FromStr as _,
@@ -63,6 +63,22 @@ impl ProtoDir {
         for package_name in dependencies.keys() {
             if emit_package_name_candidates.contains(package_name) {
                 emit_package_names.insert(package_name.to_owned());
+            }
+        }
+
+        // max package name length is 47. crates.io max crate name length is 64. googleapis-tonic- length is 17.
+        let mut invalid_package_names = dependencies
+            .keys()
+            .filter(|it| it.to_string().len() > 47)
+            .cloned()
+            .collect::<VecDeque<ProtobufPackageName>>();
+        while let Some(invalid_package_name) = invalid_package_names.pop_front() {
+            if emit_package_names.remove(&invalid_package_name) {
+                for (pkg, deps) in dependencies.iter() {
+                    if deps.contains(&invalid_package_name) {
+                        invalid_package_names.push_back(pkg.to_owned());
+                    }
+                }
             }
         }
 
