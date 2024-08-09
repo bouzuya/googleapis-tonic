@@ -146,10 +146,9 @@ default = ["hash-map", "vec-u8"]
         &dep_crate_names
             .iter()
             .map(|dep| {
-                // FIXME: `path = "../{crate_name}"` => `version = "{version}"`
                 format!(
-                    "{} = {{ path = \"../{}\", default-features = false }}",
-                    dep, dep,
+                    "{} = {{ version = \"{}\", default-features = false }}",
+                    dep, version,
                 )
             })
             .collect::<Vec<String>>()
