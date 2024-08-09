@@ -27,14 +27,6 @@ pub fn build_crate(
         let root_mod_name = format!("{}_{}", bytes_type.as_path_part(), map_type.as_path_part());
         let out_dir = src_dir.join(&root_mod_name);
 
-        let mut prost_config = prost_build::Config::new();
-        let packages = proto_dir
-            .dependencies()
-            .keys()
-            .map(ToString::to_string)
-            .map(|it| format!(".{}", it))
-            .collect::<Vec<String>>();
-        prost_config.disable_comments(packages.clone());
         tonic_build::configure()
             .btree_map(match map_type {
                 MapType::BTreeMap => vec!["."],
@@ -50,11 +42,7 @@ pub fn build_crate(
             .emit_rerun_if_changed(false)
             .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile_with_config(
-                prost_config,
-                proto_dir.proto_paths(),
-                &[proto_dir.dir_path()],
-            )?;
+            .compile(proto_dir.proto_paths(), &[proto_dir.dir_path()])?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(&out_dir)? {
