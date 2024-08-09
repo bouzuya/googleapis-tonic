@@ -1,5 +1,6 @@
 mod bytes_type;
 mod command;
+mod crate_name;
 mod feature_name;
 mod ident;
 mod map_type;

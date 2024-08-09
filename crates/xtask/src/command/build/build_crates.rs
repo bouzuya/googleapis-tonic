@@ -1,12 +1,13 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
-    fmt::Display,
     fs,
     path::{Path, PathBuf},
     str::FromStr as _,
 };
 
-use crate::{proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName};
+use crate::{
+    crate_name::CrateName, proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName,
+};
 
 struct M {
     include: bool,
@@ -282,35 +283,4 @@ fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
         })
         .collect::<Vec<String>>()
         .join(".")
-}
-
-/// A crate name.
-///
-/// e.g. `googleapis-tonic-foo-bar-baz`
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd)]
-pub struct CrateName(String);
-
-impl CrateName {
-    pub fn from_package_name(package_name: &ProtobufPackageName) -> Self {
-        CrateName(format!(
-            "googleapis-tonic-{}",
-            package_name
-                .to_string()
-                .split('.')
-                .collect::<Vec<&str>>()
-                .join("-")
-        ))
-    }
-}
-
-impl AsRef<str> for CrateName {
-    fn as_ref(&self) -> &str {
-        &self.0
-    }
-}
-
-impl Display for CrateName {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        self.0.fmt(f)
-    }
 }

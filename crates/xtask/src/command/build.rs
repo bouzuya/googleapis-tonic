@@ -7,9 +7,9 @@ use std::{
     path::PathBuf,
 };
 
-use build_crates::CrateName;
-
-use crate::{proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName};
+use crate::{
+    crate_name::CrateName, proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName,
+};
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct StateFileContent {
