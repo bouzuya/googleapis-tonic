@@ -289,10 +289,10 @@ fn package_name_to_module_name(package_name: &ProtobufPackageName) -> String {
 ///
 /// e.g. `googleapis-tonic-foo-bar-baz`
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd)]
-struct CrateName(String);
+pub struct CrateName(String);
 
 impl CrateName {
-    fn from_package_name(package_name: &ProtobufPackageName) -> Self {
+    pub fn from_package_name(package_name: &ProtobufPackageName) -> Self {
         CrateName(format!(
             "googleapis-tonic-{}",
             package_name
