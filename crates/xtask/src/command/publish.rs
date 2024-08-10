@@ -17,10 +17,8 @@ pub fn execute() -> anyhow::Result<()> {
     } = serde_json::from_str::<StateFileContent>(&state)?;
 
     for crate_name in publish_order {
-        let crate_dir = crates_dir.join(&crate_name);
         let status = Command::new("cargo")
-            .args(["publish"])
-            .current_dir(&crate_dir)
+            .args(["publish", "-p", &crate_name])
             .status()?;
         if status.success() {
             println!("{} published", crate_name);
