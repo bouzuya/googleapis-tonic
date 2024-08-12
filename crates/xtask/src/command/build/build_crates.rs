@@ -1,7 +1,7 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
-    path::{Path, PathBuf},
+    path::Path,
     str::FromStr as _,
 };
 
@@ -15,10 +15,11 @@ struct M {
 }
 
 pub fn build_crates(
-    googleapis_tonic_src_dir: &Path,
+    generated_dir: &Path,
     proto_dir: &ProtoDir,
     version: &str,
 ) -> anyhow::Result<()> {
+    let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
     let emit_package_names = proto_dir.emit_package_names();
     for package_name in emit_package_names {
         let deps = proto_dir
@@ -61,20 +62,21 @@ pub fn build_crates(
                 });
         }
 
-        // crates/googleapis-tonic-{crate_name}/
-        //   src/
-        //     bytes_btree_map/    ... variant directory
-        //       {file_name}
-        //     bytes_hash_map/
-        //     vec_u8_btree_map/
-        //     vec_u8_hash_map/
-        //     bytes_btree_map.rs  ... variant file
-        //     bytes_hash_map.rs
-        //     lib.rs
-        //     vec_u8_btree_map.rs
-        //     vec_u8_hash_map.rs
-        //   Cargo.toml
-        let crate_dir = PathBuf::from("crates").join(crate_name.as_ref());
+        // generated/
+        //   googleapis-tonic-{crate_name}/
+        //     src/
+        //       bytes_btree_map/    ... variant directory
+        //         {file_name}
+        //       bytes_hash_map/
+        //       vec_u8_btree_map/
+        //       vec_u8_hash_map/
+        //       bytes_btree_map.rs  ... variant file
+        //       bytes_hash_map.rs
+        //       lib.rs
+        //       vec_u8_btree_map.rs
+        //       vec_u8_hash_map.rs
+        //     Cargo.toml
+        let crate_dir = generated_dir.join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
         write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names, version)?;
         let src_dir = crate_dir.join("src");
@@ -85,7 +87,7 @@ pub fn build_crates(
             "vec_u8_hash_map",
         ] {
             write_variant_dir(
-                googleapis_tonic_src_dir,
+                &googleapis_tonic_src_dir,
                 &src_dir,
                 variant,
                 &include_package_names,

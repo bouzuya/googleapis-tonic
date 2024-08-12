@@ -23,6 +23,11 @@ struct StateFileContent {
 ///
 /// ```text
 /// crates/
+///   xtask/
+///     googleapis/            ... Input: googleapis/google repository (.proto files)
+///     state.json             ... Input/Output: state file (next_version, publish_order)
+///     ...
+/// generated/
 ///   googleapis-tonic/
 ///     src/
 ///       bytes_btree_map/
@@ -41,16 +46,13 @@ struct StateFileContent {
 ///     Cargo.toml
 ///   googleapis-tonic-FOO/
 ///     ...
-///   xtask/
-///     googleapis/            ... Input: googleapis/google repository (.proto files)
-///     state.json             ... Input/Output: state file (next_version, publish_order)
-///     ...
 /// ```
 pub fn execute() -> anyhow::Result<()> {
     let crates_dir = PathBuf::from("crates");
     let xtask_dir = crates_dir.join("xtask");
     let proto_dir = xtask_dir.join("googleapis");
     let proto_dir = ProtoDir::load(proto_dir)?;
+    let generated_dir = PathBuf::from("generated");
 
     let state_file = xtask_dir.join("state.json");
     let state = fs::read_to_string(&state_file)?;
@@ -109,8 +111,8 @@ pub fn execute() -> anyhow::Result<()> {
     fs::write(&state_file, state)?;
     let version = version.to_string();
 
-    let googleapis_tonic_src_dir = build_crate::build_crate(&crates_dir, &proto_dir, &version)?;
-    build_crates::build_crates(&googleapis_tonic_src_dir, &proto_dir, &version)?;
+    build_crate::build_crate(&generated_dir, &proto_dir, &version)?;
+    build_crates::build_crates(&generated_dir, &proto_dir, &version)?;
 
     Ok(())
 }

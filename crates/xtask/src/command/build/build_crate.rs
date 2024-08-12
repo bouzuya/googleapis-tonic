@@ -1,7 +1,7 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
-    path::{Path, PathBuf},
+    path::Path,
     str::FromStr as _,
 };
 
@@ -13,11 +13,11 @@ use crate::modules::Modules;
 use crate::{bytes_type::BytesType, proto_dir::ProtoDir};
 
 pub fn build_crate(
-    crates_dir: &Path,
+    generated_dir: &Path,
     proto_dir: &ProtoDir,
     version: &str,
-) -> anyhow::Result<PathBuf> {
-    let src_dir = crates_dir.join("googleapis-tonic").join("src");
+) -> anyhow::Result<()> {
+    let src_dir = generated_dir.join("googleapis-tonic").join("src");
     for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
         MapType::values()
             .iter()
@@ -62,7 +62,7 @@ pub fn build_crate(
     }
 
     update_cargo_toml(&src_dir, proto_dir, version)?;
-    Ok(src_dir)
+    Ok(())
 }
 
 fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
