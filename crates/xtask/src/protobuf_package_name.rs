@@ -59,6 +59,16 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_string_conversion() -> anyhow::Result<()> {
+        let s = "google.firestore.v1";
+        let p = ProtobufPackageName::from_str(s)?;
+        assert_eq!(p.to_string(), s);
+
+        assert!(ProtobufPackageName::from_str("google.firestore.r#type").is_err());
+        Ok(())
+    }
+
+    #[test]
     fn test_is_ident() {
         assert!(!is_ident(""));
         assert!(!is_ident("1"));
