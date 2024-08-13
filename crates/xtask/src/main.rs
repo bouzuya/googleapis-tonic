@@ -2,6 +2,7 @@ mod bytes_type;
 mod command;
 mod crate_name;
 mod feature_name;
+mod googleapis_version;
 mod ident;
 mod map_type;
 mod module;
@@ -21,6 +22,7 @@ struct Cli {
 enum Subcommand {
     Build,
     Publish,
+    ShowGoogleapisVersion,
     Test,
     UpdateGoogleapis,
 }
@@ -30,6 +32,7 @@ fn main() -> anyhow::Result<()> {
     match cli.subcommand {
         Subcommand::Build => self::command::build::execute(),
         Subcommand::Publish => self::command::publish::execute(),
+        Subcommand::ShowGoogleapisVersion => self::command::show_googleapis_version::execute(),
         Subcommand::Test => self::command::test::execute(),
         Subcommand::UpdateGoogleapis => self::command::update_googleapis::execute(),
     }
