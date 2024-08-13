@@ -5,7 +5,7 @@ publish = false
 
 [dependencies]
 anyhow = "1.0.86"
-clap = { version = "4.5.10", features = ["derive"] }
+clap = { version = "4.5.15", features = ["derive"] }
 prost-build = { version = "0.13.1", features = ["cleanup-markdown"] }
 semver = "1.0.23"
 serde = { version = "1.0.205", features = ["derive"] }
