@@ -27,7 +27,7 @@ impl ProtoDir {
 
         let mut all_proto_files = BTreeMap::<ProtoFilePath, ProtoFile>::new();
         for proto_file_path in &proto_file_paths {
-            let content = fs::read_to_string(proto_file_path.to_path_buf())?;
+            let content = fs::read_to_string(dir_path.join(proto_file_path.to_path_buf()))?;
             let proto_file = ProtoFile::from_str(&content)?;
             all_proto_files.insert(proto_file_path.to_owned(), proto_file);
         }
@@ -109,7 +109,7 @@ impl ProtoDir {
     pub fn proto_paths(&self) -> Vec<PathBuf> {
         self.proto_file_paths
             .iter()
-            .map(|it| it.to_path_buf())
+            .map(|it| self.dir_path.join(it.to_path_buf()))
             .collect::<Vec<PathBuf>>()
     }
 
