@@ -51,6 +51,10 @@ impl ProtoFilePath {
         ))
     }
 
+    pub fn is_google_protobuf(&self) -> bool {
+        self.0.len() >= 2 && self.0[0] == "google" && self.0[1] == "protobuf"
+    }
+
     pub fn to_path_buf(&self) -> PathBuf {
         let mut path_buf = PathBuf::new();
         for p in self.0.iter().take(self.0.len() - 1) {
@@ -125,6 +129,19 @@ mod tests {
         // NOT ascii_alphanumeric || _ || .
         let result = ProtoFilePath::from_import_path_str("google/firestore/v1/あ.proto");
         assert!(result.is_err());
+        Ok(())
+    }
+
+    #[test]
+    fn test_is_google_protobuf() -> anyhow::Result<()> {
+        for (s, expected) in [
+            ("google.proto", false),
+            ("google/protobuf.proto", false),
+            ("google/protobuf/empty.proto", true),
+        ] {
+            let p = ProtoFilePath::from_import_path_str(s)?;
+            assert_eq!(p.is_google_protobuf(), expected);
+        }
         Ok(())
     }
 }
