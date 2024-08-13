@@ -11,7 +11,11 @@ impl std::str::FromStr for GoogleapisVersion {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        // TOOD: check format
+        anyhow::ensure!(s.len() == 40);
+        // allow ascii lowercase hex digit
+        anyhow::ensure!(s
+            .chars()
+            .all(|c| matches!(c, '0'..='9') || matches!(c, 'a'..='f')));
         Ok(Self(s.to_owned()))
     }
 }
