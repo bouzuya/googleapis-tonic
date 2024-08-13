@@ -14,7 +14,7 @@ pub struct ProtoDir {
     dependencies: BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
     dir_path: PathBuf,
     emit_package_names: BTreeSet<ProtobufPackageName>,
-    proto_paths: Vec<PathBuf>,
+    proto_file_paths: Vec<ProtoFilePath>,
 }
 
 impl ProtoDir {
@@ -22,15 +22,14 @@ impl ProtoDir {
         let dir_path: PathBuf = proto_dir.into();
         let dir_path = dir_path.canonicalize()?;
 
-        let proto_file_paths = Self::proto_file_paths_from_dir(&dir_path)?;
+        let proto_file_paths = Self::proto_file_paths_from_dir(&dir_path, &dir_path)?;
         let proto_dir_paths = Self::proto_dir_paths_from_dir(&dir_path)?;
 
         let mut all_proto_files = BTreeMap::<ProtoFilePath, ProtoFile>::new();
-        for path in &proto_file_paths {
-            let content = fs::read_to_string(path)?;
+        for proto_file_path in &proto_file_paths {
+            let content = fs::read_to_string(proto_file_path.to_path_buf())?;
             let proto_file = ProtoFile::from_str(&content)?;
-            let proto_file_path = ProtoFilePath::from_absolute_path(path, &dir_path)?;
-            all_proto_files.insert(proto_file_path, proto_file);
+            all_proto_files.insert(proto_file_path.to_owned(), proto_file);
         }
 
         let mut emit_package_name_candidates = BTreeSet::<ProtobufPackageName>::new();
@@ -91,7 +90,7 @@ impl ProtoDir {
             dependencies,
             dir_path,
             emit_package_names,
-            proto_paths: proto_file_paths,
+            proto_file_paths,
         })
     }
 
@@ -107,8 +106,11 @@ impl ProtoDir {
         &self.dir_path
     }
 
-    pub fn proto_paths(&self) -> &[PathBuf] {
-        &self.proto_paths
+    pub fn proto_paths(&self) -> Vec<PathBuf> {
+        self.proto_file_paths
+            .iter()
+            .map(|it| it.to_path_buf())
+            .collect::<Vec<PathBuf>>()
     }
 
     fn proto_file_dependencies(
@@ -153,21 +155,28 @@ impl ProtoDir {
         Ok(paths)
     }
 
-    fn proto_file_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> {
+    fn proto_file_paths_from_dir<P: AsRef<Path>>(
+        dir: P,
+        proto_dir: &Path,
+    ) -> anyhow::Result<Vec<ProtoFilePath>> {
         let dir: &Path = dir.as_ref();
         let mut paths = vec![];
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
-            if entry.file_type()?.is_file() {
-                let path = entry.path();
-                if let Some(extension) = path.extension() {
+            let file_type = entry.file_type()?;
+            if file_type.is_file() {
+                let file_path = entry.path();
+                if let Some(extension) = file_path.extension() {
                     if extension == "proto" {
-                        paths.push(path);
+                        let p = ProtoFilePath::from_absolute_path(&file_path, proto_dir)?;
+                        paths.push(p);
                     }
                 }
+            } else if file_type.is_dir() {
+                let dir_path = entry.path();
+                paths.append(&mut Self::proto_file_paths_from_dir(&dir_path, proto_dir)?);
             } else {
-                let path_buf = entry.path();
-                paths.append(&mut Self::proto_file_paths_from_dir(&path_buf)?);
+                // do nothing
             }
         }
         Ok(paths)

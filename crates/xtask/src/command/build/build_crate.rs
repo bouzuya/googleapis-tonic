@@ -42,7 +42,7 @@ pub fn build_crate(
             .emit_rerun_if_changed(false)
             .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile(proto_dir.proto_paths(), &[proto_dir.dir_path()])?;
+            .compile(&proto_dir.proto_paths(), &[proto_dir.dir_path()])?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(&out_dir)? {
