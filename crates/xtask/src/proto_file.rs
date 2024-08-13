@@ -1,17 +1,18 @@
-use std::{collections::BTreeSet, path::PathBuf, str::FromStr};
+use std::{collections::BTreeSet, str::FromStr};
 
 use anyhow::Context;
 
+use crate::proto_file_path::ProtoFilePath;
 use crate::protobuf_package_name::ProtobufPackageName;
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ProtoFile {
-    import_paths: BTreeSet<PathBuf>,
+    import_paths: BTreeSet<ProtoFilePath>,
     package_name: ProtobufPackageName,
 }
 
 impl ProtoFile {
-    pub fn import_paths(&self) -> &BTreeSet<PathBuf> {
+    pub fn import_paths(&self) -> &BTreeSet<ProtoFilePath> {
         &self.import_paths
     }
 
@@ -47,7 +48,9 @@ impl FromStr for ProtoFile {
                     .trim_start_matches("import weak ")
                     .trim_start_matches("import ")
                     .trim_end_matches(";");
-                let path = PathBuf::from_str(s.trim_start_matches("\"").trim_end_matches("\""))?;
+                let path = ProtoFilePath::from_import_path_str(
+                    s.trim_start_matches("\"").trim_end_matches("\""),
+                )?;
                 import_paths.insert(path);
             }
         }
@@ -86,9 +89,9 @@ import weak "foo.proto";
         )?;
         assert_eq!(proto_file.import_paths(), &{
             let mut set = BTreeSet::new();
-            set.insert(PathBuf::from("bar.proto"));
-            set.insert(PathBuf::from("baz.proto"));
-            set.insert(PathBuf::from("foo.proto"));
+            set.insert(ProtoFilePath::from_import_path_str("bar.proto")?);
+            set.insert(ProtoFilePath::from_import_path_str("baz.proto")?);
+            set.insert(ProtoFilePath::from_import_path_str("foo.proto")?);
             set
         });
         assert_eq!(

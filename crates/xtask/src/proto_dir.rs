@@ -1,3 +1,4 @@
+use crate::proto_file_path::ProtoFilePath;
 use std::{
     collections::{BTreeMap, BTreeSet, VecDeque},
     fs,
@@ -19,17 +20,21 @@ pub struct ProtoDir {
 impl ProtoDir {
     pub fn load<P: Into<PathBuf>>(proto_dir: P) -> anyhow::Result<Self> {
         let dir_path: PathBuf = proto_dir.into();
+        let dir_path = dir_path.canonicalize()?;
 
-        let mut all_proto_files = BTreeMap::<PathBuf, ProtoFile>::new();
         let proto_file_paths = Self::proto_file_paths_from_dir(&dir_path)?;
+        let proto_dir_paths = Self::proto_dir_paths_from_dir(&dir_path)?;
+
+        let mut all_proto_files = BTreeMap::<ProtoFilePath, ProtoFile>::new();
         for path in &proto_file_paths {
             let content = fs::read_to_string(path)?;
             let proto_file = ProtoFile::from_str(&content)?;
-            all_proto_files.insert(path.strip_prefix(&dir_path)?.to_owned(), proto_file);
+            let proto_file_path = ProtoFilePath::from_absolute_path(path, &dir_path)?;
+            all_proto_files.insert(proto_file_path, proto_file);
         }
 
         let mut emit_package_name_candidates = BTreeSet::<ProtobufPackageName>::new();
-        for proto_dir_path in Self::proto_dir_paths_from_dir(&dir_path)? {
+        for proto_dir_path in proto_dir_paths {
             let package_name = proto_dir_path
                 .strip_prefix(&dir_path)?
                 .to_owned()
@@ -107,13 +112,13 @@ impl ProtoDir {
     }
 
     fn proto_file_dependencies(
-        all_proto_files: &BTreeMap<PathBuf, ProtoFile>,
+        all_proto_files: &BTreeMap<ProtoFilePath, ProtoFile>,
         proto_file: &ProtoFile,
     ) -> anyhow::Result<BTreeSet<ProtobufPackageName>> {
         proto_file
             .import_paths()
             .iter()
-            .filter(|it| !it.starts_with("google/protobuf"))
+            .filter(|it| !it.is_google_protobuf())
             .map(|it| {
                 all_proto_files.get(it).with_context(|| {
                     format!(
@@ -147,6 +152,7 @@ impl ProtoDir {
         }
         Ok(paths)
     }
+
     fn proto_file_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> {
         let dir: &Path = dir.as_ref();
         let mut paths = vec![];
