@@ -22,6 +22,7 @@ enum Subcommand {
     Build,
     Publish,
     Test,
+    UpdateGoogleapis,
 }
 
 fn main() -> anyhow::Result<()> {
@@ -30,5 +31,6 @@ fn main() -> anyhow::Result<()> {
         Subcommand::Build => self::command::build::execute(),
         Subcommand::Publish => self::command::publish::execute(),
         Subcommand::Test => self::command::test::execute(),
+        Subcommand::UpdateGoogleapis => self::command::update_googleapis::execute(),
     }
 }
