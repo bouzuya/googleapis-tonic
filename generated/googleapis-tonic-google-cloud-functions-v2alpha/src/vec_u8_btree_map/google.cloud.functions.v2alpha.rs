@@ -51,6 +51,13 @@ pub struct Function {
     /// `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
     #[prost(string, tag = "25")]
     pub kms_key_name: ::prost::alloc::string::String,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "27")]
+    pub satisfies_pzs: bool,
+    /// Output only. The create timestamp of a Cloud Function. This is only
+    /// applicable to 2nd Gen functions.
+    #[prost(message, optional, tag = "28")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Function`.
 pub mod function {
@@ -194,6 +201,11 @@ pub struct StorageSource {
     /// omitted, the latest generation will be used.
     #[prost(int64, tag = "3")]
     pub generation: i64,
+    /// When the specified storage bucket is a 1st gen function uploard url bucket,
+    /// this field should be set as the generated upload url for 1st gen
+    /// deployment.
+    #[prost(string, tag = "4")]
+    pub source_upload_url: ::prost::alloc::string::String,
 }
 /// Location of the source in a Google Cloud Source Repository.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -252,7 +264,7 @@ pub mod repo_source {
 pub struct Source {
     /// Location of the source.
     /// At least one source needs to be provided for the deployment to succeed.
-    #[prost(oneof = "source::Source", tags = "1, 2")]
+    #[prost(oneof = "source::Source", tags = "1, 2, 3")]
     pub source: ::core::option::Option<source::Source>,
 }
 /// Nested message and enum types in `Source`.
@@ -269,6 +281,11 @@ pub mod source {
         /// Repository.
         #[prost(message, tag = "2")]
         RepoSource(super::RepoSource),
+        /// If provided, get the source from GitHub repository. This option is valid
+        /// only for GCF 1st Gen function.
+        /// Example: <https://github.com/<user>/<repo>/blob/<commit>/<path-to-code>>
+        #[prost(string, tag = "3")]
+        GitUri(::prost::alloc::string::String),
     }
 }
 /// Provenance of the source. Ways to find the original source, or verify that
@@ -284,6 +301,10 @@ pub struct SourceProvenance {
     /// revisions resolved.
     #[prost(message, optional, tag = "2")]
     pub resolved_repo_source: ::core::option::Option<RepoSource>,
+    /// A copy of the build's `source.git_uri`, if exists, with any commits
+    /// resolved.
+    #[prost(string, tag = "3")]
+    pub git_uri: ::prost::alloc::string::String,
 }
 /// Describes the Build step of the function that builds a container from the
 /// given source.
@@ -339,16 +360,15 @@ pub struct BuildConfig {
     /// applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
     /// Registry.
     ///
-    /// If `docker_repository` field is specified, this field will be automatically
-    /// set as `ARTIFACT_REGISTRY`.
-    /// If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
-    /// This field may be overridden by the backend for eligible deployments.
+    /// If unspecified, it defaults to `ARTIFACT_REGISTRY`.
+    /// If `docker_repository` field is specified, this field should either be left
+    /// unspecified or set to `ARTIFACT_REGISTRY`.
     #[prost(enumeration = "build_config::DockerRegistry", tag = "10")]
     pub docker_registry: i32,
-    /// User managed repository created in Artifact Registry optionally
-    /// with a customer managed encryption key. This is the repository to which the
-    /// function docker image will be pushed after it is built by Cloud Build.
-    /// If unspecified, GCF will create and use a repository named 'gcf-artifacts'
+    /// Repository in Artifact Registry to which the function docker image will be
+    /// pushed after it is built by Cloud Build. If specified by user, it is
+    /// created and managed by user with a customer managed encryption key.
+    /// Otherwise, GCF will create and use a repository named 'gcf-artifacts'
     /// for every deployed region.
     ///
     /// It must match the pattern
@@ -359,6 +379,13 @@ pub struct BuildConfig {
     /// Repository format must be 'DOCKER'.
     #[prost(string, tag = "7")]
     pub docker_repository: ::prost::alloc::string::String,
+    /// Service account to be used for building the container. The format of this
+    /// field is `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
+    #[prost(string, tag = "27")]
+    pub service_account: ::prost::alloc::string::String,
+    /// This controls when security patches are applied to the runtime environment.
+    #[prost(oneof = "build_config::RuntimeUpdatePolicy", tags = "40, 41")]
+    pub runtime_update_policy: ::core::option::Option<build_config::RuntimeUpdatePolicy>,
 }
 /// Nested message and enum types in `BuildConfig`.
 pub mod build_config {
@@ -410,6 +437,15 @@ pub mod build_config {
             }
         }
     }
+    /// This controls when security patches are applied to the runtime environment.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RuntimeUpdatePolicy {
+        #[prost(message, tag = "40")]
+        AutomaticUpdatePolicy(super::AutomaticUpdatePolicy),
+        #[prost(message, tag = "41")]
+        OnDeployUpdatePolicy(super::OnDeployUpdatePolicy),
+    }
 }
 /// Describes the Service being deployed.
 /// Currently Supported : Cloud Run (fully managed).
@@ -434,7 +470,7 @@ pub struct ServiceConfig {
     /// a full description.
     #[prost(string, tag = "13")]
     pub available_memory: ::prost::alloc::string::String,
-    /// \[Preview\] The number of CPUs used in a single container instance.
+    /// The number of CPUs used in a single container instance.
     /// Default value is calculated from available memory.
     /// Supports the same values as Cloud Run, see
     /// <https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements>
@@ -507,7 +543,7 @@ pub struct ServiceConfig {
     /// Output only. The name of service revision.
     #[prost(string, tag = "18")]
     pub revision: ::prost::alloc::string::String,
-    /// \[Preview\] Sets the maximum number of concurrent requests that each instance
+    /// Sets the maximum number of concurrent requests that each instance
     /// can receive. Defaults to 1.
     #[prost(int32, tag = "20")]
     pub max_instance_request_concurrency: i32,
@@ -517,6 +553,10 @@ pub struct ServiceConfig {
     /// functions are https ONLY.
     #[prost(enumeration = "service_config::SecurityLevel", tag = "21")]
     pub security_level: i32,
+    /// Optional. The binary authorization policy to be checked when deploying the
+    /// Cloud Run service.
+    #[prost(string, tag = "23")]
+    pub binary_authorization_policy: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ServiceConfig`.
 pub mod service_config {
@@ -791,6 +831,16 @@ pub struct EventTrigger {
     /// You must provide a channel to receive events from Eventarc SaaS partners.
     #[prost(string, tag = "8")]
     pub channel: ::prost::alloc::string::String,
+    /// Optional. The hostname of the service that 1st Gen function should be
+    /// observed.
+    ///
+    /// If no string is provided, the default service implementing the API will
+    /// be used. For example, `storage.googleapis.com` is the default for all
+    /// event types in the `google.storage` namespace.
+    ///
+    /// The field is only applicable to 1st Gen functions.
+    #[prost(string, tag = "9")]
+    pub service: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `EventTrigger`.
 pub mod event_trigger {
@@ -864,6 +914,14 @@ pub struct GetFunctionRequest {
     /// Required. The name of the function which details should be obtained.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. The optional version of the 1st gen function whose details should
+    /// be obtained. The version of a 1st gen function is an integer that starts
+    /// from 1 and gets incremented on redeployments. GCF may keep historical
+    /// configs for old versions of 1st gen function. This field can be specified
+    /// to fetch the historical configs. This field is valid only for GCF 1st gen
+    /// function.
+    #[prost(string, tag = "2")]
+    pub revision: ::prost::alloc::string::String,
 }
 /// Request for the `ListFunctions` method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -942,8 +1000,7 @@ pub struct UpdateFunctionRequest {
     #[prost(message, optional, tag = "1")]
     pub function: ::core::option::Option<Function>,
     /// The list of fields to be updated.
-    /// If no field mask is provided, all provided fields in the request will be
-    /// updated.
+    /// If no field mask is provided, all fields will be updated.
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -980,6 +1037,12 @@ pub struct GenerateUploadUrlRequest {
     /// Key/KeyRing/Project/Organization (least access preferred).
     #[prost(string, tag = "2")]
     pub kms_key_name: ::prost::alloc::string::String,
+    /// The function environment the generated upload url will be used for.
+    /// The upload url for 2nd Gen functions can also be used for 1st gen
+    /// functions, but not vice versa. If not specified, 2nd generation-style
+    /// upload URLs are generated.
+    #[prost(enumeration = "Environment", tag = "3")]
+    pub environment: i32,
 }
 /// Response of `GenerateSourceUploadUrl` method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1062,6 +1125,16 @@ pub mod list_runtimes_response {
         /// The environment for the runtime.
         #[prost(enumeration = "super::Environment", tag = "4")]
         pub environment: i32,
+        /// Deprecation date for the runtime.
+        #[prost(message, optional, tag = "6")]
+        pub deprecation_date: ::core::option::Option<
+            super::super::super::super::r#type::Date,
+        >,
+        /// Decommission date for the runtime.
+        #[prost(message, optional, tag = "7")]
+        pub decommission_date: ::core::option::Option<
+            super::super::super::super::r#type::Date,
+        >,
     }
     /// The various stages that a runtime can be in.
     #[derive(
@@ -1123,6 +1196,20 @@ pub mod list_runtimes_response {
         }
     }
 }
+/// Security patches are applied automatically to the runtime without requiring
+/// the function to be redeployed.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticUpdatePolicy {}
+/// Security patches are only applied when a function is redeployed.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OnDeployUpdatePolicy {
+    /// Output only. contains the runtime version which was used during latest
+    /// function deployment.
+    #[prost(string, tag = "1")]
+    pub runtime_version: ::prost::alloc::string::String,
+}
 /// Represents the metadata of the long-running operation.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1144,9 +1231,10 @@ pub struct OperationMetadata {
     pub status_detail: ::prost::alloc::string::String,
     /// Identifies whether the user has requested cancellation
     /// of the operation. Operations that have successfully been cancelled
-    /// have \[Operation.error\]\[\] value with a
-    /// \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1, corresponding to
-    /// `Code.CANCELLED`.
+    /// have
+    /// \[google.longrunning.Operation.error\]\[google.longrunning.Operation.error\]
+    /// value with a \[google.rpc.Status.code\]\[google.rpc.Status.code\] of 1,
+    /// corresponding to `Code.CANCELLED`.
     #[prost(bool, tag = "6")]
     pub cancel_requested: bool,
     /// API version used to start the operation.
@@ -1158,6 +1246,12 @@ pub struct OperationMetadata {
     /// Mechanism for reporting in-progress stages
     #[prost(message, repeated, tag = "9")]
     pub stages: ::prost::alloc::vec::Vec<Stage>,
+    /// The build name of the function for create and update operations.
+    #[prost(string, tag = "13")]
+    pub build_name: ::prost::alloc::string::String,
+    /// The operation type.
+    #[prost(enumeration = "OperationType", tag = "11")]
+    pub operation_type: i32,
 }
 /// Extra GCF specific location information.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1296,6 +1390,43 @@ pub mod stage {
                 "COMPLETE" => Some(Self::Complete),
                 _ => None,
             }
+        }
+    }
+}
+/// The type of the long running operation.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OperationType {
+    /// Unspecified
+    OperationtypeUnspecified = 0,
+    /// CreateFunction
+    CreateFunction = 1,
+    /// UpdateFunction
+    UpdateFunction = 2,
+    /// DeleteFunction
+    DeleteFunction = 3,
+}
+impl OperationType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            OperationType::OperationtypeUnspecified => "OPERATIONTYPE_UNSPECIFIED",
+            OperationType::CreateFunction => "CREATE_FUNCTION",
+            OperationType::UpdateFunction => "UPDATE_FUNCTION",
+            OperationType::DeleteFunction => "DELETE_FUNCTION",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATIONTYPE_UNSPECIFIED" => Some(Self::OperationtypeUnspecified),
+            "CREATE_FUNCTION" => Some(Self::CreateFunction),
+            "UPDATE_FUNCTION" => Some(Self::UpdateFunction),
+            "DELETE_FUNCTION" => Some(Self::DeleteFunction),
+            _ => None,
         }
     }
 }
@@ -1584,11 +1715,11 @@ pub mod function_service_client {
         ///  attached, the identity from the credentials would be used, but that
         ///  identity does not have permissions to upload files to the URL.
         ///
-        /// When making a HTTP PUT request, these two headers need to be specified:
+        /// When making a HTTP PUT request, specify this header:
         ///
         /// * `content-type: application/zip`
         ///
-        /// And this header SHOULD NOT be specified:
+        /// Do not specify this header:
         ///
         /// * `Authorization: Bearer YOUR_TOKEN`
         pub async fn generate_upload_url(

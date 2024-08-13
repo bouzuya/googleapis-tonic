@@ -144,13 +144,15 @@ pub struct InstanceConfig {
     /// A unique identifier for the instance configuration.  Values
     /// are of the form
     /// `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
+    ///
+    /// User instance configuration must start with `custom-`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The name of this instance configuration as it appears in UIs.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
-    /// Output only. Whether this instance config is a Google or User Managed
-    /// Configuration.
+    /// Output only. Whether this instance configuration is a Google-managed or
+    /// user-managed configuration.
     #[prost(enumeration = "instance_config::Type", tag = "5")]
     pub config_type: i32,
     /// The geographic placement of nodes in this instance configuration and their
@@ -194,26 +196,29 @@ pub struct InstanceConfig {
         ::prost::alloc::string::String,
     >,
     /// etag is used for optimistic concurrency control as a way
-    /// to help prevent simultaneous updates of a instance config from overwriting
-    /// each other. It is strongly suggested that systems make use of the etag in
-    /// the read-modify-write cycle to perform instance config updates in order to
-    /// avoid race conditions: An etag is returned in the response which contains
-    /// instance configs, and systems are expected to put that etag in the request
-    /// to update instance config to ensure that their change will be applied to
-    /// the same version of the instance config.
-    /// If no etag is provided in the call to update instance config, then the
-    /// existing instance config is overwritten blindly.
+    /// to help prevent simultaneous updates of a instance configuration from
+    /// overwriting each other. It is strongly suggested that systems make use of
+    /// the etag in the read-modify-write cycle to perform instance configuration
+    /// updates in order to avoid race conditions: An etag is returned in the
+    /// response which contains instance configurations, and systems are expected
+    /// to put that etag in the request to update instance configuration to ensure
+    /// that their change is applied to the same version of the instance
+    /// configuration. If no etag is provided in the call to update the instance
+    /// configuration, then the existing instance configuration is overwritten
+    /// blindly.
     #[prost(string, tag = "9")]
     pub etag: ::prost::alloc::string::String,
     /// Allowed values of the "default_leader" schema option for databases in
     /// instances that use this instance configuration.
     #[prost(string, repeated, tag = "4")]
     pub leader_options: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Output only. If true, the instance config is being created or updated. If
-    /// false, there are no ongoing operations for the instance config.
+    /// Output only. If true, the instance configuration is being created or
+    /// updated. If false, there are no ongoing operations for the instance
+    /// configuration.
     #[prost(bool, tag = "10")]
     pub reconciling: bool,
-    /// Output only. The current instance config state.
+    /// Output only. The current instance configuration state. Applicable only for
+    /// `USER_MANAGED` configurations.
     #[prost(enumeration = "instance_config::State", tag = "11")]
     pub state: i32,
 }
@@ -262,7 +267,7 @@ pub mod instance_config {
             }
         }
     }
-    /// Indicates the current state of the instance config.
+    /// Indicates the current state of the instance configuration.
     #[derive(
         Clone,
         Copy,
@@ -278,10 +283,10 @@ pub mod instance_config {
     pub enum State {
         /// Not specified.
         Unspecified = 0,
-        /// The instance config is still being created.
+        /// The instance configuration is still being created.
         Creating = 1,
-        /// The instance config is fully created and ready to be used to create
-        /// instances.
+        /// The instance configuration is fully created and ready to be used to
+        /// create instances.
         Ready = 2,
     }
     impl State {
@@ -307,7 +312,7 @@ pub mod instance_config {
         }
     }
 }
-/// Autoscaling config for an instance.
+/// Autoscaling configuration for an instance.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AutoscalingConfig {
@@ -487,6 +492,9 @@ pub struct Instance {
     /// Output only. The time at which the instance was most recently updated.
     #[prost(message, optional, tag = "12")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. The `Edition` of the current instance.
+    #[prost(enumeration = "instance::Edition", tag = "20")]
+    pub edition: i32,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
@@ -532,6 +540,54 @@ pub mod instance {
                 "STATE_UNSPECIFIED" => Some(Self::Unspecified),
                 "CREATING" => Some(Self::Creating),
                 "READY" => Some(Self::Ready),
+                _ => None,
+            }
+        }
+    }
+    /// The edition selected for this instance. Different editions provide
+    /// different capabilities at different price points.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Edition {
+        /// Edition not specified.
+        Unspecified = 0,
+        /// Standard edition.
+        Standard = 1,
+        /// Enterprise edition.
+        Enterprise = 2,
+        /// Enterprise Plus edition.
+        EnterprisePlus = 3,
+    }
+    impl Edition {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Edition::Unspecified => "EDITION_UNSPECIFIED",
+                Edition::Standard => "STANDARD",
+                Edition::Enterprise => "ENTERPRISE",
+                Edition::EnterprisePlus => "ENTERPRISE_PLUS",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EDITION_UNSPECIFIED" => Some(Self::Unspecified),
+                "STANDARD" => Some(Self::Standard),
+                "ENTERPRISE" => Some(Self::Enterprise),
+                "ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
                 _ => None,
             }
         }
@@ -587,14 +643,14 @@ pub struct GetInstanceConfigRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceConfigRequest {
-    /// Required. The name of the project in which to create the instance config.
-    /// Values are of the form `projects/<project>`.
+    /// Required. The name of the project in which to create the instance
+    /// configuration. Values are of the form `projects/<project>`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
-    /// Required. The ID of the instance config to create.  Valid identifiers are
-    /// of the form `custom-\[-a-z0-9\]*[a-z0-9]` and must be between 2 and 64
+    /// Required. The ID of the instance configuration to create. Valid identifiers
+    /// are of the form `custom-\[-a-z0-9\]*[a-z0-9]` and must be between 2 and 64
     /// characters in length. The `custom-` prefix is required to avoid name
-    /// conflicts with Google managed configurations.
+    /// conflicts with Google-managed configurations.
     #[prost(string, tag = "2")]
     pub instance_config_id: ::prost::alloc::string::String,
     /// Required. The InstanceConfig proto of the configuration to create.
@@ -614,8 +670,9 @@ pub struct CreateInstanceConfigRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceConfigRequest {
-    /// Required. The user instance config to update, which must always include the
-    /// instance config name. Otherwise, only fields mentioned in
+    /// Required. The user instance configuration to update, which must always
+    /// include the instance configuration name. Otherwise, only fields mentioned
+    /// in
     /// \[update_mask\]\[google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask\]
     /// need be included. To prevent conflicts of concurrent updates,
     /// \[etag\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\] can
@@ -646,12 +703,12 @@ pub struct DeleteInstanceConfigRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Used for optimistic concurrency control as a way to help prevent
-    /// simultaneous deletes of an instance config from overwriting each
+    /// simultaneous deletes of an instance configuration from overwriting each
     /// other. If not empty, the API
-    /// only deletes the instance config when the etag provided matches the current
-    /// status of the requested instance config. Otherwise, deletes the instance
-    /// config without checking the current status of the requested instance
-    /// config.
+    /// only deletes the instance configuration when the etag provided matches the
+    /// current status of the requested instance configuration. Otherwise, deletes
+    /// the instance configuration without checking the current status of the
+    /// requested instance configuration.
     #[prost(string, tag = "2")]
     pub etag: ::prost::alloc::string::String,
     /// An option to validate, but not actually execute, a request,
@@ -664,7 +721,7 @@ pub struct DeleteInstanceConfigRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstanceConfigOperationsRequest {
-    /// Required. The project of the instance config operations.
+    /// Required. The project of the instance configuration operations.
     /// Values are of the form `projects/<project>`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
@@ -707,7 +764,7 @@ pub struct ListInstanceConfigOperationsRequest {
     ///   `(error:*)` - Return operations where:
     ///   * The operation's metadata type is
     ///     \[CreateInstanceConfigMetadata\]\[google.spanner.admin.instance.v1.CreateInstanceConfigMetadata\].
-    ///   * The instance config name contains "custom-config".
+    ///   * The instance configuration name contains "custom-config".
     ///   * The operation started before 2021-03-28T14:50:00Z.
     ///   * The operation resulted in an error.
     #[prost(string, tag = "2")]
@@ -729,9 +786,9 @@ pub struct ListInstanceConfigOperationsRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstanceConfigOperationsResponse {
-    /// The list of matching instance config \[long-running
+    /// The list of matching instance configuration \[long-running
     /// operations\]\[google.longrunning.Operation\]. Each operation's name will be
-    /// prefixed by the instance config's name. The operation's
+    /// prefixed by the name of the instance configuration. The operation's
     /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
     /// `metadata.type_url` describes the type of the metadata.
     #[prost(message, repeated, tag = "1")]
@@ -932,7 +989,7 @@ pub struct UpdateInstanceMetadata {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceConfigMetadata {
-    /// The target instance config end state.
+    /// The target instance configuration end state.
     #[prost(message, optional, tag = "1")]
     pub instance_config: ::core::option::Option<InstanceConfig>,
     /// The progress of the
@@ -949,7 +1006,7 @@ pub struct CreateInstanceConfigMetadata {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceConfigMetadata {
-    /// The desired instance config after updating.
+    /// The desired instance configuration after updating.
     #[prost(message, optional, tag = "1")]
     pub instance_config: ::core::option::Option<InstanceConfig>,
     /// The progress of the
@@ -1363,6 +1420,45 @@ pub struct ListInstancePartitionOperationsResponse {
         ::prost::alloc::string::String,
     >,
 }
+/// The request for
+/// \[MoveInstance\]\[google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MoveInstanceRequest {
+    /// Required. The instance to move.
+    /// Values are of the form `projects/<project>/instances/<instance>`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The target instance configuration where to move the instance.
+    /// Values are of the form `projects/<project>/instanceConfigs/<config>`.
+    #[prost(string, tag = "2")]
+    pub target_config: ::prost::alloc::string::String,
+}
+/// The response for
+/// \[MoveInstance\]\[google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MoveInstanceResponse {}
+/// Metadata type for the operation returned by
+/// \[MoveInstance\]\[google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MoveInstanceMetadata {
+    /// The target instance configuration where to move the instance.
+    /// Values are of the form `projects/<project>/instanceConfigs/<config>`.
+    #[prost(string, tag = "1")]
+    pub target_config: ::prost::alloc::string::String,
+    /// The progress of the
+    /// \[MoveInstance\]\[google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance\]
+    /// operation.
+    /// \[progress_percent\]\[google.spanner.admin.instance.v1.OperationProgress.progress_percent\]
+    /// is reset when cancellation is requested.
+    #[prost(message, optional, tag = "2")]
+    pub progress: ::core::option::Option<OperationProgress>,
+    /// The time at which this operation was cancelled.
+    #[prost(message, optional, tag = "3")]
+    pub cancel_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 /// Generated client implementations.
 pub mod instance_admin_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -1517,38 +1613,38 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Creates an instance config and begins preparing it to be used. The
+        /// Creates an instance configuration and begins preparing it to be used. The
         /// returned \[long-running operation\]\[google.longrunning.Operation\]
         /// can be used to track the progress of preparing the new
-        /// instance config. The instance config name is assigned by the caller. If the
-        /// named instance config already exists, `CreateInstanceConfig` returns
-        /// `ALREADY_EXISTS`.
+        /// instance configuration. The instance configuration name is assigned by the
+        /// caller. If the named instance configuration already exists,
+        /// `CreateInstanceConfig` returns `ALREADY_EXISTS`.
         ///
         /// Immediately after the request returns:
         ///
-        /// * The instance config is readable via the API, with all requested
-        ///  attributes. The instance config's
+        /// * The instance configuration is readable via the API, with all requested
+        ///  attributes. The instance configuration's
         ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
         ///  field is set to true. Its state is `CREATING`.
         ///
         /// While the operation is pending:
         ///
-        /// * Cancelling the operation renders the instance config immediately
+        /// * Cancelling the operation renders the instance configuration immediately
         ///  unreadable via the API.
         /// * Except for deleting the creating resource, all other attempts to modify
-        ///  the instance config are rejected.
+        ///  the instance configuration are rejected.
         ///
         /// Upon completion of the returned operation:
         ///
         /// * Instances can be created using the instance configuration.
-        /// * The instance config's
+        /// * The instance configuration's
         ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
         ///  field becomes false. Its state becomes `READY`.
         ///
         /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_config_name>/operations/<operation_id>` and can be used to track
-        /// creation of the instance config. The
+        /// creation of the instance configuration. The
         /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
         /// \[CreateInstanceConfigMetadata\]\[google.spanner.admin.instance.v1.CreateInstanceConfigMetadata\].
         /// The \[response\]\[google.longrunning.Operation.response\] field type is
@@ -1588,16 +1684,16 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Updates an instance config. The returned
+        /// Updates an instance configuration. The returned
         /// \[long-running operation\]\[google.longrunning.Operation\] can be used to track
-        /// the progress of updating the instance. If the named instance config does
-        /// not exist, returns `NOT_FOUND`.
+        /// the progress of updating the instance. If the named instance configuration
+        /// does not exist, returns `NOT_FOUND`.
         ///
-        /// Only user managed configurations can be updated.
+        /// Only user-managed configurations can be updated.
         ///
         /// Immediately after the request returns:
         ///
-        /// * The instance config's
+        /// * The instance configuration's
         ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
         ///  field is set to true.
         ///
@@ -1607,23 +1703,23 @@ pub mod instance_admin_client {
         ///  \[cancel_time\]\[google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata.cancel_time\].
         ///  The operation is guaranteed to succeed at undoing all changes, after
         ///  which point it terminates with a `CANCELLED` status.
-        /// * All other attempts to modify the instance config are rejected.
-        /// * Reading the instance config via the API continues to give the
+        /// * All other attempts to modify the instance configuration are rejected.
+        /// * Reading the instance configuration via the API continues to give the
         ///  pre-request values.
         ///
         /// Upon completion of the returned operation:
         ///
         /// * Creating instances using the instance configuration uses the new
         ///  values.
-        /// * The instance config's new values are readable via the API.
-        /// * The instance config's
+        /// * The new values of the instance configuration are readable via the API.
+        /// * The instance configuration's
         ///  \[reconciling\]\[google.spanner.admin.instance.v1.InstanceConfig.reconciling\]
         ///  field becomes false.
         ///
         /// The returned \[long-running operation\]\[google.longrunning.Operation\] will
         /// have a name of the format
         /// `<instance_config_name>/operations/<operation_id>` and can be used to track
-        /// the instance config modification.  The
+        /// the instance configuration modification.  The
         /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
         /// \[UpdateInstanceConfigMetadata\]\[google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata\].
         /// The \[response\]\[google.longrunning.Operation.response\] field type is
@@ -1662,11 +1758,11 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Deletes the instance config. Deletion is only allowed when no
+        /// Deletes the instance configuration. Deletion is only allowed when no
         /// instances are using the configuration. If any instances are using
-        /// the config, returns `FAILED_PRECONDITION`.
+        /// the configuration, returns `FAILED_PRECONDITION`.
         ///
-        /// Only user managed configurations can be deleted.
+        /// Only user-managed configurations can be deleted.
         ///
         /// Authorization requires `spanner.instanceConfigs.delete` permission on
         /// the resource \[name\]\[google.spanner.admin.instance.v1.InstanceConfig.name\].
@@ -1697,9 +1793,9 @@ pub mod instance_admin_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists the user-managed instance config \[long-running
+        /// Lists the user-managed instance configuration \[long-running
         /// operations\]\[google.longrunning.Operation\] in the given project. An instance
-        /// config operation has a name of the form
+        /// configuration operation has a name of the form
         /// `projects/<project>/instanceConfigs/<instance_config>/operations/<operation>`.
         /// The long-running operation
         /// \[metadata\]\[google.longrunning.Operation.metadata\] field type
@@ -2363,6 +2459,98 @@ pub mod instance_admin_client {
                     GrpcMethod::new(
                         "google.spanner.admin.instance.v1.InstanceAdmin",
                         "ListInstancePartitionOperations",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Moves an instance to the target instance configuration. You can use the
+        /// returned \[long-running operation\]\[google.longrunning.Operation\] to track
+        /// the progress of moving the instance.
+        ///
+        /// `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of
+        /// the following criteria:
+        ///
+        /// * Is undergoing a move to a different instance configuration
+        /// * Has backups
+        /// * Has an ongoing update
+        /// * Contains any CMEK-enabled databases
+        /// * Is a free trial instance
+        ///
+        /// While the operation is pending:
+        ///
+        /// * All other attempts to modify the instance, including changes to its
+        ///  compute capacity, are rejected.
+        ///
+        /// * The following database and backup admin operations are rejected:
+        ///
+        ///  * `DatabaseAdmin.CreateDatabase`
+        ///  * `DatabaseAdmin.UpdateDatabaseDdl` (disabled if default_leader is
+        ///    specified in the request.)
+        ///  * `DatabaseAdmin.RestoreDatabase`
+        ///  * `DatabaseAdmin.CreateBackup`
+        ///  * `DatabaseAdmin.CopyBackup`
+        /// * Both the source and target instance configurations are subject to
+        ///  hourly compute and storage charges.
+        ///
+        /// * The instance might experience higher read-write latencies and a higher
+        ///  transaction abort rate. However, moving an instance doesn't cause any
+        ///  downtime.
+        ///
+        /// The returned \[long-running operation\]\[google.longrunning.Operation\] has
+        /// a name of the format
+        /// `<instance_name>/operations/<operation_id>` and can be used to track
+        /// the move instance operation. The
+        /// \[metadata\]\[google.longrunning.Operation.metadata\] field type is
+        /// \[MoveInstanceMetadata\]\[google.spanner.admin.instance.v1.MoveInstanceMetadata\].
+        /// The \[response\]\[google.longrunning.Operation.response\] field type is
+        /// \[Instance\]\[google.spanner.admin.instance.v1.Instance\],
+        /// if successful.
+        /// Cancelling the operation sets its metadata's
+        /// \[cancel_time\]\[google.spanner.admin.instance.v1.MoveInstanceMetadata.cancel_time\].
+        /// Cancellation is not immediate because it involves moving any data
+        /// previously moved to the target instance configuration back to the original
+        /// instance configuration. You can use this operation to track the progress of
+        /// the cancellation. Upon successful completion of the cancellation, the
+        /// operation terminates with `CANCELLED` status.
+        ///
+        /// If not cancelled, upon completion of the returned operation:
+        ///
+        /// * The instance successfully moves to the target instance
+        ///  configuration.
+        /// * You are billed for compute and storage in target instance
+        ///  configuration.
+        ///
+        /// Authorization requires the `spanner.instances.update` permission on
+        /// the resource \[instance\]\[google.spanner.admin.instance.v1.Instance\].
+        ///
+        /// For more details, see
+        /// [Move an instance](https://cloud.google.com/spanner/docs/move-instance).
+        pub async fn move_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MoveInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.spanner.admin.instance.v1.InstanceAdmin/MoveInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.spanner.admin.instance.v1.InstanceAdmin",
+                        "MoveInstance",
                     ),
                 );
             self.inner.unary(req, path, codec).await

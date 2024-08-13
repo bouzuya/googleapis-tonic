@@ -5812,7 +5812,7 @@ pub mod function_calling_config {
         /// Unspecified function calling mode. This value should not be used.
         Unspecified = 0,
         /// Default model behavior, model decides to predict either a function call
-        /// or a natural language repspose.
+        /// or a natural language response.
         Auto = 1,
         /// Model is constrained to always predicting a function call only.
         /// If "allowed_function_names" are set, the predicted function call will be
@@ -5981,6 +5981,9 @@ pub struct GenerationConfig {
     /// Optional. Frequency penalties.
     #[prost(float, optional, tag = "9")]
     pub frequency_penalty: ::core::option::Option<f32>,
+    /// Optional. Seed.
+    #[prost(int32, optional, tag = "12")]
+    pub seed: ::core::option::Option<i32>,
     /// Optional. Output response mimetype of the generated candidate text.
     /// Supported mimetype:
     ///
@@ -6000,6 +6003,107 @@ pub struct GenerationConfig {
     /// `application/json`: Schema for JSON response.
     #[prost(message, optional, tag = "16")]
     pub response_schema: ::core::option::Option<Schema>,
+    /// Optional. Routing configuration.
+    #[prost(message, optional, tag = "17")]
+    pub routing_config: ::core::option::Option<generation_config::RoutingConfig>,
+}
+/// Nested message and enum types in `GenerationConfig`.
+pub mod generation_config {
+    /// The configuration for routing the request to a specific model.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RoutingConfig {
+        /// Routing mode.
+        #[prost(oneof = "routing_config::RoutingConfig", tags = "1, 2")]
+        pub routing_config: ::core::option::Option<routing_config::RoutingConfig>,
+    }
+    /// Nested message and enum types in `RoutingConfig`.
+    pub mod routing_config {
+        /// When automated routing is specified, the routing will be determined by
+        /// the pretrained routing model and customer provided model routing
+        /// preference.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct AutoRoutingMode {
+            /// The model routing preference.
+            #[prost(
+                enumeration = "auto_routing_mode::ModelRoutingPreference",
+                optional,
+                tag = "1"
+            )]
+            pub model_routing_preference: ::core::option::Option<i32>,
+        }
+        /// Nested message and enum types in `AutoRoutingMode`.
+        pub mod auto_routing_mode {
+            /// The model routing preference.
+            #[derive(
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
+            )]
+            #[repr(i32)]
+            pub enum ModelRoutingPreference {
+                /// Unspecified model routing preference.
+                Unknown = 0,
+                /// Prefer higher quality over low cost.
+                PrioritizeQuality = 1,
+                /// Balanced model routing preference.
+                Balanced = 2,
+                /// Prefer lower cost over higher quality.
+                PrioritizeCost = 3,
+            }
+            impl ModelRoutingPreference {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        ModelRoutingPreference::Unknown => "UNKNOWN",
+                        ModelRoutingPreference::PrioritizeQuality => "PRIORITIZE_QUALITY",
+                        ModelRoutingPreference::Balanced => "BALANCED",
+                        ModelRoutingPreference::PrioritizeCost => "PRIORITIZE_COST",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "UNKNOWN" => Some(Self::Unknown),
+                        "PRIORITIZE_QUALITY" => Some(Self::PrioritizeQuality),
+                        "BALANCED" => Some(Self::Balanced),
+                        "PRIORITIZE_COST" => Some(Self::PrioritizeCost),
+                        _ => None,
+                    }
+                }
+            }
+        }
+        /// When manual routing is set, the specified model will be used directly.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ManualRoutingMode {
+            /// The model name to use. Only the public LLM models are accepted. e.g.
+            /// 'gemini-1.5-pro-001'.
+            #[prost(string, optional, tag = "1")]
+            pub model_name: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Routing mode.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum RoutingConfig {
+            /// Automated routing.
+            #[prost(message, tag = "1")]
+            AutoMode(AutoRoutingMode),
+            /// Manual routing.
+            #[prost(message, tag = "2")]
+            ManualMode(ManualRoutingMode),
+        }
+    }
 }
 /// Safety settings.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -6286,6 +6390,9 @@ pub struct Candidate {
     /// Output only. Confidence score of the candidate.
     #[prost(double, tag = "8")]
     pub score: f64,
+    /// Output only. Average log probability score of the candidate.
+    #[prost(double, tag = "9")]
+    pub avg_logprobs: f64,
     /// Output only. The reason why the model stopped generating tokens.
     /// If empty, the model has not stopped generating the tokens.
     #[prost(enumeration = "candidate::FinishReason", tag = "3")]
@@ -6325,27 +6432,27 @@ pub mod candidate {
     pub enum FinishReason {
         /// The finish reason is unspecified.
         Unspecified = 0,
-        /// Natural stop point of the model or provided stop sequence.
+        /// Token generation reached a natural stopping point or a configured stop
+        /// sequence.
         Stop = 1,
-        /// The maximum number of tokens as specified in the request was reached.
+        /// Token generation reached the configured maximum output tokens.
         MaxTokens = 2,
-        /// The token generation was stopped as the response was flagged for safety
-        /// reasons. NOTE: When streaming the Candidate.content will be empty if
-        /// content filters blocked the output.
+        /// Token generation stopped because the content potentially contains safety
+        /// violations. NOTE: When streaming,
+        /// \[content\]\[google.cloud.aiplatform.v1.Candidate.content\] is empty if
+        /// content filters blocks the output.
         Safety = 3,
-        /// The token generation was stopped as the response was flagged for
-        /// unauthorized citations.
+        /// Token generation stopped because the content potentially contains
+        /// copyright violations.
         Recitation = 4,
-        /// All other reasons that stopped the token generation
+        /// All other reasons that stopped the token generation.
         Other = 5,
-        /// The token generation was stopped as the response was flagged for the
-        /// terms which are included from the terminology blocklist.
+        /// Token generation stopped because the content contains forbidden terms.
         Blocklist = 6,
-        /// The token generation was stopped as the response was flagged for
-        /// the prohibited contents.
+        /// Token generation stopped for potentially containing prohibited content.
         ProhibitedContent = 7,
-        /// The token generation was stopped as the response was flagged for
-        /// Sensitive Personally Identifiable Information (SPII) contents.
+        /// Token generation stopped because the content potentially contains
+        /// Sensitive Personally Identifiable Information (SPII).
         Spii = 8,
         /// The function call generated by the model is invalid.
         MalformedFunctionCall = 9,
@@ -7141,9 +7248,14 @@ pub struct CountTokensResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentRequest {
-    /// Required. The name of the publisher model requested to serve the
-    /// prediction. Format:
+    /// Required. The fully qualified name of the publisher model or tuned model
+    /// endpoint to use.
+    ///
+    /// Publisher model format:
     /// `projects/{project}/locations/{location}/publishers/*/models/*`
+    ///
+    /// Tuned model endpoint format:
+    /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
     #[prost(string, tag = "5")]
     pub model: ::prost::alloc::string::String,
     /// Required. The content of the current conversation with the model.
@@ -8816,6 +8928,12 @@ pub struct ModelDeploymentMonitoringJob {
     /// `JOB_STATE_CANCELLED`.
     #[prost(message, optional, tag = "23")]
     pub error: ::core::option::Option<super::super::super::rpc::Status>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "26")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "27")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `ModelDeploymentMonitoringJob`.
 pub mod model_deployment_monitoring_job {
@@ -9206,6 +9324,12 @@ pub struct Dataset {
     /// set for prompt datasets.
     #[prost(string, tag = "18")]
     pub model_reference: ::prost::alloc::string::String,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "20")]
+    pub satisfies_pzi: bool,
 }
 /// Describes the location from where we import data into a Dataset, together
 /// with the labels that will be applied to the DataItems and the Annotations.
@@ -9889,6 +10013,12 @@ pub struct DeploymentResourcePool {
     /// Output only. Timestamp when this DeploymentResourcePool was created.
     #[prost(message, optional, tag = "4")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "8")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "9")]
+    pub satisfies_pzi: bool,
 }
 /// Represents configuration for private service connect.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -9901,6 +10031,11 @@ pub struct PrivateServiceConnectConfig {
     /// attachment.
     #[prost(string, repeated, tag = "2")]
     pub project_allowlist: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Output only. The name of the generated service attachment resource.
+    /// This is only populated if the endpoint is deployed with
+    /// PrivateServiceConnect.
+    #[prost(string, tag = "5")]
+    pub service_attachment: ::prost::alloc::string::String,
 }
 /// PscAutomatedEndpoints defines the output of the forwarding rule
 /// automatically created by each PscAutomationConfig.
@@ -11439,6 +11574,12 @@ pub struct FeatureOnlineStore {
     /// online store will be secured by this key.
     #[prost(message, optional, tag = "13")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "15")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "16")]
+    pub satisfies_pzi: bool,
     #[prost(oneof = "feature_online_store::StorageType", tags = "8, 12")]
     pub storage_type: ::core::option::Option<feature_online_store::StorageType>,
 }
@@ -11614,6 +11755,12 @@ pub struct FeatureView {
     /// performed during online serving.
     #[prost(message, optional, tag = "15")]
     pub index_config: ::core::option::Option<feature_view::IndexConfig>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "20")]
+    pub satisfies_pzi: bool,
     #[prost(oneof = "feature_view::Source", tags = "6, 9")]
     pub source: ::core::option::Option<feature_view::Source>,
 }
@@ -11832,6 +11979,12 @@ pub struct FeatureViewSync {
     /// Output only. Summary of the sync job.
     #[prost(message, optional, tag = "6")]
     pub sync_summary: ::core::option::Option<feature_view_sync::SyncSummary>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "7")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "8")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `FeatureViewSync`.
 pub mod feature_view_sync {
@@ -12889,6 +13042,11 @@ pub struct NotebookExecutionJob {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// Customer-managed encryption key spec for the notebook execution job.
+    /// This field is auto-populated if the
+    /// \[NotebookService.NotebookRuntimeTemplate\]\[\] has an encryption spec.
+    #[prost(message, optional, tag = "22")]
+    pub encryption_spec: ::core::option::Option<EncryptionSpec>,
     /// The input notebook.
     #[prost(oneof = "notebook_execution_job::NotebookSource", tags = "3, 4, 17")]
     pub notebook_source: ::core::option::Option<notebook_execution_job::NotebookSource>,
@@ -14272,6 +14430,9 @@ pub mod publisher_model {
                     ::prost::alloc::string::String,
                     ::prost::alloc::string::String,
                 >,
+                /// Optional. Sample request for deployed endpoint.
+                #[prost(string, tag = "2")]
+                pub sample_request: ::prost::alloc::string::String,
             }
             /// The prediction (for example, the machine) resources that the
             /// DeployedModel uses.
@@ -14548,6 +14709,12 @@ pub struct Index {
     /// Index and all sub-resources of this Index will be secured by this key.
     #[prost(message, optional, tag = "17")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "18")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `Index`.
 pub mod index {
@@ -15813,6 +15980,12 @@ pub struct BatchPredictionJob {
     /// User can disable container logging by setting this flag to true.
     #[prost(bool, tag = "34")]
     pub disable_container_logging: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "36")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "37")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `BatchPredictionJob`.
 pub mod batch_prediction_job {
@@ -16130,6 +16303,12 @@ pub struct CustomJob {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "18")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzi: bool,
 }
 /// Represents the spec of a CustomJob.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -16376,8 +16555,8 @@ pub struct Scheduling {
 /// Nested message and enum types in `Scheduling`.
 pub mod scheduling {
     /// Optional. This determines which type of scheduling strategy to use. Right
-    /// now users have two options such as ON_DEMAND which will use regular on
-    /// demand resources to schedule the job, the other is LOW_COST which would
+    /// now users have two options such as STANDARD which will use regular on
+    /// demand resources to schedule the job, the other is SPOT which would
     /// leverage spot resources alongwith regular resources to schedule
     /// the job.
     #[derive(
@@ -16393,7 +16572,7 @@ pub mod scheduling {
     )]
     #[repr(i32)]
     pub enum Strategy {
-        /// Strategy will default to ON_DEMAND.
+        /// Strategy will default to STANDARD.
         Unspecified = 0,
         /// Regular on-demand provisioning strategy.
         OnDemand = 1,
@@ -17712,6 +17891,12 @@ pub struct HyperparameterTuningJob {
     /// will be encrypted with the provided encryption key.
     #[prost(message, optional, tag = "17")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "19")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "20")]
+    pub satisfies_pzi: bool,
 }
 /// Represents a Neural Architecture Search (NAS) job.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -17774,6 +17959,12 @@ pub struct NasJob {
     #[deprecated]
     #[prost(bool, tag = "14")]
     pub enable_restricted_image_training: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "15")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "16")]
+    pub satisfies_pzi: bool,
 }
 /// Represents a NasTrial details along with its parameters. If there is a
 /// corresponding train NasTrial, the train NasTrial is also returned.
@@ -20977,6 +21168,12 @@ pub struct IndexEndpoint {
     /// secured by this key.
     #[prost(message, optional, tag = "15")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "17")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "18")]
+    pub satisfies_pzi: bool,
 }
 /// A deployment of an Index. IndexEndpoints contain one or more DeployedIndexes.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -21737,6 +21934,26 @@ pub mod feature_group {
         /// If not provided defaults to `entity_id`.
         #[prost(string, repeated, tag = "2")]
         pub entity_id_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Optional. If the source is a time-series source, this can be set to
+        /// control how downstream sources (ex:
+        /// \[FeatureView\]\[google.cloud.aiplatform.v1.FeatureView\] ) will treat
+        /// time-series sources. If not set, will treat the source as a time-series
+        /// source with `feature_timestamp` as timestamp column and no scan boundary.
+        #[prost(message, optional, tag = "4")]
+        pub time_series: ::core::option::Option<big_query::TimeSeries>,
+    }
+    /// Nested message and enum types in `BigQuery`.
+    pub mod big_query {
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct TimeSeries {
+            /// Optional. Column hosting timestamp values for a time-series source.
+            /// Will be used to determine the latest `feature_values` for each entity.
+            /// Optional. If not provided, column named `feature_timestamp` of
+            /// type `TIMESTAMP` will be used.
+            #[prost(string, tag = "1")]
+            pub timestamp_column: ::prost::alloc::string::String,
+        }
     }
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -24457,6 +24674,9 @@ pub struct GetPublisherModelRequest {
     /// model.
     #[prost(bool, tag = "5")]
     pub is_hugging_face_model: bool,
+    /// Optional. Token used to access Hugging Face gated models.
+    #[prost(string, tag = "6")]
+    pub hugging_face_token: ::prost::alloc::string::String,
 }
 /// View enumeration of PublisherModel.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -24637,6 +24857,12 @@ pub struct DatasetVersion {
     /// version. Only set for prompt dataset versions.
     #[prost(string, tag = "9")]
     pub model_reference: ::prost::alloc::string::String,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "10")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "11")]
+    pub satisfies_pzi: bool,
 }
 /// Request message for
 /// \[EndpointService.CreateEndpoint\]\[google.cloud.aiplatform.v1.EndpointService.CreateEndpoint\].
@@ -27438,6 +27664,12 @@ pub struct EntityType {
     /// time. If unset (or explicitly set to 0), default to 4000 days TTL.
     #[prost(int32, tag = "10")]
     pub offline_storage_ttl_days: i32,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "11")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "12")]
+    pub satisfies_pzi: bool,
 }
 /// Feature Metadata information.
 /// For example, color is a feature that describes an apple.
@@ -27720,6 +27952,12 @@ pub struct Featurestore {
     /// both of the online and offline data storage will be secured by this key.
     #[prost(message, optional, tag = "10")]
     pub encryption_spec: ::core::option::Option<EncryptionSpec>,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "14")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "15")]
+    pub satisfies_pzi: bool,
 }
 /// Nested message and enum types in `Featurestore`.
 pub mod featurestore {
@@ -31740,6 +31978,14 @@ pub struct SupervisedTuningDataStats {
     /// Output only. Sample user messages in the training dataset uri.
     #[prost(message, repeated, tag = "8")]
     pub user_dataset_examples: ::prost::alloc::vec::Vec<Content>,
+    /// The number of examples in the dataset that have been truncated by any
+    /// amount.
+    #[prost(int64, tag = "10")]
+    pub total_truncated_example_count: i64,
+    /// A partial sample of the indices (starting from 1) of the truncated
+    /// examples.
+    #[prost(int64, repeated, tag = "11")]
+    pub truncated_example_indices: ::prost::alloc::vec::Vec<i64>,
 }
 /// The tuning data statistic values for
 /// \[TuningJob\]\[google.cloud.aiplatform.v1.TuningJob\].
@@ -36199,6 +36445,12 @@ pub struct DataItem {
     /// a blind "overwrite" update happens.
     #[prost(string, tag = "7")]
     pub etag: ::prost::alloc::string::String,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "10")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "11")]
+    pub satisfies_pzi: bool,
 }
 /// Request message for
 /// \[DatasetService.CreateDataset\]\[google.cloud.aiplatform.v1.DatasetService.CreateDataset\].

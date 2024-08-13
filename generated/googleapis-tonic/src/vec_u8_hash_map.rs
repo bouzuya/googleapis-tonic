@@ -137,6 +137,7 @@
     feature = "google-cloud-bigquery-migration-v2alpha",
     feature = "google-cloud-bigquery-reservation-v1",
     feature = "google-cloud-bigquery-storage-v1",
+    feature = "google-cloud-bigquery-storage-v1alpha",
     feature = "google-cloud-bigquery-storage-v1beta1",
     feature = "google-cloud-bigquery-storage-v1beta2",
     feature = "google-cloud-bigquery-v2",
@@ -576,6 +577,7 @@ pub mod google {
         feature = "google-cloud-bigquery-migration-v2alpha",
         feature = "google-cloud-bigquery-reservation-v1",
         feature = "google-cloud-bigquery-storage-v1",
+        feature = "google-cloud-bigquery-storage-v1alpha",
         feature = "google-cloud-bigquery-storage-v1beta1",
         feature = "google-cloud-bigquery-storage-v1beta2",
         feature = "google-cloud-bigquery-v2",
@@ -1075,6 +1077,7 @@ pub mod google {
             feature = "google-cloud-bigquery-migration-v2alpha",
             feature = "google-cloud-bigquery-reservation-v1",
             feature = "google-cloud-bigquery-storage-v1",
+            feature = "google-cloud-bigquery-storage-v1alpha",
             feature = "google-cloud-bigquery-storage-v1beta1",
             feature = "google-cloud-bigquery-storage-v1beta2",
             feature = "google-cloud-bigquery-v2",
@@ -1130,6 +1133,7 @@ pub mod google {
             }
             #[cfg(any(
                 feature = "google-cloud-bigquery-storage-v1",
+                feature = "google-cloud-bigquery-storage-v1alpha",
                 feature = "google-cloud-bigquery-storage-v1beta1",
                 feature = "google-cloud-bigquery-storage-v1beta2",
             ))]
@@ -1142,6 +1146,15 @@ pub mod google {
                         feature = "google-cloud-bigquery-storage-v1beta2",
                     ))]
                     include!("vec_u8_hash_map/google.cloud.bigquery.storage.v1beta2.rs");
+                }
+                #[cfg(any(
+                    feature = "google-cloud-bigquery-storage-v1alpha",
+                ))]
+                pub mod v1alpha {
+                    #[cfg(any(
+                        feature = "google-cloud-bigquery-storage-v1alpha",
+                    ))]
+                    include!("vec_u8_hash_map/google.cloud.bigquery.storage.v1alpha.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-storage-v1",

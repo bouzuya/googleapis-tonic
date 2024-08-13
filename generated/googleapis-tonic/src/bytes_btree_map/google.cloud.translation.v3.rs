@@ -391,7 +391,7 @@ pub struct ListExamplesResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Example {
     /// Output only. The resource name of the example, in form of
-    /// \`projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'
+    /// `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Sentence in source language.
