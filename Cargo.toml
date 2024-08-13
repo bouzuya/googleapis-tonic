@@ -1,4 +1,4 @@
 [workspace]
-members = ["crates/*"]
-exclude = ["crates/googleapis-tonic", "crates/googleapis-tonic-*"]
+members = ["crates/xtask"]
+exclude = ["generated/*"]
 resolver = "2"
