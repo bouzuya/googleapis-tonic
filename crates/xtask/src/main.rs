@@ -8,6 +8,7 @@ mod module;
 mod modules;
 mod proto_dir;
 mod proto_file;
+mod proto_file_path;
 mod protobuf_package_name;
 
 #[derive(clap::Parser)]
