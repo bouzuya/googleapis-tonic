@@ -1,5 +1,5 @@
 use anyhow::Context;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ProtoFilePath(Vec<String>);
@@ -40,15 +40,26 @@ impl ProtoFilePath {
         anyhow::ensure!(s.ends_with(".proto"), "not .proto file");
         let s = s.trim_end_matches(".proto");
         let parts = s.split('/').collect::<Vec<&str>>();
-        anyhow::ensure!(parts
-            .iter()
-            .all(|it| it.chars().all(|c| c.is_ascii_alphanumeric() || c == '_')));
+        anyhow::ensure!(parts.iter().all(|it| it
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '.')));
         Ok(Self(
             parts
                 .into_iter()
                 .map(|it| it.to_owned())
                 .collect::<Vec<String>>(),
         ))
+    }
+
+    pub fn to_path_buf(&self) -> PathBuf {
+        let mut path_buf = PathBuf::new();
+        for p in self.0.iter().take(self.0.len() - 1) {
+            path_buf.push(p);
+        }
+        if let Some(p) = self.0.last() {
+            path_buf.push(format!("{}.proto", p));
+        }
+        path_buf
     }
 }
 
@@ -73,12 +84,8 @@ mod tests {
         let proto_dir2 = root_dir.join("proto_dir2");
 
         assert_eq!(
-            ProtoFilePath::from_absolute_path(&proto_file, &proto_dir)?,
-            ProtoFilePath(
-                ["google", "firestore", "v1", "common"]
-                    .map(|s| s.to_owned())
-                    .to_vec()
-            )
+            ProtoFilePath::from_absolute_path(&proto_file, &proto_dir)?.to_path_buf(),
+            PathBuf::from("google/firestore/v1/common.proto")
         );
 
         // NOT absolute file
@@ -101,24 +108,22 @@ mod tests {
     #[test]
     fn test_from_import_path_str() -> anyhow::Result<()> {
         assert_eq!(
-            ProtoFilePath::from_import_path_str("google/firestore/v1/common.proto")?,
-            ProtoFilePath(
-                ["google", "firestore", "v1", "common"]
-                    .map(|s| s.to_owned())
-                    .to_vec()
-            )
+            ProtoFilePath::from_import_path_str("google/firestore/v1/common.proto")?.to_path_buf(),
+            PathBuf::from("google/firestore/v1/common.proto")
+        );
+
+        assert_eq!(
+            ProtoFilePath::from_import_path_str("google/firestore/v1/common.min.proto")?
+                .to_path_buf(),
+            PathBuf::from("google/firestore/v1/common.min.proto")
         );
 
         // NOT .proto file
         let result = ProtoFilePath::from_import_path_str("google/firestore/v1/common.PROTO");
         assert!(result.is_err());
 
-        // NOT ascii_alphanumeric || _
+        // NOT ascii_alphanumeric || _ || .
         let result = ProtoFilePath::from_import_path_str("google/firestore/v1/あ.proto");
-        assert!(result.is_err());
-
-        // NOT ascii_alphanumeric || _
-        let result = ProtoFilePath::from_import_path_str("google/firestore/v1/common.min.proto");
         assert!(result.is_err());
         Ok(())
     }
