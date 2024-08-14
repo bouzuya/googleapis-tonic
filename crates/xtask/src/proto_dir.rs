@@ -1,4 +1,4 @@
-use crate::proto_file_path::ProtoFilePath;
+use crate::{googleapis_version::GoogleapisVersion, proto_file_path::ProtoFilePath};
 use std::{
     collections::{BTreeMap, BTreeSet, VecDeque},
     fs,
@@ -15,6 +15,7 @@ pub struct ProtoDir {
     dir_path: PathBuf,
     emit_package_names: BTreeSet<ProtobufPackageName>,
     proto_file_paths: Vec<ProtoFilePath>,
+    version: GoogleapisVersion,
 }
 
 impl ProtoDir {
@@ -22,6 +23,7 @@ impl ProtoDir {
         let dir_path: PathBuf = proto_dir.into();
         let dir_path = dir_path.canonicalize()?;
 
+        let version = GoogleapisVersion::load_from_googleapis_dir(&dir_path)?;
         let proto_file_paths = Self::proto_file_paths_from_dir(&dir_path, &dir_path)?;
         let proto_dir_paths = Self::proto_dir_paths_from_dir(&dir_path)?;
 
@@ -91,6 +93,7 @@ impl ProtoDir {
             dir_path,
             emit_package_names,
             proto_file_paths,
+            version,
         })
     }
 
@@ -111,6 +114,10 @@ impl ProtoDir {
             .iter()
             .map(|it| self.dir_path.join(it.to_path_buf()))
             .collect::<Vec<PathBuf>>()
+    }
+
+    pub fn version(&self) -> &GoogleapisVersion {
+        &self.version
     }
 
     fn proto_file_dependencies(
