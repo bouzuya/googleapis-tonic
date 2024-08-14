@@ -13,6 +13,7 @@ use crate::{
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct StateFileContent {
+    googleapis_version: String,
     next_version: String,
     publish_order: Vec<String>,
 }
@@ -57,12 +58,14 @@ pub fn execute() -> anyhow::Result<()> {
     let state_file = xtask_dir.join("state.json");
     let state = fs::read_to_string(&state_file)?;
     let StateFileContent {
+        googleapis_version: _,
         next_version,
         publish_order: _,
     } = serde_json::from_str::<StateFileContent>(&state)?;
     let version = semver::Version::parse(&next_version)?;
     let next_version = semver::Version::new(version.major, version.minor + 1, version.patch);
     let state = serde_json::to_string_pretty(&StateFileContent {
+        googleapis_version: proto_dir.version().to_string(),
         next_version: next_version.to_string(),
         publish_order: {
             // topological sort

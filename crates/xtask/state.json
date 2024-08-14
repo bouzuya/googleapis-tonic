@@ -1,4 +1,5 @@
 {
+  "googleapis_version": "96facece981f227c5d54133845fc519f73900b8e",
   "next_version": "0.4.0",
   "publish_order": [
     "googleapis-tonic-google-api",
