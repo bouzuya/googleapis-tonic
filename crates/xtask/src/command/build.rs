@@ -13,6 +13,7 @@ use crate::{
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct StateFileContent {
+    crate_versions: BTreeMap<String, String>,
     googleapis_version: String,
     next_version: String,
     publish_order: Vec<String>,
@@ -49,15 +50,15 @@ struct StateFileContent {
 ///     ...
 /// ```
 pub fn execute() -> anyhow::Result<()> {
-    let crates_dir = PathBuf::from("crates");
-    let xtask_dir = crates_dir.join("xtask");
+    let generated_dir = PathBuf::from("generated");
+    let xtask_dir = PathBuf::from("crates").join("xtask");
     let proto_dir = xtask_dir.join("googleapis");
     let proto_dir = ProtoDir::load(proto_dir)?;
-    let generated_dir = PathBuf::from("generated");
 
     let state_file = xtask_dir.join("state.json");
     let state = fs::read_to_string(&state_file)?;
     let StateFileContent {
+        crate_versions,
         googleapis_version: _,
         next_version,
         publish_order: _,
@@ -65,6 +66,11 @@ pub fn execute() -> anyhow::Result<()> {
     let version = semver::Version::parse(&next_version)?;
     let next_version = semver::Version::new(version.major, version.minor + 1, version.patch);
     let state = serde_json::to_string_pretty(&StateFileContent {
+        crate_versions: crate_versions
+            .keys()
+            .into_iter()
+            .map(|key| (key.to_owned(), next_version.to_string()))
+            .collect::<BTreeMap<String, String>>(),
         googleapis_version: proto_dir.version().to_string(),
         next_version: next_version.to_string(),
         publish_order: {
