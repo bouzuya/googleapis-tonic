@@ -5,6 +5,14 @@ use semver::Version;
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CrateVersion(Version);
 
+impl CrateVersion {
+    pub fn increment_minor(&self) -> Self {
+        let v = &self.0;
+        let next_version = Version::new(v.major, v.minor + 1, v.patch);
+        Self(next_version)
+    }
+}
+
 impl std::fmt::Display for CrateVersion {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.0.fmt(f)
@@ -34,6 +42,13 @@ mod tests {
         assert!(CrateVersion::from_str("1.2.3-pre").is_err());
         assert!(CrateVersion::from_str("1.2.3+build").is_err());
         assert!(CrateVersion::from_str("1.2.3-pre+build").is_err());
+        Ok(())
+    }
+
+    #[test]
+    fn test_increment_minor() -> anyhow::Result<()> {
+        let v = CrateVersion::from_str("1.2.3")?;
+        assert_eq!(v.increment_minor().to_string(), "1.3.3");
         Ok(())
     }
 }
