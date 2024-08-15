@@ -20,10 +20,15 @@ struct Cli {
 
 #[derive(clap::Subcommand)]
 enum Subcommand {
+    /// Generate crates and update state.json. (state.json + googleapis/ -> state.json (updated) + generated/*)
     Build,
+    /// Publish the generated/* crates to crates.io
     Publish,
+    /// Show googleapis version (read googleapis/)
     ShowGoogleapisVersion,
+    /// Test generated/* crates
     Test,
+    /// Update googleapis/ (git submodule update)
     UpdateGoogleapis,
 }
 
