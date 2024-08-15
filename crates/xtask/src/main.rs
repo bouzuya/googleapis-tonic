@@ -1,6 +1,7 @@
 mod bytes_type;
 mod command;
 mod crate_name;
+mod crate_version;
 mod feature_name;
 mod googleapis_version;
 mod ident;
