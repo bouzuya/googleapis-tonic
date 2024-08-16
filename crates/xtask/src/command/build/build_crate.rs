@@ -16,7 +16,7 @@ use crate::{bytes_type::BytesType, proto_dir::ProtoDir};
 pub fn build_crate(
     generated_dir: &Path,
     proto_dir: &ProtoDir,
-    version: &CrateVersion,
+    old_crate_version: &CrateVersion,
 ) -> anyhow::Result<CrateVersion> {
     let src_dir = generated_dir.join("googleapis-tonic").join("src");
     for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
@@ -62,8 +62,8 @@ pub fn build_crate(
         fs::write(src_dir.join(format!("{}.rs", root_mod_name)), output)?;
     }
 
-    update_cargo_toml(&src_dir, proto_dir, version)?;
-    let new_crate_version = version.increment_minor();
+    let new_crate_version = old_crate_version.increment_minor();
+    update_cargo_toml(&src_dir, proto_dir, &new_crate_version)?;
     Ok(new_crate_version)
 }
 

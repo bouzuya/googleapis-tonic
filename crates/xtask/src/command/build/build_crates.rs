@@ -80,10 +80,15 @@ pub fn build_crates(
         //     Cargo.toml
         let crate_dir = generated_dir.join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
-        let crate_version = crate_versions.get(&crate_name).cloned().unwrap_or_default();
-        let crate_version = crate_version.increment_minor();
-        new_crate_versions.insert(crate_name.clone(), crate_version.clone());
-        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names, &crate_version)?;
+        let old_crate_version = crate_versions.get(&crate_name).cloned().unwrap_or_default();
+        let new_crate_version = old_crate_version.increment_minor();
+        new_crate_versions.insert(crate_name.clone(), new_crate_version.clone());
+        write_cargo_toml(
+            &crate_dir,
+            &crate_name,
+            &dep_crate_names,
+            &new_crate_version,
+        )?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",

@@ -490,7 +490,6 @@
     "googleapis-tonic-grafeas-v1 ": "0.3.0"
   },
   "googleapis_version": "96facece981f227c5d54133845fc519f73900b8e",
-  "next_version": "0.4.0",
   "publish_order": [
     "googleapis-tonic-google-api",
     "googleapis-tonic-google-actions-sdk-v2-conversation",

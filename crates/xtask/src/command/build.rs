@@ -53,12 +53,12 @@ pub fn execute() -> anyhow::Result<()> {
         .get(&CrateName::from_str("googleapis-tonic")?)
         .cloned()
         .unwrap_or_default();
-    let next_crate_version = build_crate::build_crate(&generated_dir, &proto_dir, &crate_version)?;
-    let mut next_crate_versions =
+    let new_crate_version = build_crate::build_crate(&generated_dir, &proto_dir, &crate_version)?;
+    let mut new_crate_versions =
         build_crates::build_crates(&generated_dir, &proto_dir, crate_versions)?;
-    next_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, next_crate_version);
+    new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 
-    let updated = state.update(&proto_dir, next_crate_versions)?;
+    let updated = state.update(&proto_dir, new_crate_versions)?;
     State::save(&state_file, &updated)?;
     Ok(())
 }
