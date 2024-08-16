@@ -7,6 +7,7 @@ use std::{
 
 use anyhow::Context;
 
+use crate::crate_version::CrateVersion;
 use crate::feature_name::FeatureName;
 use crate::map_type::MapType;
 use crate::modules::Modules;
@@ -15,8 +16,8 @@ use crate::{bytes_type::BytesType, proto_dir::ProtoDir};
 pub fn build_crate(
     generated_dir: &Path,
     proto_dir: &ProtoDir,
-    version: &str,
-) -> anyhow::Result<()> {
+    version: &CrateVersion,
+) -> anyhow::Result<CrateVersion> {
     let src_dir = generated_dir.join("googleapis-tonic").join("src");
     for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
         MapType::values()
@@ -62,7 +63,8 @@ pub fn build_crate(
     }
 
     update_cargo_toml(&src_dir, proto_dir, version)?;
-    Ok(())
+    let new_crate_version = version.increment_minor();
+    Ok(new_crate_version)
 }
 
 fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
@@ -94,11 +96,15 @@ fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Featur
     features
 }
 
-fn update_cargo_toml(src_dir: &Path, proto_dir: &ProtoDir, version: &str) -> anyhow::Result<()> {
+fn update_cargo_toml(
+    src_dir: &Path,
+    proto_dir: &ProtoDir,
+    version: &CrateVersion,
+) -> anyhow::Result<()> {
     let cargo_toml_path = src_dir.join("../Cargo.toml").canonicalize()?;
     let cargo_toml = fs::read_to_string(&cargo_toml_path)?;
     let mut document = toml_edit::DocumentMut::from_str(&cargo_toml)?;
-    document["package"]["version"] = toml_edit::value(version);
+    document["package"]["version"] = toml_edit::value(version.to_string());
     let table = document["features"]
         .as_table_mut()
         .context("features is not a table")?;

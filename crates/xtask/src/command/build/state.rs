@@ -91,19 +91,15 @@ impl State {
         Ok(())
     }
 
-    // TODO: use CrateVersion
-    pub fn current_version(&self) -> String {
-        self.next_version.to_string()
+    pub fn crate_versions(&self) -> &BTreeMap<CrateName, CrateVersion> {
+        &self.crate_versions
     }
 
-    pub fn update(&self, proto_dir: &ProtoDir) -> anyhow::Result<Self> {
-        let next_version = &self.next_version;
-        let crate_versions = self
-            .crate_versions
-            .keys()
-            .into_iter()
-            .map(|key| (key.to_owned(), next_version.to_owned()))
-            .collect::<BTreeMap<CrateName, CrateVersion>>();
+    pub fn update(
+        &self,
+        proto_dir: &ProtoDir,
+        crate_versions: BTreeMap<CrateName, CrateVersion>,
+    ) -> anyhow::Result<Self> {
         let googleapis_version = proto_dir.version().to_owned();
         let next_version = self.next_version.increment_minor();
         let publish_order = Self::publish_order(proto_dir);

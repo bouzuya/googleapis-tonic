@@ -6,7 +6,8 @@ use std::{
 };
 
 use crate::{
-    crate_name::CrateName, proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName,
+    crate_name::CrateName, crate_version::CrateVersion, proto_dir::ProtoDir,
+    protobuf_package_name::ProtobufPackageName,
 };
 
 struct M {
@@ -17,8 +18,9 @@ struct M {
 pub fn build_crates(
     generated_dir: &Path,
     proto_dir: &ProtoDir,
-    version: &str,
-) -> anyhow::Result<()> {
+    crate_versions: &BTreeMap<CrateName, CrateVersion>,
+) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
+    let mut new_crate_versions = BTreeMap::new();
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
     let emit_package_names = proto_dir.emit_package_names();
     for package_name in emit_package_names {
@@ -78,7 +80,10 @@ pub fn build_crates(
         //     Cargo.toml
         let crate_dir = generated_dir.join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
-        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names, version)?;
+        let crate_version = crate_versions.get(&crate_name).cloned().unwrap_or_default();
+        let crate_version = crate_version.increment_minor();
+        new_crate_versions.insert(crate_name.clone(), crate_version.clone());
+        write_cargo_toml(&crate_dir, &crate_name, &dep_crate_names, &crate_version)?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",
@@ -99,7 +104,7 @@ pub fn build_crates(
             src_dir.join("lib.rs"),
         )?;
     }
-    Ok(())
+    Ok(new_crate_versions)
 }
 
 // crates/googleapis-tonic-{crate_name}/Cargo.toml
@@ -107,7 +112,7 @@ fn write_cargo_toml(
     crate_dir: &Path,
     crate_name: &CrateName,
     dep_crate_names: &BTreeSet<CrateName>,
-    version: &str,
+    version: &CrateVersion,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -143,7 +148,7 @@ default = ["hash-map", "vec-u8"]
 {FEATURES}
 "#
     .replace("{CRATE_NAME}", crate_name.as_ref())
-    .replace("{VERSION}", version)
+    .replace("{VERSION}", &version.to_string())
     .replace(
         "{DEPENDENCIES}",
         &dep_crate_names

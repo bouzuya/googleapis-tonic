@@ -3,8 +3,10 @@ mod build_crates;
 mod state;
 
 use std::path::PathBuf;
+use std::str::FromStr as _;
 
 use self::state::State;
+use crate::crate_name::CrateName;
 use crate::proto_dir::ProtoDir;
 
 /// Build `googleapis-tonic` and `googleapis-tonic-*` crates, and update the state file.
@@ -46,11 +48,17 @@ pub fn execute() -> anyhow::Result<()> {
     let state_file = xtask_dir.join("state.json");
     let state = State::load(&state_file)?;
 
-    let version = state.current_version();
-    build_crate::build_crate(&generated_dir, &proto_dir, &version)?;
-    build_crates::build_crates(&generated_dir, &proto_dir, &version)?;
+    let crate_versions = state.crate_versions();
+    let crate_version = crate_versions
+        .get(&CrateName::from_str("googleapis-tonic")?)
+        .cloned()
+        .unwrap_or_default();
+    let next_crate_version = build_crate::build_crate(&generated_dir, &proto_dir, &crate_version)?;
+    let mut next_crate_versions =
+        build_crates::build_crates(&generated_dir, &proto_dir, crate_versions)?;
+    next_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, next_crate_version);
 
-    let updated = state.update(&proto_dir)?;
+    let updated = state.update(&proto_dir, next_crate_versions)?;
     State::save(&state_file, &updated)?;
     Ok(())
 }
