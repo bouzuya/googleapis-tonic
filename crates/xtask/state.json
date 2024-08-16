@@ -1,5 +1,6 @@
 {
   "crate_versions": {
+    "googleapis-tonic": "0.3.0",
     "googleapis-tonic-google-actions-sdk-v2": "0.3.0",
     "googleapis-tonic-google-actions-sdk-v2-conversation": "0.3.0",
     "googleapis-tonic-google-actions-sdk-v2-interactionmodel": "0.3.0",
