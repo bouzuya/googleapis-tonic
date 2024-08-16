@@ -13,6 +13,12 @@ impl CrateVersion {
     }
 }
 
+impl std::default::Default for CrateVersion {
+    fn default() -> Self {
+        Self(Version::new(0, 0, 0))
+    }
+}
+
 impl std::fmt::Display for CrateVersion {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.0.fmt(f)
@@ -43,6 +49,11 @@ mod tests {
         assert!(CrateVersion::from_str("1.2.3+build").is_err());
         assert!(CrateVersion::from_str("1.2.3-pre+build").is_err());
         Ok(())
+    }
+
+    #[test]
+    fn test_default() {
+        assert_eq!(CrateVersion::default().to_string(), "0.0.0");
     }
 
     #[test]
