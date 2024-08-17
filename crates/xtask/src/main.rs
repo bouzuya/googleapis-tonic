@@ -12,6 +12,7 @@ mod proto_dir;
 mod proto_file;
 mod proto_file_path;
 mod protobuf_package_name;
+mod sha1hash;
 
 #[derive(clap::Parser)]
 struct Cli {
