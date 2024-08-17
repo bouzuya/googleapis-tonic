@@ -53,7 +53,9 @@ pub fn execute() -> anyhow::Result<()> {
     let state = State::load(&state_file)?;
 
     // remove generated/
-    fs::remove_dir_all(&generated_dir)?;
+    if generated_dir.exists() {
+        fs::remove_dir_all(&generated_dir)?;
+    }
 
     // generate generated/
     let crate_versions = state.crate_versions();
