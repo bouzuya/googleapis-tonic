@@ -1681,88 +1681,125 @@ impl Severity {
         }
     }
 }
-/// The \[GetStyleGuide\]\[ApiHub.GetStyleGuide\] method's request.
+/// A plugin resource in the API Hub.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetStyleGuideRequest {
-    /// Required. The name of the spec to retrieve.
-    /// Format:
-    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`.
+pub struct Plugin {
+    /// Identifier. The name of the plugin.
+    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-}
-/// The \[UpdateStyleGuide\]\[ApiHub.UpdateStyleGuide\] method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateStyleGuideRequest {
-    /// Required. The Style guide resource to update.
-    #[prost(message, optional, tag = "1")]
-    pub style_guide: ::core::option::Option<StyleGuide>,
-    /// Optional. The list of fields to update.
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-}
-/// The \[GetStyleGuideContents\]\[ApiHub.GetStyleGuideContents\] method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetStyleGuideContentsRequest {
-    /// Required. The name of the StyleGuide whose contents need to be retrieved.
-    /// There is exactly one style guide resource per project per location.
-    /// The expected format is
-    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The \[LintSpec\]\[ApiHub.LintSpec\] method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LintSpecRequest {
-    /// Required. The name of the spec to be linted.
-    /// Format:
-    /// `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The style guide contents.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StyleGuideContents {
-    /// Required. The contents of the style guide.
-    #[prost(bytes = "bytes", tag = "1")]
-    pub contents: ::prost::bytes::Bytes,
-    /// Required. The mime type of the content.
+    /// Required. The display name of the plugin. Max length is 50 characters
+    /// (Unicode code points).
     #[prost(string, tag = "2")]
-    pub mime_type: ::prost::alloc::string::String,
+    pub display_name: ::prost::alloc::string::String,
+    /// Required. The type of the API.
+    /// This maps to the following system defined attribute:
+    /// `projects/{project}/locations/{location}/attributes/system-plugin-type`
+    /// attribute.
+    /// The number of allowed values for this attribute will be based on the
+    /// cardinality of the attribute. The same can be retrieved via GetAttribute
+    /// API. All values should be from the list of allowed values defined for the
+    /// attribute.
+    #[prost(message, optional, tag = "3")]
+    pub r#type: ::core::option::Option<AttributeValues>,
+    /// Optional. The plugin description. Max length is 2000 characters (Unicode
+    /// code points).
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+    /// Output only. Represents the state of the plugin.
+    #[prost(enumeration = "plugin::State", tag = "5")]
+    pub state: i32,
 }
-/// Represents a singleton style guide resource to be used for linting Open API
-/// specs.
+/// Nested message and enum types in `Plugin`.
+pub mod plugin {
+    /// Possible states a plugin can have. Note that this enum may receive new
+    /// values in the future. Consumers are advised to always code against the
+    /// enum values expecting new states can be added later on.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// The default value. This value is used if the state is omitted.
+        Unspecified = 0,
+        /// The plugin is enabled.
+        Enabled = 1,
+        /// The plugin is disabled.
+        Disabled = 2,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Enabled => "ENABLED",
+                State::Disabled => "DISABLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ENABLED" => Some(Self::Enabled),
+                "DISABLED" => Some(Self::Disabled),
+                _ => None,
+            }
+        }
+    }
+}
+/// The \[GetPlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.GetPlugin\] method's
+/// request.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StyleGuide {
-    /// Identifier. The name of the style guide.
-    ///
-    /// Format:
-    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`
+pub struct GetPluginRequest {
+    /// Required. The name of the plugin to retrieve.
+    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// Required. Target linter for the style guide.
-    #[prost(enumeration = "Linter", tag = "2")]
-    pub linter: i32,
-    /// Required. Input only. The contents of the uploaded style guide.
-    #[prost(message, optional, tag = "3")]
-    pub contents: ::core::option::Option<StyleGuideContents>,
+}
+/// The \[EnablePlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.EnablePlugin\] method's
+/// request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnablePluginRequest {
+    /// Required. The name of the plugin to enable.
+    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The \[DisablePlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.DisablePlugin\]
+/// method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DisablePluginRequest {
+    /// Required. The name of the plugin to disable.
+    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
-pub mod linting_service_client {
+pub mod api_hub_plugin_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// This service provides all methods related to the 1p Linter.
+    /// This service is used for managing plugins inside the API Hub.
     #[derive(Debug, Clone)]
-    pub struct LintingServiceClient<T> {
+    pub struct ApiHubPluginClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl<T> LintingServiceClient<T>
+    impl<T> ApiHubPluginClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -1780,7 +1817,7 @@ pub mod linting_service_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> LintingServiceClient<InterceptedService<T, F>>
+        ) -> ApiHubPluginClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -1794,7 +1831,7 @@ pub mod linting_service_client {
                 http::Request<tonic::body::BoxBody>,
             >>::Error: Into<StdError> + Send + Sync,
         {
-            LintingServiceClient::new(InterceptedService::new(inner, interceptor))
+            ApiHubPluginClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -1827,11 +1864,11 @@ pub mod linting_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Get the style guide being used for linting.
-        pub async fn get_style_guide(
+        /// Get details about an API Hub plugin.
+        pub async fn get_plugin(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetStyleGuideRequest>,
-        ) -> std::result::Result<tonic::Response<super::StyleGuide>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::GetPluginRequest>,
+        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -1843,23 +1880,50 @@ pub mod linting_service_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.LintingService/GetStyleGuide",
+                "/google.cloud.apihub.v1.ApiHubPlugin/GetPlugin",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("google.cloud.apihub.v1.ApiHubPlugin", "GetPlugin"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Enables a plugin.
+        /// The `state` of the plugin after enabling is `ENABLED`
+        pub async fn enable_plugin(
+            &mut self,
+            request: impl tonic::IntoRequest<super::EnablePluginRequest>,
+        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.ApiHubPlugin/EnablePlugin",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new(
-                        "google.cloud.apihub.v1.LintingService",
-                        "GetStyleGuide",
+                        "google.cloud.apihub.v1.ApiHubPlugin",
+                        "EnablePlugin",
                     ),
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Update the styleGuide to be used for liniting in by API hub.
-        pub async fn update_style_guide(
+        /// Disables a plugin.
+        /// The `state` of the plugin after disabling is `DISABLED`
+        pub async fn disable_plugin(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateStyleGuideRequest>,
-        ) -> std::result::Result<tonic::Response<super::StyleGuide>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::DisablePluginRequest>,
+        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -1871,73 +1935,15 @@ pub mod linting_service_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.LintingService/UpdateStyleGuide",
+                "/google.cloud.apihub.v1.ApiHubPlugin/DisablePlugin",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new(
-                        "google.cloud.apihub.v1.LintingService",
-                        "UpdateStyleGuide",
+                        "google.cloud.apihub.v1.ApiHubPlugin",
+                        "DisablePlugin",
                     ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get the contents of the style guide.
-        pub async fn get_style_guide_contents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetStyleGuideContentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::StyleGuideContents>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.LintingService/GetStyleGuideContents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apihub.v1.LintingService",
-                        "GetStyleGuideContents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lints the requested spec and updates the corresponding API Spec with the
-        /// lint response. This lint response will be available in all subsequent
-        /// Get and List Spec calls to Core service.
-        pub async fn lint_spec(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LintSpecRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.LintingService/LintSpec",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apihub.v1.LintingService", "LintSpec"),
                 );
             self.inner.unary(req, path, codec).await
         }
@@ -4799,342 +4805,88 @@ pub mod api_hub_dependencies_client {
         }
     }
 }
-/// A plugin resource in the API Hub.
+/// The \[GetStyleGuide\]\[ApiHub.GetStyleGuide\] method's request.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Plugin {
-    /// Identifier. The name of the plugin.
-    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Required. The display name of the plugin. Max length is 50 characters
-    /// (Unicode code points).
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// Required. The type of the API.
-    /// This maps to the following system defined attribute:
-    /// `projects/{project}/locations/{location}/attributes/system-plugin-type`
-    /// attribute.
-    /// The number of allowed values for this attribute will be based on the
-    /// cardinality of the attribute. The same can be retrieved via GetAttribute
-    /// API. All values should be from the list of allowed values defined for the
-    /// attribute.
-    #[prost(message, optional, tag = "3")]
-    pub r#type: ::core::option::Option<AttributeValues>,
-    /// Optional. The plugin description. Max length is 2000 characters (Unicode
-    /// code points).
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    /// Output only. Represents the state of the plugin.
-    #[prost(enumeration = "plugin::State", tag = "5")]
-    pub state: i32,
-}
-/// Nested message and enum types in `Plugin`.
-pub mod plugin {
-    /// Possible states a plugin can have. Note that this enum may receive new
-    /// values in the future. Consumers are advised to always code against the
-    /// enum values expecting new states can be added later on.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// The default value. This value is used if the state is omitted.
-        Unspecified = 0,
-        /// The plugin is enabled.
-        Enabled = 1,
-        /// The plugin is disabled.
-        Disabled = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabled => "ENABLED",
-                State::Disabled => "DISABLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENABLED" => Some(Self::Enabled),
-                "DISABLED" => Some(Self::Disabled),
-                _ => None,
-            }
-        }
-    }
-}
-/// The \[GetPlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.GetPlugin\] method's
-/// request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPluginRequest {
-    /// Required. The name of the plugin to retrieve.
-    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The \[EnablePlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.EnablePlugin\] method's
-/// request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EnablePluginRequest {
-    /// Required. The name of the plugin to enable.
-    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The \[DisablePlugin\]\[google.cloud.apihub.v1.ApiHubPlugin.DisablePlugin\]
-/// method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DisablePluginRequest {
-    /// Required. The name of the plugin to disable.
-    /// Format: `projects/{project}/locations/{location}/plugins/{plugin}`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Generated client implementations.
-pub mod api_hub_plugin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// This service is used for managing plugins inside the API Hub.
-    #[derive(Debug, Clone)]
-    pub struct ApiHubPluginClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ApiHubPluginClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ApiHubPluginClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ApiHubPluginClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Get details about an API Hub plugin.
-        pub async fn get_plugin(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPluginRequest>,
-        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.ApiHubPlugin/GetPlugin",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apihub.v1.ApiHubPlugin", "GetPlugin"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enables a plugin.
-        /// The `state` of the plugin after enabling is `ENABLED`
-        pub async fn enable_plugin(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnablePluginRequest>,
-        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.ApiHubPlugin/EnablePlugin",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apihub.v1.ApiHubPlugin",
-                        "EnablePlugin",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disables a plugin.
-        /// The `state` of the plugin after disabling is `DISABLED`
-        pub async fn disable_plugin(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisablePluginRequest>,
-        ) -> std::result::Result<tonic::Response<super::Plugin>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.ApiHubPlugin/DisablePlugin",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apihub.v1.ApiHubPlugin",
-                        "DisablePlugin",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
-/// The
-/// \[CreateApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.CreateApiHubInstance\]
-/// method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateApiHubInstanceRequest {
-    /// Required. The parent resource for the Api Hub instance resource.
-    /// Format: `projects/{project}/locations/{location}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Optional. Identifier to assign to the Api Hub instance. Must be unique
-    /// within scope of the parent resource. If the field is not provided, system
-    /// generated id will be used.
-    ///
-    /// This value should be 4-40 characters, and valid characters
-    /// are `/[a-z][A-Z][0-9]-_/`.
-    #[prost(string, tag = "2")]
-    pub api_hub_instance_id: ::prost::alloc::string::String,
-    /// Required. The ApiHub instance.
-    #[prost(message, optional, tag = "3")]
-    pub api_hub_instance: ::core::option::Option<ApiHubInstance>,
-}
-/// The
-/// \[GetApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.GetApiHubInstance\]
-/// method's request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetApiHubInstanceRequest {
-    /// Required. The name of the Api Hub instance to retrieve.
+pub struct GetStyleGuideRequest {
+    /// Required. The name of the spec to retrieve.
     /// Format:
-    /// `projects/{project}/locations/{location}/apiHubInstances/{apiHubInstance}`.
+    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-/// The
-/// \[LookupApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.LookupApiHubInstance\]
-/// method's request.
+/// The \[UpdateStyleGuide\]\[ApiHub.UpdateStyleGuide\] method's request.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LookupApiHubInstanceRequest {
-    /// Required. There will always be only one Api Hub instance for a GCP project
-    /// across all locations.
-    /// The parent resource for the Api Hub instance resource.
-    /// Format: `projects/{project}/locations/{location}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-}
-/// The
-/// \[LookupApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.LookupApiHubInstance\]
-/// method's response.\`
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LookupApiHubInstanceResponse {
-    /// API Hub instance for a project if it exists, empty otherwise.
+pub struct UpdateStyleGuideRequest {
+    /// Required. The Style guide resource to update.
     #[prost(message, optional, tag = "1")]
-    pub api_hub_instance: ::core::option::Option<ApiHubInstance>,
+    pub style_guide: ::core::option::Option<StyleGuide>,
+    /// Optional. The list of fields to update.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// The \[GetStyleGuideContents\]\[ApiHub.GetStyleGuideContents\] method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetStyleGuideContentsRequest {
+    /// Required. The name of the StyleGuide whose contents need to be retrieved.
+    /// There is exactly one style guide resource per project per location.
+    /// The expected format is
+    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The \[LintSpec\]\[ApiHub.LintSpec\] method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LintSpecRequest {
+    /// Required. The name of the spec to be linted.
+    /// Format:
+    /// `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The style guide contents.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StyleGuideContents {
+    /// Required. The contents of the style guide.
+    #[prost(bytes = "bytes", tag = "1")]
+    pub contents: ::prost::bytes::Bytes,
+    /// Required. The mime type of the content.
+    #[prost(string, tag = "2")]
+    pub mime_type: ::prost::alloc::string::String,
+}
+/// Represents a singleton style guide resource to be used for linting Open API
+/// specs.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StyleGuide {
+    /// Identifier. The name of the style guide.
+    ///
+    /// Format:
+    /// `projects/{project}/locations/{location}/plugins/{plugin}/styleGuide`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Target linter for the style guide.
+    #[prost(enumeration = "Linter", tag = "2")]
+    pub linter: i32,
+    /// Required. Input only. The contents of the uploaded style guide.
+    #[prost(message, optional, tag = "3")]
+    pub contents: ::core::option::Option<StyleGuideContents>,
 }
 /// Generated client implementations.
-pub mod provisioning_client {
+pub mod linting_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// This service is used for managing the data plane provisioning of the API hub.
+    /// This service provides all methods related to the 1p Linter.
     #[derive(Debug, Clone)]
-    pub struct ProvisioningClient<T> {
+    pub struct LintingServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl<T> ProvisioningClient<T>
+    impl<T> LintingServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -5152,7 +4904,7 @@ pub mod provisioning_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> ProvisioningClient<InterceptedService<T, F>>
+        ) -> LintingServiceClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -5166,7 +4918,7 @@ pub mod provisioning_client {
                 http::Request<tonic::body::BoxBody>,
             >>::Error: Into<StdError> + Send + Sync,
         {
-            ProvisioningClient::new(InterceptedService::new(inner, interceptor))
+            LintingServiceClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -5199,12 +4951,68 @@ pub mod provisioning_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Provisions instance resources for the API Hub.
-        pub async fn create_api_hub_instance(
+        /// Get the style guide being used for linting.
+        pub async fn get_style_guide(
             &mut self,
-            request: impl tonic::IntoRequest<super::CreateApiHubInstanceRequest>,
+            request: impl tonic::IntoRequest<super::GetStyleGuideRequest>,
+        ) -> std::result::Result<tonic::Response<super::StyleGuide>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.LintingService/GetStyleGuide",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apihub.v1.LintingService",
+                        "GetStyleGuide",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update the styleGuide to be used for liniting in by API hub.
+        pub async fn update_style_guide(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateStyleGuideRequest>,
+        ) -> std::result::Result<tonic::Response<super::StyleGuide>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.LintingService/UpdateStyleGuide",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apihub.v1.LintingService",
+                        "UpdateStyleGuide",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Get the contents of the style guide.
+        pub async fn get_style_guide_contents(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStyleGuideContentsRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Response<super::StyleGuideContents>,
             tonic::Status,
         > {
             self.inner
@@ -5218,23 +5026,25 @@ pub mod provisioning_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.Provisioning/CreateApiHubInstance",
+                "/google.cloud.apihub.v1.LintingService/GetStyleGuideContents",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new(
-                        "google.cloud.apihub.v1.Provisioning",
-                        "CreateApiHubInstance",
+                        "google.cloud.apihub.v1.LintingService",
+                        "GetStyleGuideContents",
                     ),
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Gets details of a single API Hub instance.
-        pub async fn get_api_hub_instance(
+        /// Lints the requested spec and updates the corresponding API Spec with the
+        /// lint response. This lint response will be available in all subsequent
+        /// Get and List Spec calls to Core service.
+        pub async fn lint_spec(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetApiHubInstanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::ApiHubInstance>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::LintSpecRequest>,
+        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -5246,47 +5056,12 @@ pub mod provisioning_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.Provisioning/GetApiHubInstance",
+                "/google.cloud.apihub.v1.LintingService/LintSpec",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apihub.v1.Provisioning",
-                        "GetApiHubInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Looks up an Api Hub instance in a given GCP project. There will always be
-        /// only one Api Hub instance for a GCP project across all locations.
-        pub async fn lookup_api_hub_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LookupApiHubInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LookupApiHubInstanceResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apihub.v1.Provisioning/LookupApiHubInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apihub.v1.Provisioning",
-                        "LookupApiHubInstance",
-                    ),
+                    GrpcMethod::new("google.cloud.apihub.v1.LintingService", "LintSpec"),
                 );
             self.inner.unary(req, path, codec).await
         }
@@ -5673,6 +5448,231 @@ pub mod runtime_project_attachment_service_client {
                     GrpcMethod::new(
                         "google.cloud.apihub.v1.RuntimeProjectAttachmentService",
                         "LookupRuntimeProjectAttachment",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// The
+/// \[CreateApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.CreateApiHubInstance\]
+/// method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateApiHubInstanceRequest {
+    /// Required. The parent resource for the Api Hub instance resource.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Identifier to assign to the Api Hub instance. Must be unique
+    /// within scope of the parent resource. If the field is not provided, system
+    /// generated id will be used.
+    ///
+    /// This value should be 4-40 characters, and valid characters
+    /// are `/[a-z][A-Z][0-9]-_/`.
+    #[prost(string, tag = "2")]
+    pub api_hub_instance_id: ::prost::alloc::string::String,
+    /// Required. The ApiHub instance.
+    #[prost(message, optional, tag = "3")]
+    pub api_hub_instance: ::core::option::Option<ApiHubInstance>,
+}
+/// The
+/// \[GetApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.GetApiHubInstance\]
+/// method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetApiHubInstanceRequest {
+    /// Required. The name of the Api Hub instance to retrieve.
+    /// Format:
+    /// `projects/{project}/locations/{location}/apiHubInstances/{apiHubInstance}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The
+/// \[LookupApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.LookupApiHubInstance\]
+/// method's request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookupApiHubInstanceRequest {
+    /// Required. There will always be only one Api Hub instance for a GCP project
+    /// across all locations.
+    /// The parent resource for the Api Hub instance resource.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+}
+/// The
+/// \[LookupApiHubInstance\]\[google.cloud.apihub.v1.Provisioning.LookupApiHubInstance\]
+/// method's response.\`
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookupApiHubInstanceResponse {
+    /// API Hub instance for a project if it exists, empty otherwise.
+    #[prost(message, optional, tag = "1")]
+    pub api_hub_instance: ::core::option::Option<ApiHubInstance>,
+}
+/// Generated client implementations.
+pub mod provisioning_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// This service is used for managing the data plane provisioning of the API hub.
+    #[derive(Debug, Clone)]
+    pub struct ProvisioningClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ProvisioningClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ProvisioningClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            ProvisioningClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Provisions instance resources for the API Hub.
+        pub async fn create_api_hub_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateApiHubInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.Provisioning/CreateApiHubInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apihub.v1.Provisioning",
+                        "CreateApiHubInstance",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single API Hub instance.
+        pub async fn get_api_hub_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetApiHubInstanceRequest>,
+        ) -> std::result::Result<tonic::Response<super::ApiHubInstance>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.Provisioning/GetApiHubInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apihub.v1.Provisioning",
+                        "GetApiHubInstance",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Looks up an Api Hub instance in a given GCP project. There will always be
+        /// only one Api Hub instance for a GCP project across all locations.
+        pub async fn lookup_api_hub_instance(
+            &mut self,
+            request: impl tonic::IntoRequest<super::LookupApiHubInstanceRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::LookupApiHubInstanceResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.apihub.v1.Provisioning/LookupApiHubInstance",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.apihub.v1.Provisioning",
+                        "LookupApiHubInstance",
                     ),
                 );
             self.inner.unary(req, path, codec).await

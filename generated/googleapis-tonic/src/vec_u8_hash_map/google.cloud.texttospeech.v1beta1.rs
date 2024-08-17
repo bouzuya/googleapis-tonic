@@ -150,8 +150,9 @@ pub struct VoiceSelectionParams {
     /// Bokmal) instead of "no" (Norwegian)".
     #[prost(string, tag = "1")]
     pub language_code: ::prost::alloc::string::String,
-    /// The name of the voice. If not set, the service will choose a
-    /// voice based on the other parameters such as language_code and gender.
+    /// The name of the voice. If both the name and the gender are not set,
+    /// the service will choose a voice based on the other parameters such as
+    /// language_code.
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
     /// The preferred gender of the voice. If not set, the service will
@@ -305,6 +306,77 @@ pub struct Timepoint {
     /// Time offset in seconds from the start of the synthesized audio.
     #[prost(double, tag = "3")]
     pub time_seconds: f64,
+}
+/// Provides configuration information for the StreamingSynthesize request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StreamingSynthesizeConfig {
+    /// Required. The desired voice of the synthesized audio.
+    #[prost(message, optional, tag = "1")]
+    pub voice: ::core::option::Option<VoiceSelectionParams>,
+}
+/// Input to be synthesized.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StreamingSynthesisInput {
+    #[prost(oneof = "streaming_synthesis_input::InputSource", tags = "1")]
+    pub input_source: ::core::option::Option<streaming_synthesis_input::InputSource>,
+}
+/// Nested message and enum types in `StreamingSynthesisInput`.
+pub mod streaming_synthesis_input {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum InputSource {
+        /// The raw text to be synthesized. It is recommended that each input
+        /// contains complete, terminating sentences, as this will likely result in
+        /// better prosody in the output audio. That being said, users are free to
+        /// input text however they please.
+        #[prost(string, tag = "1")]
+        Text(::prost::alloc::string::String),
+    }
+}
+/// Request message for the `StreamingSynthesize` method. Multiple
+/// `StreamingSynthesizeRequest` messages are sent in one call.
+/// The first message must contain a `streaming_config` that
+/// fully specifies the request configuration and must not contain `input`. All
+/// subsequent messages must only have `input` set.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StreamingSynthesizeRequest {
+    /// The request to be sent, either a StreamingSynthesizeConfig or
+    /// StreamingSynthesisInput.
+    #[prost(oneof = "streaming_synthesize_request::StreamingRequest", tags = "1, 2")]
+    pub streaming_request: ::core::option::Option<
+        streaming_synthesize_request::StreamingRequest,
+    >,
+}
+/// Nested message and enum types in `StreamingSynthesizeRequest`.
+pub mod streaming_synthesize_request {
+    /// The request to be sent, either a StreamingSynthesizeConfig or
+    /// StreamingSynthesisInput.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum StreamingRequest {
+        /// StreamingSynthesizeConfig to be used in this streaming attempt. Only
+        /// specified in the first message sent in a `StreamingSynthesize` call.
+        #[prost(message, tag = "1")]
+        StreamingConfig(super::StreamingSynthesizeConfig),
+        /// Input to synthesize. Specified in all messages but the first in a
+        /// `StreamingSynthesize` call.
+        #[prost(message, tag = "2")]
+        Input(super::StreamingSynthesisInput),
+    }
+}
+/// `StreamingSynthesizeResponse` is the only message returned to the
+/// client by `StreamingSynthesize` method. A series of zero or more
+/// `StreamingSynthesizeResponse` messages are streamed back to the client.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StreamingSynthesizeResponse {
+    /// The audio data bytes encoded as specified in the request. This is
+    /// headerless LINEAR16 audio with a sample rate of 24000.
+    #[prost(bytes = "vec", tag = "1")]
+    pub audio_content: ::prost::alloc::vec::Vec<u8>,
 }
 /// Gender of the voice as described in
 /// [SSML voice element](<https://www.w3.org/TR/speech-synthesis11/#edef_voice>).
@@ -542,6 +614,40 @@ pub mod text_to_speech_client {
                     ),
                 );
             self.inner.unary(req, path, codec).await
+        }
+        /// Performs bidirectional streaming speech synthesis: receive audio while
+        /// sending text.
+        pub async fn streaming_synthesize(
+            &mut self,
+            request: impl tonic::IntoStreamingRequest<
+                Message = super::StreamingSynthesizeRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::StreamingSynthesizeResponse>>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.texttospeech.v1beta1.TextToSpeech/StreamingSynthesize",
+            );
+            let mut req = request.into_streaming_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.texttospeech.v1beta1.TextToSpeech",
+                        "StreamingSynthesize",
+                    ),
+                );
+            self.inner.streaming(req, path, codec).await
         }
     }
 }

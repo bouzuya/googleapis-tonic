@@ -94,26 +94,667 @@ pub mod operation_metadata {
         }
     }
 }
-/// Represents a billing account.
+/// Request message for
+/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BillingAccount {
-    /// Output only. Resource name of the billing account.
-    /// Format: accounts/{account_id}/billingAccounts/{billing_account_id}.
+pub struct RunReportJobRequest {
+    /// Required. The report's resource name. Specifies the account and report used
+    /// to generate report data. The report_id identifier is a UID (for example,
+    /// `613bf59q`).
+    /// Name uses the format:
+    /// accounts/{account_id}/reports/{report_id}
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// Display name of the billing account.
+    /// Optional. The range of usage or invoice dates to include in the result.
+    #[prost(message, optional, tag = "2")]
+    pub date_range: ::core::option::Option<DateRange>,
+    /// Optional. A structured string that defines conditions on dimension columns
+    /// to restrict the report output.
+    ///
+    /// Filters support logical operators (AND, OR, NOT) and conditional operators
+    /// (=, !=, \<, >, \<=, and >=) using `column_id` as keys.
+    ///
+    /// For example:
+    /// `(customer:"accounts/C123abc/customers/S456def" OR customer:"accounts/C123abc/customers/S789ghi") AND invoice_start_date.year >= 2022`
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. The BCP-47 language code, such as "en-US".  If specified, the
+    /// response is localized to the corresponding language code if the
+    /// original data sources support it.
+    /// Default is "en-US".
+    #[prost(string, tag = "4")]
+    pub language_code: ::prost::alloc::string::String,
+}
+/// Response message for
+/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RunReportJobResponse {
+    /// Pass `report_job.name` to
+    /// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
+    /// to retrieve the report's results.
+    #[prost(message, optional, tag = "1")]
+    pub report_job: ::core::option::Option<ReportJob>,
+    /// The metadata for the report's results (display name, columns, row count,
+    /// and date range). If you view this before the operation finishes,
+    /// you may see incomplete data.
+    #[prost(message, optional, tag = "2")]
+    pub report_metadata: ::core::option::Option<ReportResultsMetadata>,
+}
+/// Request message for
+/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchReportResultsRequest {
+    /// Required. The report job created by
+    /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+    /// Report_job uses the format:
+    /// accounts/{account_id}/reportJobs/{report_job_id}
+    #[prost(string, tag = "1")]
+    pub report_job: ::prost::alloc::string::String,
+    /// Optional. Requested page size of the report. The server may return fewer
+    /// results than requested. If you don't specify a page size, the server uses a
+    /// sensible default (may change over time).
+    ///
+    /// The maximum value is 30,000; the server will change larger values to
+    /// 30,000.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token that specifies a page of results beyond the first page.
+    /// Obtained through
+    /// \[FetchReportResultsResponse.next_page_token\]\[google.cloud.channel.v1.FetchReportResultsResponse.next_page_token\]
+    /// of the previous
+    /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
+    /// call.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. List of keys specifying which report partitions to return.
+    /// If empty, returns all partitions.
+    #[prost(string, repeated, tag = "4")]
+    pub partition_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Response message for
+/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+/// Contains a tabular representation of the report results.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchReportResultsResponse {
+    /// The metadata for the report results (display name, columns, row count, and
+    /// date ranges).
+    #[prost(message, optional, tag = "1")]
+    pub report_metadata: ::core::option::Option<ReportResultsMetadata>,
+    /// The report's lists of values. Each row follows the settings and ordering
+    /// of the columns from `report_metadata`.
+    #[prost(message, repeated, tag = "2")]
+    pub rows: ::prost::alloc::vec::Vec<Row>,
+    /// Pass this token to
+    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
+    /// to retrieve the next page of results.
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListReportsRequest {
+    /// Required. The resource name of the partner account to list available
+    /// reports for. Parent uses the format: accounts/{account_id}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Requested page size of the report. The server might return fewer
+    /// results than requested. If unspecified, returns 20 reports. The maximum
+    /// value is 100.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token that specifies a page of results beyond the first page.
+    /// Obtained through
+    /// \[ListReportsResponse.next_page_token\]\[google.cloud.channel.v1.ListReportsResponse.next_page_token\]
+    /// of the previous
+    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\]
+    /// call.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. The BCP-47 language code, such as "en-US".  If specified, the
+    /// response is localized to the corresponding language code if the
+    /// original data sources support it.
+    /// Default is "en-US".
+    #[prost(string, tag = "4")]
+    pub language_code: ::prost::alloc::string::String,
+}
+/// Response message for
+/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListReportsResponse {
+    /// The reports available to the partner.
+    #[prost(message, repeated, tag = "1")]
+    pub reports: ::prost::alloc::vec::Vec<Report>,
+    /// Pass this token to
+    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
+    /// to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The result of a \[RunReportJob\]\[\] operation. Contains the name to use in
+/// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
+/// and the status of the operation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReportJob {
+    /// Required. The resource name of a report job.
+    /// Name uses the format:
+    /// `accounts/{account_id}/reportJobs/{report_job_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The current status of report generation.
+    #[prost(message, optional, tag = "2")]
+    pub report_status: ::core::option::Option<ReportStatus>,
+}
+/// The features describing the data. Returned by
+/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\]
+/// and
+/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReportResultsMetadata {
+    /// Details of the completed report.
+    #[prost(message, optional, tag = "1")]
+    pub report: ::core::option::Option<Report>,
+    /// The total number of rows of data in the final report.
+    #[prost(int64, tag = "2")]
+    pub row_count: i64,
+    /// The date range of reported usage.
+    #[prost(message, optional, tag = "3")]
+    pub date_range: ::core::option::Option<DateRange>,
+    /// The usage dates immediately preceding `date_range` with the same duration.
+    /// Use this to calculate trending usage and costs. This is only populated if
+    /// you request trending data.
+    ///
+    /// For example, if `date_range` is July 1-15, `preceding_date_range` will be
+    /// June 16-30.
+    #[prost(message, optional, tag = "4")]
+    pub preceding_date_range: ::core::option::Option<DateRange>,
+}
+/// The definition of a report column. Specifies the data properties
+/// in the corresponding position of the report rows.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Column {
+    /// The unique name of the column (for example, customer_domain,
+    /// channel_partner, customer_cost). You can use column IDs in
+    /// \[RunReportJobRequest.filter\]\[google.cloud.channel.v1.RunReportJobRequest.filter\].
+    /// To see all reports and their columns, call
+    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
+    #[prost(string, tag = "1")]
+    pub column_id: ::prost::alloc::string::String,
+    /// The column's display name.
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
-    /// Output only. The time when this billing account was created.
+    /// The type of the values for this column.
+    #[prost(enumeration = "column::DataType", tag = "3")]
+    pub data_type: i32,
+}
+/// Nested message and enum types in `Column`.
+pub mod column {
+    /// Available data types for columns. Corresponds to the fields in the
+    /// ReportValue `oneof` field.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DataType {
+        /// Not used.
+        Unspecified = 0,
+        /// ReportValues for this column will use string_value.
+        String = 1,
+        /// ReportValues for this column will use int_value.
+        Int = 2,
+        /// ReportValues for this column will use decimal_value.
+        Decimal = 3,
+        /// ReportValues for this column will use money_value.
+        Money = 4,
+        /// ReportValues for this column will use date_value.
+        Date = 5,
+        /// ReportValues for this column will use date_time_value.
+        DateTime = 6,
+    }
+    impl DataType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
+                DataType::String => "STRING",
+                DataType::Int => "INT",
+                DataType::Decimal => "DECIMAL",
+                DataType::Money => "MONEY",
+                DataType::Date => "DATE",
+                DataType::DateTime => "DATE_TIME",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STRING" => Some(Self::String),
+                "INT" => Some(Self::Int),
+                "DECIMAL" => Some(Self::Decimal),
+                "MONEY" => Some(Self::Money),
+                "DATE" => Some(Self::Date),
+                "DATE_TIME" => Some(Self::DateTime),
+                _ => None,
+            }
+        }
+    }
+}
+/// A representation of usage or invoice date ranges.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DateRange {
+    /// The earliest usage date time (inclusive).
+    ///
+    /// If you use time groupings (daily, weekly, etc), each group uses
+    /// midnight to midnight (Pacific time). The usage start date is
+    /// rounded down to include all usage from the specified date. We recommend
+    /// that clients pass `usage_start_date_time` in Pacific time.
+    #[prost(message, optional, tag = "1")]
+    pub usage_start_date_time: ::core::option::Option<
+        super::super::super::r#type::DateTime,
+    >,
+    /// The latest usage date time (exclusive).
+    ///
+    /// If you use time groupings (daily, weekly, etc), each group uses
+    /// midnight to midnight (Pacific time). The usage end date is
+    /// rounded down to include all usage from the specified date. We recommend
+    /// that clients pass `usage_start_date_time` in Pacific time.
+    #[prost(message, optional, tag = "2")]
+    pub usage_end_date_time: ::core::option::Option<
+        super::super::super::r#type::DateTime,
+    >,
+    /// The earliest invoice date (inclusive).
+    ///
+    /// If this value is not the first day of a month, this will move it back to
+    /// the first day of the given month.
     #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The 3-letter currency code defined in ISO 4217.
+    pub invoice_start_date: ::core::option::Option<super::super::super::r#type::Date>,
+    /// The latest invoice date (inclusive).
+    ///
+    /// If this value is not the last day of a month, this will move it forward to
+    /// the last day of the given month.
+    #[prost(message, optional, tag = "4")]
+    pub invoice_end_date: ::core::option::Option<super::super::super::r#type::Date>,
+}
+/// A row of report values.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Row {
+    /// The list of values in the row.
+    #[prost(message, repeated, tag = "1")]
+    pub values: ::prost::alloc::vec::Vec<ReportValue>,
+    /// The key for the partition this row belongs to. This field is empty
+    /// if the report is not partitioned.
+    #[prost(string, tag = "2")]
+    pub partition_key: ::prost::alloc::string::String,
+}
+/// A single report value.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReportValue {
+    /// A single report value.
+    #[prost(oneof = "report_value::Value", tags = "1, 2, 3, 4, 5, 6")]
+    pub value: ::core::option::Option<report_value::Value>,
+}
+/// Nested message and enum types in `ReportValue`.
+pub mod report_value {
+    /// A single report value.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        /// A value of type `string`.
+        #[prost(string, tag = "1")]
+        StringValue(::prost::alloc::string::String),
+        /// A value of type `int`.
+        #[prost(int64, tag = "2")]
+        IntValue(i64),
+        /// A value of type `google.type.Decimal`, representing non-integer numeric
+        /// values.
+        #[prost(message, tag = "3")]
+        DecimalValue(super::super::super::super::r#type::Decimal),
+        /// A value of type `google.type.Money` (currency code, whole units, decimal
+        /// units).
+        #[prost(message, tag = "4")]
+        MoneyValue(super::super::super::super::r#type::Money),
+        /// A value of type `google.type.Date` (year, month, day).
+        #[prost(message, tag = "5")]
+        DateValue(super::super::super::super::r#type::Date),
+        /// A value of type `google.type.DateTime` (year, month, day, hour, minute,
+        /// second, and UTC offset or timezone.)
+        #[prost(message, tag = "6")]
+        DateTimeValue(super::super::super::super::r#type::DateTime),
+    }
+}
+/// Status of a report generation process.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ReportStatus {
+    /// The current state of the report generation process.
+    #[prost(enumeration = "report_status::State", tag = "1")]
+    pub state: i32,
+    /// The report generation's start time.
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The report generation's completion time.
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `ReportStatus`.
+pub mod report_status {
+    /// Available states of report generation.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Not used.
+        Unspecified = 0,
+        /// Report processing started.
+        Started = 1,
+        /// Data generated from the report is being staged.
+        Writing = 2,
+        /// Report data is available for access.
+        Available = 3,
+        /// Report failed.
+        Failed = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Started => "STARTED",
+                State::Writing => "WRITING",
+                State::Available => "AVAILABLE",
+                State::Failed => "FAILED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STARTED" => Some(Self::Started),
+                "WRITING" => Some(Self::Writing),
+                "AVAILABLE" => Some(Self::Available),
+                "FAILED" => Some(Self::Failed),
+                _ => None,
+            }
+        }
+    }
+}
+/// The ID and description of a report that was used to generate report data.
+/// For example, "Google Cloud Daily Spend", "Google Workspace License Activity",
+/// etc.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Report {
+    /// Required. The report's resource name. Specifies the account and report used
+    /// to generate report data. The report_id identifier is a UID (for example,
+    /// `613bf59q`).
+    ///
+    /// Name uses the format:
+    /// accounts/{account_id}/reports/{report_id}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// A human-readable name for this report.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The list of columns included in the report. This defines the schema of
+    /// the report results.
+    #[prost(message, repeated, tag = "3")]
+    pub columns: ::prost::alloc::vec::Vec<Column>,
+    /// A description of other aspects of the report, such as the products
+    /// it supports.
     #[prost(string, tag = "4")]
-    pub currency_code: ::prost::alloc::string::String,
-    /// Output only. The CLDR region code.
-    #[prost(string, tag = "5")]
-    pub region_code: ::prost::alloc::string::String,
+    pub description: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod cloud_channel_reports_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// CloudChannelReportsService lets Google Cloud resellers and
+    /// distributors retrieve and combine a variety of data in Cloud Channel for
+    /// multiple products (Google Cloud, Google Voice, and Google Workspace.)
+    ///
+    /// Deprecated: This service is being deprecated. Please use [Export Channel
+    /// Services data to
+    /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+    /// instead.
+    #[derive(Debug, Clone)]
+    pub struct CloudChannelReportsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CloudChannelReportsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CloudChannelReportsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            CloudChannelReportsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Begins generation of data for a given report. The report
+        /// identifier is a UID (for example, `613bf59q`).
+        ///
+        /// Possible error codes:
+        ///
+        /// * PERMISSION_DENIED: The user doesn't have access to this report.
+        /// * INVALID_ARGUMENT: Required request parameters are missing
+        ///  or invalid.
+        /// * NOT_FOUND: The report identifier was not found.
+        /// * INTERNAL: Any non-user error related to a technical issue
+        ///  in the backend. Contact Cloud Channel support.
+        /// * UNKNOWN: Any non-user error related to a technical issue
+        ///  in the backend. Contact Cloud Channel support.
+        ///
+        /// Return value:
+        /// The ID of a long-running operation.
+        ///
+        /// To get the results of the operation, call the GetOperation method of
+        /// CloudChannelOperationsService. The Operation metadata contains an
+        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
+        ///
+        /// To get the results of report generation, call
+        /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
+        /// with the
+        /// \[RunReportJobResponse.report_job\]\[google.cloud.channel.v1.RunReportJobResponse.report_job\].
+        ///
+        /// Deprecated: Please use [Export Channel Services data to
+        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+        /// instead.
+        pub async fn run_report_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RunReportJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.channel.v1.CloudChannelReportsService/RunReportJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "RunReportJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Retrieves data generated by
+        /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
+        ///
+        /// Deprecated: Please use [Export Channel Services data to
+        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+        /// instead.
+        pub async fn fetch_report_results(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchReportResultsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::FetchReportResultsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.channel.v1.CloudChannelReportsService/FetchReportResults",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "FetchReportResults",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the reports that RunReportJob can run. These reports include an ID,
+        /// a description, and the list of columns that will be in the result.
+        ///
+        /// Deprecated: Please use [Export Channel Services data to
+        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+        /// instead.
+        pub async fn list_reports(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListReportsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListReportsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.channel.v1.CloudChannelReportsService/ListReports",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.channel.v1.CloudChannelReportsService",
+                        "ListReports",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
 }
 /// Required Edu Attributes
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -361,6 +1002,119 @@ pub struct AdminUser {
     /// Family name of the admin user.
     #[prost(string, tag = "3")]
     pub family_name: ::prost::alloc::string::String,
+}
+/// Entity representing a link between distributors and their indirect
+/// resellers in an n-tier resale channel.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ChannelPartnerLink {
+    /// Output only. Resource name for the channel partner link, in the format
+    /// accounts/{account_id}/channelPartnerLinks/{id}.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Cloud Identity ID of the linked reseller.
+    #[prost(string, tag = "2")]
+    pub reseller_cloud_identity_id: ::prost::alloc::string::String,
+    /// Required. State of the channel partner link.
+    #[prost(enumeration = "ChannelPartnerLinkState", tag = "3")]
+    pub link_state: i32,
+    /// Output only. URI of the web page where partner accepts the link invitation.
+    #[prost(string, tag = "4")]
+    pub invite_link_uri: ::prost::alloc::string::String,
+    /// Output only. Timestamp of when the channel partner link is created.
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp of when the channel partner link is updated.
+    #[prost(message, optional, tag = "6")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Public identifier that a customer must use to generate a
+    /// transfer token to move to this distributor-reseller combination.
+    #[prost(string, tag = "7")]
+    pub public_id: ::prost::alloc::string::String,
+    /// Output only. Cloud Identity info of the channel partner (IR).
+    #[prost(message, optional, tag = "8")]
+    pub channel_partner_cloud_identity_info: ::core::option::Option<CloudIdentityInfo>,
+}
+/// The level of granularity the
+/// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] will
+/// display.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ChannelPartnerLinkView {
+    /// The default / unset value.
+    /// The API will default to the BASIC view.
+    Unspecified = 0,
+    /// Includes all fields except the
+    /// \[ChannelPartnerLink.channel_partner_cloud_identity_info\]\[google.cloud.channel.v1.ChannelPartnerLink.channel_partner_cloud_identity_info\].
+    Basic = 1,
+    /// Includes all fields.
+    Full = 2,
+}
+impl ChannelPartnerLinkView {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ChannelPartnerLinkView::Unspecified => "UNSPECIFIED",
+            ChannelPartnerLinkView::Basic => "BASIC",
+            ChannelPartnerLinkView::Full => "FULL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNSPECIFIED" => Some(Self::Unspecified),
+            "BASIC" => Some(Self::Basic),
+            "FULL" => Some(Self::Full),
+            _ => None,
+        }
+    }
+}
+/// ChannelPartnerLinkState represents state of a channel partner link.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ChannelPartnerLinkState {
+    /// Not used.
+    Unspecified = 0,
+    /// An invitation has been sent to the reseller to create a channel partner
+    /// link.
+    Invited = 1,
+    /// Status when the reseller is active.
+    Active = 2,
+    /// Status when the reseller has been revoked by the distributor.
+    Revoked = 3,
+    /// Status when the reseller is suspended by Google or distributor.
+    Suspended = 4,
+}
+impl ChannelPartnerLinkState {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ChannelPartnerLinkState::Unspecified => {
+                "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED"
+            }
+            ChannelPartnerLinkState::Invited => "INVITED",
+            ChannelPartnerLinkState::Active => "ACTIVE",
+            ChannelPartnerLinkState::Revoked => "REVOKED",
+            ChannelPartnerLinkState::Suspended => "SUSPENDED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+            "INVITED" => Some(Self::Invited),
+            "ACTIVE" => Some(Self::Active),
+            "REVOKED" => Some(Self::Revoked),
+            "SUSPENDED" => Some(Self::Suspended),
+            _ => None,
+        }
+    }
 }
 /// A Product is the entity a customer uses when placing an order. For example,
 /// Google Workspace, Google Voice, etc.
@@ -920,93 +1674,6 @@ impl PeriodType {
         }
     }
 }
-/// Entity representing a customer of a reseller or distributor.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Customer {
-    /// Output only. Resource name of the customer.
-    /// Format: accounts/{account_id}/customers/{customer_id}
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Required. Name of the organization that the customer entity represents.
-    #[prost(string, tag = "2")]
-    pub org_display_name: ::prost::alloc::string::String,
-    /// Required. The organization address for the customer. To enforce US laws and
-    /// embargoes, we require a region, postal code, and address lines. You must
-    /// provide valid addresses for every customer. To set the customer's
-    /// language, use the Customer-level language code.
-    #[prost(message, optional, tag = "3")]
-    pub org_postal_address: ::core::option::Option<
-        super::super::super::r#type::PostalAddress,
-    >,
-    /// Primary contact info.
-    #[prost(message, optional, tag = "4")]
-    pub primary_contact_info: ::core::option::Option<ContactInfo>,
-    /// Secondary contact email. You need to provide an alternate email to create
-    /// different domains if a primary contact email already exists. Users will
-    /// receive a notification with credentials when you create an admin.google.com
-    /// account. Secondary emails are also recovery email addresses. Alternate
-    /// emails are optional when you create Team customers.
-    #[prost(string, tag = "5")]
-    pub alternate_email: ::prost::alloc::string::String,
-    /// Required. The customer's primary domain. Must match the primary contact
-    /// email's domain.
-    #[prost(string, tag = "6")]
-    pub domain: ::prost::alloc::string::String,
-    /// Output only. Time when the customer was created.
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Time when the customer was updated.
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The customer's Cloud Identity ID if the customer has a Cloud
-    /// Identity resource.
-    #[prost(string, tag = "9")]
-    pub cloud_identity_id: ::prost::alloc::string::String,
-    /// Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more
-    /// information, see
-    /// <https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.>
-    #[prost(string, tag = "10")]
-    pub language_code: ::prost::alloc::string::String,
-    /// Output only. Cloud Identity information for the customer.
-    /// Populated only if a Cloud Identity account exists for this customer.
-    #[prost(message, optional, tag = "12")]
-    pub cloud_identity_info: ::core::option::Option<CloudIdentityInfo>,
-    /// Cloud Identity ID of the customer's channel partner.
-    /// Populated only if a channel partner exists for this customer.
-    #[prost(string, tag = "13")]
-    pub channel_partner_id: ::prost::alloc::string::String,
-    /// Optional. External CRM ID for the customer.
-    /// Populated only if a CRM ID exists for this customer.
-    #[prost(string, tag = "14")]
-    pub correlation_id: ::prost::alloc::string::String,
-}
-/// Contact information for a customer account.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContactInfo {
-    /// The customer account contact's first name. Optional for Team customers.
-    #[prost(string, tag = "1")]
-    pub first_name: ::prost::alloc::string::String,
-    /// The customer account contact's last name. Optional for Team customers.
-    #[prost(string, tag = "2")]
-    pub last_name: ::prost::alloc::string::String,
-    /// Output only. The customer account contact's display name, formatted as a
-    /// combination of the customer's first and last name.
-    #[prost(string, tag = "4")]
-    pub display_name: ::prost::alloc::string::String,
-    /// The customer account's contact email. Required for entitlements that create
-    /// admin.google.com accounts, and serves as the customer's username for those
-    /// accounts. Use this email to invite Team customers.
-    #[prost(string, tag = "5")]
-    pub email: ::prost::alloc::string::String,
-    /// Optional. The customer account contact's job title.
-    #[prost(string, tag = "6")]
-    pub title: ::prost::alloc::string::String,
-    /// The customer account's contact phone number.
-    #[prost(string, tag = "7")]
-    pub phone: ::prost::alloc::string::String,
-}
 /// An entitlement is a representation of a customer's ability to use a service.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1369,119 +2036,6 @@ pub mod transfer_eligibility {
         }
     }
 }
-/// Entity representing a link between distributors and their indirect
-/// resellers in an n-tier resale channel.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ChannelPartnerLink {
-    /// Output only. Resource name for the channel partner link, in the format
-    /// accounts/{account_id}/channelPartnerLinks/{id}.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Required. Cloud Identity ID of the linked reseller.
-    #[prost(string, tag = "2")]
-    pub reseller_cloud_identity_id: ::prost::alloc::string::String,
-    /// Required. State of the channel partner link.
-    #[prost(enumeration = "ChannelPartnerLinkState", tag = "3")]
-    pub link_state: i32,
-    /// Output only. URI of the web page where partner accepts the link invitation.
-    #[prost(string, tag = "4")]
-    pub invite_link_uri: ::prost::alloc::string::String,
-    /// Output only. Timestamp of when the channel partner link is created.
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp of when the channel partner link is updated.
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Public identifier that a customer must use to generate a
-    /// transfer token to move to this distributor-reseller combination.
-    #[prost(string, tag = "7")]
-    pub public_id: ::prost::alloc::string::String,
-    /// Output only. Cloud Identity info of the channel partner (IR).
-    #[prost(message, optional, tag = "8")]
-    pub channel_partner_cloud_identity_info: ::core::option::Option<CloudIdentityInfo>,
-}
-/// The level of granularity the
-/// \[ChannelPartnerLink\]\[google.cloud.channel.v1.ChannelPartnerLink\] will
-/// display.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ChannelPartnerLinkView {
-    /// The default / unset value.
-    /// The API will default to the BASIC view.
-    Unspecified = 0,
-    /// Includes all fields except the
-    /// \[ChannelPartnerLink.channel_partner_cloud_identity_info\]\[google.cloud.channel.v1.ChannelPartnerLink.channel_partner_cloud_identity_info\].
-    Basic = 1,
-    /// Includes all fields.
-    Full = 2,
-}
-impl ChannelPartnerLinkView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ChannelPartnerLinkView::Unspecified => "UNSPECIFIED",
-            ChannelPartnerLinkView::Basic => "BASIC",
-            ChannelPartnerLinkView::Full => "FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNSPECIFIED" => Some(Self::Unspecified),
-            "BASIC" => Some(Self::Basic),
-            "FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
-}
-/// ChannelPartnerLinkState represents state of a channel partner link.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ChannelPartnerLinkState {
-    /// Not used.
-    Unspecified = 0,
-    /// An invitation has been sent to the reseller to create a channel partner
-    /// link.
-    Invited = 1,
-    /// Status when the reseller is active.
-    Active = 2,
-    /// Status when the reseller has been revoked by the distributor.
-    Revoked = 3,
-    /// Status when the reseller is suspended by Google or distributor.
-    Suspended = 4,
-}
-impl ChannelPartnerLinkState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ChannelPartnerLinkState::Unspecified => {
-                "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED"
-            }
-            ChannelPartnerLinkState::Invited => "INVITED",
-            ChannelPartnerLinkState::Active => "ACTIVE",
-            ChannelPartnerLinkState::Revoked => "REVOKED",
-            ChannelPartnerLinkState::Suspended => "SUSPENDED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "INVITED" => Some(Self::Invited),
-            "ACTIVE" => Some(Self::Active),
-            "REVOKED" => Some(Self::Revoked),
-            "SUSPENDED" => Some(Self::Suspended),
-            _ => None,
-        }
-    }
-}
 /// Change event entry for Entitlement order history
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1796,6 +2350,114 @@ pub mod entitlement_change {
         #[prost(string, tag = "100")]
         OtherChangeReason(::prost::alloc::string::String),
     }
+}
+/// Represents a billing account.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BillingAccount {
+    /// Output only. Resource name of the billing account.
+    /// Format: accounts/{account_id}/billingAccounts/{billing_account_id}.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Display name of the billing account.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Output only. The time when this billing account was created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The 3-letter currency code defined in ISO 4217.
+    #[prost(string, tag = "4")]
+    pub currency_code: ::prost::alloc::string::String,
+    /// Output only. The CLDR region code.
+    #[prost(string, tag = "5")]
+    pub region_code: ::prost::alloc::string::String,
+}
+/// Entity representing a customer of a reseller or distributor.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Customer {
+    /// Output only. Resource name of the customer.
+    /// Format: accounts/{account_id}/customers/{customer_id}
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Name of the organization that the customer entity represents.
+    #[prost(string, tag = "2")]
+    pub org_display_name: ::prost::alloc::string::String,
+    /// Required. The organization address for the customer. To enforce US laws and
+    /// embargoes, we require a region, postal code, and address lines. You must
+    /// provide valid addresses for every customer. To set the customer's
+    /// language, use the Customer-level language code.
+    #[prost(message, optional, tag = "3")]
+    pub org_postal_address: ::core::option::Option<
+        super::super::super::r#type::PostalAddress,
+    >,
+    /// Primary contact info.
+    #[prost(message, optional, tag = "4")]
+    pub primary_contact_info: ::core::option::Option<ContactInfo>,
+    /// Secondary contact email. You need to provide an alternate email to create
+    /// different domains if a primary contact email already exists. Users will
+    /// receive a notification with credentials when you create an admin.google.com
+    /// account. Secondary emails are also recovery email addresses. Alternate
+    /// emails are optional when you create Team customers.
+    #[prost(string, tag = "5")]
+    pub alternate_email: ::prost::alloc::string::String,
+    /// Required. The customer's primary domain. Must match the primary contact
+    /// email's domain.
+    #[prost(string, tag = "6")]
+    pub domain: ::prost::alloc::string::String,
+    /// Output only. Time when the customer was created.
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Time when the customer was updated.
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The customer's Cloud Identity ID if the customer has a Cloud
+    /// Identity resource.
+    #[prost(string, tag = "9")]
+    pub cloud_identity_id: ::prost::alloc::string::String,
+    /// Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+    /// information, see
+    /// <https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.>
+    #[prost(string, tag = "10")]
+    pub language_code: ::prost::alloc::string::String,
+    /// Output only. Cloud Identity information for the customer.
+    /// Populated only if a Cloud Identity account exists for this customer.
+    #[prost(message, optional, tag = "12")]
+    pub cloud_identity_info: ::core::option::Option<CloudIdentityInfo>,
+    /// Cloud Identity ID of the customer's channel partner.
+    /// Populated only if a channel partner exists for this customer.
+    #[prost(string, tag = "13")]
+    pub channel_partner_id: ::prost::alloc::string::String,
+    /// Optional. External CRM ID for the customer.
+    /// Populated only if a CRM ID exists for this customer.
+    #[prost(string, tag = "14")]
+    pub correlation_id: ::prost::alloc::string::String,
+}
+/// Contact information for a customer account.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContactInfo {
+    /// The customer account contact's first name. Optional for Team customers.
+    #[prost(string, tag = "1")]
+    pub first_name: ::prost::alloc::string::String,
+    /// The customer account contact's last name. Optional for Team customers.
+    #[prost(string, tag = "2")]
+    pub last_name: ::prost::alloc::string::String,
+    /// Output only. The customer account contact's display name, formatted as a
+    /// combination of the customer's first and last name.
+    #[prost(string, tag = "4")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The customer account's contact email. Required for entitlements that create
+    /// admin.google.com accounts, and serves as the customer's username for those
+    /// accounts. Use this email to invite Team customers.
+    #[prost(string, tag = "5")]
+    pub email: ::prost::alloc::string::String,
+    /// Optional. The customer account contact's job title.
+    #[prost(string, tag = "6")]
+    pub title: ::prost::alloc::string::String,
+    /// The customer account's contact phone number.
+    #[prost(string, tag = "7")]
+    pub phone: ::prost::alloc::string::String,
 }
 /// Configuration for how a reseller will reprice a Customer.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -6380,667 +7042,5 @@ pub mod subscriber_event {
         /// Entitlement event sent as part of Pub/Sub event to partners.
         #[prost(message, tag = "2")]
         EntitlementEvent(super::EntitlementEvent),
-    }
-}
-/// Request message for
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RunReportJobRequest {
-    /// Required. The report's resource name. Specifies the account and report used
-    /// to generate report data. The report_id identifier is a UID (for example,
-    /// `613bf59q`).
-    /// Name uses the format:
-    /// accounts/{account_id}/reports/{report_id}
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Optional. The range of usage or invoice dates to include in the result.
-    #[prost(message, optional, tag = "2")]
-    pub date_range: ::core::option::Option<DateRange>,
-    /// Optional. A structured string that defines conditions on dimension columns
-    /// to restrict the report output.
-    ///
-    /// Filters support logical operators (AND, OR, NOT) and conditional operators
-    /// (=, !=, \<, >, \<=, and >=) using `column_id` as keys.
-    ///
-    /// For example:
-    /// `(customer:"accounts/C123abc/customers/S456def" OR customer:"accounts/C123abc/customers/S789ghi") AND invoice_start_date.year >= 2022`
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    /// Optional. The BCP-47 language code, such as "en-US".  If specified, the
-    /// response is localized to the corresponding language code if the
-    /// original data sources support it.
-    /// Default is "en-US".
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-}
-/// Response message for
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RunReportJobResponse {
-    /// Pass `report_job.name` to
-    /// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
-    /// to retrieve the report's results.
-    #[prost(message, optional, tag = "1")]
-    pub report_job: ::core::option::Option<ReportJob>,
-    /// The metadata for the report's results (display name, columns, row count,
-    /// and date range). If you view this before the operation finishes,
-    /// you may see incomplete data.
-    #[prost(message, optional, tag = "2")]
-    pub report_metadata: ::core::option::Option<ReportResultsMetadata>,
-}
-/// Request message for
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FetchReportResultsRequest {
-    /// Required. The report job created by
-    /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
-    /// Report_job uses the format:
-    /// accounts/{account_id}/reportJobs/{report_job_id}
-    #[prost(string, tag = "1")]
-    pub report_job: ::prost::alloc::string::String,
-    /// Optional. Requested page size of the report. The server may return fewer
-    /// results than requested. If you don't specify a page size, the server uses a
-    /// sensible default (may change over time).
-    ///
-    /// The maximum value is 30,000; the server will change larger values to
-    /// 30,000.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// Optional. A token that specifies a page of results beyond the first page.
-    /// Obtained through
-    /// \[FetchReportResultsResponse.next_page_token\]\[google.cloud.channel.v1.FetchReportResultsResponse.next_page_token\]
-    /// of the previous
-    /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
-    /// call.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// Optional. List of keys specifying which report partitions to return.
-    /// If empty, returns all partitions.
-    #[prost(string, repeated, tag = "4")]
-    pub partition_keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Response message for
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
-/// Contains a tabular representation of the report results.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FetchReportResultsResponse {
-    /// The metadata for the report results (display name, columns, row count, and
-    /// date ranges).
-    #[prost(message, optional, tag = "1")]
-    pub report_metadata: ::core::option::Option<ReportResultsMetadata>,
-    /// The report's lists of values. Each row follows the settings and ordering
-    /// of the columns from `report_metadata`.
-    #[prost(message, repeated, tag = "2")]
-    pub rows: ::prost::alloc::vec::Vec<Row>,
-    /// Pass this token to
-    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
-    /// to retrieve the next page of results.
-    #[prost(string, tag = "3")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Request message for
-/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListReportsRequest {
-    /// Required. The resource name of the partner account to list available
-    /// reports for. Parent uses the format: accounts/{account_id}
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Optional. Requested page size of the report. The server might return fewer
-    /// results than requested. If unspecified, returns 20 reports. The maximum
-    /// value is 100.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// Optional. A token that specifies a page of results beyond the first page.
-    /// Obtained through
-    /// \[ListReportsResponse.next_page_token\]\[google.cloud.channel.v1.ListReportsResponse.next_page_token\]
-    /// of the previous
-    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\]
-    /// call.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// Optional. The BCP-47 language code, such as "en-US".  If specified, the
-    /// response is localized to the corresponding language code if the
-    /// original data sources support it.
-    /// Default is "en-US".
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-}
-/// Response message for
-/// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListReportsResponse {
-    /// The reports available to the partner.
-    #[prost(message, repeated, tag = "1")]
-    pub reports: ::prost::alloc::vec::Vec<Report>,
-    /// Pass this token to
-    /// \[FetchReportResultsRequest.page_token\]\[google.cloud.channel.v1.FetchReportResultsRequest.page_token\]
-    /// to retrieve the next page of results.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// The result of a \[RunReportJob\]\[\] operation. Contains the name to use in
-/// \[FetchReportResultsRequest.report_job\]\[google.cloud.channel.v1.FetchReportResultsRequest.report_job\]
-/// and the status of the operation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReportJob {
-    /// Required. The resource name of a report job.
-    /// Name uses the format:
-    /// `accounts/{account_id}/reportJobs/{report_job_id}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The current status of report generation.
-    #[prost(message, optional, tag = "2")]
-    pub report_status: ::core::option::Option<ReportStatus>,
-}
-/// The features describing the data. Returned by
-/// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\]
-/// and
-/// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\].
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReportResultsMetadata {
-    /// Details of the completed report.
-    #[prost(message, optional, tag = "1")]
-    pub report: ::core::option::Option<Report>,
-    /// The total number of rows of data in the final report.
-    #[prost(int64, tag = "2")]
-    pub row_count: i64,
-    /// The date range of reported usage.
-    #[prost(message, optional, tag = "3")]
-    pub date_range: ::core::option::Option<DateRange>,
-    /// The usage dates immediately preceding `date_range` with the same duration.
-    /// Use this to calculate trending usage and costs. This is only populated if
-    /// you request trending data.
-    ///
-    /// For example, if `date_range` is July 1-15, `preceding_date_range` will be
-    /// June 16-30.
-    #[prost(message, optional, tag = "4")]
-    pub preceding_date_range: ::core::option::Option<DateRange>,
-}
-/// The definition of a report column. Specifies the data properties
-/// in the corresponding position of the report rows.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Column {
-    /// The unique name of the column (for example, customer_domain,
-    /// channel_partner, customer_cost). You can use column IDs in
-    /// \[RunReportJobRequest.filter\]\[google.cloud.channel.v1.RunReportJobRequest.filter\].
-    /// To see all reports and their columns, call
-    /// \[CloudChannelReportsService.ListReports\]\[google.cloud.channel.v1.CloudChannelReportsService.ListReports\].
-    #[prost(string, tag = "1")]
-    pub column_id: ::prost::alloc::string::String,
-    /// The column's display name.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// The type of the values for this column.
-    #[prost(enumeration = "column::DataType", tag = "3")]
-    pub data_type: i32,
-}
-/// Nested message and enum types in `Column`.
-pub mod column {
-    /// Available data types for columns. Corresponds to the fields in the
-    /// ReportValue `oneof` field.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DataType {
-        /// Not used.
-        Unspecified = 0,
-        /// ReportValues for this column will use string_value.
-        String = 1,
-        /// ReportValues for this column will use int_value.
-        Int = 2,
-        /// ReportValues for this column will use decimal_value.
-        Decimal = 3,
-        /// ReportValues for this column will use money_value.
-        Money = 4,
-        /// ReportValues for this column will use date_value.
-        Date = 5,
-        /// ReportValues for this column will use date_time_value.
-        DateTime = 6,
-    }
-    impl DataType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DataType::Unspecified => "DATA_TYPE_UNSPECIFIED",
-                DataType::String => "STRING",
-                DataType::Int => "INT",
-                DataType::Decimal => "DECIMAL",
-                DataType::Money => "MONEY",
-                DataType::Date => "DATE",
-                DataType::DateTime => "DATE_TIME",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STRING" => Some(Self::String),
-                "INT" => Some(Self::Int),
-                "DECIMAL" => Some(Self::Decimal),
-                "MONEY" => Some(Self::Money),
-                "DATE" => Some(Self::Date),
-                "DATE_TIME" => Some(Self::DateTime),
-                _ => None,
-            }
-        }
-    }
-}
-/// A representation of usage or invoice date ranges.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DateRange {
-    /// The earliest usage date time (inclusive).
-    ///
-    /// If you use time groupings (daily, weekly, etc), each group uses
-    /// midnight to midnight (Pacific time). The usage start date is
-    /// rounded down to include all usage from the specified date. We recommend
-    /// that clients pass `usage_start_date_time` in Pacific time.
-    #[prost(message, optional, tag = "1")]
-    pub usage_start_date_time: ::core::option::Option<
-        super::super::super::r#type::DateTime,
-    >,
-    /// The latest usage date time (exclusive).
-    ///
-    /// If you use time groupings (daily, weekly, etc), each group uses
-    /// midnight to midnight (Pacific time). The usage end date is
-    /// rounded down to include all usage from the specified date. We recommend
-    /// that clients pass `usage_start_date_time` in Pacific time.
-    #[prost(message, optional, tag = "2")]
-    pub usage_end_date_time: ::core::option::Option<
-        super::super::super::r#type::DateTime,
-    >,
-    /// The earliest invoice date (inclusive).
-    ///
-    /// If this value is not the first day of a month, this will move it back to
-    /// the first day of the given month.
-    #[prost(message, optional, tag = "3")]
-    pub invoice_start_date: ::core::option::Option<super::super::super::r#type::Date>,
-    /// The latest invoice date (inclusive).
-    ///
-    /// If this value is not the last day of a month, this will move it forward to
-    /// the last day of the given month.
-    #[prost(message, optional, tag = "4")]
-    pub invoice_end_date: ::core::option::Option<super::super::super::r#type::Date>,
-}
-/// A row of report values.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Row {
-    /// The list of values in the row.
-    #[prost(message, repeated, tag = "1")]
-    pub values: ::prost::alloc::vec::Vec<ReportValue>,
-    /// The key for the partition this row belongs to. This field is empty
-    /// if the report is not partitioned.
-    #[prost(string, tag = "2")]
-    pub partition_key: ::prost::alloc::string::String,
-}
-/// A single report value.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReportValue {
-    /// A single report value.
-    #[prost(oneof = "report_value::Value", tags = "1, 2, 3, 4, 5, 6")]
-    pub value: ::core::option::Option<report_value::Value>,
-}
-/// Nested message and enum types in `ReportValue`.
-pub mod report_value {
-    /// A single report value.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Value {
-        /// A value of type `string`.
-        #[prost(string, tag = "1")]
-        StringValue(::prost::alloc::string::String),
-        /// A value of type `int`.
-        #[prost(int64, tag = "2")]
-        IntValue(i64),
-        /// A value of type `google.type.Decimal`, representing non-integer numeric
-        /// values.
-        #[prost(message, tag = "3")]
-        DecimalValue(super::super::super::super::r#type::Decimal),
-        /// A value of type `google.type.Money` (currency code, whole units, decimal
-        /// units).
-        #[prost(message, tag = "4")]
-        MoneyValue(super::super::super::super::r#type::Money),
-        /// A value of type `google.type.Date` (year, month, day).
-        #[prost(message, tag = "5")]
-        DateValue(super::super::super::super::r#type::Date),
-        /// A value of type `google.type.DateTime` (year, month, day, hour, minute,
-        /// second, and UTC offset or timezone.)
-        #[prost(message, tag = "6")]
-        DateTimeValue(super::super::super::super::r#type::DateTime),
-    }
-}
-/// Status of a report generation process.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ReportStatus {
-    /// The current state of the report generation process.
-    #[prost(enumeration = "report_status::State", tag = "1")]
-    pub state: i32,
-    /// The report generation's start time.
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// The report generation's completion time.
-    #[prost(message, optional, tag = "3")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Nested message and enum types in `ReportStatus`.
-pub mod report_status {
-    /// Available states of report generation.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// Not used.
-        Unspecified = 0,
-        /// Report processing started.
-        Started = 1,
-        /// Data generated from the report is being staged.
-        Writing = 2,
-        /// Report data is available for access.
-        Available = 3,
-        /// Report failed.
-        Failed = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Writing => "WRITING",
-                State::Available => "AVAILABLE",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STARTED" => Some(Self::Started),
-                "WRITING" => Some(Self::Writing),
-                "AVAILABLE" => Some(Self::Available),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
-}
-/// The ID and description of a report that was used to generate report data.
-/// For example, "Google Cloud Daily Spend", "Google Workspace License Activity",
-/// etc.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Report {
-    /// Required. The report's resource name. Specifies the account and report used
-    /// to generate report data. The report_id identifier is a UID (for example,
-    /// `613bf59q`).
-    ///
-    /// Name uses the format:
-    /// accounts/{account_id}/reports/{report_id}
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// A human-readable name for this report.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// The list of columns included in the report. This defines the schema of
-    /// the report results.
-    #[prost(message, repeated, tag = "3")]
-    pub columns: ::prost::alloc::vec::Vec<Column>,
-    /// A description of other aspects of the report, such as the products
-    /// it supports.
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-}
-/// Generated client implementations.
-pub mod cloud_channel_reports_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// CloudChannelReportsService lets Google Cloud resellers and
-    /// distributors retrieve and combine a variety of data in Cloud Channel for
-    /// multiple products (Google Cloud, Google Voice, and Google Workspace.)
-    ///
-    /// Deprecated: This service is being deprecated. Please use [Export Channel
-    /// Services data to
-    /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
-    /// instead.
-    #[derive(Debug, Clone)]
-    pub struct CloudChannelReportsServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CloudChannelReportsServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CloudChannelReportsServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CloudChannelReportsServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Begins generation of data for a given report. The report
-        /// identifier is a UID (for example, `613bf59q`).
-        ///
-        /// Possible error codes:
-        ///
-        /// * PERMISSION_DENIED: The user doesn't have access to this report.
-        /// * INVALID_ARGUMENT: Required request parameters are missing
-        ///  or invalid.
-        /// * NOT_FOUND: The report identifier was not found.
-        /// * INTERNAL: Any non-user error related to a technical issue
-        ///  in the backend. Contact Cloud Channel support.
-        /// * UNKNOWN: Any non-user error related to a technical issue
-        ///  in the backend. Contact Cloud Channel support.
-        ///
-        /// Return value:
-        /// The ID of a long-running operation.
-        ///
-        /// To get the results of the operation, call the GetOperation method of
-        /// CloudChannelOperationsService. The Operation metadata contains an
-        /// instance of \[OperationMetadata\]\[google.cloud.channel.v1.OperationMetadata\].
-        ///
-        /// To get the results of report generation, call
-        /// \[CloudChannelReportsService.FetchReportResults\]\[google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults\]
-        /// with the
-        /// \[RunReportJobResponse.report_job\]\[google.cloud.channel.v1.RunReportJobResponse.report_job\].
-        ///
-        /// Deprecated: Please use [Export Channel Services data to
-        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
-        /// instead.
-        pub async fn run_report_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RunReportJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.channel.v1.CloudChannelReportsService/RunReportJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.channel.v1.CloudChannelReportsService",
-                        "RunReportJob",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves data generated by
-        /// \[CloudChannelReportsService.RunReportJob\]\[google.cloud.channel.v1.CloudChannelReportsService.RunReportJob\].
-        ///
-        /// Deprecated: Please use [Export Channel Services data to
-        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
-        /// instead.
-        pub async fn fetch_report_results(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchReportResultsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchReportResultsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.channel.v1.CloudChannelReportsService/FetchReportResults",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.channel.v1.CloudChannelReportsService",
-                        "FetchReportResults",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the reports that RunReportJob can run. These reports include an ID,
-        /// a description, and the list of columns that will be in the result.
-        ///
-        /// Deprecated: Please use [Export Channel Services data to
-        /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
-        /// instead.
-        pub async fn list_reports(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListReportsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListReportsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.channel.v1.CloudChannelReportsService/ListReports",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.channel.v1.CloudChannelReportsService",
-                        "ListReports",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
     }
 }

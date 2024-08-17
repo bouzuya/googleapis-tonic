@@ -473,6 +473,1417 @@ impl InventoryView {
         }
     }
 }
+/// Message encapsulating a value that can be either absolute ("fixed") or
+/// relative ("percent") to a value.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FixedOrPercent {
+    /// Type of the value.
+    #[prost(oneof = "fixed_or_percent::Mode", tags = "1, 2")]
+    pub mode: ::core::option::Option<fixed_or_percent::Mode>,
+}
+/// Nested message and enum types in `FixedOrPercent`.
+pub mod fixed_or_percent {
+    /// Type of the value.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Mode {
+        /// Specifies a fixed value.
+        #[prost(int32, tag = "1")]
+        Fixed(i32),
+        /// Specifies the relative value defined as a percentage, which will be
+        /// multiplied by a reference value.
+        #[prost(int32, tag = "2")]
+        Percent(i32),
+    }
+}
+/// A request message to initiate patching across Compute Engine
+/// instances.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecutePatchJobRequest {
+    /// Required. The project in which to run this patch in the form `projects/*`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Description of the patch job. Length of the description is limited
+    /// to 1024 characters.
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Required. Instances to patch, either explicitly or filtered by some
+    /// criteria such as zone or labels.
+    #[prost(message, optional, tag = "7")]
+    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
+    /// Patch configuration being applied. If omitted, instances are
+    /// patched using the default configurations.
+    #[prost(message, optional, tag = "4")]
+    pub patch_config: ::core::option::Option<PatchConfig>,
+    /// Duration of the patch job. After the duration ends, the patch job
+    /// times out.
+    #[prost(message, optional, tag = "5")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    /// If this patch is a dry-run only, instances are contacted but
+    /// will do nothing.
+    #[prost(bool, tag = "6")]
+    pub dry_run: bool,
+    /// Display name for this patch job. This does not have to be unique.
+    #[prost(string, tag = "8")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Rollout strategy of the patch job.
+    #[prost(message, optional, tag = "9")]
+    pub rollout: ::core::option::Option<PatchRollout>,
+}
+/// Request to get an active or completed patch job.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPatchJobRequest {
+    /// Required. Name of the patch in the form `projects/*/patchJobs/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request to list details for all instances that are part of a patch job.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListPatchJobInstanceDetailsRequest {
+    /// Required. The parent for the instances are in the form of
+    /// `projects/*/patchJobs/*`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The maximum number of instance details records to return.  Default is 100.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// A pagination token returned from a previous call
+    /// that indicates where this listing should continue from.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// A filter expression that filters results listed in the response. This
+    /// field supports filtering results by instance zone, name, state, or
+    /// `failure_reason`.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// A response message for listing the instances details for a patch job.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListPatchJobInstanceDetailsResponse {
+    /// A list of instance status.
+    #[prost(message, repeated, tag = "1")]
+    pub patch_job_instance_details: ::prost::alloc::vec::Vec<PatchJobInstanceDetails>,
+    /// A pagination token that can be used to get the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Patch details for a VM instance. For more information about reviewing VM
+/// instance details, see
+/// [Listing all VM instance details for a specific patch
+/// job](<https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details>).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PatchJobInstanceDetails {
+    /// The instance name in the form `projects/*/zones/*/instances/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The unique identifier for the instance. This identifier is
+    /// defined by the server.
+    #[prost(string, tag = "2")]
+    pub instance_system_id: ::prost::alloc::string::String,
+    /// Current state of instance patch.
+    #[prost(enumeration = "instance::PatchState", tag = "3")]
+    pub state: i32,
+    /// If the patch fails, this field provides the reason.
+    #[prost(string, tag = "4")]
+    pub failure_reason: ::prost::alloc::string::String,
+    /// The number of times the agent that the agent attempts to apply the patch.
+    #[prost(int64, tag = "5")]
+    pub attempt_count: i64,
+}
+/// A request message for listing patch jobs.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListPatchJobsRequest {
+    /// Required. In the form of `projects/*`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The maximum number of instance status to return.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// A pagination token returned from a previous call
+    /// that indicates where this listing should continue from.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// If provided, this field specifies the criteria that must be met by patch
+    /// jobs to be included in the response.
+    /// Currently, filtering is only available on the patch_deployment field.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// A response message for listing patch jobs.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListPatchJobsResponse {
+    /// The list of patch jobs.
+    #[prost(message, repeated, tag = "1")]
+    pub patch_jobs: ::prost::alloc::vec::Vec<PatchJob>,
+    /// A pagination token that can be used to get the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// A high level representation of a patch job that is either in progress
+/// or has completed.
+///
+/// Instance details are not included in the job. To paginate through instance
+/// details, use ListPatchJobInstanceDetails.
+///
+/// For more information about patch jobs, see
+/// [Creating patch
+/// jobs](<https://cloud.google.com/compute/docs/os-patch-management/create-patch-job>).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PatchJob {
+    /// Unique identifier for this patch job in the form
+    /// `projects/*/patchJobs/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Display name for this patch job. This is not a unique identifier.
+    #[prost(string, tag = "14")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Description of the patch job. Length of the description is limited
+    /// to 1024 characters.
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Time this patch job was created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Last time this patch job was updated.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The current state of the PatchJob.
+    #[prost(enumeration = "patch_job::State", tag = "5")]
+    pub state: i32,
+    /// Instances to patch.
+    #[prost(message, optional, tag = "13")]
+    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
+    /// Patch configuration being applied.
+    #[prost(message, optional, tag = "7")]
+    pub patch_config: ::core::option::Option<PatchConfig>,
+    /// Duration of the patch job. After the duration ends, the
+    /// patch job times out.
+    #[prost(message, optional, tag = "8")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    /// Summary of instance details.
+    #[prost(message, optional, tag = "9")]
+    pub instance_details_summary: ::core::option::Option<
+        patch_job::InstanceDetailsSummary,
+    >,
+    /// If this patch job is a dry run, the agent reports that it has
+    /// finished without running any updates on the VM instance.
+    #[prost(bool, tag = "10")]
+    pub dry_run: bool,
+    /// If this patch job failed, this message provides information about the
+    /// failure.
+    #[prost(string, tag = "11")]
+    pub error_message: ::prost::alloc::string::String,
+    /// Reflects the overall progress of the patch job in the range of
+    /// 0.0 being no progress to 100.0 being complete.
+    #[prost(double, tag = "12")]
+    pub percent_complete: f64,
+    /// Output only. Name of the patch deployment that created this patch job.
+    #[prost(string, tag = "15")]
+    pub patch_deployment: ::prost::alloc::string::String,
+    /// Rollout strategy being applied.
+    #[prost(message, optional, tag = "16")]
+    pub rollout: ::core::option::Option<PatchRollout>,
+}
+/// Nested message and enum types in `PatchJob`.
+pub mod patch_job {
+    /// A summary of the current patch state across all instances that this patch
+    /// job affects. Contains counts of instances in different states. These states
+    /// map to `InstancePatchState`. List patch job instance details to see the
+    /// specific states of each instance.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct InstanceDetailsSummary {
+        /// Number of instances pending patch job.
+        #[prost(int64, tag = "1")]
+        pub pending_instance_count: i64,
+        /// Number of instances that are inactive.
+        #[prost(int64, tag = "2")]
+        pub inactive_instance_count: i64,
+        /// Number of instances notified about patch job.
+        #[prost(int64, tag = "3")]
+        pub notified_instance_count: i64,
+        /// Number of instances that have started.
+        #[prost(int64, tag = "4")]
+        pub started_instance_count: i64,
+        /// Number of instances that are downloading patches.
+        #[prost(int64, tag = "5")]
+        pub downloading_patches_instance_count: i64,
+        /// Number of instances that are applying patches.
+        #[prost(int64, tag = "6")]
+        pub applying_patches_instance_count: i64,
+        /// Number of instances rebooting.
+        #[prost(int64, tag = "7")]
+        pub rebooting_instance_count: i64,
+        /// Number of instances that have completed successfully.
+        #[prost(int64, tag = "8")]
+        pub succeeded_instance_count: i64,
+        /// Number of instances that require reboot.
+        #[prost(int64, tag = "9")]
+        pub succeeded_reboot_required_instance_count: i64,
+        /// Number of instances that failed.
+        #[prost(int64, tag = "10")]
+        pub failed_instance_count: i64,
+        /// Number of instances that have acked and will start shortly.
+        #[prost(int64, tag = "11")]
+        pub acked_instance_count: i64,
+        /// Number of instances that exceeded the time out while applying the patch.
+        #[prost(int64, tag = "12")]
+        pub timed_out_instance_count: i64,
+        /// Number of instances that are running the pre-patch step.
+        #[prost(int64, tag = "13")]
+        pub pre_patch_step_instance_count: i64,
+        /// Number of instances that are running the post-patch step.
+        #[prost(int64, tag = "14")]
+        pub post_patch_step_instance_count: i64,
+        /// Number of instances that do not appear to be running the agent. Check to
+        /// ensure that the agent is installed, running, and able to communicate with
+        /// the service.
+        #[prost(int64, tag = "15")]
+        pub no_agent_detected_instance_count: i64,
+    }
+    /// Enumeration of the various states a patch job passes through as it
+    /// executes.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// State must be specified.
+        Unspecified = 0,
+        /// The patch job was successfully initiated.
+        Started = 1,
+        /// The patch job is looking up instances to run the patch on.
+        InstanceLookup = 2,
+        /// Instances are being patched.
+        Patching = 3,
+        /// Patch job completed successfully.
+        Succeeded = 4,
+        /// Patch job completed but there were errors.
+        CompletedWithErrors = 5,
+        /// The patch job was canceled.
+        Canceled = 6,
+        /// The patch job timed out.
+        TimedOut = 7,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Started => "STARTED",
+                State::InstanceLookup => "INSTANCE_LOOKUP",
+                State::Patching => "PATCHING",
+                State::Succeeded => "SUCCEEDED",
+                State::CompletedWithErrors => "COMPLETED_WITH_ERRORS",
+                State::Canceled => "CANCELED",
+                State::TimedOut => "TIMED_OUT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "STARTED" => Some(Self::Started),
+                "INSTANCE_LOOKUP" => Some(Self::InstanceLookup),
+                "PATCHING" => Some(Self::Patching),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "COMPLETED_WITH_ERRORS" => Some(Self::CompletedWithErrors),
+                "CANCELED" => Some(Self::Canceled),
+                "TIMED_OUT" => Some(Self::TimedOut),
+                _ => None,
+            }
+        }
+    }
+}
+/// Patch configuration specifications. Contains details on how to apply the
+/// patch(es) to a VM instance.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PatchConfig {
+    /// Post-patch reboot settings.
+    #[prost(enumeration = "patch_config::RebootConfig", tag = "1")]
+    pub reboot_config: i32,
+    /// Apt update settings. Use this setting to override the default `apt` patch
+    /// rules.
+    #[prost(message, optional, tag = "3")]
+    pub apt: ::core::option::Option<AptSettings>,
+    /// Yum update settings. Use this setting to override the default `yum` patch
+    /// rules.
+    #[prost(message, optional, tag = "4")]
+    pub yum: ::core::option::Option<YumSettings>,
+    /// Goo update settings. Use this setting to override the default `goo` patch
+    /// rules.
+    #[prost(message, optional, tag = "5")]
+    pub goo: ::core::option::Option<GooSettings>,
+    /// Zypper update settings. Use this setting to override the default `zypper`
+    /// patch rules.
+    #[prost(message, optional, tag = "6")]
+    pub zypper: ::core::option::Option<ZypperSettings>,
+    /// Windows update settings. Use this override the default windows patch rules.
+    #[prost(message, optional, tag = "7")]
+    pub windows_update: ::core::option::Option<WindowsUpdateSettings>,
+    /// The `ExecStep` to run before the patch update.
+    #[prost(message, optional, tag = "8")]
+    pub pre_step: ::core::option::Option<ExecStep>,
+    /// The `ExecStep` to run after the patch update.
+    #[prost(message, optional, tag = "9")]
+    pub post_step: ::core::option::Option<ExecStep>,
+    /// Allows the patch job to run on Managed instance groups (MIGs).
+    #[prost(bool, tag = "10")]
+    pub mig_instances_allowed: bool,
+}
+/// Nested message and enum types in `PatchConfig`.
+pub mod patch_config {
+    /// Post-patch reboot settings.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum RebootConfig {
+        /// The default behavior is DEFAULT.
+        Unspecified = 0,
+        /// The agent decides if a reboot is necessary by checking signals such as
+        /// registry keys on Windows or `/var/run/reboot-required` on APT based
+        /// systems. On RPM based systems, a set of core system package install times
+        /// are compared with system boot time.
+        Default = 1,
+        /// Always reboot the machine after the update completes.
+        Always = 2,
+        /// Never reboot the machine after the update completes.
+        Never = 3,
+    }
+    impl RebootConfig {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RebootConfig::Unspecified => "REBOOT_CONFIG_UNSPECIFIED",
+                RebootConfig::Default => "DEFAULT",
+                RebootConfig::Always => "ALWAYS",
+                RebootConfig::Never => "NEVER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REBOOT_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
+                "DEFAULT" => Some(Self::Default),
+                "ALWAYS" => Some(Self::Always),
+                "NEVER" => Some(Self::Never),
+                _ => None,
+            }
+        }
+    }
+}
+/// Namespace for instance state enums.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Instance {}
+/// Nested message and enum types in `Instance`.
+pub mod instance {
+    /// Patch state of an instance.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum PatchState {
+        /// Unspecified.
+        Unspecified = 0,
+        /// The instance is not yet notified.
+        Pending = 1,
+        /// Instance is inactive and cannot be patched.
+        Inactive = 2,
+        /// The instance is notified that it should be patched.
+        Notified = 3,
+        /// The instance has started the patching process.
+        Started = 4,
+        /// The instance is downloading patches.
+        DownloadingPatches = 5,
+        /// The instance is applying patches.
+        ApplyingPatches = 6,
+        /// The instance is rebooting.
+        Rebooting = 7,
+        /// The instance has completed applying patches.
+        Succeeded = 8,
+        /// The instance has completed applying patches but a reboot is required.
+        SucceededRebootRequired = 9,
+        /// The instance has failed to apply the patch.
+        Failed = 10,
+        /// The instance acked the notification and will start shortly.
+        Acked = 11,
+        /// The instance exceeded the time out while applying the patch.
+        TimedOut = 12,
+        /// The instance is running the pre-patch step.
+        RunningPrePatchStep = 13,
+        /// The instance is running the post-patch step.
+        RunningPostPatchStep = 14,
+        /// The service could not detect the presence of the agent. Check to ensure
+        /// that the agent is installed, running, and able to communicate with the
+        /// service.
+        NoAgentDetected = 15,
+    }
+    impl PatchState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                PatchState::Unspecified => "PATCH_STATE_UNSPECIFIED",
+                PatchState::Pending => "PENDING",
+                PatchState::Inactive => "INACTIVE",
+                PatchState::Notified => "NOTIFIED",
+                PatchState::Started => "STARTED",
+                PatchState::DownloadingPatches => "DOWNLOADING_PATCHES",
+                PatchState::ApplyingPatches => "APPLYING_PATCHES",
+                PatchState::Rebooting => "REBOOTING",
+                PatchState::Succeeded => "SUCCEEDED",
+                PatchState::SucceededRebootRequired => "SUCCEEDED_REBOOT_REQUIRED",
+                PatchState::Failed => "FAILED",
+                PatchState::Acked => "ACKED",
+                PatchState::TimedOut => "TIMED_OUT",
+                PatchState::RunningPrePatchStep => "RUNNING_PRE_PATCH_STEP",
+                PatchState::RunningPostPatchStep => "RUNNING_POST_PATCH_STEP",
+                PatchState::NoAgentDetected => "NO_AGENT_DETECTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PATCH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "PENDING" => Some(Self::Pending),
+                "INACTIVE" => Some(Self::Inactive),
+                "NOTIFIED" => Some(Self::Notified),
+                "STARTED" => Some(Self::Started),
+                "DOWNLOADING_PATCHES" => Some(Self::DownloadingPatches),
+                "APPLYING_PATCHES" => Some(Self::ApplyingPatches),
+                "REBOOTING" => Some(Self::Rebooting),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "SUCCEEDED_REBOOT_REQUIRED" => Some(Self::SucceededRebootRequired),
+                "FAILED" => Some(Self::Failed),
+                "ACKED" => Some(Self::Acked),
+                "TIMED_OUT" => Some(Self::TimedOut),
+                "RUNNING_PRE_PATCH_STEP" => Some(Self::RunningPrePatchStep),
+                "RUNNING_POST_PATCH_STEP" => Some(Self::RunningPostPatchStep),
+                "NO_AGENT_DETECTED" => Some(Self::NoAgentDetected),
+                _ => None,
+            }
+        }
+    }
+}
+/// Message for canceling a patch job.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CancelPatchJobRequest {
+    /// Required. Name of the patch in the form `projects/*/patchJobs/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AptSettings {
+    /// By changing the type to DIST, the patching is performed
+    /// using `apt-get dist-upgrade` instead.
+    #[prost(enumeration = "apt_settings::Type", tag = "1")]
+    pub r#type: i32,
+    /// List of packages to exclude from update. These packages will be excluded
+    #[prost(string, repeated, tag = "2")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// An exclusive list of packages to be updated. These are the only packages
+    /// that will be updated. If these packages are not installed, they will be
+    /// ignored. This field cannot be specified with any other patch configuration
+    /// fields.
+    #[prost(string, repeated, tag = "3")]
+    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `AptSettings`.
+pub mod apt_settings {
+    /// Apt patch type.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Type {
+        /// By default, upgrade will be performed.
+        Unspecified = 0,
+        /// Runs `apt-get dist-upgrade`.
+        Dist = 1,
+        /// Runs `apt-get upgrade`.
+        Upgrade = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::Dist => "DIST",
+                Type::Upgrade => "UPGRADE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "DIST" => Some(Self::Dist),
+                "UPGRADE" => Some(Self::Upgrade),
+                _ => None,
+            }
+        }
+    }
+}
+/// Yum patching is performed by executing `yum update`. Additional options
+/// can be set to control how this is executed.
+///
+/// Note that not all settings are supported on all platforms.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct YumSettings {
+    /// Adds the `--security` flag to `yum update`. Not supported on
+    /// all platforms.
+    #[prost(bool, tag = "1")]
+    pub security: bool,
+    /// Will cause patch to run `yum update-minimal` instead.
+    #[prost(bool, tag = "2")]
+    pub minimal: bool,
+    /// List of packages to exclude from update. These packages are excluded by
+    /// using the yum `--exclude` flag.
+    #[prost(string, repeated, tag = "3")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// An exclusive list of packages to be updated. These are the only packages
+    /// that will be updated. If these packages are not installed, they will be
+    /// ignored. This field must not be specified with any other patch
+    /// configuration fields.
+    #[prost(string, repeated, tag = "4")]
+    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Googet patching is performed by running `googet update`.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct GooSettings {}
+/// Zypper patching is performed by running `zypper patch`.
+/// See also <https://en.opensuse.org/SDB:Zypper_manual.>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ZypperSettings {
+    /// Adds the `--with-optional` flag to `zypper patch`.
+    #[prost(bool, tag = "1")]
+    pub with_optional: bool,
+    /// Adds the `--with-update` flag, to `zypper patch`.
+    #[prost(bool, tag = "2")]
+    pub with_update: bool,
+    /// Install only patches with these categories.
+    /// Common categories include security, recommended, and feature.
+    #[prost(string, repeated, tag = "3")]
+    pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Install only patches with these severities.
+    /// Common severities include critical, important, moderate, and low.
+    #[prost(string, repeated, tag = "4")]
+    pub severities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// List of patches to exclude from update.
+    #[prost(string, repeated, tag = "5")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// An exclusive list of patches to be updated. These are the only patches
+    /// that will be installed using 'zypper patch patch:\<patch_name>' command.
+    /// This field must not be used with any other patch configuration fields.
+    #[prost(string, repeated, tag = "6")]
+    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Windows patching is performed using the Windows Update Agent.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WindowsUpdateSettings {
+    /// Only apply updates of these windows update classifications. If empty, all
+    /// updates are applied.
+    #[prost(
+        enumeration = "windows_update_settings::Classification",
+        repeated,
+        tag = "1"
+    )]
+    pub classifications: ::prost::alloc::vec::Vec<i32>,
+    /// List of KBs to exclude from update.
+    #[prost(string, repeated, tag = "2")]
+    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// An exclusive list of kbs to be updated. These are the only patches
+    /// that will be updated. This field must not be used with other
+    /// patch configurations.
+    #[prost(string, repeated, tag = "3")]
+    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `WindowsUpdateSettings`.
+pub mod windows_update_settings {
+    /// Microsoft Windows update classifications as defined in
+    /// \[1\]
+    /// <https://support.microsoft.com/en-us/help/824684/description-of-the-standard-terminology-that-is-used-to-describe-micro>
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Classification {
+        /// Invalid. If classifications are included, they must be specified.
+        Unspecified = 0,
+        /// "A widely released fix for a specific problem that addresses a critical,
+        /// non-security-related bug." \[1\]
+        Critical = 1,
+        /// "A widely released fix for a product-specific, security-related
+        /// vulnerability. Security vulnerabilities are rated by their severity. The
+        /// severity rating is indicated in the Microsoft security bulletin as
+        /// critical, important, moderate, or low." \[1\]
+        Security = 2,
+        /// "A widely released and frequent software update that contains additions
+        /// to a product's definition database. Definition databases are often used
+        /// to detect objects that have specific attributes, such as malicious code,
+        /// phishing websites, or junk mail." \[1\]
+        Definition = 3,
+        /// "Software that controls the input and output of a device." \[1\]
+        Driver = 4,
+        /// "New product functionality that is first distributed outside the context
+        /// of a product release and that is typically included in the next full
+        /// product release." \[1\]
+        FeaturePack = 5,
+        /// "A tested, cumulative set of all hotfixes, security updates, critical
+        /// updates, and updates. Additionally, service packs may contain additional
+        /// fixes for problems that are found internally since the release of the
+        /// product. Service packs my also contain a limited number of
+        /// customer-requested design changes or features." \[1\]
+        ServicePack = 6,
+        /// "A utility or feature that helps complete a task or set of tasks." \[1\]
+        Tool = 7,
+        /// "A tested, cumulative set of hotfixes, security updates, critical
+        /// updates, and updates that are packaged together for easy deployment. A
+        /// rollup generally targets a specific area, such as security, or a
+        /// component of a product, such as Internet Information Services (IIS)." \[1\]
+        UpdateRollup = 8,
+        /// "A widely released fix for a specific problem. An update addresses a
+        /// noncritical, non-security-related bug." \[1\]
+        Update = 9,
+    }
+    impl Classification {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Classification::Unspecified => "CLASSIFICATION_UNSPECIFIED",
+                Classification::Critical => "CRITICAL",
+                Classification::Security => "SECURITY",
+                Classification::Definition => "DEFINITION",
+                Classification::Driver => "DRIVER",
+                Classification::FeaturePack => "FEATURE_PACK",
+                Classification::ServicePack => "SERVICE_PACK",
+                Classification::Tool => "TOOL",
+                Classification::UpdateRollup => "UPDATE_ROLLUP",
+                Classification::Update => "UPDATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CLASSIFICATION_UNSPECIFIED" => Some(Self::Unspecified),
+                "CRITICAL" => Some(Self::Critical),
+                "SECURITY" => Some(Self::Security),
+                "DEFINITION" => Some(Self::Definition),
+                "DRIVER" => Some(Self::Driver),
+                "FEATURE_PACK" => Some(Self::FeaturePack),
+                "SERVICE_PACK" => Some(Self::ServicePack),
+                "TOOL" => Some(Self::Tool),
+                "UPDATE_ROLLUP" => Some(Self::UpdateRollup),
+                "UPDATE" => Some(Self::Update),
+                _ => None,
+            }
+        }
+    }
+}
+/// A step that runs an executable for a PatchJob.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecStep {
+    /// The ExecStepConfig for all Linux VMs targeted by the PatchJob.
+    #[prost(message, optional, tag = "1")]
+    pub linux_exec_step_config: ::core::option::Option<ExecStepConfig>,
+    /// The ExecStepConfig for all Windows VMs targeted by the PatchJob.
+    #[prost(message, optional, tag = "2")]
+    pub windows_exec_step_config: ::core::option::Option<ExecStepConfig>,
+}
+/// Common configurations for an ExecStep.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecStepConfig {
+    /// Defaults to \[0\]. A list of possible return values that the
+    /// execution can return to indicate a success.
+    #[prost(int32, repeated, tag = "3")]
+    pub allowed_success_codes: ::prost::alloc::vec::Vec<i32>,
+    /// The script interpreter to use to run the script. If no interpreter is
+    /// specified the script will be executed directly, which will likely
+    /// only succeed for scripts with \[shebang lines\]
+    /// (<https://en.wikipedia.org/wiki/Shebang\_(Unix>)).
+    #[prost(enumeration = "exec_step_config::Interpreter", tag = "4")]
+    pub interpreter: i32,
+    /// Location of the executable.
+    #[prost(oneof = "exec_step_config::Executable", tags = "1, 2")]
+    pub executable: ::core::option::Option<exec_step_config::Executable>,
+}
+/// Nested message and enum types in `ExecStepConfig`.
+pub mod exec_step_config {
+    /// The interpreter used to execute the a file.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Interpreter {
+        /// Invalid for a Windows ExecStepConfig. For a Linux ExecStepConfig, the
+        /// interpreter will be parsed from the shebang line of the script if
+        /// unspecified.
+        Unspecified = 0,
+        /// Indicates that the script is run with `/bin/sh` on Linux and `cmd`
+        /// on Windows.
+        Shell = 1,
+        /// Indicates that the file is run with PowerShell flags
+        /// `-NonInteractive`, `-NoProfile`, and `-ExecutionPolicy Bypass`.
+        Powershell = 2,
+    }
+    impl Interpreter {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
+                Interpreter::Shell => "SHELL",
+                Interpreter::Powershell => "POWERSHELL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
+                "SHELL" => Some(Self::Shell),
+                "POWERSHELL" => Some(Self::Powershell),
+                _ => None,
+            }
+        }
+    }
+    /// Location of the executable.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Executable {
+        /// An absolute path to the executable on the VM.
+        #[prost(string, tag = "1")]
+        LocalPath(::prost::alloc::string::String),
+        /// A Cloud Storage object containing the executable.
+        #[prost(message, tag = "2")]
+        GcsObject(super::GcsObject),
+    }
+}
+/// Cloud Storage object representation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GcsObject {
+    /// Required. Bucket of the Cloud Storage object.
+    #[prost(string, tag = "1")]
+    pub bucket: ::prost::alloc::string::String,
+    /// Required. Name of the Cloud Storage object.
+    #[prost(string, tag = "2")]
+    pub object: ::prost::alloc::string::String,
+    /// Required. Generation number of the Cloud Storage object. This is used to
+    /// ensure that the ExecStep specified by this PatchJob does not change.
+    #[prost(int64, tag = "3")]
+    pub generation_number: i64,
+}
+/// A filter to target VM instances for patching. The targeted
+/// VMs must meet all criteria specified. So if both labels and zones are
+/// specified, the patch job targets only VMs with those labels and in those
+/// zones.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PatchInstanceFilter {
+    /// Target all VM instances in the project. If true, no other criteria is
+    /// permitted.
+    #[prost(bool, tag = "1")]
+    pub all: bool,
+    /// Targets VM instances matching ANY of these GroupLabels. This allows
+    /// targeting of disparate groups of VM instances.
+    #[prost(message, repeated, tag = "2")]
+    pub group_labels: ::prost::alloc::vec::Vec<patch_instance_filter::GroupLabel>,
+    /// Targets VM instances in ANY of these zones. Leave empty to target VM
+    /// instances in any zone.
+    #[prost(string, repeated, tag = "3")]
+    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Targets any of the VM instances specified. Instances are specified by their
+    /// URI in the form `zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`,
+    /// `projects/\[PROJECT_ID\]/zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`, or
+    /// `<https://www.googleapis.com/compute/v1/projects/\[PROJECT_ID\]/zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`>
+    #[prost(string, repeated, tag = "4")]
+    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Targets VMs whose name starts with one of these prefixes. Similar to
+    /// labels, this is another way to group VMs when targeting configs, for
+    /// example prefix="prod-".
+    #[prost(string, repeated, tag = "5")]
+    pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `PatchInstanceFilter`.
+pub mod patch_instance_filter {
+    /// Targets a group of VM instances by using their [assigned
+    /// labels](<https://cloud.google.com/compute/docs/labeling-resources>). Labels
+    /// are key-value pairs. A `GroupLabel` is a combination of labels
+    /// that is used to target VMs for a patch job.
+    ///
+    /// For example, a patch job can target VMs that have the following
+    /// `GroupLabel`: `{"env":"test", "app":"web"}`. This means that the patch job
+    /// is applied to VMs that have both the labels `env=test` and `app=web`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GroupLabel {
+        /// Compute Engine instance labels that must be present for a VM
+        /// instance to be targeted by this filter.
+        #[prost(map = "string, string", tag = "1")]
+        pub labels: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+    }
+}
+/// Patch rollout configuration specifications. Contains details on the
+/// concurrency control when applying patch(es) to all targeted VMs.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PatchRollout {
+    /// Mode of the patch rollout.
+    #[prost(enumeration = "patch_rollout::Mode", tag = "1")]
+    pub mode: i32,
+    /// The maximum number (or percentage) of VMs per zone to disrupt at any given
+    /// moment. The number of VMs calculated from multiplying the percentage by the
+    /// total number of VMs in a zone is rounded up.
+    ///
+    /// During patching, a VM is considered disrupted from the time the agent is
+    /// notified to begin until patching has completed. This disruption time
+    /// includes the time to complete reboot and any post-patch steps.
+    ///
+    /// A VM contributes to the disruption budget if its patching operation fails
+    /// either when applying the patches, running pre or post patch steps, or if it
+    /// fails to respond with a success notification before timing out. VMs that
+    /// are not running or do not have an active agent do not count toward this
+    /// disruption budget.
+    ///
+    /// For zone-by-zone rollouts, if the disruption budget in a zone is exceeded,
+    /// the patch job stops, because continuing to the next zone requires
+    /// completion of the patch process in the previous zone.
+    ///
+    /// For example, if the disruption budget has a fixed value of `10`, and 8 VMs
+    /// fail to patch in the current zone, the patch job continues to patch 2 VMs
+    /// at a time until the zone is completed. When that zone is completed
+    /// successfully, patching begins with 10 VMs at a time in the next zone. If 10
+    /// VMs in the next zone fail to patch, the patch job stops.
+    #[prost(message, optional, tag = "2")]
+    pub disruption_budget: ::core::option::Option<FixedOrPercent>,
+}
+/// Nested message and enum types in `PatchRollout`.
+pub mod patch_rollout {
+    /// Type of the rollout.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Mode {
+        /// Mode must be specified.
+        Unspecified = 0,
+        /// Patches are applied one zone at a time. The patch job begins in the
+        /// region with the lowest number of targeted VMs. Within the region,
+        /// patching begins in the zone with the lowest number of targeted VMs. If
+        /// multiple regions (or zones within a region) have the same number of
+        /// targeted VMs, a tie-breaker is achieved by sorting the regions or zones
+        /// in alphabetical order.
+        ZoneByZone = 1,
+        /// Patches are applied to VMs in all zones at the same time.
+        ConcurrentZones = 2,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::ZoneByZone => "ZONE_BY_ZONE",
+                Mode::ConcurrentZones => "CONCURRENT_ZONES",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ZONE_BY_ZONE" => Some(Self::ZoneByZone),
+                "CONCURRENT_ZONES" => Some(Self::ConcurrentZones),
+                _ => None,
+            }
+        }
+    }
+}
+/// Get a report of the OS policy assignment for a VM instance.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetOsPolicyAssignmentReportRequest {
+    /// Required. API resource name for OS policy assignment report.
+    ///
+    /// Format:
+    /// `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report`
+    ///
+    /// For `{project}`, either `project-number` or `project-id` can be provided.
+    /// For `{instance_id}`, either Compute Engine `instance-id` or `instance-name`
+    /// can be provided.
+    /// For `{assignment_id}`, the OSPolicyAssignment id must be provided.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// List the OS policy assignment reports for VM instances.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListOsPolicyAssignmentReportsRequest {
+    /// Required. The parent resource name.
+    ///
+    /// Format:
+    /// `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/reports`
+    ///
+    /// For `{project}`, either `project-number` or `project-id` can be provided.
+    /// For `{instance}`, either `instance-name`, `instance-id`, or `-` can be
+    /// provided. If '-' is provided, the response will include
+    /// OSPolicyAssignmentReports for all instances in the project/location.
+    /// For `{assignment}`, either `assignment-id` or `-` can be provided. If '-'
+    /// is provided, the response will include OSPolicyAssignmentReports for all
+    /// OSPolicyAssignments in the project/location.
+    /// Either {instance} or {assignment} must be `-`.
+    ///
+    /// For example:
+    /// `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/-/reports`
+    /// returns all reports for the instance
+    /// `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/{assignment-id}/reports`
+    /// returns all the reports for the given assignment across all instances.
+    /// `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/-/reports`
+    /// returns all the reports for all assignments across all instances.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The maximum number of results to return.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// If provided, this field specifies the criteria that must be met by the
+    /// `OSPolicyAssignmentReport` API resource that is included in the response.
+    #[prost(string, tag = "3")]
+    pub filter: ::prost::alloc::string::String,
+    /// A pagination token returned from a previous call to the
+    /// `ListOSPolicyAssignmentReports` method that indicates where this listing
+    /// should continue from.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// A response message for listing OS Policy assignment reports including the
+/// page of results and page token.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListOsPolicyAssignmentReportsResponse {
+    /// List of OS policy assignment reports.
+    #[prost(message, repeated, tag = "1")]
+    pub os_policy_assignment_reports: ::prost::alloc::vec::Vec<OsPolicyAssignmentReport>,
+    /// The pagination token to retrieve the next page of OS policy assignment
+    /// report objects.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// A report of the OS policy assignment status for a given instance.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OsPolicyAssignmentReport {
+    /// The `OSPolicyAssignmentReport` API resource name.
+    ///
+    /// Format:
+    /// `projects/{project_number}/locations/{location}/instances/{instance_id}/osPolicyAssignments/{os_policy_assignment_id}/report`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The Compute Engine VM instance name.
+    #[prost(string, tag = "2")]
+    pub instance: ::prost::alloc::string::String,
+    /// Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
+    /// belongs to.
+    ///
+    /// Format:
+    /// `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`
+    #[prost(string, tag = "3")]
+    pub os_policy_assignment: ::prost::alloc::string::String,
+    /// Compliance data for each `OSPolicy` that is applied to the VM.
+    #[prost(message, repeated, tag = "4")]
+    pub os_policy_compliances: ::prost::alloc::vec::Vec<
+        os_policy_assignment_report::OsPolicyCompliance,
+    >,
+    /// Timestamp for when the report was last generated.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Unique identifier of the last attempted run to apply the OS policies
+    /// associated with this assignment on the VM.
+    ///
+    /// This ID is logged by the OS Config agent while applying the OS
+    /// policies associated with this assignment on the VM.
+    /// NOTE: If the service is unable to successfully connect to the agent for
+    /// this run, then this id will not be available in the agent logs.
+    #[prost(string, tag = "6")]
+    pub last_run_id: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `OSPolicyAssignmentReport`.
+pub mod os_policy_assignment_report {
+    /// Compliance data for an OS policy
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct OsPolicyCompliance {
+        /// The OS policy id
+        #[prost(string, tag = "1")]
+        pub os_policy_id: ::prost::alloc::string::String,
+        /// The compliance state of the OS policy.
+        #[prost(enumeration = "os_policy_compliance::ComplianceState", tag = "2")]
+        pub compliance_state: i32,
+        /// The reason for the OS policy to be in an unknown compliance state.
+        /// This field is always populated when `compliance_state` is `UNKNOWN`.
+        ///
+        /// If populated, the field can contain one of the following values:
+        ///
+        /// * `vm-not-running`: The VM was not running.
+        /// * `os-policies-not-supported-by-agent`: The version of the OS Config
+        ///   agent running on the VM does not support running OS policies.
+        /// * `no-agent-detected`: The OS Config agent is not detected for the VM.
+        /// * `resource-execution-errors`: The OS Config agent encountered errors
+        ///   while executing one or more resources in the policy. See
+        ///   `os_policy_resource_compliances` for details.
+        /// * `task-timeout`: The task sent to the agent to apply the policy timed
+        ///   out.
+        /// * `unexpected-agent-state`: The OS Config agent did not report the final
+        ///   status of the task that attempted to apply the policy. Instead, the agent
+        ///   unexpectedly started working on a different task. This mostly happens
+        ///   when the agent or VM unexpectedly restarts while applying OS policies.
+        /// * `internal-service-errors`: Internal service errors were encountered
+        ///   while attempting to apply the policy.
+        #[prost(string, tag = "3")]
+        pub compliance_state_reason: ::prost::alloc::string::String,
+        /// Compliance data for each resource within the policy that is applied to
+        /// the VM.
+        #[prost(message, repeated, tag = "4")]
+        pub os_policy_resource_compliances: ::prost::alloc::vec::Vec<
+            os_policy_compliance::OsPolicyResourceCompliance,
+        >,
+    }
+    /// Nested message and enum types in `OSPolicyCompliance`.
+    pub mod os_policy_compliance {
+        /// Compliance data for an OS policy resource.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct OsPolicyResourceCompliance {
+            /// The ID of the OS policy resource.
+            #[prost(string, tag = "1")]
+            pub os_policy_resource_id: ::prost::alloc::string::String,
+            /// Ordered list of configuration completed by the agent for the OS policy
+            /// resource.
+            #[prost(message, repeated, tag = "2")]
+            pub config_steps: ::prost::alloc::vec::Vec<
+                os_policy_resource_compliance::OsPolicyResourceConfigStep,
+            >,
+            /// The compliance state of the resource.
+            #[prost(
+                enumeration = "os_policy_resource_compliance::ComplianceState",
+                tag = "3"
+            )]
+            pub compliance_state: i32,
+            /// A reason for the resource to be in the given compliance state.
+            /// This field is always populated when `compliance_state` is `UNKNOWN`.
+            ///
+            /// The following values are supported when `compliance_state == UNKNOWN`
+            ///
+            /// * `execution-errors`: Errors were encountered by the agent while
+            ///   executing the resource and the compliance state couldn't be
+            ///   determined.
+            /// * `execution-skipped-by-agent`: Resource execution was skipped by the
+            ///   agent because errors were encountered while executing prior resources
+            ///   in the OS policy.
+            /// * `os-policy-execution-attempt-failed`: The execution of the OS policy
+            ///   containing this resource failed and the compliance state couldn't be
+            ///   determined.
+            #[prost(string, tag = "4")]
+            pub compliance_state_reason: ::prost::alloc::string::String,
+            /// Resource specific output.
+            #[prost(oneof = "os_policy_resource_compliance::Output", tags = "5")]
+            pub output: ::core::option::Option<os_policy_resource_compliance::Output>,
+        }
+        /// Nested message and enum types in `OSPolicyResourceCompliance`.
+        pub mod os_policy_resource_compliance {
+            /// Step performed by the OS Config agent for configuring an
+            /// `OSPolicy` resource to its desired state.
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct OsPolicyResourceConfigStep {
+                /// Configuration step type.
+                #[prost(enumeration = "os_policy_resource_config_step::Type", tag = "1")]
+                pub r#type: i32,
+                /// An error message recorded during the execution of this step.
+                /// Only populated if errors were encountered during this step execution.
+                #[prost(string, tag = "2")]
+                pub error_message: ::prost::alloc::string::String,
+            }
+            /// Nested message and enum types in `OSPolicyResourceConfigStep`.
+            pub mod os_policy_resource_config_step {
+                /// Supported configuration step types
+                #[derive(
+                    Clone,
+                    Copy,
+                    Debug,
+                    PartialEq,
+                    Eq,
+                    Hash,
+                    PartialOrd,
+                    Ord,
+                    ::prost::Enumeration
+                )]
+                #[repr(i32)]
+                pub enum Type {
+                    /// Default value. This value is unused.
+                    Unspecified = 0,
+                    /// Checks for resource conflicts such as schema errors.
+                    Validation = 1,
+                    /// Checks the current status of the desired state for a resource.
+                    DesiredStateCheck = 2,
+                    /// Enforces the desired state for a resource that is not in desired
+                    /// state.
+                    DesiredStateEnforcement = 3,
+                    /// Re-checks the status of the desired state. This check is done
+                    /// for a resource after the enforcement of all OS policies.
+                    ///
+                    /// This step is used to determine the final desired state status for
+                    /// the resource. It accounts for any resources that might have drifted
+                    /// from their desired state due to side effects from executing other
+                    /// resources.
+                    DesiredStateCheckPostEnforcement = 4,
+                }
+                impl Type {
+                    /// String value of the enum field names used in the ProtoBuf definition.
+                    ///
+                    /// The values are not transformed in any way and thus are considered stable
+                    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                    pub fn as_str_name(&self) -> &'static str {
+                        match self {
+                            Type::Unspecified => "TYPE_UNSPECIFIED",
+                            Type::Validation => "VALIDATION",
+                            Type::DesiredStateCheck => "DESIRED_STATE_CHECK",
+                            Type::DesiredStateEnforcement => "DESIRED_STATE_ENFORCEMENT",
+                            Type::DesiredStateCheckPostEnforcement => {
+                                "DESIRED_STATE_CHECK_POST_ENFORCEMENT"
+                            }
+                        }
+                    }
+                    /// Creates an enum from field names used in the ProtoBuf definition.
+                    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                        match value {
+                            "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                            "VALIDATION" => Some(Self::Validation),
+                            "DESIRED_STATE_CHECK" => Some(Self::DesiredStateCheck),
+                            "DESIRED_STATE_ENFORCEMENT" => {
+                                Some(Self::DesiredStateEnforcement)
+                            }
+                            "DESIRED_STATE_CHECK_POST_ENFORCEMENT" => {
+                                Some(Self::DesiredStateCheckPostEnforcement)
+                            }
+                            _ => None,
+                        }
+                    }
+                }
+            }
+            /// ExecResource specific output.
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct ExecResourceOutput {
+                /// Output from enforcement phase output file (if run).
+                /// Output size is limited to 100K bytes.
+                #[prost(bytes = "vec", tag = "2")]
+                pub enforcement_output: ::prost::alloc::vec::Vec<u8>,
+            }
+            /// Possible compliance states for a resource.
+            #[derive(
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
+            )]
+            #[repr(i32)]
+            pub enum ComplianceState {
+                /// The resource is in an unknown compliance state.
+                ///
+                /// To get more details about why the policy is in this state, review
+                /// the output of the `compliance_state_reason` field.
+                Unknown = 0,
+                /// Resource is compliant.
+                Compliant = 1,
+                /// Resource is non-compliant.
+                NonCompliant = 2,
+            }
+            impl ComplianceState {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        ComplianceState::Unknown => "UNKNOWN",
+                        ComplianceState::Compliant => "COMPLIANT",
+                        ComplianceState::NonCompliant => "NON_COMPLIANT",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "UNKNOWN" => Some(Self::Unknown),
+                        "COMPLIANT" => Some(Self::Compliant),
+                        "NON_COMPLIANT" => Some(Self::NonCompliant),
+                        _ => None,
+                    }
+                }
+            }
+            /// Resource specific output.
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Oneof)]
+            pub enum Output {
+                /// ExecResource specific output.
+                #[prost(message, tag = "5")]
+                ExecResourceOutput(ExecResourceOutput),
+            }
+        }
+        /// Possible compliance states for an os policy.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum ComplianceState {
+            /// The policy is in an unknown compliance state.
+            ///
+            /// Refer to the field `compliance_state_reason` to learn the exact reason
+            /// for the policy to be in this compliance state.
+            Unknown = 0,
+            /// Policy is compliant.
+            ///
+            /// The policy is compliant if all the underlying resources are also
+            /// compliant.
+            Compliant = 1,
+            /// Policy is non-compliant.
+            ///
+            /// The policy is non-compliant if one or more underlying resources are
+            /// non-compliant.
+            NonCompliant = 2,
+        }
+        impl ComplianceState {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ComplianceState::Unknown => "UNKNOWN",
+                    ComplianceState::Compliant => "COMPLIANT",
+                    ComplianceState::NonCompliant => "NON_COMPLIANT",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNKNOWN" => Some(Self::Unknown),
+                    "COMPLIANT" => Some(Self::Compliant),
+                    "NON_COMPLIANT" => Some(Self::NonCompliant),
+                    _ => None,
+                }
+            }
+        }
+    }
+}
 /// An OS policy defines the desired state configuration for a VM.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1256,419 +2667,6 @@ pub mod os_policy {
                 "VALIDATION" => Some(Self::Validation),
                 "ENFORCEMENT" => Some(Self::Enforcement),
                 _ => None,
-            }
-        }
-    }
-}
-/// Message encapsulating a value that can be either absolute ("fixed") or
-/// relative ("percent") to a value.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct FixedOrPercent {
-    /// Type of the value.
-    #[prost(oneof = "fixed_or_percent::Mode", tags = "1, 2")]
-    pub mode: ::core::option::Option<fixed_or_percent::Mode>,
-}
-/// Nested message and enum types in `FixedOrPercent`.
-pub mod fixed_or_percent {
-    /// Type of the value.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Mode {
-        /// Specifies a fixed value.
-        #[prost(int32, tag = "1")]
-        Fixed(i32),
-        /// Specifies the relative value defined as a percentage, which will be
-        /// multiplied by a reference value.
-        #[prost(int32, tag = "2")]
-        Percent(i32),
-    }
-}
-/// Get a report of the OS policy assignment for a VM instance.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetOsPolicyAssignmentReportRequest {
-    /// Required. API resource name for OS policy assignment report.
-    ///
-    /// Format:
-    /// `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report`
-    ///
-    /// For `{project}`, either `project-number` or `project-id` can be provided.
-    /// For `{instance_id}`, either Compute Engine `instance-id` or `instance-name`
-    /// can be provided.
-    /// For `{assignment_id}`, the OSPolicyAssignment id must be provided.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// List the OS policy assignment reports for VM instances.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListOsPolicyAssignmentReportsRequest {
-    /// Required. The parent resource name.
-    ///
-    /// Format:
-    /// `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/reports`
-    ///
-    /// For `{project}`, either `project-number` or `project-id` can be provided.
-    /// For `{instance}`, either `instance-name`, `instance-id`, or `-` can be
-    /// provided. If '-' is provided, the response will include
-    /// OSPolicyAssignmentReports for all instances in the project/location.
-    /// For `{assignment}`, either `assignment-id` or `-` can be provided. If '-'
-    /// is provided, the response will include OSPolicyAssignmentReports for all
-    /// OSPolicyAssignments in the project/location.
-    /// Either {instance} or {assignment} must be `-`.
-    ///
-    /// For example:
-    /// `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/-/reports`
-    /// returns all reports for the instance
-    /// `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/{assignment-id}/reports`
-    /// returns all the reports for the given assignment across all instances.
-    /// `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/-/reports`
-    /// returns all the reports for all assignments across all instances.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The maximum number of results to return.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// If provided, this field specifies the criteria that must be met by the
-    /// `OSPolicyAssignmentReport` API resource that is included in the response.
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    /// A pagination token returned from a previous call to the
-    /// `ListOSPolicyAssignmentReports` method that indicates where this listing
-    /// should continue from.
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// A response message for listing OS Policy assignment reports including the
-/// page of results and page token.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListOsPolicyAssignmentReportsResponse {
-    /// List of OS policy assignment reports.
-    #[prost(message, repeated, tag = "1")]
-    pub os_policy_assignment_reports: ::prost::alloc::vec::Vec<OsPolicyAssignmentReport>,
-    /// The pagination token to retrieve the next page of OS policy assignment
-    /// report objects.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// A report of the OS policy assignment status for a given instance.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OsPolicyAssignmentReport {
-    /// The `OSPolicyAssignmentReport` API resource name.
-    ///
-    /// Format:
-    /// `projects/{project_number}/locations/{location}/instances/{instance_id}/osPolicyAssignments/{os_policy_assignment_id}/report`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The Compute Engine VM instance name.
-    #[prost(string, tag = "2")]
-    pub instance: ::prost::alloc::string::String,
-    /// Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
-    /// belongs to.
-    ///
-    /// Format:
-    /// `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`
-    #[prost(string, tag = "3")]
-    pub os_policy_assignment: ::prost::alloc::string::String,
-    /// Compliance data for each `OSPolicy` that is applied to the VM.
-    #[prost(message, repeated, tag = "4")]
-    pub os_policy_compliances: ::prost::alloc::vec::Vec<
-        os_policy_assignment_report::OsPolicyCompliance,
-    >,
-    /// Timestamp for when the report was last generated.
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Unique identifier of the last attempted run to apply the OS policies
-    /// associated with this assignment on the VM.
-    ///
-    /// This ID is logged by the OS Config agent while applying the OS
-    /// policies associated with this assignment on the VM.
-    /// NOTE: If the service is unable to successfully connect to the agent for
-    /// this run, then this id will not be available in the agent logs.
-    #[prost(string, tag = "6")]
-    pub last_run_id: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `OSPolicyAssignmentReport`.
-pub mod os_policy_assignment_report {
-    /// Compliance data for an OS policy
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct OsPolicyCompliance {
-        /// The OS policy id
-        #[prost(string, tag = "1")]
-        pub os_policy_id: ::prost::alloc::string::String,
-        /// The compliance state of the OS policy.
-        #[prost(enumeration = "os_policy_compliance::ComplianceState", tag = "2")]
-        pub compliance_state: i32,
-        /// The reason for the OS policy to be in an unknown compliance state.
-        /// This field is always populated when `compliance_state` is `UNKNOWN`.
-        ///
-        /// If populated, the field can contain one of the following values:
-        ///
-        /// * `vm-not-running`: The VM was not running.
-        /// * `os-policies-not-supported-by-agent`: The version of the OS Config
-        ///   agent running on the VM does not support running OS policies.
-        /// * `no-agent-detected`: The OS Config agent is not detected for the VM.
-        /// * `resource-execution-errors`: The OS Config agent encountered errors
-        ///   while executing one or more resources in the policy. See
-        ///   `os_policy_resource_compliances` for details.
-        /// * `task-timeout`: The task sent to the agent to apply the policy timed
-        ///   out.
-        /// * `unexpected-agent-state`: The OS Config agent did not report the final
-        ///   status of the task that attempted to apply the policy. Instead, the agent
-        ///   unexpectedly started working on a different task. This mostly happens
-        ///   when the agent or VM unexpectedly restarts while applying OS policies.
-        /// * `internal-service-errors`: Internal service errors were encountered
-        ///   while attempting to apply the policy.
-        #[prost(string, tag = "3")]
-        pub compliance_state_reason: ::prost::alloc::string::String,
-        /// Compliance data for each resource within the policy that is applied to
-        /// the VM.
-        #[prost(message, repeated, tag = "4")]
-        pub os_policy_resource_compliances: ::prost::alloc::vec::Vec<
-            os_policy_compliance::OsPolicyResourceCompliance,
-        >,
-    }
-    /// Nested message and enum types in `OSPolicyCompliance`.
-    pub mod os_policy_compliance {
-        /// Compliance data for an OS policy resource.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct OsPolicyResourceCompliance {
-            /// The ID of the OS policy resource.
-            #[prost(string, tag = "1")]
-            pub os_policy_resource_id: ::prost::alloc::string::String,
-            /// Ordered list of configuration completed by the agent for the OS policy
-            /// resource.
-            #[prost(message, repeated, tag = "2")]
-            pub config_steps: ::prost::alloc::vec::Vec<
-                os_policy_resource_compliance::OsPolicyResourceConfigStep,
-            >,
-            /// The compliance state of the resource.
-            #[prost(
-                enumeration = "os_policy_resource_compliance::ComplianceState",
-                tag = "3"
-            )]
-            pub compliance_state: i32,
-            /// A reason for the resource to be in the given compliance state.
-            /// This field is always populated when `compliance_state` is `UNKNOWN`.
-            ///
-            /// The following values are supported when `compliance_state == UNKNOWN`
-            ///
-            /// * `execution-errors`: Errors were encountered by the agent while
-            ///   executing the resource and the compliance state couldn't be
-            ///   determined.
-            /// * `execution-skipped-by-agent`: Resource execution was skipped by the
-            ///   agent because errors were encountered while executing prior resources
-            ///   in the OS policy.
-            /// * `os-policy-execution-attempt-failed`: The execution of the OS policy
-            ///   containing this resource failed and the compliance state couldn't be
-            ///   determined.
-            #[prost(string, tag = "4")]
-            pub compliance_state_reason: ::prost::alloc::string::String,
-            /// Resource specific output.
-            #[prost(oneof = "os_policy_resource_compliance::Output", tags = "5")]
-            pub output: ::core::option::Option<os_policy_resource_compliance::Output>,
-        }
-        /// Nested message and enum types in `OSPolicyResourceCompliance`.
-        pub mod os_policy_resource_compliance {
-            /// Step performed by the OS Config agent for configuring an
-            /// `OSPolicy` resource to its desired state.
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct OsPolicyResourceConfigStep {
-                /// Configuration step type.
-                #[prost(enumeration = "os_policy_resource_config_step::Type", tag = "1")]
-                pub r#type: i32,
-                /// An error message recorded during the execution of this step.
-                /// Only populated if errors were encountered during this step execution.
-                #[prost(string, tag = "2")]
-                pub error_message: ::prost::alloc::string::String,
-            }
-            /// Nested message and enum types in `OSPolicyResourceConfigStep`.
-            pub mod os_policy_resource_config_step {
-                /// Supported configuration step types
-                #[derive(
-                    Clone,
-                    Copy,
-                    Debug,
-                    PartialEq,
-                    Eq,
-                    Hash,
-                    PartialOrd,
-                    Ord,
-                    ::prost::Enumeration
-                )]
-                #[repr(i32)]
-                pub enum Type {
-                    /// Default value. This value is unused.
-                    Unspecified = 0,
-                    /// Checks for resource conflicts such as schema errors.
-                    Validation = 1,
-                    /// Checks the current status of the desired state for a resource.
-                    DesiredStateCheck = 2,
-                    /// Enforces the desired state for a resource that is not in desired
-                    /// state.
-                    DesiredStateEnforcement = 3,
-                    /// Re-checks the status of the desired state. This check is done
-                    /// for a resource after the enforcement of all OS policies.
-                    ///
-                    /// This step is used to determine the final desired state status for
-                    /// the resource. It accounts for any resources that might have drifted
-                    /// from their desired state due to side effects from executing other
-                    /// resources.
-                    DesiredStateCheckPostEnforcement = 4,
-                }
-                impl Type {
-                    /// String value of the enum field names used in the ProtoBuf definition.
-                    ///
-                    /// The values are not transformed in any way and thus are considered stable
-                    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                    pub fn as_str_name(&self) -> &'static str {
-                        match self {
-                            Type::Unspecified => "TYPE_UNSPECIFIED",
-                            Type::Validation => "VALIDATION",
-                            Type::DesiredStateCheck => "DESIRED_STATE_CHECK",
-                            Type::DesiredStateEnforcement => "DESIRED_STATE_ENFORCEMENT",
-                            Type::DesiredStateCheckPostEnforcement => {
-                                "DESIRED_STATE_CHECK_POST_ENFORCEMENT"
-                            }
-                        }
-                    }
-                    /// Creates an enum from field names used in the ProtoBuf definition.
-                    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                        match value {
-                            "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                            "VALIDATION" => Some(Self::Validation),
-                            "DESIRED_STATE_CHECK" => Some(Self::DesiredStateCheck),
-                            "DESIRED_STATE_ENFORCEMENT" => {
-                                Some(Self::DesiredStateEnforcement)
-                            }
-                            "DESIRED_STATE_CHECK_POST_ENFORCEMENT" => {
-                                Some(Self::DesiredStateCheckPostEnforcement)
-                            }
-                            _ => None,
-                        }
-                    }
-                }
-            }
-            /// ExecResource specific output.
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct ExecResourceOutput {
-                /// Output from enforcement phase output file (if run).
-                /// Output size is limited to 100K bytes.
-                #[prost(bytes = "vec", tag = "2")]
-                pub enforcement_output: ::prost::alloc::vec::Vec<u8>,
-            }
-            /// Possible compliance states for a resource.
-            #[derive(
-                Clone,
-                Copy,
-                Debug,
-                PartialEq,
-                Eq,
-                Hash,
-                PartialOrd,
-                Ord,
-                ::prost::Enumeration
-            )]
-            #[repr(i32)]
-            pub enum ComplianceState {
-                /// The resource is in an unknown compliance state.
-                ///
-                /// To get more details about why the policy is in this state, review
-                /// the output of the `compliance_state_reason` field.
-                Unknown = 0,
-                /// Resource is compliant.
-                Compliant = 1,
-                /// Resource is non-compliant.
-                NonCompliant = 2,
-            }
-            impl ComplianceState {
-                /// String value of the enum field names used in the ProtoBuf definition.
-                ///
-                /// The values are not transformed in any way and thus are considered stable
-                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                pub fn as_str_name(&self) -> &'static str {
-                    match self {
-                        ComplianceState::Unknown => "UNKNOWN",
-                        ComplianceState::Compliant => "COMPLIANT",
-                        ComplianceState::NonCompliant => "NON_COMPLIANT",
-                    }
-                }
-                /// Creates an enum from field names used in the ProtoBuf definition.
-                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                    match value {
-                        "UNKNOWN" => Some(Self::Unknown),
-                        "COMPLIANT" => Some(Self::Compliant),
-                        "NON_COMPLIANT" => Some(Self::NonCompliant),
-                        _ => None,
-                    }
-                }
-            }
-            /// Resource specific output.
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
-            pub enum Output {
-                /// ExecResource specific output.
-                #[prost(message, tag = "5")]
-                ExecResourceOutput(ExecResourceOutput),
-            }
-        }
-        /// Possible compliance states for an os policy.
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ComplianceState {
-            /// The policy is in an unknown compliance state.
-            ///
-            /// Refer to the field `compliance_state_reason` to learn the exact reason
-            /// for the policy to be in this compliance state.
-            Unknown = 0,
-            /// Policy is compliant.
-            ///
-            /// The policy is compliant if all the underlying resources are also
-            /// compliant.
-            Compliant = 1,
-            /// Policy is non-compliant.
-            ///
-            /// The policy is non-compliant if one or more underlying resources are
-            /// non-compliant.
-            NonCompliant = 2,
-        }
-        impl ComplianceState {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ComplianceState::Unknown => "UNKNOWN",
-                    ComplianceState::Compliant => "COMPLIANT",
-                    ComplianceState::NonCompliant => "NON_COMPLIANT",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "UNKNOWN" => Some(Self::Unknown),
-                    "COMPLIANT" => Some(Self::Compliant),
-                    "NON_COMPLIANT" => Some(Self::NonCompliant),
-                    _ => None,
-                }
             }
         }
     }
@@ -3167,1004 +4165,6 @@ pub mod os_config_zonal_service_client {
                     ),
                 );
             self.inner.unary(req, path, codec).await
-        }
-    }
-}
-/// A request message to initiate patching across Compute Engine
-/// instances.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecutePatchJobRequest {
-    /// Required. The project in which to run this patch in the form `projects/*`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Description of the patch job. Length of the description is limited
-    /// to 1024 characters.
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Required. Instances to patch, either explicitly or filtered by some
-    /// criteria such as zone or labels.
-    #[prost(message, optional, tag = "7")]
-    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
-    /// Patch configuration being applied. If omitted, instances are
-    /// patched using the default configurations.
-    #[prost(message, optional, tag = "4")]
-    pub patch_config: ::core::option::Option<PatchConfig>,
-    /// Duration of the patch job. After the duration ends, the patch job
-    /// times out.
-    #[prost(message, optional, tag = "5")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    /// If this patch is a dry-run only, instances are contacted but
-    /// will do nothing.
-    #[prost(bool, tag = "6")]
-    pub dry_run: bool,
-    /// Display name for this patch job. This does not have to be unique.
-    #[prost(string, tag = "8")]
-    pub display_name: ::prost::alloc::string::String,
-    /// Rollout strategy of the patch job.
-    #[prost(message, optional, tag = "9")]
-    pub rollout: ::core::option::Option<PatchRollout>,
-}
-/// Request to get an active or completed patch job.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPatchJobRequest {
-    /// Required. Name of the patch in the form `projects/*/patchJobs/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request to list details for all instances that are part of a patch job.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListPatchJobInstanceDetailsRequest {
-    /// Required. The parent for the instances are in the form of
-    /// `projects/*/patchJobs/*`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The maximum number of instance details records to return.  Default is 100.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// A pagination token returned from a previous call
-    /// that indicates where this listing should continue from.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// A filter expression that filters results listed in the response. This
-    /// field supports filtering results by instance zone, name, state, or
-    /// `failure_reason`.
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-}
-/// A response message for listing the instances details for a patch job.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListPatchJobInstanceDetailsResponse {
-    /// A list of instance status.
-    #[prost(message, repeated, tag = "1")]
-    pub patch_job_instance_details: ::prost::alloc::vec::Vec<PatchJobInstanceDetails>,
-    /// A pagination token that can be used to get the next page of results.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Patch details for a VM instance. For more information about reviewing VM
-/// instance details, see
-/// [Listing all VM instance details for a specific patch
-/// job](<https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details>).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PatchJobInstanceDetails {
-    /// The instance name in the form `projects/*/zones/*/instances/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The unique identifier for the instance. This identifier is
-    /// defined by the server.
-    #[prost(string, tag = "2")]
-    pub instance_system_id: ::prost::alloc::string::String,
-    /// Current state of instance patch.
-    #[prost(enumeration = "instance::PatchState", tag = "3")]
-    pub state: i32,
-    /// If the patch fails, this field provides the reason.
-    #[prost(string, tag = "4")]
-    pub failure_reason: ::prost::alloc::string::String,
-    /// The number of times the agent that the agent attempts to apply the patch.
-    #[prost(int64, tag = "5")]
-    pub attempt_count: i64,
-}
-/// A request message for listing patch jobs.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListPatchJobsRequest {
-    /// Required. In the form of `projects/*`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The maximum number of instance status to return.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// A pagination token returned from a previous call
-    /// that indicates where this listing should continue from.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// If provided, this field specifies the criteria that must be met by patch
-    /// jobs to be included in the response.
-    /// Currently, filtering is only available on the patch_deployment field.
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-}
-/// A response message for listing patch jobs.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListPatchJobsResponse {
-    /// The list of patch jobs.
-    #[prost(message, repeated, tag = "1")]
-    pub patch_jobs: ::prost::alloc::vec::Vec<PatchJob>,
-    /// A pagination token that can be used to get the next page of results.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// A high level representation of a patch job that is either in progress
-/// or has completed.
-///
-/// Instance details are not included in the job. To paginate through instance
-/// details, use ListPatchJobInstanceDetails.
-///
-/// For more information about patch jobs, see
-/// [Creating patch
-/// jobs](<https://cloud.google.com/compute/docs/os-patch-management/create-patch-job>).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PatchJob {
-    /// Unique identifier for this patch job in the form
-    /// `projects/*/patchJobs/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Display name for this patch job. This is not a unique identifier.
-    #[prost(string, tag = "14")]
-    pub display_name: ::prost::alloc::string::String,
-    /// Description of the patch job. Length of the description is limited
-    /// to 1024 characters.
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Time this patch job was created.
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Last time this patch job was updated.
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// The current state of the PatchJob.
-    #[prost(enumeration = "patch_job::State", tag = "5")]
-    pub state: i32,
-    /// Instances to patch.
-    #[prost(message, optional, tag = "13")]
-    pub instance_filter: ::core::option::Option<PatchInstanceFilter>,
-    /// Patch configuration being applied.
-    #[prost(message, optional, tag = "7")]
-    pub patch_config: ::core::option::Option<PatchConfig>,
-    /// Duration of the patch job. After the duration ends, the
-    /// patch job times out.
-    #[prost(message, optional, tag = "8")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    /// Summary of instance details.
-    #[prost(message, optional, tag = "9")]
-    pub instance_details_summary: ::core::option::Option<
-        patch_job::InstanceDetailsSummary,
-    >,
-    /// If this patch job is a dry run, the agent reports that it has
-    /// finished without running any updates on the VM instance.
-    #[prost(bool, tag = "10")]
-    pub dry_run: bool,
-    /// If this patch job failed, this message provides information about the
-    /// failure.
-    #[prost(string, tag = "11")]
-    pub error_message: ::prost::alloc::string::String,
-    /// Reflects the overall progress of the patch job in the range of
-    /// 0.0 being no progress to 100.0 being complete.
-    #[prost(double, tag = "12")]
-    pub percent_complete: f64,
-    /// Output only. Name of the patch deployment that created this patch job.
-    #[prost(string, tag = "15")]
-    pub patch_deployment: ::prost::alloc::string::String,
-    /// Rollout strategy being applied.
-    #[prost(message, optional, tag = "16")]
-    pub rollout: ::core::option::Option<PatchRollout>,
-}
-/// Nested message and enum types in `PatchJob`.
-pub mod patch_job {
-    /// A summary of the current patch state across all instances that this patch
-    /// job affects. Contains counts of instances in different states. These states
-    /// map to `InstancePatchState`. List patch job instance details to see the
-    /// specific states of each instance.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct InstanceDetailsSummary {
-        /// Number of instances pending patch job.
-        #[prost(int64, tag = "1")]
-        pub pending_instance_count: i64,
-        /// Number of instances that are inactive.
-        #[prost(int64, tag = "2")]
-        pub inactive_instance_count: i64,
-        /// Number of instances notified about patch job.
-        #[prost(int64, tag = "3")]
-        pub notified_instance_count: i64,
-        /// Number of instances that have started.
-        #[prost(int64, tag = "4")]
-        pub started_instance_count: i64,
-        /// Number of instances that are downloading patches.
-        #[prost(int64, tag = "5")]
-        pub downloading_patches_instance_count: i64,
-        /// Number of instances that are applying patches.
-        #[prost(int64, tag = "6")]
-        pub applying_patches_instance_count: i64,
-        /// Number of instances rebooting.
-        #[prost(int64, tag = "7")]
-        pub rebooting_instance_count: i64,
-        /// Number of instances that have completed successfully.
-        #[prost(int64, tag = "8")]
-        pub succeeded_instance_count: i64,
-        /// Number of instances that require reboot.
-        #[prost(int64, tag = "9")]
-        pub succeeded_reboot_required_instance_count: i64,
-        /// Number of instances that failed.
-        #[prost(int64, tag = "10")]
-        pub failed_instance_count: i64,
-        /// Number of instances that have acked and will start shortly.
-        #[prost(int64, tag = "11")]
-        pub acked_instance_count: i64,
-        /// Number of instances that exceeded the time out while applying the patch.
-        #[prost(int64, tag = "12")]
-        pub timed_out_instance_count: i64,
-        /// Number of instances that are running the pre-patch step.
-        #[prost(int64, tag = "13")]
-        pub pre_patch_step_instance_count: i64,
-        /// Number of instances that are running the post-patch step.
-        #[prost(int64, tag = "14")]
-        pub post_patch_step_instance_count: i64,
-        /// Number of instances that do not appear to be running the agent. Check to
-        /// ensure that the agent is installed, running, and able to communicate with
-        /// the service.
-        #[prost(int64, tag = "15")]
-        pub no_agent_detected_instance_count: i64,
-    }
-    /// Enumeration of the various states a patch job passes through as it
-    /// executes.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// State must be specified.
-        Unspecified = 0,
-        /// The patch job was successfully initiated.
-        Started = 1,
-        /// The patch job is looking up instances to run the patch on.
-        InstanceLookup = 2,
-        /// Instances are being patched.
-        Patching = 3,
-        /// Patch job completed successfully.
-        Succeeded = 4,
-        /// Patch job completed but there were errors.
-        CompletedWithErrors = 5,
-        /// The patch job was canceled.
-        Canceled = 6,
-        /// The patch job timed out.
-        TimedOut = 7,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::InstanceLookup => "INSTANCE_LOOKUP",
-                State::Patching => "PATCHING",
-                State::Succeeded => "SUCCEEDED",
-                State::CompletedWithErrors => "COMPLETED_WITH_ERRORS",
-                State::Canceled => "CANCELED",
-                State::TimedOut => "TIMED_OUT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STARTED" => Some(Self::Started),
-                "INSTANCE_LOOKUP" => Some(Self::InstanceLookup),
-                "PATCHING" => Some(Self::Patching),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "COMPLETED_WITH_ERRORS" => Some(Self::CompletedWithErrors),
-                "CANCELED" => Some(Self::Canceled),
-                "TIMED_OUT" => Some(Self::TimedOut),
-                _ => None,
-            }
-        }
-    }
-}
-/// Patch configuration specifications. Contains details on how to apply the
-/// patch(es) to a VM instance.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PatchConfig {
-    /// Post-patch reboot settings.
-    #[prost(enumeration = "patch_config::RebootConfig", tag = "1")]
-    pub reboot_config: i32,
-    /// Apt update settings. Use this setting to override the default `apt` patch
-    /// rules.
-    #[prost(message, optional, tag = "3")]
-    pub apt: ::core::option::Option<AptSettings>,
-    /// Yum update settings. Use this setting to override the default `yum` patch
-    /// rules.
-    #[prost(message, optional, tag = "4")]
-    pub yum: ::core::option::Option<YumSettings>,
-    /// Goo update settings. Use this setting to override the default `goo` patch
-    /// rules.
-    #[prost(message, optional, tag = "5")]
-    pub goo: ::core::option::Option<GooSettings>,
-    /// Zypper update settings. Use this setting to override the default `zypper`
-    /// patch rules.
-    #[prost(message, optional, tag = "6")]
-    pub zypper: ::core::option::Option<ZypperSettings>,
-    /// Windows update settings. Use this override the default windows patch rules.
-    #[prost(message, optional, tag = "7")]
-    pub windows_update: ::core::option::Option<WindowsUpdateSettings>,
-    /// The `ExecStep` to run before the patch update.
-    #[prost(message, optional, tag = "8")]
-    pub pre_step: ::core::option::Option<ExecStep>,
-    /// The `ExecStep` to run after the patch update.
-    #[prost(message, optional, tag = "9")]
-    pub post_step: ::core::option::Option<ExecStep>,
-    /// Allows the patch job to run on Managed instance groups (MIGs).
-    #[prost(bool, tag = "10")]
-    pub mig_instances_allowed: bool,
-}
-/// Nested message and enum types in `PatchConfig`.
-pub mod patch_config {
-    /// Post-patch reboot settings.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RebootConfig {
-        /// The default behavior is DEFAULT.
-        Unspecified = 0,
-        /// The agent decides if a reboot is necessary by checking signals such as
-        /// registry keys on Windows or `/var/run/reboot-required` on APT based
-        /// systems. On RPM based systems, a set of core system package install times
-        /// are compared with system boot time.
-        Default = 1,
-        /// Always reboot the machine after the update completes.
-        Always = 2,
-        /// Never reboot the machine after the update completes.
-        Never = 3,
-    }
-    impl RebootConfig {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RebootConfig::Unspecified => "REBOOT_CONFIG_UNSPECIFIED",
-                RebootConfig::Default => "DEFAULT",
-                RebootConfig::Always => "ALWAYS",
-                RebootConfig::Never => "NEVER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REBOOT_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEFAULT" => Some(Self::Default),
-                "ALWAYS" => Some(Self::Always),
-                "NEVER" => Some(Self::Never),
-                _ => None,
-            }
-        }
-    }
-}
-/// Namespace for instance state enums.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Instance {}
-/// Nested message and enum types in `Instance`.
-pub mod instance {
-    /// Patch state of an instance.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PatchState {
-        /// Unspecified.
-        Unspecified = 0,
-        /// The instance is not yet notified.
-        Pending = 1,
-        /// Instance is inactive and cannot be patched.
-        Inactive = 2,
-        /// The instance is notified that it should be patched.
-        Notified = 3,
-        /// The instance has started the patching process.
-        Started = 4,
-        /// The instance is downloading patches.
-        DownloadingPatches = 5,
-        /// The instance is applying patches.
-        ApplyingPatches = 6,
-        /// The instance is rebooting.
-        Rebooting = 7,
-        /// The instance has completed applying patches.
-        Succeeded = 8,
-        /// The instance has completed applying patches but a reboot is required.
-        SucceededRebootRequired = 9,
-        /// The instance has failed to apply the patch.
-        Failed = 10,
-        /// The instance acked the notification and will start shortly.
-        Acked = 11,
-        /// The instance exceeded the time out while applying the patch.
-        TimedOut = 12,
-        /// The instance is running the pre-patch step.
-        RunningPrePatchStep = 13,
-        /// The instance is running the post-patch step.
-        RunningPostPatchStep = 14,
-        /// The service could not detect the presence of the agent. Check to ensure
-        /// that the agent is installed, running, and able to communicate with the
-        /// service.
-        NoAgentDetected = 15,
-    }
-    impl PatchState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PatchState::Unspecified => "PATCH_STATE_UNSPECIFIED",
-                PatchState::Pending => "PENDING",
-                PatchState::Inactive => "INACTIVE",
-                PatchState::Notified => "NOTIFIED",
-                PatchState::Started => "STARTED",
-                PatchState::DownloadingPatches => "DOWNLOADING_PATCHES",
-                PatchState::ApplyingPatches => "APPLYING_PATCHES",
-                PatchState::Rebooting => "REBOOTING",
-                PatchState::Succeeded => "SUCCEEDED",
-                PatchState::SucceededRebootRequired => "SUCCEEDED_REBOOT_REQUIRED",
-                PatchState::Failed => "FAILED",
-                PatchState::Acked => "ACKED",
-                PatchState::TimedOut => "TIMED_OUT",
-                PatchState::RunningPrePatchStep => "RUNNING_PRE_PATCH_STEP",
-                PatchState::RunningPostPatchStep => "RUNNING_POST_PATCH_STEP",
-                PatchState::NoAgentDetected => "NO_AGENT_DETECTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PATCH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "INACTIVE" => Some(Self::Inactive),
-                "NOTIFIED" => Some(Self::Notified),
-                "STARTED" => Some(Self::Started),
-                "DOWNLOADING_PATCHES" => Some(Self::DownloadingPatches),
-                "APPLYING_PATCHES" => Some(Self::ApplyingPatches),
-                "REBOOTING" => Some(Self::Rebooting),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "SUCCEEDED_REBOOT_REQUIRED" => Some(Self::SucceededRebootRequired),
-                "FAILED" => Some(Self::Failed),
-                "ACKED" => Some(Self::Acked),
-                "TIMED_OUT" => Some(Self::TimedOut),
-                "RUNNING_PRE_PATCH_STEP" => Some(Self::RunningPrePatchStep),
-                "RUNNING_POST_PATCH_STEP" => Some(Self::RunningPostPatchStep),
-                "NO_AGENT_DETECTED" => Some(Self::NoAgentDetected),
-                _ => None,
-            }
-        }
-    }
-}
-/// Message for canceling a patch job.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CancelPatchJobRequest {
-    /// Required. Name of the patch in the form `projects/*/patchJobs/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AptSettings {
-    /// By changing the type to DIST, the patching is performed
-    /// using `apt-get dist-upgrade` instead.
-    #[prost(enumeration = "apt_settings::Type", tag = "1")]
-    pub r#type: i32,
-    /// List of packages to exclude from update. These packages will be excluded
-    #[prost(string, repeated, tag = "2")]
-    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// An exclusive list of packages to be updated. These are the only packages
-    /// that will be updated. If these packages are not installed, they will be
-    /// ignored. This field cannot be specified with any other patch configuration
-    /// fields.
-    #[prost(string, repeated, tag = "3")]
-    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `AptSettings`.
-pub mod apt_settings {
-    /// Apt patch type.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        /// By default, upgrade will be performed.
-        Unspecified = 0,
-        /// Runs `apt-get dist-upgrade`.
-        Dist = 1,
-        /// Runs `apt-get upgrade`.
-        Upgrade = 2,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Dist => "DIST",
-                Type::Upgrade => "UPGRADE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DIST" => Some(Self::Dist),
-                "UPGRADE" => Some(Self::Upgrade),
-                _ => None,
-            }
-        }
-    }
-}
-/// Yum patching is performed by executing `yum update`. Additional options
-/// can be set to control how this is executed.
-///
-/// Note that not all settings are supported on all platforms.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct YumSettings {
-    /// Adds the `--security` flag to `yum update`. Not supported on
-    /// all platforms.
-    #[prost(bool, tag = "1")]
-    pub security: bool,
-    /// Will cause patch to run `yum update-minimal` instead.
-    #[prost(bool, tag = "2")]
-    pub minimal: bool,
-    /// List of packages to exclude from update. These packages are excluded by
-    /// using the yum `--exclude` flag.
-    #[prost(string, repeated, tag = "3")]
-    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// An exclusive list of packages to be updated. These are the only packages
-    /// that will be updated. If these packages are not installed, they will be
-    /// ignored. This field must not be specified with any other patch
-    /// configuration fields.
-    #[prost(string, repeated, tag = "4")]
-    pub exclusive_packages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Googet patching is performed by running `googet update`.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GooSettings {}
-/// Zypper patching is performed by running `zypper patch`.
-/// See also <https://en.opensuse.org/SDB:Zypper_manual.>
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ZypperSettings {
-    /// Adds the `--with-optional` flag to `zypper patch`.
-    #[prost(bool, tag = "1")]
-    pub with_optional: bool,
-    /// Adds the `--with-update` flag, to `zypper patch`.
-    #[prost(bool, tag = "2")]
-    pub with_update: bool,
-    /// Install only patches with these categories.
-    /// Common categories include security, recommended, and feature.
-    #[prost(string, repeated, tag = "3")]
-    pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Install only patches with these severities.
-    /// Common severities include critical, important, moderate, and low.
-    #[prost(string, repeated, tag = "4")]
-    pub severities: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// List of patches to exclude from update.
-    #[prost(string, repeated, tag = "5")]
-    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// An exclusive list of patches to be updated. These are the only patches
-    /// that will be installed using 'zypper patch patch:\<patch_name>' command.
-    /// This field must not be used with any other patch configuration fields.
-    #[prost(string, repeated, tag = "6")]
-    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Windows patching is performed using the Windows Update Agent.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WindowsUpdateSettings {
-    /// Only apply updates of these windows update classifications. If empty, all
-    /// updates are applied.
-    #[prost(
-        enumeration = "windows_update_settings::Classification",
-        repeated,
-        tag = "1"
-    )]
-    pub classifications: ::prost::alloc::vec::Vec<i32>,
-    /// List of KBs to exclude from update.
-    #[prost(string, repeated, tag = "2")]
-    pub excludes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// An exclusive list of kbs to be updated. These are the only patches
-    /// that will be updated. This field must not be used with other
-    /// patch configurations.
-    #[prost(string, repeated, tag = "3")]
-    pub exclusive_patches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `WindowsUpdateSettings`.
-pub mod windows_update_settings {
-    /// Microsoft Windows update classifications as defined in
-    /// \[1\]
-    /// <https://support.microsoft.com/en-us/help/824684/description-of-the-standard-terminology-that-is-used-to-describe-micro>
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Classification {
-        /// Invalid. If classifications are included, they must be specified.
-        Unspecified = 0,
-        /// "A widely released fix for a specific problem that addresses a critical,
-        /// non-security-related bug." \[1\]
-        Critical = 1,
-        /// "A widely released fix for a product-specific, security-related
-        /// vulnerability. Security vulnerabilities are rated by their severity. The
-        /// severity rating is indicated in the Microsoft security bulletin as
-        /// critical, important, moderate, or low." \[1\]
-        Security = 2,
-        /// "A widely released and frequent software update that contains additions
-        /// to a product's definition database. Definition databases are often used
-        /// to detect objects that have specific attributes, such as malicious code,
-        /// phishing websites, or junk mail." \[1\]
-        Definition = 3,
-        /// "Software that controls the input and output of a device." \[1\]
-        Driver = 4,
-        /// "New product functionality that is first distributed outside the context
-        /// of a product release and that is typically included in the next full
-        /// product release." \[1\]
-        FeaturePack = 5,
-        /// "A tested, cumulative set of all hotfixes, security updates, critical
-        /// updates, and updates. Additionally, service packs may contain additional
-        /// fixes for problems that are found internally since the release of the
-        /// product. Service packs my also contain a limited number of
-        /// customer-requested design changes or features." \[1\]
-        ServicePack = 6,
-        /// "A utility or feature that helps complete a task or set of tasks." \[1\]
-        Tool = 7,
-        /// "A tested, cumulative set of hotfixes, security updates, critical
-        /// updates, and updates that are packaged together for easy deployment. A
-        /// rollup generally targets a specific area, such as security, or a
-        /// component of a product, such as Internet Information Services (IIS)." \[1\]
-        UpdateRollup = 8,
-        /// "A widely released fix for a specific problem. An update addresses a
-        /// noncritical, non-security-related bug." \[1\]
-        Update = 9,
-    }
-    impl Classification {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Classification::Unspecified => "CLASSIFICATION_UNSPECIFIED",
-                Classification::Critical => "CRITICAL",
-                Classification::Security => "SECURITY",
-                Classification::Definition => "DEFINITION",
-                Classification::Driver => "DRIVER",
-                Classification::FeaturePack => "FEATURE_PACK",
-                Classification::ServicePack => "SERVICE_PACK",
-                Classification::Tool => "TOOL",
-                Classification::UpdateRollup => "UPDATE_ROLLUP",
-                Classification::Update => "UPDATE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CLASSIFICATION_UNSPECIFIED" => Some(Self::Unspecified),
-                "CRITICAL" => Some(Self::Critical),
-                "SECURITY" => Some(Self::Security),
-                "DEFINITION" => Some(Self::Definition),
-                "DRIVER" => Some(Self::Driver),
-                "FEATURE_PACK" => Some(Self::FeaturePack),
-                "SERVICE_PACK" => Some(Self::ServicePack),
-                "TOOL" => Some(Self::Tool),
-                "UPDATE_ROLLUP" => Some(Self::UpdateRollup),
-                "UPDATE" => Some(Self::Update),
-                _ => None,
-            }
-        }
-    }
-}
-/// A step that runs an executable for a PatchJob.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecStep {
-    /// The ExecStepConfig for all Linux VMs targeted by the PatchJob.
-    #[prost(message, optional, tag = "1")]
-    pub linux_exec_step_config: ::core::option::Option<ExecStepConfig>,
-    /// The ExecStepConfig for all Windows VMs targeted by the PatchJob.
-    #[prost(message, optional, tag = "2")]
-    pub windows_exec_step_config: ::core::option::Option<ExecStepConfig>,
-}
-/// Common configurations for an ExecStep.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExecStepConfig {
-    /// Defaults to \[0\]. A list of possible return values that the
-    /// execution can return to indicate a success.
-    #[prost(int32, repeated, tag = "3")]
-    pub allowed_success_codes: ::prost::alloc::vec::Vec<i32>,
-    /// The script interpreter to use to run the script. If no interpreter is
-    /// specified the script will be executed directly, which will likely
-    /// only succeed for scripts with \[shebang lines\]
-    /// (<https://en.wikipedia.org/wiki/Shebang\_(Unix>)).
-    #[prost(enumeration = "exec_step_config::Interpreter", tag = "4")]
-    pub interpreter: i32,
-    /// Location of the executable.
-    #[prost(oneof = "exec_step_config::Executable", tags = "1, 2")]
-    pub executable: ::core::option::Option<exec_step_config::Executable>,
-}
-/// Nested message and enum types in `ExecStepConfig`.
-pub mod exec_step_config {
-    /// The interpreter used to execute the a file.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Interpreter {
-        /// Invalid for a Windows ExecStepConfig. For a Linux ExecStepConfig, the
-        /// interpreter will be parsed from the shebang line of the script if
-        /// unspecified.
-        Unspecified = 0,
-        /// Indicates that the script is run with `/bin/sh` on Linux and `cmd`
-        /// on Windows.
-        Shell = 1,
-        /// Indicates that the file is run with PowerShell flags
-        /// `-NonInteractive`, `-NoProfile`, and `-ExecutionPolicy Bypass`.
-        Powershell = 2,
-    }
-    impl Interpreter {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Interpreter::Unspecified => "INTERPRETER_UNSPECIFIED",
-                Interpreter::Shell => "SHELL",
-                Interpreter::Powershell => "POWERSHELL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INTERPRETER_UNSPECIFIED" => Some(Self::Unspecified),
-                "SHELL" => Some(Self::Shell),
-                "POWERSHELL" => Some(Self::Powershell),
-                _ => None,
-            }
-        }
-    }
-    /// Location of the executable.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Executable {
-        /// An absolute path to the executable on the VM.
-        #[prost(string, tag = "1")]
-        LocalPath(::prost::alloc::string::String),
-        /// A Cloud Storage object containing the executable.
-        #[prost(message, tag = "2")]
-        GcsObject(super::GcsObject),
-    }
-}
-/// Cloud Storage object representation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GcsObject {
-    /// Required. Bucket of the Cloud Storage object.
-    #[prost(string, tag = "1")]
-    pub bucket: ::prost::alloc::string::String,
-    /// Required. Name of the Cloud Storage object.
-    #[prost(string, tag = "2")]
-    pub object: ::prost::alloc::string::String,
-    /// Required. Generation number of the Cloud Storage object. This is used to
-    /// ensure that the ExecStep specified by this PatchJob does not change.
-    #[prost(int64, tag = "3")]
-    pub generation_number: i64,
-}
-/// A filter to target VM instances for patching. The targeted
-/// VMs must meet all criteria specified. So if both labels and zones are
-/// specified, the patch job targets only VMs with those labels and in those
-/// zones.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PatchInstanceFilter {
-    /// Target all VM instances in the project. If true, no other criteria is
-    /// permitted.
-    #[prost(bool, tag = "1")]
-    pub all: bool,
-    /// Targets VM instances matching ANY of these GroupLabels. This allows
-    /// targeting of disparate groups of VM instances.
-    #[prost(message, repeated, tag = "2")]
-    pub group_labels: ::prost::alloc::vec::Vec<patch_instance_filter::GroupLabel>,
-    /// Targets VM instances in ANY of these zones. Leave empty to target VM
-    /// instances in any zone.
-    #[prost(string, repeated, tag = "3")]
-    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Targets any of the VM instances specified. Instances are specified by their
-    /// URI in the form `zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`,
-    /// `projects/\[PROJECT_ID\]/zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`, or
-    /// `<https://www.googleapis.com/compute/v1/projects/\[PROJECT_ID\]/zones/\[ZONE\]/instances/\[INSTANCE_NAME\]`>
-    #[prost(string, repeated, tag = "4")]
-    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Targets VMs whose name starts with one of these prefixes. Similar to
-    /// labels, this is another way to group VMs when targeting configs, for
-    /// example prefix="prod-".
-    #[prost(string, repeated, tag = "5")]
-    pub instance_name_prefixes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `PatchInstanceFilter`.
-pub mod patch_instance_filter {
-    /// Targets a group of VM instances by using their [assigned
-    /// labels](<https://cloud.google.com/compute/docs/labeling-resources>). Labels
-    /// are key-value pairs. A `GroupLabel` is a combination of labels
-    /// that is used to target VMs for a patch job.
-    ///
-    /// For example, a patch job can target VMs that have the following
-    /// `GroupLabel`: `{"env":"test", "app":"web"}`. This means that the patch job
-    /// is applied to VMs that have both the labels `env=test` and `app=web`.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GroupLabel {
-        /// Compute Engine instance labels that must be present for a VM
-        /// instance to be targeted by this filter.
-        #[prost(map = "string, string", tag = "1")]
-        pub labels: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
-}
-/// Patch rollout configuration specifications. Contains details on the
-/// concurrency control when applying patch(es) to all targeted VMs.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PatchRollout {
-    /// Mode of the patch rollout.
-    #[prost(enumeration = "patch_rollout::Mode", tag = "1")]
-    pub mode: i32,
-    /// The maximum number (or percentage) of VMs per zone to disrupt at any given
-    /// moment. The number of VMs calculated from multiplying the percentage by the
-    /// total number of VMs in a zone is rounded up.
-    ///
-    /// During patching, a VM is considered disrupted from the time the agent is
-    /// notified to begin until patching has completed. This disruption time
-    /// includes the time to complete reboot and any post-patch steps.
-    ///
-    /// A VM contributes to the disruption budget if its patching operation fails
-    /// either when applying the patches, running pre or post patch steps, or if it
-    /// fails to respond with a success notification before timing out. VMs that
-    /// are not running or do not have an active agent do not count toward this
-    /// disruption budget.
-    ///
-    /// For zone-by-zone rollouts, if the disruption budget in a zone is exceeded,
-    /// the patch job stops, because continuing to the next zone requires
-    /// completion of the patch process in the previous zone.
-    ///
-    /// For example, if the disruption budget has a fixed value of `10`, and 8 VMs
-    /// fail to patch in the current zone, the patch job continues to patch 2 VMs
-    /// at a time until the zone is completed. When that zone is completed
-    /// successfully, patching begins with 10 VMs at a time in the next zone. If 10
-    /// VMs in the next zone fail to patch, the patch job stops.
-    #[prost(message, optional, tag = "2")]
-    pub disruption_budget: ::core::option::Option<FixedOrPercent>,
-}
-/// Nested message and enum types in `PatchRollout`.
-pub mod patch_rollout {
-    /// Type of the rollout.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Mode {
-        /// Mode must be specified.
-        Unspecified = 0,
-        /// Patches are applied one zone at a time. The patch job begins in the
-        /// region with the lowest number of targeted VMs. Within the region,
-        /// patching begins in the zone with the lowest number of targeted VMs. If
-        /// multiple regions (or zones within a region) have the same number of
-        /// targeted VMs, a tie-breaker is achieved by sorting the regions or zones
-        /// in alphabetical order.
-        ZoneByZone = 1,
-        /// Patches are applied to VMs in all zones at the same time.
-        ConcurrentZones = 2,
-    }
-    impl Mode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::ZoneByZone => "ZONE_BY_ZONE",
-                Mode::ConcurrentZones => "CONCURRENT_ZONES",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ZONE_BY_ZONE" => Some(Self::ZoneByZone),
-                "CONCURRENT_ZONES" => Some(Self::ConcurrentZones),
-                _ => None,
-            }
         }
     }
 }

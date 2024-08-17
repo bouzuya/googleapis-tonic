@@ -21,6 +21,254 @@ pub struct Actor {
     #[prost(bool, tag = "4")]
     pub google_support: bool,
 }
+/// An escalation of a support case.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Escalation {
+    /// Required. The reason why the Case is being escalated.
+    #[prost(enumeration = "escalation::Reason", tag = "4")]
+    pub reason: i32,
+    /// Required. A free text description to accompany the `reason` field above.
+    /// Provides additional context on why the case is being escalated.
+    #[prost(string, tag = "5")]
+    pub justification: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Escalation`.
+pub mod escalation {
+    /// An enum detailing the possible reasons a case may be escalated.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Reason {
+        /// The escalation reason is in an unknown state or has not been specified.
+        Unspecified = 0,
+        /// The case is taking too long to resolve.
+        ResolutionTime = 1,
+        /// The support agent does not have the expertise required to successfully
+        /// resolve the issue.
+        TechnicalExpertise = 2,
+        /// The issue is having a significant business impact.
+        BusinessImpact = 3,
+    }
+    impl Reason {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Reason::Unspecified => "REASON_UNSPECIFIED",
+                Reason::ResolutionTime => "RESOLUTION_TIME",
+                Reason::TechnicalExpertise => "TECHNICAL_EXPERTISE",
+                Reason::BusinessImpact => "BUSINESS_IMPACT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REASON_UNSPECIFIED" => Some(Self::Unspecified),
+                "RESOLUTION_TIME" => Some(Self::ResolutionTime),
+                "TECHNICAL_EXPERTISE" => Some(Self::TechnicalExpertise),
+                "BUSINESS_IMPACT" => Some(Self::BusinessImpact),
+                _ => None,
+            }
+        }
+    }
+}
+/// Represents a file attached to a support case.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Attachment {
+    /// Output only. The resource name of the attachment.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The time at which the attachment was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The user who uploaded the attachment. Note, the name and email
+    /// will be obfuscated if the attachment was uploaded by Google support.
+    #[prost(message, optional, tag = "3")]
+    pub creator: ::core::option::Option<Actor>,
+    /// The filename of the attachment (e.g. `"graph.jpg"`).
+    #[prost(string, tag = "4")]
+    pub filename: ::prost::alloc::string::String,
+    /// Output only. The MIME type of the attachment (e.g. text/plain).
+    #[prost(string, tag = "5")]
+    pub mime_type: ::prost::alloc::string::String,
+    /// Output only. The size of the attachment in bytes.
+    #[prost(int64, tag = "6")]
+    pub size_bytes: i64,
+}
+/// The request message for the ListAttachments endpoint.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAttachmentsRequest {
+    /// Required. The resource name of Case object for which attachments should be
+    /// listed.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The maximum number of attachments fetched with each request. If not
+    /// provided, the default is 10. The maximum page size that will be returned is
+    /// 100.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// A token identifying the page of results to return. If unspecified, the
+    /// first page is retrieved.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// The response message for the ListAttachments endpoint.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAttachmentsResponse {
+    /// The list of attachments associated with the given case.
+    #[prost(message, repeated, tag = "1")]
+    pub attachments: ::prost::alloc::vec::Vec<Attachment>,
+    /// A token to retrieve the next page of results. This should be set in the
+    /// `page_token` field of subsequent `cases.attachments.list` requests. If
+    /// unspecified, there are no more results to retrieve.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod case_attachment_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// A service to manage file attachment for Google Cloud support cases.
+    #[derive(Debug, Clone)]
+    pub struct CaseAttachmentServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> CaseAttachmentServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> CaseAttachmentServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            CaseAttachmentServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieve all attachments associated with a support case.
+        pub async fn list_attachments(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListAttachmentsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListAttachmentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.support.v2.CaseAttachmentService/ListAttachments",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.support.v2.CaseAttachmentService",
+                        "ListAttachments",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// A comment associated with a support case.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Comment {
+    /// Output only. The resource name for the comment.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The time when this comment was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The user or Google Support agent created this comment.
+    #[prost(message, optional, tag = "3")]
+    pub creator: ::core::option::Option<Actor>,
+    /// The full comment body. Maximum of 12800 characters. This can contain rich
+    /// text syntax.
+    #[prost(string, tag = "4")]
+    pub body: ::prost::alloc::string::String,
+    /// Output only. DEPRECATED. An automatically generated plain text version of
+    /// body with all rich text syntax stripped.
+    #[prost(string, tag = "5")]
+    pub plain_text_body: ::prost::alloc::string::String,
+}
 /// A support case.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -217,69 +465,6 @@ pub struct CaseClassification {
     /// The display name of the classification.
     #[prost(string, tag = "4")]
     pub display_name: ::prost::alloc::string::String,
-}
-/// An escalation of a support case.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Escalation {
-    /// Required. The reason why the Case is being escalated.
-    #[prost(enumeration = "escalation::Reason", tag = "4")]
-    pub reason: i32,
-    /// Required. A free text description to accompany the `reason` field above.
-    /// Provides additional context on why the case is being escalated.
-    #[prost(string, tag = "5")]
-    pub justification: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `Escalation`.
-pub mod escalation {
-    /// An enum detailing the possible reasons a case may be escalated.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Reason {
-        /// The escalation reason is in an unknown state or has not been specified.
-        Unspecified = 0,
-        /// The case is taking too long to resolve.
-        ResolutionTime = 1,
-        /// The support agent does not have the expertise required to successfully
-        /// resolve the issue.
-        TechnicalExpertise = 2,
-        /// The issue is having a significant business impact.
-        BusinessImpact = 3,
-    }
-    impl Reason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Reason::Unspecified => "REASON_UNSPECIFIED",
-                Reason::ResolutionTime => "RESOLUTION_TIME",
-                Reason::TechnicalExpertise => "TECHNICAL_EXPERTISE",
-                Reason::BusinessImpact => "BUSINESS_IMPACT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                "RESOLUTION_TIME" => Some(Self::ResolutionTime),
-                "TECHNICAL_EXPERTISE" => Some(Self::TechnicalExpertise),
-                "BUSINESS_IMPACT" => Some(Self::BusinessImpact),
-                _ => None,
-            }
-        }
-    }
 }
 /// The request message for the GetCase endpoint.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -791,191 +976,6 @@ pub mod case_service_client {
             self.inner.unary(req, path, codec).await
         }
     }
-}
-/// Represents a file attached to a support case.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Attachment {
-    /// Output only. The resource name of the attachment.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. The time at which the attachment was created.
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The user who uploaded the attachment. Note, the name and email
-    /// will be obfuscated if the attachment was uploaded by Google support.
-    #[prost(message, optional, tag = "3")]
-    pub creator: ::core::option::Option<Actor>,
-    /// The filename of the attachment (e.g. `"graph.jpg"`).
-    #[prost(string, tag = "4")]
-    pub filename: ::prost::alloc::string::String,
-    /// Output only. The MIME type of the attachment (e.g. text/plain).
-    #[prost(string, tag = "5")]
-    pub mime_type: ::prost::alloc::string::String,
-    /// Output only. The size of the attachment in bytes.
-    #[prost(int64, tag = "6")]
-    pub size_bytes: i64,
-}
-/// The request message for the ListAttachments endpoint.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAttachmentsRequest {
-    /// Required. The resource name of Case object for which attachments should be
-    /// listed.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The maximum number of attachments fetched with each request. If not
-    /// provided, the default is 10. The maximum page size that will be returned is
-    /// 100.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// A token identifying the page of results to return. If unspecified, the
-    /// first page is retrieved.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// The response message for the ListAttachments endpoint.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAttachmentsResponse {
-    /// The list of attachments associated with the given case.
-    #[prost(message, repeated, tag = "1")]
-    pub attachments: ::prost::alloc::vec::Vec<Attachment>,
-    /// A token to retrieve the next page of results. This should be set in the
-    /// `page_token` field of subsequent `cases.attachments.list` requests. If
-    /// unspecified, there are no more results to retrieve.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Generated client implementations.
-pub mod case_attachment_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// A service to manage file attachment for Google Cloud support cases.
-    #[derive(Debug, Clone)]
-    pub struct CaseAttachmentServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CaseAttachmentServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CaseAttachmentServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CaseAttachmentServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Retrieve all attachments associated with a support case.
-        pub async fn list_attachments(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAttachmentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAttachmentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.support.v2.CaseAttachmentService/ListAttachments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.support.v2.CaseAttachmentService",
-                        "ListAttachments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
-/// A comment associated with a support case.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Comment {
-    /// Output only. The resource name for the comment.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. The time when this comment was created.
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The user or Google Support agent created this comment.
-    #[prost(message, optional, tag = "3")]
-    pub creator: ::core::option::Option<Actor>,
-    /// The full comment body. Maximum of 12800 characters. This can contain rich
-    /// text syntax.
-    #[prost(string, tag = "4")]
-    pub body: ::prost::alloc::string::String,
-    /// Output only. DEPRECATED. An automatically generated plain text version of
-    /// body with all rich text syntax stripped.
-    #[prost(string, tag = "5")]
-    pub plain_text_body: ::prost::alloc::string::String,
 }
 /// The request message for the ListComments endpoint.
 #[allow(clippy::derive_partial_eq_without_eq)]

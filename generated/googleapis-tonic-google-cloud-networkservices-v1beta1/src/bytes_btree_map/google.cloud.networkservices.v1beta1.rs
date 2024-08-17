@@ -169,6 +169,424 @@ pub mod endpoint_matcher {
         MetadataLabelMatcher(MetadataLabelMatcher),
     }
 }
+/// EndpointPolicy is a resource that helps apply desired configuration
+/// on the endpoints that match specific criteria.
+/// For example, this resource can be used to apply "authentication config"
+/// an all endpoints that serve on port 8080.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EndpointPolicy {
+    /// Required. Name of the EndpointPolicy resource. It matches pattern
+    /// `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The timestamp when the resource was created.
+    #[prost(message, optional, tag = "2")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when the resource was updated.
+    #[prost(message, optional, tag = "3")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. Set of label tags associated with the EndpointPolicy resource.
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Required. The type of endpoint policy. This is primarily used to validate
+    /// the configuration.
+    #[prost(enumeration = "endpoint_policy::EndpointPolicyType", tag = "5")]
+    pub r#type: i32,
+    /// Optional. This field specifies the URL of AuthorizationPolicy resource that
+    /// applies authorization policies to the inbound traffic at the
+    /// matched endpoints. Refer to Authorization. If this field is not
+    /// specified, authorization is disabled(no authz checks) for this
+    /// endpoint.
+    #[prost(string, tag = "7")]
+    pub authorization_policy: ::prost::alloc::string::String,
+    /// Required. A matcher that selects endpoints to which the policies should be
+    /// applied.
+    #[prost(message, optional, tag = "9")]
+    pub endpoint_matcher: ::core::option::Option<EndpointMatcher>,
+    /// Optional. Port selector for the (matched) endpoints. If no port selector is
+    /// provided, the matched config is applied to all ports.
+    #[prost(message, optional, tag = "10")]
+    pub traffic_port_selector: ::core::option::Option<TrafficPortSelector>,
+    /// Optional. A free-text description of the resource. Max length 1024
+    /// characters.
+    #[prost(string, tag = "11")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. A URL referring to ServerTlsPolicy resource. ServerTlsPolicy is
+    /// used to determine the authentication policy to be applied to terminate the
+    /// inbound traffic at the identified backends. If this field is not set,
+    /// authentication is disabled(open) for this endpoint.
+    #[prost(string, tag = "12")]
+    pub server_tls_policy: ::prost::alloc::string::String,
+    /// Optional. A URL referring to a ClientTlsPolicy resource. ClientTlsPolicy
+    /// can be set to specify the authentication for traffic from the proxy to the
+    /// actual endpoints. More specifically, it is applied to the outgoing traffic
+    /// from the proxy to the endpoint. This is typically used for sidecar model
+    /// where the proxy identifies itself as endpoint to the control plane, with
+    /// the connection between sidecar and endpoint requiring authentication. If
+    /// this field is not set, authentication is disabled(open). Applicable only
+    /// when EndpointPolicyType is SIDECAR_PROXY.
+    #[prost(string, tag = "13")]
+    pub client_tls_policy: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `EndpointPolicy`.
+pub mod endpoint_policy {
+    /// The type of endpoint policy.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum EndpointPolicyType {
+        /// Default value. Must not be used.
+        Unspecified = 0,
+        /// Represents a proxy deployed as a sidecar.
+        SidecarProxy = 1,
+        /// Represents a proxyless gRPC backend.
+        GrpcServer = 2,
+    }
+    impl EndpointPolicyType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                EndpointPolicyType::Unspecified => "ENDPOINT_POLICY_TYPE_UNSPECIFIED",
+                EndpointPolicyType::SidecarProxy => "SIDECAR_PROXY",
+                EndpointPolicyType::GrpcServer => "GRPC_SERVER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ENDPOINT_POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SIDECAR_PROXY" => Some(Self::SidecarProxy),
+                "GRPC_SERVER" => Some(Self::GrpcServer),
+                _ => None,
+            }
+        }
+    }
+}
+/// Request used with the ListEndpointPolicies method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListEndpointPoliciesRequest {
+    /// Required. The project and location from which the EndpointPolicies should
+    /// be listed, specified in the format `projects/*/locations/global`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Maximum number of EndpointPolicies to return per call.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// The value returned by the last `ListEndpointPoliciesResponse`
+    /// Indicates that this is a continuation of a prior
+    /// `ListEndpointPolicies` call, and that the system should return the
+    /// next page of data.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response returned by the ListEndpointPolicies method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListEndpointPoliciesResponse {
+    /// List of EndpointPolicy resources.
+    #[prost(message, repeated, tag = "1")]
+    pub endpoint_policies: ::prost::alloc::vec::Vec<EndpointPolicy>,
+    /// If there might be more results than those appearing in this response, then
+    /// `next_page_token` is included. To get the next set of results, call this
+    /// method again using the value of `next_page_token` as `page_token`.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request used with the GetEndpointPolicy method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetEndpointPolicyRequest {
+    /// Required. A name of the EndpointPolicy to get. Must be in the format
+    /// `projects/*/locations/global/endpointPolicies/*`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request used with the CreateEndpointPolicy method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateEndpointPolicyRequest {
+    /// Required. The parent resource of the EndpointPolicy. Must be in the
+    /// format `projects/*/locations/global`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. Short name of the EndpointPolicy resource to be created.
+    /// E.g. "CustomECS".
+    #[prost(string, tag = "2")]
+    pub endpoint_policy_id: ::prost::alloc::string::String,
+    /// Required. EndpointPolicy resource to be created.
+    #[prost(message, optional, tag = "3")]
+    pub endpoint_policy: ::core::option::Option<EndpointPolicy>,
+}
+/// Request used with the UpdateEndpointPolicy method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateEndpointPolicyRequest {
+    /// Optional. Field mask is used to specify the fields to be overwritten in the
+    /// EndpointPolicy resource by the update.
+    /// The fields specified in the update_mask are relative to the resource, not
+    /// the full request. A field will be overwritten if it is in the mask. If the
+    /// user does not provide a mask then all fields will be overwritten.
+    #[prost(message, optional, tag = "1")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+    /// Required. Updated EndpointPolicy resource.
+    #[prost(message, optional, tag = "2")]
+    pub endpoint_policy: ::core::option::Option<EndpointPolicy>,
+}
+/// Request used with the DeleteEndpointPolicy method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteEndpointPolicyRequest {
+    /// Required. A name of the EndpointPolicy to delete. Must be in the format
+    /// `projects/*/locations/global/endpointPolicies/*`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod network_services_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service describing handlers for resources.
+    #[derive(Debug, Clone)]
+    pub struct NetworkServicesClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> NetworkServicesClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> NetworkServicesClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            NetworkServicesClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Lists EndpointPolicies in a given project and location.
+        pub async fn list_endpoint_policies(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListEndpointPoliciesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListEndpointPoliciesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1beta1.NetworkServices/ListEndpointPolicies",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1beta1.NetworkServices",
+                        "ListEndpointPolicies",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets details of a single EndpointPolicy.
+        pub async fn get_endpoint_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetEndpointPolicyRequest>,
+        ) -> std::result::Result<tonic::Response<super::EndpointPolicy>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1beta1.NetworkServices/GetEndpointPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1beta1.NetworkServices",
+                        "GetEndpointPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new EndpointPolicy in a given project and location.
+        pub async fn create_endpoint_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateEndpointPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1beta1.NetworkServices/CreateEndpointPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1beta1.NetworkServices",
+                        "CreateEndpointPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the parameters of a single EndpointPolicy.
+        pub async fn update_endpoint_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateEndpointPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1beta1.NetworkServices/UpdateEndpointPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1beta1.NetworkServices",
+                        "UpdateEndpointPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a single EndpointPolicy.
+        pub async fn delete_endpoint_policy(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteEndpointPolicyRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.networkservices.v1beta1.NetworkServices/DeleteEndpointPolicy",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.networkservices.v1beta1.NetworkServices",
+                        "DeleteEndpointPolicy",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
 /// A single extension chain wrapper that contains the match conditions and
 /// extensions to execute.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1114,424 +1532,6 @@ pub mod dep_service_client {
                     GrpcMethod::new(
                         "google.cloud.networkservices.v1beta1.DepService",
                         "DeleteLbRouteExtension",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
-/// EndpointPolicy is a resource that helps apply desired configuration
-/// on the endpoints that match specific criteria.
-/// For example, this resource can be used to apply "authentication config"
-/// an all endpoints that serve on port 8080.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EndpointPolicy {
-    /// Required. Name of the EndpointPolicy resource. It matches pattern
-    /// `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. The timestamp when the resource was created.
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The timestamp when the resource was updated.
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. Set of label tags associated with the EndpointPolicy resource.
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    /// Required. The type of endpoint policy. This is primarily used to validate
-    /// the configuration.
-    #[prost(enumeration = "endpoint_policy::EndpointPolicyType", tag = "5")]
-    pub r#type: i32,
-    /// Optional. This field specifies the URL of AuthorizationPolicy resource that
-    /// applies authorization policies to the inbound traffic at the
-    /// matched endpoints. Refer to Authorization. If this field is not
-    /// specified, authorization is disabled(no authz checks) for this
-    /// endpoint.
-    #[prost(string, tag = "7")]
-    pub authorization_policy: ::prost::alloc::string::String,
-    /// Required. A matcher that selects endpoints to which the policies should be
-    /// applied.
-    #[prost(message, optional, tag = "9")]
-    pub endpoint_matcher: ::core::option::Option<EndpointMatcher>,
-    /// Optional. Port selector for the (matched) endpoints. If no port selector is
-    /// provided, the matched config is applied to all ports.
-    #[prost(message, optional, tag = "10")]
-    pub traffic_port_selector: ::core::option::Option<TrafficPortSelector>,
-    /// Optional. A free-text description of the resource. Max length 1024
-    /// characters.
-    #[prost(string, tag = "11")]
-    pub description: ::prost::alloc::string::String,
-    /// Optional. A URL referring to ServerTlsPolicy resource. ServerTlsPolicy is
-    /// used to determine the authentication policy to be applied to terminate the
-    /// inbound traffic at the identified backends. If this field is not set,
-    /// authentication is disabled(open) for this endpoint.
-    #[prost(string, tag = "12")]
-    pub server_tls_policy: ::prost::alloc::string::String,
-    /// Optional. A URL referring to a ClientTlsPolicy resource. ClientTlsPolicy
-    /// can be set to specify the authentication for traffic from the proxy to the
-    /// actual endpoints. More specifically, it is applied to the outgoing traffic
-    /// from the proxy to the endpoint. This is typically used for sidecar model
-    /// where the proxy identifies itself as endpoint to the control plane, with
-    /// the connection between sidecar and endpoint requiring authentication. If
-    /// this field is not set, authentication is disabled(open). Applicable only
-    /// when EndpointPolicyType is SIDECAR_PROXY.
-    #[prost(string, tag = "13")]
-    pub client_tls_policy: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `EndpointPolicy`.
-pub mod endpoint_policy {
-    /// The type of endpoint policy.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EndpointPolicyType {
-        /// Default value. Must not be used.
-        Unspecified = 0,
-        /// Represents a proxy deployed as a sidecar.
-        SidecarProxy = 1,
-        /// Represents a proxyless gRPC backend.
-        GrpcServer = 2,
-    }
-    impl EndpointPolicyType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EndpointPolicyType::Unspecified => "ENDPOINT_POLICY_TYPE_UNSPECIFIED",
-                EndpointPolicyType::SidecarProxy => "SIDECAR_PROXY",
-                EndpointPolicyType::GrpcServer => "GRPC_SERVER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ENDPOINT_POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SIDECAR_PROXY" => Some(Self::SidecarProxy),
-                "GRPC_SERVER" => Some(Self::GrpcServer),
-                _ => None,
-            }
-        }
-    }
-}
-/// Request used with the ListEndpointPolicies method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListEndpointPoliciesRequest {
-    /// Required. The project and location from which the EndpointPolicies should
-    /// be listed, specified in the format `projects/*/locations/global`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Maximum number of EndpointPolicies to return per call.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// The value returned by the last `ListEndpointPoliciesResponse`
-    /// Indicates that this is a continuation of a prior
-    /// `ListEndpointPolicies` call, and that the system should return the
-    /// next page of data.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// Response returned by the ListEndpointPolicies method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListEndpointPoliciesResponse {
-    /// List of EndpointPolicy resources.
-    #[prost(message, repeated, tag = "1")]
-    pub endpoint_policies: ::prost::alloc::vec::Vec<EndpointPolicy>,
-    /// If there might be more results than those appearing in this response, then
-    /// `next_page_token` is included. To get the next set of results, call this
-    /// method again using the value of `next_page_token` as `page_token`.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Request used with the GetEndpointPolicy method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetEndpointPolicyRequest {
-    /// Required. A name of the EndpointPolicy to get. Must be in the format
-    /// `projects/*/locations/global/endpointPolicies/*`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request used with the CreateEndpointPolicy method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateEndpointPolicyRequest {
-    /// Required. The parent resource of the EndpointPolicy. Must be in the
-    /// format `projects/*/locations/global`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. Short name of the EndpointPolicy resource to be created.
-    /// E.g. "CustomECS".
-    #[prost(string, tag = "2")]
-    pub endpoint_policy_id: ::prost::alloc::string::String,
-    /// Required. EndpointPolicy resource to be created.
-    #[prost(message, optional, tag = "3")]
-    pub endpoint_policy: ::core::option::Option<EndpointPolicy>,
-}
-/// Request used with the UpdateEndpointPolicy method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateEndpointPolicyRequest {
-    /// Optional. Field mask is used to specify the fields to be overwritten in the
-    /// EndpointPolicy resource by the update.
-    /// The fields specified in the update_mask are relative to the resource, not
-    /// the full request. A field will be overwritten if it is in the mask. If the
-    /// user does not provide a mask then all fields will be overwritten.
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    /// Required. Updated EndpointPolicy resource.
-    #[prost(message, optional, tag = "2")]
-    pub endpoint_policy: ::core::option::Option<EndpointPolicy>,
-}
-/// Request used with the DeleteEndpointPolicy method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteEndpointPolicyRequest {
-    /// Required. A name of the EndpointPolicy to delete. Must be in the format
-    /// `projects/*/locations/global/endpointPolicies/*`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Generated client implementations.
-pub mod network_services_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service describing handlers for resources.
-    #[derive(Debug, Clone)]
-    pub struct NetworkServicesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> NetworkServicesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> NetworkServicesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            NetworkServicesClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists EndpointPolicies in a given project and location.
-        pub async fn list_endpoint_policies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListEndpointPoliciesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListEndpointPoliciesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkservices.v1beta1.NetworkServices/ListEndpointPolicies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkservices.v1beta1.NetworkServices",
-                        "ListEndpointPolicies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single EndpointPolicy.
-        pub async fn get_endpoint_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetEndpointPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::EndpointPolicy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkservices.v1beta1.NetworkServices/GetEndpointPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkservices.v1beta1.NetworkServices",
-                        "GetEndpointPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new EndpointPolicy in a given project and location.
-        pub async fn create_endpoint_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateEndpointPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkservices.v1beta1.NetworkServices/CreateEndpointPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkservices.v1beta1.NetworkServices",
-                        "CreateEndpointPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single EndpointPolicy.
-        pub async fn update_endpoint_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateEndpointPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkservices.v1beta1.NetworkServices/UpdateEndpointPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkservices.v1beta1.NetworkServices",
-                        "UpdateEndpointPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single EndpointPolicy.
-        pub async fn delete_endpoint_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteEndpointPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkservices.v1beta1.NetworkServices/DeleteEndpointPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkservices.v1beta1.NetworkServices",
-                        "DeleteEndpointPolicy",
                     ),
                 );
             self.inner.unary(req, path, codec).await

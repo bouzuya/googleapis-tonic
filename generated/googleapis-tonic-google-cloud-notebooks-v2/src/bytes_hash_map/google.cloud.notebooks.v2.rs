@@ -775,43 +775,6 @@ impl HealthState {
         }
     }
 }
-/// Defines flags that are used to run the diagnostic tool
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiagnosticConfig {
-    /// Required. User Cloud Storage bucket location (REQUIRED).
-    /// Must be formatted with path prefix (`gs://$GCS_BUCKET`).
-    ///
-    /// Permissions:
-    /// User Managed Notebooks:
-    ///
-    /// * storage.buckets.writer: Must be given to the project's service account
-    ///   attached to VM.
-    ///   Google Managed Notebooks:
-    /// * storage.buckets.writer: Must be given to the project's service account or
-    ///   user credentials attached to VM depending on authentication mode.
-    ///
-    /// Cloud Storage bucket Log file will be written to
-    /// `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`
-    #[prost(string, tag = "1")]
-    pub gcs_bucket: ::prost::alloc::string::String,
-    /// Optional. Defines the relative storage path in the Cloud Storage bucket
-    /// where the diagnostic logs will be written: Default path will be the root
-    /// directory of the Cloud Storage bucket
-    /// (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file
-    /// will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`
-    #[prost(string, tag = "2")]
-    pub relative_path: ::prost::alloc::string::String,
-    /// Optional. Enables flag to repair service for instance
-    #[prost(bool, tag = "3")]
-    pub enable_repair_flag: bool,
-    /// Optional. Enables flag to capture packets from the instance for 30 seconds
-    #[prost(bool, tag = "4")]
-    pub enable_packet_capture_flag: bool,
-    /// Optional. Enables flag to copy all `/home/jupyter` folder contents
-    #[prost(bool, tag = "5")]
-    pub enable_copy_home_files_flag: bool,
-}
 /// The definition of an Event for a managed / semi-managed notebook instance.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -894,6 +857,43 @@ pub mod event {
             }
         }
     }
+}
+/// Defines flags that are used to run the diagnostic tool
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiagnosticConfig {
+    /// Required. User Cloud Storage bucket location (REQUIRED).
+    /// Must be formatted with path prefix (`gs://$GCS_BUCKET`).
+    ///
+    /// Permissions:
+    /// User Managed Notebooks:
+    ///
+    /// * storage.buckets.writer: Must be given to the project's service account
+    ///   attached to VM.
+    ///   Google Managed Notebooks:
+    /// * storage.buckets.writer: Must be given to the project's service account or
+    ///   user credentials attached to VM depending on authentication mode.
+    ///
+    /// Cloud Storage bucket Log file will be written to
+    /// `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`
+    #[prost(string, tag = "1")]
+    pub gcs_bucket: ::prost::alloc::string::String,
+    /// Optional. Defines the relative storage path in the Cloud Storage bucket
+    /// where the diagnostic logs will be written: Default path will be the root
+    /// directory of the Cloud Storage bucket
+    /// (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file
+    /// will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`
+    #[prost(string, tag = "2")]
+    pub relative_path: ::prost::alloc::string::String,
+    /// Optional. Enables flag to repair service for instance
+    #[prost(bool, tag = "3")]
+    pub enable_repair_flag: bool,
+    /// Optional. Enables flag to capture packets from the instance for 30 seconds
+    #[prost(bool, tag = "4")]
+    pub enable_packet_capture_flag: bool,
+    /// Optional. Enables flag to copy all `/home/jupyter` folder contents
+    #[prost(bool, tag = "5")]
+    pub enable_copy_home_files_flag: bool,
 }
 /// Represents the metadata of the long-running operation.
 #[allow(clippy::derive_partial_eq_without_eq)]

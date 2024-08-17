@@ -316,6 +316,466 @@ pub struct AttestationOccurrence {
     #[prost(message, repeated, tag = "3")]
     pub jwts: ::prost::alloc::vec::Vec<Jwt>,
 }
+/// Provenance of a build. Contains all information needed to verify the full
+/// details about the build from source to completion.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildProvenance {
+    /// Required. Unique identifier of the build.
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    /// ID of the project.
+    #[prost(string, tag = "2")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Commands requested by the build.
+    #[prost(message, repeated, tag = "3")]
+    pub commands: ::prost::alloc::vec::Vec<Command>,
+    /// Output of the build.
+    #[prost(message, repeated, tag = "4")]
+    pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
+    /// Time at which the build was created.
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Time at which execution of the build was started.
+    #[prost(message, optional, tag = "6")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Time at which execution of the build was finished.
+    #[prost(message, optional, tag = "7")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// E-mail address of the user who initiated this build. Note that this was the
+    /// user's e-mail address at the time the build was initiated; this address may
+    /// not represent the same end-user for all time.
+    #[prost(string, tag = "8")]
+    pub creator: ::prost::alloc::string::String,
+    /// URI where any logs for this provenance were written.
+    #[prost(string, tag = "9")]
+    pub logs_uri: ::prost::alloc::string::String,
+    /// Details of the Source input to the build.
+    #[prost(message, optional, tag = "10")]
+    pub source_provenance: ::core::option::Option<Source>,
+    /// Trigger identifier if the build was triggered automatically; empty if not.
+    #[prost(string, tag = "11")]
+    pub trigger_id: ::prost::alloc::string::String,
+    /// Special options applied to this build. This is a catch-all field where
+    /// build providers can enter any desired additional details.
+    #[prost(btree_map = "string, string", tag = "12")]
+    pub build_options: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Version string of the builder at the time this build was executed.
+    #[prost(string, tag = "13")]
+    pub builder_version: ::prost::alloc::string::String,
+}
+/// Source describes the location of the source used for the build.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Source {
+    /// If provided, the input binary artifacts for the build came from this
+    /// location.
+    #[prost(string, tag = "1")]
+    pub artifact_storage_source_uri: ::prost::alloc::string::String,
+    /// Hash(es) of the build source, which can be used to verify that the original
+    /// source integrity was maintained in the build.
+    ///
+    /// The keys to this map are file paths used as build source and the values
+    /// contain the hash values for those files.
+    ///
+    /// If the build source came in a single package such as a gzipped tarfile
+    /// (.tar.gz), the FileHash will be for the single path to that file.
+    #[prost(btree_map = "string, message", tag = "2")]
+    pub file_hashes: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        FileHashes,
+    >,
+    /// If provided, the source code used for the build came from this location.
+    #[prost(message, optional, tag = "3")]
+    pub context: ::core::option::Option<SourceContext>,
+    /// If provided, some of the source code used for the build may be found in
+    /// these locations, in the case where the source repository had multiple
+    /// remotes or submodules. This list will not include the context specified in
+    /// the context field.
+    #[prost(message, repeated, tag = "4")]
+    pub additional_contexts: ::prost::alloc::vec::Vec<SourceContext>,
+}
+/// Container message for hashes of byte content of files, used in source
+/// messages to verify integrity of source input to the build.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FileHashes {
+    /// Required. Collection of file hashes.
+    #[prost(message, repeated, tag = "1")]
+    pub file_hash: ::prost::alloc::vec::Vec<Hash>,
+}
+/// Container message for hash values.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hash {
+    /// Required. The type of hash that was performed, e.g. "SHA-256".
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    /// Required. The hash value.
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+/// Command describes a step performed as part of the build pipeline.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Command {
+    /// Required. Name of the command, as presented on the command line, or if the
+    /// command is packaged as a Docker container, as presented to `docker pull`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Environment variables set before running this command.
+    #[prost(string, repeated, tag = "2")]
+    pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Command-line arguments used when executing this command.
+    #[prost(string, repeated, tag = "3")]
+    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Working directory (relative to project source root) used when running this
+    /// command.
+    #[prost(string, tag = "4")]
+    pub dir: ::prost::alloc::string::String,
+    /// Optional unique identifier for this command, used in wait_for to reference
+    /// this command as a dependency.
+    #[prost(string, tag = "5")]
+    pub id: ::prost::alloc::string::String,
+    /// The ID(s) of the command(s) that this command depends on.
+    #[prost(string, repeated, tag = "6")]
+    pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Artifact describes a build product.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Artifact {
+    /// Hash or checksum value of a binary, or Docker Registry 2.0 digest of a
+    /// container.
+    #[prost(string, tag = "1")]
+    pub checksum: ::prost::alloc::string::String,
+    /// Artifact ID, if any; for container images, this will be a URL by digest
+    /// like `gcr.io/projectID/imagename@sha256:123456`.
+    #[prost(string, tag = "2")]
+    pub id: ::prost::alloc::string::String,
+    /// Related artifact names. This may be the path to a binary or jar file, or in
+    /// the case of a container build, the name used to push the container image to
+    /// Google Container Registry, as presented to `docker push`. Note that a
+    /// single Artifact ID can have multiple names, for example if two tags are
+    /// applied to one image.
+    #[prost(string, repeated, tag = "3")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// A SourceContext is a reference to a tree of files. A SourceContext together
+/// with a path point to a unique revision of a single file or directory.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SourceContext {
+    /// Labels with user defined metadata.
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// A SourceContext can refer any one of the following types of repositories.
+    #[prost(oneof = "source_context::Context", tags = "1, 2, 3")]
+    pub context: ::core::option::Option<source_context::Context>,
+}
+/// Nested message and enum types in `SourceContext`.
+pub mod source_context {
+    /// A SourceContext can refer any one of the following types of repositories.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Context {
+        /// A SourceContext referring to a revision in a Google Cloud Source Repo.
+        #[prost(message, tag = "1")]
+        CloudRepo(super::CloudRepoSourceContext),
+        /// A SourceContext referring to a Gerrit project.
+        #[prost(message, tag = "2")]
+        Gerrit(super::GerritSourceContext),
+        /// A SourceContext referring to any third party Git repo (e.g., GitHub).
+        #[prost(message, tag = "3")]
+        Git(super::GitSourceContext),
+    }
+}
+/// An alias to a repo revision.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AliasContext {
+    /// The alias kind.
+    #[prost(enumeration = "alias_context::Kind", tag = "1")]
+    pub kind: i32,
+    /// The alias name.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `AliasContext`.
+pub mod alias_context {
+    /// The type of an alias.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Kind {
+        /// Unknown.
+        Unspecified = 0,
+        /// Git tag.
+        Fixed = 1,
+        /// Git branch.
+        Movable = 2,
+        /// Used to specify non-standard aliases. For example, if a Git repo has a
+        /// ref named "refs/foo/bar".
+        Other = 4,
+    }
+    impl Kind {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Kind::Unspecified => "KIND_UNSPECIFIED",
+                Kind::Fixed => "FIXED",
+                Kind::Movable => "MOVABLE",
+                Kind::Other => "OTHER",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "KIND_UNSPECIFIED" => Some(Self::Unspecified),
+                "FIXED" => Some(Self::Fixed),
+                "MOVABLE" => Some(Self::Movable),
+                "OTHER" => Some(Self::Other),
+                _ => None,
+            }
+        }
+    }
+}
+/// A CloudRepoSourceContext denotes a particular revision in a Google Cloud
+/// Source Repo.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CloudRepoSourceContext {
+    /// The ID of the repo.
+    #[prost(message, optional, tag = "1")]
+    pub repo_id: ::core::option::Option<RepoId>,
+    /// A revision in a Cloud Repo can be identified by either its revision ID or
+    /// its alias.
+    #[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3")]
+    pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
+}
+/// Nested message and enum types in `CloudRepoSourceContext`.
+pub mod cloud_repo_source_context {
+    /// A revision in a Cloud Repo can be identified by either its revision ID or
+    /// its alias.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Revision {
+        /// A revision ID.
+        #[prost(string, tag = "2")]
+        RevisionId(::prost::alloc::string::String),
+        /// An alias, which may be a branch or tag.
+        #[prost(message, tag = "3")]
+        AliasContext(super::AliasContext),
+    }
+}
+/// A SourceContext referring to a Gerrit project.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GerritSourceContext {
+    /// The URI of a running Gerrit instance.
+    #[prost(string, tag = "1")]
+    pub host_uri: ::prost::alloc::string::String,
+    /// The full project name within the host. Projects may be nested, so
+    /// "project/subproject" is a valid project name. The "repo name" is the
+    /// hostURI/project.
+    #[prost(string, tag = "2")]
+    pub gerrit_project: ::prost::alloc::string::String,
+    /// A revision in a Gerrit project can be identified by either its revision ID
+    /// or its alias.
+    #[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4")]
+    pub revision: ::core::option::Option<gerrit_source_context::Revision>,
+}
+/// Nested message and enum types in `GerritSourceContext`.
+pub mod gerrit_source_context {
+    /// A revision in a Gerrit project can be identified by either its revision ID
+    /// or its alias.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Revision {
+        /// A revision (commit) ID.
+        #[prost(string, tag = "3")]
+        RevisionId(::prost::alloc::string::String),
+        /// An alias, which may be a branch or tag.
+        #[prost(message, tag = "4")]
+        AliasContext(super::AliasContext),
+    }
+}
+/// A GitSourceContext denotes a particular revision in a third party Git
+/// repository (e.g., GitHub).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GitSourceContext {
+    /// Git repository URL.
+    #[prost(string, tag = "1")]
+    pub url: ::prost::alloc::string::String,
+    /// Git commit hash.
+    #[prost(string, tag = "2")]
+    pub revision_id: ::prost::alloc::string::String,
+}
+/// A unique identifier for a Cloud Repo.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RepoId {
+    /// A cloud repo can be identified by either its project ID and repository name
+    /// combination, or its globally unique identifier.
+    #[prost(oneof = "repo_id::Id", tags = "1, 2")]
+    pub id: ::core::option::Option<repo_id::Id>,
+}
+/// Nested message and enum types in `RepoId`.
+pub mod repo_id {
+    /// A cloud repo can be identified by either its project ID and repository name
+    /// combination, or its globally unique identifier.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Id {
+        /// A combination of a project ID and a repo name.
+        #[prost(message, tag = "1")]
+        ProjectRepoId(super::ProjectRepoId),
+        /// A server-assigned, globally unique identifier.
+        #[prost(string, tag = "2")]
+        Uid(::prost::alloc::string::String),
+    }
+}
+/// Selects a repo using a Google Cloud Platform project ID (e.g.,
+/// winged-cargo-31) and a repo name within that project.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ProjectRepoId {
+    /// The ID of the project.
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// The name of the repo. Leave empty for the default repo.
+    #[prost(string, tag = "2")]
+    pub repo_name: ::prost::alloc::string::String,
+}
+/// Steps taken to build the artifact.
+/// For a TaskRun, typically each container corresponds to one step in the
+/// recipe.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Recipe {
+    /// URI indicating what type of recipe was performed. It determines the meaning
+    /// of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    /// Index in materials containing the recipe steps that are not implied by
+    /// recipe.type. For example, if the recipe type were "make", then this would
+    /// point to the source containing the Makefile, not the make program itself.
+    /// Set to -1 if the recipe doesn't come from a material, as zero is default
+    /// unset value for int64.
+    #[prost(int64, tag = "2")]
+    pub defined_in_material: i64,
+    /// String identifying the entry point into the build.
+    /// This is often a path to a configuration file and/or a target label within
+    /// that file. The syntax and meaning are defined by recipe.type. For example,
+    /// if the recipe type were "make", then this would reference the directory in
+    /// which to run make as well as which target to use.
+    #[prost(string, tag = "3")]
+    pub entry_point: ::prost::alloc::string::String,
+    /// Collection of all external inputs that influenced the build on top of
+    /// recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe
+    /// type were "make", then this might be the flags passed to make aside from
+    /// the target, which is captured in recipe.entryPoint. Since the arguments
+    /// field can greatly vary in structure, depending on the builder and recipe
+    /// type, this is of form "Any".
+    #[prost(message, repeated, tag = "4")]
+    pub arguments: ::prost::alloc::vec::Vec<::prost_types::Any>,
+    /// Any other builder-controlled inputs necessary for correctly evaluating the
+    /// recipe. Usually only needed for reproducing the build but not evaluated as
+    /// part of policy. Since the environment field can greatly vary in structure,
+    /// depending on the builder and recipe type, this is of form "Any".
+    #[prost(message, repeated, tag = "5")]
+    pub environment: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+/// Indicates that the builder claims certain fields in this message to be
+/// complete.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Completeness {
+    /// If true, the builder claims that recipe.arguments is complete, meaning that
+    /// all external inputs are properly captured in the recipe.
+    #[prost(bool, tag = "1")]
+    pub arguments: bool,
+    /// If true, the builder claims that recipe.environment is claimed to be
+    /// complete.
+    #[prost(bool, tag = "2")]
+    pub environment: bool,
+    /// If true, the builder claims that materials are complete, usually through
+    /// some controls to prevent network access. Sometimes called "hermetic".
+    #[prost(bool, tag = "3")]
+    pub materials: bool,
+}
+/// Other properties of the build.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Metadata {
+    /// Identifies the particular build invocation, which can be useful for finding
+    /// associated logs or other ad-hoc analysis. The value SHOULD be globally
+    /// unique, per in-toto Provenance spec.
+    #[prost(string, tag = "1")]
+    pub build_invocation_id: ::prost::alloc::string::String,
+    /// The timestamp of when the build started.
+    #[prost(message, optional, tag = "2")]
+    pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
+    /// The timestamp of when the build completed.
+    #[prost(message, optional, tag = "3")]
+    pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
+    /// Indicates that the builder claims certain fields in this message to be
+    /// complete.
+    #[prost(message, optional, tag = "4")]
+    pub completeness: ::core::option::Option<Completeness>,
+    /// If true, the builder claims that running the recipe on materials will
+    /// produce bit-for-bit identical output.
+    #[prost(bool, tag = "5")]
+    pub reproducible: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuilderConfig {
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InTotoProvenance {
+    /// required
+    #[prost(message, optional, tag = "1")]
+    pub builder_config: ::core::option::Option<BuilderConfig>,
+    /// Identifies the configuration used for the build.
+    /// When combined with materials, this SHOULD fully describe the build,
+    /// such that re-running this recipe results in bit-for-bit identical output
+    /// (if the build is reproducible).
+    ///
+    /// required
+    #[prost(message, optional, tag = "2")]
+    pub recipe: ::core::option::Option<Recipe>,
+    #[prost(message, optional, tag = "3")]
+    pub metadata: ::core::option::Option<Metadata>,
+    /// The collection of artifacts that influenced the build including sources,
+    /// dependencies, build tools, base images, and so on. This is considered to be
+    /// incomplete unless metadata.completeness.materials is true. Unset or null is
+    /// equivalent to empty.
+    #[prost(string, repeated, tag = "4")]
+    pub materials: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 /// A note that indicates a type of analysis a provider would perform. This note
 /// exists in a provider's project. A `Discovery` occurrence is created in a
 /// consumer's project at the start of analysis.
@@ -603,471 +1063,6 @@ pub mod discovery_occurrence {
             }
         }
     }
-}
-/// This represents a particular channel of distribution for a given package.
-/// E.g., Debian's jessie-backports dpkg mirror.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Distribution {
-    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
-    /// denoting the package manager version distributing a package.
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    /// The CPU architecture for which packages in this distribution channel were
-    /// built.
-    #[prost(enumeration = "Architecture", tag = "2")]
-    pub architecture: i32,
-    /// The latest available version of this package in this distribution channel.
-    #[prost(message, optional, tag = "3")]
-    pub latest_version: ::core::option::Option<Version>,
-    /// A freeform string denoting the maintainer of this package.
-    #[prost(string, tag = "4")]
-    pub maintainer: ::prost::alloc::string::String,
-    /// The distribution channel-specific homepage for this package.
-    #[prost(string, tag = "5")]
-    pub url: ::prost::alloc::string::String,
-    /// The distribution channel-specific description of this package.
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-}
-/// An occurrence of a particular package installation found within a system's
-/// filesystem. E.g., glibc was found in `/var/lib/dpkg/status`.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Location {
-    /// Deprecated.
-    /// The CPE URI in [CPE format](<https://cpe.mitre.org/specification/>)
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    /// Deprecated.
-    /// The version installed at this location.
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
-    /// The path from which we gathered that this package/version is installed.
-    #[prost(string, tag = "3")]
-    pub path: ::prost::alloc::string::String,
-}
-/// PackageNote represents a particular package version.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PackageNote {
-    /// The name of the package.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Deprecated.
-    /// The various channels by which a package is distributed.
-    #[prost(message, repeated, tag = "10")]
-    pub distribution: ::prost::alloc::vec::Vec<Distribution>,
-    /// The type of package; whether native or non native (e.g., ruby gems,
-    /// node.js packages, etc.).
-    #[prost(string, tag = "11")]
-    pub package_type: ::prost::alloc::string::String,
-    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
-    /// denoting the package manager version distributing a package.
-    /// The cpe_uri will be blank for language packages.
-    #[prost(string, tag = "12")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    /// The CPU architecture for which packages in this distribution channel were
-    /// built. Architecture will be blank for language packages.
-    #[prost(enumeration = "Architecture", tag = "13")]
-    pub architecture: i32,
-    /// The version of the package.
-    #[prost(message, optional, tag = "14")]
-    pub version: ::core::option::Option<Version>,
-    /// A freeform text denoting the maintainer of this package.
-    #[prost(string, tag = "15")]
-    pub maintainer: ::prost::alloc::string::String,
-    /// The homepage for this package.
-    #[prost(string, tag = "16")]
-    pub url: ::prost::alloc::string::String,
-    /// The description of this package.
-    #[prost(string, tag = "17")]
-    pub description: ::prost::alloc::string::String,
-    /// Licenses that have been declared by the authors of the package.
-    #[prost(message, optional, tag = "18")]
-    pub license: ::core::option::Option<License>,
-    /// Hash value, typically a file digest, that allows unique
-    /// identification a specific package.
-    #[prost(message, repeated, tag = "19")]
-    pub digest: ::prost::alloc::vec::Vec<Digest>,
-}
-/// Details on how a particular software package was installed on a system.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PackageOccurrence {
-    /// The name of the installed package.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// All of the places within the filesystem versions of this package
-    /// have been found.
-    #[prost(message, repeated, tag = "2")]
-    pub location: ::prost::alloc::vec::Vec<Location>,
-    /// The type of package; whether native or non native (e.g., ruby gems,
-    /// node.js packages, etc.).
-    #[prost(string, tag = "3")]
-    pub package_type: ::prost::alloc::string::String,
-    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
-    /// denoting the package manager version distributing a package.
-    /// The cpe_uri will be blank for language packages.
-    #[prost(string, tag = "4")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    /// The CPU architecture for which packages in this distribution channel were
-    /// built. Architecture will be blank for language packages.
-    #[prost(enumeration = "Architecture", tag = "5")]
-    pub architecture: i32,
-    /// Licenses that have been declared by the authors of the package.
-    #[prost(message, optional, tag = "6")]
-    pub license: ::core::option::Option<License>,
-    /// The version of the package.
-    #[prost(message, optional, tag = "7")]
-    pub version: ::core::option::Option<Version>,
-}
-/// Version contains structured information about the version of a package.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Version {
-    /// Used to correct mistakes in the version numbering scheme.
-    #[prost(int32, tag = "1")]
-    pub epoch: i32,
-    /// Required only when version kind is NORMAL. The main part of the version
-    /// name.
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    /// The iteration of the package build from the above version.
-    #[prost(string, tag = "3")]
-    pub revision: ::prost::alloc::string::String,
-    /// Whether this version is specifying part of an inclusive range. Grafeas
-    /// does not have the capability to specify version ranges; instead we have
-    /// fields that specify start version and end versions. At times this is
-    /// insufficient - we also need to specify whether the version is included in
-    /// the range or is excluded from the range. This boolean is expected to be set
-    /// to true when the version is included in a range.
-    #[prost(bool, tag = "6")]
-    pub inclusive: bool,
-    /// Required. Distinguishes between sentinel MIN/MAX versions and normal
-    /// versions.
-    #[prost(enumeration = "version::VersionKind", tag = "4")]
-    pub kind: i32,
-    /// Human readable version string. This string is of the form
-    /// <epoch>:<name>-<revision> and is only set when kind is NORMAL.
-    #[prost(string, tag = "5")]
-    pub full_name: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `Version`.
-pub mod version {
-    /// Whether this is an ordinary package version or a sentinel MIN/MAX version.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VersionKind {
-        /// Unknown.
-        Unspecified = 0,
-        /// A standard package version.
-        Normal = 1,
-        /// A special version representing negative infinity.
-        Minimum = 2,
-        /// A special version representing positive infinity.
-        Maximum = 3,
-    }
-    impl VersionKind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
-                VersionKind::Normal => "NORMAL",
-                VersionKind::Minimum => "MINIMUM",
-                VersionKind::Maximum => "MAXIMUM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-                "NORMAL" => Some(Self::Normal),
-                "MINIMUM" => Some(Self::Minimum),
-                "MAXIMUM" => Some(Self::Maximum),
-                _ => None,
-            }
-        }
-    }
-}
-/// Instruction set architectures supported by various package managers.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Architecture {
-    /// Unknown architecture.
-    Unspecified = 0,
-    /// X86 architecture.
-    X86 = 1,
-    /// X64 architecture.
-    X64 = 2,
-}
-impl Architecture {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
-            Architecture::X86 => "X86",
-            Architecture::X64 => "X64",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
-            "X86" => Some(Self::X86),
-            "X64" => Some(Self::X64),
-            _ => None,
-        }
-    }
-}
-/// An Upgrade Note represents a potential upgrade of a package to a given
-/// version. For each package version combination (i.e. bash 4.0, bash 4.1,
-/// bash 4.1.2), there will be an Upgrade Note. For Windows, windows_update field
-/// represents the information related to the update.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpgradeNote {
-    /// Required for non-Windows OS. The package this Upgrade is for.
-    #[prost(string, tag = "1")]
-    pub package: ::prost::alloc::string::String,
-    /// Required for non-Windows OS. The version of the package in machine + human
-    /// readable form.
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
-    /// Metadata about the upgrade for each specific operating system.
-    #[prost(message, repeated, tag = "3")]
-    pub distributions: ::prost::alloc::vec::Vec<UpgradeDistribution>,
-    /// Required for Windows OS. Represents the metadata about the Windows update.
-    #[prost(message, optional, tag = "4")]
-    pub windows_update: ::core::option::Option<WindowsUpdate>,
-}
-/// The Upgrade Distribution represents metadata about the Upgrade for each
-/// operating system (CPE). Some distributions have additional metadata around
-/// updates, classifying them into various categories and severities.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpgradeDistribution {
-    /// Required - The specific operating system this metadata applies to. See
-    /// <https://cpe.mitre.org/specification/.>
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    /// The operating system classification of this Upgrade, as specified by the
-    /// upstream operating system upgrade feed. For Windows the classification is
-    /// one of the category_ids listed at
-    /// <https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ff357803(v=vs.85>)
-    #[prost(string, tag = "2")]
-    pub classification: ::prost::alloc::string::String,
-    /// The severity as specified by the upstream operating system.
-    #[prost(string, tag = "3")]
-    pub severity: ::prost::alloc::string::String,
-    /// The cve tied to this Upgrade.
-    #[prost(string, repeated, tag = "4")]
-    pub cve: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Windows Update represents the metadata about the update for the Windows
-/// operating system. The fields in this message come from the Windows Update API
-/// documented at
-/// <https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate.>
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WindowsUpdate {
-    /// Required - The unique identifier for the update.
-    #[prost(message, optional, tag = "1")]
-    pub identity: ::core::option::Option<windows_update::Identity>,
-    /// The localized title of the update.
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    /// The localized description of the update.
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    /// The list of categories to which the update belongs.
-    #[prost(message, repeated, tag = "4")]
-    pub categories: ::prost::alloc::vec::Vec<windows_update::Category>,
-    /// The Microsoft Knowledge Base article IDs that are associated with the
-    /// update.
-    #[prost(string, repeated, tag = "5")]
-    pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// The hyperlink to the support information for the update.
-    #[prost(string, tag = "6")]
-    pub support_url: ::prost::alloc::string::String,
-    /// The last published timestamp of the update.
-    #[prost(message, optional, tag = "7")]
-    pub last_published_timestamp: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Nested message and enum types in `WindowsUpdate`.
-pub mod windows_update {
-    /// The unique identifier of the update.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Identity {
-        /// The revision independent identifier of the update.
-        #[prost(string, tag = "1")]
-        pub update_id: ::prost::alloc::string::String,
-        /// The revision number of the update.
-        #[prost(int32, tag = "2")]
-        pub revision: i32,
-    }
-    /// The category to which the update belongs.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Category {
-        /// The identifier of the category.
-        #[prost(string, tag = "1")]
-        pub category_id: ::prost::alloc::string::String,
-        /// The localized name of the category.
-        #[prost(string, tag = "2")]
-        pub name: ::prost::alloc::string::String,
-    }
-}
-/// An Upgrade Occurrence represents that a specific resource_url could install a
-/// specific upgrade. This presence is supplied via local sources (i.e. it is
-/// present in the mirror and the running system has noticed its availability).
-/// For Windows, both distribution and windows_update contain information for the
-/// Windows update.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpgradeOccurrence {
-    /// Required for non-Windows OS. The package this Upgrade is for.
-    #[prost(string, tag = "1")]
-    pub package: ::prost::alloc::string::String,
-    /// Required for non-Windows OS. The version of the package in a machine +
-    /// human readable form.
-    #[prost(message, optional, tag = "3")]
-    pub parsed_version: ::core::option::Option<Version>,
-    /// Metadata about the upgrade for available for the specific operating system
-    /// for the resource_url. This allows efficient filtering, as well as
-    /// making it easier to use the occurrence.
-    #[prost(message, optional, tag = "4")]
-    pub distribution: ::core::option::Option<UpgradeDistribution>,
-    /// Required for Windows OS. Represents the metadata about the Windows update.
-    #[prost(message, optional, tag = "5")]
-    pub windows_update: ::core::option::Option<WindowsUpdate>,
-}
-/// Steps taken to build the artifact.
-/// For a TaskRun, typically each container corresponds to one step in the
-/// recipe.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Recipe {
-    /// URI indicating what type of recipe was performed. It determines the meaning
-    /// of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    /// Index in materials containing the recipe steps that are not implied by
-    /// recipe.type. For example, if the recipe type were "make", then this would
-    /// point to the source containing the Makefile, not the make program itself.
-    /// Set to -1 if the recipe doesn't come from a material, as zero is default
-    /// unset value for int64.
-    #[prost(int64, tag = "2")]
-    pub defined_in_material: i64,
-    /// String identifying the entry point into the build.
-    /// This is often a path to a configuration file and/or a target label within
-    /// that file. The syntax and meaning are defined by recipe.type. For example,
-    /// if the recipe type were "make", then this would reference the directory in
-    /// which to run make as well as which target to use.
-    #[prost(string, tag = "3")]
-    pub entry_point: ::prost::alloc::string::String,
-    /// Collection of all external inputs that influenced the build on top of
-    /// recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe
-    /// type were "make", then this might be the flags passed to make aside from
-    /// the target, which is captured in recipe.entryPoint. Since the arguments
-    /// field can greatly vary in structure, depending on the builder and recipe
-    /// type, this is of form "Any".
-    #[prost(message, repeated, tag = "4")]
-    pub arguments: ::prost::alloc::vec::Vec<::prost_types::Any>,
-    /// Any other builder-controlled inputs necessary for correctly evaluating the
-    /// recipe. Usually only needed for reproducing the build but not evaluated as
-    /// part of policy. Since the environment field can greatly vary in structure,
-    /// depending on the builder and recipe type, this is of form "Any".
-    #[prost(message, repeated, tag = "5")]
-    pub environment: ::prost::alloc::vec::Vec<::prost_types::Any>,
-}
-/// Indicates that the builder claims certain fields in this message to be
-/// complete.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Completeness {
-    /// If true, the builder claims that recipe.arguments is complete, meaning that
-    /// all external inputs are properly captured in the recipe.
-    #[prost(bool, tag = "1")]
-    pub arguments: bool,
-    /// If true, the builder claims that recipe.environment is claimed to be
-    /// complete.
-    #[prost(bool, tag = "2")]
-    pub environment: bool,
-    /// If true, the builder claims that materials are complete, usually through
-    /// some controls to prevent network access. Sometimes called "hermetic".
-    #[prost(bool, tag = "3")]
-    pub materials: bool,
-}
-/// Other properties of the build.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Metadata {
-    /// Identifies the particular build invocation, which can be useful for finding
-    /// associated logs or other ad-hoc analysis. The value SHOULD be globally
-    /// unique, per in-toto Provenance spec.
-    #[prost(string, tag = "1")]
-    pub build_invocation_id: ::prost::alloc::string::String,
-    /// The timestamp of when the build started.
-    #[prost(message, optional, tag = "2")]
-    pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
-    /// The timestamp of when the build completed.
-    #[prost(message, optional, tag = "3")]
-    pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
-    /// Indicates that the builder claims certain fields in this message to be
-    /// complete.
-    #[prost(message, optional, tag = "4")]
-    pub completeness: ::core::option::Option<Completeness>,
-    /// If true, the builder claims that running the recipe on materials will
-    /// produce bit-for-bit identical output.
-    #[prost(bool, tag = "5")]
-    pub reproducible: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuilderConfig {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InTotoProvenance {
-    /// required
-    #[prost(message, optional, tag = "1")]
-    pub builder_config: ::core::option::Option<BuilderConfig>,
-    /// Identifies the configuration used for the build.
-    /// When combined with materials, this SHOULD fully describe the build,
-    /// such that re-running this recipe results in bit-for-bit identical output
-    /// (if the build is reproducible).
-    ///
-    /// required
-    #[prost(message, optional, tag = "2")]
-    pub recipe: ::core::option::Option<Recipe>,
-    #[prost(message, optional, tag = "3")]
-    pub metadata: ::core::option::Option<Metadata>,
-    /// The collection of artifacts that influenced the build including sources,
-    /// dependencies, build tools, base images, and so on. This is considered to be
-    /// incomplete unless metadata.completeness.materials is true. Unset or null is
-    /// equivalent to empty.
-    #[prost(string, repeated, tag = "4")]
-    pub materials: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1478,6 +1473,52 @@ pub mod dsse_attestation_occurrence {
         Statement(super::InTotoStatement),
     }
 }
+/// Note holding the version of the provider's builder and the signature of the
+/// provenance message in the build details occurrence.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildNote {
+    /// Required. Immutable. Version of the builder which produced this build.
+    #[prost(string, tag = "1")]
+    pub builder_version: ::prost::alloc::string::String,
+}
+/// Details of a build occurrence.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildOccurrence {
+    /// The actual provenance for the build.
+    #[prost(message, optional, tag = "1")]
+    pub provenance: ::core::option::Option<BuildProvenance>,
+    /// Serialized JSON representation of the provenance, used in generating the
+    /// build signature in the corresponding build note. After verifying the
+    /// signature, `provenance_bytes` can be unmarshalled and compared to the
+    /// provenance to confirm that it is unchanged. A base64-encoded string
+    /// representation of the provenance bytes is used for the signature in order
+    /// to interoperate with openssl which expects this format for signature
+    /// verification.
+    ///
+    /// The serialized form is captured both to avoid ambiguity in how the
+    /// provenance is marshalled to json as well to prevent incompatibilities with
+    /// future changes.
+    #[prost(string, tag = "2")]
+    pub provenance_bytes: ::prost::alloc::string::String,
+    /// Deprecated. See InTotoStatement for the replacement.
+    /// In-toto Provenance representation as defined in spec.
+    #[prost(message, optional, tag = "3")]
+    pub intoto_provenance: ::core::option::Option<InTotoProvenance>,
+    /// In-toto Statement representation as defined in spec.
+    /// The intoto_statement can contain any type of provenance. The serialized
+    /// payload of the statement can be stored and signed in the Occurrence's
+    /// envelope.
+    #[prost(message, optional, tag = "4")]
+    pub intoto_statement: ::core::option::Option<InTotoStatement>,
+    /// In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa
+    /// spec, wrapped in an in-toto statement. This allows for direct
+    /// jsonification of a to-spec in-toto slsa statement with a to-spec
+    /// slsa provenance.
+    #[prost(message, optional, tag = "5")]
+    pub in_toto_slsa_provenance_v1: ::core::option::Option<InTotoSlsaProvenanceV1>,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComplianceNote {
@@ -1578,475 +1619,6 @@ pub struct NonCompliantFile {
     /// Explains why a file is non compliant for a CIS check.
     #[prost(string, tag = "3")]
     pub reason: ::prost::alloc::string::String,
-}
-/// Provenance of a build. Contains all information needed to verify the full
-/// details about the build from source to completion.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuildProvenance {
-    /// Required. Unique identifier of the build.
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    /// ID of the project.
-    #[prost(string, tag = "2")]
-    pub project_id: ::prost::alloc::string::String,
-    /// Commands requested by the build.
-    #[prost(message, repeated, tag = "3")]
-    pub commands: ::prost::alloc::vec::Vec<Command>,
-    /// Output of the build.
-    #[prost(message, repeated, tag = "4")]
-    pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
-    /// Time at which the build was created.
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Time at which execution of the build was started.
-    #[prost(message, optional, tag = "6")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Time at which execution of the build was finished.
-    #[prost(message, optional, tag = "7")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// E-mail address of the user who initiated this build. Note that this was the
-    /// user's e-mail address at the time the build was initiated; this address may
-    /// not represent the same end-user for all time.
-    #[prost(string, tag = "8")]
-    pub creator: ::prost::alloc::string::String,
-    /// URI where any logs for this provenance were written.
-    #[prost(string, tag = "9")]
-    pub logs_uri: ::prost::alloc::string::String,
-    /// Details of the Source input to the build.
-    #[prost(message, optional, tag = "10")]
-    pub source_provenance: ::core::option::Option<Source>,
-    /// Trigger identifier if the build was triggered automatically; empty if not.
-    #[prost(string, tag = "11")]
-    pub trigger_id: ::prost::alloc::string::String,
-    /// Special options applied to this build. This is a catch-all field where
-    /// build providers can enter any desired additional details.
-    #[prost(btree_map = "string, string", tag = "12")]
-    pub build_options: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    /// Version string of the builder at the time this build was executed.
-    #[prost(string, tag = "13")]
-    pub builder_version: ::prost::alloc::string::String,
-}
-/// Source describes the location of the source used for the build.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Source {
-    /// If provided, the input binary artifacts for the build came from this
-    /// location.
-    #[prost(string, tag = "1")]
-    pub artifact_storage_source_uri: ::prost::alloc::string::String,
-    /// Hash(es) of the build source, which can be used to verify that the original
-    /// source integrity was maintained in the build.
-    ///
-    /// The keys to this map are file paths used as build source and the values
-    /// contain the hash values for those files.
-    ///
-    /// If the build source came in a single package such as a gzipped tarfile
-    /// (.tar.gz), the FileHash will be for the single path to that file.
-    #[prost(btree_map = "string, message", tag = "2")]
-    pub file_hashes: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        FileHashes,
-    >,
-    /// If provided, the source code used for the build came from this location.
-    #[prost(message, optional, tag = "3")]
-    pub context: ::core::option::Option<SourceContext>,
-    /// If provided, some of the source code used for the build may be found in
-    /// these locations, in the case where the source repository had multiple
-    /// remotes or submodules. This list will not include the context specified in
-    /// the context field.
-    #[prost(message, repeated, tag = "4")]
-    pub additional_contexts: ::prost::alloc::vec::Vec<SourceContext>,
-}
-/// Container message for hashes of byte content of files, used in source
-/// messages to verify integrity of source input to the build.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FileHashes {
-    /// Required. Collection of file hashes.
-    #[prost(message, repeated, tag = "1")]
-    pub file_hash: ::prost::alloc::vec::Vec<Hash>,
-}
-/// Container message for hash values.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Hash {
-    /// Required. The type of hash that was performed, e.g. "SHA-256".
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    /// Required. The hash value.
-    #[prost(bytes = "vec", tag = "2")]
-    pub value: ::prost::alloc::vec::Vec<u8>,
-}
-/// Command describes a step performed as part of the build pipeline.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Command {
-    /// Required. Name of the command, as presented on the command line, or if the
-    /// command is packaged as a Docker container, as presented to `docker pull`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Environment variables set before running this command.
-    #[prost(string, repeated, tag = "2")]
-    pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Command-line arguments used when executing this command.
-    #[prost(string, repeated, tag = "3")]
-    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Working directory (relative to project source root) used when running this
-    /// command.
-    #[prost(string, tag = "4")]
-    pub dir: ::prost::alloc::string::String,
-    /// Optional unique identifier for this command, used in wait_for to reference
-    /// this command as a dependency.
-    #[prost(string, tag = "5")]
-    pub id: ::prost::alloc::string::String,
-    /// The ID(s) of the command(s) that this command depends on.
-    #[prost(string, repeated, tag = "6")]
-    pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Artifact describes a build product.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Artifact {
-    /// Hash or checksum value of a binary, or Docker Registry 2.0 digest of a
-    /// container.
-    #[prost(string, tag = "1")]
-    pub checksum: ::prost::alloc::string::String,
-    /// Artifact ID, if any; for container images, this will be a URL by digest
-    /// like `gcr.io/projectID/imagename@sha256:123456`.
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    /// Related artifact names. This may be the path to a binary or jar file, or in
-    /// the case of a container build, the name used to push the container image to
-    /// Google Container Registry, as presented to `docker push`. Note that a
-    /// single Artifact ID can have multiple names, for example if two tags are
-    /// applied to one image.
-    #[prost(string, repeated, tag = "3")]
-    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// A SourceContext is a reference to a tree of files. A SourceContext together
-/// with a path point to a unique revision of a single file or directory.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SourceContext {
-    /// Labels with user defined metadata.
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    /// A SourceContext can refer any one of the following types of repositories.
-    #[prost(oneof = "source_context::Context", tags = "1, 2, 3")]
-    pub context: ::core::option::Option<source_context::Context>,
-}
-/// Nested message and enum types in `SourceContext`.
-pub mod source_context {
-    /// A SourceContext can refer any one of the following types of repositories.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Context {
-        /// A SourceContext referring to a revision in a Google Cloud Source Repo.
-        #[prost(message, tag = "1")]
-        CloudRepo(super::CloudRepoSourceContext),
-        /// A SourceContext referring to a Gerrit project.
-        #[prost(message, tag = "2")]
-        Gerrit(super::GerritSourceContext),
-        /// A SourceContext referring to any third party Git repo (e.g., GitHub).
-        #[prost(message, tag = "3")]
-        Git(super::GitSourceContext),
-    }
-}
-/// An alias to a repo revision.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AliasContext {
-    /// The alias kind.
-    #[prost(enumeration = "alias_context::Kind", tag = "1")]
-    pub kind: i32,
-    /// The alias name.
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `AliasContext`.
-pub mod alias_context {
-    /// The type of an alias.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Kind {
-        /// Unknown.
-        Unspecified = 0,
-        /// Git tag.
-        Fixed = 1,
-        /// Git branch.
-        Movable = 2,
-        /// Used to specify non-standard aliases. For example, if a Git repo has a
-        /// ref named "refs/foo/bar".
-        Other = 4,
-    }
-    impl Kind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Kind::Unspecified => "KIND_UNSPECIFIED",
-                Kind::Fixed => "FIXED",
-                Kind::Movable => "MOVABLE",
-                Kind::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KIND_UNSPECIFIED" => Some(Self::Unspecified),
-                "FIXED" => Some(Self::Fixed),
-                "MOVABLE" => Some(Self::Movable),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
-}
-/// A CloudRepoSourceContext denotes a particular revision in a Google Cloud
-/// Source Repo.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CloudRepoSourceContext {
-    /// The ID of the repo.
-    #[prost(message, optional, tag = "1")]
-    pub repo_id: ::core::option::Option<RepoId>,
-    /// A revision in a Cloud Repo can be identified by either its revision ID or
-    /// its alias.
-    #[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3")]
-    pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
-}
-/// Nested message and enum types in `CloudRepoSourceContext`.
-pub mod cloud_repo_source_context {
-    /// A revision in a Cloud Repo can be identified by either its revision ID or
-    /// its alias.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        /// A revision ID.
-        #[prost(string, tag = "2")]
-        RevisionId(::prost::alloc::string::String),
-        /// An alias, which may be a branch or tag.
-        #[prost(message, tag = "3")]
-        AliasContext(super::AliasContext),
-    }
-}
-/// A SourceContext referring to a Gerrit project.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GerritSourceContext {
-    /// The URI of a running Gerrit instance.
-    #[prost(string, tag = "1")]
-    pub host_uri: ::prost::alloc::string::String,
-    /// The full project name within the host. Projects may be nested, so
-    /// "project/subproject" is a valid project name. The "repo name" is the
-    /// hostURI/project.
-    #[prost(string, tag = "2")]
-    pub gerrit_project: ::prost::alloc::string::String,
-    /// A revision in a Gerrit project can be identified by either its revision ID
-    /// or its alias.
-    #[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4")]
-    pub revision: ::core::option::Option<gerrit_source_context::Revision>,
-}
-/// Nested message and enum types in `GerritSourceContext`.
-pub mod gerrit_source_context {
-    /// A revision in a Gerrit project can be identified by either its revision ID
-    /// or its alias.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        /// A revision (commit) ID.
-        #[prost(string, tag = "3")]
-        RevisionId(::prost::alloc::string::String),
-        /// An alias, which may be a branch or tag.
-        #[prost(message, tag = "4")]
-        AliasContext(super::AliasContext),
-    }
-}
-/// A GitSourceContext denotes a particular revision in a third party Git
-/// repository (e.g., GitHub).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GitSourceContext {
-    /// Git repository URL.
-    #[prost(string, tag = "1")]
-    pub url: ::prost::alloc::string::String,
-    /// Git commit hash.
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
-}
-/// A unique identifier for a Cloud Repo.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RepoId {
-    /// A cloud repo can be identified by either its project ID and repository name
-    /// combination, or its globally unique identifier.
-    #[prost(oneof = "repo_id::Id", tags = "1, 2")]
-    pub id: ::core::option::Option<repo_id::Id>,
-}
-/// Nested message and enum types in `RepoId`.
-pub mod repo_id {
-    /// A cloud repo can be identified by either its project ID and repository name
-    /// combination, or its globally unique identifier.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Id {
-        /// A combination of a project ID and a repo name.
-        #[prost(message, tag = "1")]
-        ProjectRepoId(super::ProjectRepoId),
-        /// A server-assigned, globally unique identifier.
-        #[prost(string, tag = "2")]
-        Uid(::prost::alloc::string::String),
-    }
-}
-/// Selects a repo using a Google Cloud Platform project ID (e.g.,
-/// winged-cargo-31) and a repo name within that project.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProjectRepoId {
-    /// The ID of the project.
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    /// The name of the repo. Leave empty for the default repo.
-    #[prost(string, tag = "2")]
-    pub repo_name: ::prost::alloc::string::String,
-}
-/// Note holding the version of the provider's builder and the signature of the
-/// provenance message in the build details occurrence.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuildNote {
-    /// Required. Immutable. Version of the builder which produced this build.
-    #[prost(string, tag = "1")]
-    pub builder_version: ::prost::alloc::string::String,
-}
-/// Details of a build occurrence.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BuildOccurrence {
-    /// The actual provenance for the build.
-    #[prost(message, optional, tag = "1")]
-    pub provenance: ::core::option::Option<BuildProvenance>,
-    /// Serialized JSON representation of the provenance, used in generating the
-    /// build signature in the corresponding build note. After verifying the
-    /// signature, `provenance_bytes` can be unmarshalled and compared to the
-    /// provenance to confirm that it is unchanged. A base64-encoded string
-    /// representation of the provenance bytes is used for the signature in order
-    /// to interoperate with openssl which expects this format for signature
-    /// verification.
-    ///
-    /// The serialized form is captured both to avoid ambiguity in how the
-    /// provenance is marshalled to json as well to prevent incompatibilities with
-    /// future changes.
-    #[prost(string, tag = "2")]
-    pub provenance_bytes: ::prost::alloc::string::String,
-    /// Deprecated. See InTotoStatement for the replacement.
-    /// In-toto Provenance representation as defined in spec.
-    #[prost(message, optional, tag = "3")]
-    pub intoto_provenance: ::core::option::Option<InTotoProvenance>,
-    /// In-toto Statement representation as defined in spec.
-    /// The intoto_statement can contain any type of provenance. The serialized
-    /// payload of the statement can be stored and signed in the Occurrence's
-    /// envelope.
-    #[prost(message, optional, tag = "4")]
-    pub intoto_statement: ::core::option::Option<InTotoStatement>,
-    /// In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa
-    /// spec, wrapped in an in-toto statement. This allows for direct
-    /// jsonification of a to-spec in-toto slsa statement with a to-spec
-    /// slsa provenance.
-    #[prost(message, optional, tag = "5")]
-    pub in_toto_slsa_provenance_v1: ::core::option::Option<InTotoSlsaProvenanceV1>,
-}
-/// The note representing an SBOM reference.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SbomReferenceNote {
-    /// The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...
-    #[prost(string, tag = "1")]
-    pub format: ::prost::alloc::string::String,
-    /// The version of the format that the SBOM takes. E.g. if the format
-    /// is spdx, the version may be 2.3.
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
-}
-/// The occurrence representing an SBOM reference as applied to a specific
-/// resource. The occurrence follows the DSSE specification. See
-/// <https://github.com/secure-systems-lab/dsse/blob/master/envelope.md> for more
-/// details.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SbomReferenceOccurrence {
-    /// The actual payload that contains the SBOM reference data.
-    #[prost(message, optional, tag = "1")]
-    pub payload: ::core::option::Option<SbomReferenceIntotoPayload>,
-    /// The kind of payload that SbomReferenceIntotoPayload takes. Since it's in
-    /// the intoto format, this value is expected to be
-    /// 'application/vnd.in-toto+json'.
-    #[prost(string, tag = "2")]
-    pub payload_type: ::prost::alloc::string::String,
-    /// The signatures over the payload.
-    #[prost(message, repeated, tag = "3")]
-    pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
-}
-/// The actual payload that contains the SBOM Reference data.
-/// The payload follows the intoto statement specification. See
-/// <https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md>
-/// for more details.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SbomReferenceIntotoPayload {
-    /// Identifier for the schema of the Statement.
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    /// URI identifying the type of the Predicate.
-    #[prost(string, tag = "2")]
-    pub predicate_type: ::prost::alloc::string::String,
-    /// Set of software artifacts that the attestation applies to. Each element
-    /// represents a single software artifact.
-    #[prost(message, repeated, tag = "3")]
-    pub subject: ::prost::alloc::vec::Vec<Subject>,
-    /// Additional parameters of the Predicate. Includes the actual data about the
-    /// SBOM.
-    #[prost(message, optional, tag = "4")]
-    pub predicate: ::core::option::Option<SbomReferenceIntotoPredicate>,
-}
-/// A predicate which describes the SBOM being referenced.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SbomReferenceIntotoPredicate {
-    /// The person or system referring this predicate to the consumer.
-    #[prost(string, tag = "1")]
-    pub referrer_id: ::prost::alloc::string::String,
-    /// The location of the SBOM.
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    /// The mime type of the SBOM.
-    #[prost(string, tag = "3")]
-    pub mime_type: ::prost::alloc::string::String,
-    /// A map of algorithm to digest of the contents of the SBOM.
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub digest: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
 }
 /// An artifact that can be deployed in some runtime.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2201,6 +1773,434 @@ pub struct ImageOccurrence {
     /// occurrence.
     #[prost(string, tag = "4")]
     pub base_resource_url: ::prost::alloc::string::String,
+}
+/// This represents a particular channel of distribution for a given package.
+/// E.g., Debian's jessie-backports dpkg mirror.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Distribution {
+    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
+    /// denoting the package manager version distributing a package.
+    #[prost(string, tag = "1")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    /// The CPU architecture for which packages in this distribution channel were
+    /// built.
+    #[prost(enumeration = "Architecture", tag = "2")]
+    pub architecture: i32,
+    /// The latest available version of this package in this distribution channel.
+    #[prost(message, optional, tag = "3")]
+    pub latest_version: ::core::option::Option<Version>,
+    /// A freeform string denoting the maintainer of this package.
+    #[prost(string, tag = "4")]
+    pub maintainer: ::prost::alloc::string::String,
+    /// The distribution channel-specific homepage for this package.
+    #[prost(string, tag = "5")]
+    pub url: ::prost::alloc::string::String,
+    /// The distribution channel-specific description of this package.
+    #[prost(string, tag = "6")]
+    pub description: ::prost::alloc::string::String,
+}
+/// An occurrence of a particular package installation found within a system's
+/// filesystem. E.g., glibc was found in `/var/lib/dpkg/status`.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Location {
+    /// Deprecated.
+    /// The CPE URI in [CPE format](<https://cpe.mitre.org/specification/>)
+    #[prost(string, tag = "1")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    /// Deprecated.
+    /// The version installed at this location.
+    #[prost(message, optional, tag = "2")]
+    pub version: ::core::option::Option<Version>,
+    /// The path from which we gathered that this package/version is installed.
+    #[prost(string, tag = "3")]
+    pub path: ::prost::alloc::string::String,
+}
+/// PackageNote represents a particular package version.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PackageNote {
+    /// The name of the package.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Deprecated.
+    /// The various channels by which a package is distributed.
+    #[prost(message, repeated, tag = "10")]
+    pub distribution: ::prost::alloc::vec::Vec<Distribution>,
+    /// The type of package; whether native or non native (e.g., ruby gems,
+    /// node.js packages, etc.).
+    #[prost(string, tag = "11")]
+    pub package_type: ::prost::alloc::string::String,
+    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
+    /// denoting the package manager version distributing a package.
+    /// The cpe_uri will be blank for language packages.
+    #[prost(string, tag = "12")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    /// The CPU architecture for which packages in this distribution channel were
+    /// built. Architecture will be blank for language packages.
+    #[prost(enumeration = "Architecture", tag = "13")]
+    pub architecture: i32,
+    /// The version of the package.
+    #[prost(message, optional, tag = "14")]
+    pub version: ::core::option::Option<Version>,
+    /// A freeform text denoting the maintainer of this package.
+    #[prost(string, tag = "15")]
+    pub maintainer: ::prost::alloc::string::String,
+    /// The homepage for this package.
+    #[prost(string, tag = "16")]
+    pub url: ::prost::alloc::string::String,
+    /// The description of this package.
+    #[prost(string, tag = "17")]
+    pub description: ::prost::alloc::string::String,
+    /// Licenses that have been declared by the authors of the package.
+    #[prost(message, optional, tag = "18")]
+    pub license: ::core::option::Option<License>,
+    /// Hash value, typically a file digest, that allows unique
+    /// identification a specific package.
+    #[prost(message, repeated, tag = "19")]
+    pub digest: ::prost::alloc::vec::Vec<Digest>,
+}
+/// Details on how a particular software package was installed on a system.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PackageOccurrence {
+    /// The name of the installed package.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// All of the places within the filesystem versions of this package
+    /// have been found.
+    #[prost(message, repeated, tag = "2")]
+    pub location: ::prost::alloc::vec::Vec<Location>,
+    /// The type of package; whether native or non native (e.g., ruby gems,
+    /// node.js packages, etc.).
+    #[prost(string, tag = "3")]
+    pub package_type: ::prost::alloc::string::String,
+    /// The cpe_uri in [CPE format](<https://cpe.mitre.org/specification/>)
+    /// denoting the package manager version distributing a package.
+    /// The cpe_uri will be blank for language packages.
+    #[prost(string, tag = "4")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    /// The CPU architecture for which packages in this distribution channel were
+    /// built. Architecture will be blank for language packages.
+    #[prost(enumeration = "Architecture", tag = "5")]
+    pub architecture: i32,
+    /// Licenses that have been declared by the authors of the package.
+    #[prost(message, optional, tag = "6")]
+    pub license: ::core::option::Option<License>,
+    /// The version of the package.
+    #[prost(message, optional, tag = "7")]
+    pub version: ::core::option::Option<Version>,
+}
+/// Version contains structured information about the version of a package.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Version {
+    /// Used to correct mistakes in the version numbering scheme.
+    #[prost(int32, tag = "1")]
+    pub epoch: i32,
+    /// Required only when version kind is NORMAL. The main part of the version
+    /// name.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// The iteration of the package build from the above version.
+    #[prost(string, tag = "3")]
+    pub revision: ::prost::alloc::string::String,
+    /// Whether this version is specifying part of an inclusive range. Grafeas
+    /// does not have the capability to specify version ranges; instead we have
+    /// fields that specify start version and end versions. At times this is
+    /// insufficient - we also need to specify whether the version is included in
+    /// the range or is excluded from the range. This boolean is expected to be set
+    /// to true when the version is included in a range.
+    #[prost(bool, tag = "6")]
+    pub inclusive: bool,
+    /// Required. Distinguishes between sentinel MIN/MAX versions and normal
+    /// versions.
+    #[prost(enumeration = "version::VersionKind", tag = "4")]
+    pub kind: i32,
+    /// Human readable version string. This string is of the form
+    /// <epoch>:<name>-<revision> and is only set when kind is NORMAL.
+    #[prost(string, tag = "5")]
+    pub full_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Version`.
+pub mod version {
+    /// Whether this is an ordinary package version or a sentinel MIN/MAX version.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum VersionKind {
+        /// Unknown.
+        Unspecified = 0,
+        /// A standard package version.
+        Normal = 1,
+        /// A special version representing negative infinity.
+        Minimum = 2,
+        /// A special version representing positive infinity.
+        Maximum = 3,
+    }
+    impl VersionKind {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
+                VersionKind::Normal => "NORMAL",
+                VersionKind::Minimum => "MINIMUM",
+                VersionKind::Maximum => "MAXIMUM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+                "NORMAL" => Some(Self::Normal),
+                "MINIMUM" => Some(Self::Minimum),
+                "MAXIMUM" => Some(Self::Maximum),
+                _ => None,
+            }
+        }
+    }
+}
+/// Instruction set architectures supported by various package managers.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Architecture {
+    /// Unknown architecture.
+    Unspecified = 0,
+    /// X86 architecture.
+    X86 = 1,
+    /// X64 architecture.
+    X64 = 2,
+}
+impl Architecture {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
+            Architecture::X86 => "X86",
+            Architecture::X64 => "X64",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
+            "X86" => Some(Self::X86),
+            "X64" => Some(Self::X64),
+            _ => None,
+        }
+    }
+}
+/// The note representing an SBOM reference.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SbomReferenceNote {
+    /// The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...
+    #[prost(string, tag = "1")]
+    pub format: ::prost::alloc::string::String,
+    /// The version of the format that the SBOM takes. E.g. if the format
+    /// is spdx, the version may be 2.3.
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+}
+/// The occurrence representing an SBOM reference as applied to a specific
+/// resource. The occurrence follows the DSSE specification. See
+/// <https://github.com/secure-systems-lab/dsse/blob/master/envelope.md> for more
+/// details.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SbomReferenceOccurrence {
+    /// The actual payload that contains the SBOM reference data.
+    #[prost(message, optional, tag = "1")]
+    pub payload: ::core::option::Option<SbomReferenceIntotoPayload>,
+    /// The kind of payload that SbomReferenceIntotoPayload takes. Since it's in
+    /// the intoto format, this value is expected to be
+    /// 'application/vnd.in-toto+json'.
+    #[prost(string, tag = "2")]
+    pub payload_type: ::prost::alloc::string::String,
+    /// The signatures over the payload.
+    #[prost(message, repeated, tag = "3")]
+    pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
+}
+/// The actual payload that contains the SBOM Reference data.
+/// The payload follows the intoto statement specification. See
+/// <https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md>
+/// for more details.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SbomReferenceIntotoPayload {
+    /// Identifier for the schema of the Statement.
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    /// URI identifying the type of the Predicate.
+    #[prost(string, tag = "2")]
+    pub predicate_type: ::prost::alloc::string::String,
+    /// Set of software artifacts that the attestation applies to. Each element
+    /// represents a single software artifact.
+    #[prost(message, repeated, tag = "3")]
+    pub subject: ::prost::alloc::vec::Vec<Subject>,
+    /// Additional parameters of the Predicate. Includes the actual data about the
+    /// SBOM.
+    #[prost(message, optional, tag = "4")]
+    pub predicate: ::core::option::Option<SbomReferenceIntotoPredicate>,
+}
+/// A predicate which describes the SBOM being referenced.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SbomReferenceIntotoPredicate {
+    /// The person or system referring this predicate to the consumer.
+    #[prost(string, tag = "1")]
+    pub referrer_id: ::prost::alloc::string::String,
+    /// The location of the SBOM.
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
+    /// The mime type of the SBOM.
+    #[prost(string, tag = "3")]
+    pub mime_type: ::prost::alloc::string::String,
+    /// A map of algorithm to digest of the contents of the SBOM.
+    #[prost(btree_map = "string, string", tag = "4")]
+    pub digest: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+}
+/// An Upgrade Note represents a potential upgrade of a package to a given
+/// version. For each package version combination (i.e. bash 4.0, bash 4.1,
+/// bash 4.1.2), there will be an Upgrade Note. For Windows, windows_update field
+/// represents the information related to the update.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpgradeNote {
+    /// Required for non-Windows OS. The package this Upgrade is for.
+    #[prost(string, tag = "1")]
+    pub package: ::prost::alloc::string::String,
+    /// Required for non-Windows OS. The version of the package in machine + human
+    /// readable form.
+    #[prost(message, optional, tag = "2")]
+    pub version: ::core::option::Option<Version>,
+    /// Metadata about the upgrade for each specific operating system.
+    #[prost(message, repeated, tag = "3")]
+    pub distributions: ::prost::alloc::vec::Vec<UpgradeDistribution>,
+    /// Required for Windows OS. Represents the metadata about the Windows update.
+    #[prost(message, optional, tag = "4")]
+    pub windows_update: ::core::option::Option<WindowsUpdate>,
+}
+/// The Upgrade Distribution represents metadata about the Upgrade for each
+/// operating system (CPE). Some distributions have additional metadata around
+/// updates, classifying them into various categories and severities.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpgradeDistribution {
+    /// Required - The specific operating system this metadata applies to. See
+    /// <https://cpe.mitre.org/specification/.>
+    #[prost(string, tag = "1")]
+    pub cpe_uri: ::prost::alloc::string::String,
+    /// The operating system classification of this Upgrade, as specified by the
+    /// upstream operating system upgrade feed. For Windows the classification is
+    /// one of the category_ids listed at
+    /// <https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ff357803(v=vs.85>)
+    #[prost(string, tag = "2")]
+    pub classification: ::prost::alloc::string::String,
+    /// The severity as specified by the upstream operating system.
+    #[prost(string, tag = "3")]
+    pub severity: ::prost::alloc::string::String,
+    /// The cve tied to this Upgrade.
+    #[prost(string, repeated, tag = "4")]
+    pub cve: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Windows Update represents the metadata about the update for the Windows
+/// operating system. The fields in this message come from the Windows Update API
+/// documented at
+/// <https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate.>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WindowsUpdate {
+    /// Required - The unique identifier for the update.
+    #[prost(message, optional, tag = "1")]
+    pub identity: ::core::option::Option<windows_update::Identity>,
+    /// The localized title of the update.
+    #[prost(string, tag = "2")]
+    pub title: ::prost::alloc::string::String,
+    /// The localized description of the update.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// The list of categories to which the update belongs.
+    #[prost(message, repeated, tag = "4")]
+    pub categories: ::prost::alloc::vec::Vec<windows_update::Category>,
+    /// The Microsoft Knowledge Base article IDs that are associated with the
+    /// update.
+    #[prost(string, repeated, tag = "5")]
+    pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// The hyperlink to the support information for the update.
+    #[prost(string, tag = "6")]
+    pub support_url: ::prost::alloc::string::String,
+    /// The last published timestamp of the update.
+    #[prost(message, optional, tag = "7")]
+    pub last_published_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `WindowsUpdate`.
+pub mod windows_update {
+    /// The unique identifier of the update.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Identity {
+        /// The revision independent identifier of the update.
+        #[prost(string, tag = "1")]
+        pub update_id: ::prost::alloc::string::String,
+        /// The revision number of the update.
+        #[prost(int32, tag = "2")]
+        pub revision: i32,
+    }
+    /// The category to which the update belongs.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Category {
+        /// The identifier of the category.
+        #[prost(string, tag = "1")]
+        pub category_id: ::prost::alloc::string::String,
+        /// The localized name of the category.
+        #[prost(string, tag = "2")]
+        pub name: ::prost::alloc::string::String,
+    }
+}
+/// An Upgrade Occurrence represents that a specific resource_url could install a
+/// specific upgrade. This presence is supplied via local sources (i.e. it is
+/// present in the mirror and the running system has noticed its availability).
+/// For Windows, both distribution and windows_update contain information for the
+/// Windows update.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpgradeOccurrence {
+    /// Required for non-Windows OS. The package this Upgrade is for.
+    #[prost(string, tag = "1")]
+    pub package: ::prost::alloc::string::String,
+    /// Required for non-Windows OS. The version of the package in a machine +
+    /// human readable form.
+    #[prost(message, optional, tag = "3")]
+    pub parsed_version: ::core::option::Option<Version>,
+    /// Metadata about the upgrade for available for the specific operating system
+    /// for the resource_url. This allows efficient filtering, as well as
+    /// making it easier to use the occurrence.
+    #[prost(message, optional, tag = "4")]
+    pub distribution: ::core::option::Option<UpgradeDistribution>,
+    /// Required for Windows OS. Represents the metadata about the Windows update.
+    #[prost(message, optional, tag = "5")]
+    pub windows_update: ::core::option::Option<WindowsUpdate>,
 }
 /// A single VulnerabilityAssessmentNote represents
 /// one particular product's vulnerability assessment for one CVE.

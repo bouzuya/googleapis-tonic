@@ -19,6 +19,162 @@ pub struct AuthorAttribution {
     #[prost(string, tag = "3")]
     pub photo_uri: ::prost::alloc::string::String,
 }
+/// Information about a photo of a place.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Photo {
+    /// Identifier. A reference representing this place photo which may be used to
+    /// look up this place photo again (also called the API "resource" name:
+    /// `places/{place_id}/photos/{photo}`).
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The maximum available width, in pixels.
+    #[prost(int32, tag = "2")]
+    pub width_px: i32,
+    /// The maximum available height, in pixels.
+    #[prost(int32, tag = "3")]
+    pub height_px: i32,
+    /// This photo's authors.
+    #[prost(message, repeated, tag = "4")]
+    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
+}
+/// The most recent information about fuel options in a gas station. This
+/// information is updated regularly.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FuelOptions {
+    /// The last known fuel price for each type of fuel this station has. There is
+    /// one entry per fuel type this station has. Order is not important.
+    #[prost(message, repeated, tag = "1")]
+    pub fuel_prices: ::prost::alloc::vec::Vec<fuel_options::FuelPrice>,
+}
+/// Nested message and enum types in `FuelOptions`.
+pub mod fuel_options {
+    /// Fuel price information for a given type.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FuelPrice {
+        /// The type of fuel.
+        #[prost(enumeration = "fuel_price::FuelType", tag = "1")]
+        pub r#type: i32,
+        /// The price of the fuel.
+        #[prost(message, optional, tag = "2")]
+        pub price: ::core::option::Option<super::super::super::super::r#type::Money>,
+        /// The time the fuel price was last updated.
+        #[prost(message, optional, tag = "3")]
+        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    /// Nested message and enum types in `FuelPrice`.
+    pub mod fuel_price {
+        /// Types of fuel.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum FuelType {
+            /// Unspecified fuel type.
+            Unspecified = 0,
+            /// Diesel fuel.
+            Diesel = 1,
+            /// Regular unleaded.
+            RegularUnleaded = 2,
+            /// Midgrade.
+            Midgrade = 3,
+            /// Premium.
+            Premium = 4,
+            /// SP 91.
+            Sp91 = 5,
+            /// SP 91 E10.
+            Sp91E10 = 6,
+            /// SP 92.
+            Sp92 = 7,
+            /// SP 95.
+            Sp95 = 8,
+            /// SP95 E10.
+            Sp95E10 = 9,
+            /// SP 98.
+            Sp98 = 10,
+            /// SP 99.
+            Sp99 = 11,
+            /// SP 100.
+            Sp100 = 12,
+            /// LPG.
+            Lpg = 13,
+            /// E 80.
+            E80 = 14,
+            /// E 85.
+            E85 = 15,
+            /// Methane.
+            Methane = 16,
+            /// Bio-diesel.
+            BioDiesel = 17,
+            /// Truck diesel.
+            TruckDiesel = 18,
+        }
+        impl FuelType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    FuelType::Unspecified => "FUEL_TYPE_UNSPECIFIED",
+                    FuelType::Diesel => "DIESEL",
+                    FuelType::RegularUnleaded => "REGULAR_UNLEADED",
+                    FuelType::Midgrade => "MIDGRADE",
+                    FuelType::Premium => "PREMIUM",
+                    FuelType::Sp91 => "SP91",
+                    FuelType::Sp91E10 => "SP91_E10",
+                    FuelType::Sp92 => "SP92",
+                    FuelType::Sp95 => "SP95",
+                    FuelType::Sp95E10 => "SP95_E10",
+                    FuelType::Sp98 => "SP98",
+                    FuelType::Sp99 => "SP99",
+                    FuelType::Sp100 => "SP100",
+                    FuelType::Lpg => "LPG",
+                    FuelType::E80 => "E80",
+                    FuelType::E85 => "E85",
+                    FuelType::Methane => "METHANE",
+                    FuelType::BioDiesel => "BIO_DIESEL",
+                    FuelType::TruckDiesel => "TRUCK_DIESEL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "FUEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "DIESEL" => Some(Self::Diesel),
+                    "REGULAR_UNLEADED" => Some(Self::RegularUnleaded),
+                    "MIDGRADE" => Some(Self::Midgrade),
+                    "PREMIUM" => Some(Self::Premium),
+                    "SP91" => Some(Self::Sp91),
+                    "SP91_E10" => Some(Self::Sp91E10),
+                    "SP92" => Some(Self::Sp92),
+                    "SP95" => Some(Self::Sp95),
+                    "SP95_E10" => Some(Self::Sp95E10),
+                    "SP98" => Some(Self::Sp98),
+                    "SP99" => Some(Self::Sp99),
+                    "SP100" => Some(Self::Sp100),
+                    "LPG" => Some(Self::Lpg),
+                    "E80" => Some(Self::E80),
+                    "E85" => Some(Self::E85),
+                    "METHANE" => Some(Self::Methane),
+                    "BIO_DIESEL" => Some(Self::BioDiesel),
+                    "TRUCK_DIESEL" => Some(Self::TruckDiesel),
+                    _ => None,
+                }
+            }
+        }
+    }
+}
 /// Information about a review of a place.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -49,59 +205,6 @@ pub struct Review {
     /// Timestamp for the review.
     #[prost(message, optional, tag = "14")]
     pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Experimental: See
-/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-/// for more details.
-///
-/// Reference that the generative content is related to.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct References {
-    /// Reviews that serve as references.
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    /// The list of resource names of the referenced places. This name can be used
-    /// in other APIs that accept Place resource names.
-    #[prost(string, repeated, tag = "2")]
-    pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// A block of content that can be served individually.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContentBlock {
-    /// The topic of the content, for example "overview" or "restaurant".
-    #[prost(string, tag = "1")]
-    pub topic: ::prost::alloc::string::String,
-    /// Content related to the topic.
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// References that are related to this block of content.
-    #[prost(message, optional, tag = "3")]
-    pub references: ::core::option::Option<References>,
-}
-/// Information about a photo of a place.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Photo {
-    /// Identifier. A reference representing this place photo which may be used to
-    /// look up this place photo again (also called the API "resource" name:
-    /// `places/{place_id}/photos/{photo}`).
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The maximum available width, in pixels.
-    #[prost(int32, tag = "2")]
-    pub width_px: i32,
-    /// The maximum available height, in pixels.
-    #[prost(int32, tag = "3")]
-    pub height_px: i32,
-    /// This photo's authors.
-    #[prost(message, repeated, tag = "4")]
-    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
 }
 /// Experimental: See
 /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
@@ -368,142 +471,39 @@ pub struct Circle {
     #[prost(double, tag = "2")]
     pub radius: f64,
 }
-/// The most recent information about fuel options in a gas station. This
-/// information is updated regularly.
+/// Experimental: See
+/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+/// for more details.
+///
+/// Reference that the generative content is related to.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FuelOptions {
-    /// The last known fuel price for each type of fuel this station has. There is
-    /// one entry per fuel type this station has. Order is not important.
+pub struct References {
+    /// Reviews that serve as references.
     #[prost(message, repeated, tag = "1")]
-    pub fuel_prices: ::prost::alloc::vec::Vec<fuel_options::FuelPrice>,
+    pub reviews: ::prost::alloc::vec::Vec<Review>,
+    /// The list of resource names of the referenced places. This name can be used
+    /// in other APIs that accept Place resource names.
+    #[prost(string, repeated, tag = "2")]
+    pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-/// Nested message and enum types in `FuelOptions`.
-pub mod fuel_options {
-    /// Fuel price information for a given type.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FuelPrice {
-        /// The type of fuel.
-        #[prost(enumeration = "fuel_price::FuelType", tag = "1")]
-        pub r#type: i32,
-        /// The price of the fuel.
-        #[prost(message, optional, tag = "2")]
-        pub price: ::core::option::Option<super::super::super::super::r#type::Money>,
-        /// The time the fuel price was last updated.
-        #[prost(message, optional, tag = "3")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    /// Nested message and enum types in `FuelPrice`.
-    pub mod fuel_price {
-        /// Types of fuel.
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum FuelType {
-            /// Unspecified fuel type.
-            Unspecified = 0,
-            /// Diesel fuel.
-            Diesel = 1,
-            /// Regular unleaded.
-            RegularUnleaded = 2,
-            /// Midgrade.
-            Midgrade = 3,
-            /// Premium.
-            Premium = 4,
-            /// SP 91.
-            Sp91 = 5,
-            /// SP 91 E10.
-            Sp91E10 = 6,
-            /// SP 92.
-            Sp92 = 7,
-            /// SP 95.
-            Sp95 = 8,
-            /// SP95 E10.
-            Sp95E10 = 9,
-            /// SP 98.
-            Sp98 = 10,
-            /// SP 99.
-            Sp99 = 11,
-            /// SP 100.
-            Sp100 = 12,
-            /// LPG.
-            Lpg = 13,
-            /// E 80.
-            E80 = 14,
-            /// E 85.
-            E85 = 15,
-            /// Methane.
-            Methane = 16,
-            /// Bio-diesel.
-            BioDiesel = 17,
-            /// Truck diesel.
-            TruckDiesel = 18,
-        }
-        impl FuelType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    FuelType::Unspecified => "FUEL_TYPE_UNSPECIFIED",
-                    FuelType::Diesel => "DIESEL",
-                    FuelType::RegularUnleaded => "REGULAR_UNLEADED",
-                    FuelType::Midgrade => "MIDGRADE",
-                    FuelType::Premium => "PREMIUM",
-                    FuelType::Sp91 => "SP91",
-                    FuelType::Sp91E10 => "SP91_E10",
-                    FuelType::Sp92 => "SP92",
-                    FuelType::Sp95 => "SP95",
-                    FuelType::Sp95E10 => "SP95_E10",
-                    FuelType::Sp98 => "SP98",
-                    FuelType::Sp99 => "SP99",
-                    FuelType::Sp100 => "SP100",
-                    FuelType::Lpg => "LPG",
-                    FuelType::E80 => "E80",
-                    FuelType::E85 => "E85",
-                    FuelType::Methane => "METHANE",
-                    FuelType::BioDiesel => "BIO_DIESEL",
-                    FuelType::TruckDiesel => "TRUCK_DIESEL",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "FUEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DIESEL" => Some(Self::Diesel),
-                    "REGULAR_UNLEADED" => Some(Self::RegularUnleaded),
-                    "MIDGRADE" => Some(Self::Midgrade),
-                    "PREMIUM" => Some(Self::Premium),
-                    "SP91" => Some(Self::Sp91),
-                    "SP91_E10" => Some(Self::Sp91E10),
-                    "SP92" => Some(Self::Sp92),
-                    "SP95" => Some(Self::Sp95),
-                    "SP95_E10" => Some(Self::Sp95E10),
-                    "SP98" => Some(Self::Sp98),
-                    "SP99" => Some(Self::Sp99),
-                    "SP100" => Some(Self::Sp100),
-                    "LPG" => Some(Self::Lpg),
-                    "E80" => Some(Self::E80),
-                    "E85" => Some(Self::E85),
-                    "METHANE" => Some(Self::Methane),
-                    "BIO_DIESEL" => Some(Self::BioDiesel),
-                    "TRUCK_DIESEL" => Some(Self::TruckDiesel),
-                    _ => None,
-                }
-            }
-        }
-    }
+/// A block of content that can be served individually.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContentBlock {
+    /// The topic of the content, for example "overview" or "restaurant".
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
+    /// Content related to the topic.
+    #[prost(message, optional, tag = "2")]
+    pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// References that are related to this block of content.
+    #[prost(message, optional, tag = "3")]
+    pub references: ::core::option::Option<References>,
 }
 /// All the information representing a Place.
 #[allow(clippy::derive_partial_eq_without_eq)]

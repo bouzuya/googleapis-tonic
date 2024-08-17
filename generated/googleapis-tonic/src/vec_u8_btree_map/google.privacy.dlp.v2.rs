@@ -7067,6 +7067,13 @@ pub struct DiscoveryCloudSqlGenerationCadence {
     /// Defaults to never.
     #[prost(enumeration = "DataProfileUpdateFrequency", tag = "2")]
     pub refresh_frequency: i32,
+    /// Governs when to update data profiles when the inspection rules
+    /// defined by the `InspectTemplate` change.
+    /// If not set, changing the template will not cause a data profile to update.
+    #[prost(message, optional, tag = "3")]
+    pub inspect_template_modified_cadence: ::core::option::Option<
+        DiscoveryInspectTemplateModifiedCadence,
+    >,
 }
 /// Nested message and enum types in `DiscoveryCloudSqlGenerationCadence`.
 pub mod discovery_cloud_sql_generation_cadence {
@@ -9305,10 +9312,12 @@ pub struct FileClusterSummary {
     #[prost(message, repeated, tag = "6")]
     pub errors: ::prost::alloc::vec::Vec<Error>,
     /// A sample of file types scanned in this cluster. Empty if no files were
-    /// scanned.
+    /// scanned. File extensions can be derived from the file name or the file
+    /// content.
     #[prost(message, repeated, tag = "7")]
     pub file_extensions_scanned: ::prost::alloc::vec::Vec<FileExtensionInfo>,
     /// A sample of file types seen in this cluster. Empty if no files were seen.
+    /// File extensions can be derived from the file name or the file content.
     #[prost(message, repeated, tag = "8")]
     pub file_extensions_seen: ::prost::alloc::vec::Vec<FileExtensionInfo>,
     /// True if no files exist in this cluster. If the bucket had more files than
@@ -9387,6 +9396,10 @@ pub struct ListFileStoreDataProfilesRequest {
     /// * Supported fields/values:
     ///   * `project_id` - The Google Cloud project ID.
     ///   * `file_store_path` - The path like "gs://bucket".
+    ///   * `data_source_type` - The profile's data source type, like
+    ///     "google/storage/bucket".
+    ///   * `data_storage_location` - The location where the file store's data is
+    ///     stored, like "us-central1".
     ///   * `sensitivity_level` - HIGH|MODERATE|LOW
     ///   * `data_risk_level` - HIGH|MODERATE|LOW
     ///   * `resource_visibility`: PUBLIC|RESTRICTED

@@ -223,417 +223,6 @@ pub struct MapValue {
     #[prost(map = "string, message", tag = "1")]
     pub fields: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
 }
-/// A write on a document.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Write {
-    /// The fields to update in this write.
-    ///
-    /// This field can be set only when the operation is `update`.
-    /// If the mask is not set for an `update` and the document exists, any
-    /// existing data will be overwritten.
-    /// If the mask is set and the document on the server has fields not covered by
-    /// the mask, they are left unchanged.
-    /// Fields referenced in the mask, but not present in the input document, are
-    /// deleted from the document on the server.
-    /// The field paths in this mask must not contain a reserved field name.
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<DocumentMask>,
-    /// The transforms to perform after update.
-    ///
-    /// This field can be set only when the operation is `update`. If present, this
-    /// write is equivalent to performing `update` and `transform` to the same
-    /// document atomically and in order.
-    #[prost(message, repeated, tag = "7")]
-    pub update_transforms: ::prost::alloc::vec::Vec<document_transform::FieldTransform>,
-    /// An optional precondition on the document.
-    ///
-    /// The write will fail if this is set and not met by the target document.
-    #[prost(message, optional, tag = "4")]
-    pub current_document: ::core::option::Option<Precondition>,
-    /// The operation to execute.
-    #[prost(oneof = "write::Operation", tags = "1, 2, 6")]
-    pub operation: ::core::option::Option<write::Operation>,
-}
-/// Nested message and enum types in `Write`.
-pub mod write {
-    /// The operation to execute.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Operation {
-        /// A document to write.
-        #[prost(message, tag = "1")]
-        Update(super::Document),
-        /// A document name to delete. In the format:
-        /// `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-        #[prost(string, tag = "2")]
-        Delete(::prost::alloc::string::String),
-        /// Applies a transformation to a document.
-        #[prost(message, tag = "6")]
-        Transform(super::DocumentTransform),
-    }
-}
-/// A transformation of a document.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DocumentTransform {
-    /// The name of the document to transform.
-    #[prost(string, tag = "1")]
-    pub document: ::prost::alloc::string::String,
-    /// The list of transformations to apply to the fields of the document, in
-    /// order.
-    /// This must not be empty.
-    #[prost(message, repeated, tag = "2")]
-    pub field_transforms: ::prost::alloc::vec::Vec<document_transform::FieldTransform>,
-}
-/// Nested message and enum types in `DocumentTransform`.
-pub mod document_transform {
-    /// A transformation of a field of the document.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FieldTransform {
-        /// The path of the field. See \[Document.fields\]\[google.firestore.v1beta1.Document.fields\] for the field path syntax
-        /// reference.
-        #[prost(string, tag = "1")]
-        pub field_path: ::prost::alloc::string::String,
-        /// The transformation to apply on the field.
-        #[prost(oneof = "field_transform::TransformType", tags = "2, 3, 4, 5, 6, 7")]
-        pub transform_type: ::core::option::Option<field_transform::TransformType>,
-    }
-    /// Nested message and enum types in `FieldTransform`.
-    pub mod field_transform {
-        /// A value that is calculated by the server.
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ServerValue {
-            /// Unspecified. This value must not be used.
-            Unspecified = 0,
-            /// The time at which the server processed the request, with millisecond
-            /// precision. If used on multiple fields (same or different documents) in
-            /// a transaction, all the fields will get the same server timestamp.
-            RequestTime = 1,
-        }
-        impl ServerValue {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ServerValue::Unspecified => "SERVER_VALUE_UNSPECIFIED",
-                    ServerValue::RequestTime => "REQUEST_TIME",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SERVER_VALUE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "REQUEST_TIME" => Some(Self::RequestTime),
-                    _ => None,
-                }
-            }
-        }
-        /// The transformation to apply on the field.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum TransformType {
-            /// Sets the field to the given server value.
-            #[prost(enumeration = "ServerValue", tag = "2")]
-            SetToServerValue(i32),
-            /// Adds the given value to the field's current value.
-            ///
-            /// This must be an integer or a double value.
-            /// If the field is not an integer or double, or if the field does not yet
-            /// exist, the transformation will set the field to the given value.
-            /// If either of the given value or the current field value are doubles,
-            /// both values will be interpreted as doubles. Double arithmetic and
-            /// representation of double values follow IEEE 754 semantics.
-            /// If there is positive/negative integer overflow, the field is resolved
-            /// to the largest magnitude positive/negative integer.
-            #[prost(message, tag = "3")]
-            Increment(super::super::Value),
-            /// Sets the field to the maximum of its current value and the given value.
-            ///
-            /// This must be an integer or a double value.
-            /// If the field is not an integer or double, or if the field does not yet
-            /// exist, the transformation will set the field to the given value.
-            /// If a maximum operation is applied where the field and the input value
-            /// are of mixed types (that is - one is an integer and one is a double)
-            /// the field takes on the type of the larger operand. If the operands are
-            /// equivalent (e.g. 3 and 3.0), the field does not change.
-            /// 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and
-            /// zero input value is always the stored value.
-            /// The maximum of any numeric value x and NaN is NaN.
-            #[prost(message, tag = "4")]
-            Maximum(super::super::Value),
-            /// Sets the field to the minimum of its current value and the given value.
-            ///
-            /// This must be an integer or a double value.
-            /// If the field is not an integer or double, or if the field does not yet
-            /// exist, the transformation will set the field to the input value.
-            /// If a minimum operation is applied where the field and the input value
-            /// are of mixed types (that is - one is an integer and one is a double)
-            /// the field takes on the type of the smaller operand. If the operands are
-            /// equivalent (e.g. 3 and 3.0), the field does not change.
-            /// 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and
-            /// zero input value is always the stored value.
-            /// The minimum of any numeric value x and NaN is NaN.
-            #[prost(message, tag = "5")]
-            Minimum(super::super::Value),
-            /// Append the given elements in order if they are not already present in
-            /// the current field value.
-            /// If the field is not an array, or if the field does not yet exist, it is
-            /// first set to the empty array.
-            ///
-            /// Equivalent numbers of different types (e.g. 3L and 3.0) are
-            /// considered equal when checking if a value is missing.
-            /// NaN is equal to NaN, and Null is equal to Null.
-            /// If the input contains multiple equivalent values, only the first will
-            /// be considered.
-            ///
-            /// The corresponding transform_result will be the null value.
-            #[prost(message, tag = "6")]
-            AppendMissingElements(super::super::ArrayValue),
-            /// Remove all of the given elements from the array in the field.
-            /// If the field is not an array, or if the field does not yet exist, it is
-            /// set to the empty array.
-            ///
-            /// Equivalent numbers of the different types (e.g. 3L and 3.0) are
-            /// considered equal when deciding whether an element should be removed.
-            /// NaN is equal to NaN, and Null is equal to Null.
-            /// This will remove all equivalent values if there are duplicates.
-            ///
-            /// The corresponding transform_result will be the null value.
-            #[prost(message, tag = "7")]
-            RemoveAllFromArray(super::super::ArrayValue),
-        }
-    }
-}
-/// The result of applying a write.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WriteResult {
-    /// The last update time of the document after applying the write. Not set
-    /// after a `delete`.
-    ///
-    /// If the write did not actually change the document, this will be the
-    /// previous update_time.
-    #[prost(message, optional, tag = "1")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// The results of applying each \[DocumentTransform.FieldTransform\]\[google.firestore.v1beta1.DocumentTransform.FieldTransform\], in the
-    /// same order.
-    #[prost(message, repeated, tag = "2")]
-    pub transform_results: ::prost::alloc::vec::Vec<Value>,
-}
-/// A \[Document\]\[google.firestore.v1beta1.Document\] has changed.
-///
-/// May be the result of multiple \[writes\]\[google.firestore.v1beta1.Write\], including deletes, that
-/// ultimately resulted in a new value for the \[Document\]\[google.firestore.v1beta1.Document\].
-///
-/// Multiple \[DocumentChange\]\[google.firestore.v1beta1.DocumentChange\] messages may be returned for the same logical
-/// change, if multiple targets are affected.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DocumentChange {
-    /// The new state of the \[Document\]\[google.firestore.v1beta1.Document\].
-    ///
-    /// If `mask` is set, contains only fields that were updated or added.
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    /// A set of target IDs of targets that match this document.
-    #[prost(int32, repeated, tag = "5")]
-    pub target_ids: ::prost::alloc::vec::Vec<i32>,
-    /// A set of target IDs for targets that no longer match this document.
-    #[prost(int32, repeated, tag = "6")]
-    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
-}
-/// A \[Document\]\[google.firestore.v1beta1.Document\] has been deleted.
-///
-/// May be the result of multiple \[writes\]\[google.firestore.v1beta1.Write\], including updates, the
-/// last of which deleted the \[Document\]\[google.firestore.v1beta1.Document\].
-///
-/// Multiple \[DocumentDelete\]\[google.firestore.v1beta1.DocumentDelete\] messages may be returned for the same logical
-/// delete, if multiple targets are affected.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DocumentDelete {
-    /// The resource name of the \[Document\]\[google.firestore.v1beta1.Document\] that was deleted.
-    #[prost(string, tag = "1")]
-    pub document: ::prost::alloc::string::String,
-    /// A set of target IDs for targets that previously matched this entity.
-    #[prost(int32, repeated, tag = "6")]
-    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
-    /// The read timestamp at which the delete was observed.
-    ///
-    /// Greater or equal to the `commit_time` of the delete.
-    #[prost(message, optional, tag = "4")]
-    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// A \[Document\]\[google.firestore.v1beta1.Document\] has been removed from the view of the targets.
-///
-/// Sent if the document is no longer relevant to a target and is out of view.
-/// Can be sent instead of a DocumentDelete or a DocumentChange if the server
-/// can not send the new value of the document.
-///
-/// Multiple \[DocumentRemove\]\[google.firestore.v1beta1.DocumentRemove\] messages may be returned for the same logical
-/// write or delete, if multiple targets are affected.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DocumentRemove {
-    /// The resource name of the \[Document\]\[google.firestore.v1beta1.Document\] that has gone out of view.
-    #[prost(string, tag = "1")]
-    pub document: ::prost::alloc::string::String,
-    /// A set of target IDs for targets that previously matched this document.
-    #[prost(int32, repeated, tag = "2")]
-    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
-    /// The read timestamp at which the remove was observed.
-    ///
-    /// Greater or equal to the `commit_time` of the change/delete/remove.
-    #[prost(message, optional, tag = "4")]
-    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// A digest of all the documents that match a given target.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ExistenceFilter {
-    /// The target ID to which this filter applies.
-    #[prost(int32, tag = "1")]
-    pub target_id: i32,
-    /// The total count of documents that match \[target_id\]\[google.firestore.v1beta1.ExistenceFilter.target_id\].
-    ///
-    /// If different from the count of documents in the client that match, the
-    /// client must manually determine which documents no longer match the target.
-    #[prost(int32, tag = "2")]
-    pub count: i32,
-}
-/// A message signifying an event that cannot be delivered to Cloud Functions
-/// from Firestore using [Cloud Firestore triggers 1st
-/// gen](<https://cloud.google.com/functions/docs/calling/cloud-firestore>)
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UndeliverableFirstGenEvent {
-    /// Error message for events being undeliverable.
-    #[prost(string, tag = "1")]
-    pub message: ::prost::alloc::string::String,
-    /// Reason for events being undeliverable.
-    #[prost(enumeration = "undeliverable_first_gen_event::Reason", tag = "2")]
-    pub reason: i32,
-    /// The resource name of the changed document, in the format of
-    /// `projects/{projectId}/databases/{databaseId}/documents/{document_path}`.
-    #[prost(string, tag = "3")]
-    pub document_name: ::prost::alloc::string::String,
-    /// The type of the document change.
-    #[prost(
-        enumeration = "undeliverable_first_gen_event::DocumentChangeType",
-        tag = "4"
-    )]
-    pub document_change_type: i32,
-    /// The names of the functions that were supposed to be triggered.
-    #[prost(string, repeated, tag = "5")]
-    pub function_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// The commit time of triggered write operation.
-    #[prost(message, optional, tag = "6")]
-    pub triggered_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Nested message and enum types in `UndeliverableFirstGenEvent`.
-pub mod undeliverable_first_gen_event {
-    /// Reason for events being undeliverable.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Reason {
-        /// Unspecified.
-        Unspecified = 0,
-        /// Exceeding maximum event size limit
-        ExceedingSizeLimit = 1,
-    }
-    impl Reason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Reason::Unspecified => "REASON_UNSPECIFIED",
-                Reason::ExceedingSizeLimit => "EXCEEDING_SIZE_LIMIT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                "EXCEEDING_SIZE_LIMIT" => Some(Self::ExceedingSizeLimit),
-                _ => None,
-            }
-        }
-    }
-    /// Document change type.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DocumentChangeType {
-        /// Unspecified.
-        Unspecified = 0,
-        /// Represent creation operation.
-        Create = 1,
-        /// Represent delete operation.
-        Delete = 2,
-        /// Represent update operation.
-        Update = 3,
-    }
-    impl DocumentChangeType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DocumentChangeType::Unspecified => "DOCUMENT_CHANGE_TYPE_UNSPECIFIED",
-                DocumentChangeType::Create => "CREATE",
-                DocumentChangeType::Delete => "DELETE",
-                DocumentChangeType::Update => "UPDATE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DOCUMENT_CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATE" => Some(Self::Create),
-                "DELETE" => Some(Self::Delete),
-                "UPDATE" => Some(Self::Update),
-                _ => None,
-            }
-        }
-    }
-}
 /// A Firestore query.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1082,6 +671,299 @@ pub struct Cursor {
     /// to the sort order defined by the query.
     #[prost(bool, tag = "2")]
     pub before: bool,
+}
+/// A write on a document.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Write {
+    /// The fields to update in this write.
+    ///
+    /// This field can be set only when the operation is `update`.
+    /// If the mask is not set for an `update` and the document exists, any
+    /// existing data will be overwritten.
+    /// If the mask is set and the document on the server has fields not covered by
+    /// the mask, they are left unchanged.
+    /// Fields referenced in the mask, but not present in the input document, are
+    /// deleted from the document on the server.
+    /// The field paths in this mask must not contain a reserved field name.
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<DocumentMask>,
+    /// The transforms to perform after update.
+    ///
+    /// This field can be set only when the operation is `update`. If present, this
+    /// write is equivalent to performing `update` and `transform` to the same
+    /// document atomically and in order.
+    #[prost(message, repeated, tag = "7")]
+    pub update_transforms: ::prost::alloc::vec::Vec<document_transform::FieldTransform>,
+    /// An optional precondition on the document.
+    ///
+    /// The write will fail if this is set and not met by the target document.
+    #[prost(message, optional, tag = "4")]
+    pub current_document: ::core::option::Option<Precondition>,
+    /// The operation to execute.
+    #[prost(oneof = "write::Operation", tags = "1, 2, 6")]
+    pub operation: ::core::option::Option<write::Operation>,
+}
+/// Nested message and enum types in `Write`.
+pub mod write {
+    /// The operation to execute.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Operation {
+        /// A document to write.
+        #[prost(message, tag = "1")]
+        Update(super::Document),
+        /// A document name to delete. In the format:
+        /// `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+        #[prost(string, tag = "2")]
+        Delete(::prost::alloc::string::String),
+        /// Applies a transformation to a document.
+        #[prost(message, tag = "6")]
+        Transform(super::DocumentTransform),
+    }
+}
+/// A transformation of a document.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DocumentTransform {
+    /// The name of the document to transform.
+    #[prost(string, tag = "1")]
+    pub document: ::prost::alloc::string::String,
+    /// The list of transformations to apply to the fields of the document, in
+    /// order.
+    /// This must not be empty.
+    #[prost(message, repeated, tag = "2")]
+    pub field_transforms: ::prost::alloc::vec::Vec<document_transform::FieldTransform>,
+}
+/// Nested message and enum types in `DocumentTransform`.
+pub mod document_transform {
+    /// A transformation of a field of the document.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FieldTransform {
+        /// The path of the field. See \[Document.fields\]\[google.firestore.v1beta1.Document.fields\] for the field path syntax
+        /// reference.
+        #[prost(string, tag = "1")]
+        pub field_path: ::prost::alloc::string::String,
+        /// The transformation to apply on the field.
+        #[prost(oneof = "field_transform::TransformType", tags = "2, 3, 4, 5, 6, 7")]
+        pub transform_type: ::core::option::Option<field_transform::TransformType>,
+    }
+    /// Nested message and enum types in `FieldTransform`.
+    pub mod field_transform {
+        /// A value that is calculated by the server.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum ServerValue {
+            /// Unspecified. This value must not be used.
+            Unspecified = 0,
+            /// The time at which the server processed the request, with millisecond
+            /// precision. If used on multiple fields (same or different documents) in
+            /// a transaction, all the fields will get the same server timestamp.
+            RequestTime = 1,
+        }
+        impl ServerValue {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    ServerValue::Unspecified => "SERVER_VALUE_UNSPECIFIED",
+                    ServerValue::RequestTime => "REQUEST_TIME",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SERVER_VALUE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "REQUEST_TIME" => Some(Self::RequestTime),
+                    _ => None,
+                }
+            }
+        }
+        /// The transformation to apply on the field.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum TransformType {
+            /// Sets the field to the given server value.
+            #[prost(enumeration = "ServerValue", tag = "2")]
+            SetToServerValue(i32),
+            /// Adds the given value to the field's current value.
+            ///
+            /// This must be an integer or a double value.
+            /// If the field is not an integer or double, or if the field does not yet
+            /// exist, the transformation will set the field to the given value.
+            /// If either of the given value or the current field value are doubles,
+            /// both values will be interpreted as doubles. Double arithmetic and
+            /// representation of double values follow IEEE 754 semantics.
+            /// If there is positive/negative integer overflow, the field is resolved
+            /// to the largest magnitude positive/negative integer.
+            #[prost(message, tag = "3")]
+            Increment(super::super::Value),
+            /// Sets the field to the maximum of its current value and the given value.
+            ///
+            /// This must be an integer or a double value.
+            /// If the field is not an integer or double, or if the field does not yet
+            /// exist, the transformation will set the field to the given value.
+            /// If a maximum operation is applied where the field and the input value
+            /// are of mixed types (that is - one is an integer and one is a double)
+            /// the field takes on the type of the larger operand. If the operands are
+            /// equivalent (e.g. 3 and 3.0), the field does not change.
+            /// 0, 0.0, and -0.0 are all zero. The maximum of a zero stored value and
+            /// zero input value is always the stored value.
+            /// The maximum of any numeric value x and NaN is NaN.
+            #[prost(message, tag = "4")]
+            Maximum(super::super::Value),
+            /// Sets the field to the minimum of its current value and the given value.
+            ///
+            /// This must be an integer or a double value.
+            /// If the field is not an integer or double, or if the field does not yet
+            /// exist, the transformation will set the field to the input value.
+            /// If a minimum operation is applied where the field and the input value
+            /// are of mixed types (that is - one is an integer and one is a double)
+            /// the field takes on the type of the smaller operand. If the operands are
+            /// equivalent (e.g. 3 and 3.0), the field does not change.
+            /// 0, 0.0, and -0.0 are all zero. The minimum of a zero stored value and
+            /// zero input value is always the stored value.
+            /// The minimum of any numeric value x and NaN is NaN.
+            #[prost(message, tag = "5")]
+            Minimum(super::super::Value),
+            /// Append the given elements in order if they are not already present in
+            /// the current field value.
+            /// If the field is not an array, or if the field does not yet exist, it is
+            /// first set to the empty array.
+            ///
+            /// Equivalent numbers of different types (e.g. 3L and 3.0) are
+            /// considered equal when checking if a value is missing.
+            /// NaN is equal to NaN, and Null is equal to Null.
+            /// If the input contains multiple equivalent values, only the first will
+            /// be considered.
+            ///
+            /// The corresponding transform_result will be the null value.
+            #[prost(message, tag = "6")]
+            AppendMissingElements(super::super::ArrayValue),
+            /// Remove all of the given elements from the array in the field.
+            /// If the field is not an array, or if the field does not yet exist, it is
+            /// set to the empty array.
+            ///
+            /// Equivalent numbers of the different types (e.g. 3L and 3.0) are
+            /// considered equal when deciding whether an element should be removed.
+            /// NaN is equal to NaN, and Null is equal to Null.
+            /// This will remove all equivalent values if there are duplicates.
+            ///
+            /// The corresponding transform_result will be the null value.
+            #[prost(message, tag = "7")]
+            RemoveAllFromArray(super::super::ArrayValue),
+        }
+    }
+}
+/// The result of applying a write.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WriteResult {
+    /// The last update time of the document after applying the write. Not set
+    /// after a `delete`.
+    ///
+    /// If the write did not actually change the document, this will be the
+    /// previous update_time.
+    #[prost(message, optional, tag = "1")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The results of applying each \[DocumentTransform.FieldTransform\]\[google.firestore.v1beta1.DocumentTransform.FieldTransform\], in the
+    /// same order.
+    #[prost(message, repeated, tag = "2")]
+    pub transform_results: ::prost::alloc::vec::Vec<Value>,
+}
+/// A \[Document\]\[google.firestore.v1beta1.Document\] has changed.
+///
+/// May be the result of multiple \[writes\]\[google.firestore.v1beta1.Write\], including deletes, that
+/// ultimately resulted in a new value for the \[Document\]\[google.firestore.v1beta1.Document\].
+///
+/// Multiple \[DocumentChange\]\[google.firestore.v1beta1.DocumentChange\] messages may be returned for the same logical
+/// change, if multiple targets are affected.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DocumentChange {
+    /// The new state of the \[Document\]\[google.firestore.v1beta1.Document\].
+    ///
+    /// If `mask` is set, contains only fields that were updated or added.
+    #[prost(message, optional, tag = "1")]
+    pub document: ::core::option::Option<Document>,
+    /// A set of target IDs of targets that match this document.
+    #[prost(int32, repeated, tag = "5")]
+    pub target_ids: ::prost::alloc::vec::Vec<i32>,
+    /// A set of target IDs for targets that no longer match this document.
+    #[prost(int32, repeated, tag = "6")]
+    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
+}
+/// A \[Document\]\[google.firestore.v1beta1.Document\] has been deleted.
+///
+/// May be the result of multiple \[writes\]\[google.firestore.v1beta1.Write\], including updates, the
+/// last of which deleted the \[Document\]\[google.firestore.v1beta1.Document\].
+///
+/// Multiple \[DocumentDelete\]\[google.firestore.v1beta1.DocumentDelete\] messages may be returned for the same logical
+/// delete, if multiple targets are affected.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DocumentDelete {
+    /// The resource name of the \[Document\]\[google.firestore.v1beta1.Document\] that was deleted.
+    #[prost(string, tag = "1")]
+    pub document: ::prost::alloc::string::String,
+    /// A set of target IDs for targets that previously matched this entity.
+    #[prost(int32, repeated, tag = "6")]
+    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
+    /// The read timestamp at which the delete was observed.
+    ///
+    /// Greater or equal to the `commit_time` of the delete.
+    #[prost(message, optional, tag = "4")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// A \[Document\]\[google.firestore.v1beta1.Document\] has been removed from the view of the targets.
+///
+/// Sent if the document is no longer relevant to a target and is out of view.
+/// Can be sent instead of a DocumentDelete or a DocumentChange if the server
+/// can not send the new value of the document.
+///
+/// Multiple \[DocumentRemove\]\[google.firestore.v1beta1.DocumentRemove\] messages may be returned for the same logical
+/// write or delete, if multiple targets are affected.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DocumentRemove {
+    /// The resource name of the \[Document\]\[google.firestore.v1beta1.Document\] that has gone out of view.
+    #[prost(string, tag = "1")]
+    pub document: ::prost::alloc::string::String,
+    /// A set of target IDs for targets that previously matched this document.
+    #[prost(int32, repeated, tag = "2")]
+    pub removed_target_ids: ::prost::alloc::vec::Vec<i32>,
+    /// The read timestamp at which the remove was observed.
+    ///
+    /// Greater or equal to the `commit_time` of the change/delete/remove.
+    #[prost(message, optional, tag = "4")]
+    pub read_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// A digest of all the documents that match a given target.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ExistenceFilter {
+    /// The target ID to which this filter applies.
+    #[prost(int32, tag = "1")]
+    pub target_id: i32,
+    /// The total count of documents that match \[target_id\]\[google.firestore.v1beta1.ExistenceFilter.target_id\].
+    ///
+    /// If different from the count of documents in the client that match, the
+    /// client must manually determine which documents no longer match the target.
+    #[prost(int32, tag = "2")]
+    pub count: i32,
 }
 /// The request for \[Firestore.GetDocument\]\[google.firestore.v1beta1.Firestore.GetDocument\].
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2507,6 +2389,124 @@ pub mod firestore_client {
                     ),
                 );
             self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// A message signifying an event that cannot be delivered to Cloud Functions
+/// from Firestore using [Cloud Firestore triggers 1st
+/// gen](<https://cloud.google.com/functions/docs/calling/cloud-firestore>)
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UndeliverableFirstGenEvent {
+    /// Error message for events being undeliverable.
+    #[prost(string, tag = "1")]
+    pub message: ::prost::alloc::string::String,
+    /// Reason for events being undeliverable.
+    #[prost(enumeration = "undeliverable_first_gen_event::Reason", tag = "2")]
+    pub reason: i32,
+    /// The resource name of the changed document, in the format of
+    /// `projects/{projectId}/databases/{databaseId}/documents/{document_path}`.
+    #[prost(string, tag = "3")]
+    pub document_name: ::prost::alloc::string::String,
+    /// The type of the document change.
+    #[prost(
+        enumeration = "undeliverable_first_gen_event::DocumentChangeType",
+        tag = "4"
+    )]
+    pub document_change_type: i32,
+    /// The names of the functions that were supposed to be triggered.
+    #[prost(string, repeated, tag = "5")]
+    pub function_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// The commit time of triggered write operation.
+    #[prost(message, optional, tag = "6")]
+    pub triggered_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `UndeliverableFirstGenEvent`.
+pub mod undeliverable_first_gen_event {
+    /// Reason for events being undeliverable.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Reason {
+        /// Unspecified.
+        Unspecified = 0,
+        /// Exceeding maximum event size limit
+        ExceedingSizeLimit = 1,
+    }
+    impl Reason {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Reason::Unspecified => "REASON_UNSPECIFIED",
+                Reason::ExceedingSizeLimit => "EXCEEDING_SIZE_LIMIT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REASON_UNSPECIFIED" => Some(Self::Unspecified),
+                "EXCEEDING_SIZE_LIMIT" => Some(Self::ExceedingSizeLimit),
+                _ => None,
+            }
+        }
+    }
+    /// Document change type.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DocumentChangeType {
+        /// Unspecified.
+        Unspecified = 0,
+        /// Represent creation operation.
+        Create = 1,
+        /// Represent delete operation.
+        Delete = 2,
+        /// Represent update operation.
+        Update = 3,
+    }
+    impl DocumentChangeType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DocumentChangeType::Unspecified => "DOCUMENT_CHANGE_TYPE_UNSPECIFIED",
+                DocumentChangeType::Create => "CREATE",
+                DocumentChangeType::Delete => "DELETE",
+                DocumentChangeType::Update => "UPDATE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DOCUMENT_CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATE" => Some(Self::Create),
+                "DELETE" => Some(Self::Delete),
+                "UPDATE" => Some(Self::Update),
+                _ => None,
+            }
         }
     }
 }

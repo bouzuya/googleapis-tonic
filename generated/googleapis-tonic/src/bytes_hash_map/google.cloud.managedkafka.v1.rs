@@ -244,7 +244,7 @@ pub struct ConsumerTopicMetadata {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsumerPartitionMetadata {
-    /// Required. The offset for this partition, or 0 if no offset has been
+    /// Required. The current offset for this partition, or 0 if no offset has been
     /// committed.
     #[prost(int64, tag = "1")]
     pub offset: i64,
