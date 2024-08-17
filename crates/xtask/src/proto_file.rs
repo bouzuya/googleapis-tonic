@@ -1,21 +1,20 @@
 use std::{collections::BTreeSet, str::FromStr};
 
 use anyhow::Context;
-use sha1::Digest;
-use sha1::Sha1;
 
 use crate::proto_file_path::ProtoFilePath;
 use crate::protobuf_package_name::ProtobufPackageName;
+use crate::sha1hash::Sha1Hash;
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ProtoFile {
-    content_hash: String,
+    content_hash: Sha1Hash,
     import_paths: BTreeSet<ProtoFilePath>,
     package_name: ProtobufPackageName,
 }
 
 impl ProtoFile {
-    pub fn content_hash(&self) -> &str {
+    pub fn content_hash(&self) -> &Sha1Hash {
         &self.content_hash
     }
 
@@ -32,7 +31,7 @@ impl FromStr for ProtoFile {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let content_hash = hex::encode(Sha1::digest(s));
+        let content_hash = Sha1Hash::digest(s);
         let mut import_paths = BTreeSet::new();
         let mut package_name = None;
         for line in s.lines() {
@@ -88,7 +87,7 @@ mod tests {
         );
         assert_eq!(
             proto_file.content_hash(),
-            "35bcb46da375fe8a3772acc187ec66acea8e5cfa"
+            &Sha1Hash::from_str("35bcb46da375fe8a3772acc187ec66acea8e5cfa")?,
         );
 
         let proto_file = ProtoFile::from_str(
