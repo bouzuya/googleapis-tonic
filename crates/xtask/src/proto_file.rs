@@ -1,17 +1,24 @@
 use std::{collections::BTreeSet, str::FromStr};
 
 use anyhow::Context;
+use sha1::Digest;
+use sha1::Sha1;
 
 use crate::proto_file_path::ProtoFilePath;
 use crate::protobuf_package_name::ProtobufPackageName;
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct ProtoFile {
+    content_hash: String,
     import_paths: BTreeSet<ProtoFilePath>,
     package_name: ProtobufPackageName,
 }
 
 impl ProtoFile {
+    pub fn content_hash(&self) -> &str {
+        &self.content_hash
+    }
+
     pub fn import_paths(&self) -> &BTreeSet<ProtoFilePath> {
         &self.import_paths
     }
@@ -25,6 +32,7 @@ impl FromStr for ProtoFile {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let content_hash = hex::encode(Sha1::digest(s));
         let mut import_paths = BTreeSet::new();
         let mut package_name = None;
         for line in s.lines() {
@@ -57,6 +65,7 @@ impl FromStr for ProtoFile {
         let package_name =
             package_name.context(anyhow::anyhow!("package declaration not found"))?;
         Ok(Self {
+            content_hash,
             import_paths,
             package_name,
         })
@@ -76,6 +85,10 @@ mod tests {
         assert_eq!(
             proto_file.package_name(),
             &ProtobufPackageName::from_str("foo")?
+        );
+        assert_eq!(
+            proto_file.content_hash(),
+            "35bcb46da375fe8a3772acc187ec66acea8e5cfa"
         );
 
         let proto_file = ProtoFile::from_str(
