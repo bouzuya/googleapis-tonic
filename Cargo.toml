@@ -1,4 +1,4 @@
 [workspace]
 members = ["crates/xtask"]
-exclude = ["generated/*"]
+exclude = ["generated"]
 resolver = "2"
