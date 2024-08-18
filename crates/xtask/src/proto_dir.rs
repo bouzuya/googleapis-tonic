@@ -41,6 +41,16 @@ impl ProtoDir {
                 map
             };
 
+            let package_files = {
+                let mut map = BTreeMap::<ProtobufPackageName, BTreeSet<ProtoFilePath>>::new();
+                for (proto_file_path, proto_file) in all_proto_files.iter() {
+                    map.entry(proto_file.package_name().to_owned())
+                        .or_default()
+                        .insert(proto_file_path.to_owned());
+                }
+                map
+            };
+
             let mut package_deps =
                 BTreeMap::<ProtobufPackageName, BTreeSet<ProtobufPackageName>>::new();
             for proto_file in all_proto_files.values() {
@@ -53,8 +63,20 @@ impl ProtoDir {
                 deps.remove(package_name);
             }
 
-            let package_hashes = BTreeMap::<ProtobufPackageName, Sha1Hash>::new();
-            // FIXME
+            let package_hashes = {
+                let mut package_hashes = BTreeMap::<ProtobufPackageName, Sha1Hash>::new();
+                for (package_name, package_file_paths) in package_files.iter() {
+                    let mut s = String::new();
+                    for package_file_path in package_file_paths {
+                        let proto_file = all_proto_files.get(package_file_path).context("")?;
+                        let proto_file_content_hash = proto_file.content_hash();
+                        s.push_str(&proto_file_content_hash.to_string());
+                    }
+                    let package_hash = Sha1Hash::digest(&s);
+                    package_hashes.insert(package_name.to_owned(), package_hash);
+                }
+                package_hashes
+            };
             (package_deps, package_hashes)
         };
 
