@@ -1,4 +1,5 @@
 {
+  "package_hashes": {},
   "crate_versions": {
     "googleapis-tonic": "0.4.0",
     "googleapis-tonic-google-actions-sdk-v2": "0.4.0",
@@ -486,7 +487,7 @@
     "googleapis-tonic-google-streetview-publish-v1": "0.4.0",
     "googleapis-tonic-google-type": "0.4.0",
     "googleapis-tonic-google-watcher-v1": "0.4.0",
-    "googleapis-tonic-grafeas-v1": "0.1.0"
+    "googleapis-tonic-grafeas-v1": "0.4.0"
   },
   "googleapis_version": "07ee67599cf8b34d2fb0bf6a0823dbc1aa875568",
   "package_hashes": {
