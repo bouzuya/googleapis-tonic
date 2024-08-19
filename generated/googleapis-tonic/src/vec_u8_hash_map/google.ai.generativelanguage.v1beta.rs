@@ -405,6 +405,7 @@ pub struct Schema {
     /// datatypes. Supported formats:
     /// for NUMBER type: float, double
     /// for INTEGER type: int32, int64
+    /// for STRING type: enum
     #[prost(string, tag = "2")]
     pub format: ::prost::alloc::string::String,
     /// Optional. A brief description of the parameter. This could contain examples
@@ -422,6 +423,9 @@ pub struct Schema {
     /// Optional. Schema of the elements of Type.ARRAY.
     #[prost(message, optional, boxed, tag = "6")]
     pub items: ::core::option::Option<::prost::alloc::boxed::Box<Schema>>,
+    /// Optional. Maximum number of the elements for Type.ARRAY.
+    #[prost(int64, tag = "21")]
+    pub max_items: i64,
     /// Optional. Properties of Type.OBJECT.
     #[prost(map = "string, message", tag = "7")]
     pub properties: ::std::collections::HashMap<::prost::alloc::string::String, Schema>,
@@ -1502,26 +1506,35 @@ pub struct GenerateContentRequest {
     /// Format: `name=models/{model}`.
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
-    /// Optional. Developer set system instruction. Currently, text only.
+    /// Optional. Developer set [system
+    /// instruction(s)](<https://ai.google.dev/gemini-api/docs/system-instructions>).
+    /// Currently, text only.
     #[prost(message, optional, tag = "8")]
     pub system_instruction: ::core::option::Option<Content>,
     /// Required. The content of the current conversation with the model.
     ///
-    /// For single-turn queries, this is a single instance. For multi-turn queries,
-    /// this is a repeated field that contains conversation history + latest
-    /// request.
+    /// For single-turn queries, this is a single instance. For multi-turn queries
+    /// like [chat](<https://ai.google.dev/gemini-api/docs/text-generation#chat>),
+    /// this is a repeated field that contains the conversation history and the
+    /// latest request.
     #[prost(message, repeated, tag = "2")]
     pub contents: ::prost::alloc::vec::Vec<Content>,
-    /// Optional. A list of `Tools` the model may use to generate the next
+    /// Optional. A list of `Tools` the `Model` may use to generate the next
     /// response.
     ///
     /// A `Tool` is a piece of code that enables the system to interact with
     /// external systems to perform an action, or set of actions, outside of
-    /// knowledge and scope of the model. The only supported tool is currently
-    /// `Function`.
+    /// knowledge and scope of the `Model`. Supported `Tool`s are `Function` and
+    /// `code_execution`. Refer to the [Function
+    /// calling](<https://ai.google.dev/gemini-api/docs/function-calling>) and the
+    /// [Code execution](<https://ai.google.dev/gemini-api/docs/code-execution>)
+    /// guides to learn more.
     #[prost(message, repeated, tag = "5")]
     pub tools: ::prost::alloc::vec::Vec<Tool>,
-    /// Optional. Tool configuration for any `Tool` specified in the request.
+    /// Optional. Tool configuration for any `Tool` specified in the request. Refer
+    /// to the [Function calling
+    /// guide](<https://ai.google.dev/gemini-api/docs/function-calling#function_calling_mode>)
+    /// for a usage example.
     #[prost(message, optional, tag = "7")]
     pub tool_config: ::core::option::Option<ToolConfig>,
     /// Optional. A list of unique `SafetySetting` instances for blocking unsafe
@@ -1536,21 +1549,24 @@ pub struct GenerateContentRequest {
     /// `SafetyCategory` provided in the list, the API will use the default safety
     /// setting for that category. Harm categories HARM_CATEGORY_HATE_SPEECH,
     /// HARM_CATEGORY_SEXUALLY_EXPLICIT, HARM_CATEGORY_DANGEROUS_CONTENT,
-    /// HARM_CATEGORY_HARASSMENT are supported.
+    /// HARM_CATEGORY_HARASSMENT are supported. Refer to the
+    /// [guide](<https://ai.google.dev/gemini-api/docs/safety-settings>)
+    /// for detailed information on available safety settings. Also refer to the
+    /// [Safety guidance](<https://ai.google.dev/gemini-api/docs/safety-guidance>) to
+    /// learn how to incorporate safety considerations in your AI applications.
     #[prost(message, repeated, tag = "3")]
     pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
     /// Optional. Configuration options for model generation and outputs.
     #[prost(message, optional, tag = "4")]
     pub generation_config: ::core::option::Option<GenerationConfig>,
-    /// Optional. The name of the cached content used as context to serve the
-    /// prediction. Note: only used in explicit caching, where users can have
-    /// control over caching (e.g. what content to cache) and enjoy guaranteed cost
-    /// savings. Format: `cachedContents/{cachedContent}`
+    /// Optional. The name of the content
+    /// [cached](<https://ai.google.dev/gemini-api/docs/caching>) to use as context
+    /// to serve the prediction. Format: `cachedContents/{cachedContent}`
     #[prost(string, optional, tag = "9")]
     pub cached_content: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Configuration options for model generation and outputs. Not all parameters
-/// may be configurable for every model.
+/// are configurable for every model.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerationConfig {
@@ -1562,11 +1578,11 @@ pub struct GenerationConfig {
     pub candidate_count: ::core::option::Option<i32>,
     /// Optional. The set of character sequences (up to 5) that will stop output
     /// generation. If specified, the API will stop at the first appearance of a
-    /// stop sequence. The stop sequence will not be included as part of the
+    /// `stop_sequence`. The stop sequence will not be included as part of the
     /// response.
     #[prost(string, repeated, tag = "2")]
     pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Optional. The maximum number of tokens to include in a candidate.
+    /// Optional. The maximum number of tokens to include in a response candidate.
     ///
     /// Note: The default value varies by model, see the `Model.output_token_limit`
     /// attribute of the `Model` returned from the `getModel` function.
@@ -1583,43 +1599,49 @@ pub struct GenerationConfig {
     /// Optional. The maximum cumulative probability of tokens to consider when
     /// sampling.
     ///
-    /// The model uses combined Top-k and nucleus sampling.
+    /// The model uses combined Top-k and Top-p (nucleus) sampling.
     ///
     /// Tokens are sorted based on their assigned probabilities so that only the
     /// most likely tokens are considered. Top-k sampling directly limits the
-    /// maximum number of tokens to consider, while Nucleus sampling limits number
-    /// of tokens based on the cumulative probability.
+    /// maximum number of tokens to consider, while Nucleus sampling limits the
+    /// number of tokens based on the cumulative probability.
     ///
-    /// Note: The default value varies by model, see the `Model.top_p`
-    /// attribute of the `Model` returned from the `getModel` function.
+    /// Note: The default value varies by `Model` and is specified by
+    /// the`Model.top_p` attribute returned from the `getModel` function. An empty
+    /// `top_k` attribute indicates that the model doesn't apply top-k sampling
+    /// and doesn't allow setting `top_k` on requests.
     #[prost(float, optional, tag = "6")]
     pub top_p: ::core::option::Option<f32>,
     /// Optional. The maximum number of tokens to consider when sampling.
     ///
-    /// Models use nucleus sampling or combined Top-k and nucleus sampling.
-    /// Top-k sampling considers the set of `top_k` most probable tokens.
-    /// Models running with nucleus sampling don't allow top_k setting.
+    /// Gemini models use Top-p (nucleus) sampling or a combination of Top-k and
+    /// nucleus sampling. Top-k sampling considers the set of `top_k` most probable
+    /// tokens. Models running with nucleus sampling don't allow top_k setting.
     ///
-    /// Note: The default value varies by model, see the `Model.top_k`
-    /// attribute of the `Model` returned from the `getModel` function. Empty
-    /// `top_k` field in `Model` indicates the model doesn't apply top-k sampling
+    /// Note: The default value varies by `Model` and is specified by
+    /// the`Model.top_p` attribute returned from the `getModel` function. An empty
+    /// `top_k` attribute indicates that the model doesn't apply top-k sampling
     /// and doesn't allow setting `top_k` on requests.
     #[prost(int32, optional, tag = "7")]
     pub top_k: ::core::option::Option<i32>,
-    /// Optional. Output response mimetype of the generated candidate text.
-    /// Supported mimetype:
+    /// Optional. MIME type of the generated candidate text.
+    /// Supported MIME types are:
     /// `text/plain`: (default) Text output.
-    /// `application/json`: JSON response in the candidates.
+    /// `application/json`: JSON response in the response candidates.
+    /// Refer to the
+    /// [docs](<https://ai.google.dev/gemini-api/docs/prompting_with_media#plain_text_formats>)
+    /// for a list of all supported text MIME types.
     #[prost(string, tag = "13")]
     pub response_mime_type: ::prost::alloc::string::String,
-    /// Optional. Output response schema of the generated candidate text when
-    /// response mime type can have schema. Schema can be objects, primitives or
-    /// arrays and is a subset of [OpenAPI
-    /// schema](<https://spec.openapis.org/oas/v3.0.3#schema>).
+    /// Optional. Output schema of the generated candidate text. Schemas must be a
+    /// subset of the [OpenAPI schema](<https://spec.openapis.org/oas/v3.0.3#schema>)
+    /// and can be objects, primitives or arrays.
     ///
-    /// If set, a compatible response_mime_type must also be set.
-    /// Compatible mimetypes:
+    /// If set, a compatible `response_mime_type` must also be set.
+    /// Compatible MIME types:
     /// `application/json`: Schema for JSON response.
+    /// Refer to the [JSON text generation
+    /// guide](<https://ai.google.dev/gemini-api/docs/json-mode>) for more details.
     #[prost(message, optional, tag = "14")]
     pub response_schema: ::core::option::Option<Schema>,
 }
@@ -1628,12 +1650,12 @@ pub struct GenerationConfig {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SemanticRetrieverConfig {
-    /// Required. Name of the resource for retrieval, e.g. corpora/123 or
-    /// corpora/123/documents/abc.
+    /// Required. Name of the resource for retrieval. Example: `corpora/123` or
+    /// `corpora/123/documents/abc`.
     #[prost(string, tag = "1")]
     pub source: ::prost::alloc::string::String,
-    /// Required. Query to use for similarity matching `Chunk`s in the given
-    /// resource.
+    /// Required. Query to use for matching `Chunk`s in the given resource by
+    /// similarity.
     #[prost(message, optional, tag = "2")]
     pub query: ::core::option::Option<Content>,
     /// Optional. Filters for selecting `Document`s and/or `Chunk`s from the
@@ -1647,16 +1669,16 @@ pub struct SemanticRetrieverConfig {
     #[prost(float, optional, tag = "5")]
     pub minimum_relevance_score: ::core::option::Option<f32>,
 }
-/// Response from the model supporting multiple candidates.
+/// Response from the model supporting multiple candidate responses.
 ///
-/// Note on safety ratings and content filtering. They are reported for both
+/// Safety ratings and content filtering are reported for both
 /// prompt in `GenerateContentResponse.prompt_feedback` and for each candidate
-/// in `finish_reason` and in `safety_ratings`. The API contract is that:
+/// in `finish_reason` and in `safety_ratings`. The API:
 ///
-/// * either all requested candidates are returned or no candidates at all
-/// * no candidates are returned only if there was something wrong with the
-///   prompt (see `prompt_feedback`)
-/// * feedback on each candidate is reported on `finish_reason` and
+/// * Returns either all requested candidates or none of them
+/// * Returns no candidates at all only if there was something wrong with the
+///   prompt (check `prompt_feedback`)
+/// * Reports feedback on each candidate in `finish_reason` and
 ///   `safety_ratings`.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1681,7 +1703,7 @@ pub mod generate_content_response {
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PromptFeedback {
         /// Optional. If set, the prompt was blocked and no candidates are returned.
-        /// Rephrase your prompt.
+        /// Rephrase the prompt.
         #[prost(enumeration = "prompt_feedback::BlockReason", tag = "1")]
         pub block_reason: i32,
         /// Ratings for safety of the prompt.
@@ -1691,7 +1713,7 @@ pub mod generate_content_response {
     }
     /// Nested message and enum types in `PromptFeedback`.
     pub mod prompt_feedback {
-        /// Specifies what was the reason why prompt was blocked.
+        /// Specifies the reason why the prompt was blocked.
         #[derive(
             Clone,
             Copy,
@@ -1707,11 +1729,16 @@ pub mod generate_content_response {
         pub enum BlockReason {
             /// Default value. This value is unused.
             Unspecified = 0,
-            /// Prompt was blocked due to safety reasons. You can inspect
-            /// `safety_ratings` to understand which safety category blocked it.
+            /// Prompt was blocked due to safety reasons. Inspect `safety_ratings`
+            /// to understand which safety category blocked it.
             Safety = 1,
             /// Prompt was blocked due to unknown reasons.
             Other = 2,
+            /// Prompt was blocked due to the terms which are included from the
+            /// terminology blocklist.
+            Blocklist = 3,
+            /// Prompt was blocked due to prohibited content.
+            ProhibitedContent = 4,
         }
         impl BlockReason {
             /// String value of the enum field names used in the ProtoBuf definition.
@@ -1723,6 +1750,8 @@ pub mod generate_content_response {
                     BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
                     BlockReason::Safety => "SAFETY",
                     BlockReason::Other => "OTHER",
+                    BlockReason::Blocklist => "BLOCKLIST",
+                    BlockReason::ProhibitedContent => "PROHIBITED_CONTENT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1731,6 +1760,8 @@ pub mod generate_content_response {
                     "BLOCK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
                     "SAFETY" => Some(Self::Safety),
                     "OTHER" => Some(Self::Other),
+                    "BLOCKLIST" => Some(Self::Blocklist),
+                    "PROHIBITED_CONTENT" => Some(Self::ProhibitedContent),
                     _ => None,
                 }
             }
@@ -1740,19 +1771,19 @@ pub mod generate_content_response {
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct UsageMetadata {
-        /// Number of tokens in the prompt. When cached_content is set, this is still
-        /// the total effective prompt size. I.e. this includes the number of tokens
-        /// in the cached content.
+        /// Number of tokens in the prompt. When `cached_content` is set, this is
+        /// still the total effective prompt size meaning this includes the number of
+        /// tokens in the cached content.
         #[prost(int32, tag = "1")]
         pub prompt_token_count: i32,
-        /// Number of tokens in the cached part of the prompt, i.e. in the cached
-        /// content.
+        /// Number of tokens in the cached part of the prompt (the cached content)
         #[prost(int32, tag = "4")]
         pub cached_content_token_count: i32,
-        /// Total number of tokens across the generated candidates.
+        /// Total number of tokens across all the generated response candidates.
         #[prost(int32, tag = "2")]
         pub candidates_token_count: i32,
-        /// Total token count for the generation request (prompt + candidates).
+        /// Total token count for the generation request (prompt + response
+        /// candidates).
         #[prost(int32, tag = "3")]
         pub total_token_count: i32,
     }
@@ -1761,7 +1792,7 @@ pub mod generate_content_response {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Candidate {
-    /// Output only. Index of the candidate in the list of candidates.
+    /// Output only. Index of the candidate in the list of response candidates.
     #[prost(int32, optional, tag = "3")]
     pub index: ::core::option::Option<i32>,
     /// Output only. Generated content returned from the model.
@@ -1769,7 +1800,7 @@ pub struct Candidate {
     pub content: ::core::option::Option<Content>,
     /// Optional. Output only. The reason why the model stopped generating tokens.
     ///
-    /// If empty, the model has not stopped generating the tokens.
+    /// If empty, the model has not stopped generating tokens.
     #[prost(enumeration = "candidate::FinishReason", tag = "2")]
     pub finish_reason: i32,
     /// List of ratings for the safety of a response candidate.
@@ -1816,12 +1847,24 @@ pub mod candidate {
         Stop = 1,
         /// The maximum number of tokens as specified in the request was reached.
         MaxTokens = 2,
-        /// The candidate content was flagged for safety reasons.
+        /// The response candidate content was flagged for safety reasons.
         Safety = 3,
-        /// The candidate content was flagged for recitation reasons.
+        /// The response candidate content was flagged for recitation reasons.
         Recitation = 4,
+        /// The response candidate content was flagged for using an unsupported
+        /// language.
+        Language = 6,
         /// Unknown reason.
         Other = 5,
+        /// Token generation stopped because the content contains forbidden terms.
+        Blocklist = 7,
+        /// Token generation stopped for potentially containing prohibited content.
+        ProhibitedContent = 8,
+        /// Token generation stopped because the content potentially contains
+        /// Sensitive Personally Identifiable Information (SPII).
+        Spii = 9,
+        /// The function call generated by the model is invalid.
+        MalformedFunctionCall = 10,
     }
     impl FinishReason {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1835,7 +1878,12 @@ pub mod candidate {
                 FinishReason::MaxTokens => "MAX_TOKENS",
                 FinishReason::Safety => "SAFETY",
                 FinishReason::Recitation => "RECITATION",
+                FinishReason::Language => "LANGUAGE",
                 FinishReason::Other => "OTHER",
+                FinishReason::Blocklist => "BLOCKLIST",
+                FinishReason::ProhibitedContent => "PROHIBITED_CONTENT",
+                FinishReason::Spii => "SPII",
+                FinishReason::MalformedFunctionCall => "MALFORMED_FUNCTION_CALL",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1846,7 +1894,12 @@ pub mod candidate {
                 "MAX_TOKENS" => Some(Self::MaxTokens),
                 "SAFETY" => Some(Self::Safety),
                 "RECITATION" => Some(Self::Recitation),
+                "LANGUAGE" => Some(Self::Language),
                 "OTHER" => Some(Self::Other),
+                "BLOCKLIST" => Some(Self::Blocklist),
+                "PROHIBITED_CONTENT" => Some(Self::ProhibitedContent),
+                "SPII" => Some(Self::Spii),
+                "MALFORMED_FUNCTION_CALL" => Some(Self::MalformedFunctionCall),
                 _ => None,
             }
         }
@@ -1911,7 +1964,7 @@ pub struct GroundingAttribution {
     #[prost(message, optional, tag = "2")]
     pub content: ::core::option::Option<Content>,
 }
-/// Request to generate a grounded answer from the model.
+/// Request to generate a grounded answer from the `Model`.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAnswerRequest {
@@ -1921,12 +1974,12 @@ pub struct GenerateAnswerRequest {
     /// Format: `model=models/{model}`.
     #[prost(string, tag = "1")]
     pub model: ::prost::alloc::string::String,
-    /// Required. The content of the current conversation with the model. For
+    /// Required. The content of the current conversation with the `Model`. For
     /// single-turn queries, this is a single question to answer. For multi-turn
     /// queries, this is a repeated field that contains conversation history and
     /// the last `Content` in the list containing the question.
     ///
-    /// Note: GenerateAnswer currently only supports queries in English.
+    /// Note: `GenerateAnswer` only supports queries in English.
     #[prost(message, repeated, tag = "2")]
     pub contents: ::prost::alloc::vec::Vec<Content>,
     /// Required. Style in which answers should be returned.
@@ -1945,6 +1998,11 @@ pub struct GenerateAnswerRequest {
     /// setting for that category. Harm categories HARM_CATEGORY_HATE_SPEECH,
     /// HARM_CATEGORY_SEXUALLY_EXPLICIT, HARM_CATEGORY_DANGEROUS_CONTENT,
     /// HARM_CATEGORY_HARASSMENT are supported.
+    /// Refer to the
+    /// [guide](<https://ai.google.dev/gemini-api/docs/safety-settings>)
+    /// for detailed information on available safety settings. Also refer to the
+    /// [Safety guidance](<https://ai.google.dev/gemini-api/docs/safety-guidance>) to
+    /// learn how to incorporate safety considerations in your AI applications.
     #[prost(message, repeated, tag = "3")]
     pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
     /// Optional. Controls the randomness of the output.
@@ -2040,22 +2098,22 @@ pub struct GenerateAnswerResponse {
     /// Output only. The model's estimate of the probability that its answer is
     /// correct and grounded in the input passages.
     ///
-    /// A low answerable_probability indicates that the answer might not be
+    /// A low `answerable_probability` indicates that the answer might not be
     /// grounded in the sources.
     ///
-    /// When `answerable_probability` is low, some clients may wish to:
+    /// When `answerable_probability` is low, you may want to:
     ///
     /// * Display a message to the effect of "We couldn’t answer that question" to
     ///   the user.
     /// * Fall back to a general-purpose LLM that answers the question from world
     ///   knowledge. The threshold and nature of such fallbacks will depend on
-    ///   individual clients’ use cases. 0.5 is a good starting threshold.
+    ///   individual use cases. `0.5` is a good starting threshold.
     #[prost(float, optional, tag = "2")]
     pub answerable_probability: ::core::option::Option<f32>,
     /// Output only. Feedback related to the input data used to answer the
-    /// question, as opposed to model-generated response to the question.
+    /// question, as opposed to the model-generated response to the question.
     ///
-    /// "Input data" can be one or more of the following:
+    /// The input data can be one or more of the following:
     ///
     /// * Question specified by the last entry in `GenerateAnswerRequest.content`
     /// * Conversation history specified by the other entries in
@@ -2068,12 +2126,12 @@ pub struct GenerateAnswerResponse {
 /// Nested message and enum types in `GenerateAnswerResponse`.
 pub mod generate_answer_response {
     /// Feedback related to the input data used to answer the question, as opposed
-    /// to model-generated response to the question.
+    /// to the model-generated response to the question.
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct InputFeedback {
         /// Optional. If set, the input was blocked and no candidates are returned.
-        /// Rephrase your input.
+        /// Rephrase the input.
         #[prost(enumeration = "input_feedback::BlockReason", optional, tag = "1")]
         pub block_reason: ::core::option::Option<i32>,
         /// Ratings for safety of the input.
@@ -2099,7 +2157,7 @@ pub mod generate_answer_response {
         pub enum BlockReason {
             /// Default value. This value is unused.
             Unspecified = 0,
-            /// Input was blocked due to safety reasons. You can inspect
+            /// Input was blocked due to safety reasons. Inspect
             /// `safety_ratings` to understand which safety category blocked it.
             Safety = 1,
             /// Input was blocked due to other reasons.
@@ -2158,8 +2216,8 @@ pub struct EmbedContentRequest {
     pub title: ::core::option::Option<::prost::alloc::string::String>,
     /// Optional. Optional reduced dimension for the output embedding. If set,
     /// excessive values in the output embedding are truncated from the end.
-    /// Supported by newer models since 2024, and the earlier model
-    /// (`models/embedding-001`) cannot specify this value.
+    /// Supported by newer models since 2024 only. You cannot set this value if
+    /// using the earlier model (`models/embedding-001`).
     #[prost(int32, optional, tag = "5")]
     pub output_dimensionality: ::core::option::Option<i32>,
 }
@@ -2224,8 +2282,14 @@ pub struct CountTokensRequest {
     /// when `generate_content_request` is set.
     #[prost(message, repeated, tag = "2")]
     pub contents: ::prost::alloc::vec::Vec<Content>,
-    /// Optional. The overall input given to the model. CountTokens will count
-    /// prompt, function calling, etc.
+    /// Optional. The overall input given to the `Model`. This includes the prompt
+    /// as well as other model steering information like [system
+    /// instructions](<https://ai.google.dev/gemini-api/docs/system-instructions>),
+    /// and/or function declarations for [function
+    /// calling](<https://ai.google.dev/gemini-api/docs/function-calling>).
+    /// `Model`s/`Content`s and `generate_content_request`s are mutually
+    /// exclusive. You can either send `Model` + `Content`s or a
+    /// `generate_content_request`, but never both.
     #[prost(message, optional, tag = "3")]
     pub generate_content_request: ::core::option::Option<GenerateContentRequest>,
 }
@@ -2235,11 +2299,8 @@ pub struct CountTokensRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CountTokensResponse {
-    /// The number of tokens that the `model` tokenizes the `prompt` into.
-    ///
-    /// Always non-negative. When cached_content is set, this is still the total
-    /// effective prompt size. I.e. this includes the number of tokens in the
-    /// cached content.
+    /// The number of tokens that the `Model` tokenizes the `prompt` into. Always
+    /// non-negative.
     #[prost(int32, tag = "1")]
     pub total_tokens: i32,
     /// Number of tokens in the cached part of the prompt, i.e. in the cached
@@ -2376,13 +2437,13 @@ pub mod generative_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Generates a response from the model given an input
-        /// `GenerateContentRequest`.
-        ///
-        /// Input capabilities differ between models, including tuned models. See the
-        /// [model guide](https://ai.google.dev/models/gemini) and
-        /// [tuning guide](https://ai.google.dev/docs/model_tuning_guidance) for
-        /// details.
+        /// Generates a model response given an input `GenerateContentRequest`.
+        /// Refer to the [text generation
+        /// guide](https://ai.google.dev/gemini-api/docs/text-generation) for detailed
+        /// usage information. Input capabilities differ between models, including
+        /// tuned models. Refer to the [model
+        /// guide](https://ai.google.dev/gemini-api/docs/models/gemini) and [tuning
+        /// guide](https://ai.google.dev/gemini-api/docs/model-tuning) for details.
         pub async fn generate_content(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateContentRequest>,
@@ -2445,8 +2506,9 @@ pub mod generative_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Generates a streamed response from the model given an input
-        /// `GenerateContentRequest`.
+        /// Generates a [streamed
+        /// response](https://ai.google.dev/gemini-api/docs/text-generation?lang=python#generate-a-text-stream)
+        /// from the model given an input `GenerateContentRequest`.
         pub async fn stream_generate_content(
             &mut self,
             request: impl tonic::IntoRequest<super::GenerateContentRequest>,
@@ -2477,7 +2539,9 @@ pub mod generative_service_client {
                 );
             self.inner.server_streaming(req, path, codec).await
         }
-        /// Generates an embedding from the model given an input `Content`.
+        /// Generates a text embedding vector from the input `Content` using the
+        /// specified [Gemini Embedding
+        /// model](https://ai.google.dev/gemini-api/docs/models/gemini#text-embedding).
         pub async fn embed_content(
             &mut self,
             request: impl tonic::IntoRequest<super::EmbedContentRequest>,
@@ -2508,8 +2572,9 @@ pub mod generative_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Generates multiple embeddings from the model given input text in a
-        /// synchronous call.
+        /// Generates multiple embedding vectors from the input `Content` which
+        /// consists of a batch of strings represented as `EmbedContentRequest`
+        /// objects.
         pub async fn batch_embed_contents(
             &mut self,
             request: impl tonic::IntoRequest<super::BatchEmbedContentsRequest>,
@@ -2540,7 +2605,9 @@ pub mod generative_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Runs a model's tokenizer on input content and returns the token count.
+        /// Runs a model's tokenizer on input `Content` and returns the token count.
+        /// Refer to the [tokens guide](https://ai.google.dev/gemini-api/docs/tokens)
+        /// to learn more about tokens.
         pub async fn count_tokens(
             &mut self,
             request: impl tonic::IntoRequest<super::CountTokensRequest>,
@@ -2577,7 +2644,9 @@ pub mod generative_service_client {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Model {
-    /// Required. The resource name of the `Model`.
+    /// Required. The resource name of the `Model`. Refer to [Model
+    /// variants](<https://ai.google.dev/gemini-api/docs/models/gemini#model-variations>)
+    /// for all allowed values.
     ///
     /// Format: `models/{model}` with a `{model}` naming convention of:
     ///
@@ -2585,22 +2654,22 @@ pub struct Model {
     ///
     /// Examples:
     ///
-    /// * `models/chat-bison-001`
+    /// * `models/gemini-1.5-flash-001`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The name of the base model, pass this to the generation request.
     ///
     /// Examples:
     ///
-    /// * `chat-bison`
+    /// * `gemini-1.5-flash`
     #[prost(string, tag = "2")]
     pub base_model_id: ::prost::alloc::string::String,
     /// Required. The version number of the model.
     ///
-    /// This represents the major version
+    /// This represents the major version (`1.0` or `1.5`)
     #[prost(string, tag = "3")]
     pub version: ::prost::alloc::string::String,
-    /// The human-readable name of the model. E.g. "Chat Bison".
+    /// The human-readable name of the model. E.g. "Gemini 1.5 Flash".
     ///
     /// The name can be up to 128 characters long and can consist of any UTF-8
     /// characters.
@@ -2617,8 +2686,8 @@ pub struct Model {
     pub output_token_limit: i32,
     /// The model's supported generation methods.
     ///
-    /// The method names are defined as Pascal case
-    /// strings, such as `generateMessage` which correspond to API methods.
+    /// The corresponding API method names are defined as Pascal case
+    /// strings, such as `generateMessage` and `generateContent`.
     #[prost(string, repeated, tag = "8")]
     pub supported_generation_methods: ::prost::alloc::vec::Vec<
         ::prost::alloc::string::String,
@@ -2635,7 +2704,8 @@ pub struct Model {
     /// The maximum temperature this model can use.
     #[prost(float, optional, tag = "13")]
     pub max_temperature: ::core::option::Option<f32>,
-    /// For Nucleus sampling.
+    /// For [Nucleus
+    /// sampling](<https://ai.google.dev/gemini-api/docs/prompting-strategies#top-p>).
     ///
     /// Nucleus sampling considers the smallest set of tokens whose probability
     /// sum is at least `top_p`.
@@ -2661,9 +2731,12 @@ pub struct TunedModel {
     /// create. Example: `tunedModels/az2mb0bpw6i` If display_name is set on
     /// create, the id portion of the name will be set by concatenating the words
     /// of the display_name with hyphens and adding a random portion for
-    /// uniqueness. Example:
-    /// display_name = "Sentence Translator"
-    /// name = "tunedModels/sentence-translator-u3b7m"
+    /// uniqueness.
+    ///
+    /// Example:
+    ///
+    /// * display_name = `Sentence Translator`
+    /// * name = `tunedModels/sentence-translator-u3b7m`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The name to display for this model in user interfaces.
@@ -2776,7 +2849,7 @@ pub mod tuned_model {
         #[prost(message, tag = "3")]
         TunedModelSource(super::TunedModelSource),
         /// Immutable. The name of the `Model` to tune.
-        /// Example: `models/text-bison-001`
+        /// Example: `models/gemini-1.5-flash-001`
         #[prost(string, tag = "4")]
         BaseModel(::prost::alloc::string::String),
     }
@@ -2791,7 +2864,7 @@ pub struct TunedModelSource {
     #[prost(string, tag = "1")]
     pub tuned_model: ::prost::alloc::string::String,
     /// Output only. The name of the base `Model` this `TunedModel` was tuned from.
-    /// Example: `models/text-bison-001`
+    /// Example: `models/gemini-1.5-flash-001`
     #[prost(string, tag = "2")]
     pub base_model: ::prost::alloc::string::String,
 }
@@ -4533,8 +4606,7 @@ pub struct GetModelRequest {
 pub struct ListModelsRequest {
     /// The maximum number of `Models` to return (per page).
     ///
-    /// The service may return fewer models.
-    /// If unspecified, at most 50 models will be returned per page.
+    /// If unspecified, 50 models will be returned per page.
     /// This method returns at most 1000 models per page, even if you pass a larger
     /// page_size.
     #[prost(int32, tag = "2")]
@@ -4631,7 +4703,7 @@ pub struct CreateTunedModelRequest {
     /// Optional. The unique id for the tuned model if specified.
     /// This value should be up to 40 characters, the first character must be a
     /// letter, the last could be a letter or a number. The id must match the
-    /// regular expression: [a-z](\[a-z0-9-\]{0,38}\[a-z0-9\])?.
+    /// regular expression: `[a-z](\[a-z0-9-\]{0,38}\[a-z0-9\])?`.
     #[prost(string, optional, tag = "1")]
     pub tuned_model_id: ::core::option::Option<::prost::alloc::string::String>,
     /// Required. The tuned model to create.
@@ -4754,7 +4826,12 @@ pub mod model_service_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Gets information about a specific Model.
+        /// Gets information about a specific `Model` such as its version number, token
+        /// limits,
+        /// [parameters](https://ai.google.dev/gemini-api/docs/models/generative-models#model-parameters)
+        /// and other metadata. Refer to the [Gemini models
+        /// guide](https://ai.google.dev/gemini-api/docs/models/gemini) for detailed
+        /// model information.
         pub async fn get_model(
             &mut self,
             request: impl tonic::IntoRequest<super::GetModelRequest>,
@@ -4782,7 +4859,8 @@ pub mod model_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists models available through the API.
+        /// Lists the [`Model`s](https://ai.google.dev/gemini-api/docs/models/gemini)
+        /// available through the Gemini API.
         pub async fn list_models(
             &mut self,
             request: impl tonic::IntoRequest<super::ListModelsRequest>,
@@ -4841,7 +4919,7 @@ pub mod model_service_client {
                 );
             self.inner.unary(req, path, codec).await
         }
-        /// Lists tuned models owned by the user.
+        /// Lists created tuned models.
         pub async fn list_tuned_models(
             &mut self,
             request: impl tonic::IntoRequest<super::ListTunedModelsRequest>,
@@ -4873,10 +4951,10 @@ pub mod model_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Creates a tuned model.
-        /// Intermediate tuning progress (if any) is accessed through the
+        /// Check intermediate tuning progress (if any) through the
         /// \[google.longrunning.Operations\] service.
         ///
-        /// Status and results can be accessed through the Operations service.
+        /// Access status and results through the Operations service.
         /// Example:
         /// GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
         pub async fn create_tuned_model(
