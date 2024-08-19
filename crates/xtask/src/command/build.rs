@@ -64,8 +64,12 @@ pub fn execute() -> anyhow::Result<()> {
         .cloned()
         .unwrap_or_default();
     let new_crate_version = build_crate::build_crate(&generated_dir, &proto_dir, &crate_version)?;
-    let mut new_crate_versions =
-        build_crates::build_crates(&generated_dir, &proto_dir, crate_versions)?;
+    let mut new_crate_versions = build_crates::build_crates(
+        &generated_dir,
+        &proto_dir,
+        crate_versions,
+        state.package_hashes(),
+    )?;
     new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 
     // update state.json

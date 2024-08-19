@@ -7,7 +7,7 @@ use std::{
 
 use crate::{
     crate_name::CrateName, crate_version::CrateVersion, proto_dir::ProtoDir,
-    protobuf_package_name::ProtobufPackageName,
+    protobuf_package_name::ProtobufPackageName, sha1hash::Sha1Hash,
 };
 
 struct M {
@@ -18,24 +18,66 @@ struct M {
 pub fn build_crates(
     generated_dir: &Path,
     proto_dir: &ProtoDir,
-    crate_versions: &BTreeMap<CrateName, CrateVersion>,
+    old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
+    old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let mut new_crate_versions = BTreeMap::new();
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
+    let all_package_deps = proto_dir.dependencies();
     let emit_package_names = proto_dir.emit_package_names();
+    let new_package_hashes = proto_dir.package_hashes();
+    let should_update_crates = {
+        let mut hash_changed = BTreeSet::new();
+        for (package_name, new_hash) in new_package_hashes {
+            if old_package_hashes.get(package_name) != Some(new_hash) {
+                hash_changed.insert(package_name.to_owned());
+            }
+        }
+
+        fn dfs(
+            memo: &mut BTreeMap<ProtobufPackageName, bool>,
+            hash_changed: &BTreeSet<ProtobufPackageName>,
+            all_package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
+            package_name: &ProtobufPackageName,
+        ) -> bool {
+            if let Some(&b) = memo.get(package_name) {
+                return b;
+            }
+
+            let mut b = hash_changed.contains(package_name);
+            for dep in all_package_deps
+                .get(package_name)
+                .cloned()
+                .unwrap_or_default()
+            {
+                b |= dfs(memo, hash_changed, all_package_deps, &dep);
+            }
+            memo.insert(package_name.to_owned(), b);
+            b
+        }
+
+        let mut memo = BTreeMap::new();
+        let mut should_update_crates = BTreeSet::new();
+        for (package_name, _) in new_package_hashes {
+            if dfs(&mut memo, &hash_changed, all_package_deps, package_name) {
+                should_update_crates.insert(package_name.to_owned());
+            }
+        }
+        should_update_crates
+    };
+
     for package_name in emit_package_names {
-        let deps = proto_dir
-            .dependencies()
+        let package_deps = all_package_deps
             .get(package_name)
             .cloned()
             .unwrap_or_default();
         let crate_name = CrateName::from_package_name(package_name);
-        let dep_crate_names = deps
+        let crate_deps = package_deps
             .iter()
             .filter(|it| emit_package_names.contains(it))
             .map(CrateName::from_package_name)
             .collect::<BTreeSet<CrateName>>();
-        let include_package_names = deps
+        let include_package_names = package_deps
             .iter()
             .filter(|it| !emit_package_names.contains(it))
             .chain(std::iter::once(package_name))
@@ -43,7 +85,7 @@ pub fn build_crates(
             .collect::<BTreeSet<ProtobufPackageName>>();
 
         let mut modules = BTreeMap::new();
-        for dep in deps.iter().chain(std::iter::once(package_name)) {
+        for dep in package_deps.iter().chain(std::iter::once(package_name)) {
             let idents = dep
                 .to_string()
                 .split('.')
@@ -80,15 +122,17 @@ pub fn build_crates(
         //     Cargo.toml
         let crate_dir = generated_dir.join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
-        let old_crate_version = crate_versions.get(&crate_name).cloned().unwrap_or_default();
-        let new_crate_version = old_crate_version.increment_minor();
+        let old_crate_version = old_crate_versions
+            .get(&crate_name)
+            .cloned()
+            .unwrap_or_default();
+        let new_crate_version = if should_update_crates.contains(package_name) {
+            old_crate_version.increment_minor()
+        } else {
+            old_crate_version
+        };
         new_crate_versions.insert(crate_name.clone(), new_crate_version.clone());
-        write_cargo_toml(
-            &crate_dir,
-            &crate_name,
-            &dep_crate_names,
-            &new_crate_version,
-        )?;
+        write_cargo_toml(&crate_dir, &crate_name, &crate_deps, &new_crate_version)?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",

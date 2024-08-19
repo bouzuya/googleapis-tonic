@@ -101,6 +101,10 @@ impl State {
         &self.crate_versions
     }
 
+    pub fn package_hashes(&self) -> &BTreeMap<ProtobufPackageName, Sha1Hash> {
+        &self.package_hashes
+    }
+
     pub fn update(
         &self,
         proto_dir: &ProtoDir,
