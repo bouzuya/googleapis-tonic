@@ -7,13 +7,14 @@ use std::{
 
 use crate::{
     crate_name::CrateName, crate_version::CrateVersion, googleapis_version::GoogleapisVersion,
-    proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName,
+    proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName, sha1hash::Sha1Hash,
 };
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct StateFileContent {
     crate_versions: BTreeMap<String, String>,
     googleapis_version: String,
+    package_hashes: BTreeMap<String, String>,
     publish_order: Vec<String>,
 }
 
@@ -22,6 +23,7 @@ impl From<&State> for StateFileContent {
         State {
             crate_versions,
             googleapis_version,
+            package_hashes,
             publish_order,
         }: &State,
     ) -> Self {
@@ -31,6 +33,10 @@ impl From<&State> for StateFileContent {
                 .map(|(k, v)| (k.to_string(), v.to_string()))
                 .collect::<BTreeMap<String, String>>(),
             googleapis_version: googleapis_version.to_string(),
+            package_hashes: package_hashes
+                .into_iter()
+                .map(|(k, v)| (k.to_string(), v.to_string()))
+                .collect::<BTreeMap<String, String>>(),
             publish_order: publish_order
                 .into_iter()
                 .map(|it| it.to_string())
@@ -46,6 +52,7 @@ impl TryFrom<&StateFileContent> for State {
         StateFileContent {
             crate_versions,
             googleapis_version,
+            package_hashes,
             publish_order,
         }: &StateFileContent,
     ) -> Result<Self, Self::Error> {
@@ -55,6 +62,10 @@ impl TryFrom<&StateFileContent> for State {
                 .map(|(k, v)| Ok((CrateName::from_str(k)?, CrateVersion::from_str(v)?)))
                 .collect::<anyhow::Result<BTreeMap<CrateName, CrateVersion>>>()?,
             googleapis_version: GoogleapisVersion::from_str(&googleapis_version)?,
+            package_hashes: package_hashes
+                .into_iter()
+                .map(|(k, v)| Ok((ProtobufPackageName::from_str(k)?, Sha1Hash::from_str(v)?)))
+                .collect::<anyhow::Result<BTreeMap<ProtobufPackageName, Sha1Hash>>>()?,
             publish_order: publish_order
                 .into_iter()
                 .map(|it| CrateName::from_str(it))
@@ -66,6 +77,7 @@ impl TryFrom<&StateFileContent> for State {
 pub struct State {
     crate_versions: BTreeMap<CrateName, CrateVersion>,
     googleapis_version: GoogleapisVersion,
+    package_hashes: BTreeMap<ProtobufPackageName, Sha1Hash>,
     publish_order: Vec<CrateName>,
 }
 
@@ -95,10 +107,12 @@ impl State {
         crate_versions: BTreeMap<CrateName, CrateVersion>,
     ) -> anyhow::Result<Self> {
         let googleapis_version = proto_dir.version().to_owned();
+        let package_hashes = proto_dir.package_hashes().to_owned();
         let publish_order = Self::publish_order(proto_dir);
         Ok(Self {
             crate_versions,
             googleapis_version,
+            package_hashes,
             publish_order,
         })
     }
