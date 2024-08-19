@@ -36,11 +36,14 @@ pub fn build_crates(
 
         fn dfs(
             memo: &mut BTreeMap<ProtobufPackageName, bool>,
+            // ? cyclic deps ?
+            path: &mut BTreeSet<ProtobufPackageName>,
             hash_changed: &BTreeSet<ProtobufPackageName>,
             all_package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
             package_name: &ProtobufPackageName,
         ) -> bool {
             if let Some(&b) = memo.get(package_name) {
+                path.remove(package_name);
                 return b;
             }
 
@@ -50,16 +53,27 @@ pub fn build_crates(
                 .cloned()
                 .unwrap_or_default()
             {
-                b |= dfs(memo, hash_changed, all_package_deps, &dep);
+                if path.insert(dep.to_owned()) {
+                    b |= dfs(memo, path, hash_changed, all_package_deps, &dep);
+                }
             }
             memo.insert(package_name.to_owned(), b);
+            path.remove(package_name);
             b
         }
 
         let mut memo = BTreeMap::new();
         let mut should_update_crates = BTreeSet::new();
         for (package_name, _) in new_package_hashes {
-            if dfs(&mut memo, &hash_changed, all_package_deps, package_name) {
+            let mut path = BTreeSet::new();
+            path.insert(package_name.to_owned());
+            if dfs(
+                &mut memo,
+                &mut path,
+                &hash_changed,
+                all_package_deps,
+                package_name,
+            ) {
                 should_update_crates.insert(package_name.to_owned());
             }
         }
