@@ -5,6 +5,8 @@ use std::{
     str::FromStr as _,
 };
 
+use anyhow::Context as _;
+
 use crate::{
     crate_name::CrateName, crate_version::CrateVersion, proto_dir::ProtoDir,
     protobuf_package_name::ProtobufPackageName, sha1hash::Sha1Hash,
@@ -21,64 +23,16 @@ pub fn build_crates(
     old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
-    let mut new_crate_versions = BTreeMap::new();
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
     let all_package_deps = proto_dir.dependencies();
     let emit_package_names = proto_dir.emit_package_names();
-    let new_package_hashes = proto_dir.package_hashes();
-    let should_update_crates = {
-        let mut hash_changed = BTreeSet::new();
-        for (package_name, new_hash) in new_package_hashes {
-            if old_package_hashes.get(package_name) != Some(new_hash) {
-                hash_changed.insert(package_name.to_owned());
-            }
-        }
-
-        fn dfs(
-            memo: &mut BTreeMap<ProtobufPackageName, bool>,
-            // ? cyclic deps ?
-            path: &mut BTreeSet<ProtobufPackageName>,
-            hash_changed: &BTreeSet<ProtobufPackageName>,
-            all_package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
-            package_name: &ProtobufPackageName,
-        ) -> bool {
-            if let Some(&b) = memo.get(package_name) {
-                path.remove(package_name);
-                return b;
-            }
-
-            let mut b = hash_changed.contains(package_name);
-            for dep in all_package_deps
-                .get(package_name)
-                .cloned()
-                .unwrap_or_default()
-            {
-                if path.insert(dep.to_owned()) {
-                    b |= dfs(memo, path, hash_changed, all_package_deps, &dep);
-                }
-            }
-            memo.insert(package_name.to_owned(), b);
-            path.remove(package_name);
-            b
-        }
-
-        let mut memo = BTreeMap::new();
-        let mut should_update_crates = BTreeSet::new();
-        for (package_name, _) in new_package_hashes {
-            let mut path = BTreeSet::new();
-            path.insert(package_name.to_owned());
-            if dfs(
-                &mut memo,
-                &mut path,
-                &hash_changed,
-                all_package_deps,
-                package_name,
-            ) {
-                should_update_crates.insert(package_name.to_owned());
-            }
-        }
-        should_update_crates
-    };
+    let new_crate_versions = build_new_crate_versions(
+        all_package_deps,
+        emit_package_names,
+        proto_dir.package_hashes(),
+        old_crate_versions,
+        old_package_hashes,
+    )?;
 
     for package_name in emit_package_names {
         let package_deps = all_package_deps
@@ -136,17 +90,7 @@ pub fn build_crates(
         //     Cargo.toml
         let crate_dir = generated_dir.join(crate_name.as_ref());
         fs::create_dir_all(&crate_dir)?;
-        let old_crate_version = old_crate_versions
-            .get(&crate_name)
-            .cloned()
-            .unwrap_or_default();
-        let new_crate_version = if should_update_crates.contains(package_name) {
-            old_crate_version.increment_minor()
-        } else {
-            old_crate_version
-        };
-        new_crate_versions.insert(crate_name.clone(), new_crate_version.clone());
-        write_cargo_toml(&crate_dir, &crate_name, &crate_deps, &new_crate_version)?;
+        write_cargo_toml(&crate_dir, &crate_name, &crate_deps, &new_crate_versions)?;
         let src_dir = crate_dir.join("src");
         for variant in [
             "bytes_btree_map",
@@ -170,12 +114,90 @@ pub fn build_crates(
     Ok(new_crate_versions)
 }
 
+fn build_new_crate_versions(
+    all_package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
+    emit_package_names: &BTreeSet<ProtobufPackageName>,
+    new_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
+    old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
+    old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
+) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
+    let should_update_crates = {
+        let mut hash_changed = BTreeSet::new();
+        for (package_name, new_hash) in new_package_hashes {
+            if old_package_hashes.get(package_name) != Some(new_hash) {
+                hash_changed.insert(package_name.to_owned());
+            }
+        }
+
+        fn dfs(
+            memo: &mut BTreeMap<ProtobufPackageName, bool>,
+            // ? cyclic deps ?
+            path: &mut BTreeSet<ProtobufPackageName>,
+            hash_changed: &BTreeSet<ProtobufPackageName>,
+            all_package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
+            package_name: &ProtobufPackageName,
+        ) -> bool {
+            if let Some(&b) = memo.get(package_name) {
+                path.remove(package_name);
+                return b;
+            }
+
+            let mut b = hash_changed.contains(package_name);
+            for dep in all_package_deps
+                .get(package_name)
+                .cloned()
+                .unwrap_or_default()
+            {
+                if path.insert(dep.to_owned()) {
+                    b |= dfs(memo, path, hash_changed, all_package_deps, &dep);
+                }
+            }
+            memo.insert(package_name.to_owned(), b);
+            path.remove(package_name);
+            b
+        }
+
+        let mut memo = BTreeMap::new();
+        let mut should_update_crates = BTreeSet::new();
+        for (package_name, _) in new_package_hashes {
+            let mut path = BTreeSet::new();
+            path.insert(package_name.to_owned());
+            if dfs(
+                &mut memo,
+                &mut path,
+                &hash_changed,
+                all_package_deps,
+                package_name,
+            ) {
+                should_update_crates.insert(package_name.to_owned());
+            }
+        }
+        should_update_crates
+    };
+
+    let mut new_crate_versions = BTreeMap::new();
+    for package_name in emit_package_names {
+        let crate_name = CrateName::from_package_name(package_name);
+        let old_crate_version = old_crate_versions
+            .get(&crate_name)
+            .cloned()
+            .unwrap_or_default();
+        let new_crate_version = if should_update_crates.contains(package_name) {
+            old_crate_version.increment_minor()
+        } else {
+            old_crate_version
+        };
+        new_crate_versions.insert(crate_name.clone(), new_crate_version.clone());
+    }
+    Ok(new_crate_versions)
+}
+
 // crates/googleapis-tonic-{crate_name}/Cargo.toml
 fn write_cargo_toml(
     crate_dir: &Path,
     crate_name: &CrateName,
     dep_crate_names: &BTreeSet<CrateName>,
-    version: &CrateVersion,
+    new_crate_versions: &BTreeMap<CrateName, CrateVersion>,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
     let cargo_toml_content = r#"[package]
@@ -211,18 +233,27 @@ default = ["hash-map", "vec-u8"]
 {FEATURES}
 "#
     .replace("{CRATE_NAME}", crate_name.as_ref())
-    .replace("{VERSION}", &version.to_string())
+    .replace(
+        "{VERSION}",
+        &new_crate_versions
+            .get(crate_name)
+            .with_context(|| format!("{} version not found", crate_name))?
+            .to_string(),
+    )
     .replace(
         "{DEPENDENCIES}",
         &dep_crate_names
             .iter()
             .map(|dep| {
-                format!(
+                Ok(format!(
                     "{} = {{ version = \"{}\", default-features = false }}",
-                    dep, version,
-                )
+                    dep,
+                    new_crate_versions
+                        .get(dep)
+                        .with_context(|| format!("{} version not found", crate_name))?
+                ))
             })
-            .collect::<Vec<String>>()
+            .collect::<anyhow::Result<Vec<String>>>()?
             .join("\n"),
     )
     .replace("{FEATURES}", &{
