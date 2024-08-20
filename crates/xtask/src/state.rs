@@ -105,6 +105,10 @@ impl State {
         &self.package_hashes
     }
 
+    pub fn publish_order(&self) -> &[CrateName] {
+        &self.publish_order
+    }
+
     pub fn update(
         &self,
         proto_dir: &ProtoDir,
@@ -112,7 +116,7 @@ impl State {
     ) -> anyhow::Result<Self> {
         let googleapis_version = proto_dir.version().to_owned();
         let package_hashes = proto_dir.package_hashes().to_owned();
-        let publish_order = Self::publish_order(proto_dir);
+        let publish_order = Self::build_publish_order(proto_dir);
         Ok(Self {
             crate_versions,
             googleapis_version,
@@ -121,7 +125,7 @@ impl State {
         })
     }
 
-    fn publish_order(proto_dir: &ProtoDir) -> Vec<CrateName> {
+    fn build_publish_order(proto_dir: &ProtoDir) -> Vec<CrateName> {
         // topological sort
         let nodes = proto_dir.emit_package_names().to_owned();
         let mut edges = BTreeMap::new();

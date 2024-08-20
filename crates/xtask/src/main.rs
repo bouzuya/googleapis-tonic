@@ -13,6 +13,7 @@ mod proto_file;
 mod proto_file_path;
 mod protobuf_package_name;
 mod sha1hash;
+mod state;
 
 #[derive(clap::Parser)]
 struct Cli {
@@ -34,11 +35,12 @@ enum Subcommand {
     UpdateGoogleapis,
 }
 
-fn main() -> anyhow::Result<()> {
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
     let cli = <Cli as clap::Parser>::parse();
     match cli.subcommand {
         Subcommand::Build => self::command::build::execute(),
-        Subcommand::Publish => self::command::publish::execute(),
+        Subcommand::Publish => self::command::publish::execute().await,
         Subcommand::ShowGoogleapisVersion => self::command::show_googleapis_version::execute(),
         Subcommand::Test => self::command::test::execute(),
         Subcommand::UpdateGoogleapis => self::command::update_googleapis::execute(),

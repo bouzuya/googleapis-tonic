@@ -1,14 +1,13 @@
 mod build_crate;
 mod build_crates;
-mod state;
 
 use std::fs;
 use std::path::PathBuf;
 use std::str::FromStr as _;
 
-use self::state::State;
 use crate::crate_name::CrateName;
 use crate::proto_dir::ProtoDir;
+use crate::state::State;
 
 /// Build `googleapis-tonic` and `googleapis-tonic-*` crates, and update the state file.
 ///
