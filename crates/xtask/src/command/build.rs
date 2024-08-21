@@ -39,7 +39,7 @@ use crate::state::State;
 ///   googleapis-tonic-FOO/
 ///     ...
 /// ```
-pub fn execute() -> anyhow::Result<()> {
+pub fn execute(force_update: bool) -> anyhow::Result<()> {
     let generated_dir = PathBuf::from("generated");
     let xtask_dir = PathBuf::from("crates").join("xtask");
 
@@ -68,6 +68,7 @@ pub fn execute() -> anyhow::Result<()> {
         &proto_dir,
         crate_versions,
         state.package_hashes(),
+        force_update,
     )?;
     new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 

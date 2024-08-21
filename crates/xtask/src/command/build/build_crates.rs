@@ -22,6 +22,7 @@ pub fn build_crates(
     proto_dir: &ProtoDir,
     old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
+    force_update: bool,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
     let all_package_deps = proto_dir.dependencies();
@@ -32,6 +33,7 @@ pub fn build_crates(
         proto_dir.package_hashes(),
         old_crate_versions,
         old_package_hashes,
+        force_update,
     )?;
 
     for package_name in emit_package_names {
@@ -122,6 +124,7 @@ fn build_new_crate_versions(
     new_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
     old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
+    force_update: bool,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let should_update_crates = {
         let mut hash_changed = BTreeSet::new();
@@ -164,13 +167,15 @@ fn build_new_crate_versions(
         for (package_name, _) in new_package_hashes {
             let mut path = BTreeSet::new();
             path.insert(package_name.to_owned());
-            if dfs(
-                &mut memo,
-                &mut path,
-                &hash_changed,
-                all_package_deps,
-                package_name,
-            ) {
+            if force_update
+                || dfs(
+                    &mut memo,
+                    &mut path,
+                    &hash_changed,
+                    all_package_deps,
+                    package_name,
+                )
+            {
                 should_update_crates.insert(package_name.to_owned());
             }
         }
