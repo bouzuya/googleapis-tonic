@@ -23,7 +23,7 @@ pub async fn execute() -> anyhow::Result<()> {
             .crate_versions()
             .get(crate_name)
             .with_context(|| format!("{} crate version not found", crate_name))?;
-        let already_published = match (published_version, crate_version.to_owned()) {
+        let already_published = match (published_version.as_ref(), crate_version) {
             (None, _) => false,
             (Some(p), c) => p >= c,
         };
@@ -39,6 +39,11 @@ pub async fn execute() -> anyhow::Result<()> {
                 .status()?;
             if status.success() {
                 println!("{} published", crate_name);
+                if published_version.is_none() {
+                    tokio::time::sleep(Duration::from_secs(600)).await;
+                } else {
+                    tokio::time::sleep(Duration::from_secs(300)).await;
+                }
             } else {
                 anyhow::bail!("{} failed", crate_name);
             }
