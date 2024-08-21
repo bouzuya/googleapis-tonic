@@ -1,26 +1,24 @@
-use std::str::FromStr;
+use std::path::PathBuf;
+use std::process::Command;
 
-use anyhow::Context;
+use crate::state::State;
 
 pub fn execute() -> anyhow::Result<()> {
-    let content = std::fs::read_to_string("crates/googleapis-tonic/Cargo.toml")?;
-    let document = toml_edit::DocumentMut::from_str(&content)?;
-    let features = document["features"]
-        .as_table()
-        .context("features table not found")?;
-    for feature_name_as_str in features
-        .iter()
-        .map(|(feature_name_as_str, _)| feature_name_as_str)
-        .filter(|it| !["default", "hash-map", "vec-u8", "btree-map", "bytes"].contains(it))
-    {
-        let command = format!("cargo check --features {}", feature_name_as_str);
-        println!("{}", command);
-        let output = std::process::Command::new("cargo")
-            .args(["check", "--features", feature_name_as_str])
-            .output()?;
-        if !output.status.success() {
-            std::io::Write::write_all(&mut std::io::stderr(), &output.stderr)?;
-            anyhow::bail!("`{}` failed", command);
+    let crates_dir = PathBuf::from("crates");
+    let generated_dir = PathBuf::from("generated");
+
+    let state_file = crates_dir.join("xtask").join("state.json");
+    let state = State::load(&state_file)?;
+
+    for crate_name in state.publish_order() {
+        let status = Command::new("cargo")
+            .args(["test"])
+            .current_dir(generated_dir.join(crate_name.to_string()))
+            .status()?;
+        if status.success() {
+            println!("{} published", crate_name);
+        } else {
+            anyhow::bail!("{} failed", crate_name);
         }
     }
     Ok(())
