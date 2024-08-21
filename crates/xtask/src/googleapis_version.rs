@@ -36,7 +36,7 @@ impl std::str::FromStr for GoogleapisVersion {
         // allow ascii lowercase hex digit
         anyhow::ensure!(s
             .chars()
-            .all(|c| matches!(c, '0'..='9') || matches!(c, 'a'..='f')));
+            .all(|c| c.is_ascii_digit() || matches!(c, 'a'..='f')));
         Ok(Self(s.to_owned()))
     }
 }

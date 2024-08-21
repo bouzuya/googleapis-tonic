@@ -38,7 +38,7 @@ impl FromStr for ProtoFile {
             // <https://protobuf.dev/reference/protobuf/proto3-spec/#package>
             // package = "package" fullIdent ";"
             if line.starts_with("package") {
-                let s = line.trim_start_matches("package ").trim_end_matches(";");
+                let s = line.trim_start_matches("package ").trim_end_matches(';');
                 match package_name {
                     None => {
                         package_name = Some(ProtobufPackageName::from_str(s)?);
@@ -54,9 +54,9 @@ impl FromStr for ProtoFile {
                     .trim_start_matches("import public ")
                     .trim_start_matches("import weak ")
                     .trim_start_matches("import ")
-                    .trim_end_matches(";");
+                    .trim_end_matches(';');
                 let path = ProtoFilePath::from_import_path_str(
-                    s.trim_start_matches("\"").trim_end_matches("\""),
+                    s.trim_start_matches('"').trim_end_matches('"'),
                 )?;
                 import_paths.insert(path);
             }

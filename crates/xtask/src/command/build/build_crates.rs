@@ -164,7 +164,7 @@ fn build_new_crate_versions(
 
         let mut memo = BTreeMap::new();
         let mut should_update_crates = BTreeSet::new();
-        for (package_name, _) in new_package_hashes {
+        for package_name in new_package_hashes.keys() {
             let mut path = BTreeSet::new();
             path.insert(package_name.to_owned());
             if force_update

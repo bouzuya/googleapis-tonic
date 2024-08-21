@@ -29,16 +29,16 @@ impl From<&State> for StateFileContent {
     ) -> Self {
         Self {
             crate_versions: crate_versions
-                .into_iter()
+                .iter()
                 .map(|(k, v)| (k.to_string(), v.to_string()))
                 .collect::<BTreeMap<String, String>>(),
             googleapis_version: googleapis_version.to_string(),
             package_hashes: package_hashes
-                .into_iter()
+                .iter()
                 .map(|(k, v)| (k.to_string(), v.to_string()))
                 .collect::<BTreeMap<String, String>>(),
             publish_order: publish_order
-                .into_iter()
+                .iter()
                 .map(|it| it.to_string())
                 .collect::<Vec<String>>(),
         }
@@ -58,16 +58,16 @@ impl TryFrom<&StateFileContent> for State {
     ) -> Result<Self, Self::Error> {
         Ok(Self {
             crate_versions: crate_versions
-                .into_iter()
+                .iter()
                 .map(|(k, v)| Ok((CrateName::from_str(k)?, CrateVersion::from_str(v)?)))
                 .collect::<anyhow::Result<BTreeMap<CrateName, CrateVersion>>>()?,
-            googleapis_version: GoogleapisVersion::from_str(&googleapis_version)?,
+            googleapis_version: GoogleapisVersion::from_str(googleapis_version)?,
             package_hashes: package_hashes
-                .into_iter()
+                .iter()
                 .map(|(k, v)| Ok((ProtobufPackageName::from_str(k)?, Sha1Hash::from_str(v)?)))
                 .collect::<anyhow::Result<BTreeMap<ProtobufPackageName, Sha1Hash>>>()?,
             publish_order: publish_order
-                .into_iter()
+                .iter()
                 .map(|it| CrateName::from_str(it))
                 .collect::<anyhow::Result<Vec<CrateName>>>()?,
         })
@@ -84,7 +84,7 @@ pub struct State {
 impl State {
     // TODO: remove I/O
     pub fn load(state_file: &Path) -> anyhow::Result<Self> {
-        let content = fs::read_to_string(&state_file)?;
+        let content = fs::read_to_string(state_file)?;
         let content = serde_json::from_str::<StateFileContent>(&content)?;
         State::try_from(&content)
     }
@@ -93,7 +93,7 @@ impl State {
     pub fn save(state_file: &Path, state: &State) -> anyhow::Result<()> {
         let content = StateFileContent::from(state);
         let content = serde_json::to_string_pretty(&content)?;
-        fs::write(state_file, &content)?;
+        fs::write(state_file, content)?;
         Ok(())
     }
 
