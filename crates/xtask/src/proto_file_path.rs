@@ -52,7 +52,7 @@ impl ProtoFilePath {
     }
 
     pub fn is_google_protobuf(&self) -> bool {
-        self.0.len() >= 2 && self.0[0] == "google" && self.0[1] == "protobuf"
+        self.0.len() > 2 && self.0[0] == "google" && self.0[1] == "protobuf"
     }
 
     pub fn to_path_buf(&self) -> PathBuf {
@@ -140,7 +140,7 @@ mod tests {
             ("google/protobuf/empty.proto", true),
         ] {
             let p = ProtoFilePath::from_import_path_str(s)?;
-            assert_eq!(p.is_google_protobuf(), expected);
+            assert_eq!(p.is_google_protobuf(), expected, "{}", s);
         }
         Ok(())
     }
