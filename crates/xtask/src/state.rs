@@ -1,5 +1,6 @@
 use std::{
-    collections::{BTreeMap, HashMap, VecDeque},
+    cmp::Reverse,
+    collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap},
     fs,
     path::Path,
     str::FromStr,
@@ -49,7 +50,8 @@ impl State {
     ) -> anyhow::Result<Self> {
         let googleapis_version = proto_dir.version().to_owned();
         let package_hashes = proto_dir.package_hashes().to_owned();
-        let publish_order = Self::build_publish_order(proto_dir);
+        let publish_order =
+            Self::build_publish_order(proto_dir.emit_package_names(), proto_dir.dependencies());
         Ok(Self {
             crate_versions,
             googleapis_version,
@@ -58,38 +60,44 @@ impl State {
         })
     }
 
-    fn build_publish_order(proto_dir: &ProtoDir) -> Vec<CrateName> {
+    fn build_publish_order(
+        packages: &BTreeSet<ProtobufPackageName>,
+        package_deps: &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
+    ) -> Vec<CrateName> {
         // topological sort
-        let nodes = proto_dir.emit_package_names().to_owned();
-        let mut edges = BTreeMap::new();
-        let mut incoming_edge_counts = HashMap::<ProtobufPackageName, usize>::new();
-        for (package_name, deps) in proto_dir.dependencies() {
-            if !nodes.contains(package_name) {
-                continue;
+        let nodes = packages.to_owned();
+        let (edges, mut incoming_edge_counts) = {
+            let mut edges = BTreeMap::new();
+            let mut incoming_edge_counts = packages
+                .iter()
+                .map(|it| (it.to_owned(), 0))
+                .collect::<HashMap<ProtobufPackageName, usize>>();
+            for (package_name, deps) in package_deps.iter().filter(|(it, _)| nodes.contains(it)) {
+                let entry = incoming_edge_counts
+                    .entry(package_name.to_owned())
+                    .or_default();
+                for dep in deps.iter().filter(|it| nodes.contains(it)) {
+                    *entry += 1;
+                    edges
+                        .entry(dep.to_owned())
+                        .or_insert_with(Vec::new)
+                        .push(package_name.to_owned());
+                }
             }
-            let entry = incoming_edge_counts
-                .entry(package_name.to_owned())
-                .or_default();
-            for dep in deps.iter().filter(|it| nodes.contains(it)) {
-                *entry += 1;
-                edges
-                    .entry(dep.to_owned())
-                    .or_insert_with(Vec::new)
-                    .push(package_name.to_owned());
-            }
-        }
+            (edges, incoming_edge_counts)
+        };
         let mut sorted = vec![];
         let mut no_incoming_edges = incoming_edge_counts
             .iter()
             .filter(|(_, count)| **count == 0)
-            .map(|(node, _)| node.to_owned())
-            .collect::<VecDeque<ProtobufPackageName>>();
-        while let Some(node) = no_incoming_edges.pop_front() {
+            .map(|(node, _)| Reverse(node.to_owned()))
+            .collect::<BinaryHeap<Reverse<ProtobufPackageName>>>();
+        while let Some(Reverse(node)) = no_incoming_edges.pop() {
             for to in edges.get(&node).cloned().unwrap_or_default() {
                 if let Some(count) = incoming_edge_counts.get_mut(&to) {
                     *count -= 1;
                     if *count == 0 {
-                        no_incoming_edges.push_back(to);
+                        no_incoming_edges.push(Reverse(to));
                     }
                 }
             }
@@ -180,5 +188,101 @@ impl TryFrom<&StateFileContent> for State {
                 .map(|it| CrateName::from_str(it))
                 .collect::<anyhow::Result<Vec<CrateName>>>()?,
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_publish_order_basic() -> anyhow::Result<()> {
+        let packages = ["foo", "bar", "baz"]
+            .into_iter()
+            .map(ProtobufPackageName::from_str)
+            .collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?;
+        let package_deps = [("foo", vec!["bar"]), ("bar", vec!["baz"])]
+            .into_iter()
+            .map(|(k, v)| Ok((ProtobufPackageName::from_str(k)?, v.into_iter().map(ProtobufPackageName::from_str).collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?)))
+            .collect::<anyhow::Result<BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>>>()?;
+        assert_eq!(
+            State::build_publish_order(&packages, &package_deps),
+            vec![
+                CrateName::from_str("googleapis-tonic-baz")?,
+                CrateName::from_str("googleapis-tonic-bar")?,
+                CrateName::from_str("googleapis-tonic-foo")?,
+            ]
+        );
+        Ok(())
+    }
+
+    #[test]
+    fn test_publish_order_stable1() -> anyhow::Result<()> {
+        let packages = ["a", "b1", "b2", "c"]
+            .into_iter()
+            .map(ProtobufPackageName::from_str)
+            .collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?;
+        let package_deps = [
+            ("a", vec!["b1", "b2"]),
+            ("b1", vec!["c"]),
+            ("b2", vec!["c"]),
+        ]
+        .into_iter()
+        .map(|(k, v)| {
+            Ok((
+                ProtobufPackageName::from_str(k)?,
+                v.into_iter()
+                    .map(ProtobufPackageName::from_str)
+                    .collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?,
+            ))
+        })
+        .collect::<anyhow::Result<BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>>>(
+        )?;
+        assert_eq!(
+            State::build_publish_order(&packages, &package_deps),
+            vec![
+                CrateName::from_str("googleapis-tonic-c")?,
+                CrateName::from_str("googleapis-tonic-b1")?,
+                CrateName::from_str("googleapis-tonic-b2")?,
+                CrateName::from_str("googleapis-tonic-a")?,
+            ]
+        );
+        Ok(())
+    }
+
+    #[test]
+    fn test_publish_order_stable2() -> anyhow::Result<()> {
+        let packages = ["a", "b1", "b2", "c", "d"]
+            .into_iter()
+            .map(ProtobufPackageName::from_str)
+            .collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?;
+        let package_deps = [
+            ("a", vec!["b1", "b2"]),
+            ("d", vec!["c"]),
+            ("b1", vec!["b2", "c"]),
+            ("b2", vec!["c"]),
+        ]
+        .into_iter()
+        .map(|(k, v)| {
+            Ok((
+                ProtobufPackageName::from_str(k)?,
+                v.into_iter()
+                    .map(ProtobufPackageName::from_str)
+                    .collect::<anyhow::Result<BTreeSet<ProtobufPackageName>>>()?,
+            ))
+        })
+        .collect::<anyhow::Result<BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>>>(
+        )?;
+        assert_eq!(
+            State::build_publish_order(&packages, &package_deps),
+            vec![
+                CrateName::from_str("googleapis-tonic-c")?,
+                CrateName::from_str("googleapis-tonic-b2")?,
+                CrateName::from_str("googleapis-tonic-b1")?,
+                CrateName::from_str("googleapis-tonic-a")?,
+                CrateName::from_str("googleapis-tonic-d")?,
+            ]
+        );
+        Ok(())
     }
 }
