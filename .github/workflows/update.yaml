@@ -28,3 +28,4 @@ jobs:
           git add generated/
           git add README.md
           git commit -m "Regenerate crates using googleapis/google#${googleapis_version}"
+          git push origin master
