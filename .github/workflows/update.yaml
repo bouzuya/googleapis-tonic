@@ -9,6 +9,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: protoc@3.27.3
       - uses: actions/checkout@v4
       - run: |
           git config user.email m@bouzuya.net
