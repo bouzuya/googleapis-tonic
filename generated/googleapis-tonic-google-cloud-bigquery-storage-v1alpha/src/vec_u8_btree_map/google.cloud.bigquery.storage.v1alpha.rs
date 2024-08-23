@@ -65,7 +65,7 @@ pub struct SerDeInfo {
 pub struct MetastorePartition {
     /// Required. Represents the values of the partition keys, where each value
     /// corresponds to a specific partition key in the order in which the keys are
-    /// defined.
+    /// defined. Each value is limited to 1024 characters.
     #[prost(string, repeated, tag = "1")]
     pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Output only. The creation time of the partition.

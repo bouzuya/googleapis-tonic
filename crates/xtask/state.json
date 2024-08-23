@@ -1,6 +1,6 @@
 {
   "crate_versions": {
-    "googleapis-tonic": "0.9.0",
+    "googleapis-tonic": "0.10.0",
     "googleapis-tonic-google-actions-sdk-v2": "0.5.0",
     "googleapis-tonic-google-actions-sdk-v2-conversation": "0.5.0",
     "googleapis-tonic-google-actions-sdk-v2-interactionmodel": "0.5.0",
@@ -128,7 +128,7 @@
     "googleapis-tonic-google-cloud-bigquery-migration-v2alpha": "0.5.0",
     "googleapis-tonic-google-cloud-bigquery-reservation-v1": "0.5.0",
     "googleapis-tonic-google-cloud-bigquery-storage-v1": "0.5.0",
-    "googleapis-tonic-google-cloud-bigquery-storage-v1alpha": "0.6.0",
+    "googleapis-tonic-google-cloud-bigquery-storage-v1alpha": "0.7.0",
     "googleapis-tonic-google-cloud-bigquery-storage-v1beta1": "0.5.0",
     "googleapis-tonic-google-cloud-bigquery-storage-v1beta2": "0.5.0",
     "googleapis-tonic-google-cloud-bigquery-v2": "0.6.0",
@@ -488,7 +488,7 @@
     "googleapis-tonic-google-watcher-v1": "0.5.0",
     "googleapis-tonic-grafeas-v1": "0.5.0"
   },
-  "googleapis_version": "87fc660f97f73400a420cca25fc0dd71741175cd",
+  "googleapis_version": "6f3c628e7fc39b5ca7186aba1a67ae39454d0752",
   "package_hashes": {
     "cloud.kubernetes.security.containersecurity_logging": "33a95405a0730c802b21d575cbe091c4080581c4",
     "google.actions.sdk.v2": "80c6c87849e5a2b5c6e5771947cc8a83b48f5c35",
@@ -629,7 +629,7 @@
     "google.cloud.bigquery.migration.v2alpha": "573ea3c49393c1c6cd7a531b6e916e121a327830",
     "google.cloud.bigquery.reservation.v1": "4583391d27241911ed9a14099e312e96a862e508",
     "google.cloud.bigquery.storage.v1": "7e611814f2b41fcb50d7fec57eb5c88fbe3529e3",
-    "google.cloud.bigquery.storage.v1alpha": "84e45455172e16df02e3583babe5e9ae62af2154",
+    "google.cloud.bigquery.storage.v1alpha": "7271a6c6ff9e28465c1b4c877df09229480f269a",
     "google.cloud.bigquery.storage.v1beta1": "7a6e9e6947b20a77cf25ae526c9a0e85e0286479",
     "google.cloud.bigquery.storage.v1beta2": "55bb05031b1f4bfa41512285a6f3f4c65d1920e7",
     "google.cloud.bigquery.v2": "34b155e1c04edf9d43d171ba1ebf82ff5e6e4ac4",

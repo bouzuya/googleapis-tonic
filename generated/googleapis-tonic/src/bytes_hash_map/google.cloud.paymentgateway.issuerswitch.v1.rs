@@ -1382,558 +1382,6 @@ pub mod issuer_switch_rules_client {
         }
     }
 }
-/// Request for the
-/// \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
-/// method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FetchParticipantRequest {
-    /// Required. The parent resource for the participants. The format is
-    /// `projects/{project}`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The account details of the issuer participant.
-    #[prost(message, optional, tag = "2")]
-    pub account_reference: ::core::option::Option<AccountReference>,
-}
-/// A customer of the bank who participates in transactions processed by the
-/// issuer switch.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IssuerParticipant {
-    /// Required. The account details of the issuer participant. Only the
-    /// account_number and ifsc fields will be used.
-    #[prost(message, optional, tag = "1")]
-    pub account_reference: ::core::option::Option<AccountReference>,
-    /// Output only. The mobile number of the participant.
-    #[prost(string, tag = "2")]
-    pub mobile_number: ::prost::alloc::string::String,
-    /// Output only. The current state of the participant.
-    #[prost(enumeration = "issuer_participant::State", tag = "3")]
-    pub state: i32,
-    /// Optional. Additional metadata about the participant.
-    #[prost(message, optional, tag = "4")]
-    pub metadata: ::core::option::Option<issuer_participant::Metadata>,
-    /// Output only. The current count of consecutive incorrect MPIN attempts.
-    #[prost(int32, tag = "5")]
-    pub mpin_failure_count: i32,
-    /// Output only. The time when participant's MPIN got locked due to too many
-    /// incorrect attempts.
-    #[prost(message, optional, tag = "6")]
-    pub mpin_locked_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The time when the participant's account was onboarded to PGIS.
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The time when the participant was last updated.
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Nested message and enum types in `IssuerParticipant`.
-pub mod issuer_participant {
-    /// The metadata of the participant.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Metadata {
-        /// Optional. Additional metadata about a particular participant as key-value
-        /// pairs. These values are returned by the bank adapter/card adapter in
-        /// response to the SearchAccounts/InitiateRegistration APIs.
-        #[prost(map = "string, string", tag = "1")]
-        pub values: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
-    /// The state of the participant.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// Unspecified state.
-        Unspecified = 0,
-        /// The participant is inactive for all UPI transactions. The issuer switch
-        /// will return the `AM` error to the UPI payments orchestrator for any
-        /// operation involving MPIN verification for the participant. They need to
-        /// register with UPI again and provide a new MPIN.
-        Inactive = 1,
-        /// The participant is active for all UPI transactions.
-        Active = 2,
-        /// The participants MPIN has been locked because they have exceeded the
-        /// threshold for maximum number of incorrect MPIN verification attempts. No
-        /// UPI transactions will be permitted until the participant's MPIN has been
-        /// reset.
-        MpinLocked = 3,
-        /// The participants mobile number has been changed in the issuer bank. Any
-        /// transaction involving MPIN verification of the participant will return a
-        /// `B1` error to the UPI payments orchestrator. The user will be forced to
-        /// re-register with their changed mobile number.
-        MobileNumberChanged = 4,
-        /// The participant is registering for UPI transactions for the first time.
-        NewRegistrationInitiated = 5,
-        /// The participant had already registered for UPI transactions but is now
-        /// registering again or resetting their MPIN.
-        ReRegistrationInitiated = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Inactive => "INACTIVE",
-                State::Active => "ACTIVE",
-                State::MpinLocked => "MPIN_LOCKED",
-                State::MobileNumberChanged => "MOBILE_NUMBER_CHANGED",
-                State::NewRegistrationInitiated => "NEW_REGISTRATION_INITIATED",
-                State::ReRegistrationInitiated => "RE_REGISTRATION_INITIATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "INACTIVE" => Some(Self::Inactive),
-                "ACTIVE" => Some(Self::Active),
-                "MPIN_LOCKED" => Some(Self::MpinLocked),
-                "MOBILE_NUMBER_CHANGED" => Some(Self::MobileNumberChanged),
-                "NEW_REGISTRATION_INITIATED" => Some(Self::NewRegistrationInitiated),
-                "RE_REGISTRATION_INITIATED" => Some(Self::ReRegistrationInitiated),
-                _ => None,
-            }
-        }
-    }
-}
-/// Request for the
-/// \[UpdateIssuerParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.UpdateIssuerParticipant\]
-/// method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateIssuerParticipantRequest {
-    /// Required. The parent resource for the participants. The format is
-    /// `projects/{project}`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The participant to update.
-    #[prost(message, optional, tag = "2")]
-    pub issuer_participant: ::core::option::Option<IssuerParticipant>,
-    /// Required. The list of fields to update.
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-}
-/// Request for the
-/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
-/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
-/// and
-/// \[MobileNumberUpdated\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
-/// methods.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ParticipantStateChangeRequest {
-    /// Required. The parent resource for the participant. The format is
-    /// `projects/{project}`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The identifier for the issuer participant. One of the two values must be
-    /// specified.
-    #[prost(oneof = "participant_state_change_request::Id", tags = "2, 3")]
-    pub id: ::core::option::Option<participant_state_change_request::Id>,
-}
-/// Nested message and enum types in `ParticipantStateChangeRequest`.
-pub mod participant_state_change_request {
-    /// The identifier for the issuer participant. One of the two values must be
-    /// specified.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Id {
-        /// Optional. The account details of the issuer participant.
-        #[prost(message, tag = "2")]
-        AccountReference(super::AccountReference),
-        /// Optional. The mobile number of the issuer participant.
-        #[prost(string, tag = "3")]
-        MobileNumber(::prost::alloc::string::String),
-    }
-}
-/// Response for the
-/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
-/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
-/// and
-/// \[MobileNumberChanged\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
-/// methods.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct IssuerParticipants {
-    /// Output only. The list of updated participants.
-    #[prost(message, repeated, tag = "1")]
-    pub participants: ::prost::alloc::vec::Vec<IssuerParticipant>,
-}
-/// Generated client implementations.
-pub mod issuer_switch_participants_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// A service that allows for the management of participants in the issuer
-    /// switch.
-    #[derive(Debug, Clone)]
-    pub struct IssuerSwitchParticipantsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> IssuerSwitchParticipantsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> IssuerSwitchParticipantsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            IssuerSwitchParticipantsClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Fetch the issuer switch participant. This method can be used to retrieve
-        /// all details of a participant in the issuer switch.
-        ///
-        /// In UPI, the participant is identified by their account's IFSC and their
-        /// account number.
-        pub async fn fetch_participant(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchParticipantRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::IssuerParticipant>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/FetchParticipant",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
-                        "FetchParticipant",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update the issuer switch participant. Currently, this API only allows for
-        /// the
-        /// \[metadata\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.metadata\]
-        /// field to be updated.
-        ///
-        /// The `number` of key-value pairs in the `metadata` field, the length of each
-        /// `key` and the length of each `value` should be within the thresholds
-        /// defined for them in the issuer switch configuration. Any violation of these
-        /// thresholds will cause this API to return an error. The default values for
-        /// these thresholds are:
-        ///
-        /// * `Maximum number` of key-value pairs - `5`
-        /// * `Maximum length` of a key - `100`
-        /// * `Maximum length` of a value - `500`
-        ///
-        /// **Note** that this method replaces any existing `metadata` field value in
-        /// the participant with the new value. Specifically, it does not do a merge.
-        /// If key-value pairs are to be added/removed from the metadata, then
-        /// callers must follow the following steps:
-        ///
-        /// 1. Invoke the
-        ///   \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
-        ///   API to get the current value of the `metadata` field.
-        /// 1. Update the `metadata` map to add/remove key-value pairs from it.
-        /// 1. Update the `metadata` in the issuer switch using this method.
-        pub async fn update_issuer_participant(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateIssuerParticipantRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::IssuerParticipant>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/UpdateIssuerParticipant",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
-                        "UpdateIssuerParticipant",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Activate the issuer switch participant for UPI transactions. This API
-        /// sets the state of the participant to
-        /// \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\].
-        /// A participant in the `ACTIVE` state can perform all UPI operations
-        /// normally.
-        ///
-        /// The behavior of this API varies based on the current state of the
-        /// participant.
-        ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : If an *MPIN* has already been provisioned for the participant, then
-        ///  this API will change the state of the participant to `ACTIVE`. Else,
-        ///  this API will return an error.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `ACTIVE`. This API will return an
-        ///  error.
-        pub async fn activate_participant(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::IssuerParticipants>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/ActivateParticipant",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
-                        "ActivateParticipant",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deactivate the issuer switch participant for UPI transactions. This API
-        /// sets the state of the participant to
-        /// \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\].
-        /// An `INACTIVE` participant cannot perform any UPI operation which involves
-        /// MPIN verification.
-        ///
-        /// The behavior of this API varies based on the current state of the
-        /// participant.
-        ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : The state will change to `INACTIVE`. The user will be forced to
-        ///  re-register with UPI and reset their MPIN  to perform any UPI
-        ///  operations.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `INACTIVE`. This API will return an
-        ///  error.
-        pub async fn deactivate_participant(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::IssuerParticipants>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/DeactivateParticipant",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
-                        "DeactivateParticipant",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Mark the state of the issuer switch participant as *mobile number changed*
-        /// to prevent UPI transactions by the user. This API sets the state of the
-        /// participant to
-        /// \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\].
-        ///
-        /// Any UPI operation for a participant in the `MOBILE_NUMBER_CHANGED` state
-        /// will cause the issuer switch to return a `B1` error to the UPI payments
-        /// orchestrator which would force the user to re-register with UPI.
-        ///
-        /// The behavior of this API varies based on the current state of the
-        /// participant.
-        ///
-        /// * Current state is
-        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
-        /// * Current state is
-        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
-        /// * Current state is
-        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
-        ///  : This API will make no change to the participant's state and returns a
-        ///  successful response.
-        /// * Current state is
-        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
-        ///  : The state cannot be changed to `MOBILE_NUMBER_CHANGED`. This API will
-        ///  return an error.
-        /// * Current state is
-        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
-        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
-        ///  involving MPIN verification of the participant will return a `B1` error
-        ///  to the UPI payments orchestrator. The user will be forced to
-        ///  re-register with their changed mobile number.
-        pub async fn mobile_number_changed(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::IssuerParticipants>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/MobileNumberChanged",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
-                        "MobileNumberChanged",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
 /// A complaint processed by the issuer switch.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5844,5 +5292,557 @@ pub mod upi_transaction {
         /// The payload in XML format received by the issuer switch.
         #[prost(string, tag = "16")]
         Received(::prost::alloc::string::String),
+    }
+}
+/// Request for the
+/// \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
+/// method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchParticipantRequest {
+    /// Required. The parent resource for the participants. The format is
+    /// `projects/{project}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The account details of the issuer participant.
+    #[prost(message, optional, tag = "2")]
+    pub account_reference: ::core::option::Option<AccountReference>,
+}
+/// A customer of the bank who participates in transactions processed by the
+/// issuer switch.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IssuerParticipant {
+    /// Required. The account details of the issuer participant. Only the
+    /// account_number and ifsc fields will be used.
+    #[prost(message, optional, tag = "1")]
+    pub account_reference: ::core::option::Option<AccountReference>,
+    /// Output only. The mobile number of the participant.
+    #[prost(string, tag = "2")]
+    pub mobile_number: ::prost::alloc::string::String,
+    /// Output only. The current state of the participant.
+    #[prost(enumeration = "issuer_participant::State", tag = "3")]
+    pub state: i32,
+    /// Optional. Additional metadata about the participant.
+    #[prost(message, optional, tag = "4")]
+    pub metadata: ::core::option::Option<issuer_participant::Metadata>,
+    /// Output only. The current count of consecutive incorrect MPIN attempts.
+    #[prost(int32, tag = "5")]
+    pub mpin_failure_count: i32,
+    /// Output only. The time when participant's MPIN got locked due to too many
+    /// incorrect attempts.
+    #[prost(message, optional, tag = "6")]
+    pub mpin_locked_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time when the participant's account was onboarded to PGIS.
+    #[prost(message, optional, tag = "7")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The time when the participant was last updated.
+    #[prost(message, optional, tag = "8")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `IssuerParticipant`.
+pub mod issuer_participant {
+    /// The metadata of the participant.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Metadata {
+        /// Optional. Additional metadata about a particular participant as key-value
+        /// pairs. These values are returned by the bank adapter/card adapter in
+        /// response to the SearchAccounts/InitiateRegistration APIs.
+        #[prost(map = "string, string", tag = "1")]
+        pub values: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost::alloc::string::String,
+        >,
+    }
+    /// The state of the participant.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Unspecified state.
+        Unspecified = 0,
+        /// The participant is inactive for all UPI transactions. The issuer switch
+        /// will return the `AM` error to the UPI payments orchestrator for any
+        /// operation involving MPIN verification for the participant. They need to
+        /// register with UPI again and provide a new MPIN.
+        Inactive = 1,
+        /// The participant is active for all UPI transactions.
+        Active = 2,
+        /// The participants MPIN has been locked because they have exceeded the
+        /// threshold for maximum number of incorrect MPIN verification attempts. No
+        /// UPI transactions will be permitted until the participant's MPIN has been
+        /// reset.
+        MpinLocked = 3,
+        /// The participants mobile number has been changed in the issuer bank. Any
+        /// transaction involving MPIN verification of the participant will return a
+        /// `B1` error to the UPI payments orchestrator. The user will be forced to
+        /// re-register with their changed mobile number.
+        MobileNumberChanged = 4,
+        /// The participant is registering for UPI transactions for the first time.
+        NewRegistrationInitiated = 5,
+        /// The participant had already registered for UPI transactions but is now
+        /// registering again or resetting their MPIN.
+        ReRegistrationInitiated = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Inactive => "INACTIVE",
+                State::Active => "ACTIVE",
+                State::MpinLocked => "MPIN_LOCKED",
+                State::MobileNumberChanged => "MOBILE_NUMBER_CHANGED",
+                State::NewRegistrationInitiated => "NEW_REGISTRATION_INITIATED",
+                State::ReRegistrationInitiated => "RE_REGISTRATION_INITIATED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INACTIVE" => Some(Self::Inactive),
+                "ACTIVE" => Some(Self::Active),
+                "MPIN_LOCKED" => Some(Self::MpinLocked),
+                "MOBILE_NUMBER_CHANGED" => Some(Self::MobileNumberChanged),
+                "NEW_REGISTRATION_INITIATED" => Some(Self::NewRegistrationInitiated),
+                "RE_REGISTRATION_INITIATED" => Some(Self::ReRegistrationInitiated),
+                _ => None,
+            }
+        }
+    }
+}
+/// Request for the
+/// \[UpdateIssuerParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.UpdateIssuerParticipant\]
+/// method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateIssuerParticipantRequest {
+    /// Required. The parent resource for the participants. The format is
+    /// `projects/{project}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The participant to update.
+    #[prost(message, optional, tag = "2")]
+    pub issuer_participant: ::core::option::Option<IssuerParticipant>,
+    /// Required. The list of fields to update.
+    #[prost(message, optional, tag = "3")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Request for the
+/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
+/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
+/// and
+/// \[MobileNumberUpdated\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
+/// methods.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ParticipantStateChangeRequest {
+    /// Required. The parent resource for the participant. The format is
+    /// `projects/{project}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The identifier for the issuer participant. One of the two values must be
+    /// specified.
+    #[prost(oneof = "participant_state_change_request::Id", tags = "2, 3")]
+    pub id: ::core::option::Option<participant_state_change_request::Id>,
+}
+/// Nested message and enum types in `ParticipantStateChangeRequest`.
+pub mod participant_state_change_request {
+    /// The identifier for the issuer participant. One of the two values must be
+    /// specified.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Id {
+        /// Optional. The account details of the issuer participant.
+        #[prost(message, tag = "2")]
+        AccountReference(super::AccountReference),
+        /// Optional. The mobile number of the issuer participant.
+        #[prost(string, tag = "3")]
+        MobileNumber(::prost::alloc::string::String),
+    }
+}
+/// Response for the
+/// \[ActivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant\],
+/// \[DeactivateParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant\]
+/// and
+/// \[MobileNumberChanged\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged\]
+/// methods.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IssuerParticipants {
+    /// Output only. The list of updated participants.
+    #[prost(message, repeated, tag = "1")]
+    pub participants: ::prost::alloc::vec::Vec<IssuerParticipant>,
+}
+/// Generated client implementations.
+pub mod issuer_switch_participants_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// A service that allows for the management of participants in the issuer
+    /// switch.
+    #[derive(Debug, Clone)]
+    pub struct IssuerSwitchParticipantsClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> IssuerSwitchParticipantsClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> IssuerSwitchParticipantsClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            IssuerSwitchParticipantsClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Fetch the issuer switch participant. This method can be used to retrieve
+        /// all details of a participant in the issuer switch.
+        ///
+        /// In UPI, the participant is identified by their account's IFSC and their
+        /// account number.
+        pub async fn fetch_participant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::FetchParticipantRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IssuerParticipant>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/FetchParticipant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+                        "FetchParticipant",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Update the issuer switch participant. Currently, this API only allows for
+        /// the
+        /// \[metadata\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.metadata\]
+        /// field to be updated.
+        ///
+        /// The `number` of key-value pairs in the `metadata` field, the length of each
+        /// `key` and the length of each `value` should be within the thresholds
+        /// defined for them in the issuer switch configuration. Any violation of these
+        /// thresholds will cause this API to return an error. The default values for
+        /// these thresholds are:
+        ///
+        /// * `Maximum number` of key-value pairs - `5`
+        /// * `Maximum length` of a key - `100`
+        /// * `Maximum length` of a value - `500`
+        ///
+        /// **Note** that this method replaces any existing `metadata` field value in
+        /// the participant with the new value. Specifically, it does not do a merge.
+        /// If key-value pairs are to be added/removed from the metadata, then
+        /// callers must follow the following steps:
+        ///
+        /// 1. Invoke the
+        ///   \[FetchParticipant\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant\]
+        ///   API to get the current value of the `metadata` field.
+        /// 1. Update the `metadata` map to add/remove key-value pairs from it.
+        /// 1. Update the `metadata` in the issuer switch using this method.
+        pub async fn update_issuer_participant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateIssuerParticipantRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IssuerParticipant>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/UpdateIssuerParticipant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+                        "UpdateIssuerParticipant",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Activate the issuer switch participant for UPI transactions. This API
+        /// sets the state of the participant to
+        /// \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\].
+        /// A participant in the `ACTIVE` state can perform all UPI operations
+        /// normally.
+        ///
+        /// The behavior of this API varies based on the current state of the
+        /// participant.
+        ///
+        /// * Current state is
+        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
+        ///  : This API will make no change to the participant's state and returns a
+        ///  successful response.
+        /// * Current state is
+        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
+        ///  : If an *MPIN* has already been provisioned for the participant, then
+        ///  this API will change the state of the participant to `ACTIVE`. Else,
+        ///  this API will return an error.
+        /// * Current state is
+        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
+        ///  : The state cannot be changed to `ACTIVE`. This API will return an
+        ///  error.
+        /// * Current state is
+        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
+        ///  : The state cannot be changed to `ACTIVE`. This API will return an
+        ///  error.
+        /// * Current state is
+        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
+        ///  : The state cannot be changed to `ACTIVE`. This API will return an
+        ///  error.
+        pub async fn activate_participant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IssuerParticipants>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/ActivateParticipant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+                        "ActivateParticipant",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deactivate the issuer switch participant for UPI transactions. This API
+        /// sets the state of the participant to
+        /// \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\].
+        /// An `INACTIVE` participant cannot perform any UPI operation which involves
+        /// MPIN verification.
+        ///
+        /// The behavior of this API varies based on the current state of the
+        /// participant.
+        ///
+        /// * Current state is
+        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
+        ///  : The state will change to `INACTIVE`. The user will be forced to
+        ///  re-register with UPI and reset their MPIN  to perform any UPI
+        ///  operations.
+        /// * Current state is
+        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
+        ///  : This API will make no change to the participant's state and returns a
+        ///  successful response.
+        /// * Current state is
+        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
+        ///  : The state cannot be changed to `INACTIVE`. This API will return an
+        ///  error.
+        /// * Current state is
+        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
+        ///  : The state cannot be changed to `INACTIVE`. This API will return an
+        ///  error.
+        /// * Current state is
+        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
+        ///  : The state cannot be changed to `INACTIVE`. This API will return an
+        ///  error.
+        pub async fn deactivate_participant(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IssuerParticipants>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/DeactivateParticipant",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+                        "DeactivateParticipant",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Mark the state of the issuer switch participant as *mobile number changed*
+        /// to prevent UPI transactions by the user. This API sets the state of the
+        /// participant to
+        /// \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\].
+        ///
+        /// Any UPI operation for a participant in the `MOBILE_NUMBER_CHANGED` state
+        /// will cause the issuer switch to return a `B1` error to the UPI payments
+        /// orchestrator which would force the user to re-register with UPI.
+        ///
+        /// The behavior of this API varies based on the current state of the
+        /// participant.
+        ///
+        /// * Current state is
+        ///  \[ACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.ACTIVE\]
+        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///  involving MPIN verification of the participant will return a `B1` error
+        ///  to the UPI payments orchestrator. The user will be forced to
+        ///  re-register with their changed mobile number.
+        /// * Current state is
+        ///  \[INACTIVE\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.INACTIVE\]
+        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///  involving MPIN verification of the participant will return a `B1` error
+        ///  to the UPI payments orchestrator. The user will be forced to
+        ///  re-register with their changed mobile number.
+        /// * Current state is
+        ///  \[MOBILE_NUMBER_CHANGED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.MOBILE_NUMBER_CHANGED\]
+        ///  : This API will make no change to the participant's state and returns a
+        ///  successful response.
+        /// * Current state is
+        ///  \[NEW_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.NEW_REGISTRATION_INITIATED\]
+        ///  : The state cannot be changed to `MOBILE_NUMBER_CHANGED`. This API will
+        ///  return an error.
+        /// * Current state is
+        ///  \[RE_REGISTRATION_INITIATED\]\[google.cloud.paymentgateway.issuerswitch.v1.IssuerParticipant.State.RE_REGISTRATION_INITIATED\]
+        ///  : The state will change to `MOBILE_NUMBER_CHANGED`. Any operation
+        ///  involving MPIN verification of the participant will return a `B1` error
+        ///  to the UPI payments orchestrator. The user will be forced to
+        ///  re-register with their changed mobile number.
+        pub async fn mobile_number_changed(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ParticipantStateChangeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::IssuerParticipants>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants/MobileNumberChanged",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+                        "MobileNumberChanged",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
     }
 }

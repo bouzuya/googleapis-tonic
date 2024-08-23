@@ -19,24 +19,196 @@ pub struct AuthorAttribution {
     #[prost(string, tag = "3")]
     pub photo_uri: ::prost::alloc::string::String,
 }
-/// Information about a photo of a place.
+/// Information about a review of a place.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Photo {
-    /// Identifier. A reference representing this place photo which may be used to
-    /// look up this place photo again (also called the API "resource" name:
-    /// `places/{place_id}/photos/{photo}`).
+pub struct Review {
+    /// A reference representing this place review which may be used to look up
+    /// this place review again (also called the API "resource" name:
+    /// `places/{place_id}/reviews/{review}`).
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// The maximum available width, in pixels.
-    #[prost(int32, tag = "2")]
-    pub width_px: i32,
-    /// The maximum available height, in pixels.
-    #[prost(int32, tag = "3")]
-    pub height_px: i32,
-    /// This photo's authors.
-    #[prost(message, repeated, tag = "4")]
-    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
+    /// A string of formatted recent time, expressing the review time relative
+    /// to the current time in a form appropriate for the language and country.
+    #[prost(string, tag = "2")]
+    pub relative_publish_time_description: ::prost::alloc::string::String,
+    /// The localized text of the review.
+    #[prost(message, optional, tag = "9")]
+    pub text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    /// The review text in its original language.
+    #[prost(message, optional, tag = "12")]
+    pub original_text: ::core::option::Option<
+        super::super::super::r#type::LocalizedText,
+    >,
+    /// A number between 1.0 and 5.0, also called the number of stars.
+    #[prost(double, tag = "7")]
+    pub rating: f64,
+    /// This review's author.
+    #[prost(message, optional, tag = "13")]
+    pub author_attribution: ::core::option::Option<AuthorAttribution>,
+    /// Timestamp for the review.
+    #[prost(message, optional, tag = "14")]
+    pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Experimental: See
+/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+/// for more details.
+///
+/// Reference that the generative content is related to.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct References {
+    /// Reviews that serve as references.
+    #[prost(message, repeated, tag = "1")]
+    pub reviews: ::prost::alloc::vec::Vec<Review>,
+    /// The list of resource names of the referenced places. This name can be used
+    /// in other APIs that accept Place resource names.
+    #[prost(string, repeated, tag = "2")]
+    pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// A block of content that can be served individually.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContentBlock {
+    /// The topic of the content, for example "overview" or "restaurant".
+    #[prost(string, tag = "1")]
+    pub topic: ::prost::alloc::string::String,
+    /// Content related to the topic.
+    #[prost(message, optional, tag = "2")]
+    pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// References that are related to this block of content.
+    #[prost(message, optional, tag = "3")]
+    pub references: ::core::option::Option<References>,
+}
+/// Information about the EV Charge Station hosted in Place.
+/// Terminology follows
+/// <https://afdc.energy.gov/fuels/electricity_infrastructure.html> One port
+/// could charge one car at a time. One port has one or more connectors. One
+/// station has one or more ports.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvChargeOptions {
+    /// Number of connectors at this station. However, because some ports can have
+    /// multiple connectors but only be able to charge one car at a time (e.g.) the
+    /// number of connectors may be greater than the total number of cars which can
+    /// charge simultaneously.
+    #[prost(int32, tag = "1")]
+    pub connector_count: i32,
+    /// A list of EV charging connector aggregations that contain connectors of the
+    /// same type and same charge rate.
+    #[prost(message, repeated, tag = "2")]
+    pub connector_aggregation: ::prost::alloc::vec::Vec<
+        ev_charge_options::ConnectorAggregation,
+    >,
+}
+/// Nested message and enum types in `EVChargeOptions`.
+pub mod ev_charge_options {
+    /// EV charging information grouped by \[type, max_charge_rate_kw\].
+    /// Shows EV charge aggregation of connectors that have the same type and max
+    /// charge rate in kw.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ConnectorAggregation {
+        /// The connector type of this aggregation.
+        #[prost(enumeration = "super::EvConnectorType", tag = "1")]
+        pub r#type: i32,
+        /// The static max charging rate in kw of each connector in the aggregation.
+        #[prost(double, tag = "2")]
+        pub max_charge_rate_kw: f64,
+        /// Number of connectors in this aggregation.
+        #[prost(int32, tag = "3")]
+        pub count: i32,
+        /// Number of connectors in this aggregation that are currently available.
+        #[prost(int32, optional, tag = "4")]
+        pub available_count: ::core::option::Option<i32>,
+        /// Number of connectors in this aggregation that are currently out of
+        /// service.
+        #[prost(int32, optional, tag = "5")]
+        pub out_of_service_count: ::core::option::Option<i32>,
+        /// The timestamp when the connector availability information in this
+        /// aggregation was last updated.
+        #[prost(message, optional, tag = "6")]
+        pub availability_last_update_time: ::core::option::Option<
+            ::prost_types::Timestamp,
+        >,
+    }
+}
+/// See <http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6872107> for
+/// additional information/context on EV charging connector types.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EvConnectorType {
+    /// Unspecified connector.
+    Unspecified = 0,
+    /// Other connector types.
+    Other = 1,
+    /// J1772 type 1 connector.
+    J1772 = 2,
+    /// IEC 62196 type 2 connector. Often referred to as MENNEKES.
+    Type2 = 3,
+    /// CHAdeMO type connector.
+    Chademo = 4,
+    /// Combined Charging System (AC and DC). Based on SAE.
+    /// Type-1 J-1772 connector
+    CcsCombo1 = 5,
+    /// Combined Charging System (AC and DC). Based on Type-2
+    /// Mennekes connector
+    CcsCombo2 = 6,
+    /// The generic TESLA connector. This is NACS in the North America but can be
+    /// non-NACS in other parts of the world (e.g. CCS Combo 2 (CCS2) or GB/T).
+    /// This value is less representative of an actual connector type, and more
+    /// represents the ability to charge a Tesla brand vehicle at a Tesla owned
+    /// charging station.
+    Tesla = 7,
+    /// GB/T type corresponds to the GB/T standard in China. This type covers all
+    /// GB_T types.
+    UnspecifiedGbT = 8,
+    /// Unspecified wall outlet.
+    UnspecifiedWallOutlet = 9,
+}
+impl EvConnectorType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            EvConnectorType::Unspecified => "EV_CONNECTOR_TYPE_UNSPECIFIED",
+            EvConnectorType::Other => "EV_CONNECTOR_TYPE_OTHER",
+            EvConnectorType::J1772 => "EV_CONNECTOR_TYPE_J1772",
+            EvConnectorType::Type2 => "EV_CONNECTOR_TYPE_TYPE_2",
+            EvConnectorType::Chademo => "EV_CONNECTOR_TYPE_CHADEMO",
+            EvConnectorType::CcsCombo1 => "EV_CONNECTOR_TYPE_CCS_COMBO_1",
+            EvConnectorType::CcsCombo2 => "EV_CONNECTOR_TYPE_CCS_COMBO_2",
+            EvConnectorType::Tesla => "EV_CONNECTOR_TYPE_TESLA",
+            EvConnectorType::UnspecifiedGbT => "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
+            EvConnectorType::UnspecifiedWallOutlet => {
+                "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EV_CONNECTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "EV_CONNECTOR_TYPE_OTHER" => Some(Self::Other),
+            "EV_CONNECTOR_TYPE_J1772" => Some(Self::J1772),
+            "EV_CONNECTOR_TYPE_TYPE_2" => Some(Self::Type2),
+            "EV_CONNECTOR_TYPE_CHADEMO" => Some(Self::Chademo),
+            "EV_CONNECTOR_TYPE_CCS_COMBO_1" => Some(Self::CcsCombo1),
+            "EV_CONNECTOR_TYPE_CCS_COMBO_2" => Some(Self::CcsCombo2),
+            "EV_CONNECTOR_TYPE_TESLA" => Some(Self::Tesla),
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T" => Some(Self::UnspecifiedGbT),
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => {
+                Some(Self::UnspecifiedWallOutlet)
+            }
+            _ => None,
+        }
+    }
 }
 /// The most recent information about fuel options in a gas station. This
 /// information is updated regularly.
@@ -175,335 +347,24 @@ pub mod fuel_options {
         }
     }
 }
-/// Information about a review of a place.
+/// Information about a photo of a place.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Review {
-    /// A reference representing this place review which may be used to look up
-    /// this place review again (also called the API "resource" name:
-    /// `places/{place_id}/reviews/{review}`).
+pub struct Photo {
+    /// Identifier. A reference representing this place photo which may be used to
+    /// look up this place photo again (also called the API "resource" name:
+    /// `places/{place_id}/photos/{photo}`).
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// A string of formatted recent time, expressing the review time relative
-    /// to the current time in a form appropriate for the language and country.
-    #[prost(string, tag = "2")]
-    pub relative_publish_time_description: ::prost::alloc::string::String,
-    /// The localized text of the review.
-    #[prost(message, optional, tag = "9")]
-    pub text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    /// The review text in its original language.
-    #[prost(message, optional, tag = "12")]
-    pub original_text: ::core::option::Option<
-        super::super::super::r#type::LocalizedText,
-    >,
-    /// A number between 1.0 and 5.0, also called the number of stars.
-    #[prost(double, tag = "7")]
-    pub rating: f64,
-    /// This review's author.
-    #[prost(message, optional, tag = "13")]
-    pub author_attribution: ::core::option::Option<AuthorAttribution>,
-    /// Timestamp for the review.
-    #[prost(message, optional, tag = "14")]
-    pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Experimental: See
-/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-/// for more details.
-///
-/// Content that is contextual to the place query.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContextualContent {
-    /// List of reviews about this place, contexual to the place query.
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    /// Information (including references) about photos of this place, contexual to
-    /// the place query.
-    #[prost(message, repeated, tag = "2")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// Justifications for the place.
-    #[prost(message, repeated, tag = "3")]
-    pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
-}
-/// Nested message and enum types in `ContextualContent`.
-pub mod contextual_content {
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// Justifications for the place. Justifications answers the question of why a
-    /// place could interest an end user.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Justification {
-        #[prost(oneof = "justification::Justification", tags = "1, 2")]
-        pub justification: ::core::option::Option<justification::Justification>,
-    }
-    /// Nested message and enum types in `Justification`.
-    pub mod justification {
-        /// Experimental: See
-        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-        /// for more details.
-        ///
-        /// User review justifications. This highlights a section of the user review
-        /// that would interest an end user. For instance, if the search query is
-        /// "firewood pizza", the review justification highlights the text relevant
-        /// to the search query.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ReviewJustification {
-            #[prost(message, optional, tag = "1")]
-            pub highlighted_text: ::core::option::Option<
-                review_justification::HighlightedText,
-            >,
-            /// The review that the highlighted text is generated from.
-            #[prost(message, optional, tag = "2")]
-            pub review: ::core::option::Option<super::super::Review>,
-        }
-        /// Nested message and enum types in `ReviewJustification`.
-        pub mod review_justification {
-            /// The text highlighted by the justification. This is a subset of the
-            /// review itself. The exact word to highlight is marked by the
-            /// HighlightedTextRange. There could be several words in the text being
-            /// highlighted.
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct HighlightedText {
-                #[prost(string, tag = "1")]
-                pub text: ::prost::alloc::string::String,
-                /// The list of the ranges of the highlighted text.
-                #[prost(message, repeated, tag = "2")]
-                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
-                    highlighted_text::HighlightedTextRange,
-                >,
-            }
-            /// Nested message and enum types in `HighlightedText`.
-            pub mod highlighted_text {
-                /// The range of highlighted text.
-                #[allow(clippy::derive_partial_eq_without_eq)]
-                #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-                pub struct HighlightedTextRange {
-                    #[prost(int32, tag = "1")]
-                    pub start_index: i32,
-                    #[prost(int32, tag = "2")]
-                    pub end_index: i32,
-                }
-            }
-        }
-        /// Experimental: See
-        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-        /// for more details.
-        /// BusinessAvailabilityAttributes justifications. This shows some attributes
-        /// a business has that could interest an end user.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct BusinessAvailabilityAttributesJustification {
-            /// If a place provides takeout.
-            #[prost(bool, tag = "1")]
-            pub takeout: bool,
-            /// If a place provides delivery.
-            #[prost(bool, tag = "2")]
-            pub delivery: bool,
-            /// If a place provides dine-in.
-            #[prost(bool, tag = "3")]
-            pub dine_in: bool,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Justification {
-            /// Experimental: See
-            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-            /// for more details.
-            #[prost(message, tag = "1")]
-            ReviewJustification(ReviewJustification),
-            /// Experimental: See
-            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-            /// for more details.
-            #[prost(message, tag = "2")]
-            BusinessAvailabilityAttributesJustification(
-                BusinessAvailabilityAttributesJustification,
-            ),
-        }
-    }
-}
-/// Information about the EV Charge Station hosted in Place.
-/// Terminology follows
-/// <https://afdc.energy.gov/fuels/electricity_infrastructure.html> One port
-/// could charge one car at a time. One port has one or more connectors. One
-/// station has one or more ports.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EvChargeOptions {
-    /// Number of connectors at this station. However, because some ports can have
-    /// multiple connectors but only be able to charge one car at a time (e.g.) the
-    /// number of connectors may be greater than the total number of cars which can
-    /// charge simultaneously.
-    #[prost(int32, tag = "1")]
-    pub connector_count: i32,
-    /// A list of EV charging connector aggregations that contain connectors of the
-    /// same type and same charge rate.
-    #[prost(message, repeated, tag = "2")]
-    pub connector_aggregation: ::prost::alloc::vec::Vec<
-        ev_charge_options::ConnectorAggregation,
-    >,
-}
-/// Nested message and enum types in `EVChargeOptions`.
-pub mod ev_charge_options {
-    /// EV charging information grouped by \[type, max_charge_rate_kw\].
-    /// Shows EV charge aggregation of connectors that have the same type and max
-    /// charge rate in kw.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ConnectorAggregation {
-        /// The connector type of this aggregation.
-        #[prost(enumeration = "super::EvConnectorType", tag = "1")]
-        pub r#type: i32,
-        /// The static max charging rate in kw of each connector in the aggregation.
-        #[prost(double, tag = "2")]
-        pub max_charge_rate_kw: f64,
-        /// Number of connectors in this aggregation.
-        #[prost(int32, tag = "3")]
-        pub count: i32,
-        /// Number of connectors in this aggregation that are currently available.
-        #[prost(int32, optional, tag = "4")]
-        pub available_count: ::core::option::Option<i32>,
-        /// Number of connectors in this aggregation that are currently out of
-        /// service.
-        #[prost(int32, optional, tag = "5")]
-        pub out_of_service_count: ::core::option::Option<i32>,
-        /// The timestamp when the connector availability information in this
-        /// aggregation was last updated.
-        #[prost(message, optional, tag = "6")]
-        pub availability_last_update_time: ::core::option::Option<
-            ::prost_types::Timestamp,
-        >,
-    }
-}
-/// See <http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6872107> for
-/// additional information/context on EV charging connector types.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EvConnectorType {
-    /// Unspecified connector.
-    Unspecified = 0,
-    /// Other connector types.
-    Other = 1,
-    /// J1772 type 1 connector.
-    J1772 = 2,
-    /// IEC 62196 type 2 connector. Often referred to as MENNEKES.
-    Type2 = 3,
-    /// CHAdeMO type connector.
-    Chademo = 4,
-    /// Combined Charging System (AC and DC). Based on SAE.
-    /// Type-1 J-1772 connector
-    CcsCombo1 = 5,
-    /// Combined Charging System (AC and DC). Based on Type-2
-    /// Mennekes connector
-    CcsCombo2 = 6,
-    /// The generic TESLA connector. This is NACS in the North America but can be
-    /// non-NACS in other parts of the world (e.g. CCS Combo 2 (CCS2) or GB/T).
-    /// This value is less representative of an actual connector type, and more
-    /// represents the ability to charge a Tesla brand vehicle at a Tesla owned
-    /// charging station.
-    Tesla = 7,
-    /// GB/T type corresponds to the GB/T standard in China. This type covers all
-    /// GB_T types.
-    UnspecifiedGbT = 8,
-    /// Unspecified wall outlet.
-    UnspecifiedWallOutlet = 9,
-}
-impl EvConnectorType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EvConnectorType::Unspecified => "EV_CONNECTOR_TYPE_UNSPECIFIED",
-            EvConnectorType::Other => "EV_CONNECTOR_TYPE_OTHER",
-            EvConnectorType::J1772 => "EV_CONNECTOR_TYPE_J1772",
-            EvConnectorType::Type2 => "EV_CONNECTOR_TYPE_TYPE_2",
-            EvConnectorType::Chademo => "EV_CONNECTOR_TYPE_CHADEMO",
-            EvConnectorType::CcsCombo1 => "EV_CONNECTOR_TYPE_CCS_COMBO_1",
-            EvConnectorType::CcsCombo2 => "EV_CONNECTOR_TYPE_CCS_COMBO_2",
-            EvConnectorType::Tesla => "EV_CONNECTOR_TYPE_TESLA",
-            EvConnectorType::UnspecifiedGbT => "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
-            EvConnectorType::UnspecifiedWallOutlet => {
-                "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "EV_CONNECTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "EV_CONNECTOR_TYPE_OTHER" => Some(Self::Other),
-            "EV_CONNECTOR_TYPE_J1772" => Some(Self::J1772),
-            "EV_CONNECTOR_TYPE_TYPE_2" => Some(Self::Type2),
-            "EV_CONNECTOR_TYPE_CHADEMO" => Some(Self::Chademo),
-            "EV_CONNECTOR_TYPE_CCS_COMBO_1" => Some(Self::CcsCombo1),
-            "EV_CONNECTOR_TYPE_CCS_COMBO_2" => Some(Self::CcsCombo2),
-            "EV_CONNECTOR_TYPE_TESLA" => Some(Self::Tesla),
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T" => Some(Self::UnspecifiedGbT),
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => {
-                Some(Self::UnspecifiedWallOutlet)
-            }
-            _ => None,
-        }
-    }
-}
-/// Circle with a LatLng as center and radius.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Circle {
-    /// Required. Center latitude and longitude.
-    ///
-    /// The range of latitude must be within \[-90.0, 90.0\]. The range of the
-    /// longitude must be within \[-180.0, 180.0\].
-    #[prost(message, optional, tag = "1")]
-    pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
-    /// Required. Radius measured in meters. The radius must be within \[0.0,
-    /// 50000.0\].
-    #[prost(double, tag = "2")]
-    pub radius: f64,
-}
-/// Experimental: See
-/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-/// for more details.
-///
-/// Reference that the generative content is related to.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct References {
-    /// Reviews that serve as references.
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    /// The list of resource names of the referenced places. This name can be used
-    /// in other APIs that accept Place resource names.
-    #[prost(string, repeated, tag = "2")]
-    pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// A block of content that can be served individually.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContentBlock {
-    /// The topic of the content, for example "overview" or "restaurant".
-    #[prost(string, tag = "1")]
-    pub topic: ::prost::alloc::string::String,
-    /// Content related to the topic.
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// References that are related to this block of content.
-    #[prost(message, optional, tag = "3")]
-    pub references: ::core::option::Option<References>,
+    /// The maximum available width, in pixels.
+    #[prost(int32, tag = "2")]
+    pub width_px: i32,
+    /// The maximum available height, in pixels.
+    #[prost(int32, tag = "3")]
+    pub height_px: i32,
+    /// This photo's authors.
+    #[prost(message, repeated, tag = "4")]
+    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
 }
 /// All the information representing a Place.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1191,6 +1052,145 @@ impl PriceLevel {
             _ => None,
         }
     }
+}
+/// Experimental: See
+/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+/// for more details.
+///
+/// Content that is contextual to the place query.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContextualContent {
+    /// List of reviews about this place, contexual to the place query.
+    #[prost(message, repeated, tag = "1")]
+    pub reviews: ::prost::alloc::vec::Vec<Review>,
+    /// Information (including references) about photos of this place, contexual to
+    /// the place query.
+    #[prost(message, repeated, tag = "2")]
+    pub photos: ::prost::alloc::vec::Vec<Photo>,
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// Justifications for the place.
+    #[prost(message, repeated, tag = "3")]
+    pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
+}
+/// Nested message and enum types in `ContextualContent`.
+pub mod contextual_content {
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// Justifications for the place. Justifications answers the question of why a
+    /// place could interest an end user.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Justification {
+        #[prost(oneof = "justification::Justification", tags = "1, 2")]
+        pub justification: ::core::option::Option<justification::Justification>,
+    }
+    /// Nested message and enum types in `Justification`.
+    pub mod justification {
+        /// Experimental: See
+        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+        /// for more details.
+        ///
+        /// User review justifications. This highlights a section of the user review
+        /// that would interest an end user. For instance, if the search query is
+        /// "firewood pizza", the review justification highlights the text relevant
+        /// to the search query.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ReviewJustification {
+            #[prost(message, optional, tag = "1")]
+            pub highlighted_text: ::core::option::Option<
+                review_justification::HighlightedText,
+            >,
+            /// The review that the highlighted text is generated from.
+            #[prost(message, optional, tag = "2")]
+            pub review: ::core::option::Option<super::super::Review>,
+        }
+        /// Nested message and enum types in `ReviewJustification`.
+        pub mod review_justification {
+            /// The text highlighted by the justification. This is a subset of the
+            /// review itself. The exact word to highlight is marked by the
+            /// HighlightedTextRange. There could be several words in the text being
+            /// highlighted.
+            #[allow(clippy::derive_partial_eq_without_eq)]
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct HighlightedText {
+                #[prost(string, tag = "1")]
+                pub text: ::prost::alloc::string::String,
+                /// The list of the ranges of the highlighted text.
+                #[prost(message, repeated, tag = "2")]
+                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
+                    highlighted_text::HighlightedTextRange,
+                >,
+            }
+            /// Nested message and enum types in `HighlightedText`.
+            pub mod highlighted_text {
+                /// The range of highlighted text.
+                #[allow(clippy::derive_partial_eq_without_eq)]
+                #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+                pub struct HighlightedTextRange {
+                    #[prost(int32, tag = "1")]
+                    pub start_index: i32,
+                    #[prost(int32, tag = "2")]
+                    pub end_index: i32,
+                }
+            }
+        }
+        /// Experimental: See
+        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+        /// for more details.
+        /// BusinessAvailabilityAttributes justifications. This shows some attributes
+        /// a business has that could interest an end user.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct BusinessAvailabilityAttributesJustification {
+            /// If a place provides takeout.
+            #[prost(bool, tag = "1")]
+            pub takeout: bool,
+            /// If a place provides delivery.
+            #[prost(bool, tag = "2")]
+            pub delivery: bool,
+            /// If a place provides dine-in.
+            #[prost(bool, tag = "3")]
+            pub dine_in: bool,
+        }
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Justification {
+            /// Experimental: See
+            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+            /// for more details.
+            #[prost(message, tag = "1")]
+            ReviewJustification(ReviewJustification),
+            /// Experimental: See
+            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+            /// for more details.
+            #[prost(message, tag = "2")]
+            BusinessAvailabilityAttributesJustification(
+                BusinessAvailabilityAttributesJustification,
+            ),
+        }
+    }
+}
+/// Circle with a LatLng as center and radius.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Circle {
+    /// Required. Center latitude and longitude.
+    ///
+    /// The range of latitude must be within \[-90.0, 90.0\]. The range of the
+    /// longitude must be within \[-180.0, 180.0\].
+    #[prost(message, optional, tag = "1")]
+    pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
+    /// Required. Radius measured in meters. The radius must be within \[0.0,
+    /// 50000.0\].
+    #[prost(double, tag = "2")]
+    pub radius: f64,
 }
 /// Request proto for Search Nearby.
 #[allow(clippy::derive_partial_eq_without_eq)]

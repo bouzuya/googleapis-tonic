@@ -156,6 +156,152 @@ pub struct ContactInfo {
     #[prost(string, tag = "2")]
     pub email: ::prost::alloc::string::String,
 }
+/// Workload is an App Hub data model that contains a discovered workload, which
+/// represents a binary deployment (such as managed instance groups (MIGs) and
+/// GKE deployments) that performs the smallest logical subset of business
+/// functionality.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Workload {
+    /// Identifier. The resource name of the Workload. Format:
+    /// "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. User-defined name for the Workload.
+    /// Can have a maximum length of 63 characters.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Optional. User-defined description of a Workload.
+    /// Can have a maximum length of 2048 characters.
+    #[prost(string, tag = "3")]
+    pub description: ::prost::alloc::string::String,
+    /// Output only. Reference of an underlying compute resource represented by the
+    /// Workload. These are immutable.
+    #[prost(message, optional, tag = "4")]
+    pub workload_reference: ::core::option::Option<WorkloadReference>,
+    /// Output only. Properties of an underlying compute resource represented by
+    /// the Workload. These are immutable.
+    #[prost(message, optional, tag = "5")]
+    pub workload_properties: ::core::option::Option<WorkloadProperties>,
+    /// Required. Immutable. The resource name of the original discovered workload.
+    #[prost(string, tag = "6")]
+    pub discovered_workload: ::prost::alloc::string::String,
+    /// Optional. Consumer provided attributes.
+    #[prost(message, optional, tag = "7")]
+    pub attributes: ::core::option::Option<Attributes>,
+    /// Output only. Create time.
+    #[prost(message, optional, tag = "8")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Update time.
+    #[prost(message, optional, tag = "9")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. A universally unique identifier (UUID) for the `Workload` in
+    /// the UUID4 format.
+    #[prost(string, tag = "10")]
+    pub uid: ::prost::alloc::string::String,
+    /// Output only. Workload state.
+    #[prost(enumeration = "workload::State", tag = "11")]
+    pub state: i32,
+}
+/// Nested message and enum types in `Workload`.
+pub mod workload {
+    /// Workload state.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Unspecified state.
+        Unspecified = 0,
+        /// The Workload is being created.
+        Creating = 1,
+        /// The Workload is ready.
+        Active = 2,
+        /// The Workload is being deleted.
+        Deleting = 3,
+        /// The underlying compute resources have been deleted.
+        Detached = 4,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Active => "ACTIVE",
+                State::Deleting => "DELETING",
+                State::Detached => "DETACHED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "ACTIVE" => Some(Self::Active),
+                "DELETING" => Some(Self::Deleting),
+                "DETACHED" => Some(Self::Detached),
+                _ => None,
+            }
+        }
+    }
+}
+/// Reference of an underlying compute resource represented by the Workload.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WorkloadReference {
+    /// Output only. The underlying compute resource uri.
+    #[prost(string, tag = "1")]
+    pub uri: ::prost::alloc::string::String,
+}
+/// Properties of an underlying compute resource represented by the Workload.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WorkloadProperties {
+    /// Output only. The service project identifier that the underlying cloud
+    /// resource resides in. Empty for non cloud resources.
+    #[prost(string, tag = "1")]
+    pub gcp_project: ::prost::alloc::string::String,
+    /// Output only. The location that the underlying compute resource resides in
+    /// (e.g us-west1).
+    #[prost(string, tag = "2")]
+    pub location: ::prost::alloc::string::String,
+    /// Output only. The location that the underlying compute resource resides in
+    /// if it is zonal (e.g us-west1-a).
+    #[prost(string, tag = "3")]
+    pub zone: ::prost::alloc::string::String,
+}
+/// DiscoveredWorkload is a binary deployment (such as managed instance groups
+/// (MIGs) and GKE deployments) that performs the smallest logical subset of
+/// business functionality. A discovered workload can be registered to an App Hub
+/// Workload.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoveredWorkload {
+    /// Identifier. The resource name of the discovered workload. Format:
+    /// "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Reference of an underlying compute resource represented by the
+    /// Workload. These are immutable.
+    #[prost(message, optional, tag = "2")]
+    pub workload_reference: ::core::option::Option<WorkloadReference>,
+    /// Output only. Properties of an underlying compute resource represented by
+    /// the Workload. These are immutable.
+    #[prost(message, optional, tag = "3")]
+    pub workload_properties: ::core::option::Option<WorkloadProperties>,
+}
 /// Application defines the governance boundary for App Hub Entities that
 /// perform a logical end-to-end business function.
 /// App Hub supports application level IAM permission to align with governance
@@ -520,152 +666,6 @@ pub mod service_project_attachment {
             }
         }
     }
-}
-/// Workload is an App Hub data model that contains a discovered workload, which
-/// represents a binary deployment (such as managed instance groups (MIGs) and
-/// GKE deployments) that performs the smallest logical subset of business
-/// functionality.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Workload {
-    /// Identifier. The resource name of the Workload. Format:
-    /// "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Optional. User-defined name for the Workload.
-    /// Can have a maximum length of 63 characters.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// Optional. User-defined description of a Workload.
-    /// Can have a maximum length of 2048 characters.
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    /// Output only. Reference of an underlying compute resource represented by the
-    /// Workload. These are immutable.
-    #[prost(message, optional, tag = "4")]
-    pub workload_reference: ::core::option::Option<WorkloadReference>,
-    /// Output only. Properties of an underlying compute resource represented by
-    /// the Workload. These are immutable.
-    #[prost(message, optional, tag = "5")]
-    pub workload_properties: ::core::option::Option<WorkloadProperties>,
-    /// Required. Immutable. The resource name of the original discovered workload.
-    #[prost(string, tag = "6")]
-    pub discovered_workload: ::prost::alloc::string::String,
-    /// Optional. Consumer provided attributes.
-    #[prost(message, optional, tag = "7")]
-    pub attributes: ::core::option::Option<Attributes>,
-    /// Output only. Create time.
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Update time.
-    #[prost(message, optional, tag = "9")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. A universally unique identifier (UUID) for the `Workload` in
-    /// the UUID4 format.
-    #[prost(string, tag = "10")]
-    pub uid: ::prost::alloc::string::String,
-    /// Output only. Workload state.
-    #[prost(enumeration = "workload::State", tag = "11")]
-    pub state: i32,
-}
-/// Nested message and enum types in `Workload`.
-pub mod workload {
-    /// Workload state.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// Unspecified state.
-        Unspecified = 0,
-        /// The Workload is being created.
-        Creating = 1,
-        /// The Workload is ready.
-        Active = 2,
-        /// The Workload is being deleted.
-        Deleting = 3,
-        /// The underlying compute resources have been deleted.
-        Detached = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Detached => "DETACHED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                "DETACHED" => Some(Self::Detached),
-                _ => None,
-            }
-        }
-    }
-}
-/// Reference of an underlying compute resource represented by the Workload.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WorkloadReference {
-    /// Output only. The underlying compute resource uri.
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
-}
-/// Properties of an underlying compute resource represented by the Workload.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct WorkloadProperties {
-    /// Output only. The service project identifier that the underlying cloud
-    /// resource resides in. Empty for non cloud resources.
-    #[prost(string, tag = "1")]
-    pub gcp_project: ::prost::alloc::string::String,
-    /// Output only. The location that the underlying compute resource resides in
-    /// (e.g us-west1).
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    /// Output only. The location that the underlying compute resource resides in
-    /// if it is zonal (e.g us-west1-a).
-    #[prost(string, tag = "3")]
-    pub zone: ::prost::alloc::string::String,
-}
-/// DiscoveredWorkload is a binary deployment (such as managed instance groups
-/// (MIGs) and GKE deployments) that performs the smallest logical subset of
-/// business functionality. A discovered workload can be registered to an App Hub
-/// Workload.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiscoveredWorkload {
-    /// Identifier. The resource name of the discovered workload. Format:
-    /// "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. Reference of an underlying compute resource represented by the
-    /// Workload. These are immutable.
-    #[prost(message, optional, tag = "2")]
-    pub workload_reference: ::core::option::Option<WorkloadReference>,
-    /// Output only. Properties of an underlying compute resource represented by
-    /// the Workload. These are immutable.
-    #[prost(message, optional, tag = "3")]
-    pub workload_properties: ::core::option::Option<WorkloadProperties>,
 }
 /// Request for LookupServiceProjectAttachment.
 #[allow(clippy::derive_partial_eq_without_eq)]
