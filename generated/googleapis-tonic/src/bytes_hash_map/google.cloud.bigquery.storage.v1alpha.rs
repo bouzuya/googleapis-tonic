@@ -311,6 +311,20 @@ pub struct StreamMetastorePartitionsResponse {
     #[prost(int64, tag = "3")]
     pub total_partitions_inserted_count: i64,
 }
+/// Structured custom error message for batch size too large error.
+/// The error can be attached as error details in the returned rpc Status for
+/// more structured error handling in the client.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchSizeTooLargeError {
+    /// The maximum number of items that are supported in a single batch. This is
+    /// returned as a hint to the client to adjust the batch size.
+    #[prost(int64, tag = "1")]
+    pub max_batch_size: i64,
+    /// Optional. The error message that is returned to the client.
+    #[prost(string, tag = "2")]
+    pub error_message: ::prost::alloc::string::String,
+}
 /// Generated client implementations.
 pub mod metastore_partition_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]

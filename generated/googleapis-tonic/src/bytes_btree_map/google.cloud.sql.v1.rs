@@ -795,6 +795,9 @@ pub struct IpConfiguration {
     /// PSC settings for this instance.
     #[prost(message, optional, tag = "9")]
     pub psc_config: ::core::option::Option<PscConfig>,
+    /// Specify what type of CA is used for the server certificate.
+    #[prost(enumeration = "ip_configuration::CaMode", optional, tag = "10")]
+    pub server_ca_mode: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `IpConfiguration`.
 pub mod ip_configuration {
@@ -872,6 +875,50 @@ pub mod ip_configuration {
                 "TRUSTED_CLIENT_CERTIFICATE_REQUIRED" => {
                     Some(Self::TrustedClientCertificateRequired)
                 }
+                _ => None,
+            }
+        }
+    }
+    /// Various Certificate Authority (CA) modes for certificate signing.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum CaMode {
+        /// CA mode is unknown.
+        Unspecified = 0,
+        /// Google-managed self-signed internal CA.
+        GoogleManagedInternalCa = 1,
+        /// Google-managed regional CA part of root CA hierarchy hosted on Google
+        /// Cloud's Certificate Authority Service (CAS).
+        GoogleManagedCasCa = 2,
+    }
+    impl CaMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CaMode::Unspecified => "CA_MODE_UNSPECIFIED",
+                CaMode::GoogleManagedInternalCa => "GOOGLE_MANAGED_INTERNAL_CA",
+                CaMode::GoogleManagedCasCa => "GOOGLE_MANAGED_CAS_CA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CA_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GOOGLE_MANAGED_INTERNAL_CA" => Some(Self::GoogleManagedInternalCa),
+                "GOOGLE_MANAGED_CAS_CA" => Some(Self::GoogleManagedCasCa),
                 _ => None,
             }
         }
@@ -1279,6 +1326,8 @@ pub mod operation {
         /// Switches a primary instance to a replica. This operation runs as part of
         /// a switchover operation to the original primary instance.
         SwitchoverToReplica = 47,
+        /// Updates the major version of a Cloud SQL instance.
+        MajorVersionUpgrade = 48,
     }
     impl SqlOperationType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1332,6 +1381,7 @@ pub mod operation {
                 SqlOperationType::ClusterMaintenance => "CLUSTER_MAINTENANCE",
                 SqlOperationType::SelfServiceMaintenance => "SELF_SERVICE_MAINTENANCE",
                 SqlOperationType::SwitchoverToReplica => "SWITCHOVER_TO_REPLICA",
+                SqlOperationType::MajorVersionUpgrade => "MAJOR_VERSION_UPGRADE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1382,6 +1432,7 @@ pub mod operation {
                 "CLUSTER_MAINTENANCE" => Some(Self::ClusterMaintenance),
                 "SELF_SERVICE_MAINTENANCE" => Some(Self::SelfServiceMaintenance),
                 "SWITCHOVER_TO_REPLICA" => Some(Self::SwitchoverToReplica),
+                "MAJOR_VERSION_UPGRADE" => Some(Self::MajorVersionUpgrade),
                 _ => None,
             }
         }
@@ -5232,6 +5283,15 @@ pub struct DatabaseInstance {
     /// Gemini instance configuration.
     #[prost(message, optional, tag = "55")]
     pub gemini_config: ::core::option::Option<GeminiInstanceConfig>,
+    /// Output only. This status indicates whether the instance satisfies PZI.
+    ///
+    /// The status is reserved for future use.
+    #[prost(message, optional, tag = "56")]
+    pub satisfies_pzi: ::core::option::Option<bool>,
+    /// Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+    /// recovery log files from a data disk to Cloud Storage.
+    #[prost(message, optional, tag = "57")]
+    pub switch_transaction_logs_to_cloud_storage_enabled: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `DatabaseInstance`.
 pub mod database_instance {
@@ -5832,6 +5892,9 @@ pub mod sql_external_sync_setting_error {
         /// data to the destination instance, you must enable the PGAudit extension
         /// on the instance.
         ExtensionsNotEnabledInReplica = 48,
+        /// The source database has generated columns that can't be migrated. Please
+        /// change them to regular columns before migration.
+        UnsupportedColumns = 49,
     }
     impl SqlExternalSyncSettingErrorType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5977,6 +6040,9 @@ pub mod sql_external_sync_setting_error {
                 SqlExternalSyncSettingErrorType::ExtensionsNotEnabledInReplica => {
                     "EXTENSIONS_NOT_ENABLED_IN_REPLICA"
                 }
+                SqlExternalSyncSettingErrorType::UnsupportedColumns => {
+                    "UNSUPPORTED_COLUMNS"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6059,6 +6125,7 @@ pub mod sql_external_sync_setting_error {
                 "EXTENSIONS_NOT_ENABLED_IN_REPLICA" => {
                     Some(Self::ExtensionsNotEnabledInReplica)
                 }
+                "UNSUPPORTED_COLUMNS" => Some(Self::UnsupportedColumns),
                 _ => None,
             }
         }
@@ -6373,7 +6440,9 @@ pub mod sql_instances_service_client {
         /// instance. Required to prepare for a certificate rotation. If a CA version
         /// was previously added but never used in a certificate rotation, this
         /// operation replaces that version. There cannot be more than one CA version
-        /// waiting to be rotated in.
+        /// waiting to be rotated in. For instances that have enabled Certificate
+        /// Authority Service (CAS) based server CA, please use AddServerCertificate to
+        /// add a new server certificate.
         pub async fn add_server_ca(
             &mut self,
             request: impl tonic::IntoRequest<super::SqlInstancesAddServerCaRequest>,
@@ -6907,7 +6976,9 @@ pub mod sql_instances_service_client {
             self.inner.unary(req, path, codec).await
         }
         /// Rotates the server certificate to one signed by the Certificate Authority
-        /// (CA) version previously added with the addServerCA method.
+        /// (CA) version previously added with the addServerCA method. For instances
+        /// that have enabled Certificate Authority Service (CAS) based server CA,
+        /// please use RotateServerCertificate to rotate the server certificate.
         pub async fn rotate_server_ca(
             &mut self,
             request: impl tonic::IntoRequest<super::SqlInstancesRotateServerCaRequest>,
@@ -7488,6 +7559,9 @@ pub struct BackupRun {
     /// a different time zone. Now relevant only for SQL Server.
     #[prost(string, tag = "23")]
     pub time_zone: ::prost::alloc::string::String,
+    /// Output only. The maximum chargeable bytes for the backup.
+    #[prost(int64, optional, tag = "24")]
+    pub max_chargeable_bytes: ::core::option::Option<i64>,
 }
 /// Backup run list results.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -8032,6 +8106,56 @@ pub struct ConnectSettings {
     /// The dns name of the instance.
     #[prost(string, tag = "34")]
     pub dns_name: ::prost::alloc::string::String,
+    /// Specify what type of CA is used for the server certificate.
+    #[prost(enumeration = "connect_settings::CaMode", tag = "35")]
+    pub server_ca_mode: i32,
+}
+/// Nested message and enum types in `ConnectSettings`.
+pub mod connect_settings {
+    /// Various Certificate Authority (CA) modes for certificate signing.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum CaMode {
+        /// CA mode is unknown.
+        Unspecified = 0,
+        /// Google-managed self-signed internal CA.
+        GoogleManagedInternalCa = 1,
+        /// Google-managed regional CA part of root CA hierarchy hosted on Google
+        /// Cloud's Certificate Authority Service (CAS).
+        GoogleManagedCasCa = 2,
+    }
+    impl CaMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                CaMode::Unspecified => "CA_MODE_UNSPECIFIED",
+                CaMode::GoogleManagedInternalCa => "GOOGLE_MANAGED_INTERNAL_CA",
+                CaMode::GoogleManagedCasCa => "GOOGLE_MANAGED_CAS_CA",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CA_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GOOGLE_MANAGED_INTERNAL_CA" => Some(Self::GoogleManagedInternalCa),
+                "GOOGLE_MANAGED_CAS_CA" => Some(Self::GoogleManagedCasCa),
+                _ => None,
+            }
+        }
+    }
 }
 /// Ephemeral certificate creation request.
 #[allow(clippy::derive_partial_eq_without_eq)]

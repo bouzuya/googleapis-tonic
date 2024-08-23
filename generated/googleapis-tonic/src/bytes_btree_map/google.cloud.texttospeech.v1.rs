@@ -589,7 +589,6 @@ pub struct SynthesizeLongAudioRequest {
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
     /// Required. The Synthesizer requires either plain text or SSML as input.
-    /// While Long Audio is in preview, SSML is temporarily unsupported.
     #[prost(message, optional, tag = "2")]
     pub input: ::core::option::Option<SynthesisInput>,
     /// Required. The configuration of the synthesized audio.

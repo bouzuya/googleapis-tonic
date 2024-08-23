@@ -485,6 +485,16 @@ pub mod foreign_type_info {
         }
     }
 }
+/// Data policy option proto, it currently supports name only, will support
+/// precedence later.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DataPolicyOption {
+    /// Data policy resource name in the form of
+    /// projects/project_id/locations/location_id/dataPolicies/data_policy_id.
+    #[prost(string, optional, tag = "1")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// A field in TableSchema
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -510,7 +520,7 @@ pub struct TableFieldSchema {
     /// * BIGNUMERIC
     /// * JSON
     /// * RECORD (or STRUCT)
-    /// * RANGE ([Preview](/products/#product-launch-stages))
+    /// * RANGE
     ///
     /// Use of RECORD/STRUCT indicates that the field contains a nested schema.
     #[prost(string, tag = "2")]
@@ -530,6 +540,9 @@ pub struct TableFieldSchema {
     /// access control. If not set, defaults to empty policy_tags.
     #[prost(message, optional, tag = "9")]
     pub policy_tags: ::core::option::Option<table_field_schema::PolicyTagList>,
+    /// Optional. Data policy options, will replace the data_policies.
+    #[prost(message, repeated, tag = "21")]
+    pub data_policies: ::prost::alloc::vec::Vec<DataPolicyOption>,
     /// Optional. Maximum length of values of this field for STRINGS or BYTES.
     ///
     /// If max_length is not specified, no maximum length constraint is imposed
@@ -2573,7 +2586,7 @@ pub mod table_service_client {
 /// [`jobs.insert`](<https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert>)
 /// method calls it will always be `REQUESTED`.
 ///
-/// This feature is not yet available. Jobs will always be created.
+/// [Preview](/products/#product-launch-stages)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct JobCreationReason {
@@ -2697,6 +2710,13 @@ pub struct ModelReference {
 ///   }
 ///   \]
 ///   }
+///   }
+///
+/// * RANGE<DATE>:
+///
+///   {
+///   "typeKind": "RANGE",
+///   "rangeElementType": {"typeKind": "DATE"}
 ///   }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6551,6 +6571,9 @@ pub struct Dataset {
     /// READER; access.specialGroup: projectWriters; access.role: WRITER;
     /// access.specialGroup: projectOwners; access.role: OWNER;
     /// access.userByEmail: \[dataset creator email\]; access.role: OWNER;
+    /// If you patch a dataset, then this field is overwritten by the patched
+    /// dataset's access field. To add entities, you must supply the entire
+    /// existing access array in addition to any new entities that you want to add.
     #[prost(message, repeated, tag = "10")]
     pub access: ::prost::alloc::vec::Vec<Access>,
     /// Output only. The time when this dataset was created, in milliseconds since
@@ -6643,7 +6666,9 @@ pub struct Dataset {
     /// set.
     #[prost(message, optional, tag = "23")]
     pub max_time_travel_hours: ::core::option::Option<i64>,
-    /// Output only. Tags for the Dataset.
+    /// Output only. Tags for the dataset. To provide tags as inputs, use the
+    /// `resourceTags` field.
+    #[deprecated]
     #[prost(message, repeated, tag = "24")]
     pub tags: ::prost::alloc::vec::Vec<GcpTag>,
     /// Optional. Updates storage_billing_model for the dataset.
@@ -10781,6 +10806,10 @@ pub struct JobStatistics {
     /// job.
     #[prost(int64, tag = "22")]
     pub final_execution_duration_ms: i64,
+    /// Output only. Name of edition corresponding to the reservation for this job
+    /// at the time of this update.
+    #[prost(enumeration = "ReservationEdition", tag = "24")]
+    pub edition: i32,
 }
 /// Nested message and enum types in `JobStatistics`.
 pub mod job_statistics {
@@ -11212,6 +11241,45 @@ pub struct MetadataCacheStatistics {
     #[prost(message, repeated, tag = "1")]
     pub table_metadata_cache_usage: ::prost::alloc::vec::Vec<TableMetadataCacheUsage>,
 }
+/// The type of editions.
+/// Different features and behaviors are provided to different editions
+/// Capacity commitments and reservations are linked to editions.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReservationEdition {
+    /// Default value, which will be treated as ENTERPRISE.
+    Unspecified = 0,
+    /// Standard edition.
+    Standard = 1,
+    /// Enterprise edition.
+    Enterprise = 2,
+    /// Enterprise plus edition.
+    EnterprisePlus = 3,
+}
+impl ReservationEdition {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ReservationEdition::Unspecified => "RESERVATION_EDITION_UNSPECIFIED",
+            ReservationEdition::Standard => "STANDARD",
+            ReservationEdition::Enterprise => "ENTERPRISE",
+            ReservationEdition::EnterprisePlus => "ENTERPRISE_PLUS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESERVATION_EDITION_UNSPECIFIED" => Some(Self::Unspecified),
+            "STANDARD" => Some(Self::Standard),
+            "ENTERPRISE" => Some(Self::Enterprise),
+            "ENTERPRISE_PLUS" => Some(Self::EnterprisePlus),
+            _ => None,
+        }
+    }
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobStatus {
@@ -11267,10 +11335,8 @@ pub struct Job {
     /// Only present for APIs that support third-party identities.
     #[prost(string, tag = "13")]
     pub principal_subject: ::prost::alloc::string::String,
-    /// Output only. If set, it provides the reason why a Job was created.
-    /// If not set, it should be treated as the default: REQUESTED.
-    ///
-    /// This feature is not yet available. Jobs will always be created.
+    /// Output only. The reason why a Job was created.
+    /// [Preview](/products/#product-launch-stages)
     #[prost(message, optional, tag = "14")]
     pub job_creation_reason: ::core::option::Option<JobCreationReason>,
 }
@@ -11805,17 +11871,13 @@ pub struct QueryRequest {
     /// Optional. If not set, jobs are always required.
     ///
     /// If set, the query request will follow the behavior described
-    /// JobCreationMode.
-    ///
-    /// This feature is not yet available. Jobs will always be created.
+    /// JobCreationMode. [Preview](/products/#product-launch-stages)
     #[prost(enumeration = "query_request::JobCreationMode", tag = "22")]
     pub job_creation_mode: i32,
 }
 /// Nested message and enum types in `QueryRequest`.
 pub mod query_request {
     /// Job Creation Mode provides different options on job creation.
-    ///
-    /// This feature is not yet available. Jobs will always be created.
     #[derive(
         Clone,
         Copy,
@@ -11878,25 +11940,20 @@ pub struct QueryResponse {
     /// GetQueryResults can be used to read the results once the query has
     /// completed. Since this API only returns the first page of results,
     /// subsequent pages can be fetched via the same mechanism (GetQueryResults).
+    ///
+    /// If job_creation_mode was set to `JOB_CREATION_OPTIONAL` and the query
+    /// completes without creating a job, this field will be empty.
     #[prost(message, optional, tag = "3")]
     pub job_reference: ::core::option::Option<JobReference>,
-    /// Optional. Only relevant when a job_reference is present in the response.
-    /// If job_reference is not present it will always be unset. When job_reference
-    /// is present, this field should be interpreted as follows:
+    /// Optional. The reason why a Job was created.
     ///
-    /// If set, it will provide the reason of why a Job was created.
-    ///
-    /// If not set, it should be treated as the default: REQUESTED.
-    ///
-    /// This feature is not yet available. Jobs will always be created.
+    /// Only relevant when a job_reference is present in the response.
+    /// If job_reference is not present it will always be unset.
+    /// [Preview](/products/#product-launch-stages)
     #[prost(message, optional, tag = "15")]
     pub job_creation_reason: ::core::option::Option<JobCreationReason>,
-    /// Query ID for the completed query.
-    ///
-    /// This ID will be auto-generated.
-    ///
-    /// This field is not yet available and it is currently not guaranteed to be
-    /// populated.
+    /// Auto-generated ID for the query.
+    /// [Preview](/products/#product-launch-stages)
     #[prost(string, tag = "14")]
     pub query_id: ::prost::alloc::string::String,
     /// The total number of rows in the complete query result set, which can be

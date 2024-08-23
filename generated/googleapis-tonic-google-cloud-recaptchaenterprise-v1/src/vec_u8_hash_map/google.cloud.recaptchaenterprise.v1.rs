@@ -642,8 +642,7 @@ pub struct Event {
     #[prost(bytes = "vec", tag = "6")]
     pub hashed_account_id: ::prost::alloc::vec::Vec<u8>,
     /// Optional. Flag for a reCAPTCHA express request for an assessment without a
-    /// token. If enabled, `site_key` must reference a SCORE key with WAF feature
-    /// set to EXPRESS.
+    /// token. If enabled, `site_key` must reference an Express site key.
     #[prost(bool, tag = "14")]
     pub express: bool,
     /// Optional. The URI resource the user requested that triggered an assessment.
@@ -1600,11 +1599,11 @@ pub struct MigrateKeyRequest {
     /// Optional. If true, skips the billing check.
     /// A reCAPTCHA Enterprise key or migrated key behaves differently than a
     /// reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
-    /// <https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit>). To avoid
+    /// <https://cloud.google.com/recaptcha/quotas#quota_limit>). To avoid
     /// any disruption of your usage, we check that a billing account is present.
     /// If your usage of reCAPTCHA is under the free quota, you can safely skip the
     /// billing check and proceed with the migration. See
-    /// <https://cloud.google.com/recaptcha-enterprise/docs/billing-information.>
+    /// <https://cloud.google.com/recaptcha/docs/billing-information.>
     #[prost(bool, tag = "2")]
     pub skip_billing_check: bool,
 }
@@ -1663,7 +1662,7 @@ pub struct Key {
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
     /// Optional. See \[Creating and managing labels\]
-    /// (<https://cloud.google.com/recaptcha-enterprise/docs/labels>).
+    /// (<https://cloud.google.com/recaptcha/docs/labels>).
     #[prost(map = "string, string", tag = "6")]
     pub labels: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -1680,7 +1679,7 @@ pub struct Key {
     pub waf_settings: ::core::option::Option<WafSettings>,
     /// Platform-specific settings for this key. The key can only be used on a
     /// platform for which the settings are enabled.
-    #[prost(oneof = "key::PlatformSettings", tags = "3, 4, 5")]
+    #[prost(oneof = "key::PlatformSettings", tags = "3, 4, 5, 11")]
     pub platform_settings: ::core::option::Option<key::PlatformSettings>,
 }
 /// Nested message and enum types in `Key`.
@@ -1699,6 +1698,9 @@ pub mod key {
         /// Settings for keys that can be used by iOS apps.
         #[prost(message, tag = "5")]
         IosSettings(super::IosKeySettings),
+        /// Settings for keys that can be used by reCAPTCHA Express.
+        #[prost(message, tag = "11")]
+        ExpressSettings(super::ExpressKeySettings),
     }
 }
 /// Options for user acceptance testing.
@@ -1932,6 +1934,10 @@ pub struct IosKeySettings {
     #[prost(message, optional, tag = "3")]
     pub apple_developer_id: ::core::option::Option<AppleDeveloperId>,
 }
+/// Settings specific to keys that can be used for reCAPTCHA Express.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ExpressKeySettings {}
 /// Contains fields that are required to perform Apple-specific integrity checks.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2257,6 +2263,22 @@ pub struct SearchRelatedAccountGroupMembershipsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
+/// The AddIpOverride request message.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AddIpOverrideRequest {
+    /// Required. The name of the key to which the IP override is added, in the
+    /// format `projects/{project}/keys/{key}`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. IP override added to the key.
+    #[prost(message, optional, tag = "2")]
+    pub ip_override_data: ::core::option::Option<IpOverrideData>,
+}
+/// Response for AddIpOverride.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AddIpOverrideResponse {}
 /// A membership in a group of related accounts.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2303,7 +2325,7 @@ pub struct WafSettings {
 /// Nested message and enum types in `WafSettings`.
 pub mod waf_settings {
     /// Supported WAF features. For more information, see
-    /// <https://cloud.google.com/recaptcha-enterprise/docs/usecase#comparison_of_features.>
+    /// <https://cloud.google.com/recaptcha/docs/usecase#comparison_of_features.>
     #[derive(
         Clone,
         Copy,
@@ -2399,6 +2421,66 @@ pub mod waf_settings {
                 "CA" => Some(Self::Ca),
                 "FASTLY" => Some(Self::Fastly),
                 "CLOUDFLARE" => Some(Self::Cloudflare),
+                _ => None,
+            }
+        }
+    }
+}
+/// Information about the IP or IP range override.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IpOverrideData {
+    /// Required. The IP address to override (can be IPv4, IPv6 or CIDR).
+    /// The IP override must be a valid IPv4 or IPv6 address, or a CIDR range.
+    /// The IP override must be a public IP address.
+    /// Example of IPv4: 168.192.5.6
+    /// Example of IPv6: 2001:0000:130F:0000:0000:09C0:876A:130B
+    /// Example of IPv4 with CIDR: 168.192.5.0/24
+    /// Example of IPv6 with CIDR: 2001:0DB8:1234::/48
+    #[prost(string, tag = "1")]
+    pub ip: ::prost::alloc::string::String,
+    /// Required. Describes the type of IP override.
+    #[prost(enumeration = "ip_override_data::OverrideType", tag = "3")]
+    pub override_type: i32,
+}
+/// Nested message and enum types in `IpOverrideData`.
+pub mod ip_override_data {
+    /// Enum that represents the type of IP override.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum OverrideType {
+        /// Default override type that indicates this enum hasn't been specified.
+        Unspecified = 0,
+        /// Allowlist the IP address; i.e. give a `risk_analysis.score` of 0.9 for
+        /// all valid assessments.
+        Allow = 1,
+    }
+    impl OverrideType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                OverrideType::Unspecified => "OVERRIDE_TYPE_UNSPECIFIED",
+                OverrideType::Allow => "ALLOW",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OVERRIDE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ALLOW" => Some(Self::Allow),
                 _ => None,
             }
         }
@@ -2746,6 +2828,41 @@ pub mod recaptcha_enterprise_service_client {
                     GrpcMethod::new(
                         "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
                         "MigrateKey",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Adds an IP override to a key. The following restrictions hold:
+        ///
+        /// * The maximum number of IP overrides per key is 100.
+        /// * For any conflict (such as IP already exists or IP part of an existing
+        ///  IP range), an error will be returned.
+        pub async fn add_ip_override(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AddIpOverrideRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AddIpOverrideResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/AddIpOverride",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService",
+                        "AddIpOverride",
                     ),
                 );
             self.inner.unary(req, path, codec).await
