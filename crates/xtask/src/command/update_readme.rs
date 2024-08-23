@@ -19,7 +19,7 @@ pub fn execute() -> anyhow::Result<()> {
     for crate_name in state.crate_versions().keys() {
         table.push_str(
             &"| [{CRATE_NAME}] | [![{CRATE_NAME}__v]][{CRATE_NAME}__c] | ![{CRATE_NAME}__d] |\n"
-                .replace("{CRATE_NAME}", &crate_name.to_string()),
+                .replace("{CRATE_NAME}", crate_name.as_ref()),
         );
         refs.push_str(
             &r#"
@@ -27,7 +27,7 @@ pub fn execute() -> anyhow::Result<()> {
 [{CRATE_NAME}__c]: https://crates.io/crates/{CRATE_NAME}
 [{CRATE_NAME}__d]: https://img.shields.io/crates/d/{CRATE_NAME}
 [{CRATE_NAME}__v]: https://img.shields.io/crates/v/{CRATE_NAME}"#
-                .replace("{CRATE_NAME}", &crate_name.to_string()),
+                .replace("{CRATE_NAME}", crate_name.as_ref()),
         );
     }
 
