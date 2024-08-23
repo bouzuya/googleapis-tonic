@@ -1,0 +1,24 @@
+name: update
+on:
+  schedule:
+    - cron: "0 15 * * 2"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.email m@bouzuya.net
+          git config user.name bouzuya
+      - run: cargo xtask update-googleapis
+      - run: cargo xtask build
+      - run: cargo xtask update-readme
+      - run: |
+          googleapis_version=$(cargo xtask show-googleapis-version)
+          git add crates/xtask/googleapis
+          git add crates/xtask/state.json
+          git add generated/
+          git add README.md
+          git commit -m "Regenerate crates using googleapis/google#${googleapis_version}"
