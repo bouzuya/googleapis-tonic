@@ -13,6 +13,8 @@ jobs:
         with:
           tool: protoc@3.27.3
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - run: |
           git config user.email m@bouzuya.net
           git config user.name bouzuya
