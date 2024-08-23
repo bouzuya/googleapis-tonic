@@ -364,7 +364,7 @@ fn write_variant_file(
                         ));
                     } else {
                         s.push_str(&format!(
-                            "{}pub(crate) use googleapis_tonic_{}::{}::*;\n",
+                            "{}pub use googleapis_tonic_{}::{}::*;\n",
                             indent.repeat(c.len()),
                             c.join("_"),
                             c.iter()
