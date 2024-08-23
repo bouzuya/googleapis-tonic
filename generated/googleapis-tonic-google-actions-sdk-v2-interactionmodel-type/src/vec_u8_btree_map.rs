@@ -11,6 +11,6 @@ pub mod google {
         }
     }
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
 }

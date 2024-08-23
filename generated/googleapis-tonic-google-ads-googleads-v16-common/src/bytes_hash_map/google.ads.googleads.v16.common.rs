@@ -280,278 +280,6 @@ pub mod value {
         StringValue(::prost::alloc::string::String),
     }
 }
-/// Information of category availability, per advertising channel.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CriterionCategoryAvailability {
-    /// Channel types and subtypes that are available to the category.
-    #[prost(message, optional, tag = "1")]
-    pub channel: ::core::option::Option<CriterionCategoryChannelAvailability>,
-    /// Locales that are available to the category for the channel.
-    #[prost(message, repeated, tag = "2")]
-    pub locale: ::prost::alloc::vec::Vec<CriterionCategoryLocaleAvailability>,
-}
-/// Information of advertising channel type and subtypes a category is available
-/// in.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CriterionCategoryChannelAvailability {
-    /// Format of the channel availability. Can be ALL_CHANNELS (the rest of the
-    /// fields will not be set), CHANNEL_TYPE (only advertising_channel_type type
-    /// will be set, the category is available to all sub types under it) or
-    /// CHANNEL_TYPE_AND_SUBTYPES (advertising_channel_type,
-    /// advertising_channel_sub_type, and include_default_channel_sub_type will all
-    /// be set).
-    #[prost(
-        enumeration = "super::enums::criterion_category_channel_availability_mode_enum::CriterionCategoryChannelAvailabilityMode",
-        tag = "1"
-    )]
-    pub availability_mode: i32,
-    /// Channel type the category is available to.
-    #[prost(
-        enumeration = "super::enums::advertising_channel_type_enum::AdvertisingChannelType",
-        tag = "2"
-    )]
-    pub advertising_channel_type: i32,
-    /// Channel subtypes under the channel type the category is available to.
-    #[prost(
-        enumeration = "super::enums::advertising_channel_sub_type_enum::AdvertisingChannelSubType",
-        repeated,
-        tag = "3"
-    )]
-    pub advertising_channel_sub_type: ::prost::alloc::vec::Vec<i32>,
-    /// Whether default channel sub type is included. For example,
-    /// advertising_channel_type being DISPLAY and include_default_channel_sub_type
-    /// being false means that the default display campaign where channel sub type
-    /// is not set is not included in this availability configuration.
-    #[prost(bool, optional, tag = "5")]
-    pub include_default_channel_sub_type: ::core::option::Option<bool>,
-}
-/// Information about which locales a category is available in.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CriterionCategoryLocaleAvailability {
-    /// Format of the locale availability. Can be LAUNCHED_TO_ALL (both country and
-    /// language will be empty), COUNTRY (only country will be set), LANGUAGE (only
-    /// language wil be set), COUNTRY_AND_LANGUAGE (both country and language will
-    /// be set).
-    #[prost(
-        enumeration = "super::enums::criterion_category_locale_availability_mode_enum::CriterionCategoryLocaleAvailabilityMode",
-        tag = "1"
-    )]
-    pub availability_mode: i32,
-    /// The ISO-3166-1 alpha-2 country code associated with the category.
-    #[prost(string, optional, tag = "4")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// ISO 639-1 code of the language associated with the category.
-    #[prost(string, optional, tag = "5")]
-    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Contains policy information for an asset inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdAssetPolicySummary {
-    /// The list of policy findings for this asset.
-    #[prost(message, repeated, tag = "1")]
-    pub policy_topic_entries: ::prost::alloc::vec::Vec<PolicyTopicEntry>,
-    /// Where in the review process this asset.
-    #[prost(
-        enumeration = "super::enums::policy_review_status_enum::PolicyReviewStatus",
-        tag = "2"
-    )]
-    pub review_status: i32,
-    /// The overall approval status of this asset, which is calculated based on
-    /// the status of its individual policy topic entries.
-    #[prost(
-        enumeration = "super::enums::policy_approval_status_enum::PolicyApprovalStatus",
-        tag = "3"
-    )]
-    pub approval_status: i32,
-}
-/// Provides the detail of a PrimaryStatus.
-/// Each asset link has a PrimaryStatus value (e.g. NOT_ELIGIBLE, meaning not
-/// serving), and list of corroborating PrimaryStatusReasons (e.g.
-/// \[ASSET_DISAPPROVED\]). Each reason may have some additional details
-/// annotated with it.  For instance, when the reason is ASSET_DISAPPROVED, the
-/// details field will contain additional information about the offline
-/// evaluation errors which led to the asset being disapproved.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AssetLinkPrimaryStatusDetails {
-    /// Provides the reason of this PrimaryStatus.
-    #[prost(
-        enumeration = "super::enums::asset_link_primary_status_reason_enum::AssetLinkPrimaryStatusReason",
-        optional,
-        tag = "1"
-    )]
-    pub reason: ::core::option::Option<i32>,
-    /// Provides the PrimaryStatus of this status detail.
-    #[prost(
-        enumeration = "super::enums::asset_link_primary_status_enum::AssetLinkPrimaryStatus",
-        optional,
-        tag = "2"
-    )]
-    pub status: ::core::option::Option<i32>,
-    /// Provides the details associated with the asset link primary status.
-    #[prost(oneof = "asset_link_primary_status_details::Details", tags = "3")]
-    pub details: ::core::option::Option<asset_link_primary_status_details::Details>,
-}
-/// Nested message and enum types in `AssetLinkPrimaryStatusDetails`.
-pub mod asset_link_primary_status_details {
-    /// Provides the details associated with the asset link primary status.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Details {
-        /// Provides the details for AssetLinkPrimaryStatusReason.ASSET_DISAPPROVED
-        #[prost(message, tag = "3")]
-        AssetDisapproved(super::AssetDisapproved),
-    }
-}
-/// Details related to AssetLinkPrimaryStatusReasonPB.ASSET_DISAPPROVED
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AssetDisapproved {
-    /// Provides the quality evaluation disapproval reason of an asset.
-    #[prost(
-        enumeration = "super::enums::asset_offline_evaluation_error_reasons_enum::AssetOfflineEvaluationErrorReasons",
-        repeated,
-        tag = "1"
-    )]
-    pub offline_evaluation_error_reasons: ::prost::alloc::vec::Vec<i32>,
-}
-/// Contains policy summary information.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PolicySummary {
-    /// The list of policy findings.
-    #[prost(message, repeated, tag = "1")]
-    pub policy_topic_entries: ::prost::alloc::vec::Vec<PolicyTopicEntry>,
-    /// Where in the review process the resource is.
-    #[prost(
-        enumeration = "super::enums::policy_review_status_enum::PolicyReviewStatus",
-        tag = "2"
-    )]
-    pub review_status: i32,
-    /// The overall approval status, which is calculated based on
-    /// the status of its individual policy topic entries.
-    #[prost(
-        enumeration = "super::enums::policy_approval_status_enum::PolicyApprovalStatus",
-        tag = "3"
-    )]
-    pub approval_status: i32,
-}
-/// A mapping that can be used by custom parameter tags in a
-/// `tracking_url_template`, `final_urls`, or `mobile_final_urls`.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomParameter {
-    /// The key matching the parameter tag name.
-    #[prost(string, optional, tag = "3")]
-    pub key: ::core::option::Option<::prost::alloc::string::String>,
-    /// The value to be substituted.
-    #[prost(string, optional, tag = "4")]
-    pub value: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Settings for the targeting-related features, at the campaign and ad group
-/// levels. For more details about the targeting setting, visit
-/// <https://support.google.com/google-ads/answer/7365594>
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TargetingSetting {
-    /// The per-targeting-dimension setting to restrict the reach of your campaign
-    /// or ad group.
-    #[prost(message, repeated, tag = "1")]
-    pub target_restrictions: ::prost::alloc::vec::Vec<TargetRestriction>,
-    /// The list of operations changing the target restrictions.
-    ///
-    /// Adding a target restriction with a targeting dimension that already exists
-    /// causes the existing target restriction to be replaced with the new value.
-    #[prost(message, repeated, tag = "2")]
-    pub target_restriction_operations: ::prost::alloc::vec::Vec<
-        TargetRestrictionOperation,
-    >,
-}
-/// The list of per-targeting-dimension targeting settings.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetRestriction {
-    /// The targeting dimension that these settings apply to.
-    #[prost(
-        enumeration = "super::enums::targeting_dimension_enum::TargetingDimension",
-        tag = "1"
-    )]
-    pub targeting_dimension: i32,
-    /// Indicates whether to restrict your ads to show only for the criteria you
-    /// have selected for this targeting_dimension, or to target all values for
-    /// this targeting_dimension and show ads based on your targeting in other
-    /// TargetingDimensions. A value of `true` means that these criteria will only
-    /// apply bid modifiers, and not affect targeting. A value of `false` means
-    /// that these criteria will restrict targeting as well as applying bid
-    /// modifiers.
-    #[prost(bool, optional, tag = "3")]
-    pub bid_only: ::core::option::Option<bool>,
-}
-/// Operation to be performed on a target restriction list in a mutate.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetRestrictionOperation {
-    /// Type of list operation to perform.
-    #[prost(enumeration = "target_restriction_operation::Operator", tag = "1")]
-    pub operator: i32,
-    /// The target restriction being added to or removed from the list.
-    #[prost(message, optional, tag = "2")]
-    pub value: ::core::option::Option<TargetRestriction>,
-}
-/// Nested message and enum types in `TargetRestrictionOperation`.
-pub mod target_restriction_operation {
-    /// The operator.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Operator {
-        /// Unspecified.
-        Unspecified = 0,
-        /// Used for return value only. Represents value unknown in this version.
-        Unknown = 1,
-        /// Add the restriction to the existing restrictions.
-        Add = 2,
-        /// Remove the restriction from the existing restrictions.
-        Remove = 3,
-    }
-    impl Operator {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Operator::Unspecified => "UNSPECIFIED",
-                Operator::Unknown => "UNKNOWN",
-                Operator::Add => "ADD",
-                Operator::Remove => "REMOVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "UNKNOWN" => Some(Self::Unknown),
-                "ADD" => Some(Self::Add),
-                "REMOVE" => Some(Self::Remove),
-                _ => None,
-            }
-        }
-    }
-}
 /// A keyword criterion.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1552,6 +1280,2321 @@ pub struct BrandListInfo {
     #[prost(string, optional, tag = "1")]
     pub shared_set: ::core::option::Option<::prost::alloc::string::String>,
 }
+/// A type of label displaying text on a colored background.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TextLabel {
+    /// Background color of the label in RGB format. This string must match the
+    /// regular expression '^\#(\[a-fA-F0-9\]{6}|\[a-fA-F0-9\]{3})$'.
+    /// Note: The background color may not be visible for manager accounts.
+    #[prost(string, optional, tag = "3")]
+    pub background_color: ::core::option::Option<::prost::alloc::string::String>,
+    /// A short description of the label. The length must be no more than 200
+    /// characters.
+    #[prost(string, optional, tag = "4")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A container for simulation points for simulations of type CPC_BID.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CpcBidSimulationPointList {
+    /// Projected metrics for a series of CPC bid amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<CpcBidSimulationPoint>,
+}
+/// A container for simulation points for simulations of type CPV_BID.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CpvBidSimulationPointList {
+    /// Projected metrics for a series of CPV bid amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<CpvBidSimulationPoint>,
+}
+/// A container for simulation points for simulations of type TARGET_CPA.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TargetCpaSimulationPointList {
+    /// Projected metrics for a series of target CPA amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<TargetCpaSimulationPoint>,
+}
+/// A container for simulation points for simulations of type TARGET_ROAS.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TargetRoasSimulationPointList {
+    /// Projected metrics for a series of target ROAS amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<TargetRoasSimulationPoint>,
+}
+/// A container for simulation points for simulations of type PERCENT_CPC_BID.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PercentCpcBidSimulationPointList {
+    /// Projected metrics for a series of percent CPC bid amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<PercentCpcBidSimulationPoint>,
+}
+/// A container for simulation points for simulations of type BUDGET.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BudgetSimulationPointList {
+    /// Projected metrics for a series of budget amounts.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<BudgetSimulationPoint>,
+}
+/// A container for simulation points for simulations of type
+/// TARGET_IMPRESSION_SHARE.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TargetImpressionShareSimulationPointList {
+    /// Projected metrics for a specific target impression share value.
+    #[prost(message, repeated, tag = "1")]
+    pub points: ::prost::alloc::vec::Vec<TargetImpressionShareSimulationPoint>,
+}
+/// Projected metrics for a specific CPC bid amount.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CpcBidSimulationPoint {
+    /// Projected required daily budget that the advertiser must set in order to
+    /// receive the estimated traffic, in micros of advertiser currency.
+    #[prost(int64, tag = "17")]
+    pub required_budget_amount_micros: i64,
+    /// Projected number of biddable conversions.
+    #[prost(double, optional, tag = "9")]
+    pub biddable_conversions: ::core::option::Option<f64>,
+    /// Projected total value of biddable conversions.
+    #[prost(double, optional, tag = "10")]
+    pub biddable_conversions_value: ::core::option::Option<f64>,
+    /// Projected number of clicks.
+    #[prost(int64, optional, tag = "11")]
+    pub clicks: ::core::option::Option<i64>,
+    /// Projected cost in micros.
+    #[prost(int64, optional, tag = "12")]
+    pub cost_micros: ::core::option::Option<i64>,
+    /// Projected number of impressions.
+    #[prost(int64, optional, tag = "13")]
+    pub impressions: ::core::option::Option<i64>,
+    /// Projected number of top slot impressions.
+    /// Only search advertising channel type supports this field.
+    #[prost(int64, optional, tag = "14")]
+    pub top_slot_impressions: ::core::option::Option<i64>,
+    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
+    /// cpc_bid_micros is set.
+    /// When SimulationModificationMethod = SCALING,
+    /// cpc_bid_scaling_modifier is set.
+    #[prost(oneof = "cpc_bid_simulation_point::CpcSimulationKeyValue", tags = "15, 16")]
+    pub cpc_simulation_key_value: ::core::option::Option<
+        cpc_bid_simulation_point::CpcSimulationKeyValue,
+    >,
+}
+/// Nested message and enum types in `CpcBidSimulationPoint`.
+pub mod cpc_bid_simulation_point {
+    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
+    /// cpc_bid_micros is set.
+    /// When SimulationModificationMethod = SCALING,
+    /// cpc_bid_scaling_modifier is set.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum CpcSimulationKeyValue {
+        /// The simulated CPC bid upon which projected metrics are based.
+        #[prost(int64, tag = "15")]
+        CpcBidMicros(i64),
+        /// The simulated scaling modifier upon which projected metrics are based.
+        /// All CPC bids relevant to the simulated entity are scaled by this
+        /// modifier.
+        #[prost(double, tag = "16")]
+        CpcBidScalingModifier(f64),
+    }
+}
+/// Projected metrics for a specific CPV bid amount.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CpvBidSimulationPoint {
+    /// The simulated CPV bid upon which projected metrics are based.
+    #[prost(int64, optional, tag = "5")]
+    pub cpv_bid_micros: ::core::option::Option<i64>,
+    /// Projected cost in micros.
+    #[prost(int64, optional, tag = "6")]
+    pub cost_micros: ::core::option::Option<i64>,
+    /// Projected number of impressions.
+    #[prost(int64, optional, tag = "7")]
+    pub impressions: ::core::option::Option<i64>,
+    /// Projected number of views.
+    #[prost(int64, optional, tag = "8")]
+    pub views: ::core::option::Option<i64>,
+}
+/// Projected metrics for a specific target CPA amount.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetCpaSimulationPoint {
+    /// Projected required daily budget that the advertiser must set in order to
+    /// receive the estimated traffic, in micros of advertiser currency.
+    #[prost(int64, tag = "19")]
+    pub required_budget_amount_micros: i64,
+    /// Projected number of biddable conversions.
+    #[prost(double, optional, tag = "9")]
+    pub biddable_conversions: ::core::option::Option<f64>,
+    /// Projected total value of biddable conversions.
+    #[prost(double, optional, tag = "10")]
+    pub biddable_conversions_value: ::core::option::Option<f64>,
+    /// Projected number of app installs.
+    #[prost(double, tag = "15")]
+    pub app_installs: f64,
+    /// Projected number of in-app actions.
+    #[prost(double, tag = "16")]
+    pub in_app_actions: f64,
+    /// Projected number of clicks.
+    #[prost(int64, optional, tag = "11")]
+    pub clicks: ::core::option::Option<i64>,
+    /// Projected cost in micros.
+    #[prost(int64, optional, tag = "12")]
+    pub cost_micros: ::core::option::Option<i64>,
+    /// Projected number of impressions.
+    #[prost(int64, optional, tag = "13")]
+    pub impressions: ::core::option::Option<i64>,
+    /// Projected number of top slot impressions.
+    /// Only search advertising channel type supports this field.
+    #[prost(int64, optional, tag = "14")]
+    pub top_slot_impressions: ::core::option::Option<i64>,
+    /// Projected number of interactions.
+    /// Only discovery advertising channel type supports this field.
+    #[prost(int64, optional, tag = "20")]
+    pub interactions: ::core::option::Option<i64>,
+    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
+    /// target_cpa_micros is set.
+    /// When SimulationModificationMethod = SCALING,
+    /// target_cpa_scaling_modifier is set.
+    #[prost(
+        oneof = "target_cpa_simulation_point::TargetCpaSimulationKeyValue",
+        tags = "17, 18"
+    )]
+    pub target_cpa_simulation_key_value: ::core::option::Option<
+        target_cpa_simulation_point::TargetCpaSimulationKeyValue,
+    >,
+}
+/// Nested message and enum types in `TargetCpaSimulationPoint`.
+pub mod target_cpa_simulation_point {
+    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
+    /// target_cpa_micros is set.
+    /// When SimulationModificationMethod = SCALING,
+    /// target_cpa_scaling_modifier is set.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum TargetCpaSimulationKeyValue {
+        /// The simulated target CPA upon which projected metrics are based.
+        #[prost(int64, tag = "17")]
+        TargetCpaMicros(i64),
+        /// The simulated scaling modifier upon which projected metrics are based.
+        /// All CPA targets relevant to the simulated entity are scaled by this
+        /// modifier.
+        #[prost(double, tag = "18")]
+        TargetCpaScalingModifier(f64),
+    }
+}
+/// Projected metrics for a specific target ROAS amount.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetRoasSimulationPoint {
+    /// The simulated target ROAS upon which projected metrics are based.
+    #[prost(double, optional, tag = "8")]
+    pub target_roas: ::core::option::Option<f64>,
+    /// Projected required daily budget that the advertiser must set in order to
+    /// receive the estimated traffic, in micros of advertiser currency.
+    #[prost(int64, tag = "15")]
+    pub required_budget_amount_micros: i64,
+    /// Projected number of biddable conversions.
+    #[prost(double, optional, tag = "9")]
+    pub biddable_conversions: ::core::option::Option<f64>,
+    /// Projected total value of biddable conversions.
+    #[prost(double, optional, tag = "10")]
+    pub biddable_conversions_value: ::core::option::Option<f64>,
+    /// Projected number of clicks.
+    #[prost(int64, optional, tag = "11")]
+    pub clicks: ::core::option::Option<i64>,
+    /// Projected cost in micros.
+    #[prost(int64, optional, tag = "12")]
+    pub cost_micros: ::core::option::Option<i64>,
+    /// Projected number of impressions.
+    #[prost(int64, optional, tag = "13")]
+    pub impressions: ::core::option::Option<i64>,
+    /// Projected number of top slot impressions.
+    /// Only Search advertising channel type supports this field.
+    #[prost(int64, optional, tag = "14")]
+    pub top_slot_impressions: ::core::option::Option<i64>,
+}
+/// Projected metrics for a specific percent CPC amount. Only Hotel advertising
+/// channel type supports this field.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PercentCpcBidSimulationPoint {
+    /// The simulated percent CPC upon which projected metrics are based. Percent
+    /// CPC expressed as fraction of the advertised price for some good or service.
+    /// The value stored here is 1,000,000 * \[fraction\].
+    #[prost(int64, optional, tag = "1")]
+    pub percent_cpc_bid_micros: ::core::option::Option<i64>,
+    /// Projected number of biddable conversions.
+    #[prost(double, optional, tag = "2")]
+    pub biddable_conversions: ::core::option::Option<f64>,
+    /// Projected total value of biddable conversions in local currency.
+    #[prost(double, optional, tag = "3")]
+    pub biddable_conversions_value: ::core::option::Option<f64>,
+    /// Projected number of clicks.
+    #[prost(int64, optional, tag = "4")]
+    pub clicks: ::core::option::Option<i64>,
+    /// Projected cost in micros.
+    #[prost(int64, optional, tag = "5")]
+    pub cost_micros: ::core::option::Option<i64>,
+    /// Projected number of impressions.
+    #[prost(int64, optional, tag = "6")]
+    pub impressions: ::core::option::Option<i64>,
+    /// Projected number of top slot impressions.
+    #[prost(int64, optional, tag = "7")]
+    pub top_slot_impressions: ::core::option::Option<i64>,
+}
+/// Projected metrics for a specific budget amount.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct BudgetSimulationPoint {
+    /// The simulated budget upon which projected metrics are based.
+    #[prost(int64, tag = "1")]
+    pub budget_amount_micros: i64,
+    /// Projected required daily cpc bid ceiling that the advertiser must set to
+    /// realize this simulation, in micros of the advertiser currency.
+    /// Only campaigns with the Target Spend bidding strategy support this field.
+    #[prost(int64, tag = "2")]
+    pub required_cpc_bid_ceiling_micros: i64,
+    /// Projected number of biddable conversions.
+    #[prost(double, tag = "3")]
+    pub biddable_conversions: f64,
+    /// Projected total value of biddable conversions.
+    #[prost(double, tag = "4")]
+    pub biddable_conversions_value: f64,
+    /// Projected number of clicks.
+    #[prost(int64, tag = "5")]
+    pub clicks: i64,
+    /// Projected cost in micros.
+    #[prost(int64, tag = "6")]
+    pub cost_micros: i64,
+    /// Projected number of impressions.
+    #[prost(int64, tag = "7")]
+    pub impressions: i64,
+    /// Projected number of top slot impressions.
+    /// Only search advertising channel type supports this field.
+    #[prost(int64, tag = "8")]
+    pub top_slot_impressions: i64,
+    /// Projected number of interactions.
+    /// Only discovery advertising channel type supports this field.
+    #[prost(int64, tag = "9")]
+    pub interactions: i64,
+}
+/// Projected metrics for a specific target impression share value.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetImpressionShareSimulationPoint {
+    /// The simulated target impression share value (in micros) upon which
+    /// projected metrics are based.
+    /// For example, 10% impression share, which is equal to 0.1, is stored as
+    /// 100_000. This value is validated and will not exceed 1M (100%).
+    #[prost(int64, tag = "1")]
+    pub target_impression_share_micros: i64,
+    /// Projected required daily cpc bid ceiling that the advertiser must set to
+    /// realize this simulation, in micros of the advertiser currency.
+    #[prost(int64, tag = "2")]
+    pub required_cpc_bid_ceiling_micros: i64,
+    /// Projected required daily budget that the advertiser must set in order to
+    /// receive the estimated traffic, in micros of advertiser currency.
+    #[prost(int64, tag = "3")]
+    pub required_budget_amount_micros: i64,
+    /// Projected number of biddable conversions.
+    #[prost(double, tag = "4")]
+    pub biddable_conversions: f64,
+    /// Projected total value of biddable conversions.
+    #[prost(double, tag = "5")]
+    pub biddable_conversions_value: f64,
+    /// Projected number of clicks.
+    #[prost(int64, tag = "6")]
+    pub clicks: i64,
+    /// Projected cost in micros.
+    #[prost(int64, tag = "7")]
+    pub cost_micros: i64,
+    /// Projected number of impressions.
+    #[prost(int64, tag = "8")]
+    pub impressions: i64,
+    /// Projected number of top slot impressions.
+    /// Only search advertising channel type supports this field.
+    #[prost(int64, tag = "9")]
+    pub top_slot_impressions: i64,
+    /// Projected number of absolute top impressions.
+    /// Only search advertising channel type supports this field.
+    #[prost(int64, tag = "10")]
+    pub absolute_top_impressions: i64,
+}
+/// Matching function associated with a
+/// CustomerFeed, CampaignFeed, or AdGroupFeed. The matching function is used
+/// to filter the set of feed items selected.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MatchingFunction {
+    /// String representation of the Function.
+    ///
+    /// Examples:
+    ///
+    /// 1. IDENTITY(true) or IDENTITY(false). All or no feed items served.
+    /// 1. EQUALS(CONTEXT.DEVICE,"Mobile")
+    /// 1. IN(FEED_ITEM_ID,{1000001,1000002,1000003})
+    /// 1. CONTAINS_ANY(FeedAttribute\[12345678,0\],{"Mars cruise","Venus cruise"})
+    /// 1. AND(IN(FEED_ITEM_ID,{10001,10002}),EQUALS(CONTEXT.DEVICE,"Mobile"))
+    ///
+    /// For more details, visit
+    /// <https://developers.google.com/google-ads/api/docs/extensions/feeds/matching-functions>
+    ///
+    /// Note that because multiple strings may represent the same underlying
+    /// function (whitespace and single versus double quotation marks, for
+    /// example), the value returned may not be identical to the string sent in a
+    /// mutate request.
+    #[prost(string, optional, tag = "5")]
+    pub function_string: ::core::option::Option<::prost::alloc::string::String>,
+    /// Operator for a function.
+    #[prost(
+        enumeration = "super::enums::matching_function_operator_enum::MatchingFunctionOperator",
+        tag = "4"
+    )]
+    pub operator: i32,
+    /// The operands on the left hand side of the equation. This is also the
+    /// operand to be used for single operand expressions such as NOT.
+    #[prost(message, repeated, tag = "2")]
+    pub left_operands: ::prost::alloc::vec::Vec<Operand>,
+    /// The operands on the right hand side of the equation.
+    #[prost(message, repeated, tag = "3")]
+    pub right_operands: ::prost::alloc::vec::Vec<Operand>,
+}
+/// An operand in a matching function.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Operand {
+    /// Different operands that can be used in a matching function. Required.
+    #[prost(oneof = "operand::FunctionArgumentOperand", tags = "1, 2, 3, 4")]
+    pub function_argument_operand: ::core::option::Option<
+        operand::FunctionArgumentOperand,
+    >,
+}
+/// Nested message and enum types in `Operand`.
+pub mod operand {
+    /// A constant operand in a matching function.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ConstantOperand {
+        /// Constant operand values. Required.
+        #[prost(oneof = "constant_operand::ConstantOperandValue", tags = "5, 6, 7, 8")]
+        pub constant_operand_value: ::core::option::Option<
+            constant_operand::ConstantOperandValue,
+        >,
+    }
+    /// Nested message and enum types in `ConstantOperand`.
+    pub mod constant_operand {
+        /// Constant operand values. Required.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum ConstantOperandValue {
+            /// String value of the operand if it is a string type.
+            #[prost(string, tag = "5")]
+            StringValue(::prost::alloc::string::String),
+            /// Int64 value of the operand if it is a int64 type.
+            #[prost(int64, tag = "6")]
+            LongValue(i64),
+            /// Boolean value of the operand if it is a boolean type.
+            #[prost(bool, tag = "7")]
+            BooleanValue(bool),
+            /// Double value of the operand if it is a double type.
+            #[prost(double, tag = "8")]
+            DoubleValue(f64),
+        }
+    }
+    /// A feed attribute operand in a matching function.
+    /// Used to represent a feed attribute in feed.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct FeedAttributeOperand {
+        /// The associated feed. Required.
+        #[prost(int64, optional, tag = "3")]
+        pub feed_id: ::core::option::Option<i64>,
+        /// Id of the referenced feed attribute. Required.
+        #[prost(int64, optional, tag = "4")]
+        pub feed_attribute_id: ::core::option::Option<i64>,
+    }
+    /// A function operand in a matching function.
+    /// Used to represent nested functions.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FunctionOperand {
+        /// The matching function held in this operand.
+        #[prost(message, optional, tag = "1")]
+        pub matching_function: ::core::option::Option<super::MatchingFunction>,
+    }
+    /// An operand in a function referring to a value in the request context.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct RequestContextOperand {
+        /// Type of value to be referred in the request context.
+        #[prost(
+            enumeration = "super::super::enums::matching_function_context_type_enum::MatchingFunctionContextType",
+            tag = "1"
+        )]
+        pub context_type: i32,
+    }
+    /// Different operands that can be used in a matching function. Required.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum FunctionArgumentOperand {
+        /// A constant operand in a matching function.
+        #[prost(message, tag = "1")]
+        ConstantOperand(ConstantOperand),
+        /// This operand specifies a feed attribute in feed.
+        #[prost(message, tag = "2")]
+        FeedAttributeOperand(FeedAttributeOperand),
+        /// A function operand in a matching function.
+        /// Used to represent nested functions.
+        #[prost(message, tag = "3")]
+        FunctionOperand(FunctionOperand),
+        /// An operand in a function referring to a value in the request context.
+        #[prost(message, tag = "4")]
+        RequestContextOperand(RequestContextOperand),
+    }
+}
+/// Contains policy information for an asset inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdAssetPolicySummary {
+    /// The list of policy findings for this asset.
+    #[prost(message, repeated, tag = "1")]
+    pub policy_topic_entries: ::prost::alloc::vec::Vec<PolicyTopicEntry>,
+    /// Where in the review process this asset.
+    #[prost(
+        enumeration = "super::enums::policy_review_status_enum::PolicyReviewStatus",
+        tag = "2"
+    )]
+    pub review_status: i32,
+    /// The overall approval status of this asset, which is calculated based on
+    /// the status of its individual policy topic entries.
+    #[prost(
+        enumeration = "super::enums::policy_approval_status_enum::PolicyApprovalStatus",
+        tag = "3"
+    )]
+    pub approval_status: i32,
+}
+/// Provides the detail of a PrimaryStatus.
+/// Each asset link has a PrimaryStatus value (e.g. NOT_ELIGIBLE, meaning not
+/// serving), and list of corroborating PrimaryStatusReasons (e.g.
+/// \[ASSET_DISAPPROVED\]). Each reason may have some additional details
+/// annotated with it.  For instance, when the reason is ASSET_DISAPPROVED, the
+/// details field will contain additional information about the offline
+/// evaluation errors which led to the asset being disapproved.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssetLinkPrimaryStatusDetails {
+    /// Provides the reason of this PrimaryStatus.
+    #[prost(
+        enumeration = "super::enums::asset_link_primary_status_reason_enum::AssetLinkPrimaryStatusReason",
+        optional,
+        tag = "1"
+    )]
+    pub reason: ::core::option::Option<i32>,
+    /// Provides the PrimaryStatus of this status detail.
+    #[prost(
+        enumeration = "super::enums::asset_link_primary_status_enum::AssetLinkPrimaryStatus",
+        optional,
+        tag = "2"
+    )]
+    pub status: ::core::option::Option<i32>,
+    /// Provides the details associated with the asset link primary status.
+    #[prost(oneof = "asset_link_primary_status_details::Details", tags = "3")]
+    pub details: ::core::option::Option<asset_link_primary_status_details::Details>,
+}
+/// Nested message and enum types in `AssetLinkPrimaryStatusDetails`.
+pub mod asset_link_primary_status_details {
+    /// Provides the details associated with the asset link primary status.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Details {
+        /// Provides the details for AssetLinkPrimaryStatusReason.ASSET_DISAPPROVED
+        #[prost(message, tag = "3")]
+        AssetDisapproved(super::AssetDisapproved),
+    }
+}
+/// Details related to AssetLinkPrimaryStatusReasonPB.ASSET_DISAPPROVED
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssetDisapproved {
+    /// Provides the quality evaluation disapproval reason of an asset.
+    #[prost(
+        enumeration = "super::enums::asset_offline_evaluation_error_reasons_enum::AssetOfflineEvaluationErrorReasons",
+        repeated,
+        tag = "1"
+    )]
+    pub offline_evaluation_error_reasons: ::prost::alloc::vec::Vec<i32>,
+}
+/// A text asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdTextAsset {
+    /// Asset text.
+    #[prost(string, optional, tag = "4")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
+    /// The pinned field of the asset. This restricts the asset to only serve
+    /// within this field. Multiple assets can be pinned to the same field. An
+    /// asset that is unpinned or pinned to a different field will not serve in a
+    /// field where some other asset has been pinned.
+    #[prost(
+        enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType",
+        tag = "2"
+    )]
+    pub pinned_field: i32,
+    /// The performance label of this text asset.
+    #[prost(
+        enumeration = "super::enums::asset_performance_label_enum::AssetPerformanceLabel",
+        tag = "5"
+    )]
+    pub asset_performance_label: i32,
+    /// The policy summary of this text asset.
+    #[prost(message, optional, tag = "6")]
+    pub policy_summary_info: ::core::option::Option<AdAssetPolicySummary>,
+}
+/// An image asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdImageAsset {
+    /// The Asset resource name of this image.
+    #[prost(string, optional, tag = "2")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A video asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdVideoAsset {
+    /// The Asset resource name of this video.
+    #[prost(string, optional, tag = "2")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A media bundle asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdMediaBundleAsset {
+    /// The Asset resource name of this media bundle.
+    #[prost(string, optional, tag = "2")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A discovery carousel card asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdDiscoveryCarouselCardAsset {
+    /// The Asset resource name of this discovery carousel card.
+    #[prost(string, optional, tag = "1")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A call to action asset used inside an ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdCallToActionAsset {
+    /// The Asset resource name of this call to action asset.
+    #[prost(string, optional, tag = "1")]
+    pub asset: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A text ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TextAdInfo {
+    /// The headline of the ad.
+    #[prost(string, optional, tag = "4")]
+    pub headline: ::core::option::Option<::prost::alloc::string::String>,
+    /// The first line of the ad's description.
+    #[prost(string, optional, tag = "5")]
+    pub description1: ::core::option::Option<::prost::alloc::string::String>,
+    /// The second line of the ad's description.
+    #[prost(string, optional, tag = "6")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// An expanded text ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExpandedTextAdInfo {
+    /// The first part of the ad's headline.
+    #[prost(string, optional, tag = "8")]
+    pub headline_part1: ::core::option::Option<::prost::alloc::string::String>,
+    /// The second part of the ad's headline.
+    #[prost(string, optional, tag = "9")]
+    pub headline_part2: ::core::option::Option<::prost::alloc::string::String>,
+    /// The third part of the ad's headline.
+    #[prost(string, optional, tag = "10")]
+    pub headline_part3: ::core::option::Option<::prost::alloc::string::String>,
+    /// The description of the ad.
+    #[prost(string, optional, tag = "11")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// The second description of the ad.
+    #[prost(string, optional, tag = "12")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+    /// The text that can appear alongside the ad's displayed URL.
+    #[prost(string, optional, tag = "13")]
+    pub path1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Additional text that can appear alongside the ad's displayed URL.
+    #[prost(string, optional, tag = "14")]
+    pub path2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// An expanded dynamic search ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExpandedDynamicSearchAdInfo {
+    /// The description of the ad.
+    #[prost(string, optional, tag = "3")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// The second description of the ad.
+    #[prost(string, optional, tag = "4")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A hotel ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct HotelAdInfo {}
+/// A travel ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TravelAdInfo {}
+/// A Smart Shopping ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ShoppingSmartAdInfo {}
+/// A standard Shopping ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ShoppingProductAdInfo {}
+/// A Shopping Comparison Listing ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ShoppingComparisonListingAdInfo {
+    /// Headline of the ad. This field is required. Allowed length is between 25
+    /// and 45 characters.
+    #[prost(string, optional, tag = "2")]
+    pub headline: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// An image ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImageAdInfo {
+    /// Width in pixels of the full size image.
+    #[prost(int64, optional, tag = "15")]
+    pub pixel_width: ::core::option::Option<i64>,
+    /// Height in pixels of the full size image.
+    #[prost(int64, optional, tag = "16")]
+    pub pixel_height: ::core::option::Option<i64>,
+    /// URL of the full size image.
+    #[prost(string, optional, tag = "17")]
+    pub image_url: ::core::option::Option<::prost::alloc::string::String>,
+    /// Width in pixels of the preview size image.
+    #[prost(int64, optional, tag = "18")]
+    pub preview_pixel_width: ::core::option::Option<i64>,
+    /// Height in pixels of the preview size image.
+    #[prost(int64, optional, tag = "19")]
+    pub preview_pixel_height: ::core::option::Option<i64>,
+    /// URL of the preview size image.
+    #[prost(string, optional, tag = "20")]
+    pub preview_image_url: ::core::option::Option<::prost::alloc::string::String>,
+    /// The mime type of the image.
+    #[prost(enumeration = "super::enums::mime_type_enum::MimeType", tag = "10")]
+    pub mime_type: i32,
+    /// The name of the image. If the image was created from a MediaFile, this is
+    /// the MediaFile's name. If the image was created from bytes, this is empty.
+    #[prost(string, optional, tag = "21")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    /// The image to create the ImageAd from. This can be specified in one of
+    /// two ways.
+    ///
+    /// 1. An existing MediaFile resource.
+    /// 1. The raw image data as bytes.
+    #[prost(oneof = "image_ad_info::Image", tags = "22, 13, 14")]
+    pub image: ::core::option::Option<image_ad_info::Image>,
+}
+/// Nested message and enum types in `ImageAdInfo`.
+pub mod image_ad_info {
+    /// The image to create the ImageAd from. This can be specified in one of
+    /// two ways.
+    ///
+    /// 1. An existing MediaFile resource.
+    /// 1. The raw image data as bytes.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Image {
+        /// The image assets used for the ad.
+        #[prost(message, tag = "22")]
+        ImageAsset(super::AdImageAsset),
+        /// Raw image data as bytes.
+        #[prost(bytes, tag = "13")]
+        Data(::prost::bytes::Bytes),
+        /// An ad ID to copy the image from.
+        #[prost(int64, tag = "14")]
+        AdIdToCopyImageFrom(i64),
+    }
+}
+/// Representation of video bumper in-stream ad format (very short in-stream
+/// non-skippable video ad).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoBumperInStreamAdInfo {
+    /// The image assets of the companion banner used with the ad.
+    #[prost(message, optional, tag = "3")]
+    pub companion_banner: ::core::option::Option<AdImageAsset>,
+    /// Label on the "Call To Action" button taking the user to the video ad's
+    /// final URL.
+    #[prost(string, tag = "4")]
+    pub action_button_label: ::prost::alloc::string::String,
+    /// Additional text displayed with the CTA (call-to-action) button to give
+    /// context and encourage clicking on the button.
+    #[prost(string, tag = "5")]
+    pub action_headline: ::prost::alloc::string::String,
+}
+/// Representation of video non-skippable in-stream ad format (15 second
+/// in-stream non-skippable video ad).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoNonSkippableInStreamAdInfo {
+    /// The image assets of the companion banner used with the ad.
+    #[prost(message, optional, tag = "5")]
+    pub companion_banner: ::core::option::Option<AdImageAsset>,
+    /// Label on the "Call To Action" button taking the user to the video ad's
+    /// final URL.
+    #[prost(string, tag = "3")]
+    pub action_button_label: ::prost::alloc::string::String,
+    /// Additional text displayed with the "Call To Action" button to give
+    /// context and encourage clicking on the button.
+    #[prost(string, tag = "4")]
+    pub action_headline: ::prost::alloc::string::String,
+}
+/// Representation of video TrueView in-stream ad format (ad shown during video
+/// playback, often at beginning, which displays a skip button a few seconds into
+/// the video).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoTrueViewInStreamAdInfo {
+    /// Label on the CTA (call-to-action) button taking the user to the video ad's
+    /// final URL.
+    /// Required for TrueView for action campaigns, optional otherwise.
+    #[prost(string, tag = "4")]
+    pub action_button_label: ::prost::alloc::string::String,
+    /// Additional text displayed with the CTA (call-to-action) button to give
+    /// context and encourage clicking on the button.
+    #[prost(string, tag = "5")]
+    pub action_headline: ::prost::alloc::string::String,
+    /// The image assets of the companion banner used with the ad.
+    #[prost(message, optional, tag = "7")]
+    pub companion_banner: ::core::option::Option<AdImageAsset>,
+}
+/// Representation of video out-stream ad format (ad shown alongside a feed
+/// with automatic playback, without sound).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoOutstreamAdInfo {
+    /// The headline of the ad.
+    #[prost(string, tag = "3")]
+    pub headline: ::prost::alloc::string::String,
+    /// The description line.
+    #[prost(string, tag = "4")]
+    pub description: ::prost::alloc::string::String,
+}
+/// Representation of In-feed video ad format.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InFeedVideoAdInfo {
+    /// The headline of the ad.
+    #[prost(string, tag = "1")]
+    pub headline: ::prost::alloc::string::String,
+    /// First text line for the ad.
+    #[prost(string, tag = "2")]
+    pub description1: ::prost::alloc::string::String,
+    /// Second text line for the ad.
+    #[prost(string, tag = "3")]
+    pub description2: ::prost::alloc::string::String,
+    /// Video thumbnail image to use.
+    #[prost(
+        enumeration = "super::enums::video_thumbnail_enum::VideoThumbnail",
+        tag = "4"
+    )]
+    pub thumbnail: i32,
+}
+/// A video ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoAdInfo {
+    /// The YouTube video assets used for the ad.
+    #[prost(message, optional, tag = "8")]
+    pub video: ::core::option::Option<AdVideoAsset>,
+    /// Format-specific schema for the different video formats.
+    #[prost(oneof = "video_ad_info::Format", tags = "2, 3, 4, 5, 9")]
+    pub format: ::core::option::Option<video_ad_info::Format>,
+}
+/// Nested message and enum types in `VideoAdInfo`.
+pub mod video_ad_info {
+    /// Format-specific schema for the different video formats.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Format {
+        /// Video TrueView in-stream ad format.
+        #[prost(message, tag = "2")]
+        InStream(super::VideoTrueViewInStreamAdInfo),
+        /// Video bumper in-stream ad format.
+        #[prost(message, tag = "3")]
+        Bumper(super::VideoBumperInStreamAdInfo),
+        /// Video out-stream ad format.
+        #[prost(message, tag = "4")]
+        OutStream(super::VideoOutstreamAdInfo),
+        /// Video non-skippable in-stream ad format.
+        #[prost(message, tag = "5")]
+        NonSkippable(super::VideoNonSkippableInStreamAdInfo),
+        /// In-feed video ad format.
+        #[prost(message, tag = "9")]
+        InFeed(super::InFeedVideoAdInfo),
+    }
+}
+/// A video responsive ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VideoResponsiveAdInfo {
+    /// List of text assets used for the short headline. Currently, only a single
+    /// value for the short headline is supported.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets used for the long headline.
+    /// Currently, only a single value for the long headline is supported.
+    #[prost(message, repeated, tag = "2")]
+    pub long_headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets used for the description.
+    /// Currently, only a single value for the description is supported.
+    #[prost(message, repeated, tag = "3")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets used for the button, for example, the "Call To Action"
+    /// button. Currently, only a single value for the button is supported.
+    #[prost(message, repeated, tag = "4")]
+    pub call_to_actions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of YouTube video assets used for the ad.
+    /// Currently, only a single value for the YouTube video asset is supported.
+    #[prost(message, repeated, tag = "5")]
+    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+    /// List of image assets used for the companion banner.
+    /// Currently, only a single value for the companion banner asset is supported.
+    #[prost(message, repeated, tag = "6")]
+    pub companion_banners: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// First part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "7")]
+    pub breadcrumb1: ::prost::alloc::string::String,
+    /// Second part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "8")]
+    pub breadcrumb2: ::prost::alloc::string::String,
+}
+/// A responsive search ad.
+///
+/// Responsive search ads let you create an ad that adapts to show more text, and
+/// more relevant messages, to your customers. Enter multiple headlines and
+/// descriptions when creating a responsive search ad, and over time, Google Ads
+/// will automatically test different combinations and learn which combinations
+/// perform best. By adapting your ad's content to more closely match potential
+/// customers' search terms, responsive search ads may improve your campaign's
+/// performance.
+///
+/// More information at <https://support.google.com/google-ads/answer/7684791>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResponsiveSearchAdInfo {
+    /// List of text assets for headlines. When the ad serves the headlines will
+    /// be selected from this list.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for descriptions. When the ad serves the descriptions
+    /// will be selected from this list.
+    #[prost(message, repeated, tag = "2")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// First part of text that can be appended to the URL in the ad.
+    #[prost(string, optional, tag = "5")]
+    pub path1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Second part of text that can be appended to the URL in the ad. This field
+    /// can only be set when `path1` is also set.
+    #[prost(string, optional, tag = "6")]
+    pub path2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A legacy responsive display ad. Ads of this type are labeled 'Responsive ads'
+/// in the Google Ads UI.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LegacyResponsiveDisplayAdInfo {
+    /// The short version of the ad's headline.
+    #[prost(string, optional, tag = "16")]
+    pub short_headline: ::core::option::Option<::prost::alloc::string::String>,
+    /// The long version of the ad's headline.
+    #[prost(string, optional, tag = "17")]
+    pub long_headline: ::core::option::Option<::prost::alloc::string::String>,
+    /// The description of the ad.
+    #[prost(string, optional, tag = "18")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// The business name in the ad.
+    #[prost(string, optional, tag = "19")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Advertiser's consent to allow flexible color. When true, the ad may be
+    /// served with different color if necessary. When false, the ad will be served
+    /// with the specified colors or a neutral color.
+    /// The default value is `true`.
+    /// Must be true if `main_color` and `accent_color` are not set.
+    #[prost(bool, optional, tag = "20")]
+    pub allow_flexible_color: ::core::option::Option<bool>,
+    /// The accent color of the ad in hexadecimal, for example, #ffffff for white.
+    /// If one of `main_color` and `accent_color` is set, the other is required as
+    /// well.
+    #[prost(string, optional, tag = "21")]
+    pub accent_color: ::core::option::Option<::prost::alloc::string::String>,
+    /// The main color of the ad in hexadecimal, for example, #ffffff for white.
+    /// If one of `main_color` and `accent_color` is set, the other is required as
+    /// well.
+    #[prost(string, optional, tag = "22")]
+    pub main_color: ::core::option::Option<::prost::alloc::string::String>,
+    /// The call-to-action text for the ad.
+    #[prost(string, optional, tag = "23")]
+    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// The MediaFile resource name of the logo image used in the ad.
+    #[prost(string, optional, tag = "24")]
+    pub logo_image: ::core::option::Option<::prost::alloc::string::String>,
+    /// The MediaFile resource name of the square logo image used in the ad.
+    #[prost(string, optional, tag = "25")]
+    pub square_logo_image: ::core::option::Option<::prost::alloc::string::String>,
+    /// The MediaFile resource name of the marketing image used in the ad.
+    #[prost(string, optional, tag = "26")]
+    pub marketing_image: ::core::option::Option<::prost::alloc::string::String>,
+    /// The MediaFile resource name of the square marketing image used in the ad.
+    #[prost(string, optional, tag = "27")]
+    pub square_marketing_image: ::core::option::Option<::prost::alloc::string::String>,
+    /// Specifies which format the ad will be served in. Default is ALL_FORMATS.
+    #[prost(
+        enumeration = "super::enums::display_ad_format_setting_enum::DisplayAdFormatSetting",
+        tag = "13"
+    )]
+    pub format_setting: i32,
+    /// Prefix before price. For example, 'as low as'.
+    #[prost(string, optional, tag = "28")]
+    pub price_prefix: ::core::option::Option<::prost::alloc::string::String>,
+    /// Promotion text used for dynamic formats of responsive ads. For example
+    /// 'Free two-day shipping'.
+    #[prost(string, optional, tag = "29")]
+    pub promo_text: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// An app ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AppAdInfo {
+    /// Mandatory ad text.
+    #[prost(message, optional, tag = "1")]
+    pub mandatory_ad_text: ::core::option::Option<AdTextAsset>,
+    /// List of text assets for headlines. When the ad serves the headlines will
+    /// be selected from this list.
+    #[prost(message, repeated, tag = "2")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for descriptions. When the ad serves the descriptions
+    /// will be selected from this list.
+    #[prost(message, repeated, tag = "3")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of image assets that may be displayed with the ad.
+    #[prost(message, repeated, tag = "4")]
+    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// List of YouTube video assets that may be displayed with the ad.
+    #[prost(message, repeated, tag = "5")]
+    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+    /// List of media bundle assets that may be used with the ad.
+    #[prost(message, repeated, tag = "6")]
+    pub html5_media_bundles: ::prost::alloc::vec::Vec<AdMediaBundleAsset>,
+}
+/// App engagement ads allow you to write text encouraging a specific action in
+/// the app, like checking in, making a purchase, or booking a flight.
+/// They allow you to send users to a specific part of your app where they can
+/// find what they're looking for easier and faster.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AppEngagementAdInfo {
+    /// List of text assets for headlines. When the ad serves the headlines will
+    /// be selected from this list.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for descriptions. When the ad serves the descriptions
+    /// will be selected from this list.
+    #[prost(message, repeated, tag = "2")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of image assets that may be displayed with the ad.
+    #[prost(message, repeated, tag = "3")]
+    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// List of video assets that may be displayed with the ad.
+    #[prost(message, repeated, tag = "4")]
+    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+}
+/// App pre-registration ads link to your app or game listing on Google Play, and
+/// can run on Google Play, on YouTube (in-stream only), and within other apps
+/// and mobile websites on the Display Network. It will help capture people's
+/// interest in your app or game and generate an early install base for your app
+/// or game before a launch.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AppPreRegistrationAdInfo {
+    /// List of text assets for headlines. When the ad serves the headlines will
+    /// be selected from this list.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for descriptions. When the ad serves the descriptions
+    /// will be selected from this list.
+    #[prost(message, repeated, tag = "2")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of image asset IDs whose images may be displayed with the ad.
+    #[prost(message, repeated, tag = "3")]
+    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// List of YouTube video asset IDs whose videos may be displayed with the ad.
+    #[prost(message, repeated, tag = "4")]
+    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+}
+/// A legacy app install ad that only can be used by a few select customers.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LegacyAppInstallAdInfo {
+    /// The ID of the mobile app.
+    #[prost(string, optional, tag = "6")]
+    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// The app store the mobile app is available in.
+    #[prost(
+        enumeration = "super::enums::legacy_app_install_ad_app_store_enum::LegacyAppInstallAdAppStore",
+        tag = "2"
+    )]
+    pub app_store: i32,
+    /// The headline of the ad.
+    #[prost(string, optional, tag = "7")]
+    pub headline: ::core::option::Option<::prost::alloc::string::String>,
+    /// The first description line of the ad.
+    #[prost(string, optional, tag = "8")]
+    pub description1: ::core::option::Option<::prost::alloc::string::String>,
+    /// The second description line of the ad.
+    #[prost(string, optional, tag = "9")]
+    pub description2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A responsive display ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResponsiveDisplayAdInfo {
+    /// Marketing images to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must
+    /// be 1.91:1 (+-1%). At least one `marketing_image` is required. Combined
+    /// with `square_marketing_images`, the maximum is 15.
+    #[prost(message, repeated, tag = "1")]
+    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Square marketing images to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 300x300 and the aspect ratio must
+    /// be 1:1 (+-1%). At least one square `marketing_image` is required. Combined
+    /// with `marketing_images`, the maximum is 15.
+    #[prost(message, repeated, tag = "2")]
+    pub square_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Logo images to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 512x128 and the aspect ratio must
+    /// be 4:1 (+-1%). Combined with `square_logo_images`, the maximum is 5.
+    #[prost(message, repeated, tag = "3")]
+    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Square logo images to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 128x128 and the aspect ratio must
+    /// be 1:1 (+-1%). Combined with `logo_images`, the maximum is 5.
+    #[prost(message, repeated, tag = "4")]
+    pub square_logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Short format headlines for the ad. The maximum length is 30 characters.
+    /// At least 1 and max 5 headlines can be specified.
+    #[prost(message, repeated, tag = "5")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// A required long format headline. The maximum length is 90 characters.
+    #[prost(message, optional, tag = "6")]
+    pub long_headline: ::core::option::Option<AdTextAsset>,
+    /// Descriptive texts for the ad. The maximum length is 90 characters. At
+    /// least 1 and max 5 headlines can be specified.
+    #[prost(message, repeated, tag = "7")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// Optional YouTube videos for the ad. A maximum of 5 videos can be specified.
+    #[prost(message, repeated, tag = "8")]
+    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+    /// The advertiser/brand name. Maximum display width is 25.
+    #[prost(string, optional, tag = "17")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// The main color of the ad in hexadecimal, for example, #ffffff for white.
+    /// If one of `main_color` and `accent_color` is set, the other is required as
+    /// well.
+    #[prost(string, optional, tag = "18")]
+    pub main_color: ::core::option::Option<::prost::alloc::string::String>,
+    /// The accent color of the ad in hexadecimal, for example, #ffffff for white.
+    /// If one of `main_color` and `accent_color` is set, the other is required as
+    /// well.
+    #[prost(string, optional, tag = "19")]
+    pub accent_color: ::core::option::Option<::prost::alloc::string::String>,
+    /// Advertiser's consent to allow flexible color. When true, the ad may be
+    /// served with different color if necessary. When false, the ad will be served
+    /// with the specified colors or a neutral color.
+    /// The default value is `true`.
+    /// Must be true if `main_color` and `accent_color` are not set.
+    #[prost(bool, optional, tag = "20")]
+    pub allow_flexible_color: ::core::option::Option<bool>,
+    /// The call-to-action text for the ad. Maximum display width is 30.
+    #[prost(string, optional, tag = "21")]
+    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// Prefix before price. For example, 'as low as'.
+    #[prost(string, optional, tag = "22")]
+    pub price_prefix: ::core::option::Option<::prost::alloc::string::String>,
+    /// Promotion text used for dynamic formats of responsive ads. For example
+    /// 'Free two-day shipping'.
+    #[prost(string, optional, tag = "23")]
+    pub promo_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// Specifies which format the ad will be served in. Default is ALL_FORMATS.
+    #[prost(
+        enumeration = "super::enums::display_ad_format_setting_enum::DisplayAdFormatSetting",
+        tag = "16"
+    )]
+    pub format_setting: i32,
+    /// Specification for various creative controls.
+    #[prost(message, optional, tag = "24")]
+    pub control_spec: ::core::option::Option<ResponsiveDisplayAdControlSpec>,
+}
+/// A local ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LocalAdInfo {
+    /// List of text assets for headlines. When the ad serves the headlines will
+    /// be selected from this list. At least 1 and at most 5 headlines must be
+    /// specified.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for descriptions. When the ad serves the descriptions
+    /// will be selected from this list. At least 1 and at most 5 descriptions must
+    /// be specified.
+    #[prost(message, repeated, tag = "2")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets for call-to-actions. When the ad serves the
+    /// call-to-actions will be selected from this list. At least 1 and at most
+    /// 5 call-to-actions must be specified.
+    #[prost(message, repeated, tag = "3")]
+    pub call_to_actions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of marketing image assets that may be displayed with the ad. The
+    /// images must be 314x600 pixels or 320x320 pixels. At least 1 and at most
+    /// 20 image assets must be specified.
+    #[prost(message, repeated, tag = "4")]
+    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// List of logo image assets that may be displayed with the ad. The images
+    /// must be 128x128 pixels and not larger than 120KB. At least 1 and at most 5
+    /// image assets must be specified.
+    #[prost(message, repeated, tag = "5")]
+    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// List of YouTube video assets that may be displayed with the ad. At least 1
+    /// and at most 20 video assets must be specified.
+    #[prost(message, repeated, tag = "6")]
+    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+    /// First part of optional text that can be appended to the URL in the ad.
+    #[prost(string, optional, tag = "9")]
+    pub path1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Second part of optional text that can be appended to the URL in the ad.
+    /// This field can only be set when `path1` is also set.
+    #[prost(string, optional, tag = "10")]
+    pub path2: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A generic type of display ad. The exact ad format is controlled by the
+/// `display_upload_product_type` field, which determines what kinds of data
+/// need to be included with the ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DisplayUploadAdInfo {
+    /// The product type of this ad. See comments on the enum for details.
+    #[prost(
+        enumeration = "super::enums::display_upload_product_type_enum::DisplayUploadProductType",
+        tag = "1"
+    )]
+    pub display_upload_product_type: i32,
+    /// The asset data that makes up the ad.
+    #[prost(oneof = "display_upload_ad_info::MediaAsset", tags = "2")]
+    pub media_asset: ::core::option::Option<display_upload_ad_info::MediaAsset>,
+}
+/// Nested message and enum types in `DisplayUploadAdInfo`.
+pub mod display_upload_ad_info {
+    /// The asset data that makes up the ad.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum MediaAsset {
+        /// A media bundle asset to be used in the ad. For information about the
+        /// media bundle for HTML5_UPLOAD_AD, see
+        /// <https://support.google.com/google-ads/answer/1722096>
+        /// Media bundles that are part of dynamic product types use a special format
+        /// that needs to be created through the Google Web Designer. See
+        /// <https://support.google.com/webdesigner/answer/7543898> for more
+        /// information.
+        #[prost(message, tag = "2")]
+        MediaBundle(super::AdMediaBundleAsset),
+    }
+}
+/// Specification for various creative controls for a responsive display ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ResponsiveDisplayAdControlSpec {
+    /// Whether the advertiser has opted into the asset enhancements feature.
+    #[prost(bool, tag = "1")]
+    pub enable_asset_enhancements: bool,
+    /// Whether the advertiser has opted into auto-gen video feature.
+    #[prost(bool, tag = "2")]
+    pub enable_autogen_video: bool,
+}
+/// A Smart campaign ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SmartCampaignAdInfo {
+    /// List of text assets, each of which corresponds to a headline when the ad
+    /// serves. This list consists of a minimum of 3 and up to 15 text assets.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets, each of which corresponds to a description when the ad
+    /// serves. This list consists of a minimum of 2 and up to 4 text assets.
+    #[prost(message, repeated, tag = "2")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+}
+/// A call ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CallAdInfo {
+    /// The country code in the ad.
+    #[prost(string, tag = "1")]
+    pub country_code: ::prost::alloc::string::String,
+    /// The phone number in the ad.
+    #[prost(string, tag = "2")]
+    pub phone_number: ::prost::alloc::string::String,
+    /// The business name in the ad.
+    #[prost(string, tag = "3")]
+    pub business_name: ::prost::alloc::string::String,
+    /// First headline in the ad.
+    #[prost(string, tag = "11")]
+    pub headline1: ::prost::alloc::string::String,
+    /// Second headline in the ad.
+    #[prost(string, tag = "12")]
+    pub headline2: ::prost::alloc::string::String,
+    /// The first line of the ad's description.
+    #[prost(string, tag = "4")]
+    pub description1: ::prost::alloc::string::String,
+    /// The second line of the ad's description.
+    #[prost(string, tag = "5")]
+    pub description2: ::prost::alloc::string::String,
+    /// Whether to enable call tracking for the creative. Enabling call
+    /// tracking also enables call conversions.
+    #[prost(bool, tag = "6")]
+    pub call_tracked: bool,
+    /// Whether to disable call conversion for the creative.
+    /// If set to `true`, disables call conversions even when `call_tracked` is
+    /// `true`.
+    /// If `call_tracked` is `false`, this field is ignored.
+    #[prost(bool, tag = "7")]
+    pub disable_call_conversion: bool,
+    /// The URL to be used for phone number verification.
+    #[prost(string, tag = "8")]
+    pub phone_number_verification_url: ::prost::alloc::string::String,
+    /// The conversion action to attribute a call conversion to. If not set a
+    /// default conversion action is used. This field only has effect if
+    /// `call_tracked` is set to `true`. Otherwise this field is ignored.
+    #[prost(string, tag = "9")]
+    pub conversion_action: ::prost::alloc::string::String,
+    /// The call conversion behavior of this call ad. It can use its own call
+    /// conversion setting, inherit the account level setting, or be disabled.
+    #[prost(
+        enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState",
+        tag = "10"
+    )]
+    pub conversion_reporting_state: i32,
+    /// First part of text that can be appended to the URL in the ad. Optional.
+    #[prost(string, tag = "13")]
+    pub path1: ::prost::alloc::string::String,
+    /// Second part of text that can be appended to the URL in the ad. This field
+    /// can only be set when `path1` is also set. Optional.
+    #[prost(string, tag = "14")]
+    pub path2: ::prost::alloc::string::String,
+}
+/// A discovery multi asset ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoveryMultiAssetAdInfo {
+    /// Marketing image assets to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must
+    /// be 1.91:1 (+-1%). Required if square_marketing_images is
+    /// not present. Combined with `square_marketing_images` and
+    /// `portrait_marketing_images` the maximum is 20.
+    #[prost(message, repeated, tag = "1")]
+    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Square marketing image assets to be used in the ad. Valid image types are
+    /// GIF, JPEG, and PNG. The minimum size is 300x300 and the aspect ratio must
+    /// be 1:1 (+-1%). Required if marketing_images is not present.  Combined with
+    /// `marketing_images` and `portrait_marketing_images` the maximum is 20.
+    #[prost(message, repeated, tag = "2")]
+    pub square_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Portrait marketing image assets to be used in the ad. Valid image types are
+    /// GIF, JPEG, and PNG. The minimum size is 480x600 and the aspect ratio must
+    /// be 4:5 (+-1%).  Combined with `marketing_images` and
+    /// `square_marketing_images` the maximum is 20.
+    #[prost(message, repeated, tag = "3")]
+    pub portrait_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Logo image assets to be used in the ad. Valid image types are GIF,
+    /// JPEG, and PNG. The minimum size is 128x128 and the aspect ratio must be
+    /// 1:1 (+-1%). At least 1 and max 5 logo images can be specified.
+    #[prost(message, repeated, tag = "4")]
+    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// Headline text asset of the ad. Maximum display width is 30. At least 1 and
+    /// max 5 headlines can be specified.
+    #[prost(message, repeated, tag = "5")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// The descriptive text of the ad. Maximum display width is 90. At least 1 and
+    /// max 5 descriptions can be specified.
+    #[prost(message, repeated, tag = "6")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// The Advertiser/brand name. Maximum display width is 25. Required.
+    #[prost(string, optional, tag = "7")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Call to action text.
+    #[prost(string, optional, tag = "8")]
+    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// Boolean option that indicates if this ad must be served with lead form.
+    #[prost(bool, optional, tag = "9")]
+    pub lead_form_only: ::core::option::Option<bool>,
+}
+/// A discovery carousel ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoveryCarouselAdInfo {
+    /// Required. The Advertiser/brand name.
+    #[prost(string, tag = "1")]
+    pub business_name: ::prost::alloc::string::String,
+    /// Required. Logo image to be used in the ad.  The minimum size is 128x128 and
+    /// the aspect ratio must be 1:1 (+-1%).
+    #[prost(message, optional, tag = "2")]
+    pub logo_image: ::core::option::Option<AdImageAsset>,
+    /// Required. Headline of the ad.
+    #[prost(message, optional, tag = "3")]
+    pub headline: ::core::option::Option<AdTextAsset>,
+    /// Required. The descriptive text of the ad.
+    #[prost(message, optional, tag = "4")]
+    pub description: ::core::option::Option<AdTextAsset>,
+    /// Call to action text.
+    #[prost(string, tag = "5")]
+    pub call_to_action_text: ::prost::alloc::string::String,
+    /// Required. Carousel cards that will display with the ad. Min 2 max 10.
+    #[prost(message, repeated, tag = "6")]
+    pub carousel_cards: ::prost::alloc::vec::Vec<AdDiscoveryCarouselCardAsset>,
+}
+/// A discovery video responsive ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoveryVideoResponsiveAdInfo {
+    /// List of text assets used for the short headline.
+    #[prost(message, repeated, tag = "1")]
+    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets used for the long headline.
+    #[prost(message, repeated, tag = "2")]
+    pub long_headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of text assets used for the description.
+    #[prost(message, repeated, tag = "3")]
+    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
+    /// List of YouTube video assets used for the ad.
+    #[prost(message, repeated, tag = "4")]
+    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
+    /// Logo image to be used in the ad. Valid image types are GIF, JPEG, and PNG.
+    /// The minimum size is 128x128 and the aspect ratio must be 1:1 (+-1%).
+    #[prost(message, repeated, tag = "5")]
+    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
+    /// First part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "6")]
+    pub breadcrumb1: ::prost::alloc::string::String,
+    /// Second part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "7")]
+    pub breadcrumb2: ::prost::alloc::string::String,
+    /// Required. The advertiser/brand name.
+    #[prost(message, optional, tag = "8")]
+    pub business_name: ::core::option::Option<AdTextAsset>,
+    /// Assets of type CallToActionAsset used for the "Call To Action" button.
+    #[prost(message, repeated, tag = "9")]
+    pub call_to_actions: ::prost::alloc::vec::Vec<AdCallToActionAsset>,
+}
+/// A Demand Gen product ad.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DemandGenProductAdInfo {
+    /// Required. Text asset used for the short headline.
+    #[prost(message, optional, tag = "1")]
+    pub headline: ::core::option::Option<AdTextAsset>,
+    /// Required. Text asset used for the description.
+    #[prost(message, optional, tag = "2")]
+    pub description: ::core::option::Option<AdTextAsset>,
+    /// Required. Logo image to be used in the ad. Valid image types are GIF, JPEG,
+    /// and PNG. The minimum size is 128x128 and the aspect ratio must be 1:1
+    /// (+-1%).
+    #[prost(message, optional, tag = "3")]
+    pub logo_image: ::core::option::Option<AdImageAsset>,
+    /// First part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "4")]
+    pub breadcrumb1: ::prost::alloc::string::String,
+    /// Second part of text that appears in the ad with the displayed URL.
+    #[prost(string, tag = "5")]
+    pub breadcrumb2: ::prost::alloc::string::String,
+    /// Required. The advertiser/brand name.
+    #[prost(message, optional, tag = "6")]
+    pub business_name: ::core::option::Option<AdTextAsset>,
+    /// Asset of type CallToActionAsset used for the "Call To Action" button.
+    #[prost(message, optional, tag = "7")]
+    pub call_to_action: ::core::option::Option<AdCallToActionAsset>,
+}
+/// A mapping that can be used by custom parameter tags in a
+/// `tracking_url_template`, `final_urls`, or `mobile_final_urls`.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomParameter {
+    /// The key matching the parameter tag name.
+    #[prost(string, optional, tag = "3")]
+    pub key: ::core::option::Option<::prost::alloc::string::String>,
+    /// The value to be substituted.
+    #[prost(string, optional, tag = "4")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A URL for deep linking into an app for the given operating system.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FinalAppUrl {
+    /// The operating system targeted by this URL. Required.
+    #[prost(
+        enumeration = "super::enums::app_url_operating_system_type_enum::AppUrlOperatingSystemType",
+        tag = "1"
+    )]
+    pub os_type: i32,
+    /// The app deep link URL. Deep links specify a location in an app that
+    /// corresponds to the content you'd like to show, and should be of the form
+    /// {scheme}://{host_path}
+    /// The scheme identifies which app to open. For your app, you can use a custom
+    /// scheme that starts with the app's name. The host and path specify the
+    /// unique location in the app where your content exists.
+    /// Example: "exampleapp://productid_1234". Required.
+    #[prost(string, optional, tag = "3")]
+    pub url: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Collection of urls that is tagged with a unique identifier.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UrlCollection {
+    /// Unique identifier for this UrlCollection instance.
+    #[prost(string, optional, tag = "5")]
+    pub url_collection_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// A list of possible final URLs.
+    #[prost(string, repeated, tag = "6")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// A list of possible final mobile URLs.
+    #[prost(string, repeated, tag = "7")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// URL template for constructing a tracking URL.
+    #[prost(string, optional, tag = "8")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Contains the usage information of the asset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssetUsage {
+    /// Resource name of the asset.
+    #[prost(string, tag = "1")]
+    pub asset: ::prost::alloc::string::String,
+    /// The served field type of the asset.
+    #[prost(
+        enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType",
+        tag = "2"
+    )]
+    pub served_asset_field_type: i32,
+}
+/// Information of category availability, per advertising channel.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CriterionCategoryAvailability {
+    /// Channel types and subtypes that are available to the category.
+    #[prost(message, optional, tag = "1")]
+    pub channel: ::core::option::Option<CriterionCategoryChannelAvailability>,
+    /// Locales that are available to the category for the channel.
+    #[prost(message, repeated, tag = "2")]
+    pub locale: ::prost::alloc::vec::Vec<CriterionCategoryLocaleAvailability>,
+}
+/// Information of advertising channel type and subtypes a category is available
+/// in.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CriterionCategoryChannelAvailability {
+    /// Format of the channel availability. Can be ALL_CHANNELS (the rest of the
+    /// fields will not be set), CHANNEL_TYPE (only advertising_channel_type type
+    /// will be set, the category is available to all sub types under it) or
+    /// CHANNEL_TYPE_AND_SUBTYPES (advertising_channel_type,
+    /// advertising_channel_sub_type, and include_default_channel_sub_type will all
+    /// be set).
+    #[prost(
+        enumeration = "super::enums::criterion_category_channel_availability_mode_enum::CriterionCategoryChannelAvailabilityMode",
+        tag = "1"
+    )]
+    pub availability_mode: i32,
+    /// Channel type the category is available to.
+    #[prost(
+        enumeration = "super::enums::advertising_channel_type_enum::AdvertisingChannelType",
+        tag = "2"
+    )]
+    pub advertising_channel_type: i32,
+    /// Channel subtypes under the channel type the category is available to.
+    #[prost(
+        enumeration = "super::enums::advertising_channel_sub_type_enum::AdvertisingChannelSubType",
+        repeated,
+        tag = "3"
+    )]
+    pub advertising_channel_sub_type: ::prost::alloc::vec::Vec<i32>,
+    /// Whether default channel sub type is included. For example,
+    /// advertising_channel_type being DISPLAY and include_default_channel_sub_type
+    /// being false means that the default display campaign where channel sub type
+    /// is not set is not included in this availability configuration.
+    #[prost(bool, optional, tag = "5")]
+    pub include_default_channel_sub_type: ::core::option::Option<bool>,
+}
+/// Information about which locales a category is available in.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CriterionCategoryLocaleAvailability {
+    /// Format of the locale availability. Can be LAUNCHED_TO_ALL (both country and
+    /// language will be empty), COUNTRY (only country will be set), LANGUAGE (only
+    /// language wil be set), COUNTRY_AND_LANGUAGE (both country and language will
+    /// be set).
+    #[prost(
+        enumeration = "super::enums::criterion_category_locale_availability_mode_enum::CriterionCategoryLocaleAvailabilityMode",
+        tag = "1"
+    )]
+    pub availability_mode: i32,
+    /// The ISO-3166-1 alpha-2 country code associated with the category.
+    #[prost(string, optional, tag = "4")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// ISO 639-1 code of the language associated with the category.
+    #[prost(string, optional, tag = "5")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Lifecycle goal value settings.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LifecycleGoalValueSettings {
+    /// Value of the lifecycle goal. For example, for customer acquisition goal,
+    /// value is the incremental conversion value for new customers who are not of
+    /// high value.
+    #[prost(double, optional, tag = "1")]
+    pub value: ::core::option::Option<f64>,
+    /// High lifetime value of the lifecycle goal. For example, for customer
+    /// acquisition goal, high lifetime value is the incremental conversion value
+    /// for new customers who are of high value. High lifetime value should be
+    /// greater than value, if set.
+    /// In current stage, high lifetime value feature is in beta and this field
+    /// is read-only.
+    #[prost(double, optional, tag = "2")]
+    pub high_lifetime_value: ::core::option::Option<f64>,
+}
+/// Contains policy summary information.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PolicySummary {
+    /// The list of policy findings.
+    #[prost(message, repeated, tag = "1")]
+    pub policy_topic_entries: ::prost::alloc::vec::Vec<PolicyTopicEntry>,
+    /// Where in the review process the resource is.
+    #[prost(
+        enumeration = "super::enums::policy_review_status_enum::PolicyReviewStatus",
+        tag = "2"
+    )]
+    pub review_status: i32,
+    /// The overall approval status, which is calculated based on
+    /// the status of its individual policy topic entries.
+    #[prost(
+        enumeration = "super::enums::policy_approval_status_enum::PolicyApprovalStatus",
+        tag = "3"
+    )]
+    pub approval_status: i32,
+}
+/// A date range.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DateRange {
+    /// The start date, in yyyy-mm-dd format. This date is inclusive.
+    #[prost(string, optional, tag = "3")]
+    pub start_date: ::core::option::Option<::prost::alloc::string::String>,
+    /// The end date, in yyyy-mm-dd format. This date is inclusive.
+    #[prost(string, optional, tag = "4")]
+    pub end_date: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// The year month range inclusive of the start and end months.
+/// Eg: A year month range to represent Jan 2020 would be: (Jan 2020, Jan 2020).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct YearMonthRange {
+    /// The inclusive start year month.
+    #[prost(message, optional, tag = "1")]
+    pub start: ::core::option::Option<YearMonth>,
+    /// The inclusive end year month.
+    #[prost(message, optional, tag = "2")]
+    pub end: ::core::option::Option<YearMonth>,
+}
+/// Year month.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct YearMonth {
+    /// The year (for example, 2020).
+    #[prost(int64, tag = "1")]
+    pub year: i64,
+    /// The month of the year. (for example, FEBRUARY).
+    #[prost(enumeration = "super::enums::month_of_year_enum::MonthOfYear", tag = "2")]
+    pub month: i32,
+}
+/// Represents a filter on locations in a feed item set.
+/// Only applicable if the parent Feed of the FeedItemSet is a LOCATION feed.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DynamicLocationSetFilter {
+    /// If multiple labels are set, then only feeditems marked with all the labels
+    /// will be added to the FeedItemSet.
+    #[prost(string, repeated, tag = "1")]
+    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Business name filter.
+    #[prost(message, optional, tag = "2")]
+    pub business_name_filter: ::core::option::Option<BusinessNameFilter>,
+}
+/// Represents a business name filter on locations in a FeedItemSet.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BusinessNameFilter {
+    /// Business name string to use for filtering.
+    #[prost(string, tag = "1")]
+    pub business_name: ::prost::alloc::string::String,
+    /// The type of string matching to use when filtering with business_name.
+    #[prost(
+        enumeration = "super::enums::feed_item_set_string_filter_type_enum::FeedItemSetStringFilterType",
+        tag = "2"
+    )]
+    pub filter_type: i32,
+}
+/// Represents a filter on affiliate locations in a FeedItemSet.
+/// Only applicable if the parent Feed of the FeedItemSet is an
+/// AFFILIATE_LOCATION feed.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DynamicAffiliateLocationSetFilter {
+    /// Used to filter affiliate locations by chain ids. Only affiliate locations
+    /// that belong to the specified chain(s) will be added to the FeedItemSet.
+    #[prost(int64, repeated, tag = "1")]
+    pub chain_ids: ::prost::alloc::vec::Vec<i64>,
+}
+/// A customizer value that is referenced in customizer linkage entities
+/// like CustomerCustomizer, CampaignCustomizer, etc.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomizerValue {
+    /// Required. The data type for the customizer value. It must match the
+    /// attribute type. The string_value content must match the constraints
+    /// associated with the type.
+    #[prost(
+        enumeration = "super::enums::customizer_attribute_type_enum::CustomizerAttributeType",
+        tag = "1"
+    )]
+    pub r#type: i32,
+    /// Required. Value to insert in creative text. Customizer values of all types
+    /// are stored as string to make formatting unambiguous.
+    #[prost(string, tag = "2")]
+    pub string_value: ::prost::alloc::string::String,
+}
+/// Location criteria associated with a click.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClickLocation {
+    /// The city location criterion associated with the impression.
+    #[prost(string, optional, tag = "6")]
+    pub city: ::core::option::Option<::prost::alloc::string::String>,
+    /// The country location criterion associated with the impression.
+    #[prost(string, optional, tag = "7")]
+    pub country: ::core::option::Option<::prost::alloc::string::String>,
+    /// The metro location criterion associated with the impression.
+    #[prost(string, optional, tag = "8")]
+    pub metro: ::core::option::Option<::prost::alloc::string::String>,
+    /// The most specific location criterion associated with the impression.
+    #[prost(string, optional, tag = "9")]
+    pub most_specific: ::core::option::Option<::prost::alloc::string::String>,
+    /// The region location criterion associated with the impression.
+    #[prost(string, optional, tag = "10")]
+    pub region: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A Local Services Document with read only accessible data.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LocalServicesDocumentReadOnly {
+    /// URL to access an already uploaded Local Services document.
+    #[prost(string, optional, tag = "1")]
+    pub document_url: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// LookalikeUserlist, composed of users similar to those
+/// of a configurable seed (set of UserLists)
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LookalikeUserListInfo {
+    /// Seed UserList ID from which this list is derived, provided by user.
+    #[prost(int64, repeated, tag = "1")]
+    pub seed_user_list_ids: ::prost::alloc::vec::Vec<i64>,
+    /// Expansion level, reflecting the size of the lookalike audience
+    #[prost(
+        enumeration = "super::enums::lookalike_expansion_level_enum::LookalikeExpansionLevel",
+        tag = "2"
+    )]
+    pub expansion_level: i32,
+    /// Countries targeted by the Lookalike. Two-letter country code as defined by
+    /// ISO-3166
+    #[prost(string, repeated, tag = "3")]
+    pub country_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// SimilarUserList is a list of users which are similar to users from another
+/// UserList. These lists are read-only and automatically created by Google.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SimilarUserListInfo {
+    /// Seed UserList from which this list is derived.
+    #[prost(string, optional, tag = "2")]
+    pub seed_user_list: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// UserList of CRM users provided by the advertiser.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CrmBasedUserListInfo {
+    /// A string that uniquely identifies a mobile application from which the data
+    /// was collected.
+    /// For iOS, the ID string is the 9 digit string that appears at the end of an
+    /// App Store URL (for example, "476943146" for "Flood-It! 2" whose App Store
+    /// link is <http://itunes.apple.com/us/app/flood-it!-2/id476943146>). For
+    /// Android, the ID string is the application's package name (for example,
+    /// "com.labpixies.colordrips" for "Color Drips" given Google Play link
+    /// <https://play.google.com/store/apps/details?id=com.labpixies.colordrips>).
+    /// Required when creating CrmBasedUserList for uploading mobile advertising
+    /// IDs.
+    #[prost(string, optional, tag = "4")]
+    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// Matching key type of the list.
+    /// Mixed data types are not allowed on the same list.
+    /// This field is required for an ADD operation.
+    #[prost(
+        enumeration = "super::enums::customer_match_upload_key_type_enum::CustomerMatchUploadKeyType",
+        tag = "2"
+    )]
+    pub upload_key_type: i32,
+    /// Data source of the list. Default value is FIRST_PARTY.
+    /// Only customers on the allow-list can create third-party sourced CRM lists.
+    #[prost(
+        enumeration = "super::enums::user_list_crm_data_source_type_enum::UserListCrmDataSourceType",
+        tag = "3"
+    )]
+    pub data_source_type: i32,
+}
+/// A client defined rule based on custom parameters sent by web sites or
+/// uploaded by the advertiser.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListRuleInfo {
+    /// Rule type is used to determine how to group rule items.
+    ///
+    /// The default is OR of ANDs (disjunctive normal form).
+    /// That is, rule items will be ANDed together within rule item groups and the
+    /// groups themselves will be ORed together.
+    ///
+    /// OR of ANDs is the only supported type for FlexibleRuleUserList.
+    #[prost(
+        enumeration = "super::enums::user_list_rule_type_enum::UserListRuleType",
+        tag = "1"
+    )]
+    pub rule_type: i32,
+    /// List of rule item groups that defines this rule.
+    /// Rule item groups are grouped together based on rule_type.
+    #[prost(message, repeated, tag = "2")]
+    pub rule_item_groups: ::prost::alloc::vec::Vec<UserListRuleItemGroupInfo>,
+}
+/// A group of rule items.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListRuleItemGroupInfo {
+    /// Rule items that will be grouped together based on rule_type.
+    #[prost(message, repeated, tag = "1")]
+    pub rule_items: ::prost::alloc::vec::Vec<UserListRuleItemInfo>,
+}
+/// An atomic rule item.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListRuleItemInfo {
+    /// Rule variable name. It should match the corresponding key name fired
+    /// by the pixel.
+    /// A name must begin with US-ascii letters or underscore or UTF8 code that is
+    /// greater than 127 and consist of US-ascii letters or digits or underscore or
+    /// UTF8 code that is greater than 127.
+    /// For websites, there are two built-in variable URL (name = 'url\_\_') and
+    /// referrer URL (name = 'ref_url\_\_').
+    /// This field must be populated when creating a new rule item.
+    #[prost(string, optional, tag = "5")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    /// An atomic rule item.
+    #[prost(oneof = "user_list_rule_item_info::RuleItem", tags = "2, 3, 4")]
+    pub rule_item: ::core::option::Option<user_list_rule_item_info::RuleItem>,
+}
+/// Nested message and enum types in `UserListRuleItemInfo`.
+pub mod user_list_rule_item_info {
+    /// An atomic rule item.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum RuleItem {
+        /// An atomic rule item composed of a number operation.
+        #[prost(message, tag = "2")]
+        NumberRuleItem(super::UserListNumberRuleItemInfo),
+        /// An atomic rule item composed of a string operation.
+        #[prost(message, tag = "3")]
+        StringRuleItem(super::UserListStringRuleItemInfo),
+        /// An atomic rule item composed of a date operation.
+        #[prost(message, tag = "4")]
+        DateRuleItem(super::UserListDateRuleItemInfo),
+    }
+}
+/// A rule item composed of a date operation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListDateRuleItemInfo {
+    /// Date comparison operator.
+    /// This field is required and must be populated when creating new date
+    /// rule item.
+    #[prost(
+        enumeration = "super::enums::user_list_date_rule_item_operator_enum::UserListDateRuleItemOperator",
+        tag = "1"
+    )]
+    pub operator: i32,
+    /// String representing date value to be compared with the rule variable.
+    /// Supported date format is YYYY-MM-DD.
+    /// Times are reported in the customer's time zone.
+    #[prost(string, optional, tag = "4")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
+    /// The relative date value of the right hand side denoted by number of days
+    /// offset from now. The value field will override this field when both are
+    /// present.
+    #[prost(int64, optional, tag = "5")]
+    pub offset_in_days: ::core::option::Option<i64>,
+}
+/// A rule item composed of a number operation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UserListNumberRuleItemInfo {
+    /// Number comparison operator.
+    /// This field is required and must be populated when creating a new number
+    /// rule item.
+    #[prost(
+        enumeration = "super::enums::user_list_number_rule_item_operator_enum::UserListNumberRuleItemOperator",
+        tag = "1"
+    )]
+    pub operator: i32,
+    /// Number value to be compared with the variable.
+    /// This field is required and must be populated when creating a new number
+    /// rule item.
+    #[prost(double, optional, tag = "3")]
+    pub value: ::core::option::Option<f64>,
+}
+/// A rule item composed of a string operation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListStringRuleItemInfo {
+    /// String comparison operator.
+    /// This field is required and must be populated when creating a new string
+    /// rule item.
+    #[prost(
+        enumeration = "super::enums::user_list_string_rule_item_operator_enum::UserListStringRuleItemOperator",
+        tag = "1"
+    )]
+    pub operator: i32,
+    /// The right hand side of the string rule item. For URLs or referrer URLs,
+    /// the value can not contain illegal URL chars such as newlines, quotes,
+    /// tabs, or parentheses. This field is required and must be populated when
+    /// creating a new string rule item.
+    #[prost(string, optional, tag = "3")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Flexible rule that wraps the common rule and a lookback window.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlexibleRuleOperandInfo {
+    /// List of rule item groups that defines this rule.
+    /// Rule item groups are grouped together.
+    #[prost(message, optional, tag = "1")]
+    pub rule: ::core::option::Option<UserListRuleInfo>,
+    /// Lookback window for this rule in days. From now until X days ago.
+    #[prost(int64, optional, tag = "2")]
+    pub lookback_window_days: ::core::option::Option<i64>,
+}
+/// Flexible rule representation of visitors with one or multiple actions. The
+/// flexible user list is defined by two lists of operands – inclusive_operands
+/// and exclusive_operands; each operand represents a set of users based on
+/// actions they took in a given timeframe. These lists of operands are combined
+/// with the AND_NOT operator, so that users represented by the inclusive
+/// operands are included in the user list, minus the users represented by the
+/// exclusive operands.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlexibleRuleUserListInfo {
+    /// Operator that defines how the inclusive operands are combined.
+    #[prost(
+        enumeration = "super::enums::user_list_flexible_rule_operator_enum::UserListFlexibleRuleOperator",
+        tag = "1"
+    )]
+    pub inclusive_rule_operator: i32,
+    /// Rules representing users that should be included in the user list. These
+    /// are located on the left side of the AND_NOT operator, and joined together
+    /// by either AND/OR as specified by the inclusive_rule_operator.
+    #[prost(message, repeated, tag = "2")]
+    pub inclusive_operands: ::prost::alloc::vec::Vec<FlexibleRuleOperandInfo>,
+    /// Rules representing users that should be excluded from the user list. These
+    /// are located on the right side of the AND_NOT operator, and joined together
+    /// by OR.
+    #[prost(message, repeated, tag = "3")]
+    pub exclusive_operands: ::prost::alloc::vec::Vec<FlexibleRuleOperandInfo>,
+}
+/// Representation of a userlist that is generated by a rule.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RuleBasedUserListInfo {
+    /// The status of pre-population. The field is default to NONE if not set which
+    /// means the previous users will not be considered. If set to REQUESTED, past
+    /// site visitors or app users who match the list definition will be included
+    /// in the list (works on the Display Network only). This will only
+    /// add past users from within the last 30 days, depending on the
+    /// list's membership duration and the date when the remarketing tag is added.
+    /// The status will be updated to FINISHED once request is processed, or FAILED
+    /// if the request fails.
+    #[prost(
+        enumeration = "super::enums::user_list_prepopulation_status_enum::UserListPrepopulationStatus",
+        tag = "1"
+    )]
+    pub prepopulation_status: i32,
+    /// Flexible rule representation of visitors with one or multiple actions. The
+    /// flexible user list is defined by two lists of operands – inclusive_operands
+    /// and exclusive_operands; each operand represents a set of users based on
+    /// actions they took in a given timeframe. These lists of operands are
+    /// combined with the AND_NOT operator, so that users represented by the
+    /// inclusive operands are included in the user list, minus the users
+    /// represented by the exclusive operands.
+    #[prost(message, optional, tag = "5")]
+    pub flexible_rule_user_list: ::core::option::Option<FlexibleRuleUserListInfo>,
+}
+/// Represents a user list that is a custom combination of user lists.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogicalUserListInfo {
+    /// Logical list rules that define this user list. The rules are defined as a
+    /// logical operator (ALL/ANY/NONE) and a list of user lists. All the rules are
+    /// ANDed when they are evaluated.
+    ///
+    /// Required for creating a logical user list.
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<UserListLogicalRuleInfo>,
+}
+/// A user list logical rule. A rule has a logical operator (and/or/not) and a
+/// list of user lists as operands.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListLogicalRuleInfo {
+    /// The logical operator of the rule.
+    #[prost(
+        enumeration = "super::enums::user_list_logical_rule_operator_enum::UserListLogicalRuleOperator",
+        tag = "1"
+    )]
+    pub operator: i32,
+    /// The list of operands of the rule.
+    #[prost(message, repeated, tag = "2")]
+    pub rule_operands: ::prost::alloc::vec::Vec<LogicalUserListOperandInfo>,
+}
+/// Operand of logical user list that consists of a user list.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogicalUserListOperandInfo {
+    /// Resource name of a user list as an operand.
+    #[prost(string, optional, tag = "2")]
+    pub user_list: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// User list targeting as a collection of conversions or remarketing actions.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BasicUserListInfo {
+    /// Actions associated with this user list.
+    #[prost(message, repeated, tag = "1")]
+    pub actions: ::prost::alloc::vec::Vec<UserListActionInfo>,
+}
+/// Represents an action type used for building remarketing user lists.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserListActionInfo {
+    /// Subtypes of user list action.
+    #[prost(oneof = "user_list_action_info::UserListAction", tags = "3, 4")]
+    pub user_list_action: ::core::option::Option<user_list_action_info::UserListAction>,
+}
+/// Nested message and enum types in `UserListActionInfo`.
+pub mod user_list_action_info {
+    /// Subtypes of user list action.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum UserListAction {
+        /// A conversion action that's not generated from remarketing.
+        #[prost(string, tag = "3")]
+        ConversionAction(::prost::alloc::string::String),
+        /// A remarketing action.
+        #[prost(string, tag = "4")]
+        RemarketingAction(::prost::alloc::string::String),
+    }
+}
+/// Commission is an automatic bidding strategy in which the advertiser pays a
+/// certain portion of the conversion value.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Commission {
+    /// Commission rate defines the portion of the conversion value that the
+    /// advertiser will be billed. A commission rate of x should be passed into
+    /// this field as (x * 1,000,000). For example, 106,000 represents a commission
+    /// rate of 0.106 (10.6%).
+    #[prost(int64, optional, tag = "2")]
+    pub commission_rate_micros: ::core::option::Option<i64>,
+}
+/// An automated bidding strategy that raises bids for clicks
+/// that seem more likely to lead to a conversion and lowers
+/// them for clicks where they seem less likely.
+///
+/// This bidding strategy is deprecated and cannot be created anymore. Use
+/// ManualCpc with enhanced_cpc_enabled set to true for equivalent functionality.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct EnhancedCpc {}
+/// Manual bidding strategy that allows advertiser to set the bid per
+/// advertiser-specified action.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualCpa {}
+/// Manual click-based bidding where user pays per click.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualCpc {
+    /// Whether bids are to be enhanced based on conversion optimizer data.
+    #[prost(bool, optional, tag = "2")]
+    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
+}
+/// Manual impression-based bidding where user pays per thousand impressions.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualCpm {}
+/// View based bidding where user pays per video view.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualCpv {}
+/// An automated bidding strategy to help get the most conversions for your
+/// campaigns while spending your budget.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MaximizeConversions {
+    /// Maximum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// Mutable for portfolio bidding strategies only.
+    #[prost(int64, tag = "2")]
+    pub cpc_bid_ceiling_micros: i64,
+    /// Minimum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// Mutable for portfolio bidding strategies only.
+    #[prost(int64, tag = "3")]
+    pub cpc_bid_floor_micros: i64,
+    /// The target cost-per-action (CPA) option. This is the average amount that
+    /// you would like to spend per conversion action specified in micro units of
+    /// the bidding strategy's currency. If set, the bid strategy will get as many
+    /// conversions as possible at or below the target cost-per-action. If the
+    /// target CPA is not set, the bid strategy will aim to achieve the lowest
+    /// possible CPA given the budget.
+    #[prost(int64, tag = "4")]
+    pub target_cpa_micros: i64,
+}
+/// An automated bidding strategy to help get the most conversion value for your
+/// campaigns while spending your budget.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MaximizeConversionValue {
+    /// The target return on ad spend (ROAS) option. If set, the bid strategy will
+    /// maximize revenue while averaging the target return on ad spend. If the
+    /// target ROAS is high, the bid strategy may not be able to spend the full
+    /// budget. If the target ROAS is not set, the bid strategy will aim to
+    /// achieve the highest possible ROAS for the budget.
+    #[prost(double, tag = "2")]
+    pub target_roas: f64,
+    /// Maximum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// Mutable for portfolio bidding strategies only.
+    #[prost(int64, tag = "3")]
+    pub cpc_bid_ceiling_micros: i64,
+    /// Minimum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// Mutable for portfolio bidding strategies only.
+    #[prost(int64, tag = "4")]
+    pub cpc_bid_floor_micros: i64,
+}
+/// An automated bid strategy that sets bids to help get as many conversions as
+/// possible at the target cost-per-acquisition (CPA) you set.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetCpa {
+    /// Average CPA target.
+    /// This target should be greater than or equal to minimum billable unit based
+    /// on the currency for the account.
+    #[prost(int64, optional, tag = "4")]
+    pub target_cpa_micros: ::core::option::Option<i64>,
+    /// Maximum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// This should only be set for portfolio bid strategies.
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    /// Minimum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// This should only be set for portfolio bid strategies.
+    #[prost(int64, optional, tag = "6")]
+    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
+}
+/// Target CPM (cost per thousand impressions) is an automated bidding strategy
+/// that sets bids to optimize performance given the target CPM you set.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetCpm {
+    /// Additional information related to bidding goal.
+    #[prost(oneof = "target_cpm::Goal", tags = "1")]
+    pub goal: ::core::option::Option<target_cpm::Goal>,
+}
+/// Nested message and enum types in `TargetCpm`.
+pub mod target_cpm {
+    /// Additional information related to bidding goal.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum Goal {
+        /// Target Frequency bidding goal details.
+        #[prost(message, tag = "1")]
+        TargetFrequencyGoal(super::TargetCpmTargetFrequencyGoal),
+    }
+}
+/// Target Frequency bidding goal details.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetCpmTargetFrequencyGoal {
+    /// Target Frequency count representing how many times you want to reach
+    /// a single user.
+    #[prost(int64, tag = "1")]
+    pub target_count: i64,
+    /// Time window expressing the period over which you want to reach
+    /// the specified target_count.
+    #[prost(
+        enumeration = "super::enums::target_frequency_time_unit_enum::TargetFrequencyTimeUnit",
+        tag = "2"
+    )]
+    pub time_unit: i32,
+}
+/// An automated bidding strategy that sets bids so that a certain percentage of
+/// search ads are shown at the top of the first page (or other targeted
+/// location).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetImpressionShare {
+    /// The targeted location on the search results page.
+    #[prost(
+        enumeration = "super::enums::target_impression_share_location_enum::TargetImpressionShareLocation",
+        tag = "1"
+    )]
+    pub location: i32,
+    /// The chosen fraction of ads to be shown in the targeted location in micros.
+    /// For example, 1% equals 10,000.
+    #[prost(int64, optional, tag = "4")]
+    pub location_fraction_micros: ::core::option::Option<i64>,
+    /// The highest CPC bid the automated bidding system is permitted to specify.
+    /// This is a required field entered by the advertiser that sets the ceiling
+    /// and specified in local micros.
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+}
+/// An automated bidding strategy that helps you maximize revenue while
+/// averaging a specific target return on ad spend (ROAS).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetRoas {
+    /// Required. The chosen revenue (based on conversion data) per unit of spend.
+    /// Value must be between 0.01 and 1000.0, inclusive.
+    #[prost(double, optional, tag = "4")]
+    pub target_roas: ::core::option::Option<f64>,
+    /// Maximum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// This should only be set for portfolio bid strategies.
+    #[prost(int64, optional, tag = "5")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    /// Minimum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    /// This should only be set for portfolio bid strategies.
+    #[prost(int64, optional, tag = "6")]
+    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
+}
+/// An automated bid strategy that sets your bids to help get as many clicks
+/// as possible within your budget.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetSpend {
+    /// The spend target under which to maximize clicks.
+    /// A TargetSpend bidder will attempt to spend the smaller of this value
+    /// or the natural throttling spend amount.
+    /// If not specified, the budget is used as the spend target.
+    /// This field is deprecated and should no longer be used. See
+    /// <https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html>
+    /// for details.
+    #[deprecated]
+    #[prost(int64, optional, tag = "3")]
+    pub target_spend_micros: ::core::option::Option<i64>,
+    /// Maximum bid limit that can be set by the bid strategy.
+    /// The limit applies to all keywords managed by the strategy.
+    #[prost(int64, optional, tag = "4")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+}
+/// A bidding strategy where bids are a fraction of the advertised price for
+/// some good or service.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PercentCpc {
+    /// Maximum bid limit that can be set by the bid strategy. This is
+    /// an optional field entered by the advertiser and specified in local micros.
+    /// Note: A zero value is interpreted in the same way as having bid_ceiling
+    /// undefined.
+    #[prost(int64, optional, tag = "3")]
+    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
+    /// Adjusts the bid for each auction upward or downward, depending on the
+    /// likelihood of a conversion. Individual bids may exceed
+    /// cpc_bid_ceiling_micros, but the average bid amount for a campaign should
+    /// not.
+    #[prost(bool, optional, tag = "4")]
+    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
+}
+/// The site tag and event snippet pair for a TrackingCodeType.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TagSnippet {
+    /// The type of the generated tag snippets for tracking conversions.
+    #[prost(
+        enumeration = "super::enums::tracking_code_type_enum::TrackingCodeType",
+        tag = "1"
+    )]
+    pub r#type: i32,
+    /// The format of the web page where the tracking tag and snippet will be
+    /// installed, for example, HTML.
+    #[prost(
+        enumeration = "super::enums::tracking_code_page_format_enum::TrackingCodePageFormat",
+        tag = "2"
+    )]
+    pub page_format: i32,
+    /// The site tag that adds visitors to your basic remarketing lists and sets
+    /// new cookies on your domain.
+    #[prost(string, optional, tag = "5")]
+    pub global_site_tag: ::core::option::Option<::prost::alloc::string::String>,
+    /// The event snippet that works with the site tag to track actions that
+    /// should be counted as conversions.
+    #[prost(string, optional, tag = "6")]
+    pub event_snippet: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// Represents a price in a particular currency.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1562,6 +3605,871 @@ pub struct Money {
     /// Amount in micros. One million is equivalent to one unit.
     #[prost(int64, optional, tag = "4")]
     pub amount_micros: ::core::option::Option<i64>,
+}
+/// Represents an App extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AppFeedItem {
+    /// The visible text displayed when the link is rendered in an ad.
+    /// This string must not be empty, and the length of this string should
+    /// be between 1 and 25, inclusive.
+    #[prost(string, optional, tag = "9")]
+    pub link_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// The store-specific ID for the target application.
+    /// This string must not be empty.
+    #[prost(string, optional, tag = "10")]
+    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// The application store that the target application belongs to.
+    /// This field is required.
+    #[prost(enumeration = "super::enums::app_store_enum::AppStore", tag = "3")]
+    pub app_store: i32,
+    /// A list of possible final URLs after all cross domain redirects.
+    /// This list must not be empty.
+    #[prost(string, repeated, tag = "11")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// A list of possible final mobile URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "12")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// URL template for constructing a tracking URL. Default value is "{lpurl}".
+    #[prost(string, optional, tag = "13")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    /// A list of mappings to be used for substituting URL custom parameter tags in
+    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
+    #[prost(message, repeated, tag = "7")]
+    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
+    /// URL template for appending params to landing page URLs served with parallel
+    /// tracking.
+    #[prost(string, optional, tag = "14")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents a Call extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CallFeedItem {
+    /// The advertiser's phone number to append to the ad.
+    /// This string must not be empty.
+    #[prost(string, optional, tag = "7")]
+    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
+    /// Uppercase two-letter country code of the advertiser's phone number.
+    /// This string must not be empty.
+    #[prost(string, optional, tag = "8")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Indicates whether call tracking is enabled. By default, call tracking is
+    /// not enabled.
+    #[prost(bool, optional, tag = "9")]
+    pub call_tracking_enabled: ::core::option::Option<bool>,
+    /// The conversion action to attribute a call conversion to. If not set a
+    /// default conversion action is used. This field only has effect if
+    /// call_tracking_enabled is set to true. Otherwise this field is ignored.
+    #[prost(string, optional, tag = "10")]
+    pub call_conversion_action: ::core::option::Option<::prost::alloc::string::String>,
+    /// If true, disable call conversion tracking. call_conversion_action should
+    /// not be set if this is true. Optional.
+    #[prost(bool, optional, tag = "11")]
+    pub call_conversion_tracking_disabled: ::core::option::Option<bool>,
+    /// Enum value that indicates whether this call extension uses its own call
+    /// conversion setting (or just have call conversion disabled), or following
+    /// the account level setting.
+    #[prost(
+        enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState",
+        tag = "6"
+    )]
+    pub call_conversion_reporting_state: i32,
+}
+/// Represents a callout extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CalloutFeedItem {
+    /// The callout text.
+    /// The length of this string should be between 1 and 25, inclusive.
+    #[prost(string, optional, tag = "2")]
+    pub callout_text: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents a location extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LocationFeedItem {
+    /// The name of the business.
+    #[prost(string, optional, tag = "9")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Line 1 of the business address.
+    #[prost(string, optional, tag = "10")]
+    pub address_line_1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Line 2 of the business address.
+    #[prost(string, optional, tag = "11")]
+    pub address_line_2: ::core::option::Option<::prost::alloc::string::String>,
+    /// City of the business address.
+    #[prost(string, optional, tag = "12")]
+    pub city: ::core::option::Option<::prost::alloc::string::String>,
+    /// Province of the business address.
+    #[prost(string, optional, tag = "13")]
+    pub province: ::core::option::Option<::prost::alloc::string::String>,
+    /// Postal code of the business address.
+    #[prost(string, optional, tag = "14")]
+    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Country code of the business address.
+    #[prost(string, optional, tag = "15")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Phone number of the business.
+    #[prost(string, optional, tag = "16")]
+    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents an affiliate location extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AffiliateLocationFeedItem {
+    /// The name of the business.
+    #[prost(string, optional, tag = "11")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Line 1 of the business address.
+    #[prost(string, optional, tag = "12")]
+    pub address_line_1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Line 2 of the business address.
+    #[prost(string, optional, tag = "13")]
+    pub address_line_2: ::core::option::Option<::prost::alloc::string::String>,
+    /// City of the business address.
+    #[prost(string, optional, tag = "14")]
+    pub city: ::core::option::Option<::prost::alloc::string::String>,
+    /// Province of the business address.
+    #[prost(string, optional, tag = "15")]
+    pub province: ::core::option::Option<::prost::alloc::string::String>,
+    /// Postal code of the business address.
+    #[prost(string, optional, tag = "16")]
+    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Country code of the business address.
+    #[prost(string, optional, tag = "17")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Phone number of the business.
+    #[prost(string, optional, tag = "18")]
+    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
+    /// Id of the retail chain that is advertised as a seller of your product.
+    #[prost(int64, optional, tag = "19")]
+    pub chain_id: ::core::option::Option<i64>,
+    /// Name of chain.
+    #[prost(string, optional, tag = "20")]
+    pub chain_name: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// An extension that users can click on to send a text message to the
+/// advertiser.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TextMessageFeedItem {
+    /// The business name to prepend to the message text.
+    /// This field is required.
+    #[prost(string, optional, tag = "6")]
+    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Uppercase two-letter country code of the advertiser's phone number.
+    /// This field is required.
+    #[prost(string, optional, tag = "7")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// The advertiser's phone number the message will be sent to. Required.
+    #[prost(string, optional, tag = "8")]
+    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
+    /// The text to show in the ad.
+    /// This field is required.
+    #[prost(string, optional, tag = "9")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
+    /// The message extension_text populated in the messaging app.
+    #[prost(string, optional, tag = "10")]
+    pub extension_text: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents a Price extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PriceFeedItem {
+    /// Price extension type of this extension.
+    #[prost(
+        enumeration = "super::enums::price_extension_type_enum::PriceExtensionType",
+        tag = "1"
+    )]
+    pub r#type: i32,
+    /// Price qualifier for all offers of this price extension.
+    #[prost(
+        enumeration = "super::enums::price_extension_price_qualifier_enum::PriceExtensionPriceQualifier",
+        tag = "2"
+    )]
+    pub price_qualifier: i32,
+    /// Tracking URL template for all offers of this price extension.
+    #[prost(string, optional, tag = "7")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    /// The code of the language used for this price extension.
+    #[prost(string, optional, tag = "8")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// The price offerings in this price extension.
+    #[prost(message, repeated, tag = "5")]
+    pub price_offerings: ::prost::alloc::vec::Vec<PriceOffer>,
+    /// Tracking URL template for all offers of this price extension.
+    #[prost(string, optional, tag = "9")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents one price offer in a price extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PriceOffer {
+    /// Header text of this offer.
+    #[prost(string, optional, tag = "7")]
+    pub header: ::core::option::Option<::prost::alloc::string::String>,
+    /// Description text of this offer.
+    #[prost(string, optional, tag = "8")]
+    pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// Price value of this offer.
+    #[prost(message, optional, tag = "3")]
+    pub price: ::core::option::Option<Money>,
+    /// Price unit for this offer.
+    #[prost(
+        enumeration = "super::enums::price_extension_price_unit_enum::PriceExtensionPriceUnit",
+        tag = "4"
+    )]
+    pub unit: i32,
+    /// A list of possible final URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "9")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// A list of possible final mobile URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "10")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Represents a Promotion extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PromotionFeedItem {
+    /// A freeform description of what the promotion is targeting.
+    /// This field is required.
+    #[prost(string, optional, tag = "16")]
+    pub promotion_target: ::core::option::Option<::prost::alloc::string::String>,
+    /// Enum that modifies the qualification of the discount.
+    #[prost(
+        enumeration = "super::enums::promotion_extension_discount_modifier_enum::PromotionExtensionDiscountModifier",
+        tag = "2"
+    )]
+    pub discount_modifier: i32,
+    /// Start date of when the promotion is eligible to be redeemed.
+    #[prost(string, optional, tag = "19")]
+    pub promotion_start_date: ::core::option::Option<::prost::alloc::string::String>,
+    /// Last date when the promotion is eligible to be redeemed.
+    #[prost(string, optional, tag = "20")]
+    pub promotion_end_date: ::core::option::Option<::prost::alloc::string::String>,
+    /// The occasion the promotion was intended for.
+    /// If an occasion is set, the redemption window will need to fall within
+    /// the date range associated with the occasion.
+    #[prost(
+        enumeration = "super::enums::promotion_extension_occasion_enum::PromotionExtensionOccasion",
+        tag = "9"
+    )]
+    pub occasion: i32,
+    /// A list of possible final URLs after all cross domain redirects.
+    /// This field is required.
+    #[prost(string, repeated, tag = "21")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// A list of possible final mobile URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "22")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// URL template for constructing a tracking URL.
+    #[prost(string, optional, tag = "23")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    /// A list of mappings to be used for substituting URL custom parameter tags in
+    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
+    #[prost(message, repeated, tag = "13")]
+    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
+    /// URL template for appending params to landing page URLs served with parallel
+    /// tracking.
+    #[prost(string, optional, tag = "24")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+    /// The language of the promotion.
+    /// Represented as BCP 47 language tag.
+    #[prost(string, optional, tag = "25")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Discount type, can be percentage off or amount off.
+    #[prost(oneof = "promotion_feed_item::DiscountType", tags = "17, 4")]
+    pub discount_type: ::core::option::Option<promotion_feed_item::DiscountType>,
+    /// Promotion trigger. Can be by promotion code or promo by eligible order
+    /// amount.
+    #[prost(oneof = "promotion_feed_item::PromotionTrigger", tags = "18, 6")]
+    pub promotion_trigger: ::core::option::Option<promotion_feed_item::PromotionTrigger>,
+}
+/// Nested message and enum types in `PromotionFeedItem`.
+pub mod promotion_feed_item {
+    /// Discount type, can be percentage off or amount off.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DiscountType {
+        /// Percentage off discount in the promotion in micros.
+        /// One million is equivalent to one percent.
+        /// Either this or money_off_amount is required.
+        #[prost(int64, tag = "17")]
+        PercentOff(i64),
+        /// Money amount off for discount in the promotion.
+        /// Either this or percent_off is required.
+        #[prost(message, tag = "4")]
+        MoneyAmountOff(super::Money),
+    }
+    /// Promotion trigger. Can be by promotion code or promo by eligible order
+    /// amount.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PromotionTrigger {
+        /// A code the user should use in order to be eligible for the promotion.
+        #[prost(string, tag = "18")]
+        PromotionCode(::prost::alloc::string::String),
+        /// The amount the total order needs to be for the user to be eligible for
+        /// the promotion.
+        #[prost(message, tag = "6")]
+        OrdersOverAmount(super::Money),
+    }
+}
+/// Represents a structured snippet extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StructuredSnippetFeedItem {
+    /// The header of the snippet.
+    /// This string must not be empty.
+    #[prost(string, optional, tag = "3")]
+    pub header: ::core::option::Option<::prost::alloc::string::String>,
+    /// The values in the snippet.
+    /// The maximum size of this collection is 10.
+    #[prost(string, repeated, tag = "4")]
+    pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// Represents a sitelink.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SitelinkFeedItem {
+    /// URL display text for the sitelink.
+    /// The length of this string should be between 1 and 25, inclusive.
+    #[prost(string, optional, tag = "9")]
+    pub link_text: ::core::option::Option<::prost::alloc::string::String>,
+    /// First line of the description for the sitelink.
+    /// If this value is set, line2 must also be set.
+    /// The length of this string should be between 0 and 35, inclusive.
+    #[prost(string, optional, tag = "10")]
+    pub line1: ::core::option::Option<::prost::alloc::string::String>,
+    /// Second line of the description for the sitelink.
+    /// If this value is set, line1 must also be set.
+    /// The length of this string should be between 0 and 35, inclusive.
+    #[prost(string, optional, tag = "11")]
+    pub line2: ::core::option::Option<::prost::alloc::string::String>,
+    /// A list of possible final URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "12")]
+    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// A list of possible final mobile URLs after all cross domain redirects.
+    #[prost(string, repeated, tag = "13")]
+    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// URL template for constructing a tracking URL.
+    #[prost(string, optional, tag = "14")]
+    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
+    /// A list of mappings to be used for substituting URL custom parameter tags in
+    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
+    #[prost(message, repeated, tag = "7")]
+    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
+    /// Final URL suffix to be appended to landing page URLs served with
+    /// parallel tracking.
+    #[prost(string, optional, tag = "15")]
+    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents a hotel callout extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HotelCalloutFeedItem {
+    /// The callout text.
+    /// The length of this string should be between 1 and 25, inclusive.
+    #[prost(string, optional, tag = "3")]
+    pub text: ::core::option::Option<::prost::alloc::string::String>,
+    /// The language of the hotel callout text.
+    /// IETF BCP 47 compliant language code.
+    #[prost(string, optional, tag = "4")]
+    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Represents an advertiser provided image extension.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImageFeedItem {
+    /// Required. Resource name of the image asset.
+    #[prost(string, tag = "1")]
+    pub image_asset: ::prost::alloc::string::String,
+}
+/// Consent
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Consent {
+    /// This represents consent for ad user data.
+    #[prost(enumeration = "super::enums::consent_status_enum::ConsentStatus", tag = "1")]
+    pub ad_user_data: i32,
+    /// This represents consent for ad personalization.
+    /// This can only be set for OfflineUserDataJobService and UserDataService.
+    #[prost(enumeration = "super::enums::consent_status_enum::ConsentStatus", tag = "2")]
+    pub ad_personalization: i32,
+}
+/// Address identifier of offline data.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OfflineUserAddressInfo {
+    /// First name of the user, which is hashed as SHA-256 after normalized
+    /// (Lowercase all characters; Remove any extra spaces before, after, and in
+    /// between).
+    #[prost(string, optional, tag = "7")]
+    pub hashed_first_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// Last name of the user, which is hashed as SHA-256 after normalized (lower
+    /// case only and no punctuation).
+    #[prost(string, optional, tag = "8")]
+    pub hashed_last_name: ::core::option::Option<::prost::alloc::string::String>,
+    /// City of the address. Only accepted for Store Sales and
+    /// ConversionAdjustmentUploadService.
+    #[prost(string, optional, tag = "9")]
+    pub city: ::core::option::Option<::prost::alloc::string::String>,
+    /// State code of the address. Only accepted for Store Sales and
+    /// ConversionAdjustmentUploadService.
+    #[prost(string, optional, tag = "10")]
+    pub state: ::core::option::Option<::prost::alloc::string::String>,
+    /// 2-letter country code in ISO-3166-1 alpha-2 of the user's address.
+    #[prost(string, optional, tag = "11")]
+    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// Postal code of the user's address.
+    #[prost(string, optional, tag = "12")]
+    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// The street address of the user hashed using SHA-256 hash function after
+    /// normalization (lower case only). Only accepted for
+    /// ConversionAdjustmentUploadService.
+    #[prost(string, optional, tag = "13")]
+    pub hashed_street_address: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// User identifying information.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserIdentifier {
+    /// Source of the user identifier when the upload is from Store Sales,
+    /// ConversionUploadService, or ConversionAdjustmentUploadService.
+    #[prost(
+        enumeration = "super::enums::user_identifier_source_enum::UserIdentifierSource",
+        tag = "6"
+    )]
+    pub user_identifier_source: i32,
+    /// Exactly one must be specified. For OfflineUserDataJobService, Customer
+    /// Match accepts hashed_email, hashed_phone_number, mobile_id,
+    /// third_party_user_id, and address_info; Store Sales accepts hashed_email,
+    /// hashed_phone_number, third_party_user_id, and address_info.
+    /// ConversionUploadService accepts hashed_email and hashed_phone_number.
+    /// ConversionAdjustmentUploadService accepts hashed_email,
+    /// hashed_phone_number, and address_info.
+    #[prost(oneof = "user_identifier::Identifier", tags = "7, 8, 9, 10, 5")]
+    pub identifier: ::core::option::Option<user_identifier::Identifier>,
+}
+/// Nested message and enum types in `UserIdentifier`.
+pub mod user_identifier {
+    /// Exactly one must be specified. For OfflineUserDataJobService, Customer
+    /// Match accepts hashed_email, hashed_phone_number, mobile_id,
+    /// third_party_user_id, and address_info; Store Sales accepts hashed_email,
+    /// hashed_phone_number, third_party_user_id, and address_info.
+    /// ConversionUploadService accepts hashed_email and hashed_phone_number.
+    /// ConversionAdjustmentUploadService accepts hashed_email,
+    /// hashed_phone_number, and address_info.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Identifier {
+        /// Hashed email address using SHA-256 hash function after normalization.
+        /// Accepted for Customer Match, Store Sales, ConversionUploadService, and
+        /// ConversionAdjustmentUploadService.
+        #[prost(string, tag = "7")]
+        HashedEmail(::prost::alloc::string::String),
+        /// Hashed phone number using SHA-256 hash function after normalization
+        /// (E164 standard). Accepted for Customer Match, Store Sales,
+        /// ConversionUploadService, and ConversionAdjustmentUploadService.
+        #[prost(string, tag = "8")]
+        HashedPhoneNumber(::prost::alloc::string::String),
+        /// Mobile device ID (advertising ID/IDFA). Accepted only for Customer Match.
+        #[prost(string, tag = "9")]
+        MobileId(::prost::alloc::string::String),
+        /// Advertiser-assigned user ID for Customer Match upload, or
+        /// third-party-assigned user ID for Store Sales. Accepted only for Customer
+        /// Match and Store Sales.
+        #[prost(string, tag = "10")]
+        ThirdPartyUserId(::prost::alloc::string::String),
+        /// Address information. Accepted only for Customer Match, Store Sales, and
+        /// ConversionAdjustmentUploadService.
+        #[prost(message, tag = "5")]
+        AddressInfo(super::OfflineUserAddressInfo),
+    }
+}
+/// Attribute of the store sales transaction.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TransactionAttribute {
+    /// Timestamp when transaction occurred. Required.
+    /// The format is "YYYY-MM-DD HH:MM:SS\[+/-HH:MM\]", where \[+/-HH:MM\] is an
+    /// optional timezone offset from UTC. If the offset is absent, the API will
+    /// use the account's timezone as default.
+    /// Examples: "2018-03-05 09:15:00" or "2018-02-01 14:34:30+03:00"
+    #[prost(string, optional, tag = "8")]
+    pub transaction_date_time: ::core::option::Option<::prost::alloc::string::String>,
+    /// Transaction amount in micros. Required.
+    /// Transaction amount in micros needs to be greater than 1000.
+    /// If item Attributes are provided, it represents the total value of the
+    /// items, after multiplying the unit price per item by the quantity provided
+    /// in the ItemAttributes.
+    #[prost(double, optional, tag = "9")]
+    pub transaction_amount_micros: ::core::option::Option<f64>,
+    /// Transaction currency code. ISO 4217 three-letter code is used. Required.
+    #[prost(string, optional, tag = "10")]
+    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+    /// The resource name of conversion action to report conversions to.
+    /// Required.
+    #[prost(string, optional, tag = "11")]
+    pub conversion_action: ::core::option::Option<::prost::alloc::string::String>,
+    /// Transaction order id.
+    /// Accessible only to customers on the allow-list.
+    #[prost(string, optional, tag = "12")]
+    pub order_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// Store attributes of the transaction.
+    /// Accessible only to customers on the allow-list.
+    #[prost(message, optional, tag = "6")]
+    pub store_attribute: ::core::option::Option<StoreAttribute>,
+    /// Value of the custom variable for each transaction.
+    /// Accessible only to customers on the allow-list.
+    #[prost(string, optional, tag = "13")]
+    pub custom_value: ::core::option::Option<::prost::alloc::string::String>,
+    /// Item attributes of the transaction.
+    #[prost(message, optional, tag = "14")]
+    pub item_attribute: ::core::option::Option<ItemAttribute>,
+}
+/// Store attributes of the transaction.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StoreAttribute {
+    /// Store code from
+    /// <https://support.google.com/business/answer/3370250#storecode>
+    #[prost(string, optional, tag = "2")]
+    pub store_code: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Item attributes of the transaction.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ItemAttribute {
+    /// A unique identifier of a product. It can be either the Merchant Center Item
+    /// ID or GTIN (Global Trade Item Number).
+    #[prost(string, tag = "1")]
+    pub item_id: ::prost::alloc::string::String,
+    /// ID of the Merchant Center Account.
+    #[prost(int64, optional, tag = "2")]
+    pub merchant_id: ::core::option::Option<i64>,
+    /// Common Locale Data Repository (CLDR) territory code of the country
+    /// associated with the feed where your items are uploaded. See
+    /// <https://developers.google.com/google-ads/api/reference/data/codes-formats#country-codes>
+    /// for more information.
+    #[prost(string, tag = "3")]
+    pub country_code: ::prost::alloc::string::String,
+    /// ISO 639-1 code of the language associated with the feed where your items
+    /// are uploaded
+    #[prost(string, tag = "4")]
+    pub language_code: ::prost::alloc::string::String,
+    /// The number of items sold. Defaults to 1 if not set.
+    #[prost(int64, tag = "5")]
+    pub quantity: i64,
+}
+/// User data holding user identifiers and attributes.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserData {
+    /// User identification info. Required.
+    #[prost(message, repeated, tag = "1")]
+    pub user_identifiers: ::prost::alloc::vec::Vec<UserIdentifier>,
+    /// Additional transactions/attributes associated with the user.
+    /// Required when updating store sales data.
+    #[prost(message, optional, tag = "2")]
+    pub transaction_attribute: ::core::option::Option<TransactionAttribute>,
+    /// Additional attributes associated with the user. Required when updating
+    /// customer match attributes. These have an expiration of 540 days.
+    #[prost(message, optional, tag = "3")]
+    pub user_attribute: ::core::option::Option<UserAttribute>,
+    /// The consent setting for the user. Customer match will ignore this field
+    /// and return a warning.
+    #[prost(message, optional, tag = "4")]
+    pub consent: ::core::option::Option<Consent>,
+}
+/// User attribute, can only be used with CUSTOMER_MATCH_WITH_ATTRIBUTES job
+/// type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserAttribute {
+    /// Advertiser defined lifetime value for the user.
+    #[prost(int64, optional, tag = "1")]
+    pub lifetime_value_micros: ::core::option::Option<i64>,
+    /// Advertiser defined lifetime value bucket for the user. The valid range for
+    /// a lifetime value bucket is from 1 (low) to 10 (high), except for remove
+    /// operation where 0 will also be accepted.
+    #[prost(int32, optional, tag = "2")]
+    pub lifetime_value_bucket: ::core::option::Option<i32>,
+    /// Timestamp of the last purchase made by the user.
+    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
+    /// optional timezone offset from UTC. If the offset is absent, the API will
+    /// use the account's timezone as default.
+    #[prost(string, tag = "3")]
+    pub last_purchase_date_time: ::prost::alloc::string::String,
+    /// Advertiser defined average number of purchases that are made by the user in
+    /// a 30 day period.
+    #[prost(int32, tag = "4")]
+    pub average_purchase_count: i32,
+    /// Advertiser defined average purchase value in micros for the user.
+    #[prost(int64, tag = "5")]
+    pub average_purchase_value_micros: i64,
+    /// Timestamp when the user was acquired.
+    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
+    /// optional timezone offset from UTC. If the offset is absent, the API will
+    /// use the account's timezone as default.
+    #[prost(string, tag = "6")]
+    pub acquisition_date_time: ::prost::alloc::string::String,
+    /// The shopping loyalty related data. Shopping utilizes this data to provide
+    /// users with a better experience. Accessible only to merchants on the
+    /// allow-list with the user's consent.
+    #[prost(message, optional, tag = "7")]
+    pub shopping_loyalty: ::core::option::Option<ShoppingLoyalty>,
+    /// Optional. Advertiser defined lifecycle stage for the user. The accepted
+    /// values are "Lead", "Active" and "Churned".
+    #[prost(string, tag = "8")]
+    pub lifecycle_stage: ::prost::alloc::string::String,
+    /// Optional. Timestamp of the first purchase made by the user.
+    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
+    /// optional timezone offset from UTC. If the offset is absent, the API will
+    /// use the account's timezone as default.
+    #[prost(string, tag = "9")]
+    pub first_purchase_date_time: ::prost::alloc::string::String,
+    /// Optional. Advertiser defined events and their attributes. All the values in
+    /// the nested fields are required. Currently this field is in beta.
+    #[prost(message, repeated, tag = "10")]
+    pub event_attribute: ::prost::alloc::vec::Vec<EventAttribute>,
+}
+/// Advertiser defined events and their attributes. All the values in the
+/// nested fields are required.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventAttribute {
+    /// Required. Advertiser defined event to be used for remarketing. The accepted
+    /// values are "Viewed", "Cart", "Purchased" and "Recommended".
+    #[prost(string, tag = "1")]
+    pub event: ::prost::alloc::string::String,
+    /// Required. Timestamp at which the event happened.
+    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
+    /// optional timezone offset from UTC. If the offset is absent, the API will
+    /// use the account's timezone as default.
+    #[prost(string, tag = "2")]
+    pub event_date_time: ::prost::alloc::string::String,
+    /// Required. Item attributes of the event.
+    #[prost(message, repeated, tag = "3")]
+    pub item_attribute: ::prost::alloc::vec::Vec<EventItemAttribute>,
+}
+/// Event Item attributes of the Customer Match.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventItemAttribute {
+    /// Optional. A unique identifier of a product. It can be either the Merchant
+    /// Center Item ID or GTIN (Global Trade Item Number).
+    #[prost(string, tag = "1")]
+    pub item_id: ::prost::alloc::string::String,
+}
+/// The shopping loyalty related data. Shopping utilizes this data to provide
+/// users with a better experience.
+/// Accessible only to merchants on the allow-list.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ShoppingLoyalty {
+    /// The membership tier. It is a free-form string as each merchant may have
+    /// their own loyalty system. For example, it could be a number from 1 to 10,
+    /// or a string such as "Golden" or "Silver", or even empty string "".
+    #[prost(string, optional, tag = "1")]
+    pub loyalty_tier: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Metadata for customer match user list.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomerMatchUserListMetadata {
+    /// The resource name of remarketing list to update data.
+    /// Required for job of CUSTOMER_MATCH_USER_LIST type.
+    #[prost(string, optional, tag = "2")]
+    pub user_list: ::core::option::Option<::prost::alloc::string::String>,
+    /// The consent setting for all the users in this job.
+    #[prost(message, optional, tag = "3")]
+    pub consent: ::core::option::Option<Consent>,
+}
+/// Metadata for Store Sales Direct.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StoreSalesMetadata {
+    /// This is the fraction of all transactions that are identifiable (for
+    /// example, associated with any form of customer information). Required. The
+    /// fraction needs to be between 0 and 1 (excluding 0).
+    #[prost(double, optional, tag = "5")]
+    pub loyalty_fraction: ::core::option::Option<f64>,
+    /// This is the ratio of sales being uploaded compared to the overall sales
+    /// that can be associated with a customer. Required.
+    /// The fraction needs to be between 0 and 1 (excluding 0). For example, if you
+    /// upload half the sales that you are able to associate with a customer, this
+    /// would be 0.5.
+    #[prost(double, optional, tag = "6")]
+    pub transaction_upload_fraction: ::core::option::Option<f64>,
+    /// Name of the store sales custom variable key. A predefined key that
+    /// can be applied to the transaction and then later used for custom
+    /// segmentation in reporting.
+    /// Accessible only to customers on the allow-list.
+    #[prost(string, optional, tag = "7")]
+    pub custom_key: ::core::option::Option<::prost::alloc::string::String>,
+    /// Metadata for a third party Store Sales upload.
+    #[prost(message, optional, tag = "3")]
+    pub third_party_metadata: ::core::option::Option<StoreSalesThirdPartyMetadata>,
+}
+/// Metadata for a third party Store Sales.
+/// This product is only for customers on the allow-list. Contact your
+/// Google business development representative for details on the upload
+/// configuration.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StoreSalesThirdPartyMetadata {
+    /// Time the advertiser uploaded the data to the partner. Required.
+    /// The format is "YYYY-MM-DD HH:MM:SS".
+    /// Examples: "2018-03-05 09:15:00" or "2018-02-01 14:34:30"
+    #[prost(string, optional, tag = "7")]
+    pub advertiser_upload_date_time: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+    /// The fraction of transactions that are valid. Invalid transactions may
+    /// include invalid formats or values.
+    /// Required.
+    /// The fraction needs to be between 0 and 1 (excluding 0).
+    #[prost(double, optional, tag = "8")]
+    pub valid_transaction_fraction: ::core::option::Option<f64>,
+    /// The fraction of valid transactions that are matched to a third party
+    /// assigned user ID on the partner side.
+    /// Required.
+    /// The fraction needs to be between 0 and 1 (excluding 0).
+    #[prost(double, optional, tag = "9")]
+    pub partner_match_fraction: ::core::option::Option<f64>,
+    /// The fraction of valid transactions that are uploaded by the partner to
+    /// Google.
+    /// Required.
+    /// The fraction needs to be between 0 and 1 (excluding 0).
+    #[prost(double, optional, tag = "10")]
+    pub partner_upload_fraction: ::core::option::Option<f64>,
+    /// Version of partner IDs to be used for uploads. Required.
+    #[prost(string, optional, tag = "11")]
+    pub bridge_map_version_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// ID of the third party partner updating the transaction feed.
+    #[prost(int64, optional, tag = "12")]
+    pub partner_id: ::core::option::Option<i64>,
+}
+/// A metric goal for an experiment.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MetricGoal {
+    /// The metric of the goal. For example, clicks, impressions, cost,
+    /// conversions, etc.
+    #[prost(
+        enumeration = "super::enums::experiment_metric_enum::ExperimentMetric",
+        tag = "1"
+    )]
+    pub metric: i32,
+    /// The metric direction of the goal. For example, increase, decrease, no
+    /// change.
+    #[prost(
+        enumeration = "super::enums::experiment_metric_direction_enum::ExperimentMetricDirection",
+        tag = "2"
+    )]
+    pub direction: i32,
+}
+/// Settings for the targeting-related features, at the campaign and ad group
+/// levels. For more details about the targeting setting, visit
+/// <https://support.google.com/google-ads/answer/7365594>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TargetingSetting {
+    /// The per-targeting-dimension setting to restrict the reach of your campaign
+    /// or ad group.
+    #[prost(message, repeated, tag = "1")]
+    pub target_restrictions: ::prost::alloc::vec::Vec<TargetRestriction>,
+    /// The list of operations changing the target restrictions.
+    ///
+    /// Adding a target restriction with a targeting dimension that already exists
+    /// causes the existing target restriction to be replaced with the new value.
+    #[prost(message, repeated, tag = "2")]
+    pub target_restriction_operations: ::prost::alloc::vec::Vec<
+        TargetRestrictionOperation,
+    >,
+}
+/// The list of per-targeting-dimension targeting settings.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetRestriction {
+    /// The targeting dimension that these settings apply to.
+    #[prost(
+        enumeration = "super::enums::targeting_dimension_enum::TargetingDimension",
+        tag = "1"
+    )]
+    pub targeting_dimension: i32,
+    /// Indicates whether to restrict your ads to show only for the criteria you
+    /// have selected for this targeting_dimension, or to target all values for
+    /// this targeting_dimension and show ads based on your targeting in other
+    /// TargetingDimensions. A value of `true` means that these criteria will only
+    /// apply bid modifiers, and not affect targeting. A value of `false` means
+    /// that these criteria will restrict targeting as well as applying bid
+    /// modifiers.
+    #[prost(bool, optional, tag = "3")]
+    pub bid_only: ::core::option::Option<bool>,
+}
+/// Operation to be performed on a target restriction list in a mutate.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TargetRestrictionOperation {
+    /// Type of list operation to perform.
+    #[prost(enumeration = "target_restriction_operation::Operator", tag = "1")]
+    pub operator: i32,
+    /// The target restriction being added to or removed from the list.
+    #[prost(message, optional, tag = "2")]
+    pub value: ::core::option::Option<TargetRestriction>,
+}
+/// Nested message and enum types in `TargetRestrictionOperation`.
+pub mod target_restriction_operation {
+    /// The operator.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Operator {
+        /// Unspecified.
+        Unspecified = 0,
+        /// Used for return value only. Represents value unknown in this version.
+        Unknown = 1,
+        /// Add the restriction to the existing restrictions.
+        Add = 2,
+        /// Remove the restriction from the existing restrictions.
+        Remove = 3,
+    }
+    impl Operator {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Operator::Unspecified => "UNSPECIFIED",
+                Operator::Unknown => "UNKNOWN",
+                Operator::Add => "ADD",
+                Operator::Remove => "REMOVE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "ADD" => Some(Self::Add),
+                "REMOVE" => Some(Self::Remove),
+                _ => None,
+            }
+        }
+    }
 }
 /// A YouTube asset.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2723,2527 +5631,6 @@ pub struct HotelPropertyAsset {
     #[prost(string, tag = "3")]
     pub hotel_name: ::prost::alloc::string::String,
 }
-/// Matching function associated with a
-/// CustomerFeed, CampaignFeed, or AdGroupFeed. The matching function is used
-/// to filter the set of feed items selected.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MatchingFunction {
-    /// String representation of the Function.
-    ///
-    /// Examples:
-    ///
-    /// 1. IDENTITY(true) or IDENTITY(false). All or no feed items served.
-    /// 1. EQUALS(CONTEXT.DEVICE,"Mobile")
-    /// 1. IN(FEED_ITEM_ID,{1000001,1000002,1000003})
-    /// 1. CONTAINS_ANY(FeedAttribute\[12345678,0\],{"Mars cruise","Venus cruise"})
-    /// 1. AND(IN(FEED_ITEM_ID,{10001,10002}),EQUALS(CONTEXT.DEVICE,"Mobile"))
-    ///
-    /// For more details, visit
-    /// <https://developers.google.com/google-ads/api/docs/extensions/feeds/matching-functions>
-    ///
-    /// Note that because multiple strings may represent the same underlying
-    /// function (whitespace and single versus double quotation marks, for
-    /// example), the value returned may not be identical to the string sent in a
-    /// mutate request.
-    #[prost(string, optional, tag = "5")]
-    pub function_string: ::core::option::Option<::prost::alloc::string::String>,
-    /// Operator for a function.
-    #[prost(
-        enumeration = "super::enums::matching_function_operator_enum::MatchingFunctionOperator",
-        tag = "4"
-    )]
-    pub operator: i32,
-    /// The operands on the left hand side of the equation. This is also the
-    /// operand to be used for single operand expressions such as NOT.
-    #[prost(message, repeated, tag = "2")]
-    pub left_operands: ::prost::alloc::vec::Vec<Operand>,
-    /// The operands on the right hand side of the equation.
-    #[prost(message, repeated, tag = "3")]
-    pub right_operands: ::prost::alloc::vec::Vec<Operand>,
-}
-/// An operand in a matching function.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Operand {
-    /// Different operands that can be used in a matching function. Required.
-    #[prost(oneof = "operand::FunctionArgumentOperand", tags = "1, 2, 3, 4")]
-    pub function_argument_operand: ::core::option::Option<
-        operand::FunctionArgumentOperand,
-    >,
-}
-/// Nested message and enum types in `Operand`.
-pub mod operand {
-    /// A constant operand in a matching function.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ConstantOperand {
-        /// Constant operand values. Required.
-        #[prost(oneof = "constant_operand::ConstantOperandValue", tags = "5, 6, 7, 8")]
-        pub constant_operand_value: ::core::option::Option<
-            constant_operand::ConstantOperandValue,
-        >,
-    }
-    /// Nested message and enum types in `ConstantOperand`.
-    pub mod constant_operand {
-        /// Constant operand values. Required.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum ConstantOperandValue {
-            /// String value of the operand if it is a string type.
-            #[prost(string, tag = "5")]
-            StringValue(::prost::alloc::string::String),
-            /// Int64 value of the operand if it is a int64 type.
-            #[prost(int64, tag = "6")]
-            LongValue(i64),
-            /// Boolean value of the operand if it is a boolean type.
-            #[prost(bool, tag = "7")]
-            BooleanValue(bool),
-            /// Double value of the operand if it is a double type.
-            #[prost(double, tag = "8")]
-            DoubleValue(f64),
-        }
-    }
-    /// A feed attribute operand in a matching function.
-    /// Used to represent a feed attribute in feed.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct FeedAttributeOperand {
-        /// The associated feed. Required.
-        #[prost(int64, optional, tag = "3")]
-        pub feed_id: ::core::option::Option<i64>,
-        /// Id of the referenced feed attribute. Required.
-        #[prost(int64, optional, tag = "4")]
-        pub feed_attribute_id: ::core::option::Option<i64>,
-    }
-    /// A function operand in a matching function.
-    /// Used to represent nested functions.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FunctionOperand {
-        /// The matching function held in this operand.
-        #[prost(message, optional, tag = "1")]
-        pub matching_function: ::core::option::Option<super::MatchingFunction>,
-    }
-    /// An operand in a function referring to a value in the request context.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct RequestContextOperand {
-        /// Type of value to be referred in the request context.
-        #[prost(
-            enumeration = "super::super::enums::matching_function_context_type_enum::MatchingFunctionContextType",
-            tag = "1"
-        )]
-        pub context_type: i32,
-    }
-    /// Different operands that can be used in a matching function. Required.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum FunctionArgumentOperand {
-        /// A constant operand in a matching function.
-        #[prost(message, tag = "1")]
-        ConstantOperand(ConstantOperand),
-        /// This operand specifies a feed attribute in feed.
-        #[prost(message, tag = "2")]
-        FeedAttributeOperand(FeedAttributeOperand),
-        /// A function operand in a matching function.
-        /// Used to represent nested functions.
-        #[prost(message, tag = "3")]
-        FunctionOperand(FunctionOperand),
-        /// An operand in a function referring to a value in the request context.
-        #[prost(message, tag = "4")]
-        RequestContextOperand(RequestContextOperand),
-    }
-}
-/// A date range.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DateRange {
-    /// The start date, in yyyy-mm-dd format. This date is inclusive.
-    #[prost(string, optional, tag = "3")]
-    pub start_date: ::core::option::Option<::prost::alloc::string::String>,
-    /// The end date, in yyyy-mm-dd format. This date is inclusive.
-    #[prost(string, optional, tag = "4")]
-    pub end_date: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// The year month range inclusive of the start and end months.
-/// Eg: A year month range to represent Jan 2020 would be: (Jan 2020, Jan 2020).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct YearMonthRange {
-    /// The inclusive start year month.
-    #[prost(message, optional, tag = "1")]
-    pub start: ::core::option::Option<YearMonth>,
-    /// The inclusive end year month.
-    #[prost(message, optional, tag = "2")]
-    pub end: ::core::option::Option<YearMonth>,
-}
-/// Year month.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct YearMonth {
-    /// The year (for example, 2020).
-    #[prost(int64, tag = "1")]
-    pub year: i64,
-    /// The month of the year. (for example, FEBRUARY).
-    #[prost(enumeration = "super::enums::month_of_year_enum::MonthOfYear", tag = "2")]
-    pub month: i32,
-}
-/// Contains the usage information of the asset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AssetUsage {
-    /// Resource name of the asset.
-    #[prost(string, tag = "1")]
-    pub asset: ::prost::alloc::string::String,
-    /// The served field type of the asset.
-    #[prost(
-        enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType",
-        tag = "2"
-    )]
-    pub served_asset_field_type: i32,
-}
-/// A container for simulation points for simulations of type CPC_BID.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CpcBidSimulationPointList {
-    /// Projected metrics for a series of CPC bid amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<CpcBidSimulationPoint>,
-}
-/// A container for simulation points for simulations of type CPV_BID.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CpvBidSimulationPointList {
-    /// Projected metrics for a series of CPV bid amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<CpvBidSimulationPoint>,
-}
-/// A container for simulation points for simulations of type TARGET_CPA.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TargetCpaSimulationPointList {
-    /// Projected metrics for a series of target CPA amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<TargetCpaSimulationPoint>,
-}
-/// A container for simulation points for simulations of type TARGET_ROAS.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TargetRoasSimulationPointList {
-    /// Projected metrics for a series of target ROAS amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<TargetRoasSimulationPoint>,
-}
-/// A container for simulation points for simulations of type PERCENT_CPC_BID.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PercentCpcBidSimulationPointList {
-    /// Projected metrics for a series of percent CPC bid amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<PercentCpcBidSimulationPoint>,
-}
-/// A container for simulation points for simulations of type BUDGET.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BudgetSimulationPointList {
-    /// Projected metrics for a series of budget amounts.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<BudgetSimulationPoint>,
-}
-/// A container for simulation points for simulations of type
-/// TARGET_IMPRESSION_SHARE.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TargetImpressionShareSimulationPointList {
-    /// Projected metrics for a specific target impression share value.
-    #[prost(message, repeated, tag = "1")]
-    pub points: ::prost::alloc::vec::Vec<TargetImpressionShareSimulationPoint>,
-}
-/// Projected metrics for a specific CPC bid amount.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct CpcBidSimulationPoint {
-    /// Projected required daily budget that the advertiser must set in order to
-    /// receive the estimated traffic, in micros of advertiser currency.
-    #[prost(int64, tag = "17")]
-    pub required_budget_amount_micros: i64,
-    /// Projected number of biddable conversions.
-    #[prost(double, optional, tag = "9")]
-    pub biddable_conversions: ::core::option::Option<f64>,
-    /// Projected total value of biddable conversions.
-    #[prost(double, optional, tag = "10")]
-    pub biddable_conversions_value: ::core::option::Option<f64>,
-    /// Projected number of clicks.
-    #[prost(int64, optional, tag = "11")]
-    pub clicks: ::core::option::Option<i64>,
-    /// Projected cost in micros.
-    #[prost(int64, optional, tag = "12")]
-    pub cost_micros: ::core::option::Option<i64>,
-    /// Projected number of impressions.
-    #[prost(int64, optional, tag = "13")]
-    pub impressions: ::core::option::Option<i64>,
-    /// Projected number of top slot impressions.
-    /// Only search advertising channel type supports this field.
-    #[prost(int64, optional, tag = "14")]
-    pub top_slot_impressions: ::core::option::Option<i64>,
-    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
-    /// cpc_bid_micros is set.
-    /// When SimulationModificationMethod = SCALING,
-    /// cpc_bid_scaling_modifier is set.
-    #[prost(oneof = "cpc_bid_simulation_point::CpcSimulationKeyValue", tags = "15, 16")]
-    pub cpc_simulation_key_value: ::core::option::Option<
-        cpc_bid_simulation_point::CpcSimulationKeyValue,
-    >,
-}
-/// Nested message and enum types in `CpcBidSimulationPoint`.
-pub mod cpc_bid_simulation_point {
-    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
-    /// cpc_bid_micros is set.
-    /// When SimulationModificationMethod = SCALING,
-    /// cpc_bid_scaling_modifier is set.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum CpcSimulationKeyValue {
-        /// The simulated CPC bid upon which projected metrics are based.
-        #[prost(int64, tag = "15")]
-        CpcBidMicros(i64),
-        /// The simulated scaling modifier upon which projected metrics are based.
-        /// All CPC bids relevant to the simulated entity are scaled by this
-        /// modifier.
-        #[prost(double, tag = "16")]
-        CpcBidScalingModifier(f64),
-    }
-}
-/// Projected metrics for a specific CPV bid amount.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct CpvBidSimulationPoint {
-    /// The simulated CPV bid upon which projected metrics are based.
-    #[prost(int64, optional, tag = "5")]
-    pub cpv_bid_micros: ::core::option::Option<i64>,
-    /// Projected cost in micros.
-    #[prost(int64, optional, tag = "6")]
-    pub cost_micros: ::core::option::Option<i64>,
-    /// Projected number of impressions.
-    #[prost(int64, optional, tag = "7")]
-    pub impressions: ::core::option::Option<i64>,
-    /// Projected number of views.
-    #[prost(int64, optional, tag = "8")]
-    pub views: ::core::option::Option<i64>,
-}
-/// Projected metrics for a specific target CPA amount.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetCpaSimulationPoint {
-    /// Projected required daily budget that the advertiser must set in order to
-    /// receive the estimated traffic, in micros of advertiser currency.
-    #[prost(int64, tag = "19")]
-    pub required_budget_amount_micros: i64,
-    /// Projected number of biddable conversions.
-    #[prost(double, optional, tag = "9")]
-    pub biddable_conversions: ::core::option::Option<f64>,
-    /// Projected total value of biddable conversions.
-    #[prost(double, optional, tag = "10")]
-    pub biddable_conversions_value: ::core::option::Option<f64>,
-    /// Projected number of app installs.
-    #[prost(double, tag = "15")]
-    pub app_installs: f64,
-    /// Projected number of in-app actions.
-    #[prost(double, tag = "16")]
-    pub in_app_actions: f64,
-    /// Projected number of clicks.
-    #[prost(int64, optional, tag = "11")]
-    pub clicks: ::core::option::Option<i64>,
-    /// Projected cost in micros.
-    #[prost(int64, optional, tag = "12")]
-    pub cost_micros: ::core::option::Option<i64>,
-    /// Projected number of impressions.
-    #[prost(int64, optional, tag = "13")]
-    pub impressions: ::core::option::Option<i64>,
-    /// Projected number of top slot impressions.
-    /// Only search advertising channel type supports this field.
-    #[prost(int64, optional, tag = "14")]
-    pub top_slot_impressions: ::core::option::Option<i64>,
-    /// Projected number of interactions.
-    /// Only discovery advertising channel type supports this field.
-    #[prost(int64, optional, tag = "20")]
-    pub interactions: ::core::option::Option<i64>,
-    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
-    /// target_cpa_micros is set.
-    /// When SimulationModificationMethod = SCALING,
-    /// target_cpa_scaling_modifier is set.
-    #[prost(
-        oneof = "target_cpa_simulation_point::TargetCpaSimulationKeyValue",
-        tags = "17, 18"
-    )]
-    pub target_cpa_simulation_key_value: ::core::option::Option<
-        target_cpa_simulation_point::TargetCpaSimulationKeyValue,
-    >,
-}
-/// Nested message and enum types in `TargetCpaSimulationPoint`.
-pub mod target_cpa_simulation_point {
-    /// When SimulationModificationMethod = UNIFORM or DEFAULT,
-    /// target_cpa_micros is set.
-    /// When SimulationModificationMethod = SCALING,
-    /// target_cpa_scaling_modifier is set.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum TargetCpaSimulationKeyValue {
-        /// The simulated target CPA upon which projected metrics are based.
-        #[prost(int64, tag = "17")]
-        TargetCpaMicros(i64),
-        /// The simulated scaling modifier upon which projected metrics are based.
-        /// All CPA targets relevant to the simulated entity are scaled by this
-        /// modifier.
-        #[prost(double, tag = "18")]
-        TargetCpaScalingModifier(f64),
-    }
-}
-/// Projected metrics for a specific target ROAS amount.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetRoasSimulationPoint {
-    /// The simulated target ROAS upon which projected metrics are based.
-    #[prost(double, optional, tag = "8")]
-    pub target_roas: ::core::option::Option<f64>,
-    /// Projected required daily budget that the advertiser must set in order to
-    /// receive the estimated traffic, in micros of advertiser currency.
-    #[prost(int64, tag = "15")]
-    pub required_budget_amount_micros: i64,
-    /// Projected number of biddable conversions.
-    #[prost(double, optional, tag = "9")]
-    pub biddable_conversions: ::core::option::Option<f64>,
-    /// Projected total value of biddable conversions.
-    #[prost(double, optional, tag = "10")]
-    pub biddable_conversions_value: ::core::option::Option<f64>,
-    /// Projected number of clicks.
-    #[prost(int64, optional, tag = "11")]
-    pub clicks: ::core::option::Option<i64>,
-    /// Projected cost in micros.
-    #[prost(int64, optional, tag = "12")]
-    pub cost_micros: ::core::option::Option<i64>,
-    /// Projected number of impressions.
-    #[prost(int64, optional, tag = "13")]
-    pub impressions: ::core::option::Option<i64>,
-    /// Projected number of top slot impressions.
-    /// Only Search advertising channel type supports this field.
-    #[prost(int64, optional, tag = "14")]
-    pub top_slot_impressions: ::core::option::Option<i64>,
-}
-/// Projected metrics for a specific percent CPC amount. Only Hotel advertising
-/// channel type supports this field.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PercentCpcBidSimulationPoint {
-    /// The simulated percent CPC upon which projected metrics are based. Percent
-    /// CPC expressed as fraction of the advertised price for some good or service.
-    /// The value stored here is 1,000,000 * \[fraction\].
-    #[prost(int64, optional, tag = "1")]
-    pub percent_cpc_bid_micros: ::core::option::Option<i64>,
-    /// Projected number of biddable conversions.
-    #[prost(double, optional, tag = "2")]
-    pub biddable_conversions: ::core::option::Option<f64>,
-    /// Projected total value of biddable conversions in local currency.
-    #[prost(double, optional, tag = "3")]
-    pub biddable_conversions_value: ::core::option::Option<f64>,
-    /// Projected number of clicks.
-    #[prost(int64, optional, tag = "4")]
-    pub clicks: ::core::option::Option<i64>,
-    /// Projected cost in micros.
-    #[prost(int64, optional, tag = "5")]
-    pub cost_micros: ::core::option::Option<i64>,
-    /// Projected number of impressions.
-    #[prost(int64, optional, tag = "6")]
-    pub impressions: ::core::option::Option<i64>,
-    /// Projected number of top slot impressions.
-    #[prost(int64, optional, tag = "7")]
-    pub top_slot_impressions: ::core::option::Option<i64>,
-}
-/// Projected metrics for a specific budget amount.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BudgetSimulationPoint {
-    /// The simulated budget upon which projected metrics are based.
-    #[prost(int64, tag = "1")]
-    pub budget_amount_micros: i64,
-    /// Projected required daily cpc bid ceiling that the advertiser must set to
-    /// realize this simulation, in micros of the advertiser currency.
-    /// Only campaigns with the Target Spend bidding strategy support this field.
-    #[prost(int64, tag = "2")]
-    pub required_cpc_bid_ceiling_micros: i64,
-    /// Projected number of biddable conversions.
-    #[prost(double, tag = "3")]
-    pub biddable_conversions: f64,
-    /// Projected total value of biddable conversions.
-    #[prost(double, tag = "4")]
-    pub biddable_conversions_value: f64,
-    /// Projected number of clicks.
-    #[prost(int64, tag = "5")]
-    pub clicks: i64,
-    /// Projected cost in micros.
-    #[prost(int64, tag = "6")]
-    pub cost_micros: i64,
-    /// Projected number of impressions.
-    #[prost(int64, tag = "7")]
-    pub impressions: i64,
-    /// Projected number of top slot impressions.
-    /// Only search advertising channel type supports this field.
-    #[prost(int64, tag = "8")]
-    pub top_slot_impressions: i64,
-    /// Projected number of interactions.
-    /// Only discovery advertising channel type supports this field.
-    #[prost(int64, tag = "9")]
-    pub interactions: i64,
-}
-/// Projected metrics for a specific target impression share value.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetImpressionShareSimulationPoint {
-    /// The simulated target impression share value (in micros) upon which
-    /// projected metrics are based.
-    /// For example, 10% impression share, which is equal to 0.1, is stored as
-    /// 100_000. This value is validated and will not exceed 1M (100%).
-    #[prost(int64, tag = "1")]
-    pub target_impression_share_micros: i64,
-    /// Projected required daily cpc bid ceiling that the advertiser must set to
-    /// realize this simulation, in micros of the advertiser currency.
-    #[prost(int64, tag = "2")]
-    pub required_cpc_bid_ceiling_micros: i64,
-    /// Projected required daily budget that the advertiser must set in order to
-    /// receive the estimated traffic, in micros of advertiser currency.
-    #[prost(int64, tag = "3")]
-    pub required_budget_amount_micros: i64,
-    /// Projected number of biddable conversions.
-    #[prost(double, tag = "4")]
-    pub biddable_conversions: f64,
-    /// Projected total value of biddable conversions.
-    #[prost(double, tag = "5")]
-    pub biddable_conversions_value: f64,
-    /// Projected number of clicks.
-    #[prost(int64, tag = "6")]
-    pub clicks: i64,
-    /// Projected cost in micros.
-    #[prost(int64, tag = "7")]
-    pub cost_micros: i64,
-    /// Projected number of impressions.
-    #[prost(int64, tag = "8")]
-    pub impressions: i64,
-    /// Projected number of top slot impressions.
-    /// Only search advertising channel type supports this field.
-    #[prost(int64, tag = "9")]
-    pub top_slot_impressions: i64,
-    /// Projected number of absolute top impressions.
-    /// Only search advertising channel type supports this field.
-    #[prost(int64, tag = "10")]
-    pub absolute_top_impressions: i64,
-}
-/// A text asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdTextAsset {
-    /// Asset text.
-    #[prost(string, optional, tag = "4")]
-    pub text: ::core::option::Option<::prost::alloc::string::String>,
-    /// The pinned field of the asset. This restricts the asset to only serve
-    /// within this field. Multiple assets can be pinned to the same field. An
-    /// asset that is unpinned or pinned to a different field will not serve in a
-    /// field where some other asset has been pinned.
-    #[prost(
-        enumeration = "super::enums::served_asset_field_type_enum::ServedAssetFieldType",
-        tag = "2"
-    )]
-    pub pinned_field: i32,
-    /// The performance label of this text asset.
-    #[prost(
-        enumeration = "super::enums::asset_performance_label_enum::AssetPerformanceLabel",
-        tag = "5"
-    )]
-    pub asset_performance_label: i32,
-    /// The policy summary of this text asset.
-    #[prost(message, optional, tag = "6")]
-    pub policy_summary_info: ::core::option::Option<AdAssetPolicySummary>,
-}
-/// An image asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdImageAsset {
-    /// The Asset resource name of this image.
-    #[prost(string, optional, tag = "2")]
-    pub asset: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A video asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdVideoAsset {
-    /// The Asset resource name of this video.
-    #[prost(string, optional, tag = "2")]
-    pub asset: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A media bundle asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdMediaBundleAsset {
-    /// The Asset resource name of this media bundle.
-    #[prost(string, optional, tag = "2")]
-    pub asset: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A discovery carousel card asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdDiscoveryCarouselCardAsset {
-    /// The Asset resource name of this discovery carousel card.
-    #[prost(string, optional, tag = "1")]
-    pub asset: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A call to action asset used inside an ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdCallToActionAsset {
-    /// The Asset resource name of this call to action asset.
-    #[prost(string, optional, tag = "1")]
-    pub asset: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A text ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TextAdInfo {
-    /// The headline of the ad.
-    #[prost(string, optional, tag = "4")]
-    pub headline: ::core::option::Option<::prost::alloc::string::String>,
-    /// The first line of the ad's description.
-    #[prost(string, optional, tag = "5")]
-    pub description1: ::core::option::Option<::prost::alloc::string::String>,
-    /// The second line of the ad's description.
-    #[prost(string, optional, tag = "6")]
-    pub description2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// An expanded text ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExpandedTextAdInfo {
-    /// The first part of the ad's headline.
-    #[prost(string, optional, tag = "8")]
-    pub headline_part1: ::core::option::Option<::prost::alloc::string::String>,
-    /// The second part of the ad's headline.
-    #[prost(string, optional, tag = "9")]
-    pub headline_part2: ::core::option::Option<::prost::alloc::string::String>,
-    /// The third part of the ad's headline.
-    #[prost(string, optional, tag = "10")]
-    pub headline_part3: ::core::option::Option<::prost::alloc::string::String>,
-    /// The description of the ad.
-    #[prost(string, optional, tag = "11")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    /// The second description of the ad.
-    #[prost(string, optional, tag = "12")]
-    pub description2: ::core::option::Option<::prost::alloc::string::String>,
-    /// The text that can appear alongside the ad's displayed URL.
-    #[prost(string, optional, tag = "13")]
-    pub path1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Additional text that can appear alongside the ad's displayed URL.
-    #[prost(string, optional, tag = "14")]
-    pub path2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// An expanded dynamic search ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExpandedDynamicSearchAdInfo {
-    /// The description of the ad.
-    #[prost(string, optional, tag = "3")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    /// The second description of the ad.
-    #[prost(string, optional, tag = "4")]
-    pub description2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A hotel ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct HotelAdInfo {}
-/// A travel ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TravelAdInfo {}
-/// A Smart Shopping ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ShoppingSmartAdInfo {}
-/// A standard Shopping ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ShoppingProductAdInfo {}
-/// A Shopping Comparison Listing ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ShoppingComparisonListingAdInfo {
-    /// Headline of the ad. This field is required. Allowed length is between 25
-    /// and 45 characters.
-    #[prost(string, optional, tag = "2")]
-    pub headline: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// An image ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImageAdInfo {
-    /// Width in pixels of the full size image.
-    #[prost(int64, optional, tag = "15")]
-    pub pixel_width: ::core::option::Option<i64>,
-    /// Height in pixels of the full size image.
-    #[prost(int64, optional, tag = "16")]
-    pub pixel_height: ::core::option::Option<i64>,
-    /// URL of the full size image.
-    #[prost(string, optional, tag = "17")]
-    pub image_url: ::core::option::Option<::prost::alloc::string::String>,
-    /// Width in pixels of the preview size image.
-    #[prost(int64, optional, tag = "18")]
-    pub preview_pixel_width: ::core::option::Option<i64>,
-    /// Height in pixels of the preview size image.
-    #[prost(int64, optional, tag = "19")]
-    pub preview_pixel_height: ::core::option::Option<i64>,
-    /// URL of the preview size image.
-    #[prost(string, optional, tag = "20")]
-    pub preview_image_url: ::core::option::Option<::prost::alloc::string::String>,
-    /// The mime type of the image.
-    #[prost(enumeration = "super::enums::mime_type_enum::MimeType", tag = "10")]
-    pub mime_type: i32,
-    /// The name of the image. If the image was created from a MediaFile, this is
-    /// the MediaFile's name. If the image was created from bytes, this is empty.
-    #[prost(string, optional, tag = "21")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    /// The image to create the ImageAd from. This can be specified in one of
-    /// two ways.
-    ///
-    /// 1. An existing MediaFile resource.
-    /// 1. The raw image data as bytes.
-    #[prost(oneof = "image_ad_info::Image", tags = "22, 13, 14")]
-    pub image: ::core::option::Option<image_ad_info::Image>,
-}
-/// Nested message and enum types in `ImageAdInfo`.
-pub mod image_ad_info {
-    /// The image to create the ImageAd from. This can be specified in one of
-    /// two ways.
-    ///
-    /// 1. An existing MediaFile resource.
-    /// 1. The raw image data as bytes.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Image {
-        /// The image assets used for the ad.
-        #[prost(message, tag = "22")]
-        ImageAsset(super::AdImageAsset),
-        /// Raw image data as bytes.
-        #[prost(bytes, tag = "13")]
-        Data(::prost::bytes::Bytes),
-        /// An ad ID to copy the image from.
-        #[prost(int64, tag = "14")]
-        AdIdToCopyImageFrom(i64),
-    }
-}
-/// Representation of video bumper in-stream ad format (very short in-stream
-/// non-skippable video ad).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoBumperInStreamAdInfo {
-    /// The image assets of the companion banner used with the ad.
-    #[prost(message, optional, tag = "3")]
-    pub companion_banner: ::core::option::Option<AdImageAsset>,
-    /// Label on the "Call To Action" button taking the user to the video ad's
-    /// final URL.
-    #[prost(string, tag = "4")]
-    pub action_button_label: ::prost::alloc::string::String,
-    /// Additional text displayed with the CTA (call-to-action) button to give
-    /// context and encourage clicking on the button.
-    #[prost(string, tag = "5")]
-    pub action_headline: ::prost::alloc::string::String,
-}
-/// Representation of video non-skippable in-stream ad format (15 second
-/// in-stream non-skippable video ad).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoNonSkippableInStreamAdInfo {
-    /// The image assets of the companion banner used with the ad.
-    #[prost(message, optional, tag = "5")]
-    pub companion_banner: ::core::option::Option<AdImageAsset>,
-    /// Label on the "Call To Action" button taking the user to the video ad's
-    /// final URL.
-    #[prost(string, tag = "3")]
-    pub action_button_label: ::prost::alloc::string::String,
-    /// Additional text displayed with the "Call To Action" button to give
-    /// context and encourage clicking on the button.
-    #[prost(string, tag = "4")]
-    pub action_headline: ::prost::alloc::string::String,
-}
-/// Representation of video TrueView in-stream ad format (ad shown during video
-/// playback, often at beginning, which displays a skip button a few seconds into
-/// the video).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoTrueViewInStreamAdInfo {
-    /// Label on the CTA (call-to-action) button taking the user to the video ad's
-    /// final URL.
-    /// Required for TrueView for action campaigns, optional otherwise.
-    #[prost(string, tag = "4")]
-    pub action_button_label: ::prost::alloc::string::String,
-    /// Additional text displayed with the CTA (call-to-action) button to give
-    /// context and encourage clicking on the button.
-    #[prost(string, tag = "5")]
-    pub action_headline: ::prost::alloc::string::String,
-    /// The image assets of the companion banner used with the ad.
-    #[prost(message, optional, tag = "7")]
-    pub companion_banner: ::core::option::Option<AdImageAsset>,
-}
-/// Representation of video out-stream ad format (ad shown alongside a feed
-/// with automatic playback, without sound).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoOutstreamAdInfo {
-    /// The headline of the ad.
-    #[prost(string, tag = "3")]
-    pub headline: ::prost::alloc::string::String,
-    /// The description line.
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-}
-/// Representation of In-feed video ad format.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InFeedVideoAdInfo {
-    /// The headline of the ad.
-    #[prost(string, tag = "1")]
-    pub headline: ::prost::alloc::string::String,
-    /// First text line for the ad.
-    #[prost(string, tag = "2")]
-    pub description1: ::prost::alloc::string::String,
-    /// Second text line for the ad.
-    #[prost(string, tag = "3")]
-    pub description2: ::prost::alloc::string::String,
-    /// Video thumbnail image to use.
-    #[prost(
-        enumeration = "super::enums::video_thumbnail_enum::VideoThumbnail",
-        tag = "4"
-    )]
-    pub thumbnail: i32,
-}
-/// A video ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoAdInfo {
-    /// The YouTube video assets used for the ad.
-    #[prost(message, optional, tag = "8")]
-    pub video: ::core::option::Option<AdVideoAsset>,
-    /// Format-specific schema for the different video formats.
-    #[prost(oneof = "video_ad_info::Format", tags = "2, 3, 4, 5, 9")]
-    pub format: ::core::option::Option<video_ad_info::Format>,
-}
-/// Nested message and enum types in `VideoAdInfo`.
-pub mod video_ad_info {
-    /// Format-specific schema for the different video formats.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Format {
-        /// Video TrueView in-stream ad format.
-        #[prost(message, tag = "2")]
-        InStream(super::VideoTrueViewInStreamAdInfo),
-        /// Video bumper in-stream ad format.
-        #[prost(message, tag = "3")]
-        Bumper(super::VideoBumperInStreamAdInfo),
-        /// Video out-stream ad format.
-        #[prost(message, tag = "4")]
-        OutStream(super::VideoOutstreamAdInfo),
-        /// Video non-skippable in-stream ad format.
-        #[prost(message, tag = "5")]
-        NonSkippable(super::VideoNonSkippableInStreamAdInfo),
-        /// In-feed video ad format.
-        #[prost(message, tag = "9")]
-        InFeed(super::InFeedVideoAdInfo),
-    }
-}
-/// A video responsive ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VideoResponsiveAdInfo {
-    /// List of text assets used for the short headline. Currently, only a single
-    /// value for the short headline is supported.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets used for the long headline.
-    /// Currently, only a single value for the long headline is supported.
-    #[prost(message, repeated, tag = "2")]
-    pub long_headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets used for the description.
-    /// Currently, only a single value for the description is supported.
-    #[prost(message, repeated, tag = "3")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets used for the button, for example, the "Call To Action"
-    /// button. Currently, only a single value for the button is supported.
-    #[prost(message, repeated, tag = "4")]
-    pub call_to_actions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of YouTube video assets used for the ad.
-    /// Currently, only a single value for the YouTube video asset is supported.
-    #[prost(message, repeated, tag = "5")]
-    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-    /// List of image assets used for the companion banner.
-    /// Currently, only a single value for the companion banner asset is supported.
-    #[prost(message, repeated, tag = "6")]
-    pub companion_banners: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// First part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "7")]
-    pub breadcrumb1: ::prost::alloc::string::String,
-    /// Second part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "8")]
-    pub breadcrumb2: ::prost::alloc::string::String,
-}
-/// A responsive search ad.
-///
-/// Responsive search ads let you create an ad that adapts to show more text, and
-/// more relevant messages, to your customers. Enter multiple headlines and
-/// descriptions when creating a responsive search ad, and over time, Google Ads
-/// will automatically test different combinations and learn which combinations
-/// perform best. By adapting your ad's content to more closely match potential
-/// customers' search terms, responsive search ads may improve your campaign's
-/// performance.
-///
-/// More information at <https://support.google.com/google-ads/answer/7684791>
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ResponsiveSearchAdInfo {
-    /// List of text assets for headlines. When the ad serves the headlines will
-    /// be selected from this list.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for descriptions. When the ad serves the descriptions
-    /// will be selected from this list.
-    #[prost(message, repeated, tag = "2")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// First part of text that can be appended to the URL in the ad.
-    #[prost(string, optional, tag = "5")]
-    pub path1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Second part of text that can be appended to the URL in the ad. This field
-    /// can only be set when `path1` is also set.
-    #[prost(string, optional, tag = "6")]
-    pub path2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A legacy responsive display ad. Ads of this type are labeled 'Responsive ads'
-/// in the Google Ads UI.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LegacyResponsiveDisplayAdInfo {
-    /// The short version of the ad's headline.
-    #[prost(string, optional, tag = "16")]
-    pub short_headline: ::core::option::Option<::prost::alloc::string::String>,
-    /// The long version of the ad's headline.
-    #[prost(string, optional, tag = "17")]
-    pub long_headline: ::core::option::Option<::prost::alloc::string::String>,
-    /// The description of the ad.
-    #[prost(string, optional, tag = "18")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    /// The business name in the ad.
-    #[prost(string, optional, tag = "19")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Advertiser's consent to allow flexible color. When true, the ad may be
-    /// served with different color if necessary. When false, the ad will be served
-    /// with the specified colors or a neutral color.
-    /// The default value is `true`.
-    /// Must be true if `main_color` and `accent_color` are not set.
-    #[prost(bool, optional, tag = "20")]
-    pub allow_flexible_color: ::core::option::Option<bool>,
-    /// The accent color of the ad in hexadecimal, for example, #ffffff for white.
-    /// If one of `main_color` and `accent_color` is set, the other is required as
-    /// well.
-    #[prost(string, optional, tag = "21")]
-    pub accent_color: ::core::option::Option<::prost::alloc::string::String>,
-    /// The main color of the ad in hexadecimal, for example, #ffffff for white.
-    /// If one of `main_color` and `accent_color` is set, the other is required as
-    /// well.
-    #[prost(string, optional, tag = "22")]
-    pub main_color: ::core::option::Option<::prost::alloc::string::String>,
-    /// The call-to-action text for the ad.
-    #[prost(string, optional, tag = "23")]
-    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// The MediaFile resource name of the logo image used in the ad.
-    #[prost(string, optional, tag = "24")]
-    pub logo_image: ::core::option::Option<::prost::alloc::string::String>,
-    /// The MediaFile resource name of the square logo image used in the ad.
-    #[prost(string, optional, tag = "25")]
-    pub square_logo_image: ::core::option::Option<::prost::alloc::string::String>,
-    /// The MediaFile resource name of the marketing image used in the ad.
-    #[prost(string, optional, tag = "26")]
-    pub marketing_image: ::core::option::Option<::prost::alloc::string::String>,
-    /// The MediaFile resource name of the square marketing image used in the ad.
-    #[prost(string, optional, tag = "27")]
-    pub square_marketing_image: ::core::option::Option<::prost::alloc::string::String>,
-    /// Specifies which format the ad will be served in. Default is ALL_FORMATS.
-    #[prost(
-        enumeration = "super::enums::display_ad_format_setting_enum::DisplayAdFormatSetting",
-        tag = "13"
-    )]
-    pub format_setting: i32,
-    /// Prefix before price. For example, 'as low as'.
-    #[prost(string, optional, tag = "28")]
-    pub price_prefix: ::core::option::Option<::prost::alloc::string::String>,
-    /// Promotion text used for dynamic formats of responsive ads. For example
-    /// 'Free two-day shipping'.
-    #[prost(string, optional, tag = "29")]
-    pub promo_text: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// An app ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AppAdInfo {
-    /// Mandatory ad text.
-    #[prost(message, optional, tag = "1")]
-    pub mandatory_ad_text: ::core::option::Option<AdTextAsset>,
-    /// List of text assets for headlines. When the ad serves the headlines will
-    /// be selected from this list.
-    #[prost(message, repeated, tag = "2")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for descriptions. When the ad serves the descriptions
-    /// will be selected from this list.
-    #[prost(message, repeated, tag = "3")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of image assets that may be displayed with the ad.
-    #[prost(message, repeated, tag = "4")]
-    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// List of YouTube video assets that may be displayed with the ad.
-    #[prost(message, repeated, tag = "5")]
-    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-    /// List of media bundle assets that may be used with the ad.
-    #[prost(message, repeated, tag = "6")]
-    pub html5_media_bundles: ::prost::alloc::vec::Vec<AdMediaBundleAsset>,
-}
-/// App engagement ads allow you to write text encouraging a specific action in
-/// the app, like checking in, making a purchase, or booking a flight.
-/// They allow you to send users to a specific part of your app where they can
-/// find what they're looking for easier and faster.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AppEngagementAdInfo {
-    /// List of text assets for headlines. When the ad serves the headlines will
-    /// be selected from this list.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for descriptions. When the ad serves the descriptions
-    /// will be selected from this list.
-    #[prost(message, repeated, tag = "2")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of image assets that may be displayed with the ad.
-    #[prost(message, repeated, tag = "3")]
-    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// List of video assets that may be displayed with the ad.
-    #[prost(message, repeated, tag = "4")]
-    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-}
-/// App pre-registration ads link to your app or game listing on Google Play, and
-/// can run on Google Play, on YouTube (in-stream only), and within other apps
-/// and mobile websites on the Display Network. It will help capture people's
-/// interest in your app or game and generate an early install base for your app
-/// or game before a launch.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AppPreRegistrationAdInfo {
-    /// List of text assets for headlines. When the ad serves the headlines will
-    /// be selected from this list.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for descriptions. When the ad serves the descriptions
-    /// will be selected from this list.
-    #[prost(message, repeated, tag = "2")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of image asset IDs whose images may be displayed with the ad.
-    #[prost(message, repeated, tag = "3")]
-    pub images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// List of YouTube video asset IDs whose videos may be displayed with the ad.
-    #[prost(message, repeated, tag = "4")]
-    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-}
-/// A legacy app install ad that only can be used by a few select customers.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LegacyAppInstallAdInfo {
-    /// The ID of the mobile app.
-    #[prost(string, optional, tag = "6")]
-    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// The app store the mobile app is available in.
-    #[prost(
-        enumeration = "super::enums::legacy_app_install_ad_app_store_enum::LegacyAppInstallAdAppStore",
-        tag = "2"
-    )]
-    pub app_store: i32,
-    /// The headline of the ad.
-    #[prost(string, optional, tag = "7")]
-    pub headline: ::core::option::Option<::prost::alloc::string::String>,
-    /// The first description line of the ad.
-    #[prost(string, optional, tag = "8")]
-    pub description1: ::core::option::Option<::prost::alloc::string::String>,
-    /// The second description line of the ad.
-    #[prost(string, optional, tag = "9")]
-    pub description2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A responsive display ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ResponsiveDisplayAdInfo {
-    /// Marketing images to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must
-    /// be 1.91:1 (+-1%). At least one `marketing_image` is required. Combined
-    /// with `square_marketing_images`, the maximum is 15.
-    #[prost(message, repeated, tag = "1")]
-    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Square marketing images to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 300x300 and the aspect ratio must
-    /// be 1:1 (+-1%). At least one square `marketing_image` is required. Combined
-    /// with `marketing_images`, the maximum is 15.
-    #[prost(message, repeated, tag = "2")]
-    pub square_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Logo images to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 512x128 and the aspect ratio must
-    /// be 4:1 (+-1%). Combined with `square_logo_images`, the maximum is 5.
-    #[prost(message, repeated, tag = "3")]
-    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Square logo images to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 128x128 and the aspect ratio must
-    /// be 1:1 (+-1%). Combined with `logo_images`, the maximum is 5.
-    #[prost(message, repeated, tag = "4")]
-    pub square_logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Short format headlines for the ad. The maximum length is 30 characters.
-    /// At least 1 and max 5 headlines can be specified.
-    #[prost(message, repeated, tag = "5")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// A required long format headline. The maximum length is 90 characters.
-    #[prost(message, optional, tag = "6")]
-    pub long_headline: ::core::option::Option<AdTextAsset>,
-    /// Descriptive texts for the ad. The maximum length is 90 characters. At
-    /// least 1 and max 5 headlines can be specified.
-    #[prost(message, repeated, tag = "7")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// Optional YouTube videos for the ad. A maximum of 5 videos can be specified.
-    #[prost(message, repeated, tag = "8")]
-    pub youtube_videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-    /// The advertiser/brand name. Maximum display width is 25.
-    #[prost(string, optional, tag = "17")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// The main color of the ad in hexadecimal, for example, #ffffff for white.
-    /// If one of `main_color` and `accent_color` is set, the other is required as
-    /// well.
-    #[prost(string, optional, tag = "18")]
-    pub main_color: ::core::option::Option<::prost::alloc::string::String>,
-    /// The accent color of the ad in hexadecimal, for example, #ffffff for white.
-    /// If one of `main_color` and `accent_color` is set, the other is required as
-    /// well.
-    #[prost(string, optional, tag = "19")]
-    pub accent_color: ::core::option::Option<::prost::alloc::string::String>,
-    /// Advertiser's consent to allow flexible color. When true, the ad may be
-    /// served with different color if necessary. When false, the ad will be served
-    /// with the specified colors or a neutral color.
-    /// The default value is `true`.
-    /// Must be true if `main_color` and `accent_color` are not set.
-    #[prost(bool, optional, tag = "20")]
-    pub allow_flexible_color: ::core::option::Option<bool>,
-    /// The call-to-action text for the ad. Maximum display width is 30.
-    #[prost(string, optional, tag = "21")]
-    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// Prefix before price. For example, 'as low as'.
-    #[prost(string, optional, tag = "22")]
-    pub price_prefix: ::core::option::Option<::prost::alloc::string::String>,
-    /// Promotion text used for dynamic formats of responsive ads. For example
-    /// 'Free two-day shipping'.
-    #[prost(string, optional, tag = "23")]
-    pub promo_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// Specifies which format the ad will be served in. Default is ALL_FORMATS.
-    #[prost(
-        enumeration = "super::enums::display_ad_format_setting_enum::DisplayAdFormatSetting",
-        tag = "16"
-    )]
-    pub format_setting: i32,
-    /// Specification for various creative controls.
-    #[prost(message, optional, tag = "24")]
-    pub control_spec: ::core::option::Option<ResponsiveDisplayAdControlSpec>,
-}
-/// A local ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LocalAdInfo {
-    /// List of text assets for headlines. When the ad serves the headlines will
-    /// be selected from this list. At least 1 and at most 5 headlines must be
-    /// specified.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for descriptions. When the ad serves the descriptions
-    /// will be selected from this list. At least 1 and at most 5 descriptions must
-    /// be specified.
-    #[prost(message, repeated, tag = "2")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets for call-to-actions. When the ad serves the
-    /// call-to-actions will be selected from this list. At least 1 and at most
-    /// 5 call-to-actions must be specified.
-    #[prost(message, repeated, tag = "3")]
-    pub call_to_actions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of marketing image assets that may be displayed with the ad. The
-    /// images must be 314x600 pixels or 320x320 pixels. At least 1 and at most
-    /// 20 image assets must be specified.
-    #[prost(message, repeated, tag = "4")]
-    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// List of logo image assets that may be displayed with the ad. The images
-    /// must be 128x128 pixels and not larger than 120KB. At least 1 and at most 5
-    /// image assets must be specified.
-    #[prost(message, repeated, tag = "5")]
-    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// List of YouTube video assets that may be displayed with the ad. At least 1
-    /// and at most 20 video assets must be specified.
-    #[prost(message, repeated, tag = "6")]
-    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-    /// First part of optional text that can be appended to the URL in the ad.
-    #[prost(string, optional, tag = "9")]
-    pub path1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Second part of optional text that can be appended to the URL in the ad.
-    /// This field can only be set when `path1` is also set.
-    #[prost(string, optional, tag = "10")]
-    pub path2: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// A generic type of display ad. The exact ad format is controlled by the
-/// `display_upload_product_type` field, which determines what kinds of data
-/// need to be included with the ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DisplayUploadAdInfo {
-    /// The product type of this ad. See comments on the enum for details.
-    #[prost(
-        enumeration = "super::enums::display_upload_product_type_enum::DisplayUploadProductType",
-        tag = "1"
-    )]
-    pub display_upload_product_type: i32,
-    /// The asset data that makes up the ad.
-    #[prost(oneof = "display_upload_ad_info::MediaAsset", tags = "2")]
-    pub media_asset: ::core::option::Option<display_upload_ad_info::MediaAsset>,
-}
-/// Nested message and enum types in `DisplayUploadAdInfo`.
-pub mod display_upload_ad_info {
-    /// The asset data that makes up the ad.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum MediaAsset {
-        /// A media bundle asset to be used in the ad. For information about the
-        /// media bundle for HTML5_UPLOAD_AD, see
-        /// <https://support.google.com/google-ads/answer/1722096>
-        /// Media bundles that are part of dynamic product types use a special format
-        /// that needs to be created through the Google Web Designer. See
-        /// <https://support.google.com/webdesigner/answer/7543898> for more
-        /// information.
-        #[prost(message, tag = "2")]
-        MediaBundle(super::AdMediaBundleAsset),
-    }
-}
-/// Specification for various creative controls for a responsive display ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ResponsiveDisplayAdControlSpec {
-    /// Whether the advertiser has opted into the asset enhancements feature.
-    #[prost(bool, tag = "1")]
-    pub enable_asset_enhancements: bool,
-    /// Whether the advertiser has opted into auto-gen video feature.
-    #[prost(bool, tag = "2")]
-    pub enable_autogen_video: bool,
-}
-/// A Smart campaign ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SmartCampaignAdInfo {
-    /// List of text assets, each of which corresponds to a headline when the ad
-    /// serves. This list consists of a minimum of 3 and up to 15 text assets.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets, each of which corresponds to a description when the ad
-    /// serves. This list consists of a minimum of 2 and up to 4 text assets.
-    #[prost(message, repeated, tag = "2")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-}
-/// A call ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CallAdInfo {
-    /// The country code in the ad.
-    #[prost(string, tag = "1")]
-    pub country_code: ::prost::alloc::string::String,
-    /// The phone number in the ad.
-    #[prost(string, tag = "2")]
-    pub phone_number: ::prost::alloc::string::String,
-    /// The business name in the ad.
-    #[prost(string, tag = "3")]
-    pub business_name: ::prost::alloc::string::String,
-    /// First headline in the ad.
-    #[prost(string, tag = "11")]
-    pub headline1: ::prost::alloc::string::String,
-    /// Second headline in the ad.
-    #[prost(string, tag = "12")]
-    pub headline2: ::prost::alloc::string::String,
-    /// The first line of the ad's description.
-    #[prost(string, tag = "4")]
-    pub description1: ::prost::alloc::string::String,
-    /// The second line of the ad's description.
-    #[prost(string, tag = "5")]
-    pub description2: ::prost::alloc::string::String,
-    /// Whether to enable call tracking for the creative. Enabling call
-    /// tracking also enables call conversions.
-    #[prost(bool, tag = "6")]
-    pub call_tracked: bool,
-    /// Whether to disable call conversion for the creative.
-    /// If set to `true`, disables call conversions even when `call_tracked` is
-    /// `true`.
-    /// If `call_tracked` is `false`, this field is ignored.
-    #[prost(bool, tag = "7")]
-    pub disable_call_conversion: bool,
-    /// The URL to be used for phone number verification.
-    #[prost(string, tag = "8")]
-    pub phone_number_verification_url: ::prost::alloc::string::String,
-    /// The conversion action to attribute a call conversion to. If not set a
-    /// default conversion action is used. This field only has effect if
-    /// `call_tracked` is set to `true`. Otherwise this field is ignored.
-    #[prost(string, tag = "9")]
-    pub conversion_action: ::prost::alloc::string::String,
-    /// The call conversion behavior of this call ad. It can use its own call
-    /// conversion setting, inherit the account level setting, or be disabled.
-    #[prost(
-        enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState",
-        tag = "10"
-    )]
-    pub conversion_reporting_state: i32,
-    /// First part of text that can be appended to the URL in the ad. Optional.
-    #[prost(string, tag = "13")]
-    pub path1: ::prost::alloc::string::String,
-    /// Second part of text that can be appended to the URL in the ad. This field
-    /// can only be set when `path1` is also set. Optional.
-    #[prost(string, tag = "14")]
-    pub path2: ::prost::alloc::string::String,
-}
-/// A discovery multi asset ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiscoveryMultiAssetAdInfo {
-    /// Marketing image assets to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must
-    /// be 1.91:1 (+-1%). Required if square_marketing_images is
-    /// not present. Combined with `square_marketing_images` and
-    /// `portrait_marketing_images` the maximum is 20.
-    #[prost(message, repeated, tag = "1")]
-    pub marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Square marketing image assets to be used in the ad. Valid image types are
-    /// GIF, JPEG, and PNG. The minimum size is 300x300 and the aspect ratio must
-    /// be 1:1 (+-1%). Required if marketing_images is not present.  Combined with
-    /// `marketing_images` and `portrait_marketing_images` the maximum is 20.
-    #[prost(message, repeated, tag = "2")]
-    pub square_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Portrait marketing image assets to be used in the ad. Valid image types are
-    /// GIF, JPEG, and PNG. The minimum size is 480x600 and the aspect ratio must
-    /// be 4:5 (+-1%).  Combined with `marketing_images` and
-    /// `square_marketing_images` the maximum is 20.
-    #[prost(message, repeated, tag = "3")]
-    pub portrait_marketing_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Logo image assets to be used in the ad. Valid image types are GIF,
-    /// JPEG, and PNG. The minimum size is 128x128 and the aspect ratio must be
-    /// 1:1 (+-1%). At least 1 and max 5 logo images can be specified.
-    #[prost(message, repeated, tag = "4")]
-    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// Headline text asset of the ad. Maximum display width is 30. At least 1 and
-    /// max 5 headlines can be specified.
-    #[prost(message, repeated, tag = "5")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// The descriptive text of the ad. Maximum display width is 90. At least 1 and
-    /// max 5 descriptions can be specified.
-    #[prost(message, repeated, tag = "6")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// The Advertiser/brand name. Maximum display width is 25. Required.
-    #[prost(string, optional, tag = "7")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Call to action text.
-    #[prost(string, optional, tag = "8")]
-    pub call_to_action_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// Boolean option that indicates if this ad must be served with lead form.
-    #[prost(bool, optional, tag = "9")]
-    pub lead_form_only: ::core::option::Option<bool>,
-}
-/// A discovery carousel ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiscoveryCarouselAdInfo {
-    /// Required. The Advertiser/brand name.
-    #[prost(string, tag = "1")]
-    pub business_name: ::prost::alloc::string::String,
-    /// Required. Logo image to be used in the ad.  The minimum size is 128x128 and
-    /// the aspect ratio must be 1:1 (+-1%).
-    #[prost(message, optional, tag = "2")]
-    pub logo_image: ::core::option::Option<AdImageAsset>,
-    /// Required. Headline of the ad.
-    #[prost(message, optional, tag = "3")]
-    pub headline: ::core::option::Option<AdTextAsset>,
-    /// Required. The descriptive text of the ad.
-    #[prost(message, optional, tag = "4")]
-    pub description: ::core::option::Option<AdTextAsset>,
-    /// Call to action text.
-    #[prost(string, tag = "5")]
-    pub call_to_action_text: ::prost::alloc::string::String,
-    /// Required. Carousel cards that will display with the ad. Min 2 max 10.
-    #[prost(message, repeated, tag = "6")]
-    pub carousel_cards: ::prost::alloc::vec::Vec<AdDiscoveryCarouselCardAsset>,
-}
-/// A discovery video responsive ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiscoveryVideoResponsiveAdInfo {
-    /// List of text assets used for the short headline.
-    #[prost(message, repeated, tag = "1")]
-    pub headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets used for the long headline.
-    #[prost(message, repeated, tag = "2")]
-    pub long_headlines: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of text assets used for the description.
-    #[prost(message, repeated, tag = "3")]
-    pub descriptions: ::prost::alloc::vec::Vec<AdTextAsset>,
-    /// List of YouTube video assets used for the ad.
-    #[prost(message, repeated, tag = "4")]
-    pub videos: ::prost::alloc::vec::Vec<AdVideoAsset>,
-    /// Logo image to be used in the ad. Valid image types are GIF, JPEG, and PNG.
-    /// The minimum size is 128x128 and the aspect ratio must be 1:1 (+-1%).
-    #[prost(message, repeated, tag = "5")]
-    pub logo_images: ::prost::alloc::vec::Vec<AdImageAsset>,
-    /// First part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "6")]
-    pub breadcrumb1: ::prost::alloc::string::String,
-    /// Second part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "7")]
-    pub breadcrumb2: ::prost::alloc::string::String,
-    /// Required. The advertiser/brand name.
-    #[prost(message, optional, tag = "8")]
-    pub business_name: ::core::option::Option<AdTextAsset>,
-    /// Assets of type CallToActionAsset used for the "Call To Action" button.
-    #[prost(message, repeated, tag = "9")]
-    pub call_to_actions: ::prost::alloc::vec::Vec<AdCallToActionAsset>,
-}
-/// A Demand Gen product ad.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DemandGenProductAdInfo {
-    /// Required. Text asset used for the short headline.
-    #[prost(message, optional, tag = "1")]
-    pub headline: ::core::option::Option<AdTextAsset>,
-    /// Required. Text asset used for the description.
-    #[prost(message, optional, tag = "2")]
-    pub description: ::core::option::Option<AdTextAsset>,
-    /// Required. Logo image to be used in the ad. Valid image types are GIF, JPEG,
-    /// and PNG. The minimum size is 128x128 and the aspect ratio must be 1:1
-    /// (+-1%).
-    #[prost(message, optional, tag = "3")]
-    pub logo_image: ::core::option::Option<AdImageAsset>,
-    /// First part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "4")]
-    pub breadcrumb1: ::prost::alloc::string::String,
-    /// Second part of text that appears in the ad with the displayed URL.
-    #[prost(string, tag = "5")]
-    pub breadcrumb2: ::prost::alloc::string::String,
-    /// Required. The advertiser/brand name.
-    #[prost(message, optional, tag = "6")]
-    pub business_name: ::core::option::Option<AdTextAsset>,
-    /// Asset of type CallToActionAsset used for the "Call To Action" button.
-    #[prost(message, optional, tag = "7")]
-    pub call_to_action: ::core::option::Option<AdCallToActionAsset>,
-}
-/// A URL for deep linking into an app for the given operating system.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FinalAppUrl {
-    /// The operating system targeted by this URL. Required.
-    #[prost(
-        enumeration = "super::enums::app_url_operating_system_type_enum::AppUrlOperatingSystemType",
-        tag = "1"
-    )]
-    pub os_type: i32,
-    /// The app deep link URL. Deep links specify a location in an app that
-    /// corresponds to the content you'd like to show, and should be of the form
-    /// {scheme}://{host_path}
-    /// The scheme identifies which app to open. For your app, you can use a custom
-    /// scheme that starts with the app's name. The host and path specify the
-    /// unique location in the app where your content exists.
-    /// Example: "exampleapp://productid_1234". Required.
-    #[prost(string, optional, tag = "3")]
-    pub url: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Collection of urls that is tagged with a unique identifier.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UrlCollection {
-    /// Unique identifier for this UrlCollection instance.
-    #[prost(string, optional, tag = "5")]
-    pub url_collection_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// A list of possible final URLs.
-    #[prost(string, repeated, tag = "6")]
-    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// A list of possible final mobile URLs.
-    #[prost(string, repeated, tag = "7")]
-    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// URL template for constructing a tracking URL.
-    #[prost(string, optional, tag = "8")]
-    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Commission is an automatic bidding strategy in which the advertiser pays a
-/// certain portion of the conversion value.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Commission {
-    /// Commission rate defines the portion of the conversion value that the
-    /// advertiser will be billed. A commission rate of x should be passed into
-    /// this field as (x * 1,000,000). For example, 106,000 represents a commission
-    /// rate of 0.106 (10.6%).
-    #[prost(int64, optional, tag = "2")]
-    pub commission_rate_micros: ::core::option::Option<i64>,
-}
-/// An automated bidding strategy that raises bids for clicks
-/// that seem more likely to lead to a conversion and lowers
-/// them for clicks where they seem less likely.
-///
-/// This bidding strategy is deprecated and cannot be created anymore. Use
-/// ManualCpc with enhanced_cpc_enabled set to true for equivalent functionality.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct EnhancedCpc {}
-/// Manual bidding strategy that allows advertiser to set the bid per
-/// advertiser-specified action.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManualCpa {}
-/// Manual click-based bidding where user pays per click.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManualCpc {
-    /// Whether bids are to be enhanced based on conversion optimizer data.
-    #[prost(bool, optional, tag = "2")]
-    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
-}
-/// Manual impression-based bidding where user pays per thousand impressions.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManualCpm {}
-/// View based bidding where user pays per video view.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManualCpv {}
-/// An automated bidding strategy to help get the most conversions for your
-/// campaigns while spending your budget.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MaximizeConversions {
-    /// Maximum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// Mutable for portfolio bidding strategies only.
-    #[prost(int64, tag = "2")]
-    pub cpc_bid_ceiling_micros: i64,
-    /// Minimum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// Mutable for portfolio bidding strategies only.
-    #[prost(int64, tag = "3")]
-    pub cpc_bid_floor_micros: i64,
-    /// The target cost-per-action (CPA) option. This is the average amount that
-    /// you would like to spend per conversion action specified in micro units of
-    /// the bidding strategy's currency. If set, the bid strategy will get as many
-    /// conversions as possible at or below the target cost-per-action. If the
-    /// target CPA is not set, the bid strategy will aim to achieve the lowest
-    /// possible CPA given the budget.
-    #[prost(int64, tag = "4")]
-    pub target_cpa_micros: i64,
-}
-/// An automated bidding strategy to help get the most conversion value for your
-/// campaigns while spending your budget.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MaximizeConversionValue {
-    /// The target return on ad spend (ROAS) option. If set, the bid strategy will
-    /// maximize revenue while averaging the target return on ad spend. If the
-    /// target ROAS is high, the bid strategy may not be able to spend the full
-    /// budget. If the target ROAS is not set, the bid strategy will aim to
-    /// achieve the highest possible ROAS for the budget.
-    #[prost(double, tag = "2")]
-    pub target_roas: f64,
-    /// Maximum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// Mutable for portfolio bidding strategies only.
-    #[prost(int64, tag = "3")]
-    pub cpc_bid_ceiling_micros: i64,
-    /// Minimum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// Mutable for portfolio bidding strategies only.
-    #[prost(int64, tag = "4")]
-    pub cpc_bid_floor_micros: i64,
-}
-/// An automated bid strategy that sets bids to help get as many conversions as
-/// possible at the target cost-per-acquisition (CPA) you set.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetCpa {
-    /// Average CPA target.
-    /// This target should be greater than or equal to minimum billable unit based
-    /// on the currency for the account.
-    #[prost(int64, optional, tag = "4")]
-    pub target_cpa_micros: ::core::option::Option<i64>,
-    /// Maximum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// This should only be set for portfolio bid strategies.
-    #[prost(int64, optional, tag = "5")]
-    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-    /// Minimum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// This should only be set for portfolio bid strategies.
-    #[prost(int64, optional, tag = "6")]
-    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
-}
-/// Target CPM (cost per thousand impressions) is an automated bidding strategy
-/// that sets bids to optimize performance given the target CPM you set.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetCpm {
-    /// Additional information related to bidding goal.
-    #[prost(oneof = "target_cpm::Goal", tags = "1")]
-    pub goal: ::core::option::Option<target_cpm::Goal>,
-}
-/// Nested message and enum types in `TargetCpm`.
-pub mod target_cpm {
-    /// Additional information related to bidding goal.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Goal {
-        /// Target Frequency bidding goal details.
-        #[prost(message, tag = "1")]
-        TargetFrequencyGoal(super::TargetCpmTargetFrequencyGoal),
-    }
-}
-/// Target Frequency bidding goal details.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetCpmTargetFrequencyGoal {
-    /// Target Frequency count representing how many times you want to reach
-    /// a single user.
-    #[prost(int64, tag = "1")]
-    pub target_count: i64,
-    /// Time window expressing the period over which you want to reach
-    /// the specified target_count.
-    #[prost(
-        enumeration = "super::enums::target_frequency_time_unit_enum::TargetFrequencyTimeUnit",
-        tag = "2"
-    )]
-    pub time_unit: i32,
-}
-/// An automated bidding strategy that sets bids so that a certain percentage of
-/// search ads are shown at the top of the first page (or other targeted
-/// location).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetImpressionShare {
-    /// The targeted location on the search results page.
-    #[prost(
-        enumeration = "super::enums::target_impression_share_location_enum::TargetImpressionShareLocation",
-        tag = "1"
-    )]
-    pub location: i32,
-    /// The chosen fraction of ads to be shown in the targeted location in micros.
-    /// For example, 1% equals 10,000.
-    #[prost(int64, optional, tag = "4")]
-    pub location_fraction_micros: ::core::option::Option<i64>,
-    /// The highest CPC bid the automated bidding system is permitted to specify.
-    /// This is a required field entered by the advertiser that sets the ceiling
-    /// and specified in local micros.
-    #[prost(int64, optional, tag = "5")]
-    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-}
-/// An automated bidding strategy that helps you maximize revenue while
-/// averaging a specific target return on ad spend (ROAS).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetRoas {
-    /// Required. The chosen revenue (based on conversion data) per unit of spend.
-    /// Value must be between 0.01 and 1000.0, inclusive.
-    #[prost(double, optional, tag = "4")]
-    pub target_roas: ::core::option::Option<f64>,
-    /// Maximum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// This should only be set for portfolio bid strategies.
-    #[prost(int64, optional, tag = "5")]
-    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-    /// Minimum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    /// This should only be set for portfolio bid strategies.
-    #[prost(int64, optional, tag = "6")]
-    pub cpc_bid_floor_micros: ::core::option::Option<i64>,
-}
-/// An automated bid strategy that sets your bids to help get as many clicks
-/// as possible within your budget.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct TargetSpend {
-    /// The spend target under which to maximize clicks.
-    /// A TargetSpend bidder will attempt to spend the smaller of this value
-    /// or the natural throttling spend amount.
-    /// If not specified, the budget is used as the spend target.
-    /// This field is deprecated and should no longer be used. See
-    /// <https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html>
-    /// for details.
-    #[deprecated]
-    #[prost(int64, optional, tag = "3")]
-    pub target_spend_micros: ::core::option::Option<i64>,
-    /// Maximum bid limit that can be set by the bid strategy.
-    /// The limit applies to all keywords managed by the strategy.
-    #[prost(int64, optional, tag = "4")]
-    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-}
-/// A bidding strategy where bids are a fraction of the advertised price for
-/// some good or service.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct PercentCpc {
-    /// Maximum bid limit that can be set by the bid strategy. This is
-    /// an optional field entered by the advertiser and specified in local micros.
-    /// Note: A zero value is interpreted in the same way as having bid_ceiling
-    /// undefined.
-    #[prost(int64, optional, tag = "3")]
-    pub cpc_bid_ceiling_micros: ::core::option::Option<i64>,
-    /// Adjusts the bid for each auction upward or downward, depending on the
-    /// likelihood of a conversion. Individual bids may exceed
-    /// cpc_bid_ceiling_micros, but the average bid amount for a campaign should
-    /// not.
-    #[prost(bool, optional, tag = "4")]
-    pub enhanced_cpc_enabled: ::core::option::Option<bool>,
-}
-/// Represents an App extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AppFeedItem {
-    /// The visible text displayed when the link is rendered in an ad.
-    /// This string must not be empty, and the length of this string should
-    /// be between 1 and 25, inclusive.
-    #[prost(string, optional, tag = "9")]
-    pub link_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// The store-specific ID for the target application.
-    /// This string must not be empty.
-    #[prost(string, optional, tag = "10")]
-    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// The application store that the target application belongs to.
-    /// This field is required.
-    #[prost(enumeration = "super::enums::app_store_enum::AppStore", tag = "3")]
-    pub app_store: i32,
-    /// A list of possible final URLs after all cross domain redirects.
-    /// This list must not be empty.
-    #[prost(string, repeated, tag = "11")]
-    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// A list of possible final mobile URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "12")]
-    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// URL template for constructing a tracking URL. Default value is "{lpurl}".
-    #[prost(string, optional, tag = "13")]
-    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    /// A list of mappings to be used for substituting URL custom parameter tags in
-    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
-    #[prost(message, repeated, tag = "7")]
-    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
-    /// URL template for appending params to landing page URLs served with parallel
-    /// tracking.
-    #[prost(string, optional, tag = "14")]
-    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents a Call extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CallFeedItem {
-    /// The advertiser's phone number to append to the ad.
-    /// This string must not be empty.
-    #[prost(string, optional, tag = "7")]
-    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
-    /// Uppercase two-letter country code of the advertiser's phone number.
-    /// This string must not be empty.
-    #[prost(string, optional, tag = "8")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Indicates whether call tracking is enabled. By default, call tracking is
-    /// not enabled.
-    #[prost(bool, optional, tag = "9")]
-    pub call_tracking_enabled: ::core::option::Option<bool>,
-    /// The conversion action to attribute a call conversion to. If not set a
-    /// default conversion action is used. This field only has effect if
-    /// call_tracking_enabled is set to true. Otherwise this field is ignored.
-    #[prost(string, optional, tag = "10")]
-    pub call_conversion_action: ::core::option::Option<::prost::alloc::string::String>,
-    /// If true, disable call conversion tracking. call_conversion_action should
-    /// not be set if this is true. Optional.
-    #[prost(bool, optional, tag = "11")]
-    pub call_conversion_tracking_disabled: ::core::option::Option<bool>,
-    /// Enum value that indicates whether this call extension uses its own call
-    /// conversion setting (or just have call conversion disabled), or following
-    /// the account level setting.
-    #[prost(
-        enumeration = "super::enums::call_conversion_reporting_state_enum::CallConversionReportingState",
-        tag = "6"
-    )]
-    pub call_conversion_reporting_state: i32,
-}
-/// Represents a callout extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CalloutFeedItem {
-    /// The callout text.
-    /// The length of this string should be between 1 and 25, inclusive.
-    #[prost(string, optional, tag = "2")]
-    pub callout_text: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents a location extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LocationFeedItem {
-    /// The name of the business.
-    #[prost(string, optional, tag = "9")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Line 1 of the business address.
-    #[prost(string, optional, tag = "10")]
-    pub address_line_1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Line 2 of the business address.
-    #[prost(string, optional, tag = "11")]
-    pub address_line_2: ::core::option::Option<::prost::alloc::string::String>,
-    /// City of the business address.
-    #[prost(string, optional, tag = "12")]
-    pub city: ::core::option::Option<::prost::alloc::string::String>,
-    /// Province of the business address.
-    #[prost(string, optional, tag = "13")]
-    pub province: ::core::option::Option<::prost::alloc::string::String>,
-    /// Postal code of the business address.
-    #[prost(string, optional, tag = "14")]
-    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Country code of the business address.
-    #[prost(string, optional, tag = "15")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Phone number of the business.
-    #[prost(string, optional, tag = "16")]
-    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents an affiliate location extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AffiliateLocationFeedItem {
-    /// The name of the business.
-    #[prost(string, optional, tag = "11")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Line 1 of the business address.
-    #[prost(string, optional, tag = "12")]
-    pub address_line_1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Line 2 of the business address.
-    #[prost(string, optional, tag = "13")]
-    pub address_line_2: ::core::option::Option<::prost::alloc::string::String>,
-    /// City of the business address.
-    #[prost(string, optional, tag = "14")]
-    pub city: ::core::option::Option<::prost::alloc::string::String>,
-    /// Province of the business address.
-    #[prost(string, optional, tag = "15")]
-    pub province: ::core::option::Option<::prost::alloc::string::String>,
-    /// Postal code of the business address.
-    #[prost(string, optional, tag = "16")]
-    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Country code of the business address.
-    #[prost(string, optional, tag = "17")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Phone number of the business.
-    #[prost(string, optional, tag = "18")]
-    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
-    /// Id of the retail chain that is advertised as a seller of your product.
-    #[prost(int64, optional, tag = "19")]
-    pub chain_id: ::core::option::Option<i64>,
-    /// Name of chain.
-    #[prost(string, optional, tag = "20")]
-    pub chain_name: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// An extension that users can click on to send a text message to the
-/// advertiser.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TextMessageFeedItem {
-    /// The business name to prepend to the message text.
-    /// This field is required.
-    #[prost(string, optional, tag = "6")]
-    pub business_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Uppercase two-letter country code of the advertiser's phone number.
-    /// This field is required.
-    #[prost(string, optional, tag = "7")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// The advertiser's phone number the message will be sent to. Required.
-    #[prost(string, optional, tag = "8")]
-    pub phone_number: ::core::option::Option<::prost::alloc::string::String>,
-    /// The text to show in the ad.
-    /// This field is required.
-    #[prost(string, optional, tag = "9")]
-    pub text: ::core::option::Option<::prost::alloc::string::String>,
-    /// The message extension_text populated in the messaging app.
-    #[prost(string, optional, tag = "10")]
-    pub extension_text: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents a Price extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PriceFeedItem {
-    /// Price extension type of this extension.
-    #[prost(
-        enumeration = "super::enums::price_extension_type_enum::PriceExtensionType",
-        tag = "1"
-    )]
-    pub r#type: i32,
-    /// Price qualifier for all offers of this price extension.
-    #[prost(
-        enumeration = "super::enums::price_extension_price_qualifier_enum::PriceExtensionPriceQualifier",
-        tag = "2"
-    )]
-    pub price_qualifier: i32,
-    /// Tracking URL template for all offers of this price extension.
-    #[prost(string, optional, tag = "7")]
-    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    /// The code of the language used for this price extension.
-    #[prost(string, optional, tag = "8")]
-    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// The price offerings in this price extension.
-    #[prost(message, repeated, tag = "5")]
-    pub price_offerings: ::prost::alloc::vec::Vec<PriceOffer>,
-    /// Tracking URL template for all offers of this price extension.
-    #[prost(string, optional, tag = "9")]
-    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents one price offer in a price extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PriceOffer {
-    /// Header text of this offer.
-    #[prost(string, optional, tag = "7")]
-    pub header: ::core::option::Option<::prost::alloc::string::String>,
-    /// Description text of this offer.
-    #[prost(string, optional, tag = "8")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    /// Price value of this offer.
-    #[prost(message, optional, tag = "3")]
-    pub price: ::core::option::Option<Money>,
-    /// Price unit for this offer.
-    #[prost(
-        enumeration = "super::enums::price_extension_price_unit_enum::PriceExtensionPriceUnit",
-        tag = "4"
-    )]
-    pub unit: i32,
-    /// A list of possible final URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "9")]
-    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// A list of possible final mobile URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "10")]
-    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Represents a Promotion extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PromotionFeedItem {
-    /// A freeform description of what the promotion is targeting.
-    /// This field is required.
-    #[prost(string, optional, tag = "16")]
-    pub promotion_target: ::core::option::Option<::prost::alloc::string::String>,
-    /// Enum that modifies the qualification of the discount.
-    #[prost(
-        enumeration = "super::enums::promotion_extension_discount_modifier_enum::PromotionExtensionDiscountModifier",
-        tag = "2"
-    )]
-    pub discount_modifier: i32,
-    /// Start date of when the promotion is eligible to be redeemed.
-    #[prost(string, optional, tag = "19")]
-    pub promotion_start_date: ::core::option::Option<::prost::alloc::string::String>,
-    /// Last date when the promotion is eligible to be redeemed.
-    #[prost(string, optional, tag = "20")]
-    pub promotion_end_date: ::core::option::Option<::prost::alloc::string::String>,
-    /// The occasion the promotion was intended for.
-    /// If an occasion is set, the redemption window will need to fall within
-    /// the date range associated with the occasion.
-    #[prost(
-        enumeration = "super::enums::promotion_extension_occasion_enum::PromotionExtensionOccasion",
-        tag = "9"
-    )]
-    pub occasion: i32,
-    /// A list of possible final URLs after all cross domain redirects.
-    /// This field is required.
-    #[prost(string, repeated, tag = "21")]
-    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// A list of possible final mobile URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "22")]
-    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// URL template for constructing a tracking URL.
-    #[prost(string, optional, tag = "23")]
-    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    /// A list of mappings to be used for substituting URL custom parameter tags in
-    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
-    #[prost(message, repeated, tag = "13")]
-    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
-    /// URL template for appending params to landing page URLs served with parallel
-    /// tracking.
-    #[prost(string, optional, tag = "24")]
-    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-    /// The language of the promotion.
-    /// Represented as BCP 47 language tag.
-    #[prost(string, optional, tag = "25")]
-    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Discount type, can be percentage off or amount off.
-    #[prost(oneof = "promotion_feed_item::DiscountType", tags = "17, 4")]
-    pub discount_type: ::core::option::Option<promotion_feed_item::DiscountType>,
-    /// Promotion trigger. Can be by promotion code or promo by eligible order
-    /// amount.
-    #[prost(oneof = "promotion_feed_item::PromotionTrigger", tags = "18, 6")]
-    pub promotion_trigger: ::core::option::Option<promotion_feed_item::PromotionTrigger>,
-}
-/// Nested message and enum types in `PromotionFeedItem`.
-pub mod promotion_feed_item {
-    /// Discount type, can be percentage off or amount off.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum DiscountType {
-        /// Percentage off discount in the promotion in micros.
-        /// One million is equivalent to one percent.
-        /// Either this or money_off_amount is required.
-        #[prost(int64, tag = "17")]
-        PercentOff(i64),
-        /// Money amount off for discount in the promotion.
-        /// Either this or percent_off is required.
-        #[prost(message, tag = "4")]
-        MoneyAmountOff(super::Money),
-    }
-    /// Promotion trigger. Can be by promotion code or promo by eligible order
-    /// amount.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum PromotionTrigger {
-        /// A code the user should use in order to be eligible for the promotion.
-        #[prost(string, tag = "18")]
-        PromotionCode(::prost::alloc::string::String),
-        /// The amount the total order needs to be for the user to be eligible for
-        /// the promotion.
-        #[prost(message, tag = "6")]
-        OrdersOverAmount(super::Money),
-    }
-}
-/// Represents a structured snippet extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StructuredSnippetFeedItem {
-    /// The header of the snippet.
-    /// This string must not be empty.
-    #[prost(string, optional, tag = "3")]
-    pub header: ::core::option::Option<::prost::alloc::string::String>,
-    /// The values in the snippet.
-    /// The maximum size of this collection is 10.
-    #[prost(string, repeated, tag = "4")]
-    pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// Represents a sitelink.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SitelinkFeedItem {
-    /// URL display text for the sitelink.
-    /// The length of this string should be between 1 and 25, inclusive.
-    #[prost(string, optional, tag = "9")]
-    pub link_text: ::core::option::Option<::prost::alloc::string::String>,
-    /// First line of the description for the sitelink.
-    /// If this value is set, line2 must also be set.
-    /// The length of this string should be between 0 and 35, inclusive.
-    #[prost(string, optional, tag = "10")]
-    pub line1: ::core::option::Option<::prost::alloc::string::String>,
-    /// Second line of the description for the sitelink.
-    /// If this value is set, line1 must also be set.
-    /// The length of this string should be between 0 and 35, inclusive.
-    #[prost(string, optional, tag = "11")]
-    pub line2: ::core::option::Option<::prost::alloc::string::String>,
-    /// A list of possible final URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "12")]
-    pub final_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// A list of possible final mobile URLs after all cross domain redirects.
-    #[prost(string, repeated, tag = "13")]
-    pub final_mobile_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// URL template for constructing a tracking URL.
-    #[prost(string, optional, tag = "14")]
-    pub tracking_url_template: ::core::option::Option<::prost::alloc::string::String>,
-    /// A list of mappings to be used for substituting URL custom parameter tags in
-    /// the tracking_url_template, final_urls, and/or final_mobile_urls.
-    #[prost(message, repeated, tag = "7")]
-    pub url_custom_parameters: ::prost::alloc::vec::Vec<CustomParameter>,
-    /// Final URL suffix to be appended to landing page URLs served with
-    /// parallel tracking.
-    #[prost(string, optional, tag = "15")]
-    pub final_url_suffix: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents a hotel callout extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HotelCalloutFeedItem {
-    /// The callout text.
-    /// The length of this string should be between 1 and 25, inclusive.
-    #[prost(string, optional, tag = "3")]
-    pub text: ::core::option::Option<::prost::alloc::string::String>,
-    /// The language of the hotel callout text.
-    /// IETF BCP 47 compliant language code.
-    #[prost(string, optional, tag = "4")]
-    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Represents an advertiser provided image extension.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImageFeedItem {
-    /// Required. Resource name of the image asset.
-    #[prost(string, tag = "1")]
-    pub image_asset: ::prost::alloc::string::String,
-}
-/// A Local Services Document with read only accessible data.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LocalServicesDocumentReadOnly {
-    /// URL to access an already uploaded Local Services document.
-    #[prost(string, optional, tag = "1")]
-    pub document_url: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Consent
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Consent {
-    /// This represents consent for ad user data.
-    #[prost(enumeration = "super::enums::consent_status_enum::ConsentStatus", tag = "1")]
-    pub ad_user_data: i32,
-    /// This represents consent for ad personalization.
-    /// This can only be set for OfflineUserDataJobService and UserDataService.
-    #[prost(enumeration = "super::enums::consent_status_enum::ConsentStatus", tag = "2")]
-    pub ad_personalization: i32,
-}
-/// Address identifier of offline data.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OfflineUserAddressInfo {
-    /// First name of the user, which is hashed as SHA-256 after normalized
-    /// (Lowercase all characters; Remove any extra spaces before, after, and in
-    /// between).
-    #[prost(string, optional, tag = "7")]
-    pub hashed_first_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// Last name of the user, which is hashed as SHA-256 after normalized (lower
-    /// case only and no punctuation).
-    #[prost(string, optional, tag = "8")]
-    pub hashed_last_name: ::core::option::Option<::prost::alloc::string::String>,
-    /// City of the address. Only accepted for Store Sales and
-    /// ConversionAdjustmentUploadService.
-    #[prost(string, optional, tag = "9")]
-    pub city: ::core::option::Option<::prost::alloc::string::String>,
-    /// State code of the address. Only accepted for Store Sales and
-    /// ConversionAdjustmentUploadService.
-    #[prost(string, optional, tag = "10")]
-    pub state: ::core::option::Option<::prost::alloc::string::String>,
-    /// 2-letter country code in ISO-3166-1 alpha-2 of the user's address.
-    #[prost(string, optional, tag = "11")]
-    pub country_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// Postal code of the user's address.
-    #[prost(string, optional, tag = "12")]
-    pub postal_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// The street address of the user hashed using SHA-256 hash function after
-    /// normalization (lower case only). Only accepted for
-    /// ConversionAdjustmentUploadService.
-    #[prost(string, optional, tag = "13")]
-    pub hashed_street_address: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// User identifying information.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserIdentifier {
-    /// Source of the user identifier when the upload is from Store Sales,
-    /// ConversionUploadService, or ConversionAdjustmentUploadService.
-    #[prost(
-        enumeration = "super::enums::user_identifier_source_enum::UserIdentifierSource",
-        tag = "6"
-    )]
-    pub user_identifier_source: i32,
-    /// Exactly one must be specified. For OfflineUserDataJobService, Customer
-    /// Match accepts hashed_email, hashed_phone_number, mobile_id,
-    /// third_party_user_id, and address_info; Store Sales accepts hashed_email,
-    /// hashed_phone_number, third_party_user_id, and address_info.
-    /// ConversionUploadService accepts hashed_email and hashed_phone_number.
-    /// ConversionAdjustmentUploadService accepts hashed_email,
-    /// hashed_phone_number, and address_info.
-    #[prost(oneof = "user_identifier::Identifier", tags = "7, 8, 9, 10, 5")]
-    pub identifier: ::core::option::Option<user_identifier::Identifier>,
-}
-/// Nested message and enum types in `UserIdentifier`.
-pub mod user_identifier {
-    /// Exactly one must be specified. For OfflineUserDataJobService, Customer
-    /// Match accepts hashed_email, hashed_phone_number, mobile_id,
-    /// third_party_user_id, and address_info; Store Sales accepts hashed_email,
-    /// hashed_phone_number, third_party_user_id, and address_info.
-    /// ConversionUploadService accepts hashed_email and hashed_phone_number.
-    /// ConversionAdjustmentUploadService accepts hashed_email,
-    /// hashed_phone_number, and address_info.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Identifier {
-        /// Hashed email address using SHA-256 hash function after normalization.
-        /// Accepted for Customer Match, Store Sales, ConversionUploadService, and
-        /// ConversionAdjustmentUploadService.
-        #[prost(string, tag = "7")]
-        HashedEmail(::prost::alloc::string::String),
-        /// Hashed phone number using SHA-256 hash function after normalization
-        /// (E164 standard). Accepted for Customer Match, Store Sales,
-        /// ConversionUploadService, and ConversionAdjustmentUploadService.
-        #[prost(string, tag = "8")]
-        HashedPhoneNumber(::prost::alloc::string::String),
-        /// Mobile device ID (advertising ID/IDFA). Accepted only for Customer Match.
-        #[prost(string, tag = "9")]
-        MobileId(::prost::alloc::string::String),
-        /// Advertiser-assigned user ID for Customer Match upload, or
-        /// third-party-assigned user ID for Store Sales. Accepted only for Customer
-        /// Match and Store Sales.
-        #[prost(string, tag = "10")]
-        ThirdPartyUserId(::prost::alloc::string::String),
-        /// Address information. Accepted only for Customer Match, Store Sales, and
-        /// ConversionAdjustmentUploadService.
-        #[prost(message, tag = "5")]
-        AddressInfo(super::OfflineUserAddressInfo),
-    }
-}
-/// Attribute of the store sales transaction.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TransactionAttribute {
-    /// Timestamp when transaction occurred. Required.
-    /// The format is "YYYY-MM-DD HH:MM:SS\[+/-HH:MM\]", where \[+/-HH:MM\] is an
-    /// optional timezone offset from UTC. If the offset is absent, the API will
-    /// use the account's timezone as default.
-    /// Examples: "2018-03-05 09:15:00" or "2018-02-01 14:34:30+03:00"
-    #[prost(string, optional, tag = "8")]
-    pub transaction_date_time: ::core::option::Option<::prost::alloc::string::String>,
-    /// Transaction amount in micros. Required.
-    /// Transaction amount in micros needs to be greater than 1000.
-    /// If item Attributes are provided, it represents the total value of the
-    /// items, after multiplying the unit price per item by the quantity provided
-    /// in the ItemAttributes.
-    #[prost(double, optional, tag = "9")]
-    pub transaction_amount_micros: ::core::option::Option<f64>,
-    /// Transaction currency code. ISO 4217 three-letter code is used. Required.
-    #[prost(string, optional, tag = "10")]
-    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
-    /// The resource name of conversion action to report conversions to.
-    /// Required.
-    #[prost(string, optional, tag = "11")]
-    pub conversion_action: ::core::option::Option<::prost::alloc::string::String>,
-    /// Transaction order id.
-    /// Accessible only to customers on the allow-list.
-    #[prost(string, optional, tag = "12")]
-    pub order_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// Store attributes of the transaction.
-    /// Accessible only to customers on the allow-list.
-    #[prost(message, optional, tag = "6")]
-    pub store_attribute: ::core::option::Option<StoreAttribute>,
-    /// Value of the custom variable for each transaction.
-    /// Accessible only to customers on the allow-list.
-    #[prost(string, optional, tag = "13")]
-    pub custom_value: ::core::option::Option<::prost::alloc::string::String>,
-    /// Item attributes of the transaction.
-    #[prost(message, optional, tag = "14")]
-    pub item_attribute: ::core::option::Option<ItemAttribute>,
-}
-/// Store attributes of the transaction.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StoreAttribute {
-    /// Store code from
-    /// <https://support.google.com/business/answer/3370250#storecode>
-    #[prost(string, optional, tag = "2")]
-    pub store_code: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Item attributes of the transaction.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ItemAttribute {
-    /// A unique identifier of a product. It can be either the Merchant Center Item
-    /// ID or GTIN (Global Trade Item Number).
-    #[prost(string, tag = "1")]
-    pub item_id: ::prost::alloc::string::String,
-    /// ID of the Merchant Center Account.
-    #[prost(int64, optional, tag = "2")]
-    pub merchant_id: ::core::option::Option<i64>,
-    /// Common Locale Data Repository (CLDR) territory code of the country
-    /// associated with the feed where your items are uploaded. See
-    /// <https://developers.google.com/google-ads/api/reference/data/codes-formats#country-codes>
-    /// for more information.
-    #[prost(string, tag = "3")]
-    pub country_code: ::prost::alloc::string::String,
-    /// ISO 639-1 code of the language associated with the feed where your items
-    /// are uploaded
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    /// The number of items sold. Defaults to 1 if not set.
-    #[prost(int64, tag = "5")]
-    pub quantity: i64,
-}
-/// User data holding user identifiers and attributes.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserData {
-    /// User identification info. Required.
-    #[prost(message, repeated, tag = "1")]
-    pub user_identifiers: ::prost::alloc::vec::Vec<UserIdentifier>,
-    /// Additional transactions/attributes associated with the user.
-    /// Required when updating store sales data.
-    #[prost(message, optional, tag = "2")]
-    pub transaction_attribute: ::core::option::Option<TransactionAttribute>,
-    /// Additional attributes associated with the user. Required when updating
-    /// customer match attributes. These have an expiration of 540 days.
-    #[prost(message, optional, tag = "3")]
-    pub user_attribute: ::core::option::Option<UserAttribute>,
-    /// The consent setting for the user. Customer match will ignore this field
-    /// and return a warning.
-    #[prost(message, optional, tag = "4")]
-    pub consent: ::core::option::Option<Consent>,
-}
-/// User attribute, can only be used with CUSTOMER_MATCH_WITH_ATTRIBUTES job
-/// type.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserAttribute {
-    /// Advertiser defined lifetime value for the user.
-    #[prost(int64, optional, tag = "1")]
-    pub lifetime_value_micros: ::core::option::Option<i64>,
-    /// Advertiser defined lifetime value bucket for the user. The valid range for
-    /// a lifetime value bucket is from 1 (low) to 10 (high), except for remove
-    /// operation where 0 will also be accepted.
-    #[prost(int32, optional, tag = "2")]
-    pub lifetime_value_bucket: ::core::option::Option<i32>,
-    /// Timestamp of the last purchase made by the user.
-    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
-    /// optional timezone offset from UTC. If the offset is absent, the API will
-    /// use the account's timezone as default.
-    #[prost(string, tag = "3")]
-    pub last_purchase_date_time: ::prost::alloc::string::String,
-    /// Advertiser defined average number of purchases that are made by the user in
-    /// a 30 day period.
-    #[prost(int32, tag = "4")]
-    pub average_purchase_count: i32,
-    /// Advertiser defined average purchase value in micros for the user.
-    #[prost(int64, tag = "5")]
-    pub average_purchase_value_micros: i64,
-    /// Timestamp when the user was acquired.
-    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
-    /// optional timezone offset from UTC. If the offset is absent, the API will
-    /// use the account's timezone as default.
-    #[prost(string, tag = "6")]
-    pub acquisition_date_time: ::prost::alloc::string::String,
-    /// The shopping loyalty related data. Shopping utilizes this data to provide
-    /// users with a better experience. Accessible only to merchants on the
-    /// allow-list with the user's consent.
-    #[prost(message, optional, tag = "7")]
-    pub shopping_loyalty: ::core::option::Option<ShoppingLoyalty>,
-    /// Optional. Advertiser defined lifecycle stage for the user. The accepted
-    /// values are "Lead", "Active" and "Churned".
-    #[prost(string, tag = "8")]
-    pub lifecycle_stage: ::prost::alloc::string::String,
-    /// Optional. Timestamp of the first purchase made by the user.
-    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
-    /// optional timezone offset from UTC. If the offset is absent, the API will
-    /// use the account's timezone as default.
-    #[prost(string, tag = "9")]
-    pub first_purchase_date_time: ::prost::alloc::string::String,
-    /// Optional. Advertiser defined events and their attributes. All the values in
-    /// the nested fields are required. Currently this field is in beta.
-    #[prost(message, repeated, tag = "10")]
-    pub event_attribute: ::prost::alloc::vec::Vec<EventAttribute>,
-}
-/// Advertiser defined events and their attributes. All the values in the
-/// nested fields are required.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EventAttribute {
-    /// Required. Advertiser defined event to be used for remarketing. The accepted
-    /// values are "Viewed", "Cart", "Purchased" and "Recommended".
-    #[prost(string, tag = "1")]
-    pub event: ::prost::alloc::string::String,
-    /// Required. Timestamp at which the event happened.
-    /// The format is YYYY-MM-DD HH:MM:SS\[+/-HH:MM\], where \[+/-HH:MM\] is an
-    /// optional timezone offset from UTC. If the offset is absent, the API will
-    /// use the account's timezone as default.
-    #[prost(string, tag = "2")]
-    pub event_date_time: ::prost::alloc::string::String,
-    /// Required. Item attributes of the event.
-    #[prost(message, repeated, tag = "3")]
-    pub item_attribute: ::prost::alloc::vec::Vec<EventItemAttribute>,
-}
-/// Event Item attributes of the Customer Match.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EventItemAttribute {
-    /// Optional. A unique identifier of a product. It can be either the Merchant
-    /// Center Item ID or GTIN (Global Trade Item Number).
-    #[prost(string, tag = "1")]
-    pub item_id: ::prost::alloc::string::String,
-}
-/// The shopping loyalty related data. Shopping utilizes this data to provide
-/// users with a better experience.
-/// Accessible only to merchants on the allow-list.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ShoppingLoyalty {
-    /// The membership tier. It is a free-form string as each merchant may have
-    /// their own loyalty system. For example, it could be a number from 1 to 10,
-    /// or a string such as "Golden" or "Silver", or even empty string "".
-    #[prost(string, optional, tag = "1")]
-    pub loyalty_tier: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Metadata for customer match user list.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomerMatchUserListMetadata {
-    /// The resource name of remarketing list to update data.
-    /// Required for job of CUSTOMER_MATCH_USER_LIST type.
-    #[prost(string, optional, tag = "2")]
-    pub user_list: ::core::option::Option<::prost::alloc::string::String>,
-    /// The consent setting for all the users in this job.
-    #[prost(message, optional, tag = "3")]
-    pub consent: ::core::option::Option<Consent>,
-}
-/// Metadata for Store Sales Direct.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StoreSalesMetadata {
-    /// This is the fraction of all transactions that are identifiable (for
-    /// example, associated with any form of customer information). Required. The
-    /// fraction needs to be between 0 and 1 (excluding 0).
-    #[prost(double, optional, tag = "5")]
-    pub loyalty_fraction: ::core::option::Option<f64>,
-    /// This is the ratio of sales being uploaded compared to the overall sales
-    /// that can be associated with a customer. Required.
-    /// The fraction needs to be between 0 and 1 (excluding 0). For example, if you
-    /// upload half the sales that you are able to associate with a customer, this
-    /// would be 0.5.
-    #[prost(double, optional, tag = "6")]
-    pub transaction_upload_fraction: ::core::option::Option<f64>,
-    /// Name of the store sales custom variable key. A predefined key that
-    /// can be applied to the transaction and then later used for custom
-    /// segmentation in reporting.
-    /// Accessible only to customers on the allow-list.
-    #[prost(string, optional, tag = "7")]
-    pub custom_key: ::core::option::Option<::prost::alloc::string::String>,
-    /// Metadata for a third party Store Sales upload.
-    #[prost(message, optional, tag = "3")]
-    pub third_party_metadata: ::core::option::Option<StoreSalesThirdPartyMetadata>,
-}
-/// Metadata for a third party Store Sales.
-/// This product is only for customers on the allow-list. Contact your
-/// Google business development representative for details on the upload
-/// configuration.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StoreSalesThirdPartyMetadata {
-    /// Time the advertiser uploaded the data to the partner. Required.
-    /// The format is "YYYY-MM-DD HH:MM:SS".
-    /// Examples: "2018-03-05 09:15:00" or "2018-02-01 14:34:30"
-    #[prost(string, optional, tag = "7")]
-    pub advertiser_upload_date_time: ::core::option::Option<
-        ::prost::alloc::string::String,
-    >,
-    /// The fraction of transactions that are valid. Invalid transactions may
-    /// include invalid formats or values.
-    /// Required.
-    /// The fraction needs to be between 0 and 1 (excluding 0).
-    #[prost(double, optional, tag = "8")]
-    pub valid_transaction_fraction: ::core::option::Option<f64>,
-    /// The fraction of valid transactions that are matched to a third party
-    /// assigned user ID on the partner side.
-    /// Required.
-    /// The fraction needs to be between 0 and 1 (excluding 0).
-    #[prost(double, optional, tag = "9")]
-    pub partner_match_fraction: ::core::option::Option<f64>,
-    /// The fraction of valid transactions that are uploaded by the partner to
-    /// Google.
-    /// Required.
-    /// The fraction needs to be between 0 and 1 (excluding 0).
-    #[prost(double, optional, tag = "10")]
-    pub partner_upload_fraction: ::core::option::Option<f64>,
-    /// Version of partner IDs to be used for uploads. Required.
-    #[prost(string, optional, tag = "11")]
-    pub bridge_map_version_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// ID of the third party partner updating the transaction feed.
-    #[prost(int64, optional, tag = "12")]
-    pub partner_id: ::core::option::Option<i64>,
-}
-/// A customizer value that is referenced in customizer linkage entities
-/// like CustomerCustomizer, CampaignCustomizer, etc.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CustomizerValue {
-    /// Required. The data type for the customizer value. It must match the
-    /// attribute type. The string_value content must match the constraints
-    /// associated with the type.
-    #[prost(
-        enumeration = "super::enums::customizer_attribute_type_enum::CustomizerAttributeType",
-        tag = "1"
-    )]
-    pub r#type: i32,
-    /// Required. Value to insert in creative text. Customizer values of all types
-    /// are stored as string to make formatting unambiguous.
-    #[prost(string, tag = "2")]
-    pub string_value: ::prost::alloc::string::String,
-}
-/// Lifecycle goal value settings.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct LifecycleGoalValueSettings {
-    /// Value of the lifecycle goal. For example, for customer acquisition goal,
-    /// value is the incremental conversion value for new customers who are not of
-    /// high value.
-    #[prost(double, optional, tag = "1")]
-    pub value: ::core::option::Option<f64>,
-    /// High lifetime value of the lifecycle goal. For example, for customer
-    /// acquisition goal, high lifetime value is the incremental conversion value
-    /// for new customers who are of high value. High lifetime value should be
-    /// greater than value, if set.
-    /// In current stage, high lifetime value feature is in beta and this field
-    /// is read-only.
-    #[prost(double, optional, tag = "2")]
-    pub high_lifetime_value: ::core::option::Option<f64>,
-}
-/// The site tag and event snippet pair for a TrackingCodeType.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TagSnippet {
-    /// The type of the generated tag snippets for tracking conversions.
-    #[prost(
-        enumeration = "super::enums::tracking_code_type_enum::TrackingCodeType",
-        tag = "1"
-    )]
-    pub r#type: i32,
-    /// The format of the web page where the tracking tag and snippet will be
-    /// installed, for example, HTML.
-    #[prost(
-        enumeration = "super::enums::tracking_code_page_format_enum::TrackingCodePageFormat",
-        tag = "2"
-    )]
-    pub page_format: i32,
-    /// The site tag that adds visitors to your basic remarketing lists and sets
-    /// new cookies on your domain.
-    #[prost(string, optional, tag = "5")]
-    pub global_site_tag: ::core::option::Option<::prost::alloc::string::String>,
-    /// The event snippet that works with the site tag to track actions that
-    /// should be counted as conversions.
-    #[prost(string, optional, tag = "6")]
-    pub event_snippet: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Location criteria associated with a click.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClickLocation {
-    /// The city location criterion associated with the impression.
-    #[prost(string, optional, tag = "6")]
-    pub city: ::core::option::Option<::prost::alloc::string::String>,
-    /// The country location criterion associated with the impression.
-    #[prost(string, optional, tag = "7")]
-    pub country: ::core::option::Option<::prost::alloc::string::String>,
-    /// The metro location criterion associated with the impression.
-    #[prost(string, optional, tag = "8")]
-    pub metro: ::core::option::Option<::prost::alloc::string::String>,
-    /// The most specific location criterion associated with the impression.
-    #[prost(string, optional, tag = "9")]
-    pub most_specific: ::core::option::Option<::prost::alloc::string::String>,
-    /// The region location criterion associated with the impression.
-    #[prost(string, optional, tag = "10")]
-    pub region: ::core::option::Option<::prost::alloc::string::String>,
-}
 /// Data related to location set. One of the Google Business Profile (previously
 /// known as Google My Business) data, Chain data, and map location data need to
 /// be specified.
@@ -5471,58 +5858,6 @@ pub struct RealTimeBiddingSetting {
     #[prost(bool, optional, tag = "2")]
     pub opt_in: ::core::option::Option<bool>,
 }
-/// Represents a filter on locations in a feed item set.
-/// Only applicable if the parent Feed of the FeedItemSet is a LOCATION feed.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DynamicLocationSetFilter {
-    /// If multiple labels are set, then only feeditems marked with all the labels
-    /// will be added to the FeedItemSet.
-    #[prost(string, repeated, tag = "1")]
-    pub labels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Business name filter.
-    #[prost(message, optional, tag = "2")]
-    pub business_name_filter: ::core::option::Option<BusinessNameFilter>,
-}
-/// Represents a business name filter on locations in a FeedItemSet.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BusinessNameFilter {
-    /// Business name string to use for filtering.
-    #[prost(string, tag = "1")]
-    pub business_name: ::prost::alloc::string::String,
-    /// The type of string matching to use when filtering with business_name.
-    #[prost(
-        enumeration = "super::enums::feed_item_set_string_filter_type_enum::FeedItemSetStringFilterType",
-        tag = "2"
-    )]
-    pub filter_type: i32,
-}
-/// Represents a filter on affiliate locations in a FeedItemSet.
-/// Only applicable if the parent Feed of the FeedItemSet is an
-/// AFFILIATE_LOCATION feed.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DynamicAffiliateLocationSetFilter {
-    /// Used to filter affiliate locations by chain ids. Only affiliate locations
-    /// that belong to the specified chain(s) will be added to the FeedItemSet.
-    #[prost(int64, repeated, tag = "1")]
-    pub chain_ids: ::prost::alloc::vec::Vec<i64>,
-}
-/// A type of label displaying text on a colored background.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TextLabel {
-    /// Background color of the label in RGB format. This string must match the
-    /// regular expression '^\#(\[a-fA-F0-9\]{6}|\[a-fA-F0-9\]{3})$'.
-    /// Note: The background color may not be visible for manager accounts.
-    #[prost(string, optional, tag = "3")]
-    pub background_color: ::core::option::Option<::prost::alloc::string::String>,
-    /// A short description of the label. The length must be no more than 200
-    /// characters.
-    #[prost(string, optional, tag = "4")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-}
 /// Positive dimension specifying user's audience.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5734,341 +6069,6 @@ pub struct CustomAudienceSegment {
     /// The custom audience resource.
     #[prost(string, optional, tag = "1")]
     pub custom_audience: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// LookalikeUserlist, composed of users similar to those
-/// of a configurable seed (set of UserLists)
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LookalikeUserListInfo {
-    /// Seed UserList ID from which this list is derived, provided by user.
-    #[prost(int64, repeated, tag = "1")]
-    pub seed_user_list_ids: ::prost::alloc::vec::Vec<i64>,
-    /// Expansion level, reflecting the size of the lookalike audience
-    #[prost(
-        enumeration = "super::enums::lookalike_expansion_level_enum::LookalikeExpansionLevel",
-        tag = "2"
-    )]
-    pub expansion_level: i32,
-    /// Countries targeted by the Lookalike. Two-letter country code as defined by
-    /// ISO-3166
-    #[prost(string, repeated, tag = "3")]
-    pub country_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-/// SimilarUserList is a list of users which are similar to users from another
-/// UserList. These lists are read-only and automatically created by Google.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SimilarUserListInfo {
-    /// Seed UserList from which this list is derived.
-    #[prost(string, optional, tag = "2")]
-    pub seed_user_list: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// UserList of CRM users provided by the advertiser.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CrmBasedUserListInfo {
-    /// A string that uniquely identifies a mobile application from which the data
-    /// was collected.
-    /// For iOS, the ID string is the 9 digit string that appears at the end of an
-    /// App Store URL (for example, "476943146" for "Flood-It! 2" whose App Store
-    /// link is <http://itunes.apple.com/us/app/flood-it!-2/id476943146>). For
-    /// Android, the ID string is the application's package name (for example,
-    /// "com.labpixies.colordrips" for "Color Drips" given Google Play link
-    /// <https://play.google.com/store/apps/details?id=com.labpixies.colordrips>).
-    /// Required when creating CrmBasedUserList for uploading mobile advertising
-    /// IDs.
-    #[prost(string, optional, tag = "4")]
-    pub app_id: ::core::option::Option<::prost::alloc::string::String>,
-    /// Matching key type of the list.
-    /// Mixed data types are not allowed on the same list.
-    /// This field is required for an ADD operation.
-    #[prost(
-        enumeration = "super::enums::customer_match_upload_key_type_enum::CustomerMatchUploadKeyType",
-        tag = "2"
-    )]
-    pub upload_key_type: i32,
-    /// Data source of the list. Default value is FIRST_PARTY.
-    /// Only customers on the allow-list can create third-party sourced CRM lists.
-    #[prost(
-        enumeration = "super::enums::user_list_crm_data_source_type_enum::UserListCrmDataSourceType",
-        tag = "3"
-    )]
-    pub data_source_type: i32,
-}
-/// A client defined rule based on custom parameters sent by web sites or
-/// uploaded by the advertiser.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListRuleInfo {
-    /// Rule type is used to determine how to group rule items.
-    ///
-    /// The default is OR of ANDs (disjunctive normal form).
-    /// That is, rule items will be ANDed together within rule item groups and the
-    /// groups themselves will be ORed together.
-    ///
-    /// OR of ANDs is the only supported type for FlexibleRuleUserList.
-    #[prost(
-        enumeration = "super::enums::user_list_rule_type_enum::UserListRuleType",
-        tag = "1"
-    )]
-    pub rule_type: i32,
-    /// List of rule item groups that defines this rule.
-    /// Rule item groups are grouped together based on rule_type.
-    #[prost(message, repeated, tag = "2")]
-    pub rule_item_groups: ::prost::alloc::vec::Vec<UserListRuleItemGroupInfo>,
-}
-/// A group of rule items.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListRuleItemGroupInfo {
-    /// Rule items that will be grouped together based on rule_type.
-    #[prost(message, repeated, tag = "1")]
-    pub rule_items: ::prost::alloc::vec::Vec<UserListRuleItemInfo>,
-}
-/// An atomic rule item.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListRuleItemInfo {
-    /// Rule variable name. It should match the corresponding key name fired
-    /// by the pixel.
-    /// A name must begin with US-ascii letters or underscore or UTF8 code that is
-    /// greater than 127 and consist of US-ascii letters or digits or underscore or
-    /// UTF8 code that is greater than 127.
-    /// For websites, there are two built-in variable URL (name = 'url\_\_') and
-    /// referrer URL (name = 'ref_url\_\_').
-    /// This field must be populated when creating a new rule item.
-    #[prost(string, optional, tag = "5")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    /// An atomic rule item.
-    #[prost(oneof = "user_list_rule_item_info::RuleItem", tags = "2, 3, 4")]
-    pub rule_item: ::core::option::Option<user_list_rule_item_info::RuleItem>,
-}
-/// Nested message and enum types in `UserListRuleItemInfo`.
-pub mod user_list_rule_item_info {
-    /// An atomic rule item.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum RuleItem {
-        /// An atomic rule item composed of a number operation.
-        #[prost(message, tag = "2")]
-        NumberRuleItem(super::UserListNumberRuleItemInfo),
-        /// An atomic rule item composed of a string operation.
-        #[prost(message, tag = "3")]
-        StringRuleItem(super::UserListStringRuleItemInfo),
-        /// An atomic rule item composed of a date operation.
-        #[prost(message, tag = "4")]
-        DateRuleItem(super::UserListDateRuleItemInfo),
-    }
-}
-/// A rule item composed of a date operation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListDateRuleItemInfo {
-    /// Date comparison operator.
-    /// This field is required and must be populated when creating new date
-    /// rule item.
-    #[prost(
-        enumeration = "super::enums::user_list_date_rule_item_operator_enum::UserListDateRuleItemOperator",
-        tag = "1"
-    )]
-    pub operator: i32,
-    /// String representing date value to be compared with the rule variable.
-    /// Supported date format is YYYY-MM-DD.
-    /// Times are reported in the customer's time zone.
-    #[prost(string, optional, tag = "4")]
-    pub value: ::core::option::Option<::prost::alloc::string::String>,
-    /// The relative date value of the right hand side denoted by number of days
-    /// offset from now. The value field will override this field when both are
-    /// present.
-    #[prost(int64, optional, tag = "5")]
-    pub offset_in_days: ::core::option::Option<i64>,
-}
-/// A rule item composed of a number operation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct UserListNumberRuleItemInfo {
-    /// Number comparison operator.
-    /// This field is required and must be populated when creating a new number
-    /// rule item.
-    #[prost(
-        enumeration = "super::enums::user_list_number_rule_item_operator_enum::UserListNumberRuleItemOperator",
-        tag = "1"
-    )]
-    pub operator: i32,
-    /// Number value to be compared with the variable.
-    /// This field is required and must be populated when creating a new number
-    /// rule item.
-    #[prost(double, optional, tag = "3")]
-    pub value: ::core::option::Option<f64>,
-}
-/// A rule item composed of a string operation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListStringRuleItemInfo {
-    /// String comparison operator.
-    /// This field is required and must be populated when creating a new string
-    /// rule item.
-    #[prost(
-        enumeration = "super::enums::user_list_string_rule_item_operator_enum::UserListStringRuleItemOperator",
-        tag = "1"
-    )]
-    pub operator: i32,
-    /// The right hand side of the string rule item. For URLs or referrer URLs,
-    /// the value can not contain illegal URL chars such as newlines, quotes,
-    /// tabs, or parentheses. This field is required and must be populated when
-    /// creating a new string rule item.
-    #[prost(string, optional, tag = "3")]
-    pub value: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Flexible rule that wraps the common rule and a lookback window.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FlexibleRuleOperandInfo {
-    /// List of rule item groups that defines this rule.
-    /// Rule item groups are grouped together.
-    #[prost(message, optional, tag = "1")]
-    pub rule: ::core::option::Option<UserListRuleInfo>,
-    /// Lookback window for this rule in days. From now until X days ago.
-    #[prost(int64, optional, tag = "2")]
-    pub lookback_window_days: ::core::option::Option<i64>,
-}
-/// Flexible rule representation of visitors with one or multiple actions. The
-/// flexible user list is defined by two lists of operands – inclusive_operands
-/// and exclusive_operands; each operand represents a set of users based on
-/// actions they took in a given timeframe. These lists of operands are combined
-/// with the AND_NOT operator, so that users represented by the inclusive
-/// operands are included in the user list, minus the users represented by the
-/// exclusive operands.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FlexibleRuleUserListInfo {
-    /// Operator that defines how the inclusive operands are combined.
-    #[prost(
-        enumeration = "super::enums::user_list_flexible_rule_operator_enum::UserListFlexibleRuleOperator",
-        tag = "1"
-    )]
-    pub inclusive_rule_operator: i32,
-    /// Rules representing users that should be included in the user list. These
-    /// are located on the left side of the AND_NOT operator, and joined together
-    /// by either AND/OR as specified by the inclusive_rule_operator.
-    #[prost(message, repeated, tag = "2")]
-    pub inclusive_operands: ::prost::alloc::vec::Vec<FlexibleRuleOperandInfo>,
-    /// Rules representing users that should be excluded from the user list. These
-    /// are located on the right side of the AND_NOT operator, and joined together
-    /// by OR.
-    #[prost(message, repeated, tag = "3")]
-    pub exclusive_operands: ::prost::alloc::vec::Vec<FlexibleRuleOperandInfo>,
-}
-/// Representation of a userlist that is generated by a rule.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RuleBasedUserListInfo {
-    /// The status of pre-population. The field is default to NONE if not set which
-    /// means the previous users will not be considered. If set to REQUESTED, past
-    /// site visitors or app users who match the list definition will be included
-    /// in the list (works on the Display Network only). This will only
-    /// add past users from within the last 30 days, depending on the
-    /// list's membership duration and the date when the remarketing tag is added.
-    /// The status will be updated to FINISHED once request is processed, or FAILED
-    /// if the request fails.
-    #[prost(
-        enumeration = "super::enums::user_list_prepopulation_status_enum::UserListPrepopulationStatus",
-        tag = "1"
-    )]
-    pub prepopulation_status: i32,
-    /// Flexible rule representation of visitors with one or multiple actions. The
-    /// flexible user list is defined by two lists of operands – inclusive_operands
-    /// and exclusive_operands; each operand represents a set of users based on
-    /// actions they took in a given timeframe. These lists of operands are
-    /// combined with the AND_NOT operator, so that users represented by the
-    /// inclusive operands are included in the user list, minus the users
-    /// represented by the exclusive operands.
-    #[prost(message, optional, tag = "5")]
-    pub flexible_rule_user_list: ::core::option::Option<FlexibleRuleUserListInfo>,
-}
-/// Represents a user list that is a custom combination of user lists.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LogicalUserListInfo {
-    /// Logical list rules that define this user list. The rules are defined as a
-    /// logical operator (ALL/ANY/NONE) and a list of user lists. All the rules are
-    /// ANDed when they are evaluated.
-    ///
-    /// Required for creating a logical user list.
-    #[prost(message, repeated, tag = "1")]
-    pub rules: ::prost::alloc::vec::Vec<UserListLogicalRuleInfo>,
-}
-/// A user list logical rule. A rule has a logical operator (and/or/not) and a
-/// list of user lists as operands.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListLogicalRuleInfo {
-    /// The logical operator of the rule.
-    #[prost(
-        enumeration = "super::enums::user_list_logical_rule_operator_enum::UserListLogicalRuleOperator",
-        tag = "1"
-    )]
-    pub operator: i32,
-    /// The list of operands of the rule.
-    #[prost(message, repeated, tag = "2")]
-    pub rule_operands: ::prost::alloc::vec::Vec<LogicalUserListOperandInfo>,
-}
-/// Operand of logical user list that consists of a user list.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LogicalUserListOperandInfo {
-    /// Resource name of a user list as an operand.
-    #[prost(string, optional, tag = "2")]
-    pub user_list: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// User list targeting as a collection of conversions or remarketing actions.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BasicUserListInfo {
-    /// Actions associated with this user list.
-    #[prost(message, repeated, tag = "1")]
-    pub actions: ::prost::alloc::vec::Vec<UserListActionInfo>,
-}
-/// Represents an action type used for building remarketing user lists.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserListActionInfo {
-    /// Subtypes of user list action.
-    #[prost(oneof = "user_list_action_info::UserListAction", tags = "3, 4")]
-    pub user_list_action: ::core::option::Option<user_list_action_info::UserListAction>,
-}
-/// Nested message and enum types in `UserListActionInfo`.
-pub mod user_list_action_info {
-    /// Subtypes of user list action.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum UserListAction {
-        /// A conversion action that's not generated from remarketing.
-        #[prost(string, tag = "3")]
-        ConversionAction(::prost::alloc::string::String),
-        /// A remarketing action.
-        #[prost(string, tag = "4")]
-        RemarketingAction(::prost::alloc::string::String),
-    }
-}
-/// A metric goal for an experiment.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MetricGoal {
-    /// The metric of the goal. For example, clicks, impressions, cost,
-    /// conversions, etc.
-    #[prost(
-        enumeration = "super::enums::experiment_metric_enum::ExperimentMetric",
-        tag = "1"
-    )]
-    pub metric: i32,
-    /// The metric direction of the goal. For example, increase, decrease, no
-    /// change.
-    #[prost(
-        enumeration = "super::enums::experiment_metric_direction_enum::ExperimentMetricDirection",
-        tag = "2"
-    )]
-    pub direction: i32,
 }
 /// Segment only fields.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -6571,6 +6571,144 @@ pub struct SkAdNetworkSourceApp {
     pub sk_ad_network_source_app_id: ::core::option::Option<
         ::prost::alloc::string::String,
     >,
+}
+/// Historical metrics specific to the targeting options selected.
+/// Targeting options include geographies, network, and so on.
+/// Refer to <https://support.google.com/google-ads/answer/3022575> for more
+/// details.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeywordPlanHistoricalMetrics {
+    /// Approximate number of monthly searches on this query, averaged
+    /// for the past 12 months.
+    #[prost(int64, optional, tag = "7")]
+    pub avg_monthly_searches: ::core::option::Option<i64>,
+    /// Approximate number of searches on this query for the past twelve months.
+    #[prost(message, repeated, tag = "6")]
+    pub monthly_search_volumes: ::prost::alloc::vec::Vec<MonthlySearchVolume>,
+    /// The competition level for the query.
+    #[prost(
+        enumeration = "super::enums::keyword_plan_competition_level_enum::KeywordPlanCompetitionLevel",
+        tag = "2"
+    )]
+    pub competition: i32,
+    /// The competition index for the query in the range \[0, 100\].
+    /// Shows how competitive ad placement is for a keyword.
+    /// The level of competition from 0-100 is determined by the number of ad slots
+    /// filled divided by the total number of ad slots available. If not enough
+    /// data is available, null is returned.
+    #[prost(int64, optional, tag = "8")]
+    pub competition_index: ::core::option::Option<i64>,
+    /// Top of page bid low range (20th percentile) in micros for the keyword.
+    #[prost(int64, optional, tag = "9")]
+    pub low_top_of_page_bid_micros: ::core::option::Option<i64>,
+    /// Top of page bid high range (80th percentile) in micros for the keyword.
+    #[prost(int64, optional, tag = "10")]
+    pub high_top_of_page_bid_micros: ::core::option::Option<i64>,
+    /// Average Cost Per Click in micros for the keyword.
+    #[prost(int64, optional, tag = "11")]
+    pub average_cpc_micros: ::core::option::Option<i64>,
+}
+/// Historical metrics options.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct HistoricalMetricsOptions {
+    /// The year month range for historical metrics. If not specified, metrics
+    /// for the past 12 months are returned.
+    /// Search metrics are available for the past 4 years. If the search volume is
+    /// not available for the entire year_month_range provided, the subset of the
+    /// year month range for which search volume is available are returned.
+    #[prost(message, optional, tag = "1")]
+    pub year_month_range: ::core::option::Option<YearMonthRange>,
+    /// Indicates whether to include average cost per click value.
+    /// Average CPC is provided only for legacy support.
+    #[prost(bool, tag = "2")]
+    pub include_average_cpc: bool,
+}
+/// Monthly search volume.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MonthlySearchVolume {
+    /// The year of the search volume (for example, 2020).
+    #[prost(int64, optional, tag = "4")]
+    pub year: ::core::option::Option<i64>,
+    /// The month of the search volume.
+    #[prost(enumeration = "super::enums::month_of_year_enum::MonthOfYear", tag = "2")]
+    pub month: i32,
+    /// Approximate number of searches for the month.
+    /// A null value indicates the search volume is unavailable for
+    /// that month.
+    #[prost(int64, optional, tag = "5")]
+    pub monthly_searches: ::core::option::Option<i64>,
+}
+/// The aggregate metrics specification of the request.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeywordPlanAggregateMetrics {
+    /// The list of aggregate metrics to fetch data.
+    #[prost(
+        enumeration = "super::enums::keyword_plan_aggregate_metric_type_enum::KeywordPlanAggregateMetricType",
+        repeated,
+        tag = "1"
+    )]
+    pub aggregate_metric_types: ::prost::alloc::vec::Vec<i32>,
+}
+/// The aggregated historical metrics for keyword plan keywords.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeywordPlanAggregateMetricResults {
+    /// The aggregate searches for all the keywords segmented by device
+    /// for the specified time.
+    /// Supports the following device types: MOBILE, TABLET, DESKTOP.
+    ///
+    /// This is only set when KeywordPlanAggregateMetricTypeEnum.DEVICE is set
+    /// in the KeywordPlanAggregateMetrics field in the request.
+    #[prost(message, repeated, tag = "1")]
+    pub device_searches: ::prost::alloc::vec::Vec<KeywordPlanDeviceSearches>,
+}
+/// The total searches for the device type during the specified time period.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct KeywordPlanDeviceSearches {
+    /// The device type.
+    #[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
+    pub device: i32,
+    /// The total searches for the device.
+    #[prost(int64, optional, tag = "2")]
+    pub search_count: ::core::option::Option<i64>,
+}
+/// The annotations for the keyword plan keywords.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeywordAnnotations {
+    /// The list of concepts for the keyword.
+    #[prost(message, repeated, tag = "1")]
+    pub concepts: ::prost::alloc::vec::Vec<KeywordConcept>,
+}
+/// The concept for the keyword.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeywordConcept {
+    /// The concept name for the keyword in the concept_group.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The concept group of the concept details.
+    #[prost(message, optional, tag = "2")]
+    pub concept_group: ::core::option::Option<ConceptGroup>,
+}
+/// The concept group for the keyword concept.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConceptGroup {
+    /// The concept group name.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The concept group type.
+    #[prost(
+        enumeration = "super::enums::keyword_plan_concept_group_type_enum::KeywordPlanConceptGroupType",
+        tag = "2"
+    )]
+    pub r#type: i32,
 }
 /// Metrics data.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -7621,142 +7759,4 @@ pub struct SearchVolumeRange {
     /// Upper bound of search volume.
     #[prost(int64, optional, tag = "2")]
     pub max: ::core::option::Option<i64>,
-}
-/// Historical metrics specific to the targeting options selected.
-/// Targeting options include geographies, network, and so on.
-/// Refer to <https://support.google.com/google-ads/answer/3022575> for more
-/// details.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeywordPlanHistoricalMetrics {
-    /// Approximate number of monthly searches on this query, averaged
-    /// for the past 12 months.
-    #[prost(int64, optional, tag = "7")]
-    pub avg_monthly_searches: ::core::option::Option<i64>,
-    /// Approximate number of searches on this query for the past twelve months.
-    #[prost(message, repeated, tag = "6")]
-    pub monthly_search_volumes: ::prost::alloc::vec::Vec<MonthlySearchVolume>,
-    /// The competition level for the query.
-    #[prost(
-        enumeration = "super::enums::keyword_plan_competition_level_enum::KeywordPlanCompetitionLevel",
-        tag = "2"
-    )]
-    pub competition: i32,
-    /// The competition index for the query in the range \[0, 100\].
-    /// Shows how competitive ad placement is for a keyword.
-    /// The level of competition from 0-100 is determined by the number of ad slots
-    /// filled divided by the total number of ad slots available. If not enough
-    /// data is available, null is returned.
-    #[prost(int64, optional, tag = "8")]
-    pub competition_index: ::core::option::Option<i64>,
-    /// Top of page bid low range (20th percentile) in micros for the keyword.
-    #[prost(int64, optional, tag = "9")]
-    pub low_top_of_page_bid_micros: ::core::option::Option<i64>,
-    /// Top of page bid high range (80th percentile) in micros for the keyword.
-    #[prost(int64, optional, tag = "10")]
-    pub high_top_of_page_bid_micros: ::core::option::Option<i64>,
-    /// Average Cost Per Click in micros for the keyword.
-    #[prost(int64, optional, tag = "11")]
-    pub average_cpc_micros: ::core::option::Option<i64>,
-}
-/// Historical metrics options.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct HistoricalMetricsOptions {
-    /// The year month range for historical metrics. If not specified, metrics
-    /// for the past 12 months are returned.
-    /// Search metrics are available for the past 4 years. If the search volume is
-    /// not available for the entire year_month_range provided, the subset of the
-    /// year month range for which search volume is available are returned.
-    #[prost(message, optional, tag = "1")]
-    pub year_month_range: ::core::option::Option<YearMonthRange>,
-    /// Indicates whether to include average cost per click value.
-    /// Average CPC is provided only for legacy support.
-    #[prost(bool, tag = "2")]
-    pub include_average_cpc: bool,
-}
-/// Monthly search volume.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MonthlySearchVolume {
-    /// The year of the search volume (for example, 2020).
-    #[prost(int64, optional, tag = "4")]
-    pub year: ::core::option::Option<i64>,
-    /// The month of the search volume.
-    #[prost(enumeration = "super::enums::month_of_year_enum::MonthOfYear", tag = "2")]
-    pub month: i32,
-    /// Approximate number of searches for the month.
-    /// A null value indicates the search volume is unavailable for
-    /// that month.
-    #[prost(int64, optional, tag = "5")]
-    pub monthly_searches: ::core::option::Option<i64>,
-}
-/// The aggregate metrics specification of the request.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeywordPlanAggregateMetrics {
-    /// The list of aggregate metrics to fetch data.
-    #[prost(
-        enumeration = "super::enums::keyword_plan_aggregate_metric_type_enum::KeywordPlanAggregateMetricType",
-        repeated,
-        tag = "1"
-    )]
-    pub aggregate_metric_types: ::prost::alloc::vec::Vec<i32>,
-}
-/// The aggregated historical metrics for keyword plan keywords.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeywordPlanAggregateMetricResults {
-    /// The aggregate searches for all the keywords segmented by device
-    /// for the specified time.
-    /// Supports the following device types: MOBILE, TABLET, DESKTOP.
-    ///
-    /// This is only set when KeywordPlanAggregateMetricTypeEnum.DEVICE is set
-    /// in the KeywordPlanAggregateMetrics field in the request.
-    #[prost(message, repeated, tag = "1")]
-    pub device_searches: ::prost::alloc::vec::Vec<KeywordPlanDeviceSearches>,
-}
-/// The total searches for the device type during the specified time period.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct KeywordPlanDeviceSearches {
-    /// The device type.
-    #[prost(enumeration = "super::enums::device_enum::Device", tag = "1")]
-    pub device: i32,
-    /// The total searches for the device.
-    #[prost(int64, optional, tag = "2")]
-    pub search_count: ::core::option::Option<i64>,
-}
-/// The annotations for the keyword plan keywords.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeywordAnnotations {
-    /// The list of concepts for the keyword.
-    #[prost(message, repeated, tag = "1")]
-    pub concepts: ::prost::alloc::vec::Vec<KeywordConcept>,
-}
-/// The concept for the keyword.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeywordConcept {
-    /// The concept name for the keyword in the concept_group.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The concept group of the concept details.
-    #[prost(message, optional, tag = "2")]
-    pub concept_group: ::core::option::Option<ConceptGroup>,
-}
-/// The concept group for the keyword concept.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConceptGroup {
-    /// The concept group name.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The concept group type.
-    #[prost(
-        enumeration = "super::enums::keyword_plan_concept_group_type_enum::KeywordPlanConceptGroupType",
-        tag = "2"
-    )]
-    pub r#type: i32,
 }

@@ -6,12 +6,12 @@ pub mod google {
                     include!("vec_u8_btree_map/google.ads.googleads.v15.common.rs");
                 }
                 pub mod enums {
-                    pub(crate) use googleapis_tonic_google_ads_googleads_v15_enums::google::ads::googleads::v15::enums::*;
+                    pub use googleapis_tonic_google_ads_googleads_v15_enums::google::ads::googleads::v15::enums::*;
                 }
             }
         }
     }
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
 }

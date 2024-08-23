@@ -1,6 +1,6 @@
 pub mod google {
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod shopping {
         pub mod css {
@@ -9,7 +9,7 @@ pub mod google {
             }
         }
         pub mod r#type {
-            pub(crate) use googleapis_tonic_google_shopping_type::google::shopping::r#type::*;
+            pub use googleapis_tonic_google_shopping_type::google::shopping::r#type::*;
         }
     }
 }

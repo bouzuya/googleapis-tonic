@@ -7,6 +7,6 @@ pub mod google {
         }
     }
     pub mod rpc {
-        pub(crate) use googleapis_tonic_google_rpc::google::rpc::*;
+        pub use googleapis_tonic_google_rpc::google::rpc::*;
     }
 }

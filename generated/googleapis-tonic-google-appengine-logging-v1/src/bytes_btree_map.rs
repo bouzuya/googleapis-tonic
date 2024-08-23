@@ -8,7 +8,7 @@ pub mod google {
     }
     pub mod logging {
         pub mod r#type {
-            pub(crate) use googleapis_tonic_google_logging_type::google::logging::r#type::*;
+            pub use googleapis_tonic_google_logging_type::google::logging::r#type::*;
         }
     }
 }

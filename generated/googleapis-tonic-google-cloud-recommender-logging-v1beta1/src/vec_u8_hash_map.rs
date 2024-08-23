@@ -1,6 +1,6 @@
 pub mod google {
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod cloud {
         pub mod recommender {
@@ -10,11 +10,11 @@ pub mod google {
                 }
             }
             pub mod v1beta1 {
-                pub(crate) use googleapis_tonic_google_cloud_recommender_v1beta1::google::cloud::recommender::v1beta1::*;
+                pub use googleapis_tonic_google_cloud_recommender_v1beta1::google::cloud::recommender::v1beta1::*;
             }
         }
     }
     pub mod r#type {
-        pub(crate) use googleapis_tonic_google_type::google::r#type::*;
+        pub use googleapis_tonic_google_type::google::r#type::*;
     }
 }

@@ -1,6 +1,6 @@
 pub mod google {
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod datastore {
         pub mod v1beta3 {
@@ -8,6 +8,6 @@ pub mod google {
         }
     }
     pub mod r#type {
-        pub(crate) use googleapis_tonic_google_type::google::r#type::*;
+        pub use googleapis_tonic_google_type::google::r#type::*;
     }
 }

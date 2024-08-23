@@ -142,374 +142,6 @@ impl OperationState {
         }
     }
 }
-/// An Adaptive MT Dataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtDataset {
-    /// Required. The resource name of the dataset, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset_id}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The name of the dataset to show in the interface. The name can be
-    /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
-    /// and a-z, underscores (\_), and ASCII digits 0-9.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// The BCP-47 language code of the source language.
-    #[prost(string, tag = "3")]
-    pub source_language_code: ::prost::alloc::string::String,
-    /// The BCP-47 language code of the target language.
-    #[prost(string, tag = "4")]
-    pub target_language_code: ::prost::alloc::string::String,
-    /// The number of examples in the dataset.
-    #[prost(int32, tag = "5")]
-    pub example_count: i32,
-    /// Output only. Timestamp when this dataset was created.
-    #[prost(message, optional, tag = "9")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp when this dataset was last updated.
-    #[prost(message, optional, tag = "10")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-///  Request message for creating an AdaptiveMtDataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateAdaptiveMtDatasetRequest {
-    /// Required. Name of the parent project. In form of
-    /// `projects/{project-number-or-id}/locations/{location-id}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The AdaptiveMtDataset to be created.
-    #[prost(message, optional, tag = "2")]
-    pub adaptive_mt_dataset: ::core::option::Option<AdaptiveMtDataset>,
-}
-/// Request message for deleting an AdaptiveMtDataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteAdaptiveMtDatasetRequest {
-    /// Required. Name of the dataset. In the form of
-    /// `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request message for getting an Adaptive MT dataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAdaptiveMtDatasetRequest {
-    /// Required. Name of the dataset. In the form of
-    /// `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request message for listing all Adaptive MT datasets that the requestor has
-/// access to.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtDatasetsRequest {
-    /// Required. The resource name of the project from which to list the Adaptive
-    /// MT datasets. `projects/{project-number-or-id}/locations/{location-id}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Optional. Requested page size. The server may return fewer results than
-    /// requested. If unspecified, the server picks an appropriate default.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// Optional. A token identifying a page of results the server should return.
-    /// Typically, this is the value of
-    /// ListAdaptiveMtDatasetsResponse.next_page_token returned from the
-    /// previous call to `ListAdaptiveMtDatasets` method. The first page is
-    /// returned if `page_token`is empty or missing.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    /// Optional. An expression for filtering the results of the request.
-    /// Filter is not supported yet.
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-}
-/// A list of AdaptiveMtDatasets.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtDatasetsResponse {
-    /// Output only. A list of Adaptive MT datasets.
-    #[prost(message, repeated, tag = "1")]
-    pub adaptive_mt_datasets: ::prost::alloc::vec::Vec<AdaptiveMtDataset>,
-    /// Optional. A token to retrieve a page of results. Pass this value in the
-    /// \[ListAdaptiveMtDatasetsRequest.page_token\] field in the subsequent call to
-    /// `ListAdaptiveMtDatasets` method to retrieve the next page of results.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// The request for sending an AdaptiveMt translation query.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtTranslateRequest {
-    /// Required. Location to make a regional call.
-    ///
-    /// Format: `projects/{project-number-or-id}/locations/{location-id}`.
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Required. The resource name for the dataset to use for adaptive MT.
-    /// `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
-    #[prost(string, tag = "2")]
-    pub dataset: ::prost::alloc::string::String,
-    /// Required. The content of the input in string format.
-    #[prost(string, repeated, tag = "3")]
-    pub content: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Configuration for caller provided reference sentences.
-    #[prost(message, optional, tag = "6")]
-    pub reference_sentence_config: ::core::option::Option<
-        adaptive_mt_translate_request::ReferenceSentenceConfig,
-    >,
-    /// Optional. Glossary to be applied. The glossary must be
-    /// within the same region (have the same location-id) as the model, otherwise
-    /// an INVALID_ARGUMENT (400) error is returned.
-    #[prost(message, optional, tag = "7")]
-    pub glossary_config: ::core::option::Option<
-        adaptive_mt_translate_request::GlossaryConfig,
-    >,
-}
-/// Nested message and enum types in `AdaptiveMtTranslateRequest`.
-pub mod adaptive_mt_translate_request {
-    /// A pair of sentences used as reference in source and target languages.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ReferenceSentencePair {
-        /// Source sentence in the sentence pair.
-        #[prost(string, tag = "1")]
-        pub source_sentence: ::prost::alloc::string::String,
-        /// Target sentence in the sentence pair.
-        #[prost(string, tag = "2")]
-        pub target_sentence: ::prost::alloc::string::String,
-    }
-    /// A list of reference sentence pairs.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ReferenceSentencePairList {
-        /// Reference sentence pairs.
-        #[prost(message, repeated, tag = "1")]
-        pub reference_sentence_pairs: ::prost::alloc::vec::Vec<ReferenceSentencePair>,
-    }
-    /// Message of caller-provided reference configuration.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ReferenceSentenceConfig {
-        /// Reference sentences pair lists. Each list will be used as the references
-        /// to translate the sentence under "content" field at the corresponding
-        /// index. Length of the list is required to be equal to the length of
-        /// "content" field.
-        #[prost(message, repeated, tag = "1")]
-        pub reference_sentence_pair_lists: ::prost::alloc::vec::Vec<
-            ReferenceSentencePairList,
-        >,
-        /// Source language code.
-        #[prost(string, tag = "2")]
-        pub source_language_code: ::prost::alloc::string::String,
-        /// Target language code.
-        #[prost(string, tag = "3")]
-        pub target_language_code: ::prost::alloc::string::String,
-    }
-    /// Configures which glossary is used for a specific target language and
-    /// defines
-    /// options for applying that glossary.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GlossaryConfig {
-        /// Required. The `glossary` to be applied for this translation.
-        ///
-        /// The format depends on the glossary:
-        ///
-        /// * User-provided custom glossary:
-        ///   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
-        #[prost(string, tag = "1")]
-        pub glossary: ::prost::alloc::string::String,
-        /// Optional. Indicates match is case insensitive. The default value is
-        /// `false` if missing.
-        #[prost(bool, tag = "2")]
-        pub ignore_case: bool,
-    }
-}
-/// An AdaptiveMt translation.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtTranslation {
-    /// Output only. The translated text.
-    #[prost(string, tag = "1")]
-    pub translated_text: ::prost::alloc::string::String,
-}
-/// An AdaptiveMtTranslate response.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtTranslateResponse {
-    /// Output only. The translation.
-    #[prost(message, repeated, tag = "1")]
-    pub translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
-    /// Output only. The translation's language code.
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    /// Text translation response if a glossary is provided in the request. This
-    /// could be the same as 'translation' above if no terms apply.
-    #[prost(message, repeated, tag = "4")]
-    pub glossary_translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
-}
-/// An AdaptiveMtFile.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtFile {
-    /// Required. The resource name of the file, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The file's display name.
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    /// The number of entries that the file contains.
-    #[prost(int32, tag = "3")]
-    pub entry_count: i32,
-    /// Output only. Timestamp when this file was created.
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp when this file was last updated.
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// The request for getting an AdaptiveMtFile.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAdaptiveMtFileRequest {
-    /// Required. The resource name of the file, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The request for deleting an AdaptiveMt file.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteAdaptiveMtFileRequest {
-    /// Required. The resource name of the file to delete, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// The request for importing an AdaptiveMt file along with its sentences.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImportAdaptiveMtFileRequest {
-    /// Required. The resource name of the file, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The source for the document.
-    #[prost(oneof = "import_adaptive_mt_file_request::Source", tags = "2, 3")]
-    pub source: ::core::option::Option<import_adaptive_mt_file_request::Source>,
-}
-/// Nested message and enum types in `ImportAdaptiveMtFileRequest`.
-pub mod import_adaptive_mt_file_request {
-    /// The source for the document.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        /// Inline file source.
-        #[prost(message, tag = "2")]
-        FileInputSource(super::FileInputSource),
-        /// Google Cloud Storage file source.
-        #[prost(message, tag = "3")]
-        GcsInputSource(super::GcsInputSource),
-    }
-}
-/// The response for importing an AdaptiveMtFile
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ImportAdaptiveMtFileResponse {
-    /// Output only. The Adaptive MT file that was imported.
-    #[prost(message, optional, tag = "1")]
-    pub adaptive_mt_file: ::core::option::Option<AdaptiveMtFile>,
-}
-/// The request to list all AdaptiveMt files under a given dataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtFilesRequest {
-    /// Required. The resource name of the project from which to list the Adaptive
-    /// MT files.
-    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// Optional.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// Optional. A token identifying a page of results the server should return.
-    /// Typically, this is the value of
-    /// ListAdaptiveMtFilesResponse.next_page_token returned from the
-    /// previous call to `ListAdaptiveMtFiles` method. The first page is
-    /// returned if `page_token`is empty or missing.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// The response for listing all AdaptiveMt files under a given dataset.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtFilesResponse {
-    /// Output only. The Adaptive MT files.
-    #[prost(message, repeated, tag = "1")]
-    pub adaptive_mt_files: ::prost::alloc::vec::Vec<AdaptiveMtFile>,
-    /// Optional. A token to retrieve a page of results. Pass this value in the
-    /// ListAdaptiveMtFilesRequest.page_token field in the subsequent call to
-    /// `ListAdaptiveMtFiles` method to retrieve the next page of results.
-    #[prost(string, tag = "3")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// An AdaptiveMt sentence entry.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AdaptiveMtSentence {
-    /// Required. The resource name of the file, in form of
-    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}/adaptiveMtSentences/{sentence}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Required. The source sentence.
-    #[prost(string, tag = "2")]
-    pub source_sentence: ::prost::alloc::string::String,
-    /// Required. The target sentence.
-    #[prost(string, tag = "3")]
-    pub target_sentence: ::prost::alloc::string::String,
-    /// Output only. Timestamp when this sentence was created.
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. Timestamp when this sentence was last updated.
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// The request for listing Adaptive MT sentences from a Dataset/File.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtSentencesRequest {
-    /// Required. The resource name of the project from which to list the Adaptive
-    /// MT files. The following format lists all sentences under a file.
-    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
-    /// The following format lists all sentences within a dataset.
-    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// A token identifying a page of results the server should return.
-    /// Typically, this is the value of
-    /// ListAdaptiveMtSentencesRequest.next_page_token returned from the
-    /// previous call to `ListTranslationMemories` method. The first page is
-    /// returned if `page_token` is empty or missing.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// List AdaptiveMt sentences response.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListAdaptiveMtSentencesResponse {
-    /// Output only. The list of AdaptiveMtSentences.
-    #[prost(message, repeated, tag = "1")]
-    pub adaptive_mt_sentences: ::prost::alloc::vec::Vec<AdaptiveMtSentence>,
-    /// Optional.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
 /// Request message for ImportData.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -977,6 +609,374 @@ pub struct Model {
     /// Output only. Timestamp when this model was last updated.
     #[prost(message, optional, tag = "10")]
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// An Adaptive MT Dataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtDataset {
+    /// Required. The resource name of the dataset, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The name of the dataset to show in the interface. The name can be
+    /// up to 32 characters long and can consist only of ASCII Latin letters A-Z
+    /// and a-z, underscores (\_), and ASCII digits 0-9.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The BCP-47 language code of the source language.
+    #[prost(string, tag = "3")]
+    pub source_language_code: ::prost::alloc::string::String,
+    /// The BCP-47 language code of the target language.
+    #[prost(string, tag = "4")]
+    pub target_language_code: ::prost::alloc::string::String,
+    /// The number of examples in the dataset.
+    #[prost(int32, tag = "5")]
+    pub example_count: i32,
+    /// Output only. Timestamp when this dataset was created.
+    #[prost(message, optional, tag = "9")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this dataset was last updated.
+    #[prost(message, optional, tag = "10")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+///  Request message for creating an AdaptiveMtDataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateAdaptiveMtDatasetRequest {
+    /// Required. Name of the parent project. In form of
+    /// `projects/{project-number-or-id}/locations/{location-id}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The AdaptiveMtDataset to be created.
+    #[prost(message, optional, tag = "2")]
+    pub adaptive_mt_dataset: ::core::option::Option<AdaptiveMtDataset>,
+}
+/// Request message for deleting an AdaptiveMtDataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteAdaptiveMtDatasetRequest {
+    /// Required. Name of the dataset. In the form of
+    /// `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for getting an Adaptive MT dataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAdaptiveMtDatasetRequest {
+    /// Required. Name of the dataset. In the form of
+    /// `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for listing all Adaptive MT datasets that the requestor has
+/// access to.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtDatasetsRequest {
+    /// Required. The resource name of the project from which to list the Adaptive
+    /// MT datasets. `projects/{project-number-or-id}/locations/{location-id}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. Requested page size. The server may return fewer results than
+    /// requested. If unspecified, the server picks an appropriate default.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token identifying a page of results the server should return.
+    /// Typically, this is the value of
+    /// ListAdaptiveMtDatasetsResponse.next_page_token returned from the
+    /// previous call to `ListAdaptiveMtDatasets` method. The first page is
+    /// returned if `page_token`is empty or missing.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. An expression for filtering the results of the request.
+    /// Filter is not supported yet.
+    #[prost(string, tag = "4")]
+    pub filter: ::prost::alloc::string::String,
+}
+/// A list of AdaptiveMtDatasets.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtDatasetsResponse {
+    /// Output only. A list of Adaptive MT datasets.
+    #[prost(message, repeated, tag = "1")]
+    pub adaptive_mt_datasets: ::prost::alloc::vec::Vec<AdaptiveMtDataset>,
+    /// Optional. A token to retrieve a page of results. Pass this value in the
+    /// \[ListAdaptiveMtDatasetsRequest.page_token\] field in the subsequent call to
+    /// `ListAdaptiveMtDatasets` method to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// The request for sending an AdaptiveMt translation query.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtTranslateRequest {
+    /// Required. Location to make a regional call.
+    ///
+    /// Format: `projects/{project-number-or-id}/locations/{location-id}`.
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The resource name for the dataset to use for adaptive MT.
+    /// `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
+    #[prost(string, tag = "2")]
+    pub dataset: ::prost::alloc::string::String,
+    /// Required. The content of the input in string format.
+    #[prost(string, repeated, tag = "3")]
+    pub content: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Configuration for caller provided reference sentences.
+    #[prost(message, optional, tag = "6")]
+    pub reference_sentence_config: ::core::option::Option<
+        adaptive_mt_translate_request::ReferenceSentenceConfig,
+    >,
+    /// Optional. Glossary to be applied. The glossary must be
+    /// within the same region (have the same location-id) as the model, otherwise
+    /// an INVALID_ARGUMENT (400) error is returned.
+    #[prost(message, optional, tag = "7")]
+    pub glossary_config: ::core::option::Option<
+        adaptive_mt_translate_request::GlossaryConfig,
+    >,
+}
+/// Nested message and enum types in `AdaptiveMtTranslateRequest`.
+pub mod adaptive_mt_translate_request {
+    /// A pair of sentences used as reference in source and target languages.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentencePair {
+        /// Source sentence in the sentence pair.
+        #[prost(string, tag = "1")]
+        pub source_sentence: ::prost::alloc::string::String,
+        /// Target sentence in the sentence pair.
+        #[prost(string, tag = "2")]
+        pub target_sentence: ::prost::alloc::string::String,
+    }
+    /// A list of reference sentence pairs.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentencePairList {
+        /// Reference sentence pairs.
+        #[prost(message, repeated, tag = "1")]
+        pub reference_sentence_pairs: ::prost::alloc::vec::Vec<ReferenceSentencePair>,
+    }
+    /// Message of caller-provided reference configuration.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ReferenceSentenceConfig {
+        /// Reference sentences pair lists. Each list will be used as the references
+        /// to translate the sentence under "content" field at the corresponding
+        /// index. Length of the list is required to be equal to the length of
+        /// "content" field.
+        #[prost(message, repeated, tag = "1")]
+        pub reference_sentence_pair_lists: ::prost::alloc::vec::Vec<
+            ReferenceSentencePairList,
+        >,
+        /// Source language code.
+        #[prost(string, tag = "2")]
+        pub source_language_code: ::prost::alloc::string::String,
+        /// Target language code.
+        #[prost(string, tag = "3")]
+        pub target_language_code: ::prost::alloc::string::String,
+    }
+    /// Configures which glossary is used for a specific target language and
+    /// defines
+    /// options for applying that glossary.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GlossaryConfig {
+        /// Required. The `glossary` to be applied for this translation.
+        ///
+        /// The format depends on the glossary:
+        ///
+        /// * User-provided custom glossary:
+        ///   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
+        #[prost(string, tag = "1")]
+        pub glossary: ::prost::alloc::string::String,
+        /// Optional. Indicates match is case insensitive. The default value is
+        /// `false` if missing.
+        #[prost(bool, tag = "2")]
+        pub ignore_case: bool,
+    }
+}
+/// An AdaptiveMt translation.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtTranslation {
+    /// Output only. The translated text.
+    #[prost(string, tag = "1")]
+    pub translated_text: ::prost::alloc::string::String,
+}
+/// An AdaptiveMtTranslate response.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtTranslateResponse {
+    /// Output only. The translation.
+    #[prost(message, repeated, tag = "1")]
+    pub translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
+    /// Output only. The translation's language code.
+    #[prost(string, tag = "2")]
+    pub language_code: ::prost::alloc::string::String,
+    /// Text translation response if a glossary is provided in the request. This
+    /// could be the same as 'translation' above if no terms apply.
+    #[prost(message, repeated, tag = "4")]
+    pub glossary_translations: ::prost::alloc::vec::Vec<AdaptiveMtTranslation>,
+}
+/// An AdaptiveMtFile.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtFile {
+    /// Required. The resource name of the file, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The file's display name.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// The number of entries that the file contains.
+    #[prost(int32, tag = "3")]
+    pub entry_count: i32,
+    /// Output only. Timestamp when this file was created.
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this file was last updated.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// The request for getting an AdaptiveMtFile.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAdaptiveMtFileRequest {
+    /// Required. The resource name of the file, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The request for deleting an AdaptiveMt file.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteAdaptiveMtFileRequest {
+    /// Required. The resource name of the file to delete, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// The request for importing an AdaptiveMt file along with its sentences.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportAdaptiveMtFileRequest {
+    /// Required. The resource name of the file, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The source for the document.
+    #[prost(oneof = "import_adaptive_mt_file_request::Source", tags = "2, 3")]
+    pub source: ::core::option::Option<import_adaptive_mt_file_request::Source>,
+}
+/// Nested message and enum types in `ImportAdaptiveMtFileRequest`.
+pub mod import_adaptive_mt_file_request {
+    /// The source for the document.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Source {
+        /// Inline file source.
+        #[prost(message, tag = "2")]
+        FileInputSource(super::FileInputSource),
+        /// Google Cloud Storage file source.
+        #[prost(message, tag = "3")]
+        GcsInputSource(super::GcsInputSource),
+    }
+}
+/// The response for importing an AdaptiveMtFile
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ImportAdaptiveMtFileResponse {
+    /// Output only. The Adaptive MT file that was imported.
+    #[prost(message, optional, tag = "1")]
+    pub adaptive_mt_file: ::core::option::Option<AdaptiveMtFile>,
+}
+/// The request to list all AdaptiveMt files under a given dataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtFilesRequest {
+    /// Required. The resource name of the project from which to list the Adaptive
+    /// MT files.
+    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. A token identifying a page of results the server should return.
+    /// Typically, this is the value of
+    /// ListAdaptiveMtFilesResponse.next_page_token returned from the
+    /// previous call to `ListAdaptiveMtFiles` method. The first page is
+    /// returned if `page_token`is empty or missing.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// The response for listing all AdaptiveMt files under a given dataset.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtFilesResponse {
+    /// Output only. The Adaptive MT files.
+    #[prost(message, repeated, tag = "1")]
+    pub adaptive_mt_files: ::prost::alloc::vec::Vec<AdaptiveMtFile>,
+    /// Optional. A token to retrieve a page of results. Pass this value in the
+    /// ListAdaptiveMtFilesRequest.page_token field in the subsequent call to
+    /// `ListAdaptiveMtFiles` method to retrieve the next page of results.
+    #[prost(string, tag = "3")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// An AdaptiveMt sentence entry.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AdaptiveMtSentence {
+    /// Required. The resource name of the file, in form of
+    /// `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}/adaptiveMtSentences/{sentence}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The source sentence.
+    #[prost(string, tag = "2")]
+    pub source_sentence: ::prost::alloc::string::String,
+    /// Required. The target sentence.
+    #[prost(string, tag = "3")]
+    pub target_sentence: ::prost::alloc::string::String,
+    /// Output only. Timestamp when this sentence was created.
+    #[prost(message, optional, tag = "4")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this sentence was last updated.
+    #[prost(message, optional, tag = "5")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// The request for listing Adaptive MT sentences from a Dataset/File.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtSentencesRequest {
+    /// Required. The resource name of the project from which to list the Adaptive
+    /// MT files. The following format lists all sentences under a file.
+    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`
+    /// The following format lists all sentences within a dataset.
+    /// `projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// A token identifying a page of results the server should return.
+    /// Typically, this is the value of
+    /// ListAdaptiveMtSentencesRequest.next_page_token returned from the
+    /// previous call to `ListTranslationMemories` method. The first page is
+    /// returned if `page_token` is empty or missing.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// List AdaptiveMt sentences response.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListAdaptiveMtSentencesResponse {
+    /// Output only. The list of AdaptiveMtSentences.
+    #[prost(message, repeated, tag = "1")]
+    pub adaptive_mt_sentences: ::prost::alloc::vec::Vec<AdaptiveMtSentence>,
+    /// Optional.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Configures transliteration feature on top of translation.
 #[allow(clippy::derive_partial_eq_without_eq)]

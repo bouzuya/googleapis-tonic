@@ -1,6 +1,6 @@
 pub mod google {
     pub mod api {
-        pub(crate) use googleapis_tonic_google_api::google::api::*;
+        pub use googleapis_tonic_google_api::google::api::*;
     }
     pub mod cloud {
         pub mod binaryauthorization {
@@ -12,6 +12,6 @@ pub mod google {
 }
 pub mod grafeas {
     pub mod v1 {
-        pub(crate) use googleapis_tonic_grafeas_v1::grafeas::v1::*;
+        pub use googleapis_tonic_grafeas_v1::grafeas::v1::*;
     }
 }
