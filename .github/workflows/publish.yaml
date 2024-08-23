@@ -8,6 +8,7 @@ jobs:
     concurrency:
       group: publish-job-singleton
       cancel-in-progress: false # default: false
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - env:
