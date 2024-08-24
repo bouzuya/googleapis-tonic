@@ -29,7 +29,10 @@ enum Subcommand {
         force_update: bool,
     },
     /// Publish the generated/* crates to crates.io
-    Publish,
+    Publish {
+        #[arg(long)]
+        crate_name: Option<String>,
+    },
     /// Show googleapis version (read googleapis/)
     ShowGoogleapisVersion,
     /// Test generated/* crates
@@ -45,7 +48,9 @@ async fn main() -> anyhow::Result<()> {
     let cli = <Cli as clap::Parser>::parse();
     match cli.subcommand {
         Subcommand::Build { force_update } => self::command::build::execute(force_update),
-        Subcommand::Publish => self::command::publish::execute().await,
+        Subcommand::Publish { crate_name } => {
+            self::command::publish::execute(self::command::publish::Args { crate_name }).await
+        }
         Subcommand::ShowGoogleapisVersion => self::command::show_googleapis_version::execute(),
         Subcommand::Test => self::command::test::execute(),
         Subcommand::UpdateGoogleapis => self::command::update_googleapis::execute(),
