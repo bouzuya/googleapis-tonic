@@ -55,7 +55,16 @@ pub async fn execute(Args { crate_name }: Args) -> anyhow::Result<()> {
 
     let mut published = BTreeSet::new();
     for crate_name in target_crate_names {
-        publish_recursive(&mut published, &generated_dir, &crate_name).await?;
+        let sleep_time =
+            match publish_recursive(&mut published, &generated_dir, &crate_name).await? {
+                PublishResult::New => 600,
+                PublishResult::Update => 300,
+                PublishResult::UpToDate => 0,
+            };
+        if sleep_time > 0 {
+            println!("Sleep {} secs", sleep_time);
+            tokio::time::sleep(Duration::from_secs(sleep_time)).await;
+        }
     }
 
     Ok(())
