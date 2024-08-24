@@ -92,16 +92,14 @@ async fn publish_recursive(
         return Ok(PublishResult::UpToDate);
     } else {
         for dep in deps {
-            match publish_recursive(published, generated_dir, &dep).await? {
-                PublishResult::New => {
-                    tokio::time::sleep(Duration::from_secs(600)).await;
-                }
-                PublishResult::Update => {
-                    tokio::time::sleep(Duration::from_secs(300)).await;
-                }
-                PublishResult::UpToDate => {
-                    // do nothing
-                }
+            let sleep_time = match publish_recursive(published, generated_dir, &dep).await? {
+                PublishResult::New => 600,
+                PublishResult::Update => 300,
+                PublishResult::UpToDate => 0,
+            };
+            if sleep_time > 0 {
+                println!("Sleep {} secs", sleep_time);
+                tokio::time::sleep(Duration::from_secs(sleep_time)).await;
             }
         }
 
