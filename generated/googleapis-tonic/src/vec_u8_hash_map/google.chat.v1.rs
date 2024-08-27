@@ -3408,44 +3408,6 @@ pub struct ListSpaceEventsResponse {
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
 }
-/// A user's read state within a thread, used to identify read and unread
-/// messages.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ThreadReadState {
-    /// Resource name of the thread read state.
-    ///
-    /// Format: `users/{user}/spaces/{space}/threads/{thread}/threadReadState`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The time when the user's thread read state was updated. Usually this
-    /// corresponds with the timestamp of the last read message in a thread.
-    #[prost(message, optional, tag = "2")]
-    pub last_read_time: ::core::option::Option<::prost_types::Timestamp>,
-}
-/// Request message for GetThreadReadStateRequest API.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetThreadReadStateRequest {
-    /// Required. Resource name of the thread read state to retrieve.
-    ///
-    /// Only supports getting read state for the calling user.
-    ///
-    /// To refer to the calling user, set one of the following:
-    ///
-    /// * The `me` alias. For example,
-    ///   `users/me/spaces/{space}/threads/{thread}/threadReadState`.
-    ///
-    /// * Their Workspace email address. For example,
-    ///   `users/user@example.com/spaces/{space}/threads/{thread}/threadReadState`.
-    ///
-    /// * Their user id. For example,
-    ///   `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
-    ///
-    /// Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
 /// A user's read state within a space, used to identify read and unread
 /// messages.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3590,6 +3552,44 @@ pub struct SetUpSpaceRequest {
     #[prost(message, repeated, tag = "4")]
     pub memberships: ::prost::alloc::vec::Vec<Membership>,
 }
+/// A user's read state within a thread, used to identify read and unread
+/// messages.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ThreadReadState {
+    /// Resource name of the thread read state.
+    ///
+    /// Format: `users/{user}/spaces/{space}/threads/{thread}/threadReadState`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The time when the user's thread read state was updated. Usually this
+    /// corresponds with the timestamp of the last read message in a thread.
+    #[prost(message, optional, tag = "2")]
+    pub last_read_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Request message for GetThreadReadStateRequest API.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetThreadReadStateRequest {
+    /// Required. Resource name of the thread read state to retrieve.
+    ///
+    /// Only supports getting read state for the calling user.
+    ///
+    /// To refer to the calling user, set one of the following:
+    ///
+    /// * The `me` alias. For example,
+    ///   `users/me/spaces/{space}/threads/{thread}/threadReadState`.
+    ///
+    /// * Their Workspace email address. For example,
+    ///   `users/user@example.com/spaces/{space}/threads/{thread}/threadReadState`.
+    ///
+    /// * Their user id. For example,
+    ///   `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
+    ///
+    /// Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
 /// Generated client implementations.
 pub mod chat_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -3605,8 +3605,8 @@ pub mod chat_service_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -3631,7 +3631,7 @@ pub mod chat_service_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             ChatServiceClient::new(InterceptedService::new(inner, interceptor))
         }

@@ -607,6 +607,11 @@ pub struct Assessment {
     /// protection need to be enabled.
     #[prost(message, optional, tag = "12")]
     pub phone_fraud_assessment: ::core::option::Option<PhoneFraudAssessment>,
+    /// Optional. The environment creating the assessment. This describes your
+    /// environment (the system invoking CreateAssessment), NOT the environment of
+    /// your user.
+    #[prost(message, optional, tag = "14")]
+    pub assessment_environment: ::core::option::Option<AssessmentEnvironment>,
 }
 /// The event being assessed.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2424,6 +2429,25 @@ pub mod waf_settings {
         }
     }
 }
+/// The environment creating the assessment. This describes your environment
+/// (the system invoking CreateAssessment), NOT the environment of your user.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssessmentEnvironment {
+    /// Optional. Identifies the client module initiating the CreateAssessment
+    /// request. This can be the link to the client module's project. Examples
+    /// include:
+    ///
+    /// * "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
+    /// * "cloud.google.com/recaptcha/docs/implement-waf-akamai"
+    /// * "cloud.google.com/recaptcha/docs/implement-waf-cloudflare"
+    /// * "wordpress.org/plugins/recaptcha-something"
+    #[prost(string, tag = "1")]
+    pub client: ::prost::alloc::string::String,
+    /// Optional. The version of the client module. For example, "1.0.0".
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+}
 /// Information about the IP or IP range override.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2498,8 +2522,8 @@ pub mod recaptcha_enterprise_service_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -2524,7 +2548,7 @@ pub mod recaptcha_enterprise_service_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             RecaptchaEnterpriseServiceClient::new(
                 InterceptedService::new(inner, interceptor),

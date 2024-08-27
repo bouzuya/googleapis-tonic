@@ -938,276 +938,6 @@ impl SubscriptionPeriod {
         }
     }
 }
-/// The processed product, built from multiple \[product
-/// inputs\]\[\[google.shopping.content.bundles.Products.ProductInput\] after
-/// applying rules and supplemental data sources. This processed product matches
-/// what is shown in your Merchant Center account and in Shopping ads and other
-/// surfaces across Google. Each product is built from exactly one primary
-/// data source product input, and multiple supplemental data source inputs.
-/// After inserting, updating, or deleting a product input, it may take
-/// several minutes before the updated processed product can be retrieved.
-///
-/// All fields in the processed product and its sub-messages match the name of
-/// their corresponding attribute in the [Product data
-/// specification](<https://support.google.com/merchants/answer/7052112>) with some
-/// exceptions.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Product {
-    /// The name of the product.
-    /// Format:
-    /// `"{product.name=accounts/{account}/products/{product}}"`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. The
-    /// [channel](<https://support.google.com/merchants/answer/7361332>) of the
-    /// product.
-    #[prost(
-        enumeration = "super::super::super::r#type::channel::ChannelEnum",
-        tag = "2"
-    )]
-    pub channel: i32,
-    /// Output only. Your unique identifier for the product. This is the same for
-    /// the product input and processed product. Leading and trailing whitespaces
-    /// are stripped and multiple whitespaces are replaced by a single whitespace
-    /// upon submission. See the [product data
-    /// specification](<https://support.google.com/merchants/answer/188494#id>) for
-    /// details.
-    #[prost(string, tag = "3")]
-    pub offer_id: ::prost::alloc::string::String,
-    /// Output only. The two-letter [ISO
-    /// 639-1](<http://en.wikipedia.org/wiki/ISO_639-1>) language code for the
-    /// product.
-    #[prost(string, tag = "4")]
-    pub content_language: ::prost::alloc::string::String,
-    /// Output only. The feed label for the product.
-    #[prost(string, tag = "5")]
-    pub feed_label: ::prost::alloc::string::String,
-    /// Output only. The primary data source of the product.
-    #[prost(string, tag = "6")]
-    pub data_source: ::prost::alloc::string::String,
-    /// Output only. Represents the existing version (freshness) of the product,
-    /// which can be used to preserve the right order when multiple updates are
-    /// done at the same time.
-    ///
-    /// If set, the insertion is prevented when version number is lower than
-    /// the current version number of the existing product. Re-insertion (for
-    /// example, product refresh after 30 days) can be performed with the current
-    /// `version_number`.
-    ///
-    /// Only supported for insertions into primary data sources.
-    ///
-    /// If the operation is prevented, the aborted exception will be
-    /// thrown.
-    #[prost(int64, optional, tag = "7")]
-    pub version_number: ::core::option::Option<i64>,
-    /// Output only. A list of product attributes.
-    #[prost(message, optional, tag = "8")]
-    pub attributes: ::core::option::Option<Attributes>,
-    /// Output only. A list of custom (merchant-provided) attributes. It can also
-    /// be used to submit any attribute of the data specification in its generic
-    /// form (for example,
-    /// `{ "name": "size type", "value": "regular" }`).
-    /// This is useful for submitting attributes not explicitly exposed by the
-    /// API, such as additional attributes used for Buy on Google.
-    #[prost(message, repeated, tag = "9")]
-    pub custom_attributes: ::prost::alloc::vec::Vec<
-        super::super::super::r#type::CustomAttribute,
-    >,
-    /// Output only. The status of a product, data validation issues, that is,
-    /// information about a product computed asynchronously.
-    #[prost(message, optional, tag = "10")]
-    pub product_status: ::core::option::Option<ProductStatus>,
-}
-/// Request message for the GetProduct method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetProductRequest {
-    /// Required. The name of the product to retrieve.
-    /// Format: `accounts/{account}/products/{product}`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// Request message for the ListProducts method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListProductsRequest {
-    /// Required. The account to list processed products for.
-    /// Format: accounts/{account}
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    /// The maximum number of products to return. The service may return fewer than
-    /// this value.
-    /// The maximum value is 1000; values above 1000 will be coerced to 1000.
-    /// If unspecified, the maximum number of products will be returned.
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    /// A page token, received from a previous `ListProducts` call.
-    /// Provide this to retrieve the subsequent page.
-    ///
-    /// When paginating, all other parameters provided to `ListProducts` must
-    /// match the call that provided the page token.
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-}
-/// Response message for the ListProducts method.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListProductsResponse {
-    /// The processed products from the specified account. These are your processed
-    /// products after applying rules and supplemental data sources.
-    #[prost(message, repeated, tag = "1")]
-    pub products: ::prost::alloc::vec::Vec<Product>,
-    /// A token, which can be sent as `page_token` to retrieve the next page.
-    /// If this field is omitted, there are no subsequent pages.
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-}
-/// Generated client implementations.
-pub mod products_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service to use Product resource.
-    /// This service works for products with online channel only.
-    #[derive(Debug, Clone)]
-    pub struct ProductsServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ProductsServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ProductsServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ProductsServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Retrieves the processed product from your Merchant Center account.
-        ///
-        /// After inserting, updating, or deleting a product input, it may take several
-        /// minutes before the updated final product can be retrieved.
-        pub async fn get_product(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetProductRequest>,
-        ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.products.v1beta.ProductsService/GetProduct",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.products.v1beta.ProductsService",
-                        "GetProduct",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the processed products in your Merchant Center account. The response
-        /// might contain fewer items than specified by pageSize. Rely on pageToken to
-        /// determine if there are more items to be requested.
-        ///
-        /// After inserting, updating, or deleting a product input, it may take several
-        /// minutes before the updated processed product can be retrieved.
-        pub async fn list_products(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListProductsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListProductsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.products.v1beta.ProductsService/ListProducts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.products.v1beta.ProductsService",
-                        "ListProducts",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
-}
 /// This resource represents input data you submit for a product, not the
 /// processed product that you see in Merchant Center, in Shopping ads, or across
 /// Google surfaces. Product inputs, rules and supplemental data source data are
@@ -1349,8 +1079,8 @@ pub mod product_inputs_service_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -1375,7 +1105,7 @@ pub mod product_inputs_service_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             ProductInputsServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1470,6 +1200,276 @@ pub mod product_inputs_service_client {
                     GrpcMethod::new(
                         "google.shopping.merchant.products.v1beta.ProductInputsService",
                         "DeleteProductInput",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// The processed product, built from multiple \[product
+/// inputs\]\[\[google.shopping.content.bundles.Products.ProductInput\] after
+/// applying rules and supplemental data sources. This processed product matches
+/// what is shown in your Merchant Center account and in Shopping ads and other
+/// surfaces across Google. Each product is built from exactly one primary
+/// data source product input, and multiple supplemental data source inputs.
+/// After inserting, updating, or deleting a product input, it may take
+/// several minutes before the updated processed product can be retrieved.
+///
+/// All fields in the processed product and its sub-messages match the name of
+/// their corresponding attribute in the [Product data
+/// specification](<https://support.google.com/merchants/answer/7052112>) with some
+/// exceptions.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Product {
+    /// The name of the product.
+    /// Format:
+    /// `"{product.name=accounts/{account}/products/{product}}"`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The
+    /// [channel](<https://support.google.com/merchants/answer/7361332>) of the
+    /// product.
+    #[prost(
+        enumeration = "super::super::super::r#type::channel::ChannelEnum",
+        tag = "2"
+    )]
+    pub channel: i32,
+    /// Output only. Your unique identifier for the product. This is the same for
+    /// the product input and processed product. Leading and trailing whitespaces
+    /// are stripped and multiple whitespaces are replaced by a single whitespace
+    /// upon submission. See the [product data
+    /// specification](<https://support.google.com/merchants/answer/188494#id>) for
+    /// details.
+    #[prost(string, tag = "3")]
+    pub offer_id: ::prost::alloc::string::String,
+    /// Output only. The two-letter [ISO
+    /// 639-1](<http://en.wikipedia.org/wiki/ISO_639-1>) language code for the
+    /// product.
+    #[prost(string, tag = "4")]
+    pub content_language: ::prost::alloc::string::String,
+    /// Output only. The feed label for the product.
+    #[prost(string, tag = "5")]
+    pub feed_label: ::prost::alloc::string::String,
+    /// Output only. The primary data source of the product.
+    #[prost(string, tag = "6")]
+    pub data_source: ::prost::alloc::string::String,
+    /// Output only. Represents the existing version (freshness) of the product,
+    /// which can be used to preserve the right order when multiple updates are
+    /// done at the same time.
+    ///
+    /// If set, the insertion is prevented when version number is lower than
+    /// the current version number of the existing product. Re-insertion (for
+    /// example, product refresh after 30 days) can be performed with the current
+    /// `version_number`.
+    ///
+    /// Only supported for insertions into primary data sources.
+    ///
+    /// If the operation is prevented, the aborted exception will be
+    /// thrown.
+    #[prost(int64, optional, tag = "7")]
+    pub version_number: ::core::option::Option<i64>,
+    /// Output only. A list of product attributes.
+    #[prost(message, optional, tag = "8")]
+    pub attributes: ::core::option::Option<Attributes>,
+    /// Output only. A list of custom (merchant-provided) attributes. It can also
+    /// be used to submit any attribute of the data specification in its generic
+    /// form (for example,
+    /// `{ "name": "size type", "value": "regular" }`).
+    /// This is useful for submitting attributes not explicitly exposed by the
+    /// API, such as additional attributes used for Buy on Google.
+    #[prost(message, repeated, tag = "9")]
+    pub custom_attributes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::CustomAttribute,
+    >,
+    /// Output only. The status of a product, data validation issues, that is,
+    /// information about a product computed asynchronously.
+    #[prost(message, optional, tag = "10")]
+    pub product_status: ::core::option::Option<ProductStatus>,
+}
+/// Request message for the GetProduct method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetProductRequest {
+    /// Required. The name of the product to retrieve.
+    /// Format: `accounts/{account}/products/{product}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for the ListProducts method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListProductsRequest {
+    /// Required. The account to list processed products for.
+    /// Format: accounts/{account}
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// The maximum number of products to return. The service may return fewer than
+    /// this value.
+    /// The maximum value is 1000; values above 1000 will be coerced to 1000.
+    /// If unspecified, the maximum number of products will be returned.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// A page token, received from a previous `ListProducts` call.
+    /// Provide this to retrieve the subsequent page.
+    ///
+    /// When paginating, all other parameters provided to `ListProducts` must
+    /// match the call that provided the page token.
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
+}
+/// Response message for the ListProducts method.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListProductsResponse {
+    /// The processed products from the specified account. These are your processed
+    /// products after applying rules and supplemental data sources.
+    #[prost(message, repeated, tag = "1")]
+    pub products: ::prost::alloc::vec::Vec<Product>,
+    /// A token, which can be sent as `page_token` to retrieve the next page.
+    /// If this field is omitted, there are no subsequent pages.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod products_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to use Product resource.
+    /// This service works for products with online channel only.
+    #[derive(Debug, Clone)]
+    pub struct ProductsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> ProductsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> ProductsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            ProductsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves the processed product from your Merchant Center account.
+        ///
+        /// After inserting, updating, or deleting a product input, it may take several
+        /// minutes before the updated final product can be retrieved.
+        pub async fn get_product(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetProductRequest>,
+        ) -> std::result::Result<tonic::Response<super::Product>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.products.v1beta.ProductsService/GetProduct",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductsService",
+                        "GetProduct",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists the processed products in your Merchant Center account. The response
+        /// might contain fewer items than specified by pageSize. Rely on pageToken to
+        /// determine if there are more items to be requested.
+        ///
+        /// After inserting, updating, or deleting a product input, it may take several
+        /// minutes before the updated processed product can be retrieved.
+        pub async fn list_products(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListProductsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListProductsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.products.v1beta.ProductsService/ListProducts",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.products.v1beta.ProductsService",
+                        "ListProducts",
                     ),
                 );
             self.inner.unary(req, path, codec).await

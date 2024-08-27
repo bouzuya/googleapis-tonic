@@ -5828,6 +5828,9 @@ pub mod release_channel {
         /// Clusters subscribed to STABLE receive versions that are known to be
         /// stable and reliable in production.
         Stable = 3,
+        /// Clusters subscribed to EXTENDED receive extended support and availability
+        /// for versions which are known to be stable and reliable in production.
+        Extended = 4,
     }
     impl Channel {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5840,6 +5843,7 @@ pub mod release_channel {
                 Channel::Rapid => "RAPID",
                 Channel::Regular => "REGULAR",
                 Channel::Stable => "STABLE",
+                Channel::Extended => "EXTENDED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5849,6 +5853,7 @@ pub mod release_channel {
                 "RAPID" => Some(Self::Rapid),
                 "REGULAR" => Some(Self::Regular),
                 "STABLE" => Some(Self::Stable),
+                "EXTENDED" => Some(Self::Extended),
                 _ => None,
             }
         }
@@ -7450,8 +7455,8 @@ pub mod cluster_manager_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -7476,7 +7481,7 @@ pub mod cluster_manager_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             ClusterManagerClient::new(InterceptedService::new(inner, interceptor))
         }

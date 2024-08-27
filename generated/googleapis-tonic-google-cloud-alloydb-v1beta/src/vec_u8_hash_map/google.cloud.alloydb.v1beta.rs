@@ -476,6 +476,48 @@ pub struct ContinuousBackupSource {
     #[prost(message, optional, tag = "2")]
     pub point_in_time: ::core::option::Option<::prost_types::Timestamp>,
 }
+/// MaintenanceUpdatePolicy defines the policy for system updates.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MaintenanceUpdatePolicy {
+    /// Preferred windows to perform maintenance. Currently limited to 1.
+    #[prost(message, repeated, tag = "1")]
+    pub maintenance_windows: ::prost::alloc::vec::Vec<
+        maintenance_update_policy::MaintenanceWindow,
+    >,
+}
+/// Nested message and enum types in `MaintenanceUpdatePolicy`.
+pub mod maintenance_update_policy {
+    /// MaintenanceWindow specifies a preferred day and time for maintenance.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct MaintenanceWindow {
+        /// Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
+        #[prost(
+            enumeration = "super::super::super::super::r#type::DayOfWeek",
+            tag = "1"
+        )]
+        pub day: i32,
+        /// Preferred time to start the maintenance operation on the specified day.
+        /// Maintenance will start within 1 hour of this time.
+        #[prost(message, optional, tag = "2")]
+        pub start_time: ::core::option::Option<
+            super::super::super::super::r#type::TimeOfDay,
+        >,
+    }
+}
+/// MaintenanceSchedule stores the maintenance schedule generated from
+/// the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if
+/// MaintenanceWindow is set, and if there is no conflicting DenyPeriod.
+/// The schedule is cleared once the update takes place. This field cannot be
+/// manually changed; modify the MaintenanceUpdatePolicy instead.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MaintenanceSchedule {
+    /// Output only. The scheduled start time for the maintenance.
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 /// A cluster is a collection of regional AlloyDB resources. It can include a
 /// primary instance and one or more read pool instances.
 /// All cluster resources share a storage layer, which scales as needed.
@@ -533,7 +575,7 @@ pub struct Cluster {
     /// Required. The resource link for the VPC network in which cluster resources
     /// are created and from which they are accessible via Private IP. The network
     /// must belong to the same project as the cluster. It is specified in the
-    /// form: "projects/{project}/global/networks/{network_id}". This is required
+    /// form: `projects/{project}/global/networks/{network_id}`. This is required
     /// to create a cluster. Deprecated, use network_config.network instead.
     #[deprecated]
     #[prost(string, tag = "10")]
@@ -598,6 +640,14 @@ pub struct Cluster {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "30")]
     pub satisfies_pzs: bool,
+    /// Optional. The maintenance update policy determines when to allow or deny
+    /// updates.
+    #[prost(message, optional, tag = "32")]
+    pub maintenance_update_policy: ::core::option::Option<MaintenanceUpdatePolicy>,
+    /// Output only. The maintenance schedule for the cluster, generated for a
+    /// specific rollout if a maintenance window is set.
+    #[prost(message, optional, tag = "37")]
+    pub maintenance_schedule: ::core::option::Option<MaintenanceSchedule>,
     /// In case of an imported cluster, this field contains information about the
     /// source this cluster was imported from.
     #[prost(oneof = "cluster::Source", tags = "15, 16")]
@@ -613,7 +663,7 @@ pub mod cluster {
         /// resources are created and from which they are accessible via Private IP.
         /// The network must belong to the same project as the cluster. It is
         /// specified in the form:
-        /// "projects/{project_number}/global/networks/{network_id}". This is
+        /// `projects/{project_number}/global/networks/{network_id}`. This is
         /// required to create a cluster.
         #[prost(string, tag = "1")]
         pub network: ::prost::alloc::string::String,
@@ -936,6 +986,11 @@ pub struct Instance {
     /// Optional. Instance level network configuration.
     #[prost(message, optional, tag = "29")]
     pub network_config: ::core::option::Option<instance::InstanceNetworkConfig>,
+    /// Output only. All outbound public IP addresses configured for the instance.
+    #[prost(string, repeated, tag = "34")]
+    pub outbound_public_ip_addresses: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
@@ -1142,6 +1197,10 @@ pub mod instance {
         /// Optional. Enabling public ip for the instance.
         #[prost(bool, tag = "2")]
         pub enable_public_ip: bool,
+        /// Optional. Enabling an outbound public IP address to support a database
+        /// server sending requests out into the internet.
+        #[prost(bool, tag = "3")]
+        pub enable_outbound_public_ip: bool,
     }
     /// Nested message and enum types in `InstanceNetworkConfig`.
     pub mod instance_network_config {
@@ -3199,8 +3258,8 @@ pub mod alloy_db_admin_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -3225,7 +3284,7 @@ pub mod alloy_db_admin_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             AlloyDbAdminClient::new(InterceptedService::new(inner, interceptor))
         }

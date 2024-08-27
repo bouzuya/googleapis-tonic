@@ -66,383 +66,6 @@ pub struct UsageSignal {
     #[prost(int64, optional, tag = "4")]
     pub favorite_count: ::core::option::Option<i64>,
 }
-/// Represents a schema, for example, a BigQuery, GoogleSQL, or Avro schema.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Schema {
-    /// The unified GoogleSQL-like schema of columns.
-    ///
-    /// The overall maximum number of columns and nested columns is 10,000.
-    /// The maximum nested depth is 15 levels.
-    #[prost(message, repeated, tag = "2")]
-    pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
-}
-/// A column within a schema. Columns can be nested inside
-/// other columns.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ColumnSchema {
-    /// Required. Name of the column.
-    ///
-    /// Must be a UTF-8 string without dots (.).
-    /// The maximum size is 64 bytes.
-    #[prost(string, tag = "6")]
-    pub column: ::prost::alloc::string::String,
-    /// Required. Type of the column.
-    ///
-    /// Must be a UTF-8 string with the maximum size of 128 bytes.
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    /// Optional. Description of the column. Default value is an empty string.
-    ///
-    /// The description must be a UTF-8 string with the maximum size of 2000
-    /// bytes.
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Optional. A column's mode indicates whether values in this column are
-    /// required, nullable, or repeated.
-    ///
-    /// Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported.
-    /// Default mode is `NULLABLE`.
-    #[prost(string, tag = "3")]
-    pub mode: ::prost::alloc::string::String,
-    /// Optional. Default value for the column.
-    #[prost(string, tag = "8")]
-    pub default_value: ::prost::alloc::string::String,
-    /// Optional. Ordinal position
-    #[prost(int32, tag = "9")]
-    pub ordinal_position: i32,
-    /// Optional. Most important inclusion of this column.
-    #[prost(enumeration = "column_schema::IndexingType", tag = "10")]
-    pub highest_indexing_type: i32,
-    /// Optional. Schema of sub-columns. A column can have zero or more
-    /// sub-columns.
-    #[prost(message, repeated, tag = "7")]
-    pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
-    /// Optional. The subtype of the RANGE, if the type of this field is RANGE. If
-    /// the type is RANGE, this field is required. Possible values for the field
-    /// element type of a RANGE include:
-    ///
-    /// * DATE
-    /// * DATETIME
-    /// * TIMESTAMP
-    #[prost(message, optional, tag = "19")]
-    pub range_element_type: ::core::option::Option<column_schema::FieldElementType>,
-    /// Optional. Garbage collection policy for the column or column family.
-    /// Applies to systems like Cloud Bigtable.
-    #[prost(string, tag = "11")]
-    pub gc_rule: ::prost::alloc::string::String,
-    /// Information only applying for columns in Entries from a specific system.
-    #[prost(oneof = "column_schema::SystemSpec", tags = "18")]
-    pub system_spec: ::core::option::Option<column_schema::SystemSpec>,
-}
-/// Nested message and enum types in `ColumnSchema`.
-pub mod column_schema {
-    /// Column info specific to Looker System.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LookerColumnSpec {
-        /// Looker specific column type of this column.
-        #[prost(enumeration = "looker_column_spec::LookerColumnType", tag = "1")]
-        pub r#type: i32,
-    }
-    /// Nested message and enum types in `LookerColumnSpec`.
-    pub mod looker_column_spec {
-        /// Column type in Looker.
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum LookerColumnType {
-            /// Unspecified.
-            Unspecified = 0,
-            /// Dimension.
-            Dimension = 1,
-            /// Dimension group - parent for Dimension.
-            DimensionGroup = 2,
-            /// Filter.
-            Filter = 3,
-            /// Measure.
-            Measure = 4,
-            /// Parameter.
-            Parameter = 5,
-        }
-        impl LookerColumnType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    LookerColumnType::Unspecified => "LOOKER_COLUMN_TYPE_UNSPECIFIED",
-                    LookerColumnType::Dimension => "DIMENSION",
-                    LookerColumnType::DimensionGroup => "DIMENSION_GROUP",
-                    LookerColumnType::Filter => "FILTER",
-                    LookerColumnType::Measure => "MEASURE",
-                    LookerColumnType::Parameter => "PARAMETER",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "LOOKER_COLUMN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DIMENSION" => Some(Self::Dimension),
-                    "DIMENSION_GROUP" => Some(Self::DimensionGroup),
-                    "FILTER" => Some(Self::Filter),
-                    "MEASURE" => Some(Self::Measure),
-                    "PARAMETER" => Some(Self::Parameter),
-                    _ => None,
-                }
-            }
-        }
-    }
-    /// Represents the type of a field element.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FieldElementType {
-        /// Required. The type of a field element. See
-        /// \[ColumnSchema.type\]\[google.cloud.datacatalog.v1.ColumnSchema.type\].
-        #[prost(string, tag = "1")]
-        pub r#type: ::prost::alloc::string::String,
-    }
-    /// Specifies inclusion of the column in an index
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum IndexingType {
-        /// Unspecified.
-        Unspecified = 0,
-        /// Column not a part of an index.
-        None = 1,
-        /// Column Part of non unique index.
-        NonUnique = 2,
-        /// Column part of unique index.
-        Unique = 3,
-        /// Column part of the primary key.
-        PrimaryKey = 4,
-    }
-    impl IndexingType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                IndexingType::Unspecified => "INDEXING_TYPE_UNSPECIFIED",
-                IndexingType::None => "INDEXING_TYPE_NONE",
-                IndexingType::NonUnique => "INDEXING_TYPE_NON_UNIQUE",
-                IndexingType::Unique => "INDEXING_TYPE_UNIQUE",
-                IndexingType::PrimaryKey => "INDEXING_TYPE_PRIMARY_KEY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INDEXING_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "INDEXING_TYPE_NONE" => Some(Self::None),
-                "INDEXING_TYPE_NON_UNIQUE" => Some(Self::NonUnique),
-                "INDEXING_TYPE_UNIQUE" => Some(Self::Unique),
-                "INDEXING_TYPE_PRIMARY_KEY" => Some(Self::PrimaryKey),
-                _ => None,
-            }
-        }
-    }
-    /// Information only applying for columns in Entries from a specific system.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum SystemSpec {
-        /// Looker specific column info of this column.
-        #[prost(message, tag = "18")]
-        LookerColumnSpec(LookerColumnSpec),
-    }
-}
-/// Native schema used by a resource represented as an entry. Used by query
-/// engines for deserializing and parsing source data.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PhysicalSchema {
-    #[prost(oneof = "physical_schema::Schema", tags = "1, 2, 3, 4, 5, 6")]
-    pub schema: ::core::option::Option<physical_schema::Schema>,
-}
-/// Nested message and enum types in `PhysicalSchema`.
-pub mod physical_schema {
-    /// Schema in Avro JSON format.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AvroSchema {
-        /// JSON source of the Avro schema.
-        #[prost(string, tag = "1")]
-        pub text: ::prost::alloc::string::String,
-    }
-    /// Schema in Thrift format.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ThriftSchema {
-        /// Thrift IDL source of the schema.
-        #[prost(string, tag = "1")]
-        pub text: ::prost::alloc::string::String,
-    }
-    /// Schema in protocol buffer format.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ProtobufSchema {
-        /// Protocol buffer source of the schema.
-        #[prost(string, tag = "1")]
-        pub text: ::prost::alloc::string::String,
-    }
-    /// Marks a Parquet-encoded data source.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ParquetSchema {}
-    /// Marks an ORC-encoded data source.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct OrcSchema {}
-    /// Marks a CSV-encoded data source.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct CsvSchema {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Schema {
-        /// Schema in Avro JSON format.
-        #[prost(message, tag = "1")]
-        Avro(AvroSchema),
-        /// Schema in Thrift format.
-        #[prost(message, tag = "2")]
-        Thrift(ThriftSchema),
-        /// Schema in protocol buffer format.
-        #[prost(message, tag = "3")]
-        Protobuf(ProtobufSchema),
-        /// Marks a Parquet-encoded data source.
-        #[prost(message, tag = "4")]
-        Parquet(ParquetSchema),
-        /// Marks an ORC-encoded data source.
-        #[prost(message, tag = "5")]
-        Orc(OrcSchema),
-        /// Marks a CSV-encoded data source.
-        #[prost(message, tag = "6")]
-        Csv(CsvSchema),
-    }
-}
-/// Physical location of an entry.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DataSource {
-    /// Service that physically stores the data.
-    #[prost(enumeration = "data_source::Service", tag = "1")]
-    pub service: i32,
-    /// Full name of a resource as defined by the service. For example:
-    ///
-    /// `//bigquery.googleapis.com/projects/{PROJECT_ID}/locations/{LOCATION}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
-    #[prost(string, tag = "2")]
-    pub resource: ::prost::alloc::string::String,
-    /// Output only. Data Catalog entry name, if applicable.
-    #[prost(string, tag = "3")]
-    pub source_entry: ::prost::alloc::string::String,
-    #[prost(oneof = "data_source::Properties", tags = "4")]
-    pub properties: ::core::option::Option<data_source::Properties>,
-}
-/// Nested message and enum types in `DataSource`.
-pub mod data_source {
-    /// Name of a service that stores the data.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Service {
-        /// Default unknown service.
-        Unspecified = 0,
-        /// Google Cloud Storage service.
-        CloudStorage = 1,
-        /// BigQuery service.
-        Bigquery = 2,
-    }
-    impl Service {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Service::Unspecified => "SERVICE_UNSPECIFIED",
-                Service::CloudStorage => "CLOUD_STORAGE",
-                Service::Bigquery => "BIGQUERY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SERVICE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CLOUD_STORAGE" => Some(Self::CloudStorage),
-                "BIGQUERY" => Some(Self::Bigquery),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Properties {
-        /// Detailed properties of the underlying storage.
-        #[prost(message, tag = "4")]
-        StorageProperties(super::StorageProperties),
-    }
-}
-/// Details the properties of the underlying storage.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StorageProperties {
-    /// Patterns to identify a set of files for this fileset.
-    ///
-    /// Examples of a valid `file_pattern`:
-    ///
-    /// * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
-    ///   directory
-    /// * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
-    ///   and all subdirectories recursively
-    /// * `gs://bucket_name/file*`: matches files prefixed by `file` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/??.txt`: matches files with two characters followed by
-    ///   `.txt` in `bucket_name`
-    /// * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
-    ///   vowel character followed by `.txt` in
-    ///   `bucket_name`
-    /// * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
-    ///   or `m` followed by `.txt` in `bucket_name`
-    /// * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
-    ///   the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
-    /// * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
-    #[prost(string, repeated, tag = "1")]
-    pub file_pattern: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// File type in MIME format, for example, `text/plain`.
-    #[prost(string, tag = "2")]
-    pub file_type: ::prost::alloc::string::String,
-}
 /// Specification for the BigQuery connection.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -685,6 +308,176 @@ impl ManagingSystem {
         }
     }
 }
+/// Physical location of an entry.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DataSource {
+    /// Service that physically stores the data.
+    #[prost(enumeration = "data_source::Service", tag = "1")]
+    pub service: i32,
+    /// Full name of a resource as defined by the service. For example:
+    ///
+    /// `//bigquery.googleapis.com/projects/{PROJECT_ID}/locations/{LOCATION}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+    #[prost(string, tag = "2")]
+    pub resource: ::prost::alloc::string::String,
+    /// Output only. Data Catalog entry name, if applicable.
+    #[prost(string, tag = "3")]
+    pub source_entry: ::prost::alloc::string::String,
+    #[prost(oneof = "data_source::Properties", tags = "4")]
+    pub properties: ::core::option::Option<data_source::Properties>,
+}
+/// Nested message and enum types in `DataSource`.
+pub mod data_source {
+    /// Name of a service that stores the data.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Service {
+        /// Default unknown service.
+        Unspecified = 0,
+        /// Google Cloud Storage service.
+        CloudStorage = 1,
+        /// BigQuery service.
+        Bigquery = 2,
+    }
+    impl Service {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Service::Unspecified => "SERVICE_UNSPECIFIED",
+                Service::CloudStorage => "CLOUD_STORAGE",
+                Service::Bigquery => "BIGQUERY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SERVICE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLOUD_STORAGE" => Some(Self::CloudStorage),
+                "BIGQUERY" => Some(Self::Bigquery),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Properties {
+        /// Detailed properties of the underlying storage.
+        #[prost(message, tag = "4")]
+        StorageProperties(super::StorageProperties),
+    }
+}
+/// Details the properties of the underlying storage.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StorageProperties {
+    /// Patterns to identify a set of files for this fileset.
+    ///
+    /// Examples of a valid `file_pattern`:
+    ///
+    /// * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
+    ///   directory
+    /// * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
+    ///   and all subdirectories recursively
+    /// * `gs://bucket_name/file*`: matches files prefixed by `file` in
+    ///   `bucket_name`
+    /// * `gs://bucket_name/??.txt`: matches files with two characters followed by
+    ///   `.txt` in `bucket_name`
+    /// * `gs://bucket_name/\[aeiou\].txt`: matches files that contain a single
+    ///   vowel character followed by `.txt` in
+    ///   `bucket_name`
+    /// * `gs://bucket_name/\[a-m\].txt`: matches files that contain `a`, `b`, ...
+    ///   or `m` followed by `.txt` in `bucket_name`
+    /// * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match
+    ///   the `a/*/b` pattern, such as `a/c/b`, `a/d/b`
+    /// * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
+    #[prost(string, repeated, tag = "1")]
+    pub file_pattern: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// File type in MIME format, for example, `text/plain`.
+    #[prost(string, tag = "2")]
+    pub file_type: ::prost::alloc::string::String,
+}
+/// Native schema used by a resource represented as an entry. Used by query
+/// engines for deserializing and parsing source data.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PhysicalSchema {
+    #[prost(oneof = "physical_schema::Schema", tags = "1, 2, 3, 4, 5, 6")]
+    pub schema: ::core::option::Option<physical_schema::Schema>,
+}
+/// Nested message and enum types in `PhysicalSchema`.
+pub mod physical_schema {
+    /// Schema in Avro JSON format.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AvroSchema {
+        /// JSON source of the Avro schema.
+        #[prost(string, tag = "1")]
+        pub text: ::prost::alloc::string::String,
+    }
+    /// Schema in Thrift format.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ThriftSchema {
+        /// Thrift IDL source of the schema.
+        #[prost(string, tag = "1")]
+        pub text: ::prost::alloc::string::String,
+    }
+    /// Schema in protocol buffer format.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ProtobufSchema {
+        /// Protocol buffer source of the schema.
+        #[prost(string, tag = "1")]
+        pub text: ::prost::alloc::string::String,
+    }
+    /// Marks a Parquet-encoded data source.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct ParquetSchema {}
+    /// Marks an ORC-encoded data source.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct OrcSchema {}
+    /// Marks a CSV-encoded data source.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct CsvSchema {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Schema {
+        /// Schema in Avro JSON format.
+        #[prost(message, tag = "1")]
+        Avro(AvroSchema),
+        /// Schema in Thrift format.
+        #[prost(message, tag = "2")]
+        Thrift(ThriftSchema),
+        /// Schema in protocol buffer format.
+        #[prost(message, tag = "3")]
+        Protobuf(ProtobufSchema),
+        /// Marks a Parquet-encoded data source.
+        #[prost(message, tag = "4")]
+        Parquet(ParquetSchema),
+        /// Marks an ORC-encoded data source.
+        #[prost(message, tag = "5")]
+        Orc(OrcSchema),
+        /// Marks a CSV-encoded data source.
+        #[prost(message, tag = "6")]
+        Csv(CsvSchema),
+    }
+}
 /// Common Dataplex fields.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -830,6 +623,213 @@ pub struct GcsFileSpec {
     /// Output only. File size in bytes.
     #[prost(int64, tag = "4")]
     pub size_bytes: i64,
+}
+/// Represents a schema, for example, a BigQuery, GoogleSQL, or Avro schema.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Schema {
+    /// The unified GoogleSQL-like schema of columns.
+    ///
+    /// The overall maximum number of columns and nested columns is 10,000.
+    /// The maximum nested depth is 15 levels.
+    #[prost(message, repeated, tag = "2")]
+    pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
+}
+/// A column within a schema. Columns can be nested inside
+/// other columns.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ColumnSchema {
+    /// Required. Name of the column.
+    ///
+    /// Must be a UTF-8 string without dots (.).
+    /// The maximum size is 64 bytes.
+    #[prost(string, tag = "6")]
+    pub column: ::prost::alloc::string::String,
+    /// Required. Type of the column.
+    ///
+    /// Must be a UTF-8 string with the maximum size of 128 bytes.
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    /// Optional. Description of the column. Default value is an empty string.
+    ///
+    /// The description must be a UTF-8 string with the maximum size of 2000
+    /// bytes.
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. A column's mode indicates whether values in this column are
+    /// required, nullable, or repeated.
+    ///
+    /// Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported.
+    /// Default mode is `NULLABLE`.
+    #[prost(string, tag = "3")]
+    pub mode: ::prost::alloc::string::String,
+    /// Optional. Default value for the column.
+    #[prost(string, tag = "8")]
+    pub default_value: ::prost::alloc::string::String,
+    /// Optional. Ordinal position
+    #[prost(int32, tag = "9")]
+    pub ordinal_position: i32,
+    /// Optional. Most important inclusion of this column.
+    #[prost(enumeration = "column_schema::IndexingType", tag = "10")]
+    pub highest_indexing_type: i32,
+    /// Optional. Schema of sub-columns. A column can have zero or more
+    /// sub-columns.
+    #[prost(message, repeated, tag = "7")]
+    pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
+    /// Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+    /// the type is RANGE, this field is required. Possible values for the field
+    /// element type of a RANGE include:
+    ///
+    /// * DATE
+    /// * DATETIME
+    /// * TIMESTAMP
+    #[prost(message, optional, tag = "19")]
+    pub range_element_type: ::core::option::Option<column_schema::FieldElementType>,
+    /// Optional. Garbage collection policy for the column or column family.
+    /// Applies to systems like Cloud Bigtable.
+    #[prost(string, tag = "11")]
+    pub gc_rule: ::prost::alloc::string::String,
+    /// Information only applying for columns in Entries from a specific system.
+    #[prost(oneof = "column_schema::SystemSpec", tags = "18")]
+    pub system_spec: ::core::option::Option<column_schema::SystemSpec>,
+}
+/// Nested message and enum types in `ColumnSchema`.
+pub mod column_schema {
+    /// Column info specific to Looker System.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct LookerColumnSpec {
+        /// Looker specific column type of this column.
+        #[prost(enumeration = "looker_column_spec::LookerColumnType", tag = "1")]
+        pub r#type: i32,
+    }
+    /// Nested message and enum types in `LookerColumnSpec`.
+    pub mod looker_column_spec {
+        /// Column type in Looker.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum LookerColumnType {
+            /// Unspecified.
+            Unspecified = 0,
+            /// Dimension.
+            Dimension = 1,
+            /// Dimension group - parent for Dimension.
+            DimensionGroup = 2,
+            /// Filter.
+            Filter = 3,
+            /// Measure.
+            Measure = 4,
+            /// Parameter.
+            Parameter = 5,
+        }
+        impl LookerColumnType {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    LookerColumnType::Unspecified => "LOOKER_COLUMN_TYPE_UNSPECIFIED",
+                    LookerColumnType::Dimension => "DIMENSION",
+                    LookerColumnType::DimensionGroup => "DIMENSION_GROUP",
+                    LookerColumnType::Filter => "FILTER",
+                    LookerColumnType::Measure => "MEASURE",
+                    LookerColumnType::Parameter => "PARAMETER",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "LOOKER_COLUMN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                    "DIMENSION" => Some(Self::Dimension),
+                    "DIMENSION_GROUP" => Some(Self::DimensionGroup),
+                    "FILTER" => Some(Self::Filter),
+                    "MEASURE" => Some(Self::Measure),
+                    "PARAMETER" => Some(Self::Parameter),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// Represents the type of a field element.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct FieldElementType {
+        /// Required. The type of a field element. See
+        /// \[ColumnSchema.type\]\[google.cloud.datacatalog.v1.ColumnSchema.type\].
+        #[prost(string, tag = "1")]
+        pub r#type: ::prost::alloc::string::String,
+    }
+    /// Specifies inclusion of the column in an index
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum IndexingType {
+        /// Unspecified.
+        Unspecified = 0,
+        /// Column not a part of an index.
+        None = 1,
+        /// Column Part of non unique index.
+        NonUnique = 2,
+        /// Column part of unique index.
+        Unique = 3,
+        /// Column part of the primary key.
+        PrimaryKey = 4,
+    }
+    impl IndexingType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                IndexingType::Unspecified => "INDEXING_TYPE_UNSPECIFIED",
+                IndexingType::None => "INDEXING_TYPE_NONE",
+                IndexingType::NonUnique => "INDEXING_TYPE_NON_UNIQUE",
+                IndexingType::Unique => "INDEXING_TYPE_UNIQUE",
+                IndexingType::PrimaryKey => "INDEXING_TYPE_PRIMARY_KEY",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INDEXING_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INDEXING_TYPE_NONE" => Some(Self::None),
+                "INDEXING_TYPE_NON_UNIQUE" => Some(Self::NonUnique),
+                "INDEXING_TYPE_UNIQUE" => Some(Self::Unique),
+                "INDEXING_TYPE_PRIMARY_KEY" => Some(Self::PrimaryKey),
+                _ => None,
+            }
+        }
+    }
+    /// Information only applying for columns in Entries from a specific system.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+    pub enum SystemSpec {
+        /// Looker specific column info of this column.
+        #[prost(message, tag = "18")]
+        LookerColumnSpec(LookerColumnSpec),
+    }
 }
 /// Result in the response to a search request.
 ///
@@ -3430,8 +3430,8 @@ pub mod data_catalog_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -3456,7 +3456,7 @@ pub mod data_catalog_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             DataCatalogClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5116,8 +5116,8 @@ pub mod policy_tag_manager_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -5142,7 +5142,7 @@ pub mod policy_tag_manager_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             PolicyTagManagerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -5742,8 +5742,8 @@ pub mod policy_tag_manager_serialization_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -5768,7 +5768,7 @@ pub mod policy_tag_manager_serialization_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             PolicyTagManagerSerializationClient::new(
                 InterceptedService::new(inner, interceptor),

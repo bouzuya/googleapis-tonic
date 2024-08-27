@@ -82,6 +82,703 @@ pub mod volume_type_enum {
         }
     }
 }
+/// Represents the backup of a specific persistent volume as a component of a
+/// Backup - both the record of the operation and a pointer to the underlying
+/// storage-specific artifacts.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VolumeBackup {
+    /// Output only. The full name of the VolumeBackup resource.
+    /// Format: `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Server generated global unique identifier of
+    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    /// Output only. The timestamp when this VolumeBackup resource was
+    /// created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when this VolumeBackup resource was last
+    /// updated.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. A reference to the source Kubernetes PVC from which this
+    /// VolumeBackup was created.
+    #[prost(message, optional, tag = "5")]
+    pub source_pvc: ::core::option::Option<NamespacedName>,
+    /// Output only. A storage system-specific opaque handle to the underlying
+    /// volume backup.
+    #[prost(string, tag = "6")]
+    pub volume_backup_handle: ::prost::alloc::string::String,
+    /// Output only. The format used for the volume backup.
+    #[prost(enumeration = "volume_backup::VolumeBackupFormat", tag = "7")]
+    pub format: i32,
+    /// Output only. The aggregate size of the underlying artifacts associated with
+    /// this VolumeBackup in the backup storage. This may change over time when
+    /// multiple backups of the same volume share the same backup storage
+    /// location. In particular, this is likely to increase in size when
+    /// the immediately preceding backup of the same volume is deleted.
+    #[prost(int64, tag = "8")]
+    pub storage_bytes: i64,
+    /// Output only. The minimum size of the disk to which this VolumeBackup can be
+    /// restored.
+    #[prost(int64, tag = "9")]
+    pub disk_size_bytes: i64,
+    /// Output only. The timestamp when the associated underlying volume backup
+    /// operation completed.
+    #[prost(message, optional, tag = "10")]
+    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The current state of this VolumeBackup.
+    #[prost(enumeration = "volume_backup::State", tag = "11")]
+    pub state: i32,
+    /// Output only. A human readable message explaining why the VolumeBackup is in
+    /// its current state.
+    #[prost(string, tag = "12")]
+    pub state_message: ::prost::alloc::string::String,
+    /// Output only. `etag` is used for optimistic concurrency control as a way to
+    /// help prevent simultaneous updates of a volume backup from overwriting each
+    /// other. It is strongly suggested that systems make use of the `etag` in the
+    /// read-modify-write cycle to perform volume backup updates in order to avoid
+    /// race conditions.
+    #[prost(string, tag = "13")]
+    pub etag: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `VolumeBackup`.
+pub mod volume_backup {
+    /// Identifies the format used for the volume backup.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum VolumeBackupFormat {
+        /// Default value, not specified.
+        Unspecified = 0,
+        /// Compute Engine Persistent Disk snapshot based volume backup.
+        GcePersistentDisk = 1,
+    }
+    impl VolumeBackupFormat {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VolumeBackupFormat::Unspecified => "VOLUME_BACKUP_FORMAT_UNSPECIFIED",
+                VolumeBackupFormat::GcePersistentDisk => "GCE_PERSISTENT_DISK",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VOLUME_BACKUP_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+                "GCE_PERSISTENT_DISK" => Some(Self::GcePersistentDisk),
+                _ => None,
+            }
+        }
+    }
+    /// The current state of a VolumeBackup
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// This is an illegal state and should not be encountered.
+        Unspecified = 0,
+        /// A volume for the backup was identified and backup process is about to
+        /// start.
+        Creating = 1,
+        /// The volume backup operation has begun and is in the initial "snapshot"
+        /// phase of the process. Any defined ProtectedApplication "pre" hooks will
+        /// be executed before entering this state and "post" hooks will be executed
+        /// upon leaving this state.
+        Snapshotting = 2,
+        /// The snapshot phase of the volume backup operation has completed and
+        /// the snapshot is now being uploaded to backup storage.
+        Uploading = 3,
+        /// The volume backup operation has completed successfully.
+        Succeeded = 4,
+        /// The volume backup operation has failed.
+        Failed = 5,
+        /// This VolumeBackup resource (and its associated artifacts) is in the
+        /// process of being deleted.
+        Deleting = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Snapshotting => "SNAPSHOTTING",
+                State::Uploading => "UPLOADING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+                State::Deleting => "DELETING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "SNAPSHOTTING" => Some(Self::Snapshotting),
+                "UPLOADING" => Some(Self::Uploading),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "DELETING" => Some(Self::Deleting),
+                _ => None,
+            }
+        }
+    }
+}
+/// Represents the operation of restoring a volume from a VolumeBackup.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VolumeRestore {
+    /// Output only. Full name of the VolumeRestore resource.
+    /// Format: `projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Server generated global unique identifier of
+    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    /// Output only. The timestamp when this VolumeRestore resource was
+    /// created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when this VolumeRestore resource was last
+    /// updated.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The full name of the VolumeBackup from which the volume will
+    /// be restored. Format:
+    /// `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.
+    #[prost(string, tag = "5")]
+    pub volume_backup: ::prost::alloc::string::String,
+    /// Output only. The reference to the target Kubernetes PVC to be restored.
+    #[prost(message, optional, tag = "6")]
+    pub target_pvc: ::core::option::Option<NamespacedName>,
+    /// Output only. A storage system-specific opaque handler to the underlying
+    /// volume created for the target PVC from the volume backup.
+    #[prost(string, tag = "7")]
+    pub volume_handle: ::prost::alloc::string::String,
+    /// Output only. The type of volume provisioned
+    #[prost(enumeration = "volume_restore::VolumeType", tag = "8")]
+    pub volume_type: i32,
+    /// Output only. The timestamp when the associated underlying volume
+    /// restoration completed.
+    #[prost(message, optional, tag = "9")]
+    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The current state of this VolumeRestore.
+    #[prost(enumeration = "volume_restore::State", tag = "10")]
+    pub state: i32,
+    /// Output only. A human readable message explaining why the VolumeRestore is
+    /// in its current state.
+    #[prost(string, tag = "11")]
+    pub state_message: ::prost::alloc::string::String,
+    /// Output only. `etag` is used for optimistic concurrency control as a way to
+    /// help prevent simultaneous updates of a volume restore from overwriting each
+    /// other. It is strongly suggested that systems make use of the `etag` in the
+    /// read-modify-write cycle to perform volume restore updates in order to avoid
+    /// race conditions.
+    #[prost(string, tag = "12")]
+    pub etag: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `VolumeRestore`.
+pub mod volume_restore {
+    /// Supported volume types.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum VolumeType {
+        /// Default
+        Unspecified = 0,
+        /// Compute Engine Persistent Disk volume
+        GcePersistentDisk = 1,
+    }
+    impl VolumeType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                VolumeType::Unspecified => "VOLUME_TYPE_UNSPECIFIED",
+                VolumeType::GcePersistentDisk => "GCE_PERSISTENT_DISK",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VOLUME_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "GCE_PERSISTENT_DISK" => Some(Self::GcePersistentDisk),
+                _ => None,
+            }
+        }
+    }
+    /// The current state of a VolumeRestore
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// This is an illegal state and should not be encountered.
+        Unspecified = 0,
+        /// A volume for the restore was identified and restore process is about to
+        /// start.
+        Creating = 1,
+        /// The volume is currently being restored.
+        Restoring = 2,
+        /// The volume has been successfully restored.
+        Succeeded = 3,
+        /// The volume restoration process failed.
+        Failed = 4,
+        /// This VolumeRestore resource is in the process of being deleted.
+        Deleting = 5,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Creating => "CREATING",
+                State::Restoring => "RESTORING",
+                State::Succeeded => "SUCCEEDED",
+                State::Failed => "FAILED",
+                State::Deleting => "DELETING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CREATING" => Some(Self::Creating),
+                "RESTORING" => Some(Self::Restoring),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                "FAILED" => Some(Self::Failed),
+                "DELETING" => Some(Self::Deleting),
+                _ => None,
+            }
+        }
+    }
+}
+/// Defines the configuration and scheduling for a "line" of Backups.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BackupPlan {
+    /// Output only. The full name of the BackupPlan resource.
+    /// Format: `projects/*/locations/*/backupPlans/*`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. Server generated global unique identifier of
+    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
+    #[prost(string, tag = "2")]
+    pub uid: ::prost::alloc::string::String,
+    /// Output only. The timestamp when this BackupPlan resource was created.
+    #[prost(message, optional, tag = "3")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The timestamp when this BackupPlan resource was last
+    /// updated.
+    #[prost(message, optional, tag = "4")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Optional. User specified descriptive string for this BackupPlan.
+    #[prost(string, tag = "5")]
+    pub description: ::prost::alloc::string::String,
+    /// Required. Immutable. The source cluster from which Backups will be created
+    /// via this BackupPlan. Valid formats:
+    ///
+    /// * `projects/*/locations/*/clusters/*`
+    /// * `projects/*/zones/*/clusters/*`
+    #[prost(string, tag = "6")]
+    pub cluster: ::prost::alloc::string::String,
+    /// Optional. RetentionPolicy governs lifecycle of Backups created under this
+    /// plan.
+    #[prost(message, optional, tag = "7")]
+    pub retention_policy: ::core::option::Option<backup_plan::RetentionPolicy>,
+    /// Optional. A set of custom labels supplied by user.
+    #[prost(map = "string, string", tag = "8")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. Defines a schedule for automatic Backup creation via this
+    /// BackupPlan.
+    #[prost(message, optional, tag = "9")]
+    pub backup_schedule: ::core::option::Option<backup_plan::Schedule>,
+    /// Output only. `etag` is used for optimistic concurrency control as a way to
+    /// help prevent simultaneous updates of a backup plan from overwriting each
+    /// other. It is strongly suggested that systems make use of the 'etag' in the
+    /// read-modify-write cycle to perform BackupPlan updates in order to avoid
+    /// race conditions: An `etag` is returned in the response to `GetBackupPlan`,
+    /// and systems are expected to put that etag in the request to
+    /// `UpdateBackupPlan` or `DeleteBackupPlan` to ensure that their change
+    /// will be applied to the same version of the resource.
+    #[prost(string, tag = "10")]
+    pub etag: ::prost::alloc::string::String,
+    /// Optional. This flag indicates whether this BackupPlan has been deactivated.
+    /// Setting this field to True locks the BackupPlan such that no further
+    /// updates will be allowed (except deletes), including the deactivated field
+    /// itself. It also prevents any new Backups from being created via this
+    /// BackupPlan (including scheduled Backups).
+    ///
+    /// Default: False
+    #[prost(bool, tag = "11")]
+    pub deactivated: bool,
+    /// Optional. Defines the configuration of Backups created via this BackupPlan.
+    #[prost(message, optional, tag = "12")]
+    pub backup_config: ::core::option::Option<backup_plan::BackupConfig>,
+    /// Output only. The number of Kubernetes Pods backed up in the
+    /// last successful Backup created via this BackupPlan.
+    #[prost(int32, tag = "13")]
+    pub protected_pod_count: i32,
+    /// Output only. State of the BackupPlan. This State field reflects the
+    /// various stages a BackupPlan can be in
+    /// during the Create operation. It will be set to "DEACTIVATED"
+    /// if the BackupPlan is deactivated on an Update
+    #[prost(enumeration = "backup_plan::State", tag = "14")]
+    pub state: i32,
+    /// Output only. Human-readable description of why BackupPlan is in the current
+    /// `state`
+    #[prost(string, tag = "15")]
+    pub state_reason: ::prost::alloc::string::String,
+    /// Output only. A number that represents the current risk level of this
+    /// BackupPlan from RPO perspective with 1 being no risk and 5 being highest
+    /// risk.
+    #[prost(int32, tag = "16")]
+    pub rpo_risk_level: i32,
+    /// Output only. Human-readable description of why the BackupPlan is in the
+    /// current rpo_risk_level and action items if any.
+    #[prost(string, tag = "17")]
+    pub rpo_risk_reason: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `BackupPlan`.
+pub mod backup_plan {
+    /// RetentionPolicy defines a Backup retention policy for a BackupPlan.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct RetentionPolicy {
+        /// Optional. Minimum age for Backups created via this BackupPlan (in days).
+        /// This field MUST be an integer value between 0-90 (inclusive).
+        /// A Backup created under this BackupPlan will NOT be deletable until it
+        /// reaches Backup's (create_time + backup_delete_lock_days).
+        /// Updating this field of a BackupPlan does NOT affect existing Backups
+        /// under it. Backups created AFTER a successful update will inherit
+        /// the new value.
+        ///
+        /// Default: 0 (no delete blocking)
+        #[prost(int32, tag = "1")]
+        pub backup_delete_lock_days: i32,
+        /// Optional. The default maximum age of a Backup created via this
+        /// BackupPlan. This field MUST be an integer value >= 0 and \<= 365. If
+        /// specified, a Backup created under this BackupPlan will be automatically
+        /// deleted after its age reaches (create_time + backup_retain_days). If not
+        /// specified, Backups created under this BackupPlan will NOT be subject to
+        /// automatic deletion. Updating this field does NOT affect existing Backups
+        /// under it. Backups created AFTER a successful update will automatically
+        /// pick up the new value. NOTE: backup_retain_days must be >=
+        /// \[backup_delete_lock_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days\].
+        /// If
+        /// \[cron_schedule\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule\]
+        /// is defined, then this must be
+        /// \<= 360 * the creation interval. If
+        /// \[rpo_config\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config\] is
+        /// defined, then this must be
+        /// \<= 360 * \[target_rpo_minutes\]\[Schedule.rpo_config.target_rpo_minutes\] /
+        /// (1440minutes/day).
+        ///
+        /// Default: 0 (no automatic deletion)
+        #[prost(int32, tag = "2")]
+        pub backup_retain_days: i32,
+        /// Optional. This flag denotes whether the retention policy of this
+        /// BackupPlan is locked.  If set to True, no further update is allowed on
+        /// this policy, including the `locked` field itself.
+        ///
+        /// Default: False
+        #[prost(bool, tag = "3")]
+        pub locked: bool,
+    }
+    /// Defines scheduling parameters for automatically creating Backups
+    /// via this BackupPlan.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Schedule {
+        /// Optional. A standard [cron](<https://wikipedia.com/wiki/cron>) string that
+        /// defines a repeating schedule for creating Backups via this BackupPlan.
+        /// This is mutually exclusive with the
+        /// \[rpo_config\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config\]
+        /// field since at most one schedule can be defined for a BackupPlan. If this
+        /// is defined, then
+        /// \[backup_retain_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days\]
+        /// must also be defined.
+        ///
+        /// Default (empty): no automatic backup creation will occur.
+        #[prost(string, tag = "1")]
+        pub cron_schedule: ::prost::alloc::string::String,
+        /// Optional. This flag denotes whether automatic Backup creation is paused
+        /// for this BackupPlan.
+        ///
+        /// Default: False
+        #[prost(bool, tag = "2")]
+        pub paused: bool,
+        /// Optional. Defines the RPO schedule configuration for this BackupPlan.
+        /// This is mutually exclusive with the
+        /// \[cron_schedule\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule\]
+        /// field since at most one schedule can be defined for a BackupPLan. If this
+        /// is defined, then
+        /// \[backup_retain_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days\]
+        /// must also be defined.
+        ///
+        /// Default (empty): no automatic backup creation will occur.
+        #[prost(message, optional, tag = "3")]
+        pub rpo_config: ::core::option::Option<super::RpoConfig>,
+        /// Output only. Start time of next scheduled backup under this BackupPlan by
+        /// either cron_schedule or rpo config.
+        #[prost(message, optional, tag = "4")]
+        pub next_scheduled_backup_time: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    /// BackupConfig defines the configuration of Backups created via this
+    /// BackupPlan.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BackupConfig {
+        /// Optional. This flag specifies whether volume data should be backed up
+        /// when PVCs are included in the scope of a Backup.
+        ///
+        /// Default: False
+        #[prost(bool, tag = "4")]
+        pub include_volume_data: bool,
+        /// Optional. This flag specifies whether Kubernetes Secret resources should
+        /// be included when they fall into the scope of Backups.
+        ///
+        /// Default: False
+        #[prost(bool, tag = "5")]
+        pub include_secrets: bool,
+        /// Optional. This defines a customer managed encryption key that will be
+        /// used to encrypt the "config" portion (the Kubernetes resources) of
+        /// Backups created via this plan.
+        ///
+        /// Default (empty): Config backup artifacts will not be encrypted.
+        #[prost(message, optional, tag = "6")]
+        pub encryption_key: ::core::option::Option<super::EncryptionKey>,
+        /// Optional. If false, Backups will fail when Backup for GKE detects
+        /// Kubernetes configuration that is non-standard or
+        /// requires additional setup to restore.
+        ///
+        /// Default: False
+        #[prost(bool, tag = "7")]
+        pub permissive_mode: bool,
+        /// This defines the "scope" of the Backup - which namespaced
+        /// resources in the cluster will be included in a Backup.
+        /// Exactly one of the fields of backup_scope MUST be specified.
+        #[prost(oneof = "backup_config::BackupScope", tags = "1, 2, 3")]
+        pub backup_scope: ::core::option::Option<backup_config::BackupScope>,
+    }
+    /// Nested message and enum types in `BackupConfig`.
+    pub mod backup_config {
+        /// This defines the "scope" of the Backup - which namespaced
+        /// resources in the cluster will be included in a Backup.
+        /// Exactly one of the fields of backup_scope MUST be specified.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum BackupScope {
+            /// If True, include all namespaced resources
+            #[prost(bool, tag = "1")]
+            AllNamespaces(bool),
+            /// If set, include just the resources in the listed namespaces.
+            #[prost(message, tag = "2")]
+            SelectedNamespaces(super::super::Namespaces),
+            /// If set, include just the resources referenced by the listed
+            /// ProtectedApplications.
+            #[prost(message, tag = "3")]
+            SelectedApplications(super::super::NamespacedNames),
+        }
+    }
+    /// State
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Default first value for Enums.
+        Unspecified = 0,
+        /// Waiting for cluster state to be RUNNING.
+        ClusterPending = 1,
+        /// The BackupPlan is in the process of being created.
+        Provisioning = 2,
+        /// The BackupPlan has successfully been created and is ready for Backups.
+        Ready = 3,
+        /// BackupPlan creation has failed.
+        Failed = 4,
+        /// The BackupPlan has been deactivated.
+        Deactivated = 5,
+        /// The BackupPlan is in the process of being deleted.
+        Deleting = 6,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::ClusterPending => "CLUSTER_PENDING",
+                State::Provisioning => "PROVISIONING",
+                State::Ready => "READY",
+                State::Failed => "FAILED",
+                State::Deactivated => "DEACTIVATED",
+                State::Deleting => "DELETING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "CLUSTER_PENDING" => Some(Self::ClusterPending),
+                "PROVISIONING" => Some(Self::Provisioning),
+                "READY" => Some(Self::Ready),
+                "FAILED" => Some(Self::Failed),
+                "DEACTIVATED" => Some(Self::Deactivated),
+                "DELETING" => Some(Self::Deleting),
+                _ => None,
+            }
+        }
+    }
+}
+/// Defines RPO scheduling configuration for automatically creating
+/// Backups via this BackupPlan.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RpoConfig {
+    /// Required. Defines the target RPO for the BackupPlan in minutes, which means
+    /// the target maximum data loss in time that is acceptable for this
+    /// BackupPlan. This must be at least 60, i.e., 1 hour, and at most 86400,
+    /// i.e., 60 days.
+    #[prost(int32, tag = "1")]
+    pub target_rpo_minutes: i32,
+    /// Optional. User specified time windows during which backup can NOT happen
+    /// for this BackupPlan - backups should start and finish outside of any given
+    /// exclusion window. Note: backup jobs will be scheduled to start and
+    /// finish outside the duration of the window as much as possible, but
+    /// running jobs will not get canceled when it runs into the window.
+    /// All the time and date values in exclusion_windows entry in the API are in
+    /// UTC.
+    /// We only allow \<=1 recurrence (daily or weekly) exclusion window for a
+    /// BackupPlan while no restriction on number of single occurrence
+    /// windows.
+    #[prost(message, repeated, tag = "2")]
+    pub exclusion_windows: ::prost::alloc::vec::Vec<ExclusionWindow>,
+}
+/// Defines a time window during which no backup should
+/// happen. All time and date are in UTC.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExclusionWindow {
+    /// Required. Specifies the start time of the window using time of the day in
+    /// UTC.
+    #[prost(message, optional, tag = "1")]
+    pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
+    /// Required. Specifies duration of the window.
+    /// Duration must be >= 5 minutes and \< (target RPO - 20 minutes).
+    /// Additional restrictions based on the recurrence type to allow some time for
+    /// backup to happen:
+    ///
+    /// * single_occurrence_date:  no restriction, but UI may warn about this when
+    ///   duration >= target RPO
+    /// * daily window: duration \< 24 hours
+    /// * weekly window:
+    ///   * days of week includes all seven days of a week: duration \< 24 hours
+    ///   * all other weekly window: duration \< 168 hours (i.e., 24 * 7 hours)
+    #[prost(message, optional, tag = "2")]
+    pub duration: ::core::option::Option<::prost_types::Duration>,
+    /// Required. Specifies the day(s) on which the exclusion window takes
+    /// effect. Exactly one of the fields MUST be specified.
+    #[prost(oneof = "exclusion_window::Recurrence", tags = "3, 4, 5")]
+    pub recurrence: ::core::option::Option<exclusion_window::Recurrence>,
+}
+/// Nested message and enum types in `ExclusionWindow`.
+pub mod exclusion_window {
+    /// Holds repeated DaysOfWeek values as a container.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DayOfWeekList {
+        /// Optional. A list of days of week.
+        #[prost(
+            enumeration = "super::super::super::super::r#type::DayOfWeek",
+            repeated,
+            packed = "false",
+            tag = "1"
+        )]
+        pub days_of_week: ::prost::alloc::vec::Vec<i32>,
+    }
+    /// Required. Specifies the day(s) on which the exclusion window takes
+    /// effect. Exactly one of the fields MUST be specified.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Recurrence {
+        /// No recurrence. The exclusion window occurs only once and on this
+        /// date in UTC.
+        #[prost(message, tag = "3")]
+        SingleOccurrenceDate(super::super::super::super::r#type::Date),
+        /// The exclusion window occurs every day if set to "True".
+        /// Specifying this field to "False" is an error.
+        #[prost(bool, tag = "4")]
+        Daily(bool),
+        /// The exclusion window occurs on these days of each week in UTC.
+        #[prost(message, tag = "5")]
+        DaysOfWeek(DayOfWeekList),
+    }
+}
 /// Represents both a request to Restore some portion of a Backup into
 /// a target GKE cluster and a record of the restore operation itself.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1352,703 +2049,6 @@ pub mod backup {
         SelectedApplications(super::NamespacedNames),
     }
 }
-/// Defines the configuration and scheduling for a "line" of Backups.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BackupPlan {
-    /// Output only. The full name of the BackupPlan resource.
-    /// Format: `projects/*/locations/*/backupPlans/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. Server generated global unique identifier of
-    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    /// Output only. The timestamp when this BackupPlan resource was created.
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The timestamp when this BackupPlan resource was last
-    /// updated.
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. User specified descriptive string for this BackupPlan.
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    /// Required. Immutable. The source cluster from which Backups will be created
-    /// via this BackupPlan. Valid formats:
-    ///
-    /// * `projects/*/locations/*/clusters/*`
-    /// * `projects/*/zones/*/clusters/*`
-    #[prost(string, tag = "6")]
-    pub cluster: ::prost::alloc::string::String,
-    /// Optional. RetentionPolicy governs lifecycle of Backups created under this
-    /// plan.
-    #[prost(message, optional, tag = "7")]
-    pub retention_policy: ::core::option::Option<backup_plan::RetentionPolicy>,
-    /// Optional. A set of custom labels supplied by user.
-    #[prost(map = "string, string", tag = "8")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    /// Optional. Defines a schedule for automatic Backup creation via this
-    /// BackupPlan.
-    #[prost(message, optional, tag = "9")]
-    pub backup_schedule: ::core::option::Option<backup_plan::Schedule>,
-    /// Output only. `etag` is used for optimistic concurrency control as a way to
-    /// help prevent simultaneous updates of a backup plan from overwriting each
-    /// other. It is strongly suggested that systems make use of the 'etag' in the
-    /// read-modify-write cycle to perform BackupPlan updates in order to avoid
-    /// race conditions: An `etag` is returned in the response to `GetBackupPlan`,
-    /// and systems are expected to put that etag in the request to
-    /// `UpdateBackupPlan` or `DeleteBackupPlan` to ensure that their change
-    /// will be applied to the same version of the resource.
-    #[prost(string, tag = "10")]
-    pub etag: ::prost::alloc::string::String,
-    /// Optional. This flag indicates whether this BackupPlan has been deactivated.
-    /// Setting this field to True locks the BackupPlan such that no further
-    /// updates will be allowed (except deletes), including the deactivated field
-    /// itself. It also prevents any new Backups from being created via this
-    /// BackupPlan (including scheduled Backups).
-    ///
-    /// Default: False
-    #[prost(bool, tag = "11")]
-    pub deactivated: bool,
-    /// Optional. Defines the configuration of Backups created via this BackupPlan.
-    #[prost(message, optional, tag = "12")]
-    pub backup_config: ::core::option::Option<backup_plan::BackupConfig>,
-    /// Output only. The number of Kubernetes Pods backed up in the
-    /// last successful Backup created via this BackupPlan.
-    #[prost(int32, tag = "13")]
-    pub protected_pod_count: i32,
-    /// Output only. State of the BackupPlan. This State field reflects the
-    /// various stages a BackupPlan can be in
-    /// during the Create operation. It will be set to "DEACTIVATED"
-    /// if the BackupPlan is deactivated on an Update
-    #[prost(enumeration = "backup_plan::State", tag = "14")]
-    pub state: i32,
-    /// Output only. Human-readable description of why BackupPlan is in the current
-    /// `state`
-    #[prost(string, tag = "15")]
-    pub state_reason: ::prost::alloc::string::String,
-    /// Output only. A number that represents the current risk level of this
-    /// BackupPlan from RPO perspective with 1 being no risk and 5 being highest
-    /// risk.
-    #[prost(int32, tag = "16")]
-    pub rpo_risk_level: i32,
-    /// Output only. Human-readable description of why the BackupPlan is in the
-    /// current rpo_risk_level and action items if any.
-    #[prost(string, tag = "17")]
-    pub rpo_risk_reason: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `BackupPlan`.
-pub mod backup_plan {
-    /// RetentionPolicy defines a Backup retention policy for a BackupPlan.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct RetentionPolicy {
-        /// Optional. Minimum age for Backups created via this BackupPlan (in days).
-        /// This field MUST be an integer value between 0-90 (inclusive).
-        /// A Backup created under this BackupPlan will NOT be deletable until it
-        /// reaches Backup's (create_time + backup_delete_lock_days).
-        /// Updating this field of a BackupPlan does NOT affect existing Backups
-        /// under it. Backups created AFTER a successful update will inherit
-        /// the new value.
-        ///
-        /// Default: 0 (no delete blocking)
-        #[prost(int32, tag = "1")]
-        pub backup_delete_lock_days: i32,
-        /// Optional. The default maximum age of a Backup created via this
-        /// BackupPlan. This field MUST be an integer value >= 0 and \<= 365. If
-        /// specified, a Backup created under this BackupPlan will be automatically
-        /// deleted after its age reaches (create_time + backup_retain_days). If not
-        /// specified, Backups created under this BackupPlan will NOT be subject to
-        /// automatic deletion. Updating this field does NOT affect existing Backups
-        /// under it. Backups created AFTER a successful update will automatically
-        /// pick up the new value. NOTE: backup_retain_days must be >=
-        /// \[backup_delete_lock_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_delete_lock_days\].
-        /// If
-        /// \[cron_schedule\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule\]
-        /// is defined, then this must be
-        /// \<= 360 * the creation interval. If
-        /// \[rpo_config\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config\] is
-        /// defined, then this must be
-        /// \<= 360 * \[target_rpo_minutes\]\[Schedule.rpo_config.target_rpo_minutes\] /
-        /// (1440minutes/day).
-        ///
-        /// Default: 0 (no automatic deletion)
-        #[prost(int32, tag = "2")]
-        pub backup_retain_days: i32,
-        /// Optional. This flag denotes whether the retention policy of this
-        /// BackupPlan is locked.  If set to True, no further update is allowed on
-        /// this policy, including the `locked` field itself.
-        ///
-        /// Default: False
-        #[prost(bool, tag = "3")]
-        pub locked: bool,
-    }
-    /// Defines scheduling parameters for automatically creating Backups
-    /// via this BackupPlan.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Schedule {
-        /// Optional. A standard [cron](<https://wikipedia.com/wiki/cron>) string that
-        /// defines a repeating schedule for creating Backups via this BackupPlan.
-        /// This is mutually exclusive with the
-        /// \[rpo_config\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config\]
-        /// field since at most one schedule can be defined for a BackupPlan. If this
-        /// is defined, then
-        /// \[backup_retain_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days\]
-        /// must also be defined.
-        ///
-        /// Default (empty): no automatic backup creation will occur.
-        #[prost(string, tag = "1")]
-        pub cron_schedule: ::prost::alloc::string::String,
-        /// Optional. This flag denotes whether automatic Backup creation is paused
-        /// for this BackupPlan.
-        ///
-        /// Default: False
-        #[prost(bool, tag = "2")]
-        pub paused: bool,
-        /// Optional. Defines the RPO schedule configuration for this BackupPlan.
-        /// This is mutually exclusive with the
-        /// \[cron_schedule\]\[google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule\]
-        /// field since at most one schedule can be defined for a BackupPLan. If this
-        /// is defined, then
-        /// \[backup_retain_days\]\[google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days\]
-        /// must also be defined.
-        ///
-        /// Default (empty): no automatic backup creation will occur.
-        #[prost(message, optional, tag = "3")]
-        pub rpo_config: ::core::option::Option<super::RpoConfig>,
-        /// Output only. Start time of next scheduled backup under this BackupPlan by
-        /// either cron_schedule or rpo config.
-        #[prost(message, optional, tag = "4")]
-        pub next_scheduled_backup_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    /// BackupConfig defines the configuration of Backups created via this
-    /// BackupPlan.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BackupConfig {
-        /// Optional. This flag specifies whether volume data should be backed up
-        /// when PVCs are included in the scope of a Backup.
-        ///
-        /// Default: False
-        #[prost(bool, tag = "4")]
-        pub include_volume_data: bool,
-        /// Optional. This flag specifies whether Kubernetes Secret resources should
-        /// be included when they fall into the scope of Backups.
-        ///
-        /// Default: False
-        #[prost(bool, tag = "5")]
-        pub include_secrets: bool,
-        /// Optional. This defines a customer managed encryption key that will be
-        /// used to encrypt the "config" portion (the Kubernetes resources) of
-        /// Backups created via this plan.
-        ///
-        /// Default (empty): Config backup artifacts will not be encrypted.
-        #[prost(message, optional, tag = "6")]
-        pub encryption_key: ::core::option::Option<super::EncryptionKey>,
-        /// Optional. If false, Backups will fail when Backup for GKE detects
-        /// Kubernetes configuration that is non-standard or
-        /// requires additional setup to restore.
-        ///
-        /// Default: False
-        #[prost(bool, tag = "7")]
-        pub permissive_mode: bool,
-        /// This defines the "scope" of the Backup - which namespaced
-        /// resources in the cluster will be included in a Backup.
-        /// Exactly one of the fields of backup_scope MUST be specified.
-        #[prost(oneof = "backup_config::BackupScope", tags = "1, 2, 3")]
-        pub backup_scope: ::core::option::Option<backup_config::BackupScope>,
-    }
-    /// Nested message and enum types in `BackupConfig`.
-    pub mod backup_config {
-        /// This defines the "scope" of the Backup - which namespaced
-        /// resources in the cluster will be included in a Backup.
-        /// Exactly one of the fields of backup_scope MUST be specified.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum BackupScope {
-            /// If True, include all namespaced resources
-            #[prost(bool, tag = "1")]
-            AllNamespaces(bool),
-            /// If set, include just the resources in the listed namespaces.
-            #[prost(message, tag = "2")]
-            SelectedNamespaces(super::super::Namespaces),
-            /// If set, include just the resources referenced by the listed
-            /// ProtectedApplications.
-            #[prost(message, tag = "3")]
-            SelectedApplications(super::super::NamespacedNames),
-        }
-    }
-    /// State
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// Default first value for Enums.
-        Unspecified = 0,
-        /// Waiting for cluster state to be RUNNING.
-        ClusterPending = 1,
-        /// The BackupPlan is in the process of being created.
-        Provisioning = 2,
-        /// The BackupPlan has successfully been created and is ready for Backups.
-        Ready = 3,
-        /// BackupPlan creation has failed.
-        Failed = 4,
-        /// The BackupPlan has been deactivated.
-        Deactivated = 5,
-        /// The BackupPlan is in the process of being deleted.
-        Deleting = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::ClusterPending => "CLUSTER_PENDING",
-                State::Provisioning => "PROVISIONING",
-                State::Ready => "READY",
-                State::Failed => "FAILED",
-                State::Deactivated => "DEACTIVATED",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CLUSTER_PENDING" => Some(Self::ClusterPending),
-                "PROVISIONING" => Some(Self::Provisioning),
-                "READY" => Some(Self::Ready),
-                "FAILED" => Some(Self::Failed),
-                "DEACTIVATED" => Some(Self::Deactivated),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
-}
-/// Defines RPO scheduling configuration for automatically creating
-/// Backups via this BackupPlan.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RpoConfig {
-    /// Required. Defines the target RPO for the BackupPlan in minutes, which means
-    /// the target maximum data loss in time that is acceptable for this
-    /// BackupPlan. This must be at least 60, i.e., 1 hour, and at most 86400,
-    /// i.e., 60 days.
-    #[prost(int32, tag = "1")]
-    pub target_rpo_minutes: i32,
-    /// Optional. User specified time windows during which backup can NOT happen
-    /// for this BackupPlan - backups should start and finish outside of any given
-    /// exclusion window. Note: backup jobs will be scheduled to start and
-    /// finish outside the duration of the window as much as possible, but
-    /// running jobs will not get canceled when it runs into the window.
-    /// All the time and date values in exclusion_windows entry in the API are in
-    /// UTC.
-    /// We only allow \<=1 recurrence (daily or weekly) exclusion window for a
-    /// BackupPlan while no restriction on number of single occurrence
-    /// windows.
-    #[prost(message, repeated, tag = "2")]
-    pub exclusion_windows: ::prost::alloc::vec::Vec<ExclusionWindow>,
-}
-/// Defines a time window during which no backup should
-/// happen. All time and date are in UTC.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ExclusionWindow {
-    /// Required. Specifies the start time of the window using time of the day in
-    /// UTC.
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-    /// Required. Specifies duration of the window.
-    /// Duration must be >= 5 minutes and \< (target RPO - 20 minutes).
-    /// Additional restrictions based on the recurrence type to allow some time for
-    /// backup to happen:
-    ///
-    /// * single_occurrence_date:  no restriction, but UI may warn about this when
-    ///   duration >= target RPO
-    /// * daily window: duration \< 24 hours
-    /// * weekly window:
-    ///   * days of week includes all seven days of a week: duration \< 24 hours
-    ///   * all other weekly window: duration \< 168 hours (i.e., 24 * 7 hours)
-    #[prost(message, optional, tag = "2")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    /// Required. Specifies the day(s) on which the exclusion window takes
-    /// effect. Exactly one of the fields MUST be specified.
-    #[prost(oneof = "exclusion_window::Recurrence", tags = "3, 4, 5")]
-    pub recurrence: ::core::option::Option<exclusion_window::Recurrence>,
-}
-/// Nested message and enum types in `ExclusionWindow`.
-pub mod exclusion_window {
-    /// Holds repeated DaysOfWeek values as a container.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DayOfWeekList {
-        /// Optional. A list of days of week.
-        #[prost(
-            enumeration = "super::super::super::super::r#type::DayOfWeek",
-            repeated,
-            packed = "false",
-            tag = "1"
-        )]
-        pub days_of_week: ::prost::alloc::vec::Vec<i32>,
-    }
-    /// Required. Specifies the day(s) on which the exclusion window takes
-    /// effect. Exactly one of the fields MUST be specified.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Recurrence {
-        /// No recurrence. The exclusion window occurs only once and on this
-        /// date in UTC.
-        #[prost(message, tag = "3")]
-        SingleOccurrenceDate(super::super::super::super::r#type::Date),
-        /// The exclusion window occurs every day if set to "True".
-        /// Specifying this field to "False" is an error.
-        #[prost(bool, tag = "4")]
-        Daily(bool),
-        /// The exclusion window occurs on these days of each week in UTC.
-        #[prost(message, tag = "5")]
-        DaysOfWeek(DayOfWeekList),
-    }
-}
-/// Represents the backup of a specific persistent volume as a component of a
-/// Backup - both the record of the operation and a pointer to the underlying
-/// storage-specific artifacts.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VolumeBackup {
-    /// Output only. The full name of the VolumeBackup resource.
-    /// Format: `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. Server generated global unique identifier of
-    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    /// Output only. The timestamp when this VolumeBackup resource was
-    /// created.
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The timestamp when this VolumeBackup resource was last
-    /// updated.
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. A reference to the source Kubernetes PVC from which this
-    /// VolumeBackup was created.
-    #[prost(message, optional, tag = "5")]
-    pub source_pvc: ::core::option::Option<NamespacedName>,
-    /// Output only. A storage system-specific opaque handle to the underlying
-    /// volume backup.
-    #[prost(string, tag = "6")]
-    pub volume_backup_handle: ::prost::alloc::string::String,
-    /// Output only. The format used for the volume backup.
-    #[prost(enumeration = "volume_backup::VolumeBackupFormat", tag = "7")]
-    pub format: i32,
-    /// Output only. The aggregate size of the underlying artifacts associated with
-    /// this VolumeBackup in the backup storage. This may change over time when
-    /// multiple backups of the same volume share the same backup storage
-    /// location. In particular, this is likely to increase in size when
-    /// the immediately preceding backup of the same volume is deleted.
-    #[prost(int64, tag = "8")]
-    pub storage_bytes: i64,
-    /// Output only. The minimum size of the disk to which this VolumeBackup can be
-    /// restored.
-    #[prost(int64, tag = "9")]
-    pub disk_size_bytes: i64,
-    /// Output only. The timestamp when the associated underlying volume backup
-    /// operation completed.
-    #[prost(message, optional, tag = "10")]
-    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The current state of this VolumeBackup.
-    #[prost(enumeration = "volume_backup::State", tag = "11")]
-    pub state: i32,
-    /// Output only. A human readable message explaining why the VolumeBackup is in
-    /// its current state.
-    #[prost(string, tag = "12")]
-    pub state_message: ::prost::alloc::string::String,
-    /// Output only. `etag` is used for optimistic concurrency control as a way to
-    /// help prevent simultaneous updates of a volume backup from overwriting each
-    /// other. It is strongly suggested that systems make use of the `etag` in the
-    /// read-modify-write cycle to perform volume backup updates in order to avoid
-    /// race conditions.
-    #[prost(string, tag = "13")]
-    pub etag: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `VolumeBackup`.
-pub mod volume_backup {
-    /// Identifies the format used for the volume backup.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VolumeBackupFormat {
-        /// Default value, not specified.
-        Unspecified = 0,
-        /// Compute Engine Persistent Disk snapshot based volume backup.
-        GcePersistentDisk = 1,
-    }
-    impl VolumeBackupFormat {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VolumeBackupFormat::Unspecified => "VOLUME_BACKUP_FORMAT_UNSPECIFIED",
-                VolumeBackupFormat::GcePersistentDisk => "GCE_PERSISTENT_DISK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VOLUME_BACKUP_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                "GCE_PERSISTENT_DISK" => Some(Self::GcePersistentDisk),
-                _ => None,
-            }
-        }
-    }
-    /// The current state of a VolumeBackup
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// This is an illegal state and should not be encountered.
-        Unspecified = 0,
-        /// A volume for the backup was identified and backup process is about to
-        /// start.
-        Creating = 1,
-        /// The volume backup operation has begun and is in the initial "snapshot"
-        /// phase of the process. Any defined ProtectedApplication "pre" hooks will
-        /// be executed before entering this state and "post" hooks will be executed
-        /// upon leaving this state.
-        Snapshotting = 2,
-        /// The snapshot phase of the volume backup operation has completed and
-        /// the snapshot is now being uploaded to backup storage.
-        Uploading = 3,
-        /// The volume backup operation has completed successfully.
-        Succeeded = 4,
-        /// The volume backup operation has failed.
-        Failed = 5,
-        /// This VolumeBackup resource (and its associated artifacts) is in the
-        /// process of being deleted.
-        Deleting = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Snapshotting => "SNAPSHOTTING",
-                State::Uploading => "UPLOADING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "SNAPSHOTTING" => Some(Self::Snapshotting),
-                "UPLOADING" => Some(Self::Uploading),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
-}
-/// Represents the operation of restoring a volume from a VolumeBackup.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VolumeRestore {
-    /// Output only. Full name of the VolumeRestore resource.
-    /// Format: `projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*`
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// Output only. Server generated global unique identifier of
-    /// [UUID](<https://en.wikipedia.org/wiki/Universally_unique_identifier>) format.
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    /// Output only. The timestamp when this VolumeRestore resource was
-    /// created.
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The timestamp when this VolumeRestore resource was last
-    /// updated.
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The full name of the VolumeBackup from which the volume will
-    /// be restored. Format:
-    /// `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.
-    #[prost(string, tag = "5")]
-    pub volume_backup: ::prost::alloc::string::String,
-    /// Output only. The reference to the target Kubernetes PVC to be restored.
-    #[prost(message, optional, tag = "6")]
-    pub target_pvc: ::core::option::Option<NamespacedName>,
-    /// Output only. A storage system-specific opaque handler to the underlying
-    /// volume created for the target PVC from the volume backup.
-    #[prost(string, tag = "7")]
-    pub volume_handle: ::prost::alloc::string::String,
-    /// Output only. The type of volume provisioned
-    #[prost(enumeration = "volume_restore::VolumeType", tag = "8")]
-    pub volume_type: i32,
-    /// Output only. The timestamp when the associated underlying volume
-    /// restoration completed.
-    #[prost(message, optional, tag = "9")]
-    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Output only. The current state of this VolumeRestore.
-    #[prost(enumeration = "volume_restore::State", tag = "10")]
-    pub state: i32,
-    /// Output only. A human readable message explaining why the VolumeRestore is
-    /// in its current state.
-    #[prost(string, tag = "11")]
-    pub state_message: ::prost::alloc::string::String,
-    /// Output only. `etag` is used for optimistic concurrency control as a way to
-    /// help prevent simultaneous updates of a volume restore from overwriting each
-    /// other. It is strongly suggested that systems make use of the `etag` in the
-    /// read-modify-write cycle to perform volume restore updates in order to avoid
-    /// race conditions.
-    #[prost(string, tag = "12")]
-    pub etag: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `VolumeRestore`.
-pub mod volume_restore {
-    /// Supported volume types.
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VolumeType {
-        /// Default
-        Unspecified = 0,
-        /// Compute Engine Persistent Disk volume
-        GcePersistentDisk = 1,
-    }
-    impl VolumeType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VolumeType::Unspecified => "VOLUME_TYPE_UNSPECIFIED",
-                VolumeType::GcePersistentDisk => "GCE_PERSISTENT_DISK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VOLUME_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "GCE_PERSISTENT_DISK" => Some(Self::GcePersistentDisk),
-                _ => None,
-            }
-        }
-    }
-    /// The current state of a VolumeRestore
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        /// This is an illegal state and should not be encountered.
-        Unspecified = 0,
-        /// A volume for the restore was identified and restore process is about to
-        /// start.
-        Creating = 1,
-        /// The volume is currently being restored.
-        Restoring = 2,
-        /// The volume has been successfully restored.
-        Succeeded = 3,
-        /// The volume restoration process failed.
-        Failed = 4,
-        /// This VolumeRestore resource is in the process of being deleted.
-        Deleting = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Restoring => "RESTORING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "RESTORING" => Some(Self::Restoring),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
-}
 /// Represents the metadata of the long-running operation.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2684,8 +2684,8 @@ pub mod backup_for_gke_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -2710,7 +2710,7 @@ pub mod backup_for_gke_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             BackupForGkeClient::new(InterceptedService::new(inner, interceptor))
         }

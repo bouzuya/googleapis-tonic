@@ -40,39 +40,6 @@ pub struct UsageSignal {
         UsageStats,
     >,
 }
-/// Represents a schema (e.g. BigQuery, GoogleSQL, Avro schema).
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Schema {
-    /// Required. Schema of columns. A maximum of 10,000 columns and sub-columns
-    /// can be specified.
-    #[prost(message, repeated, tag = "2")]
-    pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
-}
-/// Representation of a column within a schema. Columns could be nested inside
-/// other columns.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ColumnSchema {
-    /// Required. Name of the column.
-    #[prost(string, tag = "6")]
-    pub column: ::prost::alloc::string::String,
-    /// Required. Type of the column.
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    /// Optional. Description of the column. Default value is an empty string.
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    /// Optional. A column's mode indicates whether the values in this column are
-    /// required, nullable, etc. Only `NULLABLE`, `REQUIRED` and `REPEATED` are
-    /// supported. Default mode is `NULLABLE`.
-    #[prost(string, tag = "3")]
-    pub mode: ::prost::alloc::string::String,
-    /// Optional. Schema of sub-columns. A column can have zero or more
-    /// sub-columns.
-    #[prost(message, repeated, tag = "7")]
-    pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
-}
 /// This enum describes all the possible systems that Data Catalog integrates
 /// with.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -208,6 +175,39 @@ pub struct GcsFileSpec {
     /// Output only. The size of the file, in bytes.
     #[prost(int64, tag = "4")]
     pub size_bytes: i64,
+}
+/// Represents a schema (e.g. BigQuery, GoogleSQL, Avro schema).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Schema {
+    /// Required. Schema of columns. A maximum of 10,000 columns and sub-columns
+    /// can be specified.
+    #[prost(message, repeated, tag = "2")]
+    pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
+}
+/// Representation of a column within a schema. Columns could be nested inside
+/// other columns.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ColumnSchema {
+    /// Required. Name of the column.
+    #[prost(string, tag = "6")]
+    pub column: ::prost::alloc::string::String,
+    /// Required. Type of the column.
+    #[prost(string, tag = "1")]
+    pub r#type: ::prost::alloc::string::String,
+    /// Optional. Description of the column. Default value is an empty string.
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    /// Optional. A column's mode indicates whether the values in this column are
+    /// required, nullable, etc. Only `NULLABLE`, `REQUIRED` and `REPEATED` are
+    /// supported. Default mode is `NULLABLE`.
+    #[prost(string, tag = "3")]
+    pub mode: ::prost::alloc::string::String,
+    /// Optional. Schema of sub-columns. A column can have zero or more
+    /// sub-columns.
+    #[prost(message, repeated, tag = "7")]
+    pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
 }
 /// A result that appears in the response of a search request. Each result
 /// captures details of one entry that matches the search.
@@ -1565,8 +1565,8 @@ pub mod data_catalog_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -1591,7 +1591,7 @@ pub mod data_catalog_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             DataCatalogClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -2896,8 +2896,8 @@ pub mod policy_tag_manager_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -2922,7 +2922,7 @@ pub mod policy_tag_manager_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             PolicyTagManagerClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -3484,8 +3484,8 @@ pub mod policy_tag_manager_serialization_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -3510,7 +3510,7 @@ pub mod policy_tag_manager_serialization_client {
             >,
             <T as tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             PolicyTagManagerSerializationClient::new(
                 InterceptedService::new(inner, interceptor),
