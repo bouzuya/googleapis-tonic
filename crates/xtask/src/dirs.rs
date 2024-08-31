@@ -2,11 +2,7 @@ use std::env;
 use std::path::PathBuf;
 
 pub fn googleapis_dir() -> anyhow::Result<PathBuf> {
-    let repository_root_dir = repository_root_dir()?;
-    Ok(repository_root_dir
-        .join("crates")
-        .join("xtask")
-        .join("googleapis"))
+    Ok(xtask_crate_dir()?.join("googleapis"))
 }
 
 pub fn repository_root_dir() -> anyhow::Result<PathBuf> {
@@ -15,4 +11,9 @@ pub fn repository_root_dir() -> anyhow::Result<PathBuf> {
         .join("..")
         .join("..")
         .canonicalize()?)
+}
+
+pub fn xtask_crate_dir() -> anyhow::Result<PathBuf> {
+    let repository_root_dir = repository_root_dir()?;
+    Ok(repository_root_dir.join("crates").join("xtask"))
 }
