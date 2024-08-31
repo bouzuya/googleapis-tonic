@@ -90,7 +90,7 @@ fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Featur
     for map_type in MapType::values() {
         features.insert(FeatureName::from(*map_type), BTreeSet::default());
     }
-    for (pkg, deps) in proto_dir.dependencies() {
+    for (pkg, deps) in proto_dir.package_dependencies() {
         let feature_name = FeatureName::from(pkg);
         let deps = deps
             .iter()

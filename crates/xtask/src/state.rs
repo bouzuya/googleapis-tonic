@@ -50,8 +50,10 @@ impl State {
     ) -> anyhow::Result<Self> {
         let googleapis_version = proto_dir.version().to_owned();
         let package_hashes = proto_dir.package_hashes().to_owned();
-        let publish_order =
-            Self::build_publish_order(proto_dir.emit_package_names(), proto_dir.dependencies());
+        let publish_order = Self::build_publish_order(
+            proto_dir.emit_package_names(),
+            proto_dir.package_dependencies(),
+        );
         Ok(Self {
             crate_versions,
             googleapis_version,

@@ -25,7 +25,7 @@ pub fn build_crates(
     force_update: bool,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
-    let all_package_deps = proto_dir.dependencies();
+    let all_package_deps = proto_dir.package_dependencies();
     let emit_package_names = proto_dir.emit_package_names();
     let new_crate_versions = build_new_crate_versions(
         all_package_deps,

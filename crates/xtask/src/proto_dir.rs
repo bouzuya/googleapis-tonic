@@ -144,16 +144,18 @@ impl ProtoDir {
         })
     }
 
-    pub fn dependencies(&self) -> &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>> {
-        &self.package_deps
+    pub fn dir_path(&self) -> &Path {
+        &self.dir_path
     }
 
     pub fn emit_package_names(&self) -> &BTreeSet<ProtobufPackageName> {
         &self.emit_package_names
     }
 
-    pub fn dir_path(&self) -> &Path {
-        &self.dir_path
+    pub fn package_dependencies(
+        &self,
+    ) -> &BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>> {
+        &self.package_deps
     }
 
     pub fn package_hashes(&self) -> &BTreeMap<ProtobufPackageName, Sha1Hash> {
