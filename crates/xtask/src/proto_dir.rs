@@ -18,7 +18,7 @@ pub struct ProtoDir {
     emit_package_names: BTreeSet<ProtobufPackageName>,
     package_deps: BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
     package_hashes: BTreeMap<ProtobufPackageName, Sha1Hash>,
-    proto_file_paths: Vec<ProtoFilePath>,
+    proto_file_paths: BTreeSet<ProtoFilePath>,
     version: GoogleapisVersion,
 }
 
@@ -216,9 +216,9 @@ impl ProtoDir {
     fn proto_file_paths_from_dir<P: AsRef<Path>>(
         dir: P,
         proto_dir: &Path,
-    ) -> anyhow::Result<Vec<ProtoFilePath>> {
+    ) -> anyhow::Result<BTreeSet<ProtoFilePath>> {
         let dir: &Path = dir.as_ref();
-        let mut paths = vec![];
+        let mut paths = BTreeSet::new();
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
             let file_type = entry.file_type()?;
@@ -227,7 +227,7 @@ impl ProtoDir {
                 if let Some(extension) = file_path.extension() {
                     if extension == "proto" {
                         let p = ProtoFilePath::from_absolute_path(&file_path, proto_dir)?;
-                        paths.push(p);
+                        paths.insert(p);
                     }
                 }
             } else if file_type.is_dir() {
