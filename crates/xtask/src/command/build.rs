@@ -62,7 +62,13 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
         .get(&CrateName::from_str("googleapis-tonic")?)
         .cloned()
         .unwrap_or_default();
-    let new_crate_version = build_crate::build_crate(&generated_dir, &googleapis, &crate_version)?;
+    let new_crate_version = build_crate::build_crate(
+        &generated_dir,
+        &googleapis,
+        &crate_version,
+        state.package_hashes(),
+        force_update,
+    )?;
     let mut new_crate_versions = build_crates::build_crates(
         &generated_dir,
         &googleapis,

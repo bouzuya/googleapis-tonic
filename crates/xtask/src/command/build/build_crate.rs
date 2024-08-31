@@ -12,16 +12,31 @@ use crate::crate_version::CrateVersion;
 use crate::feature_name::FeatureName;
 use crate::map_type::MapType;
 use crate::modules::Modules;
+use crate::protobuf_package_name::ProtobufPackageName;
+use crate::sha1hash::Sha1Hash;
 use crate::{bytes_type::BytesType, googleapis::Googleapis};
 
 pub fn build_crate(
     generated_dir: &Path,
     googleapis: &Googleapis,
     old_crate_version: &CrateVersion,
+    old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
+    force_update: bool,
 ) -> anyhow::Result<CrateVersion> {
     let crate_name = CrateName::from_str("googleapis-tonic")?;
     let crate_dir = generated_dir.join(crate_name.to_string());
     let src_dir = crate_dir.join("src");
+    let new_crate_version = if force_update
+        || googleapis
+            .package_hashes()
+            .iter()
+            .any(|(package_name, hash)| Some(hash) != old_package_hashes.get(package_name))
+    {
+        old_crate_version.increment_minor()
+    } else {
+        old_crate_version.to_owned()
+    };
+
     fs::create_dir_all(&src_dir)?;
     for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
         MapType::values()
@@ -68,7 +83,6 @@ pub fn build_crate(
     }
     create_lib_rs(&crate_dir)?;
 
-    let new_crate_version = old_crate_version.increment_minor();
     create_cargo_toml(&crate_dir, &crate_name, googleapis, &new_crate_version)?;
     Ok(new_crate_version)
 }
