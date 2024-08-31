@@ -1,13 +1,13 @@
-use std::path::PathBuf;
 use std::process::Command;
 
+use crate::dirs;
 use crate::state::State;
 
 pub fn execute() -> anyhow::Result<()> {
-    let crates_dir = PathBuf::from("crates");
-    let generated_dir = PathBuf::from("generated");
+    let xtask_crate_dir = dirs::xtask_crate_dir()?;
+    let generated_dir = dirs::generated_dir()?;
 
-    let state_file = crates_dir.join("xtask").join("state.json");
+    let state_file = xtask_crate_dir.join("state.json");
     let state = State::load(&state_file)?;
 
     for crate_name in state.publish_order() {
