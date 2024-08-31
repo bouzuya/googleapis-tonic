@@ -1,7 +1,6 @@
 use std::collections::BTreeSet;
 use std::fs;
 use std::path::Path;
-use std::path::PathBuf;
 use std::process::Command;
 use std::str::FromStr as _;
 use std::time::Duration;
@@ -10,13 +9,14 @@ use anyhow::Context as _;
 
 use crate::crate_name::CrateName;
 use crate::crate_version::CrateVersion;
+use crate::dirs;
 
 pub struct Args {
     pub crate_name: Option<String>,
 }
 
 pub async fn execute(Args { crate_name }: Args) -> anyhow::Result<()> {
-    let generated_dir = PathBuf::from("generated");
+    let generated_dir = dirs::generated_dir()?;
 
     let target_crate_names = {
         match crate_name {

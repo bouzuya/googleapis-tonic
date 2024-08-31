@@ -6,6 +6,7 @@ use std::path::PathBuf;
 use std::str::FromStr as _;
 
 use crate::crate_name::CrateName;
+use crate::dirs;
 use crate::proto_dir::ProtoDir;
 use crate::state::State;
 
@@ -40,7 +41,7 @@ use crate::state::State;
 ///     ...
 /// ```
 pub fn execute(force_update: bool) -> anyhow::Result<()> {
-    let generated_dir = PathBuf::from("generated");
+    let generated_dir = dirs::generated_dir()?;
     let xtask_dir = PathBuf::from("crates").join("xtask");
 
     // load googleapis/
