@@ -6,7 +6,7 @@ use std::str::FromStr as _;
 
 use crate::crate_name::CrateName;
 use crate::dirs;
-use crate::proto_dir::ProtoDir;
+use crate::googleapis::Googleapis;
 use crate::state::State;
 
 /// Build `googleapis-tonic` and `googleapis-tonic-*` crates, and update the state file.
@@ -45,8 +45,7 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
     let xtask_dir = dirs::xtask_crate_dir()?;
 
     // load googleapis/
-    let proto_dir = googleapis_dir;
-    let proto_dir = ProtoDir::load(proto_dir)?;
+    let googleapis = Googleapis::load(googleapis_dir)?;
 
     // load state.json
     let state_file = xtask_dir.join("state.json");
@@ -63,10 +62,10 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
         .get(&CrateName::from_str("googleapis-tonic")?)
         .cloned()
         .unwrap_or_default();
-    let new_crate_version = build_crate::build_crate(&generated_dir, &proto_dir, &crate_version)?;
+    let new_crate_version = build_crate::build_crate(&generated_dir, &googleapis, &crate_version)?;
     let mut new_crate_versions = build_crates::build_crates(
         &generated_dir,
-        &proto_dir,
+        &googleapis,
         crate_versions,
         state.package_hashes(),
         force_update,
@@ -74,7 +73,7 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
     new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 
     // update state.json
-    let updated = state.update(&proto_dir, new_crate_versions)?;
+    let updated = state.update(&googleapis, new_crate_versions)?;
     State::save(&state_file, &updated)?;
     Ok(())
 }

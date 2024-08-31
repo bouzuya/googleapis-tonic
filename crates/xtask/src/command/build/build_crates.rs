@@ -8,7 +8,7 @@ use std::{
 use anyhow::Context as _;
 
 use crate::{
-    crate_name::CrateName, crate_version::CrateVersion, proto_dir::ProtoDir,
+    crate_name::CrateName, crate_version::CrateVersion, googleapis::Googleapis,
     protobuf_package_name::ProtobufPackageName, sha1hash::Sha1Hash,
 };
 
@@ -19,18 +19,18 @@ struct M {
 
 pub fn build_crates(
     generated_dir: &Path,
-    proto_dir: &ProtoDir,
+    googleapis: &Googleapis,
     old_crate_versions: &BTreeMap<CrateName, CrateVersion>,
     old_package_hashes: &BTreeMap<ProtobufPackageName, Sha1Hash>,
     force_update: bool,
 ) -> anyhow::Result<BTreeMap<CrateName, CrateVersion>> {
     let googleapis_tonic_src_dir = generated_dir.join("googleapis-tonic").join("src");
-    let all_package_deps = proto_dir.package_dependencies();
-    let emit_package_names = proto_dir.emit_package_names();
+    let all_package_deps = googleapis.package_dependencies();
+    let emit_package_names = googleapis.emit_package_names();
     let new_crate_versions = build_new_crate_versions(
         all_package_deps,
         emit_package_names,
-        proto_dir.package_hashes(),
+        googleapis.package_hashes(),
         old_crate_versions,
         old_package_hashes,
         force_update,

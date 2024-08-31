@@ -13,7 +13,7 @@ use crate::proto_file_path::ProtoFilePath;
 use crate::protobuf_package_name::ProtobufPackageName;
 use crate::sha1hash::Sha1Hash;
 
-pub struct ProtoDir {
+pub struct Googleapis {
     dir_path: PathBuf,
     emit_package_names: BTreeSet<ProtobufPackageName>,
     package_deps: BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
@@ -22,9 +22,9 @@ pub struct ProtoDir {
     version: GoogleapisVersion,
 }
 
-impl ProtoDir {
-    pub fn load<P: Into<PathBuf>>(proto_dir: P) -> anyhow::Result<Self> {
-        let dir_path: PathBuf = proto_dir.into();
+impl Googleapis {
+    pub fn load<P: Into<PathBuf>>(googleapis_dir: P) -> anyhow::Result<Self> {
+        let dir_path: PathBuf = googleapis_dir.into();
         let dir_path = dir_path.canonicalize()?;
 
         let version = GoogleapisVersion::load_from_googleapis_dir(&dir_path)?;

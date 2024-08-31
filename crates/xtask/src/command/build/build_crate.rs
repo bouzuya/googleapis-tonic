@@ -12,11 +12,11 @@ use crate::crate_version::CrateVersion;
 use crate::feature_name::FeatureName;
 use crate::map_type::MapType;
 use crate::modules::Modules;
-use crate::{bytes_type::BytesType, proto_dir::ProtoDir};
+use crate::{bytes_type::BytesType, googleapis::Googleapis};
 
 pub fn build_crate(
     generated_dir: &Path,
-    proto_dir: &ProtoDir,
+    googleapis: &Googleapis,
     old_crate_version: &CrateVersion,
 ) -> anyhow::Result<CrateVersion> {
     let crate_name = CrateName::from_str("googleapis-tonic")?;
@@ -48,7 +48,7 @@ pub fn build_crate(
             .emit_rerun_if_changed(false)
             .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile(&proto_dir.proto_paths(), &[proto_dir.dir_path()])?;
+            .compile(&googleapis.proto_paths(), &[googleapis.dir_path()])?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(&out_dir)? {
@@ -69,11 +69,11 @@ pub fn build_crate(
     create_lib_rs(&crate_dir)?;
 
     let new_crate_version = old_crate_version.increment_minor();
-    create_cargo_toml(&crate_dir, &crate_name, proto_dir, &new_crate_version)?;
+    create_cargo_toml(&crate_dir, &crate_name, googleapis, &new_crate_version)?;
     Ok(new_crate_version)
 }
 
-fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
+fn build_features(googleapis: &Googleapis) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
     let mut features = BTreeMap::new();
     features.insert(
         FeatureName::default(),
@@ -90,7 +90,7 @@ fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Featur
     for map_type in MapType::values() {
         features.insert(FeatureName::from(*map_type), BTreeSet::default());
     }
-    for (pkg, deps) in proto_dir.package_dependencies() {
+    for (pkg, deps) in googleapis.package_dependencies() {
         let feature_name = FeatureName::from(pkg);
         let deps = deps
             .iter()
@@ -106,7 +106,7 @@ fn build_features(proto_dir: &ProtoDir) -> BTreeMap<FeatureName, BTreeSet<Featur
 fn create_cargo_toml(
     crate_dir: &Path,
     crate_name: &CrateName,
-    proto_dir: &ProtoDir,
+    googleapis: &Googleapis,
     version: &CrateVersion,
 ) -> anyhow::Result<()> {
     let cargo_toml_path = crate_dir.join("Cargo.toml");
@@ -143,7 +143,7 @@ unused_imports = "allow"
     .replace("{CRATE_NAME}", crate_name.as_ref())
     .replace("{VERSION}", &version.to_string())
     .replace("{FEATURES}", &{
-        build_features(proto_dir)
+        build_features(googleapis)
             .into_iter()
             .map(|(feature_name, deps)| {
                 format!(

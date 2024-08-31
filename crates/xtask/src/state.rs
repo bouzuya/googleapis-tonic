@@ -7,8 +7,9 @@ use std::{
 };
 
 use crate::{
-    crate_name::CrateName, crate_version::CrateVersion, googleapis_version::GoogleapisVersion,
-    proto_dir::ProtoDir, protobuf_package_name::ProtobufPackageName, sha1hash::Sha1Hash,
+    crate_name::CrateName, crate_version::CrateVersion, googleapis::Googleapis,
+    googleapis_version::GoogleapisVersion, protobuf_package_name::ProtobufPackageName,
+    sha1hash::Sha1Hash,
 };
 
 pub struct State {
@@ -45,14 +46,14 @@ impl State {
 
     pub fn update(
         &self,
-        proto_dir: &ProtoDir,
+        googleapis: &Googleapis,
         crate_versions: BTreeMap<CrateName, CrateVersion>,
     ) -> anyhow::Result<Self> {
-        let googleapis_version = proto_dir.version().to_owned();
-        let package_hashes = proto_dir.package_hashes().to_owned();
+        let googleapis_version = googleapis.version().to_owned();
+        let package_hashes = googleapis.package_hashes().to_owned();
         let publish_order = Self::build_publish_order(
-            proto_dir.emit_package_names(),
-            proto_dir.package_dependencies(),
+            googleapis.emit_package_names(),
+            googleapis.package_dependencies(),
         );
         Ok(Self {
             crate_versions,
