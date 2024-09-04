@@ -38,8 +38,6 @@ enum Subcommand {
     ShowGoogleapisVersion,
     /// Test generated/* crates
     Test,
-    /// Update googleapis/ (git submodule update)
-    UpdateGoogleapis,
     /// Update README.md
     UpdateReadme,
 }
@@ -54,7 +52,6 @@ async fn main() -> anyhow::Result<()> {
         }
         Subcommand::ShowGoogleapisVersion => self::command::show_googleapis_version::execute(),
         Subcommand::Test => self::command::test::execute(),
-        Subcommand::UpdateGoogleapis => self::command::update_googleapis::execute(),
         Subcommand::UpdateReadme => self::command::update_readme::execute(),
     }
 }
