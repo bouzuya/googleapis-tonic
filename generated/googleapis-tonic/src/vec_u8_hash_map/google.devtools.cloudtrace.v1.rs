@@ -2,7 +2,6 @@
 /// A trace describes how long it takes for an application to perform an
 /// operation. It consists of a set of spans, each of which represent a single
 /// timed event within the operation.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trace {
     /// Project ID of the Cloud project where the trace data is stored.
@@ -18,7 +17,6 @@ pub struct Trace {
     pub spans: ::prost::alloc::vec::Vec<TraceSpan>,
 }
 /// List of new or updated traces.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Traces {
     /// List of traces.
@@ -30,7 +28,6 @@ pub struct Traces {
 /// end-to-end latency of an operation and, optionally, one or more subspans for
 /// its suboperations. Spans do not need to be contiguous. There may be gaps
 /// between spans in a trace.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TraceSpan {
     /// Identifier for the span. Must be a 64-bit integer other than 0 and
@@ -152,7 +149,6 @@ pub mod trace_span {
 }
 /// The request message for the `ListTraces` method. All fields are required
 /// unless specified.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTracesRequest {
     /// Required. ID of the Cloud project where the trace data is stored.
@@ -282,7 +278,6 @@ pub mod list_traces_request {
     }
 }
 /// The response message for the `ListTraces` method.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTracesResponse {
     /// List of trace records as specified by the view parameter.
@@ -295,7 +290,6 @@ pub struct ListTracesResponse {
     pub next_page_token: ::prost::alloc::string::String,
 }
 /// The request message for the `GetTrace` method.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTraceRequest {
     /// Required. ID of the Cloud project where the trace data is stored.
@@ -306,7 +300,6 @@ pub struct GetTraceRequest {
     pub trace_id: ::prost::alloc::string::String,
 }
 /// The request message for the `PatchTraces` method.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchTracesRequest {
     /// Required. ID of the Cloud project where the trace data is stored.

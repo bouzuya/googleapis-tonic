@@ -2,7 +2,6 @@
 /// Information about the author of the UGC data. Used in
 /// \[Photo\]\[google.maps.places.v1.Photo\], and
 /// \[Review\]\[google.maps.places.v1.Review\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorAttribution {
     /// Name of the author of the \[Photo\]\[google.maps.places.v1.Photo\] or
@@ -20,7 +19,6 @@ pub struct AuthorAttribution {
     pub photo_uri: ::prost::alloc::string::String,
 }
 /// Information about a review of a place.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Review {
     /// A reference representing this place review which may be used to look up
@@ -55,7 +53,6 @@ pub struct Review {
 /// for more details.
 ///
 /// Reference that the generative content is related to.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct References {
     /// Reviews that serve as references.
@@ -67,7 +64,6 @@ pub struct References {
     pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A block of content that can be served individually.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentBlock {
     /// The topic of the content, for example "overview" or "restaurant".
@@ -84,12 +80,146 @@ pub struct ContentBlock {
     #[prost(message, optional, tag = "3")]
     pub references: ::core::option::Option<References>,
 }
+/// Information about a photo of a place.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Photo {
+    /// Identifier. A reference representing this place photo which may be used to
+    /// look up this place photo again (also called the API "resource" name:
+    /// `places/{place_id}/photos/{photo}`).
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The maximum available width, in pixels.
+    #[prost(int32, tag = "2")]
+    pub width_px: i32,
+    /// The maximum available height, in pixels.
+    #[prost(int32, tag = "3")]
+    pub height_px: i32,
+    /// This photo's authors.
+    #[prost(message, repeated, tag = "4")]
+    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
+}
+/// Experimental: See
+/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+/// for more details.
+///
+/// Content that is contextual to the place query.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContextualContent {
+    /// List of reviews about this place, contexual to the place query.
+    #[prost(message, repeated, tag = "1")]
+    pub reviews: ::prost::alloc::vec::Vec<Review>,
+    /// Information (including references) about photos of this place, contexual to
+    /// the place query.
+    #[prost(message, repeated, tag = "2")]
+    pub photos: ::prost::alloc::vec::Vec<Photo>,
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// Justifications for the place.
+    #[prost(message, repeated, tag = "3")]
+    pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
+}
+/// Nested message and enum types in `ContextualContent`.
+pub mod contextual_content {
+    /// Experimental: See
+    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+    /// for more details.
+    ///
+    /// Justifications for the place. Justifications answers the question of why a
+    /// place could interest an end user.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Justification {
+        #[prost(oneof = "justification::Justification", tags = "1, 2")]
+        pub justification: ::core::option::Option<justification::Justification>,
+    }
+    /// Nested message and enum types in `Justification`.
+    pub mod justification {
+        /// Experimental: See
+        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+        /// for more details.
+        ///
+        /// User review justifications. This highlights a section of the user review
+        /// that would interest an end user. For instance, if the search query is
+        /// "firewood pizza", the review justification highlights the text relevant
+        /// to the search query.
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct ReviewJustification {
+            #[prost(message, optional, tag = "1")]
+            pub highlighted_text: ::core::option::Option<
+                review_justification::HighlightedText,
+            >,
+            /// The review that the highlighted text is generated from.
+            #[prost(message, optional, tag = "2")]
+            pub review: ::core::option::Option<super::super::Review>,
+        }
+        /// Nested message and enum types in `ReviewJustification`.
+        pub mod review_justification {
+            /// The text highlighted by the justification. This is a subset of the
+            /// review itself. The exact word to highlight is marked by the
+            /// HighlightedTextRange. There could be several words in the text being
+            /// highlighted.
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct HighlightedText {
+                #[prost(string, tag = "1")]
+                pub text: ::prost::alloc::string::String,
+                /// The list of the ranges of the highlighted text.
+                #[prost(message, repeated, tag = "2")]
+                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
+                    highlighted_text::HighlightedTextRange,
+                >,
+            }
+            /// Nested message and enum types in `HighlightedText`.
+            pub mod highlighted_text {
+                /// The range of highlighted text.
+                #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+                pub struct HighlightedTextRange {
+                    #[prost(int32, tag = "1")]
+                    pub start_index: i32,
+                    #[prost(int32, tag = "2")]
+                    pub end_index: i32,
+                }
+            }
+        }
+        /// Experimental: See
+        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+        /// for more details.
+        /// BusinessAvailabilityAttributes justifications. This shows some attributes
+        /// a business has that could interest an end user.
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct BusinessAvailabilityAttributesJustification {
+            /// If a place provides takeout.
+            #[prost(bool, tag = "1")]
+            pub takeout: bool,
+            /// If a place provides delivery.
+            #[prost(bool, tag = "2")]
+            pub delivery: bool,
+            /// If a place provides dine-in.
+            #[prost(bool, tag = "3")]
+            pub dine_in: bool,
+        }
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum Justification {
+            /// Experimental: See
+            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+            /// for more details.
+            #[prost(message, tag = "1")]
+            ReviewJustification(ReviewJustification),
+            /// Experimental: See
+            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
+            /// for more details.
+            #[prost(message, tag = "2")]
+            BusinessAvailabilityAttributesJustification(
+                BusinessAvailabilityAttributesJustification,
+            ),
+        }
+    }
+}
 /// Information about the EV Charge Station hosted in Place.
 /// Terminology follows
 /// <https://afdc.energy.gov/fuels/electricity_infrastructure.html> One port
 /// could charge one car at a time. One port has one or more connectors. One
 /// station has one or more ports.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvChargeOptions {
     /// Number of connectors at this station. However, because some ports can have
@@ -110,7 +240,6 @@ pub mod ev_charge_options {
     /// EV charging information grouped by \[type, max_charge_rate_kw\].
     /// Shows EV charge aggregation of connectors that have the same type and max
     /// charge rate in kw.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ConnectorAggregation {
         /// The connector type of this aggregation.
@@ -212,7 +341,6 @@ impl EvConnectorType {
 }
 /// The most recent information about fuel options in a gas station. This
 /// information is updated regularly.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FuelOptions {
     /// The last known fuel price for each type of fuel this station has. There is
@@ -223,7 +351,6 @@ pub struct FuelOptions {
 /// Nested message and enum types in `FuelOptions`.
 pub mod fuel_options {
     /// Fuel price information for a given type.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FuelPrice {
         /// The type of fuel.
@@ -347,27 +474,21 @@ pub mod fuel_options {
         }
     }
 }
-/// Information about a photo of a place.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Photo {
-    /// Identifier. A reference representing this place photo which may be used to
-    /// look up this place photo again (also called the API "resource" name:
-    /// `places/{place_id}/photos/{photo}`).
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    /// The maximum available width, in pixels.
-    #[prost(int32, tag = "2")]
-    pub width_px: i32,
-    /// The maximum available height, in pixels.
-    #[prost(int32, tag = "3")]
-    pub height_px: i32,
-    /// This photo's authors.
-    #[prost(message, repeated, tag = "4")]
-    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
+/// Circle with a LatLng as center and radius.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Circle {
+    /// Required. Center latitude and longitude.
+    ///
+    /// The range of latitude must be within \[-90.0, 90.0\]. The range of the
+    /// longitude must be within \[-180.0, 180.0\].
+    #[prost(message, optional, tag = "1")]
+    pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
+    /// Required. Radius measured in meters. The radius must be within \[0.0,
+    /// 50000.0\].
+    #[prost(double, tag = "2")]
+    pub radius: f64,
 }
 /// All the information representing a Place.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Place {
     /// This Place's resource name, in `places/{place_id}` format.  Can be used to
@@ -629,7 +750,6 @@ pub struct Place {
 pub mod place {
     /// The structured components that form the formatted address, if this
     /// information is available.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AddressComponent {
         /// The full text description or name of the address component. For example,
@@ -652,7 +772,6 @@ pub mod place {
     /// Plus code (<http://plus.codes>) is a location reference with two formats:
     /// global code defining a 14mx14m (1/8000th of a degree) or smaller rectangle,
     /// and compound code, replacing the prefix with a reference location.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PlusCode {
         /// Place's global (full) code, such as "9FWM33GV+HQ", representing an
@@ -666,7 +785,6 @@ pub mod place {
         pub compound_code: ::prost::alloc::string::String,
     }
     /// Information about business hour of the place.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct OpeningHours {
         /// Is this place open right now?  Always present unless we lack time-of-day
@@ -700,7 +818,6 @@ pub mod place {
     /// Nested message and enum types in `OpeningHours`.
     pub mod opening_hours {
         /// A period the place remains in open_now status.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct Period {
             /// The time that the place starts to be open.
@@ -713,7 +830,6 @@ pub mod place {
         /// Nested message and enum types in `Period`.
         pub mod period {
             /// Status changing points.
-            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, Copy, PartialEq, ::prost::Message)]
             pub struct Point {
                 /// A day of the week, as an integer in the range 0-6.  0 is Sunday, 1 is
@@ -743,7 +859,6 @@ pub mod place {
         /// Structured information for special days that fall within the period that
         /// the returned opening hours cover. Special days are days that could impact
         /// the business hours of a place, e.g. Christmas day.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct SpecialDay {
             /// The date of this special day.
@@ -841,7 +956,6 @@ pub mod place {
         }
     }
     /// Information about data providers of this place.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Attribution {
         /// Name of the Place's data provider.
@@ -852,7 +966,6 @@ pub mod place {
         pub provider_uri: ::prost::alloc::string::String,
     }
     /// Payment options the place accepts.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct PaymentOptions {
         /// Place accepts credit cards as payment.
@@ -871,7 +984,6 @@ pub mod place {
     }
     /// Information about parking options for the place. A parking lot could
     /// support more than one option at the same time.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ParkingOptions {
         /// Place offers free parking lots.
@@ -898,7 +1010,6 @@ pub mod place {
     }
     /// Place resource name and id of sub destinations that relate to the place.
     /// For example, different terminals are different destinations of an airport.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SubDestination {
         /// The resource name of the sub destination.
@@ -909,7 +1020,6 @@ pub mod place {
         pub id: ::prost::alloc::string::String,
     }
     /// Information about the accessibility options a place offers.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct AccessibilityOptions {
         /// Place offers wheelchair accessible parking.
@@ -930,7 +1040,6 @@ pub mod place {
     /// for more details.
     ///
     /// AI-generated summary of the place.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GenerativeSummary {
         /// The overview of the place.
@@ -952,7 +1061,6 @@ pub mod place {
     /// for more details.
     ///
     /// AI-generated summary of the area that the place is in.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AreaSummary {
         /// Content blocks that compose the area summary. Each block has a separate
@@ -1053,147 +1161,7 @@ impl PriceLevel {
         }
     }
 }
-/// Experimental: See
-/// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-/// for more details.
-///
-/// Content that is contextual to the place query.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContextualContent {
-    /// List of reviews about this place, contexual to the place query.
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    /// Information (including references) about photos of this place, contexual to
-    /// the place query.
-    #[prost(message, repeated, tag = "2")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// Justifications for the place.
-    #[prost(message, repeated, tag = "3")]
-    pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
-}
-/// Nested message and enum types in `ContextualContent`.
-pub mod contextual_content {
-    /// Experimental: See
-    /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-    /// for more details.
-    ///
-    /// Justifications for the place. Justifications answers the question of why a
-    /// place could interest an end user.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Justification {
-        #[prost(oneof = "justification::Justification", tags = "1, 2")]
-        pub justification: ::core::option::Option<justification::Justification>,
-    }
-    /// Nested message and enum types in `Justification`.
-    pub mod justification {
-        /// Experimental: See
-        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-        /// for more details.
-        ///
-        /// User review justifications. This highlights a section of the user review
-        /// that would interest an end user. For instance, if the search query is
-        /// "firewood pizza", the review justification highlights the text relevant
-        /// to the search query.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ReviewJustification {
-            #[prost(message, optional, tag = "1")]
-            pub highlighted_text: ::core::option::Option<
-                review_justification::HighlightedText,
-            >,
-            /// The review that the highlighted text is generated from.
-            #[prost(message, optional, tag = "2")]
-            pub review: ::core::option::Option<super::super::Review>,
-        }
-        /// Nested message and enum types in `ReviewJustification`.
-        pub mod review_justification {
-            /// The text highlighted by the justification. This is a subset of the
-            /// review itself. The exact word to highlight is marked by the
-            /// HighlightedTextRange. There could be several words in the text being
-            /// highlighted.
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct HighlightedText {
-                #[prost(string, tag = "1")]
-                pub text: ::prost::alloc::string::String,
-                /// The list of the ranges of the highlighted text.
-                #[prost(message, repeated, tag = "2")]
-                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
-                    highlighted_text::HighlightedTextRange,
-                >,
-            }
-            /// Nested message and enum types in `HighlightedText`.
-            pub mod highlighted_text {
-                /// The range of highlighted text.
-                #[allow(clippy::derive_partial_eq_without_eq)]
-                #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-                pub struct HighlightedTextRange {
-                    #[prost(int32, tag = "1")]
-                    pub start_index: i32,
-                    #[prost(int32, tag = "2")]
-                    pub end_index: i32,
-                }
-            }
-        }
-        /// Experimental: See
-        /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-        /// for more details.
-        /// BusinessAvailabilityAttributes justifications. This shows some attributes
-        /// a business has that could interest an end user.
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct BusinessAvailabilityAttributesJustification {
-            /// If a place provides takeout.
-            #[prost(bool, tag = "1")]
-            pub takeout: bool,
-            /// If a place provides delivery.
-            #[prost(bool, tag = "2")]
-            pub delivery: bool,
-            /// If a place provides dine-in.
-            #[prost(bool, tag = "3")]
-            pub dine_in: bool,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Justification {
-            /// Experimental: See
-            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-            /// for more details.
-            #[prost(message, tag = "1")]
-            ReviewJustification(ReviewJustification),
-            /// Experimental: See
-            /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
-            /// for more details.
-            #[prost(message, tag = "2")]
-            BusinessAvailabilityAttributesJustification(
-                BusinessAvailabilityAttributesJustification,
-            ),
-        }
-    }
-}
-/// Circle with a LatLng as center and radius.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Circle {
-    /// Required. Center latitude and longitude.
-    ///
-    /// The range of latitude must be within \[-90.0, 90.0\]. The range of the
-    /// longitude must be within \[-180.0, 180.0\].
-    #[prost(message, optional, tag = "1")]
-    pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
-    /// Required. Radius measured in meters. The radius must be within \[0.0,
-    /// 50000.0\].
-    #[prost(double, tag = "2")]
-    pub radius: f64,
-}
 /// Request proto for Search Nearby.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchNearbyRequest {
     /// Place details will be displayed with the preferred language if available.
@@ -1312,7 +1280,6 @@ pub struct SearchNearbyRequest {
 /// Nested message and enum types in `SearchNearbyRequest`.
 pub mod search_nearby_request {
     /// The region to search.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct LocationRestriction {
         #[prost(oneof = "location_restriction::Type", tags = "2")]
@@ -1320,7 +1287,6 @@ pub mod search_nearby_request {
     }
     /// Nested message and enum types in `LocationRestriction`.
     pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum Type {
             /// A circle defined by center point and radius.
@@ -1373,7 +1339,6 @@ pub mod search_nearby_request {
     }
 }
 /// Response proto for Search Nearby.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchNearbyResponse {
     /// A list of places that meets user's requirements like places
@@ -1382,7 +1347,6 @@ pub struct SearchNearbyResponse {
     pub places: ::prost::alloc::vec::Vec<Place>,
 }
 /// Request proto for SearchText.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTextRequest {
     /// Required. The text query for textual search.
@@ -1462,7 +1426,6 @@ pub struct SearchTextRequest {
 pub mod search_text_request {
     /// The region to search. This location serves as a bias which means results
     /// around given location might be returned.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct LocationBias {
         #[prost(oneof = "location_bias::Type", tags = "1, 2")]
@@ -1470,7 +1433,6 @@ pub mod search_text_request {
     }
     /// Nested message and enum types in `LocationBias`.
     pub mod location_bias {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum Type {
             /// A rectangle box defined by northeast and southwest corner.
@@ -1488,7 +1450,6 @@ pub mod search_text_request {
     }
     /// The region to search. This location serves as a restriction which means
     /// results outside given location will not be returned.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct LocationRestriction {
         #[prost(oneof = "location_restriction::Type", tags = "1")]
@@ -1496,7 +1457,6 @@ pub mod search_text_request {
     }
     /// Nested message and enum types in `LocationRestriction`.
     pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum Type {
             /// A rectangle box defined by northeast and southwest corner.
@@ -1510,7 +1470,6 @@ pub mod search_text_request {
         }
     }
     /// Searchable EV options of a place search request.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct EvOptions {
         /// Optional. Minimum required charging rate in kilowatts. A place with a
@@ -1575,7 +1534,6 @@ pub mod search_text_request {
     }
 }
 /// Response proto for SearchText.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTextResponse {
     /// A list of places that meet the user's text search criteria.
@@ -1596,7 +1554,6 @@ pub struct SearchTextResponse {
     pub contextual_contents: ::prost::alloc::vec::Vec<ContextualContent>,
 }
 /// Request for fetching a photo of a place using a photo resource name.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPhotoMediaRequest {
     /// Required. The resource name of a photo media in the format:
@@ -1642,7 +1599,6 @@ pub struct GetPhotoMediaRequest {
     pub skip_http_redirect: bool,
 }
 /// A photo media from Places API.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhotoMedia {
     /// The resource name of a photo media in the format:
@@ -1655,7 +1611,6 @@ pub struct PhotoMedia {
 }
 /// Request for fetching a Place based on its resource name, which is a string in
 /// the `places/{place_id}` format.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPlaceRequest {
     /// Required. The resource name of a place, in the `places/{place_id}` format.
@@ -1708,7 +1663,6 @@ pub struct GetPlaceRequest {
     pub session_token: ::prost::alloc::string::String,
 }
 /// Request proto for AutocompletePlaces.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutocompletePlacesRequest {
     /// Required. The text string on which to search.
@@ -1807,7 +1761,6 @@ pub struct AutocompletePlacesRequest {
 pub mod autocomplete_places_request {
     /// The region to search. The results may be biased around the specified
     /// region.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct LocationBias {
         #[prost(oneof = "location_bias::Type", tags = "1, 2")]
@@ -1815,7 +1768,6 @@ pub mod autocomplete_places_request {
     }
     /// Nested message and enum types in `LocationBias`.
     pub mod location_bias {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum Type {
             /// A viewport defined by a northeast and a southwest corner.
@@ -1828,7 +1780,6 @@ pub mod autocomplete_places_request {
     }
     /// The region to search. The results will be restricted to the specified
     /// region.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct LocationRestriction {
         #[prost(oneof = "location_restriction::Type", tags = "1, 2")]
@@ -1836,7 +1787,6 @@ pub mod autocomplete_places_request {
     }
     /// Nested message and enum types in `LocationRestriction`.
     pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum Type {
             /// A viewport defined by a northeast and a southwest corner.
@@ -1849,7 +1799,6 @@ pub mod autocomplete_places_request {
     }
 }
 /// Response proto for AutocompletePlaces.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutocompletePlacesResponse {
     /// Contains a list of suggestions, ordered in descending order of relevance.
@@ -1859,7 +1808,6 @@ pub struct AutocompletePlacesResponse {
 /// Nested message and enum types in `AutocompletePlacesResponse`.
 pub mod autocomplete_places_response {
     /// An Autocomplete suggestion result.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Suggestion {
         #[prost(oneof = "suggestion::Kind", tags = "1, 2")]
@@ -1868,7 +1816,6 @@ pub mod autocomplete_places_response {
     /// Nested message and enum types in `Suggestion`.
     pub mod suggestion {
         /// Identifies a substring within a given text.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct StringRange {
             /// Zero-based offset of the first Unicode character of the string
@@ -1881,7 +1828,6 @@ pub mod autocomplete_places_response {
         }
         /// Text representing a Place or query prediction. The text may be used as is
         /// or formatted.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct FormattableText {
             /// Text that may be used as is or formatted with `matches`.
@@ -1906,7 +1852,6 @@ pub mod autocomplete_places_response {
         ///
         /// The secondary text contains additional disambiguating features (such as a
         /// city or region) to further identify the Place or refine the query.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct StructuredFormat {
             /// Represents the name of the Place or query.
@@ -1918,7 +1863,6 @@ pub mod autocomplete_places_response {
             pub secondary_text: ::core::option::Option<FormattableText>,
         }
         /// Prediction results for a Place Autocomplete prediction.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct PlacePrediction {
             /// The resource name of the suggested Place. This name can be used in
@@ -1971,7 +1915,6 @@ pub mod autocomplete_places_response {
             pub distance_meters: i32,
         }
         /// Prediction results for a Query Autocomplete prediction.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct QueryPrediction {
             /// The predicted text. This text does not represent a Place, but rather a
@@ -2001,7 +1944,6 @@ pub mod autocomplete_places_response {
             #[prost(message, optional, tag = "2")]
             pub structured_format: ::core::option::Option<StructuredFormat>,
         }
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Kind {
             /// A prediction for a Place.

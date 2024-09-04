@@ -2,7 +2,6 @@
 /// Represents service health events that may affect Google Cloud products.
 /// Event resource is a read-only view and does not allow any modifications. All
 /// fields are output only.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
     /// Output only. Identifier. Name of the event. Unique name of the event in
@@ -326,7 +325,6 @@ pub mod event {
 /// Represents service health events that may affect Google Cloud products used
 /// across the organization. It is a read-only view and does not allow any
 /// modifications.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrganizationEvent {
     /// Output only. Identifier. Name of the event. Unique name of the event in
@@ -593,7 +591,6 @@ pub mod organization_event {
     }
 }
 /// Records an update made to the event.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventUpdate {
     /// Output only. The time the update was posted.
@@ -613,7 +610,6 @@ pub struct EventUpdate {
     pub workaround: ::prost::alloc::string::String,
 }
 /// Represents the locations impacted by the event.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Location {
     /// Location impacted by the event. Example: `"us-central1"`
@@ -621,7 +617,6 @@ pub struct Location {
     pub location_name: ::prost::alloc::string::String,
 }
 /// Represents the Google Cloud product impacted by the event.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Product {
     /// Google Cloud product impacted by the event. Example: `"Google Cloud SQL"`
@@ -629,7 +624,6 @@ pub struct Product {
     pub product_name: ::prost::alloc::string::String,
 }
 /// Represents the Google Cloud products and locations impacted by the event.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventImpact {
     /// Google Cloud product impacted by the event.
@@ -641,7 +635,6 @@ pub struct EventImpact {
 }
 /// Represents impact to assets at organizational level. It is a read-only view
 /// and does not allow any modifications.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrganizationImpact {
     /// Output only. Identifier. Unique name of the organization impact in this
@@ -667,7 +660,6 @@ pub struct OrganizationImpact {
     pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Represents the asset impacted by the events.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
     /// Output only. Full name of the resource as defined in
@@ -680,7 +672,6 @@ pub struct Asset {
     #[prost(string, tag = "2")]
     pub asset_type: ::prost::alloc::string::String,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsRequest {
     /// Required. Parent value using the form
@@ -728,7 +719,6 @@ pub struct ListEventsRequest {
     #[prost(enumeration = "EventView", tag = "6")]
     pub view: i32,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsResponse {
     /// Output only. List of events.
@@ -746,7 +736,6 @@ pub struct ListEventsResponse {
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Message for getting an event
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEventRequest {
     /// Required. Unique name of the event in this scope including project
@@ -759,7 +748,6 @@ pub struct GetEventRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationEventsRequest {
     /// Required. Parent value using the form
@@ -812,7 +800,6 @@ pub struct ListOrganizationEventsRequest {
     #[prost(enumeration = "OrganizationEventView", tag = "6")]
     pub view: i32,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationEventsResponse {
     /// Output only. List of organization events affecting an organization.
@@ -829,7 +816,6 @@ pub struct ListOrganizationEventsResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOrganizationEventRequest {
     /// Required. Unique name of the event in this scope including organization and
@@ -845,7 +831,6 @@ pub struct GetOrganizationEventRequest {
     pub name: ::prost::alloc::string::String,
 }
 /// Message for requesting list of OrganizationImpacts
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationImpactsRequest {
     /// Required. Parent value using the form
@@ -895,7 +880,6 @@ pub struct ListOrganizationImpactsRequest {
     #[prost(string, tag = "4")]
     pub filter: ::prost::alloc::string::String,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationImpactsResponse {
     /// Output only. List of
@@ -914,7 +898,6 @@ pub struct ListOrganizationImpactsResponse {
     #[prost(string, repeated, tag = "3")]
     pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOrganizationImpactRequest {
     /// Required. Name of the resource using the form

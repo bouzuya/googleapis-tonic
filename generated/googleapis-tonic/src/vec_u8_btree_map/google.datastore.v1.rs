@@ -19,7 +19,6 @@
 /// not match the context project ID ) are discouraged.
 /// Reads and writes of foreign partition IDs may fail if the project is not in
 /// an active state.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PartitionId {
     /// The ID of the project to which the entities belong.
@@ -37,7 +36,6 @@ pub struct PartitionId {
 /// If a key's partition ID or any of its path kinds or names are
 /// reserved/read-only, the key is reserved/read-only.
 /// A reserved/read-only key is forbidden in certain documented contexts.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Key {
     /// Entities are partitioned into subsets, currently identified by a project
@@ -70,7 +68,6 @@ pub mod key {
     ///
     /// If either name or ID is set, the element is complete.
     /// If neither is set, the element is incomplete.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PathElement {
         /// The kind of the entity.
@@ -91,7 +88,6 @@ pub mod key {
     /// Nested message and enum types in `PathElement`.
     pub mod path_element {
         /// The type of ID.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum IdType {
             /// The auto-allocated ID of the entity.
@@ -115,7 +111,6 @@ pub mod key {
     }
 }
 /// An array value.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrayValue {
     /// Values in the array.
@@ -126,7 +121,6 @@ pub struct ArrayValue {
 }
 /// A message that can hold any of the supported value types and associated
 /// metadata.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
     /// The `meaning` field should only be populated for backwards compatibility.
@@ -143,7 +137,6 @@ pub struct Value {
 /// Nested message and enum types in `Value`.
 pub mod value {
     /// Must have a value set.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ValueType {
         /// A null value.
@@ -198,7 +191,6 @@ pub mod value {
 /// A Datastore data object.
 ///
 /// Must not exceed 1 MiB - 4 bytes.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entity {
     /// The entity's key.
@@ -222,7 +214,6 @@ pub struct Entity {
     >,
 }
 /// The result of fetching an entity from Datastore.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityResult {
     /// The resulting entity.
@@ -311,7 +302,6 @@ pub mod entity_result {
     }
 }
 /// A query for entities.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Query {
     /// The projection to return. Defaults to returning all properties.
@@ -362,7 +352,6 @@ pub struct Query {
 }
 /// Datastore query for running an aggregation over a
 /// \[Query\]\[google.datastore.v1.Query\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregationQuery {
     /// Optional. Series of aggregations to apply over the results of the
@@ -380,7 +369,6 @@ pub struct AggregationQuery {
 /// Nested message and enum types in `AggregationQuery`.
 pub mod aggregation_query {
     /// Defines an aggregation that produces a single result.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Aggregation {
         /// Optional. Optional name of the property to store the result of the
@@ -430,7 +418,6 @@ pub mod aggregation_query {
         ///
         /// The `COUNT(*)` aggregation function operates on the entire entity
         /// so it does not require a field reference.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Message)]
         pub struct Count {
             /// Optional. Optional constraint on the maximum number of entities to
@@ -477,7 +464,6 @@ pub mod aggregation_query {
         ///   the underlying values could produce slightly different results each
         ///   time. In those cases, values should be stored as integers over
         ///   floating-point numbers.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Sum {
             /// The property to aggregate on.
@@ -495,7 +481,6 @@ pub mod aggregation_query {
         /// * If the aggregated value set is empty, returns `NULL`.
         ///
         /// * Always returns the result as a double.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Avg {
             /// The property to aggregate on.
@@ -503,7 +488,6 @@ pub mod aggregation_query {
             pub property: ::core::option::Option<super::super::PropertyReference>,
         }
         /// The type of aggregation to perform, required.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Operator {
             /// Count aggregator.
@@ -518,7 +502,6 @@ pub mod aggregation_query {
         }
     }
     /// The base query to aggregate over.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum QueryType {
         /// Nested query for aggregation
@@ -527,7 +510,6 @@ pub mod aggregation_query {
     }
 }
 /// A representation of a kind.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KindExpression {
     /// The name of the kind.
@@ -535,7 +517,6 @@ pub struct KindExpression {
     pub name: ::prost::alloc::string::String,
 }
 /// A reference to a property relative to the kind expressions.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyReference {
     /// A reference to a property.
@@ -549,7 +530,6 @@ pub struct PropertyReference {
     pub name: ::prost::alloc::string::String,
 }
 /// A representation of a property in a projection.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Projection {
     /// The property to project.
@@ -557,7 +537,6 @@ pub struct Projection {
     pub property: ::core::option::Option<PropertyReference>,
 }
 /// The desired order for a specific property.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyOrder {
     /// The property to order by.
@@ -614,7 +593,6 @@ pub mod property_order {
     }
 }
 /// A holder for any type of filter.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
     /// The type of filter.
@@ -624,7 +602,6 @@ pub struct Filter {
 /// Nested message and enum types in `Filter`.
 pub mod filter {
     /// The type of filter.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum FilterType {
         /// A composite filter.
@@ -636,7 +613,6 @@ pub mod filter {
     }
 }
 /// A filter that merges multiple other filters using the given operator.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompositeFilter {
     /// The operator for combining multiple filters.
@@ -697,7 +673,6 @@ pub mod composite_filter {
     }
 }
 /// A filter on a specific property.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyFilter {
     /// The property to filter by.
@@ -824,7 +799,6 @@ pub mod property_filter {
 }
 /// A [GQL
 /// query](<https://cloud.google.com/datastore/docs/apis/gql/gql_reference>).
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GqlQuery {
     /// A string of the format described
@@ -856,7 +830,6 @@ pub struct GqlQuery {
     pub positional_bindings: ::prost::alloc::vec::Vec<GqlQueryParameter>,
 }
 /// A binding parameter for a GQL query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GqlQueryParameter {
     /// The type of parameter.
@@ -866,7 +839,6 @@ pub struct GqlQueryParameter {
 /// Nested message and enum types in `GqlQueryParameter`.
 pub mod gql_query_parameter {
     /// The type of parameter.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ParameterType {
         /// A value parameter.
@@ -879,7 +851,6 @@ pub mod gql_query_parameter {
     }
 }
 /// A batch of results produced by a query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryResultBatch {
     /// The number of results skipped, typically because of an offset.
@@ -985,7 +956,6 @@ pub mod query_result_batch {
 /// The keys of `aggregate_properties` are the same for all results in an
 /// aggregation query, unlike entity queries which can have different fields
 /// present for each result.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregationResult {
     /// The result of the aggregation functions, ex: `COUNT(*) AS total_entities`.
@@ -1001,7 +971,6 @@ pub struct AggregationResult {
     >,
 }
 /// A batch of aggregation results produced by an aggregation query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregationResultBatch {
     /// The aggregation results for this batch.
@@ -1021,7 +990,6 @@ pub struct AggregationResultBatch {
     pub read_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Explain options for the query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ExplainOptions {
     /// Optional. Whether to execute this query.
@@ -1035,7 +1003,6 @@ pub struct ExplainOptions {
     pub analyze: bool,
 }
 /// Explain metrics for the query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplainMetrics {
     /// Planning phase information for the query.
@@ -1048,7 +1015,6 @@ pub struct ExplainMetrics {
     pub execution_stats: ::core::option::Option<ExecutionStats>,
 }
 /// Planning phase information for the query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlanSummary {
     /// The indexes selected for the query. For example:
@@ -1060,7 +1026,6 @@ pub struct PlanSummary {
     pub indexes_used: ::prost::alloc::vec::Vec<::prost_types::Struct>,
 }
 /// Execution statistics for the query.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutionStats {
     /// Total number of results returned, including documents, projections,
@@ -1089,7 +1054,6 @@ pub struct ExecutionStats {
     pub debug_stats: ::core::option::Option<::prost_types::Struct>,
 }
 /// The request for \[Datastore.Lookup\]\[google.datastore.v1.Datastore.Lookup\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1117,7 +1081,6 @@ pub struct LookupRequest {
     pub property_mask: ::core::option::Option<PropertyMask>,
 }
 /// The response for \[Datastore.Lookup\]\[google.datastore.v1.Datastore.Lookup\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupResponse {
     /// Entities found as `ResultType.FULL` entities. The order of results in this
@@ -1149,7 +1112,6 @@ pub struct LookupResponse {
     pub read_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The request for \[Datastore.RunQuery\]\[google.datastore.v1.Datastore.RunQuery\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1188,7 +1150,6 @@ pub struct RunQueryRequest {
 /// Nested message and enum types in `RunQueryRequest`.
 pub mod run_query_request {
     /// The type of query.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum QueryType {
         /// The query to run.
@@ -1201,7 +1162,6 @@ pub mod run_query_request {
 }
 /// The response for
 /// \[Datastore.RunQuery\]\[google.datastore.v1.Datastore.RunQuery\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunQueryResponse {
     /// A batch of query results (always present).
@@ -1227,7 +1187,6 @@ pub struct RunQueryResponse {
 }
 /// The request for
 /// \[Datastore.RunAggregationQuery\]\[google.datastore.v1.Datastore.RunAggregationQuery\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAggregationQueryRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1259,7 +1218,6 @@ pub struct RunAggregationQueryRequest {
 /// Nested message and enum types in `RunAggregationQueryRequest`.
 pub mod run_aggregation_query_request {
     /// The type of query.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum QueryType {
         /// The query to run.
@@ -1272,7 +1230,6 @@ pub mod run_aggregation_query_request {
 }
 /// The response for
 /// \[Datastore.RunAggregationQuery\]\[google.datastore.v1.Datastore.RunAggregationQuery\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAggregationQueryResponse {
     /// A batch of aggregation results. Always present.
@@ -1298,7 +1255,6 @@ pub struct RunAggregationQueryResponse {
 }
 /// The request for
 /// \[Datastore.BeginTransaction\]\[google.datastore.v1.Datastore.BeginTransaction\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1316,7 +1272,6 @@ pub struct BeginTransactionRequest {
 }
 /// The response for
 /// \[Datastore.BeginTransaction\]\[google.datastore.v1.Datastore.BeginTransaction\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BeginTransactionResponse {
     /// The transaction identifier (always present).
@@ -1324,7 +1279,6 @@ pub struct BeginTransactionResponse {
     pub transaction: ::prost::alloc::vec::Vec<u8>,
 }
 /// The request for \[Datastore.Rollback\]\[google.datastore.v1.Datastore.Rollback\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1344,11 +1298,9 @@ pub struct RollbackRequest {
 /// The response for
 /// \[Datastore.Rollback\]\[google.datastore.v1.Datastore.Rollback\]. (an empty
 /// message).
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RollbackResponse {}
 /// The request for \[Datastore.Commit\]\[google.datastore.v1.Datastore.Commit\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1432,7 +1384,6 @@ pub mod commit_request {
         }
     }
     /// Must be set when mode is `TRANSACTIONAL`.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TransactionSelector {
         /// The identifier of the transaction associated with the commit. A
@@ -1449,7 +1400,6 @@ pub mod commit_request {
     }
 }
 /// The response for \[Datastore.Commit\]\[google.datastore.v1.Datastore.Commit\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitResponse {
     /// The result of performing the mutations.
@@ -1466,7 +1416,6 @@ pub struct CommitResponse {
 }
 /// The request for
 /// \[Datastore.AllocateIds\]\[google.datastore.v1.Datastore.AllocateIds\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1485,7 +1434,6 @@ pub struct AllocateIdsRequest {
 }
 /// The response for
 /// \[Datastore.AllocateIds\]\[google.datastore.v1.Datastore.AllocateIds\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AllocateIdsResponse {
     /// The keys specified in the request (in the same order), each with
@@ -1495,7 +1443,6 @@ pub struct AllocateIdsResponse {
 }
 /// The request for
 /// \[Datastore.ReserveIds\]\[google.datastore.v1.Datastore.ReserveIds\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReserveIdsRequest {
     /// Required. The ID of the project against which to make the request.
@@ -1514,11 +1461,9 @@ pub struct ReserveIdsRequest {
 }
 /// The response for
 /// \[Datastore.ReserveIds\]\[google.datastore.v1.Datastore.ReserveIds\].
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReserveIdsResponse {}
 /// A mutation to apply to an entity.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Mutation {
     /// The properties to write in this mutation.
@@ -1561,7 +1506,6 @@ pub mod mutation {
     ///   not even a property in an entity in a value.
     /// * No value in the entity may have meaning 18,
     ///   not even a value in an entity in another value.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Operation {
         /// The entity to insert. The entity must not already exist.
@@ -1584,7 +1528,6 @@ pub mod mutation {
     /// When set, the server will detect whether or not this mutation conflicts
     /// with the current version of the entity on the server. Conflicting mutations
     /// are not applied, and are marked as such in MutationResult.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
     pub enum ConflictDetectionStrategy {
         /// The version of the entity that this mutation is being applied
@@ -1600,7 +1543,6 @@ pub mod mutation {
     }
 }
 /// The result of applying a mutation.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutationResult {
     /// The automatically allocated key.
@@ -1630,7 +1572,6 @@ pub struct MutationResult {
 }
 /// The set of arbitrarily nested property paths used to restrict an operation to
 /// only a subset of properties in an entity.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertyMask {
     /// The paths to the properties covered by this mask.
@@ -1648,7 +1589,6 @@ pub struct PropertyMask {
     pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// The options shared by read requests.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadOptions {
     /// For Cloud Datastore, if read_consistency is not specified, then lookups and
@@ -1719,7 +1659,6 @@ pub mod read_options {
     /// Explicitly setting `read_consistency`=`EVENTUAL` will result in eventually
     /// consistent lookups & queries in both Cloud Datastore & Cloud Firestore in
     /// Datastore mode.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConsistencyType {
         /// The non-transactional read consistency to use.
@@ -1756,7 +1695,6 @@ pub mod read_options {
 /// or implicitly by setting
 /// \[ReadOptions.new_transaction\]\[google.datastore.v1.ReadOptions.new_transaction\]
 /// in read requests.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransactionOptions {
     /// The `mode` of the transaction, indicating whether write operations are
@@ -1767,7 +1705,6 @@ pub struct TransactionOptions {
 /// Nested message and enum types in `TransactionOptions`.
 pub mod transaction_options {
     /// Options specific to read / write transactions.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ReadWrite {
         /// The transaction identifier of the transaction being retried.
@@ -1775,7 +1712,6 @@ pub mod transaction_options {
         pub previous_transaction: ::prost::alloc::vec::Vec<u8>,
     }
     /// Options specific to read-only transactions.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct ReadOnly {
         /// Reads entities at the given time.
@@ -1788,7 +1724,6 @@ pub mod transaction_options {
     }
     /// The `mode` of the transaction, indicating whether write operations are
     /// supported.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Mode {
         /// The transaction should allow both reads and writes.

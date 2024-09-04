@@ -103,7 +103,6 @@
 ///   ]
 /// }
 /// ```
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Card {
     /// The header of the card. A header usually contains a leading image and a
@@ -200,7 +199,6 @@ pub mod card {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CardHeader {
         /// Required. The title of the card header.
@@ -231,7 +229,6 @@ pub mod card {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Section {
         /// Text that appears at the top of a section.
@@ -276,7 +273,6 @@ pub mod card {
     ///
     /// [Google Workspace
     /// Add-ons](<https://developers.google.com/workspace/add-ons>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CardAction {
         /// The label that displays as the action menu item.
@@ -300,7 +296,6 @@ pub mod card {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CardFixedFooter {
         /// The primary button of the fixed footer. The button must be a text button
@@ -420,7 +415,6 @@ pub mod card {
 ///
 /// A widget is a composite object that can represent one of text, images,
 /// buttons, and other object types.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Widget {
     /// Specifies whether widgets align to the left, right, or center of a column.
@@ -532,7 +526,6 @@ pub mod widget {
     }
     /// A widget can only have one of the following items. You can use multiple
     /// widget fields to display more items.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Data {
         /// Displays a text paragraph. Supports simple HTML formatted text. For more
@@ -824,7 +817,6 @@ pub mod widget {
 ///
 /// [Google Workspace Add-ons and
 /// Chat apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextParagraph {
     /// The text that's shown in the widget.
@@ -837,7 +829,6 @@ pub struct TextParagraph {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Image {
     /// The HTTPS URL that hosts the image.
@@ -869,7 +860,6 @@ pub struct Image {
 /// ```text,
 /// "divider": {}
 /// ```
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Divider {}
 /// A widget that displays text with optional decorations such as a label above
@@ -880,7 +870,6 @@ pub struct Divider {}
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DecoratedText {
     /// Deprecated in favor of `startIcon`.
@@ -930,7 +919,6 @@ pub mod decorated_text {
     /// apps](<https://developers.google.com/workspace/extend>):
     ///
     /// Only supported in the `decoratedText` widget.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SwitchControl {
         /// The name by which the switch widget is identified in a form input event.
@@ -1010,7 +998,6 @@ pub mod decorated_text {
     }
     /// A button, switch, checkbox, or image that appears to the right-hand side
     /// of text in the `decoratedText` widget.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Control {
         /// A button that a user can click to trigger an action.
@@ -1046,7 +1033,6 @@ pub mod decorated_text {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextInput {
     /// The name by which the text input is identified in a form input event.
@@ -1194,7 +1180,6 @@ pub mod text_input {
 ///
 /// [Google Workspace
 /// Add-ons and Chat apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Suggestions {
     /// A list of suggestions used for autocomplete recommendations in text input
@@ -1208,7 +1193,6 @@ pub mod suggestions {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SuggestionItem {
         #[prost(oneof = "suggestion_item::Content", tags = "1")]
@@ -1216,7 +1200,6 @@ pub mod suggestions {
     }
     /// Nested message and enum types in `SuggestionItem`.
     pub mod suggestion_item {
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Content {
             /// The value of a suggested input to a text input field. This is
@@ -1233,7 +1216,6 @@ pub mod suggestions {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ButtonList {
     /// An array of buttons.
@@ -1255,7 +1237,6 @@ pub struct ButtonList {
 ///
 /// [Google Workspace Add-ons
 /// and Chat apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SelectionInput {
     /// The name that identifies the selection input in a form input event.
@@ -1317,7 +1298,6 @@ pub mod selection_input {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SelectionItem {
         /// The text that identifies or describes the item to users.
@@ -1352,7 +1332,6 @@ pub mod selection_input {
     /// items in a multiselect menu.
     ///
     /// [Google Chat apps](<https://developers.google.com/workspace/chat>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct PlatformDataSource {
         /// The data source.
@@ -1406,7 +1385,6 @@ pub mod selection_input {
             }
         }
         /// The data source.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum DataSource {
             /// A data source shared by all Google Workspace applications, such as
@@ -1500,7 +1478,6 @@ pub mod selection_input {
     /// selection items.
     ///
     /// [Google Chat apps](<https://developers.google.com/workspace/chat>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MultiSelectDataSource {
         /// An external data source, such as a relational data base.
@@ -1521,7 +1498,6 @@ pub mod selection_input {
 ///
 /// [Google Workspace
 /// Add-ons and Chat apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateTimePicker {
     /// The name by which the `DateTimePicker` is identified in a form input event.
@@ -1623,7 +1599,6 @@ pub mod date_time_picker {
 ///
 /// [Google Workspace
 /// Add-ons and Chat apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Button {
     /// The text displayed inside the button.
@@ -1696,7 +1671,6 @@ pub struct Button {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Icon {
     /// Optional. A description of the icon used for accessibility.
@@ -1722,7 +1696,6 @@ pub struct Icon {
 /// Nested message and enum types in `Icon`.
 pub mod icon {
     /// The icon displayed in the widget on the card.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Icons {
         /// Display one of the built-in icons provided by Google Workspace.
@@ -1781,7 +1754,6 @@ pub mod icon {
 /// ```
 ///
 /// [Google Chat apps](<https://developers.google.com/workspace/chat>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaterialIcon {
     /// The icon name defined in the [Google Material
@@ -1830,7 +1802,6 @@ pub struct MaterialIcon {
 /// "aspectRatio": 16/9
 /// }
 /// ```
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageCropStyle {
     /// The crop type.
@@ -1912,7 +1883,6 @@ pub mod image_crop_style {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BorderStyle {
     /// The border type.
@@ -1978,7 +1948,6 @@ pub mod border_style {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageComponent {
     /// The image URL.
@@ -2041,7 +2010,6 @@ pub struct ImageComponent {
 ///   }
 /// }
 /// ```
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Grid {
     /// The text that displays in the grid header.
@@ -2071,7 +2039,6 @@ pub mod grid {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GridItem {
         /// A user-specified identifier for this grid item. This identifier is
@@ -2171,7 +2138,6 @@ pub mod grid {
 /// apps](<https://developers.google.com/workspace/extend>):
 /// Columns for Google Workspace Add-ons are in
 /// Developer Preview.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Columns {
     /// An array of columns. You can include up to 2 columns in a card or dialog.
@@ -2186,7 +2152,6 @@ pub mod columns {
     /// apps](<https://developers.google.com/workspace/extend>):
     /// Columns for Google Workspace Add-ons are in
     /// Developer Preview.
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Column {
         /// Specifies how a column fills the width of the card.
@@ -2213,7 +2178,6 @@ pub mod columns {
         /// apps](<https://developers.google.com/workspace/extend>):
         /// Columns for Google Workspace Add-ons are in
         /// Developer Preview.
-        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Widgets {
             #[prost(oneof = "widgets::Data", tags = "1, 2, 3, 4, 5, 6, 7")]
@@ -2221,7 +2185,6 @@ pub mod columns {
         }
         /// Nested message and enum types in `Widgets`.
         pub mod widgets {
-            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum Data {
                 /// \[TextParagraph\]\[google.apps.card.v1.TextParagraph\] widget.
@@ -2362,7 +2325,6 @@ pub mod columns {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OnClick {
     #[prost(oneof = "on_click::Data", tags = "1, 2, 3, 4")]
@@ -2370,7 +2332,6 @@ pub struct OnClick {
 }
 /// Nested message and enum types in `OnClick`.
 pub mod on_click {
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Data {
         /// If specified, an action is triggered by this `onClick`.
@@ -2400,7 +2361,6 @@ pub mod on_click {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OpenLink {
     /// The URL to open.
@@ -2529,7 +2489,6 @@ pub mod open_link {
 ///
 /// [Google Workspace Add-ons and Chat
 /// apps](<https://developers.google.com/workspace/extend>):
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Action {
     /// A custom function to invoke when the containing element is
@@ -2598,7 +2557,6 @@ pub mod action {
     ///
     /// [Google Workspace Add-ons and Chat
     /// apps](<https://developers.google.com/workspace/extend>):
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ActionParameter {
         /// The name of the parameter for the action script.
