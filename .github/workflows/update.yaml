@@ -18,9 +18,8 @@ jobs:
       - run: |
           git config user.email m@bouzuya.net
           git config user.name bouzuya
-      - run: cargo xtask show-googleapis-version
-      - run: |
-          git submodule update --recursive --remote
+      - run: git submodule status
+      - run: git submodule update --recursive --remote
       - run: cargo xtask build
       - run: cargo xtask update-readme
       - run: |
