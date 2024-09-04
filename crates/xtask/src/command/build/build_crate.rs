@@ -135,9 +135,9 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/bouzuya/googleapis-tonic"
 
 [dependencies]
-prost = "0.13.1"
-prost-types = "0.13.1"
-tonic = { version = "0.12.1", default-features = false, features = [
+prost = "0.13.2"
+prost-types = "0.13.2"
+tonic = { version = "0.12.2", default-features = false, features = [
   "codegen",
   "prost",
 ] }
