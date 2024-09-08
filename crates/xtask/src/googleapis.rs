@@ -30,55 +30,7 @@ impl Googleapis {
         let version = GoogleapisVersion::load_from_googleapis_dir(&dir_path)?;
         let proto_file_paths = Self::proto_file_paths_from_dir(&dir_path, &dir_path)?;
 
-        let (package_deps, package_hashes) = {
-            let all_proto_files = {
-                let mut map = BTreeMap::<ProtoFilePath, ProtoFile>::new();
-                for proto_file_path in &proto_file_paths {
-                    let content = fs::read_to_string(dir_path.join(proto_file_path.to_path_buf()))?;
-                    let proto_file = ProtoFile::from_str(&content)?;
-                    map.insert(proto_file_path.to_owned(), proto_file);
-                }
-                map
-            };
-
-            let package_files = {
-                let mut map = BTreeMap::<ProtobufPackageName, BTreeSet<ProtoFilePath>>::new();
-                for (proto_file_path, proto_file) in all_proto_files.iter() {
-                    map.entry(proto_file.package_name().to_owned())
-                        .or_default()
-                        .insert(proto_file_path.to_owned());
-                }
-                map
-            };
-
-            let mut package_deps =
-                BTreeMap::<ProtobufPackageName, BTreeSet<ProtobufPackageName>>::new();
-            for proto_file in all_proto_files.values() {
-                package_deps
-                    .entry(proto_file.package_name().to_owned())
-                    .or_default()
-                    .extend(Self::proto_file_dependencies(&all_proto_files, proto_file)?);
-            }
-            for (package_name, deps) in package_deps.iter_mut() {
-                deps.remove(package_name);
-            }
-
-            let package_hashes = {
-                let mut package_hashes = BTreeMap::<ProtobufPackageName, Sha1Hash>::new();
-                for (package_name, package_file_paths) in package_files.iter() {
-                    let mut s = String::new();
-                    for package_file_path in package_file_paths {
-                        let proto_file = all_proto_files.get(package_file_path).context("")?;
-                        let proto_file_content_hash = proto_file.content_hash();
-                        s.push_str(&proto_file_content_hash.to_string());
-                    }
-                    let package_hash = Sha1Hash::digest(&s);
-                    package_hashes.insert(package_name.to_owned(), package_hash);
-                }
-                package_hashes
-            };
-            (package_deps, package_hashes)
-        };
+        let (package_deps, package_hashes) = Self::load_packages(&dir_path, &proto_file_paths)?;
 
         let emit_package_names = {
             let emit_package_name_candidates = {
@@ -171,6 +123,63 @@ impl Googleapis {
 
     pub fn version(&self) -> &GoogleapisVersion {
         &self.version
+    }
+
+    #[allow(clippy::type_complexity)]
+    fn load_packages(
+        dir_path: &Path,
+        proto_file_paths: &BTreeSet<ProtoFilePath>,
+    ) -> anyhow::Result<(
+        BTreeMap<ProtobufPackageName, BTreeSet<ProtobufPackageName>>,
+        BTreeMap<ProtobufPackageName, Sha1Hash>,
+    )> {
+        let all_proto_files = {
+            let mut map = BTreeMap::<ProtoFilePath, ProtoFile>::new();
+            for proto_file_path in proto_file_paths {
+                let content = fs::read_to_string(dir_path.join(proto_file_path.to_path_buf()))?;
+                let proto_file = ProtoFile::from_str(&content)?;
+                map.insert(proto_file_path.to_owned(), proto_file);
+            }
+            map
+        };
+
+        let package_files = {
+            let mut map = BTreeMap::<ProtobufPackageName, BTreeSet<ProtoFilePath>>::new();
+            for (proto_file_path, proto_file) in all_proto_files.iter() {
+                map.entry(proto_file.package_name().to_owned())
+                    .or_default()
+                    .insert(proto_file_path.to_owned());
+            }
+            map
+        };
+
+        let mut package_deps =
+            BTreeMap::<ProtobufPackageName, BTreeSet<ProtobufPackageName>>::new();
+        for proto_file in all_proto_files.values() {
+            package_deps
+                .entry(proto_file.package_name().to_owned())
+                .or_default()
+                .extend(Self::proto_file_dependencies(&all_proto_files, proto_file)?);
+        }
+        for (package_name, deps) in package_deps.iter_mut() {
+            deps.remove(package_name);
+        }
+
+        let package_hashes = {
+            let mut package_hashes = BTreeMap::<ProtobufPackageName, Sha1Hash>::new();
+            for (package_name, package_file_paths) in package_files.iter() {
+                let mut s = String::new();
+                for package_file_path in package_file_paths {
+                    let proto_file = all_proto_files.get(package_file_path).context("")?;
+                    let proto_file_content_hash = proto_file.content_hash();
+                    s.push_str(&proto_file_content_hash.to_string());
+                }
+                let package_hash = Sha1Hash::digest(&s);
+                package_hashes.insert(package_name.to_owned(), package_hash);
+            }
+            package_hashes
+        };
+        Ok((package_deps, package_hashes))
     }
 
     fn proto_file_dependencies(
