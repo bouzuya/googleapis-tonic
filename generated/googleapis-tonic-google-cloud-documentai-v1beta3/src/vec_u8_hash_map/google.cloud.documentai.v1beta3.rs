@@ -1869,6 +1869,10 @@ pub mod document_schema {
         ///   honored for backward compatibility.
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
+        /// The description of the entity type. Could be used to provide more
+        /// information about the entity type for model calls.
+        #[prost(string, tag = "15")]
+        pub description: ::prost::alloc::string::String,
         /// The entity type that this type is derived from.  For now, one and only
         /// one should be set.
         #[prost(string, repeated, tag = "2")]
@@ -1898,6 +1902,10 @@ pub mod document_schema {
             /// EntityType name.
             #[prost(string, tag = "1")]
             pub name: ::prost::alloc::string::String,
+            /// The description of the property. Could be used to provide more
+            /// information about the property for model calls.
+            #[prost(string, tag = "7")]
+            pub description: ::prost::alloc::string::String,
             /// User defined name for the property.
             #[prost(string, tag = "6")]
             pub display_name: ::prost::alloc::string::String,

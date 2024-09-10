@@ -426,7 +426,7 @@ pub struct RichLinkMetadata {
     #[prost(enumeration = "rich_link_metadata::RichLinkType", tag = "2")]
     pub rich_link_type: i32,
     /// Data for the linked resource.
-    #[prost(oneof = "rich_link_metadata::Data", tags = "3")]
+    #[prost(oneof = "rich_link_metadata::Data", tags = "3, 4")]
     pub data: ::core::option::Option<rich_link_metadata::Data>,
 }
 /// Nested message and enum types in `RichLinkMetadata`.
@@ -449,6 +449,8 @@ pub mod rich_link_metadata {
         Unspecified = 0,
         /// A Google Drive rich link type.
         DriveFile = 1,
+        /// A Chat space rich link type. For example, a space smart chip.
+        ChatSpace = 2,
     }
     impl RichLinkType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -459,6 +461,7 @@ pub mod rich_link_metadata {
             match self {
                 RichLinkType::Unspecified => "RICH_LINK_TYPE_UNSPECIFIED",
                 RichLinkType::DriveFile => "DRIVE_FILE",
+                RichLinkType::ChatSpace => "CHAT_SPACE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -466,6 +469,7 @@ pub mod rich_link_metadata {
             match value {
                 "RICH_LINK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
                 "DRIVE_FILE" => Some(Self::DriveFile),
+                "CHAT_SPACE" => Some(Self::ChatSpace),
                 _ => None,
             }
         }
@@ -476,6 +480,9 @@ pub mod rich_link_metadata {
         /// Data for a drive link.
         #[prost(message, tag = "3")]
         DriveLinkData(super::DriveLinkData),
+        /// Data for a chat space link.
+        #[prost(message, tag = "4")]
+        ChatSpaceLinkData(super::ChatSpaceLinkData),
     }
 }
 /// Data for Google Drive links.
@@ -489,6 +496,25 @@ pub struct DriveLinkData {
     /// The mime type of the linked Google Drive resource.
     #[prost(string, tag = "2")]
     pub mime_type: ::prost::alloc::string::String,
+}
+/// Data for Chat space links.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ChatSpaceLinkData {
+    /// The space of the linked Chat space resource.
+    ///
+    /// Format: `spaces/{space}`
+    #[prost(string, tag = "1")]
+    pub space: ::prost::alloc::string::String,
+    /// The thread of the linked Chat space resource.
+    ///
+    /// Format: `spaces/{space}/threads/{thread}`
+    #[prost(string, tag = "2")]
+    pub thread: ::prost::alloc::string::String,
+    /// The message of the linked Chat space resource.
+    ///
+    /// Format: `spaces/{space}/messages/{message}`
+    #[prost(string, tag = "3")]
+    pub message: ::prost::alloc::string::String,
 }
 /// Type of the annotation.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]

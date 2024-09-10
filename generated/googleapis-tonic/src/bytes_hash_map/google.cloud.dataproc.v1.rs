@@ -4790,6 +4790,63 @@ pub mod trino_job {
         QueryList(super::QueryList),
     }
 }
+/// A Dataproc job for running Apache Flink applications on YARN.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlinkJob {
+    /// Optional. The arguments to pass to the driver. Do not include arguments,
+    /// such as `--conf`, that can be set as job properties, since a collision
+    /// might occur that causes an incorrect job submission.
+    #[prost(string, repeated, tag = "3")]
+    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
+    /// Flink driver and tasks.
+    #[prost(string, repeated, tag = "4")]
+    pub jar_file_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. HCFS URI of the savepoint, which contains the last saved progress
+    /// for starting the current job.
+    #[prost(string, tag = "9")]
+    pub savepoint_uri: ::prost::alloc::string::String,
+    /// Optional. A mapping of property names to values, used to configure Flink.
+    /// Properties that conflict with values set by the Dataproc API might be
+    /// overwritten. Can include properties set in
+    /// /etc/flink/conf/flink-defaults.conf and classes in user code.
+    #[prost(map = "string, string", tag = "7")]
+    pub properties: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional. The runtime log config for job execution.
+    #[prost(message, optional, tag = "8")]
+    pub logging_config: ::core::option::Option<LoggingConfig>,
+    /// Required. The specification of the main method to call to drive the job.
+    /// Specify either the jar file that contains the main class or the main class
+    /// name. To pass both a main jar and a main class in the jar, add the jar to
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
+    /// specify the main class name in
+    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
+    #[prost(oneof = "flink_job::Driver", tags = "1, 2")]
+    pub driver: ::core::option::Option<flink_job::Driver>,
+}
+/// Nested message and enum types in `FlinkJob`.
+pub mod flink_job {
+    /// Required. The specification of the main method to call to drive the job.
+    /// Specify either the jar file that contains the main class or the main class
+    /// name. To pass both a main jar and a main class in the jar, add the jar to
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\], and then
+    /// specify the main class name in
+    /// \[mainClass\]\[google.cloud.dataproc.v1.FlinkJob.main_class\].
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Driver {
+        /// The HCFS URI of the jar file that contains the main class.
+        #[prost(string, tag = "1")]
+        MainJarFileUri(::prost::alloc::string::String),
+        /// The name of the driver's main class. The jar file that contains the class
+        /// must be in the default CLASSPATH or specified in
+        /// \[jarFileUris\]\[google.cloud.dataproc.v1.FlinkJob.jar_file_uris\].
+        #[prost(string, tag = "2")]
+        MainClass(::prost::alloc::string::String),
+    }
+}
 /// Dataproc job config.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobPlacement {
@@ -5138,7 +5195,7 @@ pub struct Job {
     #[prost(message, optional, tag = "27")]
     pub driver_scheduling_config: ::core::option::Option<DriverSchedulingConfig>,
     /// Required. The application/framework-specific portion of the job.
-    #[prost(oneof = "job::TypeJob", tags = "3, 4, 5, 6, 7, 21, 12, 23, 28")]
+    #[prost(oneof = "job::TypeJob", tags = "3, 4, 5, 6, 7, 21, 12, 23, 28, 29")]
     pub type_job: ::core::option::Option<job::TypeJob>,
 }
 /// Nested message and enum types in `Job`.
@@ -5173,6 +5230,9 @@ pub mod job {
         /// Optional. Job is a Trino job.
         #[prost(message, tag = "28")]
         TrinoJob(super::TrinoJob),
+        /// Optional. Job is a Flink job.
+        #[prost(message, tag = "29")]
+        FlinkJob(super::FlinkJob),
     }
 }
 /// Driver scheduling configuration.
@@ -5400,6 +5460,12 @@ pub struct ListJobsResponse {
     /// `page_token` in a subsequent <code>ListJobsRequest</code>.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Output only. List of jobs with
+    /// \[kms_key\]\[google.cloud.dataproc.v1.EncryptionConfig.kms_key\]-encrypted
+    /// parameters that could not be decrypted. A response to a `jobs.get` request
+    /// may indicate the reason for the decryption failure for a specific job.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to cancel a job.
 #[derive(Clone, PartialEq, ::prost::Message)]

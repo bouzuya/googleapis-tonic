@@ -4213,6 +4213,8 @@ pub mod safety_setting {
         BlockOnlyHigh = 3,
         /// Block none.
         BlockNone = 4,
+        /// Turn off the safety filter.
+        Off = 5,
     }
     impl HarmBlockThreshold {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -4226,6 +4228,7 @@ pub mod safety_setting {
                 HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
                 HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
                 HarmBlockThreshold::BlockNone => "BLOCK_NONE",
+                HarmBlockThreshold::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4236,6 +4239,7 @@ pub mod safety_setting {
                 "BLOCK_MEDIUM_AND_ABOVE" => Some(Self::BlockMediumAndAbove),
                 "BLOCK_ONLY_HIGH" => Some(Self::BlockOnlyHigh),
                 "BLOCK_NONE" => Some(Self::BlockNone),
+                "OFF" => Some(Self::Off),
                 _ => None,
             }
         }
@@ -5104,14 +5108,16 @@ pub mod scheduling {
     pub enum Strategy {
         /// Strategy will default to STANDARD.
         Unspecified = 0,
-        /// Regular on-demand provisioning strategy.
+        /// Deprecated. Regular on-demand provisioning strategy.
         OnDemand = 1,
-        /// Low cost by making potential use of spot resources.
+        /// Deprecated. Low cost by making potential use of spot resources.
         LowCost = 2,
         /// Standard provisioning strategy uses regular on-demand resources.
         Standard = 3,
         /// Spot provisioning strategy uses spot resources.
         Spot = 4,
+        /// Flex Start strategy uses DWS to queue for resources.
+        FlexStart = 6,
     }
     impl Strategy {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5125,6 +5131,7 @@ pub mod scheduling {
                 Strategy::LowCost => "LOW_COST",
                 Strategy::Standard => "STANDARD",
                 Strategy::Spot => "SPOT",
+                Strategy::FlexStart => "FLEX_START",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5135,6 +5142,7 @@ pub mod scheduling {
                 "LOW_COST" => Some(Self::LowCost),
                 "STANDARD" => Some(Self::Standard),
                 "SPOT" => Some(Self::Spot),
+                "FLEX_START" => Some(Self::FlexStart),
                 _ => None,
             }
         }
@@ -10890,6 +10898,9 @@ pub mod feature_group {
         /// If not provided defaults to `entity_id`.
         #[prost(string, repeated, tag = "2")]
         pub entity_id_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Optional. Set if the data source is not a time-series.
+        #[prost(bool, tag = "3")]
+        pub static_data_source: bool,
         /// Optional. If the source is a time-series source, this can be set to
         /// control how downstream sources (ex:
         /// \[FeatureView\]\[google.cloud.aiplatform.v1.FeatureView\] ) will treat
@@ -10897,6 +10908,19 @@ pub mod feature_group {
         /// source with `feature_timestamp` as timestamp column and no scan boundary.
         #[prost(message, optional, tag = "4")]
         pub time_series: ::core::option::Option<big_query::TimeSeries>,
+        /// Optional. If set, all feature values will be fetched
+        /// from a single row per unique entityId including nulls.
+        /// If not set, will collapse all rows for each unique entityId into a singe
+        /// row with any non-null values if present, if no non-null values are
+        /// present will sync null.
+        /// ex: If source has schema
+        /// `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+        /// `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+        /// `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+        /// If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+        /// not set, `(e1, 20, 15)` is synced to online stores.
+        #[prost(bool, tag = "5")]
+        pub dense: bool,
     }
     /// Nested message and enum types in `BigQuery`.
     pub mod big_query {
@@ -11149,7 +11173,7 @@ pub struct FeatureView {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "20")]
     pub satisfies_pzi: bool,
-    #[prost(oneof = "feature_view::Source", tags = "6, 9")]
+    #[prost(oneof = "feature_view::Source", tags = "6, 9, 18")]
     pub source: ::core::option::Option<feature_view::Source>,
 }
 /// Nested message and enum types in `FeatureView`.
@@ -11323,6 +11347,27 @@ pub mod feature_view {
             pub feature_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         }
     }
+    /// A Vertex Rag source for features that need to be synced to Online
+    /// Store.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexRagSource {
+        /// Required. The BigQuery view/table URI that will be materialized on each
+        /// manual sync trigger. The table/view is expected to have the following
+        /// columns and types at least:
+        ///
+        /// * `corpus_id` (STRING, NULLABLE/REQUIRED)
+        /// * `file_id` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_id` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_data_type` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_data` (STRING, NULLABLE/REQUIRED)
+        /// * `embeddings` (FLOAT, REPEATED)
+        /// * `file_original_uri` (STRING, NULLABLE/REQUIRED)
+        #[prost(string, tag = "1")]
+        pub uri: ::prost::alloc::string::String,
+        /// Optional. The RAG corpus id corresponding to this FeatureView.
+        #[prost(int64, tag = "2")]
+        pub rag_corpus_id: i64,
+    }
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Source {
         /// Optional. Configures how data is supposed to be extracted from a BigQuery
@@ -11333,6 +11378,9 @@ pub mod feature_view {
         /// need to be loaded onto the FeatureOnlineStore.
         #[prost(message, tag = "9")]
         FeatureRegistrySource(FeatureRegistrySource),
+        /// Optional. The Vertex RAG Source that the FeatureView is linked to.
+        #[prost(message, tag = "18")]
+        VertexRagSource(VertexRagSource),
     }
 }
 /// FeatureViewSync is a representation of sync operation which copies data from
@@ -11376,6 +11424,10 @@ pub mod feature_view_sync {
         /// Output only. BigQuery slot milliseconds consumed for the sync job.
         #[prost(int64, tag = "2")]
         pub total_slot: i64,
+        /// Lower bound of the system time watermark for the sync job. This is only
+        /// set for continuously syncing feature views.
+        #[prost(message, optional, tag = "5")]
+        pub system_watermark_time: ::core::option::Option<::prost_types::Timestamp>,
     }
 }
 /// Request message for
@@ -11699,7 +11751,7 @@ pub struct SyncFeatureViewRequest {
     #[prost(string, tag = "1")]
     pub feature_view: ::prost::alloc::string::String,
 }
-/// Respose message for
+/// Response message for
 /// \[FeatureOnlineStoreAdminService.SyncFeatureView\]\[google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.SyncFeatureView\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncFeatureViewResponse {

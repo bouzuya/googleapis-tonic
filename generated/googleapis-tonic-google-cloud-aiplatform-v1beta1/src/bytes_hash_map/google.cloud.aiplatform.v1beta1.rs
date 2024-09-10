@@ -1200,6 +1200,66 @@ pub mod jira_source {
         pub api_key_config: ::core::option::Option<super::api_auth::ApiKeyConfig>,
     }
 }
+/// The SharePointSources to pass to ImportRagFiles.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SharePointSources {
+    /// The SharePoint sources.
+    #[prost(message, repeated, tag = "1")]
+    pub share_point_sources: ::prost::alloc::vec::Vec<
+        share_point_sources::SharePointSource,
+    >,
+}
+/// Nested message and enum types in `SharePointSources`.
+pub mod share_point_sources {
+    /// An individual SharePointSource.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SharePointSource {
+        /// The Application ID for the app registered in Microsoft Azure Portal.
+        /// The application must also be configured with MS Graph permissions
+        /// "Files.ReadAll", "Sites.ReadAll" and BrowserSiteLists.Read.All.
+        #[prost(string, tag = "1")]
+        pub client_id: ::prost::alloc::string::String,
+        /// The application secret for the app registered in Azure.
+        #[prost(message, optional, tag = "2")]
+        pub client_secret: ::core::option::Option<super::api_auth::ApiKeyConfig>,
+        /// Unique identifier of the Azure Active Directory Instance.
+        #[prost(string, tag = "3")]
+        pub tenant_id: ::prost::alloc::string::String,
+        /// The name of the SharePoint site to download from. This can be the site
+        /// name or the site id.
+        #[prost(string, tag = "4")]
+        pub sharepoint_site_name: ::prost::alloc::string::String,
+        /// The SharePoint folder source. If not provided, uses "root".
+        #[prost(oneof = "share_point_source::FolderSource", tags = "5, 6")]
+        pub folder_source: ::core::option::Option<share_point_source::FolderSource>,
+        /// The SharePoint drive source.
+        #[prost(oneof = "share_point_source::DriveSource", tags = "7, 8")]
+        pub drive_source: ::core::option::Option<share_point_source::DriveSource>,
+    }
+    /// Nested message and enum types in `SharePointSource`.
+    pub mod share_point_source {
+        /// The SharePoint folder source. If not provided, uses "root".
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum FolderSource {
+            /// The path of the SharePoint folder to download from.
+            #[prost(string, tag = "5")]
+            SharepointFolderPath(::prost::alloc::string::String),
+            /// The ID of the SharePoint folder to download from.
+            #[prost(string, tag = "6")]
+            SharepointFolderId(::prost::alloc::string::String),
+        }
+        /// The SharePoint drive source.
+        #[derive(Clone, PartialEq, ::prost::Oneof)]
+        pub enum DriveSource {
+            /// The name of the drive to download from.
+            #[prost(string, tag = "7")]
+            DriveName(::prost::alloc::string::String),
+            /// The ID of the drive to download from.
+            #[prost(string, tag = "8")]
+            DriveId(::prost::alloc::string::String),
+        }
+    }
+}
 /// Explanation of a prediction (provided in
 /// \[PredictResponse.predictions\]\[google.cloud.aiplatform.v1beta1.PredictResponse.predictions\])
 /// produced by the Model on a given
@@ -5293,6 +5353,8 @@ pub mod safety_setting {
         BlockOnlyHigh = 3,
         /// Block none.
         BlockNone = 4,
+        /// Turn off the safety filter.
+        Off = 5,
     }
     impl HarmBlockThreshold {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -5306,6 +5368,7 @@ pub mod safety_setting {
                 HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
                 HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
                 HarmBlockThreshold::BlockNone => "BLOCK_NONE",
+                HarmBlockThreshold::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5316,6 +5379,7 @@ pub mod safety_setting {
                 "BLOCK_MEDIUM_AND_ABOVE" => Some(Self::BlockMediumAndAbove),
                 "BLOCK_ONLY_HIGH" => Some(Self::BlockOnlyHigh),
                 "BLOCK_NONE" => Some(Self::BlockNone),
+                "OFF" => Some(Self::Off),
                 _ => None,
             }
         }
@@ -6265,14 +6329,16 @@ pub mod scheduling {
     pub enum Strategy {
         /// Strategy will default to STANDARD.
         Unspecified = 0,
-        /// Regular on-demand provisioning strategy.
+        /// Deprecated. Regular on-demand provisioning strategy.
         OnDemand = 1,
-        /// Low cost by making potential use of spot resources.
+        /// Deprecated. Low cost by making potential use of spot resources.
         LowCost = 2,
         /// Standard provisioning strategy uses regular on-demand resources.
         Standard = 3,
         /// Spot provisioning strategy uses spot resources.
         Spot = 4,
+        /// Flex Start strategy uses DWS to queue for resources.
+        FlexStart = 6,
     }
     impl Strategy {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -6286,6 +6352,7 @@ pub mod scheduling {
                 Strategy::LowCost => "LOW_COST",
                 Strategy::Standard => "STANDARD",
                 Strategy::Spot => "SPOT",
+                Strategy::FlexStart => "FLEX_START",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -6296,6 +6363,7 @@ pub mod scheduling {
                 "LOW_COST" => Some(Self::LowCost),
                 "STANDARD" => Some(Self::Standard),
                 "SPOT" => Some(Self::Spot),
+                "FLEX_START" => Some(Self::FlexStart),
                 _ => None,
             }
         }
@@ -12861,6 +12929,9 @@ pub mod feature_group {
         /// If not provided defaults to `entity_id`.
         #[prost(string, repeated, tag = "2")]
         pub entity_id_columns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Optional. Set if the data source is not a time-series.
+        #[prost(bool, tag = "3")]
+        pub static_data_source: bool,
         /// Optional. If the source is a time-series source, this can be set to
         /// control how downstream sources (ex:
         /// \[FeatureView\]\[google.cloud.aiplatform.v1beta1.FeatureView\] ) will treat
@@ -12868,6 +12939,19 @@ pub mod feature_group {
         /// source with `feature_timestamp` as timestamp column and no scan boundary.
         #[prost(message, optional, tag = "4")]
         pub time_series: ::core::option::Option<big_query::TimeSeries>,
+        /// Optional. If set, all feature values will be fetched
+        /// from a single row per unique entityId including nulls.
+        /// If not set, will collapse all rows for each unique entityId into a singe
+        /// row with any non-null values if present, if no non-null values are
+        /// present will sync null.
+        /// ex: If source has schema
+        /// `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+        /// `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+        /// `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+        /// If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+        /// not set, `(e1, 20, 15)` is synced to online stores.
+        #[prost(bool, tag = "5")]
+        pub dense: bool,
     }
     /// Nested message and enum types in `BigQuery`.
     pub mod big_query {
@@ -13157,7 +13241,7 @@ pub struct FeatureView {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "20")]
     pub satisfies_pzi: bool,
-    #[prost(oneof = "feature_view::Source", tags = "6, 9")]
+    #[prost(oneof = "feature_view::Source", tags = "6, 9, 18")]
     pub source: ::core::option::Option<feature_view::Source>,
 }
 /// Nested message and enum types in `FeatureView`.
@@ -13452,6 +13536,27 @@ pub mod feature_view {
             pub feature_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
         }
     }
+    /// A Vertex Rag source for features that need to be synced to Online
+    /// Store.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexRagSource {
+        /// Required. The BigQuery view/table URI that will be materialized on each
+        /// manual sync trigger. The table/view is expected to have the following
+        /// columns and types at least:
+        ///
+        /// * `corpus_id` (STRING, NULLABLE/REQUIRED)
+        /// * `file_id` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_id` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_data_type` (STRING, NULLABLE/REQUIRED)
+        /// * `chunk_data` (STRING, NULLABLE/REQUIRED)
+        /// * `embeddings` (FLOAT, REPEATED)
+        /// * `file_original_uri` (STRING, NULLABLE/REQUIRED)
+        #[prost(string, tag = "1")]
+        pub uri: ::prost::alloc::string::String,
+        /// Optional. The RAG corpus id corresponding to this FeatureView.
+        #[prost(int64, tag = "2")]
+        pub rag_corpus_id: i64,
+    }
     /// Service agent type used during data sync.
     #[derive(
         Clone,
@@ -13509,6 +13614,9 @@ pub mod feature_view {
         /// need to be loaded onto the FeatureOnlineStore.
         #[prost(message, tag = "9")]
         FeatureRegistrySource(FeatureRegistrySource),
+        /// Optional. The Vertex RAG Source that the FeatureView is linked to.
+        #[prost(message, tag = "18")]
+        VertexRagSource(VertexRagSource),
     }
 }
 /// FeatureViewSync is a representation of sync operation which copies data from
@@ -13552,6 +13660,10 @@ pub mod feature_view_sync {
         /// Output only. BigQuery slot milliseconds consumed for the sync job.
         #[prost(int64, tag = "2")]
         pub total_slot: i64,
+        /// Lower bound of the system time watermark for the sync job. This is only
+        /// set for continuously syncing feature views.
+        #[prost(message, optional, tag = "5")]
+        pub system_watermark_time: ::core::option::Option<::prost_types::Timestamp>,
     }
 }
 /// Request message for
@@ -13875,7 +13987,7 @@ pub struct SyncFeatureViewRequest {
     #[prost(string, tag = "1")]
     pub feature_view: ::prost::alloc::string::String,
 }
-/// Respose message for
+/// Response message for
 /// \[FeatureOnlineStoreAdminService.SyncFeatureView\]\[google.cloud.aiplatform.v1beta1.FeatureOnlineStoreAdminService.SyncFeatureView\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncFeatureViewResponse {
@@ -40665,8 +40777,13 @@ pub struct ImportRagFilesConfig {
     #[prost(int32, tag = "5")]
     pub max_embedding_requests_per_min: i32,
     /// The source of the import.
-    #[prost(oneof = "import_rag_files_config::ImportSource", tags = "2, 3, 6, 7")]
+    #[prost(oneof = "import_rag_files_config::ImportSource", tags = "2, 3, 6, 7, 13")]
     pub import_source: ::core::option::Option<import_rag_files_config::ImportSource>,
+    /// Optional. If provided, all partial failures are written to the sink.
+    #[prost(oneof = "import_rag_files_config::PartialFailureSink", tags = "11, 12")]
+    pub partial_failure_sink: ::core::option::Option<
+        import_rag_files_config::PartialFailureSink,
+    >,
 }
 /// Nested message and enum types in `ImportRagFilesConfig`.
 pub mod import_rag_files_config {
@@ -40690,6 +40807,24 @@ pub mod import_rag_files_config {
         /// Jira queries with their corresponding authentication.
         #[prost(message, tag = "7")]
         JiraSource(super::JiraSource),
+        /// SharePoint sources.
+        #[prost(message, tag = "13")]
+        SharePointSources(super::SharePointSources),
+    }
+    /// Optional. If provided, all partial failures are written to the sink.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PartialFailureSink {
+        /// The Cloud Storage path to write partial failures to.
+        #[prost(message, tag = "11")]
+        PartialFailureGcsSink(super::GcsDestination),
+        /// The BigQuery destination to write partial failures to. It should be a
+        /// bigquery table resource name (e.g.
+        /// "bq://projectId.bqDatasetId.bqTableId"). If the dataset id does not
+        /// exist, it will be created. If the table does not exist, it will be
+        /// created with the expected schema. If the table exists, the schema will be
+        /// validated and data will be added to this existing table.
+        #[prost(message, tag = "12")]
+        PartialFailureBigquerySink(super::BigQueryDestination),
     }
 }
 /// Request message for
@@ -40818,7 +40953,7 @@ pub struct ImportRagFilesRequest {
 }
 /// Response message for
 /// \[VertexRagDataService.ImportRagFiles\]\[google.cloud.aiplatform.v1beta1.VertexRagDataService.ImportRagFiles\].
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportRagFilesResponse {
     /// The number of RagFiles that had been imported into the RagCorpus.
     #[prost(int64, tag = "1")]
@@ -40829,6 +40964,25 @@ pub struct ImportRagFilesResponse {
     /// The number of RagFiles that was skipped while importing into the RagCorpus.
     #[prost(int64, tag = "3")]
     pub skipped_rag_files_count: i64,
+    /// The location into which the partial failures were written.
+    #[prost(oneof = "import_rag_files_response::PartialFailureSink", tags = "4, 5")]
+    pub partial_failure_sink: ::core::option::Option<
+        import_rag_files_response::PartialFailureSink,
+    >,
+}
+/// Nested message and enum types in `ImportRagFilesResponse`.
+pub mod import_rag_files_response {
+    /// The location into which the partial failures were written.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PartialFailureSink {
+        /// The Google Cloud Storage path into which the partial failures were
+        /// written.
+        #[prost(string, tag = "4")]
+        PartialFailuresGcsPath(::prost::alloc::string::String),
+        /// The BigQuery table into which the partial failures were written.
+        #[prost(string, tag = "5")]
+        PartialFailuresBigqueryTable(::prost::alloc::string::String),
+    }
 }
 /// Request message for
 /// \[VertexRagDataService.GetRagFile\]\[google.cloud.aiplatform.v1beta1.VertexRagDataService.GetRagFile\]

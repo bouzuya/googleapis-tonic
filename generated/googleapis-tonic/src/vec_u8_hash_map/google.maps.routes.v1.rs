@@ -856,20 +856,20 @@ pub struct ComputeCustomRoutesRequest {
     /// Required. Destination waypoint.
     #[prost(message, optional, tag = "2")]
     pub destination: ::core::option::Option<Waypoint>,
-    /// Optional. A set of waypoints along the route (excluding terminal points), for either
-    /// stopping at or passing by. Up to 25 intermediate waypoints are supported.
+    /// Optional. A set of waypoints along the route (excluding terminal points),
+    /// for either stopping at or passing by. Up to 25 intermediate waypoints are
+    /// supported.
     #[prost(message, repeated, tag = "3")]
     pub intermediates: ::prost::alloc::vec::Vec<Waypoint>,
-    /// Optional. Specifies the mode of transportation. Only DRIVE is supported now.
+    /// Optional. Specifies the mode of transportation. Only `DRIVE` and
+    /// 'TWO_WHEELER' are supported.
     #[prost(enumeration = "RouteTravelMode", tag = "4")]
     pub travel_mode: i32,
-    /// Optional. Specifies how to compute the route. The server attempts to use the selected
-    /// routing preference to compute the route. If the routing preference results
-    /// in an error or an extra long latency, then an error is returned. In the
-    /// future, we might implement a fallback mechanism to use a different option
-    /// when the preferred option does not give a valid result. You can specify
-    /// this option only when the `travel_mode` is `DRIVE` or `TWO_WHEELER`,
-    /// otherwise the request fails.
+    /// Optional. Specifies how to compute the route. The server attempts to use
+    /// the selected routing preference to compute the route. If the routing
+    /// preference results in an error or an extra long latency, then an error is
+    /// returned. You can specify this option only when the `travel_mode` is
+    /// `DRIVE` or `TWO_WHEELER`, otherwise the request fails.
     #[prost(enumeration = "RoutingPreference", tag = "5")]
     pub routing_preference: i32,
     /// Optional. Specifies your preference for the quality of the polyline.
@@ -883,37 +883,35 @@ pub struct ComputeCustomRoutesRequest {
     /// time that has already occurred, then the request fails.
     #[prost(message, optional, tag = "7")]
     pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// Optional. A set of conditions to satisfy that affect the way routes are calculated.
+    /// Optional. A set of conditions to satisfy that affect the way routes are
+    /// calculated.
     #[prost(message, optional, tag = "11")]
     pub route_modifiers: ::core::option::Option<RouteModifiers>,
     /// Required. A route objective to optimize for.
     #[prost(message, optional, tag = "12")]
     pub route_objective: ::core::option::Option<RouteObjective>,
     /// Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more
-    /// information, see
-    /// <http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.> See
-    /// [Language Support](<https://developers.google.com/maps/faq#languagesupport>)
-    /// for the list of supported languages. When you don't provide this value, the
-    /// display language is inferred from the location of the route request.
+    /// information, see [Unicode Locale
+    /// Identifier](<http://www.unicode.org/reports/tr35/#Unicode_locale_identifier>).
+    /// See [Language
+    /// Support](<https://developers.google.com/maps/faq#languagesupport>) for the
+    /// list of supported languages. When you don't provide this value, the display
+    /// language is inferred from the location of the route request.
     #[prost(string, tag = "9")]
     pub language_code: ::prost::alloc::string::String,
-    /// Optional. Specifies the units of measure for the display fields. This includes the
-    /// `instruction` field in `NavigationInstruction`. The units of measure used
-    /// for the route, leg, step distance, and duration are not affected by this
-    /// value. If you don't provide this value, then the display units are inferred
-    /// from the location of the request.
+    /// Optional. Specifies the units of measure for the display fields. This
+    /// includes the `instruction` field in `NavigationInstruction`. The units of
+    /// measure used for the route, leg, step distance, and duration are not
+    /// affected by this value. If you don't provide this value, then the display
+    /// units are inferred from the location of the request.
     #[prost(enumeration = "Units", tag = "10")]
     pub units: i32,
 }
-/// Encapsulates an objective to optimize for by ComputeCustomRoutes.
+/// Encapsulates an objective to optimize for by `ComputeCustomRoutes`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteObjective {
-    /// Optional. Specifies the custom data layer being used to affect generated routes.
-    /// Customers can turn off the custom layer by not setting this field. Once a
-    /// custom layer is being set, the custom layer will be used to generate route
-    /// annotations (CustomLayerInfo) in the returned routes, the annotations can
-    /// be turned off using `X-Goog-FieldMask` header (see
-    /// <https://cloud.google.com/apis/docs/system-parameters>).
+    /// Optional. Specifies the custom data layer being used to affect generated
+    /// routes. Customers can turn off the custom layer by not setting this field.
     #[prost(message, optional, tag = "2")]
     pub custom_layer: ::core::option::Option<route_objective::CustomLayer>,
     /// The route objective.
@@ -922,7 +920,7 @@ pub struct RouteObjective {
 }
 /// Nested message and enum types in `RouteObjective`.
 pub mod route_objective {
-    /// Encapsulates a RateCard route objective.
+    /// Encapsulates a `RateCard` route objective.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct RateCard {
         /// Optional. Cost per minute.
@@ -945,26 +943,30 @@ pub mod route_objective {
             pub value: f64,
         }
     }
-    /// Customized data layer that customers use to generated route annotations or
-    /// influence the generated route.
+    /// Customized data layer that customers use to influence the generated route.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CustomLayer {
-        /// Required. A dataset that the customer uploaded in advance.
+        /// Required. A dataset that the customer has uploaded in advance.
         #[prost(message, optional, tag = "1")]
         pub dataset_info: ::core::option::Option<custom_layer::DatasetInfo>,
     }
     /// Nested message and enum types in `CustomLayer`.
     pub mod custom_layer {
-        /// Information about a dataset that customers uploaded in advance. The
-        /// dataset information will be used for generating route annotations or to
-        /// influence routing.
+        /// Information about a dataset that customers have uploaded in advance. The
+        /// dataset information is used to influence routing.
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct DatasetInfo {
-            /// Required. ID of a customer uploaded dataset for which will be used to annotate or
-            /// influence the route. If the dataset does not exist or is not yet ready,
-            /// the request will fail.
+            /// Optional. Deprecated: use display_name instead.
+            /// ID of a customer uploaded dataset which is used to influence the route.
+            /// If the dataset does not exist or is not yet ready, the request fails.
+            #[deprecated]
             #[prost(string, tag = "1")]
             pub dataset_id: ::prost::alloc::string::String,
+            /// Optional. Display name of the customer uploaded dataset which is used
+            /// to influence the route. If the dataset does not exist or is not yet
+            /// ready, the request fails.
+            #[prost(string, tag = "2")]
+            pub display_name: ::prost::alloc::string::String,
         }
     }
     /// The route objective.
@@ -1002,8 +1004,8 @@ pub struct Route {
     /// conditions into consideration.
     #[prost(message, optional, tag = "4")]
     pub static_duration: ::core::option::Option<::prost_types::Duration>,
-    /// The overall route polyline. This polyline will be the combined polyline of
-    /// all `legs`.
+    /// The overall route polyline. This polyline is the combined polyline of all
+    /// `legs`.
     #[prost(message, optional, tag = "5")]
     pub polyline: ::core::option::Option<Polyline>,
     /// A description of the route.
@@ -1018,8 +1020,8 @@ pub struct Route {
     /// Additional information about the route.
     #[prost(message, optional, tag = "9")]
     pub travel_advisory: ::core::option::Option<RouteTravelAdvisory>,
-    /// If ComputeRoutesRequest.optimize_waypoint_order is set to true, this field
-    /// contains the optimized ordering of intermediates waypoints.
+    /// If `ComputeRoutesRequest.optimize_waypoint_order` is set to true, this
+    /// field contains the optimized ordering of intermediates waypoints.
     /// otherwise, this field is empty.
     /// For example, suppose the input is Origin: LA; Intermediates: Dallas,
     /// Bangor, Phoenix;  Destination: New York; and the optimized intermediate
@@ -1040,7 +1042,7 @@ pub struct RouteTravelAdvisory {
     pub traffic_restriction: ::core::option::Option<TrafficRestriction>,
     /// Encapsulates information about tolls on the Route.
     /// This field is only populated if we expect there are tolls on the Route.
-    /// If this field is set but the estimated_price subfield is not populated,
+    /// If this field is set but the `estimated_price` subfield is not populated,
     /// we expect that road contains tolls but we do not know an estimated price.
     /// If this field is not set, then we expect there is no toll on the Route.
     #[prost(message, optional, tag = "2")]
@@ -1059,8 +1061,10 @@ pub struct RouteTravelAdvisory {
     /// ```
     #[prost(message, repeated, tag = "3")]
     pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+    /// Deprecated: This field will stop being populated soon.
     /// Information related to the custom layer data that the customer specified
     /// (e.g. time spent in a customer specified area).
+    #[deprecated]
     #[prost(message, optional, tag = "4")]
     pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
 }
@@ -1068,16 +1072,17 @@ pub struct RouteTravelAdvisory {
 /// about, such as possible traffic zone restriction etc. on a route leg.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegTravelAdvisory {
-    /// Encapsulates information about tolls on the specific RouteLeg.
-    /// This field is only populated if we expect there are tolls on the RouteLeg.
-    /// If this field is set but the estimated_price subfield is not populated,
-    /// we expect that road contains tolls but we do not know an estimated price.
-    /// If this field does not exist, then there is no toll on the RouteLeg.
+    /// Encapsulates information about tolls on the specific `RouteLeg`.
+    /// This field is only populated if we expect there are tolls on the
+    /// `RouteLeg`. If this field is set but the `estimated_price` subfield is not
+    /// populated, we expect that road contains tolls but we do not know an
+    /// estimated price. If this field does not exist, then there is no toll on the
+    /// `RouteLeg`.
     #[prost(message, optional, tag = "1")]
     pub toll_info: ::core::option::Option<TollInfo>,
     /// Speed reading intervals detailing traffic density. Applicable in case of
     /// `TRAFFIC_AWARE` and `TRAFFIC_AWARE_OPTIMAL` routing preferences.
-    /// The intervals cover the entire polyline of the RouteLg without overlap.
+    /// The intervals cover the entire polyline of the `RouteLeg` without overlap.
     /// The start point of a specified interval is the same as the end point of the
     /// preceding interval.
     ///
@@ -1089,8 +1094,10 @@ pub struct RouteLegTravelAdvisory {
     /// ```
     #[prost(message, repeated, tag = "2")]
     pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+    /// Deprecated: This field will stop being populated soon.
     /// Information related to the custom layer data that the customer specified
     /// (e.g. time spent in a customer specified area).
+    #[deprecated]
     #[prost(message, optional, tag = "3")]
     pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
 }
@@ -1098,18 +1105,7 @@ pub struct RouteLegTravelAdvisory {
 /// about, such as possible traffic zone restriction on a leg step.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegStepTravelAdvisory {
-    /// Speed reading intervals detailing traffic density. Applicable in case of
-    /// `TRAFFIC_AWARE` and `TRAFFIC_AWARE_OPTIMAL` routing preferences.
-    /// The intervals cover the entire polyline of the RouteLegStep without
-    /// overlap. The start point of a specified interval is the same as the end
-    /// point of the preceding interval.
-    ///
-    /// Example:
-    ///
-    /// ```text
-    /// polyline: A ---- B ---- C ---- D ---- E ---- F ---- G
-    /// speed_reading_intervals: [A,C), [C,D), [D,G).
-    /// ```
+    /// NOTE: This field is not currently populated.
     #[prost(message, repeated, tag = "1")]
     pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
 }
@@ -1178,12 +1174,11 @@ pub struct RouteLeg {
 /// Encapsulates toll information on a `Route` or on a `RouteLeg`.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TollInfo {
-    /// The monetary amount of tolls for the corresponding Route or RouteLeg.
+    /// The monetary amount of tolls for the corresponding `Route` or `RouteLeg`.
     /// This list contains a money amount for each currency that is expected
-    /// to be charged by the toll stations. Typically this list will contain only
-    /// one item for routes with tolls in one currency. For international trips,
-    /// this list may contain multiple items to reflect tolls in different
-    /// currencies.
+    /// to be charged by the toll stations. Typically this list contains only one
+    /// item for routes with tolls in one currency. For international trips, this
+    /// list may contain multiple items to reflect tolls in different currencies.
     #[prost(message, repeated, tag = "1")]
     pub estimated_price: ::prost::alloc::vec::Vec<super::super::super::r#type::Money>,
 }
@@ -1219,8 +1214,9 @@ pub struct RouteLegStep {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NavigationInstruction {
-    /// Encapsulates the navigation instructions for the current step (e.g., turn
-    /// left, merge, straight, etc.). This field determines which icon to display.
+    /// Encapsulates the navigation instructions for the current step (for example,
+    /// turn left, merge, or straight). This field determines which icon to
+    /// display.
     #[prost(enumeration = "Maneuver", tag = "1")]
     pub maneuver: i32,
     /// Instructions for navigating this step.
@@ -1229,8 +1225,8 @@ pub struct NavigationInstruction {
 }
 /// Traffic density indicator on a contiguous segment of a polyline or path.
 /// Given a path with points P_0, P_1, ... , P_N (zero-based index), the
-/// SpeedReadingInterval defines an interval and describes its traffic using the
-/// following categories.
+/// `SpeedReadingInterval` defines an interval and describes its traffic using
+/// the following categories.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpeedReadingInterval {
     /// The starting index of this interval in the polyline.
@@ -1295,6 +1291,7 @@ pub mod speed_reading_interval {
         }
     }
 }
+/// Deprecated: This field will stop being populated soon.
 /// Encapsulates statistics about the time spent and distance travelled in a
 /// custom area.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1304,6 +1301,18 @@ pub struct CustomLayerInfo {
     /// custom layer.
     #[prost(message, repeated, tag = "1")]
     pub area_info: ::prost::alloc::vec::Vec<custom_layer_info::AreaInfo>,
+    /// Total unique distance traveled across all activated areas in the provided
+    /// dataset (in meters). For example, if a route travels through the
+    /// intersection of area A and area B, the distance in the intersection region
+    /// is only added once to the `total_distance_in_areas_meters`.
+    #[prost(float, tag = "2")]
+    pub total_distance_in_areas_meters: f32,
+    /// Total time spent across all activated areas in the provided dataset.
+    /// For example, if a route travels through the intersection of area A and
+    /// area B, the time spent in the intersection region is only added once to the
+    /// `total_duration_in_areas`.
+    #[prost(message, optional, tag = "3")]
+    pub total_duration_in_areas: ::core::option::Option<::prost_types::Duration>,
 }
 /// Nested message and enum types in `CustomLayerInfo`.
 pub mod custom_layer_info {
@@ -1315,8 +1324,8 @@ pub mod custom_layer_info {
         /// For example, the customer may be interested in knowing whether a
         /// returned route is traveling through multiple busy city blocks during
         /// a predefined period of time. An area ID is unique within a single
-        /// dataset uploaded by a customer. That is, a (customer_id, dataset_id,
-        /// area_id) triplet should uniquely identify a set of polygons on the map
+        /// dataset uploaded by a customer. That is, a (`customer_id`, `dataset_id`,
+        /// `area_id`) triplet should uniquely identify a set of polygons on the map
         /// that "activates" following a common schedule.
         #[prost(string, tag = "1")]
         pub area_id: ::prost::alloc::string::String,
@@ -1329,7 +1338,7 @@ pub mod custom_layer_info {
     }
 }
 /// A set of values that specify the navigation action to take for the current
-/// step (e.g., turn left, merge, straight, etc.).
+/// step (for example, turn left, merge, or straight).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Maneuver {
@@ -1371,6 +1380,10 @@ pub enum Maneuver {
     RoundaboutLeft = 17,
     /// Turn right at the roundabout.
     RoundaboutRight = 18,
+    /// Initial maneuver.
+    Depart = 19,
+    /// Used to indicate a street name change.
+    NameChange = 20,
 }
 impl Maneuver {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1398,6 +1411,8 @@ impl Maneuver {
             Maneuver::FerryTrain => "FERRY_TRAIN",
             Maneuver::RoundaboutLeft => "ROUNDABOUT_LEFT",
             Maneuver::RoundaboutRight => "ROUNDABOUT_RIGHT",
+            Maneuver::Depart => "DEPART",
+            Maneuver::NameChange => "NAME_CHANGE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1422,6 +1437,8 @@ impl Maneuver {
             "FERRY_TRAIN" => Some(Self::FerryTrain),
             "ROUNDABOUT_LEFT" => Some(Self::RoundaboutLeft),
             "ROUNDABOUT_RIGHT" => Some(Self::RoundaboutRight),
+            "DEPART" => Some(Self::Depart),
+            "NAME_CHANGE" => Some(Self::NameChange),
             _ => None,
         }
     }
