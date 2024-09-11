@@ -1,6 +1,12 @@
 version: 2
 updates:
   - package-ecosystem: cargo
+    directory: /examples/googleapis-tonic-google-firestore-v1-1
+    schedule:
+      day: tuesday
+      interval: weekly
+      time: "15:00"
+  - package-ecosystem: cargo
     directory: /
     schedule:
       day: tuesday
