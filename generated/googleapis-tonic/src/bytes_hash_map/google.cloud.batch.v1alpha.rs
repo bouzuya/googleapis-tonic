@@ -993,6 +993,12 @@ pub mod job_status {
         /// The Job will be deleted, but has not been deleted yet. Typically this is
         /// because resources used by the Job are still being cleaned up.
         DeletionInProgress = 6,
+        /// The Job cancellation is in progress, this is because the resources used
+        /// by the Job are still being cleaned up.
+        CancellationInProgress = 7,
+        /// The Job has been cancelled, the task executions were stopped and the
+        /// resources were cleaned up.
+        Cancelled = 8,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1008,6 +1014,8 @@ pub mod job_status {
                 State::Succeeded => "SUCCEEDED",
                 State::Failed => "FAILED",
                 State::DeletionInProgress => "DELETION_IN_PROGRESS",
+                State::CancellationInProgress => "CANCELLATION_IN_PROGRESS",
+                State::Cancelled => "CANCELLED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1020,6 +1028,8 @@ pub mod job_status {
                 "SUCCEEDED" => Some(Self::Succeeded),
                 "FAILED" => Some(Self::Failed),
                 "DELETION_IN_PROGRESS" => Some(Self::DeletionInProgress),
+                "CANCELLATION_IN_PROGRESS" => Some(Self::CancellationInProgress),
+                "CANCELLED" => Some(Self::Cancelled),
                 _ => None,
             }
         }

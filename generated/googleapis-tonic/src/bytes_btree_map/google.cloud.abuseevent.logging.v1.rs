@@ -174,6 +174,10 @@ pub struct CryptoMiningEvent {
     /// Detected end time of the cryptocurrency mining.
     #[prost(message, optional, tag = "3")]
     pub detected_mining_end_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The IP address(es) of the VM associated with the cryptocurrency mining.
+    /// This field may be empty if this information is not available.
+    #[prost(string, repeated, tag = "4")]
+    pub vm_ip: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Information about the leaked client credentials observed on the monitored
 /// resource.

@@ -1813,6 +1813,14 @@ pub struct DeleteStoragePoolRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }
+/// SwitchActiveReplicaZoneRequest switch the active/replica zone for a regional
+/// storagePool.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SwitchActiveReplicaZoneRequest {
+    /// Required. Name of the storage pool
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
 /// StoragePool is a container for volumes with a service level and capacity.
 /// Volumes can be created in a pool of sufficient available capacity.
 /// StoragePool capacity is what you are billed for.
@@ -1877,6 +1885,11 @@ pub struct StoragePool {
     #[deprecated]
     #[prost(bool, optional, tag = "17")]
     pub global_access_allowed: ::core::option::Option<bool>,
+    /// Optional. True if the storage pool supports Auto Tiering enabled volumes.
+    /// Default is false. Auto-tiering can be enabled after storage pool creation
+    /// but it can't be disabled once enabled.
+    #[prost(bool, tag = "18")]
+    pub allow_auto_tiering: bool,
     /// Optional. Specifies the replica zone for regional storagePool.
     #[prost(string, tag = "20")]
     pub replica_zone: ::prost::alloc::string::String,
@@ -2171,6 +2184,9 @@ pub struct Volume {
     /// Output only. Specifies the active zone for regional volume.
     #[prost(string, tag = "37")]
     pub zone: ::prost::alloc::string::String,
+    /// Output only. Size of the volume cold tier data in GiB.
+    #[prost(int64, tag = "39")]
+    pub cold_tier_size_gib: i64,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
@@ -2935,6 +2951,38 @@ pub mod net_app_client {
             req.extensions_mut()
                 .insert(
                     GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteStoragePool"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// This operation will switch the active/replica zone for a regional
+        /// storagePool.
+        pub async fn switch_active_replica_zone(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SwitchActiveReplicaZoneRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.netapp.v1.NetApp/SwitchActiveReplicaZone",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.netapp.v1.NetApp",
+                        "SwitchActiveReplicaZone",
+                    ),
                 );
             self.inner.unary(req, path, codec).await
         }

@@ -643,6 +643,79 @@ pub struct Decimal {
     #[prost(string, tag = "1")]
     pub value: ::prost::alloc::string::String,
 }
+/// Represents a month in the Gregorian calendar.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Month {
+    /// The unspecified month.
+    Unspecified = 0,
+    /// The month of January.
+    January = 1,
+    /// The month of February.
+    February = 2,
+    /// The month of March.
+    March = 3,
+    /// The month of April.
+    April = 4,
+    /// The month of May.
+    May = 5,
+    /// The month of June.
+    June = 6,
+    /// The month of July.
+    July = 7,
+    /// The month of August.
+    August = 8,
+    /// The month of September.
+    September = 9,
+    /// The month of October.
+    October = 10,
+    /// The month of November.
+    November = 11,
+    /// The month of December.
+    December = 12,
+}
+impl Month {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Month::Unspecified => "MONTH_UNSPECIFIED",
+            Month::January => "JANUARY",
+            Month::February => "FEBRUARY",
+            Month::March => "MARCH",
+            Month::April => "APRIL",
+            Month::May => "MAY",
+            Month::June => "JUNE",
+            Month::July => "JULY",
+            Month::August => "AUGUST",
+            Month::September => "SEPTEMBER",
+            Month::October => "OCTOBER",
+            Month::November => "NOVEMBER",
+            Month::December => "DECEMBER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "MONTH_UNSPECIFIED" => Some(Self::Unspecified),
+            "JANUARY" => Some(Self::January),
+            "FEBRUARY" => Some(Self::February),
+            "MARCH" => Some(Self::March),
+            "APRIL" => Some(Self::April),
+            "MAY" => Some(Self::May),
+            "JUNE" => Some(Self::June),
+            "JULY" => Some(Self::July),
+            "AUGUST" => Some(Self::August),
+            "SEPTEMBER" => Some(Self::September),
+            "OCTOBER" => Some(Self::October),
+            "NOVEMBER" => Some(Self::November),
+            "DECEMBER" => Some(Self::December),
+            _ => None,
+        }
+    }
+}
 /// Localized variant of a text in a particular language.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalizedText {
@@ -833,79 +906,6 @@ pub struct Fraction {
     /// positive.
     #[prost(int64, tag = "2")]
     pub denominator: i64,
-}
-/// Represents a month in the Gregorian calendar.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Month {
-    /// The unspecified month.
-    Unspecified = 0,
-    /// The month of January.
-    January = 1,
-    /// The month of February.
-    February = 2,
-    /// The month of March.
-    March = 3,
-    /// The month of April.
-    April = 4,
-    /// The month of May.
-    May = 5,
-    /// The month of June.
-    June = 6,
-    /// The month of July.
-    July = 7,
-    /// The month of August.
-    August = 8,
-    /// The month of September.
-    September = 9,
-    /// The month of October.
-    October = 10,
-    /// The month of November.
-    November = 11,
-    /// The month of December.
-    December = 12,
-}
-impl Month {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Month::Unspecified => "MONTH_UNSPECIFIED",
-            Month::January => "JANUARY",
-            Month::February => "FEBRUARY",
-            Month::March => "MARCH",
-            Month::April => "APRIL",
-            Month::May => "MAY",
-            Month::June => "JUNE",
-            Month::July => "JULY",
-            Month::August => "AUGUST",
-            Month::September => "SEPTEMBER",
-            Month::October => "OCTOBER",
-            Month::November => "NOVEMBER",
-            Month::December => "DECEMBER",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "MONTH_UNSPECIFIED" => Some(Self::Unspecified),
-            "JANUARY" => Some(Self::January),
-            "FEBRUARY" => Some(Self::February),
-            "MARCH" => Some(Self::March),
-            "APRIL" => Some(Self::April),
-            "MAY" => Some(Self::May),
-            "JUNE" => Some(Self::June),
-            "JULY" => Some(Self::July),
-            "AUGUST" => Some(Self::August),
-            "SEPTEMBER" => Some(Self::September),
-            "OCTOBER" => Some(Self::October),
-            "NOVEMBER" => Some(Self::November),
-            "DECEMBER" => Some(Self::December),
-            _ => None,
-        }
-    }
 }
 /// A quaternion is defined as the quotient of two directed lines in a
 /// three-dimensional space or equivalently as the quotient of two Euclidean

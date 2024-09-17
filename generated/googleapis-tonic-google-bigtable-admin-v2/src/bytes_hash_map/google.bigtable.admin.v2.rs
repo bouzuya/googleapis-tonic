@@ -394,6 +394,45 @@ pub mod app_profile {
         /// tried in order of distance. If left empty, all clusters are eligible.
         #[prost(string, repeated, tag = "1")]
         pub cluster_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        /// Possible algorithms for routing affinity. If enabled, Bigtable will
+        /// route between equidistant clusters in a deterministic order rather than
+        /// choosing randomly.
+        ///
+        /// This mechanism gives read-your-writes consistency for *most* requests
+        /// under *most* circumstances, without sacrificing availability. Consistency
+        /// is *not* guaranteed, as requests might still fail over between clusters
+        /// in the event of errors or latency.
+        #[prost(oneof = "multi_cluster_routing_use_any::Affinity", tags = "3")]
+        pub affinity: ::core::option::Option<multi_cluster_routing_use_any::Affinity>,
+    }
+    /// Nested message and enum types in `MultiClusterRoutingUseAny`.
+    pub mod multi_cluster_routing_use_any {
+        /// If enabled, Bigtable will route the request based on the row key of the
+        /// request, rather than randomly. Instead, each row key will be assigned
+        /// to a cluster, and will stick to that cluster. If clusters are added or
+        /// removed, then this may affect which row keys stick to which clusters.
+        /// To avoid this, users can use a cluster group to specify which clusters
+        /// are to be used. In this case, new clusters that are not a part of the
+        /// cluster group will not be routed to, and routing will be unaffected by
+        /// the new cluster. Moreover, clusters specified in the cluster group cannot
+        /// be deleted unless removed from the cluster group.
+        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+        pub struct RowAffinity {}
+        /// Possible algorithms for routing affinity. If enabled, Bigtable will
+        /// route between equidistant clusters in a deterministic order rather than
+        /// choosing randomly.
+        ///
+        /// This mechanism gives read-your-writes consistency for *most* requests
+        /// under *most* circumstances, without sacrificing availability. Consistency
+        /// is *not* guaranteed, as requests might still fail over between clusters
+        /// in the event of errors or latency.
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Affinity {
+            /// Row affinity sticky routing based on the row key of the request.
+            /// Requests that span multiple rows are routed non-deterministically.
+            #[prost(message, tag = "3")]
+            RowAffinity(RowAffinity),
+        }
     }
     /// Unconditionally routes all read/write requests to a specific cluster.
     /// This option preserves read-your-writes consistency but does not improve

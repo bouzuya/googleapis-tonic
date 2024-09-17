@@ -429,13 +429,13 @@ pub struct Customer {
     /// `organizations/{organization}/locations/{location}/customers/{customer}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    /// The customer organization's display name. E.g. "google.com".
+    /// Required. Display name for the customer
     #[prost(string, tag = "2")]
     pub display_name: ::prost::alloc::string::String,
-    /// Container for customer onboarding steps
+    /// Output only. Container for customer onboarding steps
     #[prost(message, optional, tag = "3")]
     pub customer_onboarding_state: ::core::option::Option<CustomerOnboardingState>,
-    /// Indicates whether a customer is fully onboarded
+    /// Output only. Indicates whether a customer is fully onboarded
     #[prost(bool, tag = "4")]
     pub is_onboarded: bool,
 }
@@ -686,6 +686,8 @@ pub mod partner_permissions {
         AccessApprovalRequests = 3,
         /// Permission for External Key Manager connection status
         AssuredWorkloadsEkmConnectionStatus = 4,
+        /// Permission for support case details for Access Transparency log entries
+        AccessTransparencyLogsSupportCaseViewer = 5,
     }
     impl Permission {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -703,6 +705,9 @@ pub mod partner_permissions {
                 Permission::AssuredWorkloadsEkmConnectionStatus => {
                     "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS"
                 }
+                Permission::AccessTransparencyLogsSupportCaseViewer => {
+                    "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER"
+                }
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -716,6 +721,9 @@ pub mod partner_permissions {
                 "ACCESS_APPROVAL_REQUESTS" => Some(Self::AccessApprovalRequests),
                 "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS" => {
                     Some(Self::AssuredWorkloadsEkmConnectionStatus)
+                }
+                "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER" => {
+                    Some(Self::AccessTransparencyLogsSupportCaseViewer)
                 }
                 _ => None,
             }

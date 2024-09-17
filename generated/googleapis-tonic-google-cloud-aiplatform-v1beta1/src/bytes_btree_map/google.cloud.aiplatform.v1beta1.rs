@@ -1229,6 +1229,9 @@ pub mod share_point_sources {
         /// name or the site id.
         #[prost(string, tag = "4")]
         pub sharepoint_site_name: ::prost::alloc::string::String,
+        /// Output only. The SharePoint file id. Output only.
+        #[prost(string, tag = "9")]
+        pub file_id: ::prost::alloc::string::String,
         /// The SharePoint folder source. If not provided, uses "root".
         #[prost(oneof = "share_point_source::FolderSource", tags = "5, 6")]
         pub folder_source: ::core::option::Option<share_point_source::FolderSource>,
@@ -4649,8 +4652,8 @@ pub mod batch_prediction_job {
 }
 /// Schema is used to define the format of input/output data. Represents a select
 /// subset of an [OpenAPI 3.0 schema
-/// object](<https://spec.openapis.org/oas/v3.0.3#schema>). More fields may be
-/// added in the future as needed.
+/// object](<https://spec.openapis.org/oas/v3.0.3#schema-object>). More fields may
+/// be added in the future as needed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Schema {
     /// Optional. The type of the data.
@@ -4697,6 +4700,11 @@ pub struct Schema {
         ::prost::alloc::string::String,
         Schema,
     >,
+    /// Optional. The order of the properties.
+    /// Not a standard field in open api spec. Only used to support the order of
+    /// the properties.
+    #[prost(string, repeated, tag = "25")]
+    pub property_ordering: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Required properties of Type.OBJECT.
     #[prost(string, repeated, tag = "5")]
     pub required: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -35948,6 +35956,10 @@ pub struct CountTokensRequest {
     /// knowledge and scope of the model.
     #[prost(message, repeated, tag = "6")]
     pub tools: ::prost::alloc::vec::Vec<Tool>,
+    /// Optional. Generation config that the model will use to generate the
+    /// response.
+    #[prost(message, optional, tag = "7")]
+    pub generation_config: ::core::option::Option<GenerationConfig>,
 }
 /// Response message for
 /// \[PredictionService.CountTokens\]\[google.cloud.aiplatform.v1beta1.PredictionService.CountTokens\].
@@ -35964,9 +35976,14 @@ pub struct CountTokensResponse {
 /// Request message for \[PredictionService.GenerateContent\].
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentRequest {
-    /// Required. The name of the publisher model requested to serve the
-    /// prediction. Format:
+    /// Required. The fully qualified name of the publisher model or tuned model
+    /// endpoint to use.
+    ///
+    /// Publisher model format:
     /// `projects/{project}/locations/{location}/publishers/*/models/*`
+    ///
+    /// Tuned model endpoint format:
+    /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
     #[prost(string, tag = "5")]
     pub model: ::prost::alloc::string::String,
     /// Required. The content of the current conversation with the model.
@@ -36000,6 +36017,18 @@ pub struct GenerateContentRequest {
     /// request.
     #[prost(message, optional, tag = "7")]
     pub tool_config: ::core::option::Option<ToolConfig>,
+    /// Optional. The labels with user-defined metadata for the request. It is used
+    /// for billing and reporting only.
+    ///
+    /// Label keys and values can be no longer than 63 characters
+    /// (Unicode codepoints) and can only contain lowercase letters, numeric
+    /// characters, underscores, and dashes. International characters are allowed.
+    /// Label values are optional. Label keys must start with a letter.
+    #[prost(btree_map = "string, string", tag = "10")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// Optional. Per request settings for blocking unsafe content.
     /// Enforced on GenerateContentResponse.candidates.
     #[prost(message, repeated, tag = "3")]
@@ -36106,6 +36135,7 @@ pub mod generate_content_response {
         /// Number of tokens in the response(s).
         #[prost(int32, tag = "2")]
         pub candidates_token_count: i32,
+        /// Total token count for prompt and response candidates.
         #[prost(int32, tag = "3")]
         pub total_token_count: i32,
         /// Output only. Number of tokens in the cached part in the input (the cached
@@ -36117,9 +36147,9 @@ pub mod generate_content_response {
 /// Request message for \[PredictionService.ChatCompletions\]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChatCompletionsRequest {
-    /// Required. The name of the Endpoint requested to serve the prediction.
+    /// Required. The name of the endpoint requested to serve the prediction.
     /// Format:
-    /// `projects/{project}/locations/{location}/endpoints/openapi`
+    /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
     #[prost(string, tag = "1")]
     pub endpoint: ::prost::alloc::string::String,
     /// Optional. The prediction input. Supports HTTP headers and arbitrary data
@@ -40455,7 +40485,7 @@ pub struct RagVectorDbConfig {
     #[prost(message, optional, tag = "5")]
     pub api_auth: ::core::option::Option<ApiAuth>,
     /// The config for the Vector DB.
-    #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 2, 4")]
+    #[prost(oneof = "rag_vector_db_config::VectorDb", tags = "1, 2, 3, 4, 6")]
     pub vector_db: ::core::option::Option<rag_vector_db_config::VectorDb>,
 }
 /// Nested message and enum types in `RagVectorDbConfig`.
@@ -40476,6 +40506,14 @@ pub mod rag_vector_db_config {
         #[prost(string, tag = "2")]
         pub collection_name: ::prost::alloc::string::String,
     }
+    /// The config for the Pinecone.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Pinecone {
+        /// Pinecone index name.
+        /// This value cannot be changed after it's set.
+        #[prost(string, tag = "1")]
+        pub index_name: ::prost::alloc::string::String,
+    }
     /// The config for the Vertex Feature Store.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct VertexFeatureStore {
@@ -40484,6 +40522,20 @@ pub mod rag_vector_db_config {
         /// `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
         #[prost(string, tag = "1")]
         pub feature_view_resource_name: ::prost::alloc::string::String,
+    }
+    /// The config for the Vertex Vector Search.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct VertexVectorSearch {
+        /// The resource name of the Index Endpoint.
+        /// Format:
+        /// `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+        #[prost(string, tag = "1")]
+        pub index_endpoint: ::prost::alloc::string::String,
+        /// The resource name of the Index.
+        /// Format:
+        /// `projects/{project}/locations/{location}/indexes/{index}`
+        #[prost(string, tag = "2")]
+        pub index: ::prost::alloc::string::String,
     }
     /// The config for the Vector DB.
     #[derive(Clone, PartialEq, ::prost::Oneof)]
@@ -40494,9 +40546,15 @@ pub mod rag_vector_db_config {
         /// The config for the Weaviate.
         #[prost(message, tag = "2")]
         Weaviate(Weaviate),
+        /// The config for the Pinecone.
+        #[prost(message, tag = "3")]
+        Pinecone(Pinecone),
         /// The config for the Vertex Feature Store.
         #[prost(message, tag = "4")]
         VertexFeatureStore(VertexFeatureStore),
+        /// The config for the Vertex Vector Search.
+        #[prost(message, tag = "6")]
+        VertexVectorSearch(VertexVectorSearch),
     }
 }
 /// RagFile status.
@@ -40679,7 +40737,7 @@ pub struct RagFile {
     pub file_status: ::core::option::Option<FileStatus>,
     /// The origin location of the RagFile if it is imported from Google Cloud
     /// Storage or Google Drive.
-    #[prost(oneof = "rag_file::RagFileSource", tags = "8, 9, 10, 11, 12")]
+    #[prost(oneof = "rag_file::RagFileSource", tags = "8, 9, 10, 11, 12, 14")]
     pub rag_file_source: ::core::option::Option<rag_file::RagFileSource>,
 }
 /// Nested message and enum types in `RagFile`.
@@ -40749,6 +40807,9 @@ pub mod rag_file {
         /// The RagFile is imported from a Jira query.
         #[prost(message, tag = "12")]
         JiraSource(super::JiraSource),
+        /// The RagFile is imported from a SharePoint source.
+        #[prost(message, tag = "14")]
+        SharePointSources(super::SharePointSources),
     }
 }
 /// Specifies the size and overlap of chunks for RagFiles.

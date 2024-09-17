@@ -3600,8 +3600,8 @@ pub mod batch_prediction_job {
 }
 /// Schema is used to define the format of input/output data. Represents a select
 /// subset of an [OpenAPI 3.0 schema
-/// object](<https://spec.openapis.org/oas/v3.0.3#schema>). More fields may be
-/// added in the future as needed.
+/// object](<https://spec.openapis.org/oas/v3.0.3#schema-object>). More fields may
+/// be added in the future as needed.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Schema {
     /// Optional. The type of the data.
@@ -3648,6 +3648,11 @@ pub struct Schema {
         ::prost::alloc::string::String,
         Schema,
     >,
+    /// Optional. The order of the properties.
+    /// Not a standard field in open api spec. Only used to support the order of
+    /// the properties.
+    #[prost(string, repeated, tag = "25")]
+    pub property_ordering: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Required properties of Type.OBJECT.
     #[prost(string, repeated, tag = "5")]
     pub required: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,

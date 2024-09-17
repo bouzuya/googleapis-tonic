@@ -353,7 +353,6 @@ pub struct EffectiveTagDetails {
     pub effective_tags: ::prost::alloc::vec::Vec<Tag>,
 }
 /// A result of Resource Search, containing information of a cloud resource.
-/// Next ID: 34
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceSearchResult {
     /// The full resource name of this resource. Example:
@@ -437,8 +436,8 @@ pub struct ResourceSearchResult {
     /// * Use a free text query. Example: `us-west*`
     #[prost(string, tag = "6")]
     pub location: ::prost::alloc::string::String,
-    /// Labels associated with this resource. See [Labelling and grouping Google
-    /// Cloud
+    /// User labels associated with this resource. See [Labelling and grouping
+    /// Google Cloud
     /// resources](<https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources>)
     /// for more information. This field is available only when the resource's
     /// Protobuf contains it.
@@ -2963,10 +2962,12 @@ pub struct QueryAssetsResponse {
     pub job_reference: ::prost::alloc::string::String,
     /// The query response, which can be either an `error` or a valid `response`.
     ///
-    /// If `done` == `false` and the query result is being saved in a output, the
+    /// If `done` == `false` and the query result is being saved in an output, the
     /// output_config field will be set.
     /// If `done` == `true`, exactly one of
     /// `error`, `query_result` or `output_config` will be set.
+    /// \[done\] is unset unless the \[QueryAssetsResponse\] contains a
+    /// \[QueryAssetsResponse.job_reference\].
     #[prost(bool, tag = "2")]
     pub done: bool,
     #[prost(oneof = "query_assets_response::Response", tags = "3, 4, 5")]
@@ -2982,8 +2983,9 @@ pub mod query_assets_response {
         /// Result of the query.
         #[prost(message, tag = "4")]
         QueryResult(super::QueryResult),
-        /// Output configuration which indicates instead of being returned in API
-        /// response on the fly, the query result will be saved in a specific output.
+        /// Output configuration, which indicates that instead of being returned in
+        /// an API response on the fly, the query result will be saved in a specific
+        /// output.
         #[prost(message, tag = "5")]
         OutputConfig(super::QueryAssetsOutputConfig),
     }

@@ -2141,6 +2141,9 @@ pub struct Environment {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "8")]
     pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "10")]
+    pub satisfies_pzi: bool,
     /// Optional. Storage configuration for this environment.
     #[prost(message, optional, tag = "9")]
     pub storage_config: ::core::option::Option<StorageConfig>,

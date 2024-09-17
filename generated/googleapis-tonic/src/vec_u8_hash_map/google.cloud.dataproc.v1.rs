@@ -1084,10 +1084,11 @@ pub struct PyPiRepositoryConfig {
 pub enum Component {
     /// Unspecified component. Specifying this will cause Cluster creation to fail.
     Unspecified = 0,
-    /// The Anaconda python distribution. The Anaconda component is not supported
-    /// in the Dataproc \[2.0 image\]
-    /// (/<https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-release-2.0>).
-    /// The 2.0 image is pre-installed with Miniconda.
+    /// The Anaconda component is no longer supported or applicable to
+    /// \[supported Dataproc on Compute Engine image versions\]
+    /// (<https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-version-clusters#supported-dataproc-image-versions>).
+    /// It cannot be activated on clusters created with supported Dataproc on
+    /// Compute Engine image versions.
     Anaconda = 5,
     /// Docker
     Docker = 13,
@@ -1283,6 +1284,11 @@ pub struct ListBatchesResponse {
     /// If this field is omitted, there are no subsequent pages.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Output only. List of Batches that could not be included in the response.
+    /// Attempting to get one of these resources may indicate why it was not
+    /// included in the list response.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to delete a batch workload.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2336,10 +2342,41 @@ pub struct AutoscalingConfig {
 /// Encryption settings for the cluster.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptionConfig {
-    /// Optional. The Cloud KMS key name to use for PD disk encryption for all
-    /// instances in the cluster.
+    /// Optional. The Cloud KMS key resource name to use for persistent disk
+    /// encryption for all instances in the cluster. See \[Use CMEK with cluster
+    /// data\]
+    /// (<https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data>)
+    /// for more information.
     #[prost(string, tag = "1")]
     pub gce_pd_kms_key_name: ::prost::alloc::string::String,
+    /// Optional. The Cloud KMS key resource name to use for cluster persistent
+    /// disk and job argument encryption. See \[Use CMEK with cluster data\]
+    /// (<https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data>)
+    /// for more information.
+    ///
+    /// When this key resource name is provided, the following job arguments of
+    /// the following job types submitted to the cluster are encrypted using CMEK:
+    ///
+    /// * [FlinkJob
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+    /// * [HadoopJob
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+    /// * [SparkJob
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+    /// * [SparkRJob
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+    /// * [PySparkJob
+    ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+    /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
+    ///   scriptVariables and queryList.queries
+    /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
+    ///   scriptVariables and queryList.queries
+    /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
+    ///   scriptVariables and queryList.queries
+    /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
+    ///   scriptVariables and queryList.queries
+    #[prost(string, tag = "2")]
+    pub kms_key: ::prost::alloc::string::String,
 }
 /// Common config settings for resources of Compute Engine cluster
 /// instances, applicable to all instances in the cluster.
@@ -2380,12 +2417,22 @@ pub struct GceClusterConfig {
     /// * `sub0`
     #[prost(string, tag = "6")]
     pub subnetwork_uri: ::prost::alloc::string::String,
-    /// Optional. If true, all instances in the cluster will only have internal IP
-    /// addresses. By default, clusters are not restricted to internal IP
-    /// addresses, and will have ephemeral external IP addresses assigned to each
-    /// instance. This `internal_ip_only` restriction can only be enabled for
-    /// subnetwork enabled networks, and all off-cluster dependencies must be
-    /// configured to be accessible without external IP addresses.
+    /// Optional. This setting applies to subnetwork-enabled networks. It is set to
+    /// `true` by default in clusters created with image versions 2.2.x.
+    ///
+    /// When set to `true`:
+    ///
+    /// * All cluster VMs have internal IP addresses.
+    /// * \[Google Private Access\]
+    ///   (<https://cloud.google.com/vpc/docs/private-google-access>)
+    ///   must be enabled to access Dataproc and other Google Cloud APIs.
+    /// * Off-cluster dependencies must be configured to be accessible
+    ///   without external IP addresses.
+    ///
+    /// When set to `false`:
+    ///
+    /// * Cluster VMs are not restricted to internal IP addresses.
+    /// * Ephemeral external IP addresses are assigned to each cluster VM.
     #[prost(bool, optional, tag = "7")]
     pub internal_ip_only: ::core::option::Option<bool>,
     /// Optional. The type of IPv6 access for a cluster.
@@ -2420,8 +2467,8 @@ pub struct GceClusterConfig {
     /// * <https://www.googleapis.com/auth/devstorage.full_control>
     #[prost(string, repeated, tag = "3")]
     pub service_account_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// The Compute Engine tags to add to all instances (see [Tagging
-    /// instances](<https://cloud.google.com/compute/docs/label-or-tag-resources#tags>)).
+    /// The Compute Engine network tags to add to all instances (see [Tagging
+    /// instances](<https://cloud.google.com/vpc/docs/add-remove-network-tags>)).
     #[prost(string, repeated, tag = "4")]
     pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. The Compute Engine metadata entries to add to all instances (see
@@ -2828,15 +2875,15 @@ pub struct AcceleratorConfig {
     ///
     /// Examples:
     ///
-    /// * `<https://www.googleapis.com/compute/v1/projects/\[project_id\]/zones/\[zone\]/acceleratorTypes/nvidia-tesla-k80`>
-    /// * `projects/\[project_id\]/zones/\[zone\]/acceleratorTypes/nvidia-tesla-k80`
-    /// * `nvidia-tesla-k80`
+    /// * `<https://www.googleapis.com/compute/v1/projects/\[project_id\]/zones/\[zone\]/acceleratorTypes/nvidia-tesla-t4`>
+    /// * `projects/\[project_id\]/zones/\[zone\]/acceleratorTypes/nvidia-tesla-t4`
+    /// * `nvidia-tesla-t4`
     ///
     /// **Auto Zone Exception**: If you are using the Dataproc
     /// [Auto Zone
     /// Placement](<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement>)
     /// feature, you must use the short name of the accelerator type
-    /// resource, for example, `nvidia-tesla-k80`.
+    /// resource, for example, `nvidia-tesla-t4`.
     #[prost(string, tag = "1")]
     pub accelerator_type_uri: ::prost::alloc::string::String,
     /// The number of the accelerator cards of this type exposed to this instance.
@@ -3150,7 +3197,7 @@ pub struct KerberosConfig {
     /// principal password.
     #[prost(string, tag = "2")]
     pub root_principal_password_uri: ::prost::alloc::string::String,
-    /// Optional. The uri of the KMS key used to encrypt various sensitive
+    /// Optional. The URI of the KMS key used to encrypt sensitive
     /// files.
     #[prost(string, tag = "3")]
     pub kms_key_uri: ::prost::alloc::string::String,
@@ -3226,7 +3273,7 @@ pub struct IdentityConfig {
 pub struct SoftwareConfig {
     /// Optional. The version of software inside the cluster. It must be one of the
     /// supported [Dataproc
-    /// Versions](<https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions>),
+    /// Versions](<https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions>),
     /// such as "1.2" (including a subminor version, such as "1.2.29"), or the
     /// ["preview"
     /// version](<https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions>).
@@ -3409,6 +3456,8 @@ pub mod dataproc_metric_config {
         Hiveserver2 = 6,
         /// hivemetastore metric source
         Hivemetastore = 7,
+        /// flink metric source
+        Flink = 8,
     }
     impl MetricSource {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -3425,6 +3474,7 @@ pub mod dataproc_metric_config {
                 MetricSource::SparkHistoryServer => "SPARK_HISTORY_SERVER",
                 MetricSource::Hiveserver2 => "HIVESERVER2",
                 MetricSource::Hivemetastore => "HIVEMETASTORE",
+                MetricSource::Flink => "FLINK",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3438,6 +3488,7 @@ pub mod dataproc_metric_config {
                 "SPARK_HISTORY_SERVER" => Some(Self::SparkHistoryServer),
                 "HIVESERVER2" => Some(Self::Hiveserver2),
                 "HIVEMETASTORE" => Some(Self::Hivemetastore),
+                "FLINK" => Some(Self::Flink),
                 _ => None,
             }
         }
@@ -3703,12 +3754,12 @@ pub struct ListClustersRequest {
     /// where **field** is one of `status.state`, `clusterName`, or `labels.\[KEY\]`,
     /// and `\[KEY\]` is a label key. **value** can be `*` to match all values.
     /// `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-    /// `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-    /// contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-    /// contains the `DELETING` and `ERROR` states.
-    /// `clusterName` is the name of the cluster provided at creation time.
-    /// Only the logical `AND` operator is supported; space-separated items are
-    /// treated as having an implicit `AND` operator.
+    /// `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+    /// `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+    /// states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+    /// `STOPPED` states. `clusterName` is the name of the cluster provided at
+    /// creation time. Only the logical `AND` operator is supported;
+    /// space-separated items are treated as having an implicit `AND` operator.
     ///
     /// Example filter:
     ///
@@ -3748,7 +3799,7 @@ pub struct DiagnoseClusterRequest {
     /// Required. The cluster name.
     #[prost(string, tag = "2")]
     pub cluster_name: ::prost::alloc::string::String,
-    /// Optional. The output Cloud Storage directory for the diagnostic
+    /// Optional. (Optional) The output Cloud Storage directory for the diagnostic
     /// tarball. If not specified, a task-specific directory in the cluster's
     /// staging bucket will be used.
     #[prost(string, tag = "4")]
@@ -4233,7 +4284,7 @@ pub mod cluster_controller_client {
 /// The runtime logging config of the job.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoggingConfig {
-    /// The per-package log levels for the driver. This may include
+    /// The per-package log levels for the driver. This can include
     /// "root" package name to configure rootLogger.
     /// Examples:
     ///
@@ -4327,7 +4378,7 @@ pub mod logging_config {
 pub struct HadoopJob {
     /// Optional. The arguments to pass to the driver. Do not
     /// include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-    /// job properties, since a collision may occur that causes an incorrect job
+    /// job properties, since a collision might occur that causes an incorrect job
     /// submission.
     #[prost(string, repeated, tag = "3")]
     pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -4346,7 +4397,7 @@ pub struct HadoopJob {
     #[prost(string, repeated, tag = "6")]
     pub archive_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. A mapping of property names to values, used to configure Hadoop.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in `/etc/hadoop/conf/*-site` and
     /// classes in user code.
     #[prost(map = "string, string", tag = "7")]
@@ -4408,7 +4459,7 @@ pub struct SparkJob {
     #[prost(string, repeated, tag = "6")]
     pub archive_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. A mapping of property names to values, used to configure Spark.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in
     /// /etc/spark/conf/spark-defaults.conf and classes in user code.
     #[prost(map = "string, string", tag = "7")]
@@ -4422,8 +4473,9 @@ pub struct SparkJob {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// `CommonJob.jar_file_uris`, and then specify the main class name in
-    /// `main_class`.
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
+    /// specify the main class name in
+    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
     #[prost(oneof = "spark_job::Driver", tags = "1, 2")]
     pub driver: ::core::option::Option<spark_job::Driver>,
 }
@@ -4432,15 +4484,17 @@ pub mod spark_job {
     /// Required. The specification of the main method to call to drive the job.
     /// Specify either the jar file that contains the main class or the main class
     /// name. To pass both a main jar and a main class in that jar, add the jar to
-    /// `CommonJob.jar_file_uris`, and then specify the main class name in
-    /// `main_class`.
+    /// \[jarFileUris\]\[google.cloud.dataproc.v1.SparkJob.jar_file_uris\], and then
+    /// specify the main class name in
+    /// \[mainClass\]\[google.cloud.dataproc.v1.SparkJob.main_class\].
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Driver {
         /// The HCFS URI of the jar file that contains the main class.
         #[prost(string, tag = "1")]
         MainJarFileUri(::prost::alloc::string::String),
         /// The name of the driver's main class. The jar file that contains the class
-        /// must be in the default CLASSPATH or specified in `jar_file_uris`.
+        /// must be in the default CLASSPATH or specified in
+        /// SparkJob.jar_file_uris.
         #[prost(string, tag = "2")]
         MainClass(::prost::alloc::string::String),
     }
@@ -4478,7 +4532,7 @@ pub struct PySparkJob {
     #[prost(string, repeated, tag = "6")]
     pub archive_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. A mapping of property names to values, used to configure PySpark.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in
     /// /etc/spark/conf/spark-defaults.conf and classes in user code.
     #[prost(map = "string, string", tag = "7")]
@@ -4529,7 +4583,7 @@ pub struct HiveJob {
         ::prost::alloc::string::String,
     >,
     /// Optional. A mapping of property names and values, used to configure Hive.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
     /// /etc/hive/conf/hive-site.xml, and classes in user code.
     #[prost(map = "string, string", tag = "5")]
@@ -4574,7 +4628,7 @@ pub struct SparkSqlJob {
     >,
     /// Optional. A mapping of property names to values, used to configure
     /// Spark SQL's SparkConf. Properties that conflict with values set by the
-    /// Dataproc API may be overwritten.
+    /// Dataproc API might be overwritten.
     #[prost(map = "string, string", tag = "4")]
     pub properties: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -4622,7 +4676,7 @@ pub struct PigJob {
         ::prost::alloc::string::String,
     >,
     /// Optional. A mapping of property names to values, used to configure Pig.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
     /// /etc/pig/conf/pig.properties, and classes in user code.
     #[prost(map = "string, string", tag = "5")]
@@ -4680,7 +4734,7 @@ pub struct SparkRJob {
     #[prost(string, repeated, tag = "4")]
     pub archive_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. A mapping of property names to values, used to configure SparkR.
-    /// Properties that conflict with values set by the Dataproc API may be
+    /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in
     /// /etc/spark/conf/spark-defaults.conf and classes in user code.
     #[prost(map = "string, string", tag = "5")]
@@ -4809,7 +4863,7 @@ pub struct FlinkJob {
     /// Optional. A mapping of property names to values, used to configure Flink.
     /// Properties that conflict with values set by the Dataproc API might be
     /// overwritten. Can include properties set in
-    /// /etc/flink/conf/flink-defaults.conf and classes in user code.
+    /// `/etc/flink/conf/flink-defaults.conf` and classes in user code.
     #[prost(map = "string, string", tag = "7")]
     pub properties: ::std::collections::HashMap<
         ::prost::alloc::string::String,
@@ -4872,7 +4926,7 @@ pub struct JobStatus {
     #[prost(enumeration = "job_status::State", tag = "1")]
     pub state: i32,
     /// Optional. Output only. Job state details, such as an error
-    /// description if the state is <code>ERROR</code>.
+    /// description if the state is `ERROR`.
     #[prost(string, tag = "2")]
     pub details: ::prost::alloc::string::String,
     /// Output only. The time when this state was entered.
@@ -4981,13 +5035,13 @@ pub mod job_status {
         ///
         /// Applies to RUNNING state.
         Submitted = 1,
-        /// The Job has been received and is awaiting execution (it may be waiting
+        /// The Job has been received and is awaiting execution (it might be waiting
         /// for a condition to be met). See the "details" field for the reason for
         /// the delay.
         ///
         /// Applies to RUNNING state.
         Queued = 2,
-        /// The agent-reported status is out of date, which may be caused by a
+        /// The agent-reported status is out of date, which can be caused by a
         /// loss of communication between the agent and Dataproc. If the
         /// agent does not send a timely update, the job will fail.
         ///
@@ -5143,7 +5197,7 @@ pub struct Job {
     #[prost(message, optional, tag = "2")]
     pub placement: ::core::option::Option<JobPlacement>,
     /// Output only. The job status. Additional application-specific
-    /// status information may be contained in the <code>type_job</code>
+    /// status information might be contained in the <code>type_job</code>
     /// and <code>yarn_applications</code> fields.
     #[prost(message, optional, tag = "8")]
     pub status: ::core::option::Option<JobStatus>,
@@ -5153,7 +5207,7 @@ pub struct Job {
     /// Output only. The collection of YARN applications spun up by this job.
     ///
     /// **Beta** Feature: This report is available for testing purposes only. It
-    /// may be changed before final release.
+    /// might be changed before final release.
     #[prost(message, repeated, tag = "9")]
     pub yarn_applications: ::prost::alloc::vec::Vec<YarnApplication>,
     /// Output only. A URI pointing to the location of the stdout of the job's
@@ -5161,14 +5215,14 @@ pub struct Job {
     #[prost(string, tag = "17")]
     pub driver_output_resource_uri: ::prost::alloc::string::String,
     /// Output only. If present, the location of miscellaneous control files
-    /// which may be used as part of job setup and handling. If not present,
-    /// control files may be placed in the same location as `driver_output_uri`.
+    /// which can be used as part of job setup and handling. If not present,
+    /// control files might be placed in the same location as `driver_output_uri`.
     #[prost(string, tag = "15")]
     pub driver_control_files_uri: ::prost::alloc::string::String,
     /// Optional. The labels to associate with this job.
     /// Label **keys** must contain 1 to 63 characters, and must conform to
     /// [RFC 1035](<https://www.ietf.org/rfc/rfc1035.txt>).
-    /// Label **values** may be empty, but, if present, must contain 1 to 63
+    /// Label **values** can be empty, but, if present, must contain 1 to 63
     /// characters, and must conform to [RFC
     /// 1035](<https://www.ietf.org/rfc/rfc1035.txt>). No more than 32 labels can be
     /// associated with a job.
@@ -5182,7 +5236,7 @@ pub struct Job {
     pub scheduling: ::core::option::Option<JobScheduling>,
     /// Output only. A UUID that uniquely identifies a job within the project
     /// over time. This is in contrast to a user-settable reference.job_id that
-    /// may be reused over time.
+    /// might be reused over time.
     #[prost(string, tag = "22")]
     pub job_uuid: ::prost::alloc::string::String,
     /// Output only. Indicates whether the job is completed. If the value is
@@ -5248,12 +5302,12 @@ pub struct DriverSchedulingConfig {
 /// Job scheduling options.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct JobScheduling {
-    /// Optional. Maximum number of times per hour a driver may be restarted as
+    /// Optional. Maximum number of times per hour a driver can be restarted as
     /// a result of driver exiting with non-zero code before job is
     /// reported failed.
     ///
-    /// A job may be reported as thrashing if the driver exits with a non-zero code
-    /// four times within a 10-minute window.
+    /// A job might be reported as thrashing if the driver exits with a non-zero
+    /// code four times within a 10-minute window.
     ///
     /// Maximum value is 10.
     ///
@@ -5262,7 +5316,7 @@ pub struct JobScheduling {
     /// (<https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template>).
     #[prost(int32, tag = "1")]
     pub max_failures_per_hour: i32,
-    /// Optional. Maximum total number of times a driver may be restarted as a
+    /// Optional. Maximum total number of times a driver can be restarted as a
     /// result of the driver exiting with a non-zero code. After the maximum number
     /// is reached, the job will be reported as failed.
     ///
@@ -7005,6 +7059,47 @@ pub struct WorkflowTemplate {
     /// the cluster is deleted.
     #[prost(message, optional, tag = "10")]
     pub dag_timeout: ::core::option::Option<::prost_types::Duration>,
+    /// Optional. Encryption settings for encrypting workflow template job
+    /// arguments.
+    #[prost(message, optional, tag = "11")]
+    pub encryption_config: ::core::option::Option<workflow_template::EncryptionConfig>,
+}
+/// Nested message and enum types in `WorkflowTemplate`.
+pub mod workflow_template {
+    /// Encryption settings for encrypting workflow template job arguments.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct EncryptionConfig {
+        /// Optional. The Cloud KMS key name to use for encrypting
+        /// workflow template job arguments.
+        ///
+        /// When this this key is provided, the following workflow template
+        /// \[job arguments\]
+        /// (<https://cloud.google.com/dataproc/docs/concepts/workflows/use-workflows#adding_jobs_to_a_template>),
+        /// if present, are
+        /// [CMEK
+        /// encrypted](<https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_workflow_template_data>):
+        ///
+        /// * [FlinkJob
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/FlinkJob>)
+        /// * [HadoopJob
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HadoopJob>)
+        /// * [SparkJob
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkJob>)
+        /// * [SparkRJob
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkRJob>)
+        /// * [PySparkJob
+        ///   args](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PySparkJob>)
+        /// * [SparkSqlJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/SparkSqlJob>)
+        ///   scriptVariables and queryList.queries
+        /// * [HiveJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/HiveJob>)
+        ///   scriptVariables and queryList.queries
+        /// * [PigJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PigJob>)
+        ///   scriptVariables and queryList.queries
+        /// * [PrestoJob](<https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob>)
+        ///   scriptVariables and queryList.queries
+        #[prost(string, tag = "1")]
+        pub kms_key: ::prost::alloc::string::String,
+    }
 }
 /// Specifies workflow execution target.
 ///
@@ -7120,7 +7215,7 @@ pub struct OrderedJob {
     #[prost(string, repeated, tag = "10")]
     pub prerequisite_step_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Required. The job definition.
-    #[prost(oneof = "ordered_job::JobType", tags = "2, 3, 4, 5, 6, 11, 7, 12")]
+    #[prost(oneof = "ordered_job::JobType", tags = "2, 3, 4, 5, 6, 11, 7, 12, 13, 14")]
     pub job_type: ::core::option::Option<ordered_job::JobType>,
 }
 /// Nested message and enum types in `OrderedJob`.
@@ -7152,6 +7247,12 @@ pub mod ordered_job {
         /// Optional. Job is a Presto job.
         #[prost(message, tag = "12")]
         PrestoJob(super::PrestoJob),
+        /// Optional. Job is a Trino job.
+        #[prost(message, tag = "13")]
+        TrinoJob(super::TrinoJob),
+        /// Optional. Job is a Flink job.
+        #[prost(message, tag = "14")]
+        FlinkJob(super::FlinkJob),
     }
 }
 /// A configurable parameter that replaces one or more fields in the template.
@@ -7635,6 +7736,11 @@ pub struct ListWorkflowTemplatesResponse {
     /// page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
     #[prost(string, tag = "2")]
     pub next_page_token: ::prost::alloc::string::String,
+    /// Output only. List of workflow templates that could not be included in the
+    /// response. Attempting to get one of these resources may indicate why it was
+    /// not included in the list response.
+    #[prost(string, repeated, tag = "3")]
+    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// A request to delete a workflow template.
 ///

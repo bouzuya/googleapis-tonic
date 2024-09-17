@@ -89,6 +89,9 @@ pub mod order {
         Draft = 1,
         /// Order has been submitted to Google.
         Submitted = 2,
+        /// All information required from the customer for fulfillment of the order
+        /// is complete.
+        InfoComplete = 12,
         /// Order has been accepted by Google.
         Accepted = 3,
         /// Order needs more information from the customer.
@@ -120,6 +123,7 @@ pub mod order {
                 State::Unspecified => "STATE_UNSPECIFIED",
                 State::Draft => "DRAFT",
                 State::Submitted => "SUBMITTED",
+                State::InfoComplete => "INFO_COMPLETE",
                 State::Accepted => "ACCEPTED",
                 State::AdditionalInfoNeeded => "ADDITIONAL_INFO_NEEDED",
                 State::Building => "BUILDING",
@@ -137,6 +141,7 @@ pub mod order {
                 "STATE_UNSPECIFIED" => Some(Self::Unspecified),
                 "DRAFT" => Some(Self::Draft),
                 "SUBMITTED" => Some(Self::Submitted),
+                "INFO_COMPLETE" => Some(Self::InfoComplete),
                 "ACCEPTED" => Some(Self::Accepted),
                 "ADDITIONAL_INFO_NEEDED" => Some(Self::AdditionalInfoNeeded),
                 "BUILDING" => Some(Self::Building),
@@ -230,6 +235,12 @@ pub struct Site {
     pub google_maps_pin_uri: ::prost::alloc::string::String,
     /// Optional. The time periods when the site is accessible.
     /// If this field is empty, the site is accessible at all times.
+    ///
+    /// This field is used by Google to schedule the initial installation as well
+    /// as any later hardware maintenance. You may update this at any time. For
+    /// example, if the initial installation is requested during off-hours but
+    /// maintenance should be performed during regular business hours, you should
+    /// update the access times after initial installation is complete.
     #[prost(message, repeated, tag = "26")]
     pub access_times: ::prost::alloc::vec::Vec<TimePeriod>,
     /// Optional. Any additional notes for this Site. Please include information
@@ -241,6 +252,10 @@ pub struct Site {
     /// * whether a representative will be available during site visits
     #[prost(string, tag = "27")]
     pub notes: ::prost::alloc::string::String,
+    /// Optional. Customer defined identifier for this Site. This can be used to
+    /// identify the site in the customer's own systems.
+    #[prost(string, tag = "28")]
+    pub customer_site_id: ::prost::alloc::string::String,
 }
 /// A group of hardware that is part of the same order, has the same SKU, and is
 /// delivered to the same site.
@@ -521,6 +536,13 @@ pub struct Comment {
     /// characters.
     #[prost(string, tag = "5")]
     pub text: ::prost::alloc::string::String,
+    /// Output only. Timestamp of the first time this comment was viewed by the
+    /// customer. If the comment wasn't viewed then this timestamp will be unset.
+    #[prost(message, optional, tag = "6")]
+    pub customer_viewed_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. The entity the author belongs to.
+    #[prost(enumeration = "Entity", tag = "7")]
+    pub author_entity: i32,
 }
 /// A log entry of a change made to an order.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -673,6 +695,9 @@ pub struct Zone {
     /// Output only. Globally unique identifier generated for this Edge Zone.
     #[prost(string, tag = "12")]
     pub globally_unique_id: ::prost::alloc::string::String,
+    /// Output only. Subscription configurations for this zone.
+    #[prost(message, repeated, tag = "13")]
+    pub subscription_configs: ::prost::alloc::vec::Vec<SubscriptionConfig>,
 }
 /// Nested message and enum types in `Zone`.
 pub mod zone {
@@ -1200,6 +1225,81 @@ pub struct HardwareLocation {
     #[prost(message, repeated, tag = "3")]
     pub rack_space: ::prost::alloc::vec::Vec<RackSpace>,
 }
+/// A message to store a subscription configuration.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubscriptionConfig {
+    /// Output only. The unique identifier of the subscription.
+    #[prost(string, tag = "1")]
+    pub subscription_id: ::prost::alloc::string::String,
+    /// Output only. The Google Cloud Billing ID that the subscription is created
+    /// under.
+    #[prost(string, tag = "2")]
+    pub billing_id: ::prost::alloc::string::String,
+    /// Output only. The current state of the subscription.
+    #[prost(enumeration = "subscription_config::SubscriptionState", tag = "3")]
+    pub state: i32,
+}
+/// Nested message and enum types in `SubscriptionConfig`.
+pub mod subscription_config {
+    /// Enum to represent the state of the subscription.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum SubscriptionState {
+        /// State is unspecified.
+        Unspecified = 0,
+        /// Active state means that the subscription has been created successfully
+        /// and billing is happening.
+        Active = 1,
+        /// Inactive means that the subscription has been created successfully, but
+        /// billing has not started yet.
+        Inactive = 2,
+        /// The subscription is in an erroneous state.
+        Error = 3,
+        /// The subscription state failed to be retrieved. This may be a transient
+        /// issue. The user should retry the request.
+        FailedToRetrieve = 4,
+        /// The subscription has been completed, because it has reached the end date.
+        Completed = 5,
+    }
+    impl SubscriptionState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                SubscriptionState::Unspecified => "SUBSCRIPTION_STATE_UNSPECIFIED",
+                SubscriptionState::Active => "ACTIVE",
+                SubscriptionState::Inactive => "INACTIVE",
+                SubscriptionState::Error => "ERROR",
+                SubscriptionState::FailedToRetrieve => "FAILED_TO_RETRIEVE",
+                SubscriptionState::Completed => "COMPLETED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SUBSCRIPTION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "INACTIVE" => Some(Self::Inactive),
+                "ERROR" => Some(Self::Error),
+                "FAILED_TO_RETRIEVE" => Some(Self::FailedToRetrieve),
+                "COMPLETED" => Some(Self::Completed),
+                _ => None,
+            }
+        }
+    }
+}
 /// The power supply options.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -1229,6 +1329,43 @@ impl PowerSupply {
             "POWER_SUPPLY_UNSPECIFIED" => Some(Self::Unspecified),
             "POWER_SUPPLY_AC" => Some(Self::Ac),
             "POWER_SUPPLY_DC" => Some(Self::Dc),
+            _ => None,
+        }
+    }
+}
+/// Entity is used to denote an organization or party.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Entity {
+    /// Entity is unspecified.
+    Unspecified = 0,
+    /// Google.
+    Google = 1,
+    /// Customer.
+    Customer = 2,
+    /// Vendor.
+    Vendor = 3,
+}
+impl Entity {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Entity::Unspecified => "ENTITY_UNSPECIFIED",
+            Entity::Google => "GOOGLE",
+            Entity::Customer => "CUSTOMER",
+            Entity::Vendor => "VENDOR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ENTITY_UNSPECIFIED" => Some(Self::Unspecified),
+            "GOOGLE" => Some(Self::Google),
+            "CUSTOMER" => Some(Self::Customer),
+            "VENDOR" => Some(Self::Vendor),
             _ => None,
         }
     }
@@ -1345,6 +1482,68 @@ pub struct SubmitOrderRequest {
     /// [AIP-155](<https://google.aip.dev/155>).
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
+    /// Optional. Type of this request. If unset, the request type is assumed to be
+    /// `INFO_PENDING`.
+    #[prost(enumeration = "submit_order_request::Type", tag = "3")]
+    pub r#type: i32,
+}
+/// Nested message and enum types in `SubmitOrderRequest`.
+pub mod submit_order_request {
+    /// Valid types of submit order request.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Type {
+        /// Request type is unspecified. This should not be used.
+        Unspecified = 0,
+        /// Use this request type to submit your order and initiate conversation with
+        /// Google. After this submission, you will not be able to modify the number
+        /// or SKU of your ordered hardware. Please note that this order will not be
+        /// ready for fulfillment yet until you provide more information, such as
+        /// zone network configuration, hardware physical and installation
+        /// information, etc.
+        /// If you are submitting an order for a SKU type of RACK, please use this
+        /// request type, as additional information will be required outside of the
+        /// API.
+        InfoPending = 1,
+        /// Use this request type if and when you are ready to submit your order for
+        /// fulfillment. In addition to the information required for `INFO_PENDING`,
+        /// the order must contain all required information, such as zone network
+        /// configuration, hardware physical and installation information, etc.
+        /// Further changes to any order information will no longer be allowed.
+        InfoComplete = 2,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unspecified => "TYPE_UNSPECIFIED",
+                Type::InfoPending => "INFO_PENDING",
+                Type::InfoComplete => "INFO_COMPLETE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "INFO_PENDING" => Some(Self::InfoPending),
+                "INFO_COMPLETE" => Some(Self::InfoComplete),
+                _ => None,
+            }
+        }
+    }
 }
 /// A request to list sites.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1689,6 +1888,64 @@ pub struct CreateCommentRequest {
     #[prost(string, tag = "4")]
     pub request_id: ::prost::alloc::string::String,
 }
+/// A request to record an action on a comment.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RecordActionOnCommentRequest {
+    /// Required. The name of the comment.
+    /// Format:
+    /// `projects/{project}/locations/{location}/orders/{order}/comments/{comment}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. The action type of the recorded action.
+    #[prost(enumeration = "record_action_on_comment_request::ActionType", tag = "2")]
+    pub action_type: i32,
+}
+/// Nested message and enum types in `RecordActionOnCommentRequest`.
+pub mod record_action_on_comment_request {
+    /// Valid action types of Comment.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ActionType {
+        /// Action is unspecified.
+        Unspecified = 0,
+        /// Mark comment as read.
+        Read = 1,
+        /// Mark comment as unread.
+        Unread = 2,
+    }
+    impl ActionType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+                ActionType::Read => "READ",
+                ActionType::Unread => "UNREAD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "READ" => Some(Self::Read),
+                "UNREAD" => Some(Self::Unread),
+                _ => None,
+            }
+        }
+    }
+}
 /// A request to list change log entries.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChangeLogEntriesRequest {
@@ -1904,7 +2161,7 @@ pub mod signal_zone_state_request {
         /// State signal of the zone is unspecified.
         Unspecified = 0,
         /// The Zone is ready for site turnup.
-        ReadyForSiteTurnup = 1,
+        FactoryTurnupChecksPassed = 1,
         /// The Zone failed in factory turnup checks.
         FactoryTurnupChecksFailed = 2,
     }
@@ -1916,7 +2173,7 @@ pub mod signal_zone_state_request {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 StateSignal::Unspecified => "STATE_SIGNAL_UNSPECIFIED",
-                StateSignal::ReadyForSiteTurnup => "READY_FOR_SITE_TURNUP",
+                StateSignal::FactoryTurnupChecksPassed => "FACTORY_TURNUP_CHECKS_PASSED",
                 StateSignal::FactoryTurnupChecksFailed => "FACTORY_TURNUP_CHECKS_FAILED",
             }
         }
@@ -1924,7 +2181,7 @@ pub mod signal_zone_state_request {
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
                 "STATE_SIGNAL_UNSPECIFIED" => Some(Self::Unspecified),
-                "READY_FOR_SITE_TURNUP" => Some(Self::ReadyForSiteTurnup),
+                "FACTORY_TURNUP_CHECKS_PASSED" => Some(Self::FactoryTurnupChecksPassed),
                 "FACTORY_TURNUP_CHECKS_FAILED" => Some(Self::FactoryTurnupChecksFailed),
                 _ => None,
             }
@@ -2729,6 +2986,37 @@ pub mod gdc_hardware_management_client {
                     GrpcMethod::new(
                         "google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement",
                         "CreateComment",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Record Action on a Comment. If the Action specified in the request is READ,
+        /// the viewed time in the comment is set to the time the request was received.
+        /// If the comment is already marked as read, subsequent calls will be ignored.
+        /// If the Action is UNREAD, the viewed time is cleared from the comment.
+        pub async fn record_action_on_comment(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RecordActionOnCommentRequest>,
+        ) -> std::result::Result<tonic::Response<super::Comment>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement/RecordActionOnComment",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.gdchardwaremanagement.v1alpha.GDCHardwareManagement",
+                        "RecordActionOnComment",
                     ),
                 );
             self.inner.unary(req, path, codec).await

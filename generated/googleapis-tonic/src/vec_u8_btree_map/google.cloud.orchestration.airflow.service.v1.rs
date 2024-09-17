@@ -958,8 +958,9 @@ pub struct EnvironmentConfig {
     /// This may be split into multiple chunks, each with a size of
     /// at least 4 hours.
     ///
-    /// If this value is omitted, the default value for maintenance window will be
-    /// applied. The default value is Saturday and Sunday 00-06 GMT.
+    /// If this value is omitted, the default value for maintenance window is
+    /// applied. By default, maintenance windows are from 00:00:00 to 04:00:00
+    /// (GMT) on Friday, Saturday, and Sunday every week.
     #[prost(message, optional, tag = "12")]
     pub maintenance_window: ::core::option::Option<MaintenanceWindow>,
     /// Optional. The workloads configuration settings for the GKE cluster
@@ -1845,6 +1846,9 @@ pub mod workloads_config {
         pub memory_gb: f32,
     }
     /// Configuration for resources used by Airflow DAG processors.
+    ///
+    /// This field is supported for Cloud Composer environments in versions
+    /// composer-3.*.*-airflow-*.*.\* and newer.
     #[derive(Clone, Copy, PartialEq, ::prost::Message)]
     pub struct DagProcessorResource {
         /// Optional. CPU request and limit for a single Airflow DAG processor
@@ -1970,6 +1974,9 @@ pub struct Environment {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "8")]
     pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "10")]
+    pub satisfies_pzi: bool,
     /// Optional. Storage configuration for this environment.
     #[prost(message, optional, tag = "9")]
     pub storage_config: ::core::option::Option<StorageConfig>,
@@ -2032,6 +2039,41 @@ pub mod environment {
             }
         }
     }
+}
+/// Request to check whether image upgrade will succeed.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CheckUpgradeRequest {
+    /// Required. The resource name of the environment to check upgrade for, in the
+    /// form:
+    /// "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+    #[prost(string, tag = "1")]
+    pub environment: ::prost::alloc::string::String,
+    /// Optional. The version of the software running in the environment.
+    /// This encapsulates both the version of Cloud Composer functionality and the
+    /// version of Apache Airflow. It must match the regular expression
+    /// `composer-(\[0-9\]+(\.\[0-9\]+\.\[0-9\]+(-preview\.\[0-9\]+)?)?|latest)-airflow-(\[0-9\]+(\.\[0-9\]+(\.\[0-9\]+)?)?)`.
+    /// When used as input, the server also checks if the provided version is
+    /// supported and denies the request for an unsupported version.
+    ///
+    /// The Cloud Composer portion of the image version is a full
+    /// [semantic version](<https://semver.org>), or an alias in the form of major
+    /// version number or `latest`. When an alias is provided, the server replaces
+    /// it with the current Cloud Composer version that satisfies the alias.
+    ///
+    /// The Apache Airflow portion of the image version is a full semantic version
+    /// that points to one of the supported Apache Airflow versions, or an alias in
+    /// the form of only major or major.minor versions specified. When an alias is
+    /// provided, the server replaces it with the latest Apache Airflow version
+    /// that satisfies the alias and is supported in the given Cloud Composer
+    /// version.
+    ///
+    /// In all cases, the resolved image version is stored in the same field.
+    ///
+    /// See also [version
+    /// list](/composer/docs/concepts/versioning/composer-versions) and [versioning
+    /// overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+    #[prost(string, tag = "2")]
+    pub image_version: ::prost::alloc::string::String,
 }
 /// Message containing information about the result of an upgrade check
 /// operation.
@@ -2107,6 +2149,11 @@ pub mod check_upgrade_response {
 /// The configuration setting for Airflow database data retention mechanism.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataRetentionConfig {
+    /// Optional. The retention policy for airflow metadata database.
+    #[prost(message, optional, tag = "1")]
+    pub airflow_metadata_retention_config: ::core::option::Option<
+        AirflowMetadataRetentionPolicyConfig,
+    >,
     /// Optional. The configuration settings for task logs retention
     #[prost(message, optional, tag = "2")]
     pub task_logs_retention_config: ::core::option::Option<TaskLogsRetentionConfig>,
@@ -2114,8 +2161,7 @@ pub struct DataRetentionConfig {
 /// The configuration setting for Task Logs.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TaskLogsRetentionConfig {
-    /// Optional. The mode of storage for Airflow workers task logs. For details,
-    /// see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+    /// Optional. The mode of storage for Airflow workers task logs.
     #[prost(enumeration = "task_logs_retention_config::TaskLogsStorageMode", tag = "2")]
     pub storage_mode: i32,
 }
@@ -2165,6 +2211,65 @@ pub mod task_logs_retention_config {
                     Some(Self::CloudLoggingAndCloudStorage)
                 }
                 "CLOUD_LOGGING_ONLY" => Some(Self::CloudLoggingOnly),
+                _ => None,
+            }
+        }
+    }
+}
+/// The policy for airflow metadata database retention.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AirflowMetadataRetentionPolicyConfig {
+    /// Optional. Retention can be either enabled or disabled.
+    #[prost(
+        enumeration = "airflow_metadata_retention_policy_config::RetentionMode",
+        tag = "1"
+    )]
+    pub retention_mode: i32,
+    /// Optional. How many days data should be retained for.
+    #[prost(int32, tag = "2")]
+    pub retention_days: i32,
+}
+/// Nested message and enum types in `AirflowMetadataRetentionPolicyConfig`.
+pub mod airflow_metadata_retention_policy_config {
+    /// Describes retention policy.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum RetentionMode {
+        /// Default mode doesn't change environment parameters.
+        Unspecified = 0,
+        /// Retention policy is enabled.
+        Enabled = 1,
+        /// Retention policy is disabled.
+        Disabled = 2,
+    }
+    impl RetentionMode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                RetentionMode::Unspecified => "RETENTION_MODE_UNSPECIFIED",
+                RetentionMode::Enabled => "RETENTION_MODE_ENABLED",
+                RetentionMode::Disabled => "RETENTION_MODE_DISABLED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "RETENTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "RETENTION_MODE_ENABLED" => Some(Self::Enabled),
+                "RETENTION_MODE_DISABLED" => Some(Self::Disabled),
                 _ => None,
             }
         }
@@ -2527,6 +2632,41 @@ pub mod environments_client {
                     GrpcMethod::new(
                         "google.cloud.orchestration.airflow.service.v1.Environments",
                         "ListWorkloads",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Check if an upgrade operation on the environment will succeed.
+        ///
+        /// In case of problems detailed info can be found in the returned Operation.
+        pub async fn check_upgrade(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CheckUpgradeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<
+                super::super::super::super::super::super::longrunning::Operation,
+            >,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.orchestration.airflow.service.v1.Environments/CheckUpgrade",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.orchestration.airflow.service.v1.Environments",
+                        "CheckUpgrade",
                     ),
                 );
             self.inner.unary(req, path, codec).await

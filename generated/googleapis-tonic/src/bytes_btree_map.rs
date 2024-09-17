@@ -7,11 +7,6 @@
     feature = "google-actions-type",
     feature = "google-ads-admanager-v1",
     feature = "google-ads-admob-v1",
-    feature = "google-ads-googleads-v15-common",
-    feature = "google-ads-googleads-v15-enums",
-    feature = "google-ads-googleads-v15-errors",
-    feature = "google-ads-googleads-v15-resources",
-    feature = "google-ads-googleads-v15-services",
     feature = "google-ads-googleads-v16-common",
     feature = "google-ads-googleads-v16-enums",
     feature = "google-ads-googleads-v16-errors",
@@ -33,6 +28,7 @@
     feature = "google-ai-generativelanguage-v1beta3",
     feature = "google-analytics-admin-v1alpha",
     feature = "google-analytics-admin-v1beta",
+    feature = "google-analytics-cloud",
     feature = "google-analytics-data-v1alpha",
     feature = "google-analytics-data-v1beta",
     feature = "google-api",
@@ -280,6 +276,7 @@
     feature = "google-cloud-notebooks-v1beta1",
     feature = "google-cloud-notebooks-v2",
     feature = "google-cloud-optimization-v1",
+    feature = "google-cloud-oracledatabase-v1",
     feature = "google-cloud-orchestration-airflow-service-v1",
     feature = "google-cloud-orchestration-airflow-service-v1beta1",
     feature = "google-cloud-orgpolicy-v1",
@@ -934,6 +931,7 @@ pub mod google {
         feature = "google-cloud-notebooks-v1beta1",
         feature = "google-cloud-notebooks-v2",
         feature = "google-cloud-optimization-v1",
+        feature = "google-cloud-oracledatabase-v1",
         feature = "google-cloud-orchestration-airflow-service-v1",
         feature = "google-cloud-orchestration-airflow-service-v1beta1",
         feature = "google-cloud-orgpolicy-v1",
@@ -5283,6 +5281,20 @@ pub mod google {
             }
         }
         #[cfg(any(
+            feature = "google-cloud-oracledatabase-v1",
+        ))]
+        pub mod oracledatabase {
+            #[cfg(any(
+                feature = "google-cloud-oracledatabase-v1",
+            ))]
+            pub mod v1 {
+                #[cfg(any(
+                    feature = "google-cloud-oracledatabase-v1",
+                ))]
+                include!("bytes_btree_map/google.cloud.oracledatabase.v1.rs");
+            }
+        }
+        #[cfg(any(
             feature = "google-cloud-managedkafka-v1",
         ))]
         pub mod managedkafka {
@@ -5649,11 +5661,6 @@ pub mod google {
     #[cfg(any(
         feature = "google-ads-admanager-v1",
         feature = "google-ads-admob-v1",
-        feature = "google-ads-googleads-v15-common",
-        feature = "google-ads-googleads-v15-enums",
-        feature = "google-ads-googleads-v15-errors",
-        feature = "google-ads-googleads-v15-resources",
-        feature = "google-ads-googleads-v15-services",
         feature = "google-ads-googleads-v16-common",
         feature = "google-ads-googleads-v16-enums",
         feature = "google-ads-googleads-v16-errors",
@@ -5735,11 +5742,6 @@ pub mod google {
             }
         }
         #[cfg(any(
-            feature = "google-ads-googleads-v15-common",
-            feature = "google-ads-googleads-v15-enums",
-            feature = "google-ads-googleads-v15-errors",
-            feature = "google-ads-googleads-v15-resources",
-            feature = "google-ads-googleads-v15-services",
             feature = "google-ads-googleads-v16-common",
             feature = "google-ads-googleads-v16-enums",
             feature = "google-ads-googleads-v16-errors",
@@ -5858,60 +5860,6 @@ pub mod google {
                         feature = "google-ads-googleads-v17-enums",
                     ))]
                     include!("bytes_btree_map/google.ads.googleads.v17.enums.rs");
-                }
-            }
-            #[cfg(any(
-                feature = "google-ads-googleads-v15-common",
-                feature = "google-ads-googleads-v15-enums",
-                feature = "google-ads-googleads-v15-errors",
-                feature = "google-ads-googleads-v15-resources",
-                feature = "google-ads-googleads-v15-services",
-            ))]
-            pub mod v15 {
-                #[cfg(any(
-                    feature = "google-ads-googleads-v15-errors",
-                ))]
-                pub mod errors {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v15-errors",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v15.errors.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v15-resources",
-                ))]
-                pub mod resources {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v15-resources",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v15.resources.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v15-services",
-                ))]
-                pub mod services {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v15-services",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v15.services.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v15-enums",
-                ))]
-                pub mod enums {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v15-enums",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v15.enums.rs");
-                }
-                #[cfg(any(
-                    feature = "google-ads-googleads-v15-common",
-                ))]
-                pub mod common {
-                    #[cfg(any(
-                        feature = "google-ads-googleads-v15-common",
-                    ))]
-                    include!("bytes_btree_map/google.ads.googleads.v15.common.rs");
                 }
             }
         }
@@ -6541,6 +6489,72 @@ pub mod google {
                 feature = "google-actions-type",
             ))]
             include!("bytes_btree_map/google.actions.r#type.rs");
+        }
+    }
+    #[cfg(any(
+        feature = "google-analytics-admin-v1alpha",
+        feature = "google-analytics-admin-v1beta",
+        feature = "google-analytics-cloud",
+        feature = "google-analytics-data-v1alpha",
+        feature = "google-analytics-data-v1beta",
+    ))]
+    pub mod analytics {
+        #[cfg(any(
+            feature = "google-analytics-cloud",
+        ))]
+        pub mod cloud {
+            #[cfg(any(
+                feature = "google-analytics-cloud",
+            ))]
+            include!("bytes_btree_map/google.analytics.cloud.rs");
+        }
+        #[cfg(any(
+            feature = "google-analytics-admin-v1alpha",
+            feature = "google-analytics-admin-v1beta",
+        ))]
+        pub mod admin {
+            #[cfg(any(
+                feature = "google-analytics-admin-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-analytics-admin-v1beta",
+                ))]
+                include!("bytes_btree_map/google.analytics.admin.v1beta.rs");
+            }
+            #[cfg(any(
+                feature = "google-analytics-admin-v1alpha",
+            ))]
+            pub mod v1alpha {
+                #[cfg(any(
+                    feature = "google-analytics-admin-v1alpha",
+                ))]
+                include!("bytes_btree_map/google.analytics.admin.v1alpha.rs");
+            }
+        }
+        #[cfg(any(
+            feature = "google-analytics-data-v1alpha",
+            feature = "google-analytics-data-v1beta",
+        ))]
+        pub mod data {
+            #[cfg(any(
+                feature = "google-analytics-data-v1beta",
+            ))]
+            pub mod v1beta {
+                #[cfg(any(
+                    feature = "google-analytics-data-v1beta",
+                ))]
+                include!("bytes_btree_map/google.analytics.data.v1beta.rs");
+            }
+            #[cfg(any(
+                feature = "google-analytics-data-v1alpha",
+            ))]
+            pub mod v1alpha {
+                #[cfg(any(
+                    feature = "google-analytics-data-v1alpha",
+                ))]
+                include!("bytes_btree_map/google.analytics.data.v1alpha.rs");
+            }
         }
     }
     #[cfg(any(
@@ -7601,62 +7615,6 @@ pub mod google {
                 feature = "google-rpc-context",
             ))]
             include!("bytes_btree_map/google.rpc.context.rs");
-        }
-    }
-    #[cfg(any(
-        feature = "google-analytics-admin-v1alpha",
-        feature = "google-analytics-admin-v1beta",
-        feature = "google-analytics-data-v1alpha",
-        feature = "google-analytics-data-v1beta",
-    ))]
-    pub mod analytics {
-        #[cfg(any(
-            feature = "google-analytics-admin-v1alpha",
-            feature = "google-analytics-admin-v1beta",
-        ))]
-        pub mod admin {
-            #[cfg(any(
-                feature = "google-analytics-admin-v1beta",
-            ))]
-            pub mod v1beta {
-                #[cfg(any(
-                    feature = "google-analytics-admin-v1beta",
-                ))]
-                include!("bytes_btree_map/google.analytics.admin.v1beta.rs");
-            }
-            #[cfg(any(
-                feature = "google-analytics-admin-v1alpha",
-            ))]
-            pub mod v1alpha {
-                #[cfg(any(
-                    feature = "google-analytics-admin-v1alpha",
-                ))]
-                include!("bytes_btree_map/google.analytics.admin.v1alpha.rs");
-            }
-        }
-        #[cfg(any(
-            feature = "google-analytics-data-v1alpha",
-            feature = "google-analytics-data-v1beta",
-        ))]
-        pub mod data {
-            #[cfg(any(
-                feature = "google-analytics-data-v1beta",
-            ))]
-            pub mod v1beta {
-                #[cfg(any(
-                    feature = "google-analytics-data-v1beta",
-                ))]
-                include!("bytes_btree_map/google.analytics.data.v1beta.rs");
-            }
-            #[cfg(any(
-                feature = "google-analytics-data-v1alpha",
-            ))]
-            pub mod v1alpha {
-                #[cfg(any(
-                    feature = "google-analytics-data-v1alpha",
-                ))]
-                include!("bytes_btree_map/google.analytics.data.v1alpha.rs");
-            }
         }
     }
     #[cfg(any(
