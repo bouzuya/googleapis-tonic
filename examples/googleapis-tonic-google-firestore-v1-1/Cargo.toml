@@ -4,7 +4,7 @@ edition = "2021"
 publish = false
 
 [dependencies]
-anyhow = "1.0.87"
+anyhow = "1.0.89"
 firestore-path = "0.9.26"
 google-cloud-auth = { version = "0.17.0", default-features = false, features = ["rustls-tls"] }
 google-cloud-token = "0.1.2"
