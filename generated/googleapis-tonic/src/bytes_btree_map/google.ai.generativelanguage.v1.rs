@@ -204,6 +204,8 @@ pub mod safety_setting {
         BlockOnlyHigh = 3,
         /// All content will be allowed.
         BlockNone = 4,
+        /// Turn off the safety filter.
+        Off = 5,
     }
     impl HarmBlockThreshold {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -217,6 +219,7 @@ pub mod safety_setting {
                 HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
                 HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
                 HarmBlockThreshold::BlockNone => "BLOCK_NONE",
+                HarmBlockThreshold::Off => "OFF",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -227,6 +230,7 @@ pub mod safety_setting {
                 "BLOCK_MEDIUM_AND_ABOVE" => Some(Self::BlockMediumAndAbove),
                 "BLOCK_ONLY_HIGH" => Some(Self::BlockOnlyHigh),
                 "BLOCK_NONE" => Some(Self::BlockNone),
+                "OFF" => Some(Self::Off),
                 _ => None,
             }
         }
@@ -241,27 +245,31 @@ pub mod safety_setting {
 pub enum HarmCategory {
     /// Category is unspecified.
     Unspecified = 0,
-    /// Negative or harmful comments targeting identity and/or protected attribute.
+    /// **PaLM** - Negative or harmful comments targeting identity and/or protected
+    /// attribute.
     Derogatory = 1,
-    /// Content that is rude, disrespectful, or profane.
+    /// **PaLM** - Content that is rude, disrespectful, or profane.
     Toxicity = 2,
-    /// Describes scenarios depicting violence against an individual or group, or
-    /// general descriptions of gore.
+    /// **PaLM** - Describes scenarios depicting violence against an individual or
+    /// group, or general descriptions of gore.
     Violence = 3,
-    /// Contains references to sexual acts or other lewd content.
+    /// **PaLM** - Contains references to sexual acts or other lewd content.
     Sexual = 4,
-    /// Promotes unchecked medical advice.
+    /// **PaLM** - Promotes unchecked medical advice.
     Medical = 5,
-    /// Dangerous content that promotes, facilitates, or encourages harmful acts.
+    /// **PaLM** - Dangerous content that promotes, facilitates, or encourages
+    /// harmful acts.
     Dangerous = 6,
-    /// Harasment content.
+    /// **Gemini** - Harassment content.
     Harassment = 7,
-    /// Hate speech and content.
+    /// **Gemini** - Hate speech and content.
     HateSpeech = 8,
-    /// Sexually explicit content.
+    /// **Gemini** - Sexually explicit content.
     SexuallyExplicit = 9,
-    /// Dangerous content.
+    /// **Gemini** - Dangerous content.
     DangerousContent = 10,
+    /// **Gemini** - Content that may be used to harm civic integrity.
+    CivicIntegrity = 11,
 }
 impl HarmCategory {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -281,6 +289,7 @@ impl HarmCategory {
             HarmCategory::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
             HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
             HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
+            HarmCategory::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -297,6 +306,7 @@ impl HarmCategory {
             "HARM_CATEGORY_HATE_SPEECH" => Some(Self::HateSpeech),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
             "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
+            "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
             _ => None,
         }
     }
@@ -398,6 +408,48 @@ pub struct GenerationConfig {
     /// and doesn't allow setting `top_k` on requests.
     #[prost(int32, optional, tag = "7")]
     pub top_k: ::core::option::Option<i32>,
+    /// Optional. Presence penalty applied to the next token's logprobs if the
+    /// token has already been seen in the response.
+    ///
+    /// This penalty is binary on/off and not dependant on the number of times the
+    /// token is used (after the first). Use
+    /// \[frequency_penalty\]\[google.ai.generativelanguage.v1.GenerationConfig.frequency_penalty\]
+    /// for a penalty that increases with each use.
+    ///
+    /// A positive penalty will discourage the use of tokens that have already
+    /// been used in the response, increasing the vocabulary.
+    ///
+    /// A negative penalty will encourage the use of tokens that have already been
+    /// used in the response, decreasing the vocabulary.
+    #[prost(float, optional, tag = "15")]
+    pub presence_penalty: ::core::option::Option<f32>,
+    /// Optional. Frequency penalty applied to the next token's logprobs,
+    /// multiplied by the number of times each token has been seen in the respponse
+    /// so far.
+    ///
+    /// A positive penalty will discourage the use of tokens that have already
+    /// been used, proportional to the number of times the token has been used:
+    /// The more a token is used, the more dificult it is for the model to use
+    /// that token again increasing the vocabulary of responses.
+    ///
+    /// Caution: A *negative* penalty will encourage the model to reuse tokens
+    /// proportional to the number of times the token has been used. Small
+    /// negative values will reduce the vocabulary of a response. Larger negative
+    /// values will cause the model to start repeating a common token  until it
+    /// hits the
+    /// \[max_output_tokens\]\[google.ai.generativelanguage.v1.GenerationConfig.max_output_tokens\]
+    /// limit: "...the the the the the...".
+    #[prost(float, optional, tag = "16")]
+    pub frequency_penalty: ::core::option::Option<f32>,
+    /// Optional. If true, export the logprobs results in response.
+    #[prost(bool, optional, tag = "17")]
+    pub response_logprobs: ::core::option::Option<bool>,
+    /// Optional. Only valid if
+    /// \[response_logprobs=True\]\[google.ai.generativelanguage.v1.GenerationConfig.response_logprobs\].
+    /// This sets the number of top logprobs to return at each decoding step in the
+    /// \[Candidate.logprobs_result\]\[google.ai.generativelanguage.v1.Candidate.logprobs_result\].
+    #[prost(int32, optional, tag = "18")]
+    pub logprobs: ::core::option::Option<i32>,
 }
 /// Response from the model supporting multiple candidate responses.
 ///
@@ -541,6 +593,12 @@ pub struct Candidate {
     /// Output only. Token count for this candidate.
     #[prost(int32, tag = "7")]
     pub token_count: i32,
+    /// Output only.
+    #[prost(double, tag = "10")]
+    pub avg_logprobs: f64,
+    /// Output only. Log-likelihood scores for the response tokens and top tokens
+    #[prost(message, optional, tag = "11")]
+    pub logprobs_result: ::core::option::Option<LogprobsResult>,
 }
 /// Nested message and enum types in `Candidate`.
 pub mod candidate {
@@ -620,6 +678,40 @@ pub mod candidate {
                 _ => None,
             }
         }
+    }
+}
+/// Logprobs Result
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogprobsResult {
+    /// Length = total number of decoding steps.
+    #[prost(message, repeated, tag = "1")]
+    pub top_candidates: ::prost::alloc::vec::Vec<logprobs_result::TopCandidates>,
+    /// Length = total number of decoding steps.
+    /// The chosen candidates may or may not be in top_candidates.
+    #[prost(message, repeated, tag = "2")]
+    pub chosen_candidates: ::prost::alloc::vec::Vec<logprobs_result::Candidate>,
+}
+/// Nested message and enum types in `LogprobsResult`.
+pub mod logprobs_result {
+    /// Candidate for the logprobs token and score.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Candidate {
+        /// The candidate’s token string value.
+        #[prost(string, optional, tag = "1")]
+        pub token: ::core::option::Option<::prost::alloc::string::String>,
+        /// The candidate’s token id value.
+        #[prost(int32, optional, tag = "3")]
+        pub token_id: ::core::option::Option<i32>,
+        /// The candidate's log probability.
+        #[prost(float, optional, tag = "2")]
+        pub log_probability: ::core::option::Option<f32>,
+    }
+    /// Candidates with top log probabilities at each decoding step.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TopCandidates {
+        /// Sorted by log probability in descending order.
+        #[prost(message, repeated, tag = "1")]
+        pub candidates: ::prost::alloc::vec::Vec<Candidate>,
     }
 }
 /// Request containing the `Content` for the model to embed.

@@ -218,6 +218,10 @@ pub mod custom_constraint {
         /// Constraint applied when deleting the resource.
         /// Not supported yet.
         Delete = 3,
+        /// Constraint applied when removing an IAM grant.
+        RemoveGrant = 4,
+        /// Constraint applied when enforcing forced tagging.
+        GovernTags = 5,
     }
     impl MethodType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -230,6 +234,8 @@ pub mod custom_constraint {
                 MethodType::Create => "CREATE",
                 MethodType::Update => "UPDATE",
                 MethodType::Delete => "DELETE",
+                MethodType::RemoveGrant => "REMOVE_GRANT",
+                MethodType::GovernTags => "GOVERN_TAGS",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -239,6 +245,8 @@ pub mod custom_constraint {
                 "CREATE" => Some(Self::Create),
                 "UPDATE" => Some(Self::Update),
                 "DELETE" => Some(Self::Delete),
+                "REMOVE_GRANT" => Some(Self::RemoveGrant),
+                "GOVERN_TAGS" => Some(Self::GovernTags),
                 _ => None,
             }
         }

@@ -11212,6 +11212,14 @@ pub struct ConversationModel {
     /// language tag. Example: "en-US".
     #[prost(string, tag = "19")]
     pub language_code: ::prost::alloc::string::String,
+    /// Output only. A read only boolean field reflecting Zone Separation
+    /// status of the model.
+    #[prost(bool, optional, tag = "25")]
+    pub satisfies_pzs: ::core::option::Option<bool>,
+    /// Output only. A read only boolean field reflecting Zone Isolation status
+    /// of the model.
+    #[prost(bool, optional, tag = "26")]
+    pub satisfies_pzi: ::core::option::Option<bool>,
     /// Required.
     /// The model metadata that is specific to the problem type.
     /// Must match the metadata type of the dataset used to train the model.

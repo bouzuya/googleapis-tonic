@@ -3681,6 +3681,10 @@ pub struct Schema {
     /// root.
     #[prost(message, optional, tag = "4")]
     pub example: ::core::option::Option<::prost_types::Value>,
+    /// Optional. The value should be validated against any (one or more) of the
+    /// subschemas in the list.
+    #[prost(message, repeated, tag = "11")]
+    pub any_of: ::prost::alloc::vec::Vec<Schema>,
 }
 /// Type contains the list of OpenAPI data types as defined by
 /// <https://swagger.io/docs/specification/data-models/data-types/>
@@ -4052,6 +4056,12 @@ pub struct GenerationConfig {
     /// Optional. Stop sequences.
     #[prost(string, repeated, tag = "6")]
     pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. If true, export the logprobs results in response.
+    #[prost(bool, optional, tag = "18")]
+    pub response_logprobs: ::core::option::Option<bool>,
+    /// Optional. Logit probabilities.
+    #[prost(int32, optional, tag = "7")]
+    pub logprobs: ::core::option::Option<i32>,
     /// Optional. Positive penalties.
     #[prost(float, optional, tag = "8")]
     pub presence_penalty: ::core::option::Option<f32>,
@@ -4465,6 +4475,9 @@ pub struct Candidate {
     /// Output only. Average log probability score of the candidate.
     #[prost(double, tag = "9")]
     pub avg_logprobs: f64,
+    /// Output only. Log-likelihood scores for the response tokens and top tokens
+    #[prost(message, optional, tag = "10")]
+    pub logprobs_result: ::core::option::Option<LogprobsResult>,
     /// Output only. The reason why the model stopped generating tokens.
     /// If empty, the model has not stopped generating the tokens.
     #[prost(enumeration = "candidate::FinishReason", tag = "3")]
@@ -4564,6 +4577,40 @@ pub mod candidate {
                 _ => None,
             }
         }
+    }
+}
+/// Logprobs Result
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogprobsResult {
+    /// Length = total number of decoding steps.
+    #[prost(message, repeated, tag = "1")]
+    pub top_candidates: ::prost::alloc::vec::Vec<logprobs_result::TopCandidates>,
+    /// Length = total number of decoding steps.
+    /// The chosen candidates may or may not be in top_candidates.
+    #[prost(message, repeated, tag = "2")]
+    pub chosen_candidates: ::prost::alloc::vec::Vec<logprobs_result::Candidate>,
+}
+/// Nested message and enum types in `LogprobsResult`.
+pub mod logprobs_result {
+    /// Candidate for the logprobs token and score.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Candidate {
+        /// The candidate’s token string value.
+        #[prost(string, optional, tag = "1")]
+        pub token: ::core::option::Option<::prost::alloc::string::String>,
+        /// The candidate’s token id value.
+        #[prost(int32, optional, tag = "3")]
+        pub token_id: ::core::option::Option<i32>,
+        /// The candidate's log probability.
+        #[prost(float, optional, tag = "2")]
+        pub log_probability: ::core::option::Option<f32>,
+    }
+    /// Candidates with top log probabilities at each decoding step.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TopCandidates {
+        /// Sorted by log probability in descending order.
+        #[prost(message, repeated, tag = "1")]
+        pub candidates: ::prost::alloc::vec::Vec<Candidate>,
     }
 }
 /// Segment of the content.
@@ -4684,6 +4731,8 @@ pub enum HarmCategory {
     Harassment = 3,
     /// The harm category is sexually explicit content.
     SexuallyExplicit = 4,
+    /// The harm category is civic integrity.
+    CivicIntegrity = 5,
 }
 impl HarmCategory {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -4697,6 +4746,7 @@ impl HarmCategory {
             HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
             HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
             HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            HarmCategory::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -4707,6 +4757,7 @@ impl HarmCategory {
             "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
             "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
+            "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
             _ => None,
         }
     }
@@ -16331,7 +16382,7 @@ pub mod supervised_hyper_parameters {
         }
     }
 }
-/// Tuning Spec for Supervised Tuning.
+/// Tuning Spec for Supervised Tuning for first party models.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SupervisedTuningSpec {
     /// Required. Cloud Storage path to file containing training dataset for
@@ -16345,6 +16396,31 @@ pub struct SupervisedTuningSpec {
     /// Optional. Hyperparameters for SFT.
     #[prost(message, optional, tag = "3")]
     pub hyper_parameters: ::core::option::Option<SupervisedHyperParameters>,
+}
+/// TunedModel Reference for legacy model migration.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunedModelRef {
+    /// The Tuned Model Reference for the model.
+    #[prost(oneof = "tuned_model_ref::TunedModelRef", tags = "1, 2, 3")]
+    pub tuned_model_ref: ::core::option::Option<tuned_model_ref::TunedModelRef>,
+}
+/// Nested message and enum types in `TunedModelRef`.
+pub mod tuned_model_ref {
+    /// The Tuned Model Reference for the model.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TunedModelRef {
+        /// Support migration from model registry.
+        #[prost(string, tag = "1")]
+        TunedModel(::prost::alloc::string::String),
+        /// Support migration from tuning job list page, from gemini-1.0-pro-002
+        /// to 1.5 and above.
+        #[prost(string, tag = "2")]
+        TuningJob(::prost::alloc::string::String),
+        /// Support migration from tuning job list page, from bison model to gemini
+        /// model.
+        #[prost(string, tag = "3")]
+        PipelineJob(::prost::alloc::string::String),
+    }
 }
 /// Request message for
 /// \[GenAiTuningService.CreateTuningJob\]\[google.cloud.aiplatform.v1.GenAiTuningService.CreateTuningJob\].
@@ -16409,6 +16485,38 @@ pub struct CancelTuningJobRequest {
     /// `projects/{project}/locations/{location}/tuningJobs/{tuning_job}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[GenAiTuningService.RebaseTunedModel\]\[google.cloud.aiplatform.v1.GenAiTuningService.RebaseTunedModel\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RebaseTunedModelRequest {
+    /// Required. The resource name of the Location into which to rebase the Model.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. TunedModel reference to retrieve the legacy model information.
+    #[prost(message, optional, tag = "2")]
+    pub tuned_model_ref: ::core::option::Option<TunedModelRef>,
+    /// Optional. The TuningJob to be updated. Users can use this TuningJob field
+    /// to overwrite tuning configs.
+    #[prost(message, optional, tag = "3")]
+    pub tuning_job: ::core::option::Option<TuningJob>,
+    /// Optional. The Google Cloud Storage location to write the artifacts.
+    #[prost(message, optional, tag = "4")]
+    pub artifact_destination: ::core::option::Option<GcsDestination>,
+    /// Optional. By default, bison to gemini migration will always create new
+    /// model/endpoint, but for gemini-1.0 to gemini-1.5 migration, we default
+    /// deploy to the same endpoint. See details in this Section.
+    #[prost(bool, tag = "5")]
+    pub deploy_to_same_endpoint: bool,
+}
+/// Runtime operation information for
+/// \[GenAiTuningService.RebaseTunedModel\]\[google.cloud.aiplatform.v1.GenAiTuningService.RebaseTunedModel\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RebaseTunedModelOperationMetadata {
+    /// The common part of the operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
 }
 /// Generated client implementations.
 pub mod gen_ai_tuning_service_client {
@@ -16608,6 +16716,39 @@ pub mod gen_ai_tuning_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.GenAiTuningService",
                         "CancelTuningJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Rebase a TunedModel.
+        /// Creates a LongRunningOperation that takes a legacy Tuned GenAI model
+        /// Reference and creates a TuningJob based on newly available model.
+        pub async fn rebase_tuned_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RebaseTunedModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.GenAiTuningService/RebaseTunedModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.GenAiTuningService",
+                        "RebaseTunedModel",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -22897,6 +23038,10 @@ pub struct CountTokensRequest {
     /// knowledge and scope of the model.
     #[prost(message, repeated, tag = "6")]
     pub tools: ::prost::alloc::vec::Vec<Tool>,
+    /// Optional. Generation config that the model will use to generate the
+    /// response.
+    #[prost(message, optional, tag = "7")]
+    pub generation_config: ::core::option::Option<GenerationConfig>,
 }
 /// Response message for \[PredictionService.CountTokens\]\[\].
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -22946,6 +23091,18 @@ pub struct GenerateContentRequest {
     /// request.
     #[prost(message, optional, tag = "7")]
     pub tool_config: ::core::option::Option<ToolConfig>,
+    /// Optional. The labels with user-defined metadata for the request. It is used
+    /// for billing and reporting only.
+    ///
+    /// Label keys and values can be no longer than 63 characters
+    /// (Unicode codepoints) and can only contain lowercase letters, numeric
+    /// characters, underscores, and dashes. International characters are allowed.
+    /// Label values are optional. Label keys must start with a letter.
+    #[prost(map = "string, string", tag = "10")]
+    pub labels: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// Optional. Per request settings for blocking unsafe content.
     /// Enforced on GenerateContentResponse.candidates.
     #[prost(message, repeated, tag = "3")]
@@ -22960,6 +23117,9 @@ pub struct GenerateContentResponse {
     /// Output only. Generated candidates.
     #[prost(message, repeated, tag = "2")]
     pub candidates: ::prost::alloc::vec::Vec<Candidate>,
+    /// Output only. The model version used to generate the response.
+    #[prost(string, tag = "11")]
+    pub model_version: ::prost::alloc::string::String,
     /// Output only. Content filter results for a prompt sent in the request.
     /// Note: Sent only in the first stream chunk.
     /// Only happens when no candidates were generated due to content violations.
@@ -23052,6 +23212,7 @@ pub mod generate_content_response {
         /// Number of tokens in the response(s).
         #[prost(int32, tag = "2")]
         pub candidates_token_count: i32,
+        /// Total token count for prompt and response candidates.
         #[prost(int32, tag = "3")]
         pub total_token_count: i32,
     }

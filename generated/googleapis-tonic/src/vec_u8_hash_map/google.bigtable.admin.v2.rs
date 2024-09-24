@@ -240,6 +240,9 @@ pub struct Cluster {
     /// throughput and more consistent performance.
     #[prost(int32, tag = "4")]
     pub serve_nodes: i32,
+    /// Immutable. The node scaling factor of this cluster.
+    #[prost(enumeration = "cluster::NodeScalingFactor", tag = "9")]
+    pub node_scaling_factor: i32,
     /// Immutable. The type of storage used by this cluster to serve its
     /// parent instance's tables, unless explicitly overridden.
     #[prost(enumeration = "StorageType", tag = "5")]
@@ -341,6 +344,52 @@ pub mod cluster {
                 "CREATING" => Some(Self::Creating),
                 "RESIZING" => Some(Self::Resizing),
                 "DISABLED" => Some(Self::Disabled),
+                _ => None,
+            }
+        }
+    }
+    /// Possible node scaling factors of the clusters. Node scaling delivers better
+    /// latency and more throughput by removing node boundaries.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum NodeScalingFactor {
+        /// No node scaling specified. Defaults to NODE_SCALING_FACTOR_1X.
+        Unspecified = 0,
+        /// The cluster is running with a scaling factor of 1.
+        NodeScalingFactor1x = 1,
+        /// The cluster is running with a scaling factor of 2.
+        /// All node count values must be in increments of 2 with this scaling factor
+        /// enabled, otherwise an INVALID_ARGUMENT error will be returned.
+        NodeScalingFactor2x = 2,
+    }
+    impl NodeScalingFactor {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                NodeScalingFactor::Unspecified => "NODE_SCALING_FACTOR_UNSPECIFIED",
+                NodeScalingFactor::NodeScalingFactor1x => "NODE_SCALING_FACTOR_1X",
+                NodeScalingFactor::NodeScalingFactor2x => "NODE_SCALING_FACTOR_2X",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NODE_SCALING_FACTOR_UNSPECIFIED" => Some(Self::Unspecified),
+                "NODE_SCALING_FACTOR_1X" => Some(Self::NodeScalingFactor1x),
+                "NODE_SCALING_FACTOR_2X" => Some(Self::NodeScalingFactor2x),
                 _ => None,
             }
         }

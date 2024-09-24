@@ -2501,7 +2501,7 @@ pub mod build_options {
             }
         }
     }
-    /// Default GCS log bucket behavior options.
+    /// Default Cloud Storage log bucket behavior options.
     #[derive(
         Clone,
         Copy,
@@ -2519,8 +2519,10 @@ pub mod build_options {
         Unspecified = 0,
         /// Bucket is located in user-owned project in the same region as the
         /// build. The builder service account must have access to create and write
-        /// to GCS buckets in the build project.
+        /// to Cloud Storage buckets in the build project.
         RegionalUserOwnedBucket = 1,
+        /// Bucket is located in a Google-owned project and is not regionalized.
+        LegacyBucket = 2,
     }
     impl DefaultLogsBucketBehavior {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2535,6 +2537,7 @@ pub mod build_options {
                 DefaultLogsBucketBehavior::RegionalUserOwnedBucket => {
                     "REGIONAL_USER_OWNED_BUCKET"
                 }
+                DefaultLogsBucketBehavior::LegacyBucket => "LEGACY_BUCKET",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2542,6 +2545,7 @@ pub mod build_options {
             match value {
                 "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED" => Some(Self::Unspecified),
                 "REGIONAL_USER_OWNED_BUCKET" => Some(Self::RegionalUserOwnedBucket),
+                "LEGACY_BUCKET" => Some(Self::LegacyBucket),
                 _ => None,
             }
         }

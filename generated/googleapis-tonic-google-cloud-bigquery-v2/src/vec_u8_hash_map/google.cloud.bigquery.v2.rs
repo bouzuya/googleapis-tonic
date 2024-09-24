@@ -1563,8 +1563,8 @@ pub struct ExternalCatalogTableOptions {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageDescriptor {
     /// Optional. The physical location of the table
-    /// (e.g. 'gs://spark-dataproc-data/pangea-data/case_sensitive/' or
-    /// 'gs://spark-dataproc-data/pangea-data/\*').
+    /// (e.g. `gs://spark-dataproc-data/pangea-data/case_sensitive/` or
+    /// `gs://spark-dataproc-data/pangea-data/*`).
     /// The maximum length is 2056 bytes.
     #[prost(string, tag = "1")]
     pub location_uri: ::prost::alloc::string::String,
@@ -7361,6 +7361,8 @@ pub mod index_unused_reason {
         /// Indicates that the query was cached, and thus the search index was not
         /// used.
         QueryCacheHit = 19,
+        /// The index cannot be used in the search query because it is stale.
+        StaleIndex = 20,
         /// Indicates an internal error that causes the search index to be unused.
         InternalError = 10,
         /// Indicates that the reason search indexes cannot be used in the query is
@@ -7398,6 +7400,7 @@ pub mod index_unused_reason {
                     "INDEX_SUPPRESSED_BY_FUNCTION_OPTION"
                 }
                 Code::QueryCacheHit => "QUERY_CACHE_HIT",
+                Code::StaleIndex => "STALE_INDEX",
                 Code::InternalError => "INTERNAL_ERROR",
                 Code::OtherReason => "OTHER_REASON",
             }
@@ -7431,6 +7434,7 @@ pub mod index_unused_reason {
                     Some(Self::IndexSuppressedByFunctionOption)
                 }
                 "QUERY_CACHE_HIT" => Some(Self::QueryCacheHit),
+                "STALE_INDEX" => Some(Self::StaleIndex),
                 "INTERNAL_ERROR" => Some(Self::InternalError),
                 "OTHER_REASON" => Some(Self::OtherReason),
                 _ => None,
@@ -10568,10 +10572,6 @@ pub struct GetRoutineRequest {
     /// Required. Routine ID of the requested routine
     #[prost(string, tag = "3")]
     pub routine_id: ::prost::alloc::string::String,
-    /// If set, only the Routine fields in the field mask are returned in the
-    /// response. If unset, all Routine fields are returned.
-    #[prost(message, optional, tag = "4")]
-    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 /// Describes the format for inserting a routine.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -10654,13 +10654,6 @@ pub struct ListRoutinesRequest {
     /// results
     #[prost(string, tag = "4")]
     pub page_token: ::prost::alloc::string::String,
-    /// If set, then only the Routine fields in the field mask, as well as
-    /// project_id, dataset_id and routine_id, are returned in the response.
-    /// If unset, then the following Routine fields are returned:
-    /// etag, project_id, dataset_id, routine_id, routine_type, creation_time,
-    /// last_modified_time, and language.
-    #[prost(message, optional, tag = "5")]
-    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
     /// If set, then only the Routines matching this filter are returned.
     /// The supported format is `routineType:{RoutineType}`, where `{RoutineType}`
     /// is a RoutineType enum. For example: `routineType:SCALAR_FUNCTION`.

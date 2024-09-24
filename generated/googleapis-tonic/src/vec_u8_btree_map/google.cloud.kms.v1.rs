@@ -89,7 +89,7 @@ pub struct CryptoKey {
     /// \[DESTROY_SCHEDULED\]\[google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED\]
     /// state before transitioning to
     /// \[DESTROYED\]\[google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED\].
-    /// If not specified at creation time, the default duration is 24 hours.
+    /// If not specified at creation time, the default duration is 30 days.
     #[prost(message, optional, tag = "14")]
     pub destroy_scheduled_duration: ::core::option::Option<::prost_types::Duration>,
     /// Immutable. The resource name of the backend environment where the key
@@ -1429,6 +1429,20 @@ pub struct ListKeyHandlesRequest {
     /// `projects/{PROJECT_ID}/locations/{LOCATION}`.
     #[prost(string, tag = "1")]
     pub parent: ::prost::alloc::string::String,
+    /// Optional. Optional limit on the number of
+    /// \[KeyHandles\]\[google.cloud.kms.v1.KeyHandle\] to include in the response. The
+    /// service may return fewer than this value. Further
+    /// \[KeyHandles\]\[google.cloud.kms.v1.KeyHandle\] can subsequently be obtained by
+    /// including the
+    /// \[ListKeyHandlesResponse.next_page_token\]\[google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token\]
+    /// in a subsequent request.  If unspecified, at most
+    /// 100 \[KeyHandles\]\[google.cloud.kms.v1.KeyHandle\] will be returned.
+    #[prost(int32, tag = "2")]
+    pub page_size: i32,
+    /// Optional. Optional pagination token, returned earlier via
+    /// \[ListKeyHandlesResponse.next_page_token\]\[google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token\].
+    #[prost(string, tag = "3")]
+    pub page_token: ::prost::alloc::string::String,
     /// Optional. Filter to apply when listing
     /// \[KeyHandles\]\[google.cloud.kms.v1.KeyHandle\], e.g.
     /// `resource_type_selector="{SERVICE}.googleapis.com/{TYPE}"`.
@@ -1442,13 +1456,19 @@ pub struct ListKeyHandlesResponse {
     /// Resulting \[KeyHandles\]\[google.cloud.kms.v1.KeyHandle\].
     #[prost(message, repeated, tag = "1")]
     pub key_handles: ::prost::alloc::vec::Vec<KeyHandle>,
+    /// A token to retrieve next page of results. Pass this value in
+    /// \[ListKeyHandlesRequest.page_token\]\[google.cloud.kms.v1.ListKeyHandlesRequest.page_token\]
+    /// to retrieve the next page of results.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod autokey_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// Provides interfaces for using Cloud KMS Autokey to provision new
+    /// Provides interfaces for using [Cloud KMS
+    /// Autokey](https://cloud.google.com/kms/help/autokey) to provision new
     /// \[CryptoKeys\]\[google.cloud.kms.v1.CryptoKey\], ready for Customer Managed
     /// Encryption Key (CMEK) use, on-demand. To support certain client tooling, this
     /// feature is modeled around a \[KeyHandle\]\[google.cloud.kms.v1.KeyHandle\]
@@ -1664,6 +1684,61 @@ pub struct AutokeyConfig {
     /// key project field will clear the configuration.
     #[prost(string, tag = "2")]
     pub key_project: ::prost::alloc::string::String,
+    /// Output only. The state for the AutokeyConfig.
+    #[prost(enumeration = "autokey_config::State", tag = "4")]
+    pub state: i32,
+}
+/// Nested message and enum types in `AutokeyConfig`.
+pub mod autokey_config {
+    /// The states AutokeyConfig can be in.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// The state of the AutokeyConfig is unspecified.
+        Unspecified = 0,
+        /// The AutokeyConfig is currently active.
+        Active = 1,
+        /// A previously configured key project has been deleted and the current
+        /// AutokeyConfig is unusable.
+        KeyProjectDeleted = 2,
+        /// The AutokeyConfig is not yet initialized or has been reset to its default
+        /// uninitialized state.
+        Uninitialized = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "STATE_UNSPECIFIED",
+                State::Active => "ACTIVE",
+                State::KeyProjectDeleted => "KEY_PROJECT_DELETED",
+                State::Uninitialized => "UNINITIALIZED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "ACTIVE" => Some(Self::Active),
+                "KEY_PROJECT_DELETED" => Some(Self::KeyProjectDeleted),
+                "UNINITIALIZED" => Some(Self::Uninitialized),
+                _ => None,
+            }
+        }
+    }
 }
 /// Request message for
 /// \[ShowEffectiveAutokeyConfig\]\[google.cloud.kms.v1.AutokeyAdmin.ShowEffectiveAutokeyConfig\].
@@ -1689,7 +1764,8 @@ pub mod autokey_admin_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// Provides interfaces for managing Cloud KMS Autokey folder-level
+    /// Provides interfaces for managing [Cloud KMS
+    /// Autokey](https://cloud.google.com/kms/help/autokey) folder-level
     /// configurations. A configuration is inherited by all descendent projects. A
     /// configuration at one folder overrides any other configurations in its
     /// ancestry. Setting a configuration on a folder is a prerequisite for Cloud KMS
@@ -2032,7 +2108,7 @@ pub struct EkmConnection {
     /// \[EkmConnection\]\[google.cloud.kms.v1.EkmConnection\] was created.
     #[prost(message, optional, tag = "2")]
     pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    /// A list of
+    /// Optional. A list of
     /// \[ServiceResolvers\]\[google.cloud.kms.v1.EkmConnection.ServiceResolver\] where
     /// the EKM can be reached. There should be one ServiceResolver per EKM
     /// replica. Currently, only a single

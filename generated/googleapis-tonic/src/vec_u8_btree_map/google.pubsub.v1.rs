@@ -1271,9 +1271,30 @@ pub struct Subscription {
     /// subscription can receive messages.
     #[prost(enumeration = "subscription::State", tag = "19")]
     pub state: i32,
+    /// Output only. Information about the associated Analytics Hub subscription.
+    /// Only set if the subscritpion is created by Analytics Hub.
+    #[prost(message, optional, tag = "23")]
+    pub analytics_hub_subscription_info: ::core::option::Option<
+        subscription::AnalyticsHubSubscriptionInfo,
+    >,
 }
 /// Nested message and enum types in `Subscription`.
 pub mod subscription {
+    /// Information about an associated Analytics Hub subscription
+    /// (<https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions>).
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct AnalyticsHubSubscriptionInfo {
+        /// Optional. The name of the associated Analytics Hub listing resource.
+        /// Pattern:
+        /// "projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}"
+        #[prost(string, tag = "1")]
+        pub listing: ::prost::alloc::string::String,
+        /// Optional. The name of the associated Analytics Hub subscription resource.
+        /// Pattern:
+        /// "projects/{project}/locations/{location}/subscriptions/{subscription}"
+        #[prost(string, tag = "2")]
+        pub subscription: ::prost::alloc::string::String,
+    }
     /// Possible states for a subscription.
     #[derive(
         Clone,

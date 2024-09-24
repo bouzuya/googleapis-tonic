@@ -787,8 +787,10 @@ pub mod place {
     /// Information about business hour of the place.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct OpeningHours {
-        /// Is this place open right now?  Always present unless we lack time-of-day
-        /// or timezone data for these opening hours.
+        /// Whether the opening hours period is currently active. For regular opening
+        /// hours and current opening hours, this field means whether the place is
+        /// open. For secondary opening hours and current secondary opening hours,
+        /// this field means whether the secondary hours of this place is active.
         #[prost(bool, optional, tag = "1")]
         pub open_now: ::core::option::Option<bool>,
         /// The periods that this place is open during the week. The periods are in
@@ -1161,6 +1163,215 @@ impl PriceLevel {
         }
     }
 }
+/// A route polyline.  Only supports an [encoded
+/// polyline](<https://developers.google.com/maps/documentation/utilities/polylinealgorithm>),
+/// which can be passed as a string and includes compression with minimal
+/// lossiness. This is the Routes API default output.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Polyline {
+    /// Encapsulates the type of polyline. Routes API output defaults to
+    /// `encoded_polyline`.
+    #[prost(oneof = "polyline::PolylineType", tags = "1")]
+    pub polyline_type: ::core::option::Option<polyline::PolylineType>,
+}
+/// Nested message and enum types in `Polyline`.
+pub mod polyline {
+    /// Encapsulates the type of polyline. Routes API output defaults to
+    /// `encoded_polyline`.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum PolylineType {
+        /// An [encoded
+        /// polyline](<https://developers.google.com/maps/documentation/utilities/polylinealgorithm>),
+        /// as returned by the [Routes API by
+        /// default](<https://developers.google.com/maps/documentation/routes/reference/rest/v2/TopLevel/computeRoutes#polylineencoding>).
+        /// See the
+        /// [encoder](<https://developers.google.com/maps/documentation/utilities/polylineutility>)
+        /// and
+        /// [decoder](<https://developers.google.com/maps/documentation/routes/polylinedecoder>)
+        /// tools.
+        #[prost(string, tag = "1")]
+        EncodedPolyline(::prost::alloc::string::String),
+    }
+}
+/// Encapsulates a set of optional conditions to satisfy when calculating the
+/// routes.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RouteModifiers {
+    /// Optional. When set to true, avoids toll roads where reasonable, giving
+    /// preference to routes not containing toll roads. Applies only to the `DRIVE`
+    /// and `TWO_WHEELER` \[`TravelMode`\]\[google.maps.places.v1.TravelMode\].
+    #[prost(bool, tag = "1")]
+    pub avoid_tolls: bool,
+    /// Optional. When set to true, avoids highways where reasonable, giving
+    /// preference to routes not containing highways. Applies only to the `DRIVE`
+    /// and `TWO_WHEELER` \[`TravelMode`\]\[google.maps.places.v1.TravelMode\].
+    #[prost(bool, tag = "2")]
+    pub avoid_highways: bool,
+    /// Optional. When set to true, avoids ferries where reasonable, giving
+    /// preference to routes not containing ferries. Applies only to the `DRIVE`
+    /// and `TWO_WHEELER` \[`TravelMode`\]\[google.maps.places.v1.TravelMode\].
+    #[prost(bool, tag = "3")]
+    pub avoid_ferries: bool,
+    /// Optional. When set to true, avoids navigating indoors where reasonable,
+    /// giving preference to routes not containing indoor navigation. Applies only
+    /// to the `WALK` \[`TravelMode`\]\[google.maps.places.v1.TravelMode\].
+    #[prost(bool, tag = "4")]
+    pub avoid_indoor: bool,
+}
+/// A set of values that specify factors to take into consideration when
+/// calculating the route.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RoutingPreference {
+    /// No routing preference specified. Default to `TRAFFIC_UNAWARE`.
+    Unspecified = 0,
+    /// Computes routes without taking live traffic conditions into consideration.
+    /// Suitable when traffic conditions don't matter or are not applicable.
+    /// Using this value produces the lowest latency.
+    /// Note: For \[`TravelMode`\]\[google.maps.places.v1.TravelMode\]
+    /// `DRIVE` and `TWO_WHEELER`, the route and duration chosen are based on road
+    /// network and average time-independent traffic conditions, not current road
+    /// conditions. Consequently, routes may include roads that are temporarily
+    /// closed. Results for a given
+    /// request may vary over time due to changes in the road network, updated
+    /// average traffic conditions, and the distributed nature of the service.
+    /// Results may also vary between nearly-equivalent routes at any time or
+    /// frequency.
+    TrafficUnaware = 1,
+    /// Calculates routes taking live traffic conditions into consideration.
+    /// In contrast to `TRAFFIC_AWARE_OPTIMAL`, some optimizations are applied to
+    /// significantly reduce latency.
+    TrafficAware = 2,
+    /// Calculates the routes taking live traffic conditions into consideration,
+    /// without applying most performance optimizations. Using this value produces
+    /// the highest latency.
+    TrafficAwareOptimal = 3,
+}
+impl RoutingPreference {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            RoutingPreference::Unspecified => "ROUTING_PREFERENCE_UNSPECIFIED",
+            RoutingPreference::TrafficUnaware => "TRAFFIC_UNAWARE",
+            RoutingPreference::TrafficAware => "TRAFFIC_AWARE",
+            RoutingPreference::TrafficAwareOptimal => "TRAFFIC_AWARE_OPTIMAL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ROUTING_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
+            "TRAFFIC_UNAWARE" => Some(Self::TrafficUnaware),
+            "TRAFFIC_AWARE" => Some(Self::TrafficAware),
+            "TRAFFIC_AWARE_OPTIMAL" => Some(Self::TrafficAwareOptimal),
+            _ => None,
+        }
+    }
+}
+/// The duration and distance from the routing origin to a place in the
+/// response, and a second leg from that place to the destination, if requested.
+/// Note: Adding `routingSummaries` in the field mask without also including
+/// either the `routingParameters.origin` parameter or the
+/// `searchAlongRouteParameters.polyline.encodedPolyline` parameter in the
+/// request causes an error.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RoutingSummary {
+    /// The legs of the trip.
+    ///
+    /// When you calculate travel duration and distance from a set origin, `legs`
+    /// contains a single leg containing the duration and distance from the origin
+    /// to the destination.  When you do a search along route, `legs` contains two
+    /// legs: one from the origin to place, and one from the place to the
+    /// destination.
+    #[prost(message, repeated, tag = "1")]
+    pub legs: ::prost::alloc::vec::Vec<routing_summary::Leg>,
+}
+/// Nested message and enum types in `RoutingSummary`.
+pub mod routing_summary {
+    /// A leg is a single portion of a journey from one location to another.
+    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
+    pub struct Leg {
+        /// The time it takes to complete this leg of the trip.
+        #[prost(message, optional, tag = "1")]
+        pub duration: ::core::option::Option<::prost_types::Duration>,
+        /// The distance of this leg of the trip.
+        #[prost(int32, tag = "2")]
+        pub distance_meters: i32,
+    }
+}
+/// Travel mode options.
+/// These options map to what [Routes API
+/// offers](<https://developers.google.com/maps/documentation/routes/reference/rest/v2/RouteTravelMode>).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TravelMode {
+    /// No travel mode specified. Defaults to `DRIVE`.
+    Unspecified = 0,
+    /// Travel by passenger car.
+    Drive = 1,
+    /// Travel by bicycle.  Not supported with `search_along_route_parameters`.
+    Bicycle = 2,
+    /// Travel by walking.  Not supported with `search_along_route_parameters`.
+    Walk = 3,
+    /// Motorized two wheeled vehicles of all kinds such as scooters and
+    /// motorcycles. Note that this is distinct from the `BICYCLE` travel mode
+    /// which covers human-powered transport.  Not supported with
+    /// `search_along_route_parameters`. Only supported in those countries listed
+    /// at [Countries and regions supported for two-wheeled
+    /// vehicles](<https://developers.google.com/maps/documentation/routes/coverage-two-wheeled>).
+    TwoWheeler = 4,
+}
+impl TravelMode {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            TravelMode::Unspecified => "TRAVEL_MODE_UNSPECIFIED",
+            TravelMode::Drive => "DRIVE",
+            TravelMode::Bicycle => "BICYCLE",
+            TravelMode::Walk => "WALK",
+            TravelMode::TwoWheeler => "TWO_WHEELER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "TRAVEL_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+            "DRIVE" => Some(Self::Drive),
+            "BICYCLE" => Some(Self::Bicycle),
+            "WALK" => Some(Self::Walk),
+            "TWO_WHEELER" => Some(Self::TwoWheeler),
+            _ => None,
+        }
+    }
+}
+/// Parameters to configure the routing calculations to the places in the
+/// response, both along a route (where result ranking will be influenced) and
+/// for calculating travel times on results.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RoutingParameters {
+    /// Optional. An explicit routing origin that overrides the origin defined in
+    /// the polyline. By default, the polyline origin is used.
+    #[prost(message, optional, tag = "1")]
+    pub origin: ::core::option::Option<super::super::super::r#type::LatLng>,
+    /// Optional. The travel mode.
+    #[prost(enumeration = "TravelMode", tag = "2")]
+    pub travel_mode: i32,
+    /// Optional. The route modifiers.
+    #[prost(message, optional, tag = "3")]
+    pub route_modifiers: ::core::option::Option<RouteModifiers>,
+    /// Optional. Specifies how to compute the routing summaries. The server
+    /// attempts to use the selected routing preference to compute the route. The
+    /// traffic aware routing preference is only available for the `DRIVE` or
+    /// `TWO_WHEELER` `travelMode`.
+    #[prost(enumeration = "RoutingPreference", tag = "4")]
+    pub routing_preference: i32,
+}
 /// Request proto for Search Nearby.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchNearbyRequest {
@@ -1276,6 +1487,9 @@ pub struct SearchNearbyRequest {
     /// How results will be ranked in the response.
     #[prost(enumeration = "search_nearby_request::RankPreference", tag = "9")]
     pub rank_preference: i32,
+    /// Optional. Parameters that affect the routing to the search results.
+    #[prost(message, optional, tag = "10")]
+    pub routing_parameters: ::core::option::Option<RoutingParameters>,
 }
 /// Nested message and enum types in `SearchNearbyRequest`.
 pub mod search_nearby_request {
@@ -1345,6 +1559,13 @@ pub struct SearchNearbyResponse {
     /// types, number of places and specific location restriction.
     #[prost(message, repeated, tag = "1")]
     pub places: ::prost::alloc::vec::Vec<Place>,
+    /// A list of routing summaries where each entry associates to the
+    /// corresponding place in the same index in the places field. If the routing
+    /// summary is not available for one of the places, it will contain an empty
+    /// entry. This list should have as many entries as the list of places if
+    /// requested.
+    #[prost(message, repeated, tag = "2")]
+    pub routing_summaries: ::prost::alloc::vec::Vec<RoutingSummary>,
 }
 /// Request proto for SearchText.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1421,6 +1642,14 @@ pub struct SearchTextRequest {
     /// Optional. Set the searchable EV options of a place search request.
     #[prost(message, optional, tag = "15")]
     pub ev_options: ::core::option::Option<search_text_request::EvOptions>,
+    /// Optional. Additional parameters for routing to results.
+    #[prost(message, optional, tag = "16")]
+    pub routing_parameters: ::core::option::Option<RoutingParameters>,
+    /// Optional. Additional parameters proto for searching along a route.
+    #[prost(message, optional, tag = "17")]
+    pub search_along_route_parameters: ::core::option::Option<
+        search_text_request::SearchAlongRouteParameters,
+    >,
 }
 /// Nested message and enum types in `SearchTextRequest`.
 pub mod search_text_request {
@@ -1486,6 +1715,26 @@ pub mod search_text_request {
         )]
         pub connector_types: ::prost::alloc::vec::Vec<i32>,
     }
+    /// Specifies a precalculated polyline from the [Routes
+    /// API](<https://developers.google.com/maps/documentation/routes>) defining the
+    /// route to search. Searching along a route is similar to using the
+    /// `locationBias` or `locationRestriction` request option to bias the search
+    /// results. However, while the `locationBias` and `locationRestriction`
+    /// options let you specify a region to bias the search results, this option
+    /// lets you bias the results along a trip route.
+    ///
+    /// Results are not guaranteed to be along the route provided, but rather are
+    /// ranked within the search area defined by the polyline and, optionally, by
+    /// the `locationBias` or `locationRestriction` based on minimal detour times
+    /// from origin to destination. The results might be along an alternate route,
+    /// especially if the provided polyline does not define an optimal route from
+    /// origin to destination.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct SearchAlongRouteParameters {
+        /// Required. The route polyline.
+        #[prost(message, optional, tag = "1")]
+        pub polyline: ::core::option::Option<super::Polyline>,
+    }
     /// How results will be ranked in the response.
     #[derive(
         Clone,
@@ -1539,6 +1788,13 @@ pub struct SearchTextResponse {
     /// A list of places that meet the user's text search criteria.
     #[prost(message, repeated, tag = "1")]
     pub places: ::prost::alloc::vec::Vec<Place>,
+    /// A list of routing summaries where each entry associates to the
+    /// corresponding place in the same index in the places field. If the routing
+    /// summary is not available for one of the places, it will contain an empty
+    /// entry. This list will have as many entries as the list of places if
+    /// requested.
+    #[prost(message, repeated, tag = "2")]
+    pub routing_summaries: ::prost::alloc::vec::Vec<RoutingSummary>,
     /// Experimental: See
     /// <https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative>
     /// for more details.
@@ -1548,7 +1804,7 @@ pub struct SearchTextResponse {
     /// that are relevant to the `text_query` in the request are preferred. If the
     /// contextual content is not available for one of the places, it will return
     /// non-contextual content. It will be empty only when the content is
-    /// unavailable for this place. This list should have as many entries as the
+    /// unavailable for this place. This list will have as many entries as the
     /// list of places if requested.
     #[prost(message, repeated, tag = "3")]
     pub contextual_contents: ::prost::alloc::vec::Vec<ContextualContent>,

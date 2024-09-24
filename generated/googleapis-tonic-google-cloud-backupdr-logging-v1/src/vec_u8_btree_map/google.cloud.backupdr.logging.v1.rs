@@ -435,9 +435,9 @@ pub struct MountedImage {
     /// Required. Source Image Name.
     #[prost(string, tag = "6")]
     pub source_image_name: ::prost::alloc::string::String,
-    /// Required.Job Type.
+    /// Required.Source Image Type.
     #[prost(string, tag = "7")]
-    pub job_type: ::prost::alloc::string::String,
+    pub source_image_type: ::prost::alloc::string::String,
     /// Required. Recovery point Date.
     #[prost(string, tag = "8")]
     pub recovery_point_date: ::prost::alloc::string::String,
@@ -462,30 +462,30 @@ pub struct MountedImage {
     /// Required. Mounted Resource Name.
     #[prost(string, tag = "15")]
     pub mounted_resource_name: ::prost::alloc::string::String,
-    /// Required. Resource Virtual size(in GB)
-    #[prost(string, tag = "16")]
-    pub resource_virtual_size: ::prost::alloc::string::String,
-    /// Required. Storage Consumed.
-    #[prost(string, tag = "17")]
-    pub storage_consumed: ::prost::alloc::string::String,
+    /// Required. Resource Virtual size(in GiB)
+    #[prost(double, tag = "16")]
+    pub resource_virtual_size_in_gib: f64,
+    /// Required. Storage Consumed(in GiB).
+    #[prost(double, tag = "17")]
+    pub storage_consumed_in_gib: f64,
     /// Optional. label.
     #[prost(string, tag = "18")]
     pub mounted_resource_label: ::prost::alloc::string::String,
     /// Optional. Restorable Objects.
     #[prost(string, tag = "19")]
     pub restorable_object: ::prost::alloc::string::String,
-    /// Required. Mount Duration.
-    #[prost(string, tag = "20")]
-    pub mount_duration: ::prost::alloc::string::String,
+    /// Required. Mounted Image Age(in days).
+    #[prost(int32, tag = "20")]
+    pub mounted_image_age_in_days: i32,
     /// Required. User Name.
     #[prost(string, tag = "21")]
     pub user_name: ::prost::alloc::string::String,
     /// Optional. Read Mode.
     #[prost(string, tag = "22")]
     pub read_mode: ::prost::alloc::string::String,
-    /// Required. Resource size(in GB)
-    #[prost(string, tag = "23")]
-    pub resource_size: ::prost::alloc::string::String,
+    /// Required. Resource size(in GiB)
+    #[prost(double, tag = "23")]
+    pub resource_size_in_gib: f64,
     /// Optional. Image Expiration Date
     #[prost(string, tag = "24")]
     pub image_expiration_date: ::prost::alloc::string::String,

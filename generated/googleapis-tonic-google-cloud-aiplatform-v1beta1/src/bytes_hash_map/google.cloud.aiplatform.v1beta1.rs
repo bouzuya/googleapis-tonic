@@ -4733,6 +4733,10 @@ pub struct Schema {
     /// root.
     #[prost(message, optional, tag = "4")]
     pub example: ::core::option::Option<::prost_types::Value>,
+    /// Optional. The value should be validated against any (one or more) of the
+    /// subschemas in the list.
+    #[prost(message, repeated, tag = "11")]
+    pub any_of: ::prost::alloc::vec::Vec<Schema>,
 }
 /// Type contains the list of OpenAPI data types as defined by
 /// <https://swagger.io/docs/specification/data-models/data-types/>
@@ -5195,6 +5199,12 @@ pub struct GenerationConfig {
     /// Optional. Stop sequences.
     #[prost(string, repeated, tag = "6")]
     pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. If true, export the logprobs results in response.
+    #[prost(bool, optional, tag = "18")]
+    pub response_logprobs: ::core::option::Option<bool>,
+    /// Optional. Logit probabilities.
+    #[prost(int32, optional, tag = "7")]
+    pub logprobs: ::core::option::Option<i32>,
     /// Optional. Positive penalties.
     #[prost(float, optional, tag = "8")]
     pub presence_penalty: ::core::option::Option<f32>,
@@ -5605,6 +5615,9 @@ pub struct Candidate {
     /// Output only. Average log probability score of the candidate.
     #[prost(double, tag = "9")]
     pub avg_logprobs: f64,
+    /// Output only. Log-likelihood scores for the response tokens and top tokens
+    #[prost(message, optional, tag = "10")]
+    pub logprobs_result: ::core::option::Option<LogprobsResult>,
     /// Output only. The reason why the model stopped generating tokens.
     /// If empty, the model has not stopped generating the tokens.
     #[prost(enumeration = "candidate::FinishReason", tag = "3")]
@@ -5704,6 +5717,40 @@ pub mod candidate {
                 _ => None,
             }
         }
+    }
+}
+/// Logprobs Result
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LogprobsResult {
+    /// Length = total number of decoding steps.
+    #[prost(message, repeated, tag = "1")]
+    pub top_candidates: ::prost::alloc::vec::Vec<logprobs_result::TopCandidates>,
+    /// Length = total number of decoding steps.
+    /// The chosen candidates may or may not be in top_candidates.
+    #[prost(message, repeated, tag = "2")]
+    pub chosen_candidates: ::prost::alloc::vec::Vec<logprobs_result::Candidate>,
+}
+/// Nested message and enum types in `LogprobsResult`.
+pub mod logprobs_result {
+    /// Candidate for the logprobs token and score.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Candidate {
+        /// The candidate’s token string value.
+        #[prost(string, optional, tag = "1")]
+        pub token: ::core::option::Option<::prost::alloc::string::String>,
+        /// The candidate’s token id value.
+        #[prost(int32, optional, tag = "3")]
+        pub token_id: ::core::option::Option<i32>,
+        /// The candidate's log probability.
+        #[prost(float, optional, tag = "2")]
+        pub log_probability: ::core::option::Option<f32>,
+    }
+    /// Candidates with top log probabilities at each decoding step.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct TopCandidates {
+        /// Sorted by log probability in descending order.
+        #[prost(message, repeated, tag = "1")]
+        pub candidates: ::prost::alloc::vec::Vec<Candidate>,
     }
 }
 /// Segment of the content.
@@ -5827,6 +5874,8 @@ pub enum HarmCategory {
     Harassment = 3,
     /// The harm category is sexually explicit content.
     SexuallyExplicit = 4,
+    /// The harm category is civic integrity.
+    CivicIntegrity = 5,
 }
 impl HarmCategory {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5840,6 +5889,7 @@ impl HarmCategory {
             HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
             HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
             HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            HarmCategory::CivicIntegrity => "HARM_CATEGORY_CIVIC_INTEGRITY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5850,6 +5900,7 @@ impl HarmCategory {
             "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
             "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
             "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
+            "HARM_CATEGORY_CIVIC_INTEGRITY" => Some(Self::CivicIntegrity),
             _ => None,
         }
     }
@@ -8250,6 +8301,22 @@ pub struct DeploymentResourcePool {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "9")]
     pub satisfies_pzi: bool,
+}
+/// PSC config that is used to automatically create forwarding rule via
+/// ServiceConnectionMap.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomationConfig {
+    /// Required. Project id used to create forwarding rule.
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Required. The full name of the Google Compute Engine
+    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
+    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
+    /// `projects/{project}/global/networks/{network}`.
+    /// Where {project} is a project number, as in '12345', and {network} is
+    /// network name.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
 }
 /// Represents configuration for private service connect.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -19094,7 +19161,7 @@ pub mod supervised_hyper_parameters {
         }
     }
 }
-/// Tuning Spec for Supervised Tuning.
+/// Tuning Spec for Supervised Tuning for first party models.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SupervisedTuningSpec {
     /// Required. Cloud Storage path to file containing training dataset for
@@ -19164,6 +19231,31 @@ pub struct DistillationHyperParameters {
     #[prost(enumeration = "supervised_hyper_parameters::AdapterSize", tag = "3")]
     pub adapter_size: i32,
 }
+/// TunedModel Reference for legacy model migration.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunedModelRef {
+    /// The Tuned Model Reference for the model.
+    #[prost(oneof = "tuned_model_ref::TunedModelRef", tags = "1, 2, 3")]
+    pub tuned_model_ref: ::core::option::Option<tuned_model_ref::TunedModelRef>,
+}
+/// Nested message and enum types in `TunedModelRef`.
+pub mod tuned_model_ref {
+    /// The Tuned Model Reference for the model.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum TunedModelRef {
+        /// Support migration from model registry.
+        #[prost(string, tag = "1")]
+        TunedModel(::prost::alloc::string::String),
+        /// Support migration from tuning job list page, from gemini-1.0-pro-002
+        /// to 1.5 and above.
+        #[prost(string, tag = "2")]
+        TuningJob(::prost::alloc::string::String),
+        /// Support migration from tuning job list page, from bison model to gemini
+        /// model.
+        #[prost(string, tag = "3")]
+        PipelineJob(::prost::alloc::string::String),
+    }
+}
 /// Request message for
 /// \[GenAiTuningService.CreateTuningJob\]\[google.cloud.aiplatform.v1beta1.GenAiTuningService.CreateTuningJob\].
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -19227,6 +19319,38 @@ pub struct CancelTuningJobRequest {
     /// `projects/{project}/locations/{location}/tuningJobs/{tuning_job}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+}
+/// Request message for
+/// \[GenAiTuningService.RebaseTunedModel\]\[google.cloud.aiplatform.v1beta1.GenAiTuningService.RebaseTunedModel\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RebaseTunedModelRequest {
+    /// Required. The resource name of the Location into which to rebase the Model.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. TunedModel reference to retrieve the legacy model information.
+    #[prost(message, optional, tag = "2")]
+    pub tuned_model_ref: ::core::option::Option<TunedModelRef>,
+    /// Optional. The TuningJob to be updated. Users can use this TuningJob field
+    /// to overwrite tuning configs.
+    #[prost(message, optional, tag = "3")]
+    pub tuning_job: ::core::option::Option<TuningJob>,
+    /// Optional. The Google Cloud Storage location to write the artifacts.
+    #[prost(message, optional, tag = "4")]
+    pub artifact_destination: ::core::option::Option<GcsDestination>,
+    /// Optional. By default, bison to gemini migration will always create new
+    /// model/endpoint, but for gemini-1.0 to gemini-1.5 migration, we default
+    /// deploy to the same endpoint. See details in this Section.
+    #[prost(bool, tag = "5")]
+    pub deploy_to_same_endpoint: bool,
+}
+/// Runtime operation information for
+/// \[GenAiTuningService.RebaseTunedModel\]\[google.cloud.aiplatform.v1beta1.GenAiTuningService.RebaseTunedModel\].
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RebaseTunedModelOperationMetadata {
+    /// The common part of the operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
 }
 /// Generated client implementations.
 pub mod gen_ai_tuning_service_client {
@@ -19426,6 +19550,39 @@ pub mod gen_ai_tuning_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1beta1.GenAiTuningService",
                         "CancelTuningJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Rebase a TunedModel.
+        /// Creates a LongRunningOperation that takes a legacy Tuned GenAI model
+        /// Reference and creates a TuningJob based on newly available model.
+        pub async fn rebase_tuned_model(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RebaseTunedModelRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1beta1.GenAiTuningService/RebaseTunedModel",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1beta1.GenAiTuningService",
+                        "RebaseTunedModel",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -21044,6 +21201,11 @@ pub struct DeployedIndex {
     /// Note: we only support up to 5 deployment groups(not including 'default').
     #[prost(string, tag = "11")]
     pub deployment_group: ::prost::alloc::string::String,
+    /// Optional. If set for PSC deployed index, PSC connection will be
+    /// automatically created after deployment is done and the endpoint information
+    /// is populated in private_endpoints.psc_automated_endpoints.
+    #[prost(message, repeated, tag = "19")]
+    pub psc_automation_configs: ::prost::alloc::vec::Vec<PscAutomationConfig>,
 }
 /// Used to set up the auth on the DeployedIndex's private endpoint.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -33840,6 +34002,73 @@ pub mod value {
         StringValue(::prost::alloc::string::String),
     }
 }
+/// The definition of a artifact type in MLMD.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ArtifactTypeSchema {
+    /// The schema version of the artifact. If the value is not set, it defaults
+    /// to the latest version in the system.
+    #[prost(string, tag = "4")]
+    pub schema_version: ::prost::alloc::string::String,
+    #[prost(oneof = "artifact_type_schema::Kind", tags = "1, 2, 3")]
+    pub kind: ::core::option::Option<artifact_type_schema::Kind>,
+}
+/// Nested message and enum types in `ArtifactTypeSchema`.
+pub mod artifact_type_schema {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Kind {
+        /// The name of the type. The format of the title must be:
+        /// `<namespace>.<title>`.
+        /// Examples:
+        ///
+        /// * `aiplatform.Model`
+        /// * `acme.CustomModel`
+        ///   When this field is set, the type must be pre-registered in the MLMD
+        ///   store.
+        #[prost(string, tag = "1")]
+        SchemaTitle(::prost::alloc::string::String),
+        /// Points to a YAML file stored on Cloud Storage describing the
+        /// format.
+        /// Deprecated. Use \[PipelineArtifactTypeSchema.schema_title\]\[\] or
+        /// \[PipelineArtifactTypeSchema.instance_schema\]\[\] instead.
+        #[prost(string, tag = "2")]
+        SchemaUri(::prost::alloc::string::String),
+        /// Contains a raw YAML string, describing the format of
+        /// the properties of the type.
+        #[prost(string, tag = "3")]
+        InstanceSchema(::prost::alloc::string::String),
+    }
+}
+/// The definition of a runtime artifact.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RuntimeArtifact {
+    /// The name of an artifact.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The type of the artifact.
+    #[prost(message, optional, tag = "2")]
+    pub r#type: ::core::option::Option<ArtifactTypeSchema>,
+    /// The URI of the artifact.
+    #[prost(string, tag = "3")]
+    pub uri: ::prost::alloc::string::String,
+    /// The properties of the artifact.
+    /// Deprecated. Use
+    /// \[RuntimeArtifact.metadata\]\[google.cloud.aiplatform.v1beta1.RuntimeArtifact.metadata\]
+    /// instead.
+    #[prost(map = "string, message", tag = "4")]
+    pub properties: ::std::collections::HashMap<::prost::alloc::string::String, Value>,
+    /// The custom properties of the artifact.
+    /// Deprecated. Use
+    /// \[RuntimeArtifact.metadata\]\[google.cloud.aiplatform.v1beta1.RuntimeArtifact.metadata\]
+    /// instead.
+    #[prost(map = "string, message", tag = "5")]
+    pub custom_properties: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        Value,
+    >,
+    /// Properties of the Artifact.
+    #[prost(message, optional, tag = "6")]
+    pub metadata: ::core::option::Option<::prost_types::Struct>,
+}
 /// An instance of a machine learning PipelineJob.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PipelineJob {
@@ -33960,6 +34189,21 @@ pub struct PipelineJob {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "28")]
     pub satisfies_pzi: bool,
+    /// Output only. The original pipeline job id if this pipeline job is a rerun
+    /// of a previous pipeline job.
+    #[prost(int64, tag = "29")]
+    pub original_pipeline_job_id: i64,
+    /// Output only. The rerun configs for each task in the pipeline job.
+    /// By default, the rerun will:
+    ///
+    /// 1. Use the same input artifacts as the original run.
+    /// 1. Use the same input parameters as the original run.
+    /// 1. Skip all the tasks that are already succeeded in the original run.
+    /// 1. Rerun all the tasks that are not succeeded in the original run.
+    ///    By providing this field, users can override the default behavior and
+    ///    specify the rerun config for each task.
+    #[prost(message, repeated, tag = "30")]
+    pub pipeline_task_rerun_configs: ::prost::alloc::vec::Vec<PipelineTaskRerunConfig>,
 }
 /// Nested message and enum types in `PipelineJob`.
 pub mod pipeline_job {
@@ -34286,6 +34530,55 @@ pub mod pipeline_task_executor_detail {
         /// Output only. The detailed info for a custom job executor.
         #[prost(message, tag = "2")]
         CustomJobDetail(CustomJobDetail),
+    }
+}
+/// User provided rerun config to submit a rerun pipelinejob. This includes
+///
+/// 1. Which task to rerun
+/// 1. User override input parameters and artifacts.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PipelineTaskRerunConfig {
+    /// Output only. The system generated ID of the task. Retrieved from original
+    /// run.
+    #[prost(int64, tag = "1")]
+    pub task_id: i64,
+    /// Output only. The name of the task.
+    #[prost(string, tag = "2")]
+    pub task_name: ::prost::alloc::string::String,
+    /// Output only. The runtime input of the task overridden by the user.
+    #[prost(message, optional, tag = "3")]
+    pub inputs: ::core::option::Option<pipeline_task_rerun_config::Inputs>,
+    /// Output only. Whether to skip this task. Default value is False.
+    #[prost(bool, tag = "4")]
+    pub skip_task: bool,
+    /// Output only. Whether to skip downstream tasks. Default value is False.
+    #[prost(bool, tag = "5")]
+    pub skip_downstream_tasks: bool,
+}
+/// Nested message and enum types in `PipelineTaskRerunConfig`.
+pub mod pipeline_task_rerun_config {
+    /// A list of artifact metadata.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct ArtifactList {
+        /// Output only. A list of artifact metadata.
+        #[prost(message, repeated, tag = "1")]
+        pub artifacts: ::prost::alloc::vec::Vec<super::RuntimeArtifact>,
+    }
+    /// Runtime inputs data of the task.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Inputs {
+        /// Output only. Input artifacts.
+        #[prost(map = "string, message", tag = "1")]
+        pub artifacts: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ArtifactList,
+        >,
+        /// Output only. Input parameters.
+        #[prost(map = "string, message", tag = "2")]
+        pub parameter_values: ::std::collections::HashMap<
+            ::prost::alloc::string::String,
+            ::prost_types::Value,
+        >,
     }
 }
 /// The TrainingPipeline orchestrates tasks associated with training a Model. It
@@ -36028,6 +36321,9 @@ pub struct GenerateContentResponse {
     /// Output only. Generated candidates.
     #[prost(message, repeated, tag = "2")]
     pub candidates: ::prost::alloc::vec::Vec<Candidate>,
+    /// Output only. The model version used to generate the response.
+    #[prost(string, tag = "11")]
+    pub model_version: ::prost::alloc::string::String,
     /// Output only. Content filter results for a prompt sent in the request.
     /// Note: Sent only in the first stream chunk.
     /// Only happens when no candidates were generated due to content violations.

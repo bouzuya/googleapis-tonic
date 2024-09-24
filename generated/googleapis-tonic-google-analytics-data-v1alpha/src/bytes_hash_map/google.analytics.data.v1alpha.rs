@@ -1251,7 +1251,7 @@ pub struct EventSegmentExclusion {
 /// Another segment might be users who purchase a particular line of products or
 /// who visit a specific part of your site or trigger certain events in your app.
 ///
-/// To learn more, see [GA4 Segment
+/// To learn more, see [Segment
 /// Builder](<https://support.google.com/analytics/answer/9304353>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Segment {
@@ -2096,8 +2096,8 @@ impl MetricType {
         }
     }
 }
-/// Categories of data that you may be restricted from viewing on certain GA4
-/// properties.
+/// Categories of data that you may be restricted from viewing on certain
+/// Google Analytics properties.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RestrictedMetricType {
@@ -2302,6 +2302,30 @@ pub struct ListRecurringAudienceListsResponse {
     /// If this field is omitted, there are no subsequent pages.
     #[prost(string, optional, tag = "2")]
     pub next_page_token: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// A request to return the PropertyQuotasSnapshot for a given category.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPropertyQuotasSnapshotRequest {
+    /// Required. Quotas from this property will be listed in the response.
+    /// Format: `properties/{property}/propertyQuotasSnapshot`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Current state of all Property Quotas organized by quota category.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PropertyQuotasSnapshot {
+    /// Identifier. The property quota snapshot resource name.
+    #[prost(string, tag = "4")]
+    pub name: ::prost::alloc::string::String,
+    /// Property Quota for core property tokens
+    #[prost(message, optional, tag = "1")]
+    pub core_property_quota: ::core::option::Option<PropertyQuota>,
+    /// Property Quota for realtime property tokens
+    #[prost(message, optional, tag = "2")]
+    pub realtime_property_quota: ::core::option::Option<PropertyQuota>,
+    /// Property Quota for funnel property tokens
+    #[prost(message, optional, tag = "3")]
+    pub funnel_property_quota: ::core::option::Option<PropertyQuota>,
 }
 /// A request to retrieve configuration metadata about a specific audience list.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2637,9 +2661,9 @@ pub mod audience_dimension_value {
 /// The request for a funnel report.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunFunnelReportRequest {
-    /// Optional. A Google Analytics GA4 property identifier whose events are
-    /// tracked. Specified in the URL path and not the body. To learn more, see
-    /// [where to find your Property
+    /// Optional. A Google Analytics property identifier whose events are tracked.
+    /// Specified in the URL path and not the body. To learn more, see [where to
+    /// find your Property
     /// ID](<https://developers.google.com/analytics/devguides/reporting/data/v1/property-id>).
     /// Within a batch request, this property should either be unspecified or
     /// consistent with the batch-level property.
@@ -2798,7 +2822,7 @@ pub struct RunFunnelReportResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportTask {
     /// Output only. Identifier. The report task resource name assigned during
-    /// creation. Format: `properties/{property}/reportTasks/{report_task}`
+    /// creation. Format: "properties/{property}/reportTasks/{report_task}"
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. A report definition to fetch report data, which describes the
@@ -2892,7 +2916,7 @@ pub mod report_task {
         /// not separately removed by a filter.
         ///
         /// Regardless of this `keep_empty_rows` setting, only data recorded by the
-        /// Google Analytics (GA4) property can be displayed in a report.
+        /// Google Analytics property can be displayed in a report.
         ///
         /// For example if a property never logs a `purchase` event, then a query for
         /// the `eventName` dimension and  `eventCount` metric will not have a row
@@ -3598,10 +3622,48 @@ pub mod alpha_analytics_data_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        /// Get all property quotas organized by quota category for a given property.
+        /// This will charge 1 property quota from the category with the most quota.
+        pub async fn get_property_quotas_snapshot(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPropertyQuotasSnapshotRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::PropertyQuotasSnapshot>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.analytics.data.v1alpha.AlphaAnalyticsData/GetPropertyQuotasSnapshot",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.analytics.data.v1alpha.AlphaAnalyticsData",
+                        "GetPropertyQuotasSnapshot",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// Initiates the creation of a report task. This method quickly
         /// returns a report task and initiates a long running
         /// asynchronous request to form a customized report of your Google Analytics
         /// event data.
+        ///
+        /// A report task will be retained and available for querying for 72 hours
+        /// after it has been created.
+        ///
+        /// A report task created by one user can be listed and queried by all users
+        /// who have access to the property.
         pub async fn create_report_task(
             &mut self,
             request: impl tonic::IntoRequest<super::CreateReportTaskRequest>,
