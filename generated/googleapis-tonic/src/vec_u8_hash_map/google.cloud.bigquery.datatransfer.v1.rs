@@ -30,6 +30,80 @@ pub struct ScheduleOptions {
     #[prost(message, optional, tag = "2")]
     pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
+/// V2 options customizing different types of data transfer schedule.
+/// This field supports existing time-based and manual transfer schedule. Also
+/// supports Event-Driven transfer schedule. ScheduleOptionsV2 cannot be used
+/// together with ScheduleOptions/Schedule.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ScheduleOptionsV2 {
+    /// Data transfer schedules.
+    #[prost(oneof = "schedule_options_v2::Schedule", tags = "1, 2, 3")]
+    pub schedule: ::core::option::Option<schedule_options_v2::Schedule>,
+}
+/// Nested message and enum types in `ScheduleOptionsV2`.
+pub mod schedule_options_v2 {
+    /// Data transfer schedules.
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Schedule {
+        /// Time based transfer schedule options. This is the default schedule
+        /// option.
+        #[prost(message, tag = "1")]
+        TimeBasedSchedule(super::TimeBasedSchedule),
+        /// Manual transfer schedule. If set, the transfer run will not be
+        /// auto-scheduled by the system, unless the client invokes
+        /// StartManualTransferRuns.  This is equivalent to
+        /// disable_auto_scheduling = true.
+        #[prost(message, tag = "2")]
+        ManualSchedule(super::ManualSchedule),
+        /// Event driven transfer schedule options. If set, the transfer will be
+        /// scheduled upon events arrial.
+        #[prost(message, tag = "3")]
+        EventDrivenSchedule(super::EventDrivenSchedule),
+    }
+}
+/// Options customizing the time based transfer schedule.
+/// Options are migrated from the original ScheduleOptions message.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TimeBasedSchedule {
+    /// Data transfer schedule.
+    /// If the data source does not support a custom schedule, this should be
+    /// empty. If it is empty, the default value for the data source will be used.
+    /// The specified times are in UTC.
+    /// Examples of valid format:
+    /// `1st,3rd monday of month 15:30`,
+    /// `every wed,fri of jan,jun 13:15`, and
+    /// `first sunday of quarter 00:00`.
+    /// See more explanation about the format here:
+    /// <https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format>
+    ///
+    /// NOTE: The minimum interval time between recurring transfers depends on the
+    /// data source; refer to the documentation for your data source.
+    #[prost(string, tag = "1")]
+    pub schedule: ::prost::alloc::string::String,
+    /// Specifies time to start scheduling transfer runs. The first run will be
+    /// scheduled at or after the start time according to a recurrence pattern
+    /// defined in the schedule string. The start time can be changed at any
+    /// moment.
+    #[prost(message, optional, tag = "2")]
+    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Defines time to stop scheduling transfer runs. A transfer run cannot be
+    /// scheduled at or after the end time. The end time can be changed at any
+    /// moment.
+    #[prost(message, optional, tag = "3")]
+    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Options customizing manual transfers schedule.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualSchedule {}
+/// Options customizing EventDriven transfers schedule.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EventDrivenSchedule {
+    /// Pub/Sub subscription name used to receive events.
+    /// Only Google Cloud Storage data source support this option.
+    /// Format: projects/{project}/subscriptions/{subscription}
+    #[prost(string, tag = "1")]
+    pub pubsub_subscription: ::prost::alloc::string::String,
+}
 /// Information about a user.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserInfo {
@@ -86,6 +160,11 @@ pub struct TransferConfig {
     /// Options customizing the data transfer schedule.
     #[prost(message, optional, tag = "24")]
     pub schedule_options: ::core::option::Option<ScheduleOptions>,
+    /// Options customizing different types of data transfer schedule.
+    /// This field replaces "schedule" and "schedule_options" fields.
+    /// ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.
+    #[prost(message, optional, tag = "31")]
+    pub schedule_options_v2: ::core::option::Option<ScheduleOptionsV2>,
     /// The number of days to look back to automatically refresh the data.
     /// For example, if `data_refresh_window_days = 10`, then every day
     /// BigQuery reingests data for \[today-10, today-1\], rather than ingesting data
@@ -136,6 +215,10 @@ pub struct TransferConfig {
     /// otherwise try to apply project default keys if it is absent.
     #[prost(message, optional, tag = "28")]
     pub encryption_configuration: ::core::option::Option<EncryptionConfiguration>,
+    /// Output only. Error code with detailed information about reason of the
+    /// latest config failure.
+    #[prost(message, optional, tag = "32")]
+    pub error: ::core::option::Option<super::super::super::super::rpc::Status>,
     /// The desination of the transfer config.
     #[prost(oneof = "transfer_config::Destination", tags = "2")]
     pub destination: ::core::option::Option<transfer_config::Destination>,

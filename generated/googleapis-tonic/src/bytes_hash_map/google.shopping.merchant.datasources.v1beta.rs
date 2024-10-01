@@ -39,9 +39,39 @@ pub struct PrimaryProductDataSource {
     /// code](<https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml>).
     #[prost(string, repeated, tag = "6")]
     pub countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Default rule management of the data source. If set, the linked
+    /// data sources will be replaced.
+    #[prost(message, optional, tag = "7")]
+    pub default_rule: ::core::option::Option<primary_product_data_source::DefaultRule>,
 }
 /// Nested message and enum types in `PrimaryProductDataSource`.
 pub mod primary_product_data_source {
+    /// Default rule management of the data source.
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DefaultRule {
+        /// Required. The list of data sources linked in the [default
+        /// rule](<https://support.google.com/merchants/answer/7450276>).
+        /// This list is ordered by the default rule priority of joining the data.
+        /// It might include none or multiple references to `self` and supplemental
+        /// data sources.
+        ///
+        /// The list must not be empty.
+        ///
+        /// To link the data source to the default rule, you need to add a
+        /// new reference to this list (in sequential order).
+        ///
+        /// To unlink the data source from the default rule, you need to
+        /// remove the given reference from this list.
+        ///
+        /// Changing the order of this list will result in changing the priority of
+        /// data sources in the default rule.
+        ///
+        /// For example, providing the following list: \[`1001`, `self`\] will
+        /// take attribute values from supplemental data source `1001`, and fallback
+        /// to `self` if the attribute is not set in `1001`.
+        #[prost(message, repeated, tag = "1")]
+        pub take_from_data_sources: ::prost::alloc::vec::Vec<super::DataSourceReference>,
+    }
     /// Data Source Channel.
     ///
     /// Channel is used to distinguish between data sources for different product
@@ -66,6 +96,8 @@ pub mod primary_product_data_source {
         /// Local product.
         LocalProducts = 2,
         /// Unified data source for both local and online products.
+        /// Note: Products management through the API is not possible for this
+        /// channel.
         Products = 3,
     }
     impl Channel {
@@ -125,6 +157,11 @@ pub struct SupplementalProductDataSource {
     /// restriction.
     #[prost(string, optional, tag = "5")]
     pub content_language: ::core::option::Option<::prost::alloc::string::String>,
+    /// Output only. The (unordered and deduplicated) list of all primary data
+    /// sources linked to this data source in either default or custom rules.
+    /// Supplemental data source cannot be deleted before all links are removed.
+    #[prost(message, repeated, tag = "7")]
+    pub referencing_primary_data_sources: ::prost::alloc::vec::Vec<DataSourceReference>,
 }
 /// The local inventory data source.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -177,6 +214,32 @@ pub struct PromotionDataSource {
     /// data source.
     #[prost(string, tag = "2")]
     pub content_language: ::prost::alloc::string::String,
+}
+/// Data source reference can be used to manage related data sources within the
+/// data source service.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DataSourceReference {
+    #[prost(oneof = "data_source_reference::DataSourceId", tags = "1, 3, 2")]
+    pub data_source_id: ::core::option::Option<data_source_reference::DataSourceId>,
+}
+/// Nested message and enum types in `DataSourceReference`.
+pub mod data_source_reference {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum DataSourceId {
+        /// Self should be used to reference the primary data source itself.
+        #[prost(bool, tag = "1")]
+        Self_(bool),
+        /// Optional. The name of the primary data source.
+        /// Format:
+        /// `accounts/{account}/dataSources/{datasource}`
+        #[prost(string, tag = "3")]
+        PrimaryDataSourceName(::prost::alloc::string::String),
+        /// Optional. The name of the supplemental data source.
+        /// Format:
+        /// `accounts/{account}/dataSources/{datasource}`
+        #[prost(string, tag = "2")]
+        SupplementalDataSourceName(::prost::alloc::string::String),
+    }
 }
 /// The data specific for file data sources. This field is empty for other
 /// data source inputs.
@@ -815,6 +878,278 @@ pub mod data_sources_service_client {
                     GrpcMethod::new(
                         "google.shopping.merchant.datasources.v1beta.DataSourcesService",
                         "FetchDataSource",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// The file upload of a specific data source, that is, the result of the
+/// retrieval of the data source at a certain timestamp computed asynchronously
+/// when the data source processing is finished. Only applicable to file data
+/// sources.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FileUpload {
+    /// Identifier. The name of the data source file upload.
+    /// Format:
+    /// `{datasource.name=accounts/{account}/dataSources/{datasource}/fileUploads/{fileupload}}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Output only. The data source id.
+    #[prost(int64, tag = "2")]
+    pub data_source_id: i64,
+    /// Output only. The processing state of the data source.
+    #[prost(enumeration = "file_upload::ProcessingState", tag = "3")]
+    pub processing_state: i32,
+    /// Output only. The list of issues occurring in the data source.
+    #[prost(message, repeated, tag = "4")]
+    pub issues: ::prost::alloc::vec::Vec<file_upload::Issue>,
+    /// Output only. The number of items in the data source that were processed.
+    #[prost(int64, tag = "5")]
+    pub items_total: i64,
+    /// Output only. The number of items in the data source that were created.
+    #[prost(int64, tag = "6")]
+    pub items_created: i64,
+    /// Output only. The number of items in the data source that were updated.
+    #[prost(int64, tag = "7")]
+    pub items_updated: i64,
+    /// Output only. The date at which the file of the data source was uploaded.
+    #[prost(message, optional, tag = "8")]
+    pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `FileUpload`.
+pub mod file_upload {
+    /// An error occurring in the data source, like "invalid price".
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Issue {
+        /// Output only. The title of the issue, for example, "Item too big".
+        #[prost(string, tag = "1")]
+        pub title: ::prost::alloc::string::String,
+        /// Output only. The error description, for example, "Your data source
+        /// contains items which have too many attributes, or are too big. These
+        /// items will be dropped".
+        #[prost(string, tag = "2")]
+        pub description: ::prost::alloc::string::String,
+        /// Output only. The code of the error, for example,
+        /// "validation/invalid_value". Returns
+        /// "?" if the code is unknown.
+        #[prost(string, tag = "3")]
+        pub code: ::prost::alloc::string::String,
+        /// Output only. The number of occurrences of the error in the file upload.
+        #[prost(int64, tag = "4")]
+        pub count: i64,
+        /// Output only. The severity of the issue.
+        #[prost(enumeration = "issue::Severity", tag = "5")]
+        pub severity: i32,
+        /// Output only. Link to the documentation explaining the issue in more
+        /// details, if available.
+        #[prost(string, tag = "6")]
+        pub documentation_uri: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `Issue`.
+    pub mod issue {
+        /// The severity of the issue.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Severity {
+            /// Severity unspecified.
+            Unspecified = 0,
+            /// The issue is the warning.
+            Warning = 1,
+            /// The issue is an error.
+            Error = 2,
+        }
+        impl Severity {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+                    Severity::Warning => "WARNING",
+                    Severity::Error => "ERROR",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "WARNING" => Some(Self::Warning),
+                    "ERROR" => Some(Self::Error),
+                    _ => None,
+                }
+            }
+        }
+    }
+    /// The processing state of the data source.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ProcessingState {
+        /// Processing state unspecified.
+        Unspecified = 0,
+        /// The data source could not be processed or all the items had errors.
+        Failed = 1,
+        /// The data source is being processed.
+        InProgress = 2,
+        /// The data source was processed successfully, though some items might have
+        /// had errors.
+        Succeeded = 3,
+    }
+    impl ProcessingState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ProcessingState::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
+                ProcessingState::Failed => "FAILED",
+                ProcessingState::InProgress => "IN_PROGRESS",
+                ProcessingState::Succeeded => "SUCCEEDED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROCESSING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+                "FAILED" => Some(Self::Failed),
+                "IN_PROGRESS" => Some(Self::InProgress),
+                "SUCCEEDED" => Some(Self::Succeeded),
+                _ => None,
+            }
+        }
+    }
+}
+/// Request message for the GetFileUploadRequest method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetFileUploadRequest {
+    /// Required. The name of the data source file upload to retrieve.
+    /// Format:
+    /// `accounts/{account}/dataSources/{datasource}/fileUploads/latest`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Generated client implementations.
+pub mod file_uploads_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to manage data source file uploads.
+    #[derive(Debug, Clone)]
+    pub struct FileUploadsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> FileUploadsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> FileUploadsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            FileUploadsServiceClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Gets the latest data source file upload. Only the `latest` alias is
+        /// accepted for a file upload.
+        pub async fn get_file_upload(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetFileUploadRequest>,
+        ) -> std::result::Result<tonic::Response<super::FileUpload>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.datasources.v1beta.FileUploadsService/GetFileUpload",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.datasources.v1beta.FileUploadsService",
+                        "GetFileUpload",
                     ),
                 );
             self.inner.unary(req, path, codec).await

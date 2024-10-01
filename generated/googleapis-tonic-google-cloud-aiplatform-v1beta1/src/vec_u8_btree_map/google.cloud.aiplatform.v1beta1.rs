@@ -5008,7 +5008,64 @@ pub struct VertexAiSearch {
 }
 /// Tool to retrieve public web data for grounding, powered by Google.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct GoogleSearchRetrieval {}
+pub struct GoogleSearchRetrieval {
+    /// Specifies the dynamic retrieval configuration for the given source.
+    #[prost(message, optional, tag = "2")]
+    pub dynamic_retrieval_config: ::core::option::Option<DynamicRetrievalConfig>,
+}
+/// Describes the options to customize dynamic retrieval.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DynamicRetrievalConfig {
+    /// The mode of the predictor to be used in dynamic retrieval.
+    #[prost(enumeration = "dynamic_retrieval_config::Mode", tag = "1")]
+    pub mode: i32,
+    /// Optional. The threshold to be used in dynamic retrieval.
+    /// If not set, a system default value is used.
+    #[prost(float, optional, tag = "2")]
+    pub dynamic_threshold: ::core::option::Option<f32>,
+}
+/// Nested message and enum types in `DynamicRetrievalConfig`.
+pub mod dynamic_retrieval_config {
+    /// The mode of the predictor to be used in dynamic retrieval.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Mode {
+        /// Always trigger retrieval.
+        Unspecified = 0,
+        /// Run retrieval only when system decides it is necessary.
+        Dynamic = 1,
+    }
+    impl Mode {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Mode::Unspecified => "MODE_UNSPECIFIED",
+                Mode::Dynamic => "MODE_DYNAMIC",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
+                "MODE_DYNAMIC" => Some(Self::Dynamic),
+                _ => None,
+            }
+        }
+    }
+}
 /// Tool config. This config is shared for all tools provided in the request.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ToolConfig {
@@ -5850,6 +5907,9 @@ pub struct GroundingMetadata {
     /// Optional. List of grounding support.
     #[prost(message, repeated, tag = "6")]
     pub grounding_supports: ::prost::alloc::vec::Vec<GroundingSupport>,
+    /// Optional. Output only. Retrieval metadata.
+    #[prost(message, optional, tag = "7")]
+    pub retrieval_metadata: ::core::option::Option<RetrievalMetadata>,
 }
 /// Google search entry point.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -5862,6 +5922,17 @@ pub struct SearchEntryPoint {
     /// url> tuple.
     #[prost(bytes = "vec", tag = "2")]
     pub sdk_blob: ::prost::alloc::vec::Vec<u8>,
+}
+/// Metadata related to retrieval in the grounding flow.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RetrievalMetadata {
+    /// Optional. Score indicating how likely information from google search could
+    /// help answer the prompt. The score is in the range \[0, 1\], where 0 is the
+    /// least likely and 1 is the most likely. This score is only populated when
+    /// google search grounding and dynamic retrieval is enabled. It will be
+    /// compared to the threshold to determine whether to trigger google search.
+    #[prost(float, tag = "2")]
+    pub google_search_dynamic_retrieval_score: f32,
 }
 /// Harm categories that will block the content.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -34182,6 +34253,9 @@ pub struct PipelineJob {
     /// Example: \['vertex-ai-ip-range'\].
     #[prost(string, repeated, tag = "25")]
     pub reserved_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional. Configuration for PSC-I for PipelineJob.
+    #[prost(message, optional, tag = "31")]
+    pub psc_interface_config: ::core::option::Option<PscInterfaceConfig>,
     /// A template uri from where the
     /// \[PipelineJob.pipeline_spec\]\[google.cloud.aiplatform.v1beta1.PipelineJob.pipeline_spec\],
     /// if empty, will be downloaded. Currently, only uri from Vertex Template
@@ -34207,11 +34281,11 @@ pub struct PipelineJob {
     /// Output only. Reserved for future use.
     #[prost(bool, tag = "28")]
     pub satisfies_pzi: bool,
-    /// Output only. The original pipeline job id if this pipeline job is a rerun
-    /// of a previous pipeline job.
+    /// Optional. The original pipeline job id if this pipeline job is a rerun of a
+    /// previous pipeline job.
     #[prost(int64, tag = "29")]
     pub original_pipeline_job_id: i64,
-    /// Output only. The rerun configs for each task in the pipeline job.
+    /// Optional. The rerun configs for each task in the pipeline job.
     /// By default, the rerun will:
     ///
     /// 1. Use the same input artifacts as the original run.
@@ -34556,20 +34630,19 @@ pub mod pipeline_task_executor_detail {
 /// 1. User override input parameters and artifacts.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PipelineTaskRerunConfig {
-    /// Output only. The system generated ID of the task. Retrieved from original
-    /// run.
+    /// Optional. The system generated ID of the task. Retrieved from original run.
     #[prost(int64, tag = "1")]
     pub task_id: i64,
-    /// Output only. The name of the task.
+    /// Optional. The name of the task.
     #[prost(string, tag = "2")]
     pub task_name: ::prost::alloc::string::String,
-    /// Output only. The runtime input of the task overridden by the user.
+    /// Optional. The runtime input of the task overridden by the user.
     #[prost(message, optional, tag = "3")]
     pub inputs: ::core::option::Option<pipeline_task_rerun_config::Inputs>,
-    /// Output only. Whether to skip this task. Default value is False.
+    /// Optional. Whether to skip this task. Default value is False.
     #[prost(bool, tag = "4")]
     pub skip_task: bool,
-    /// Output only. Whether to skip downstream tasks. Default value is False.
+    /// Optional. Whether to skip downstream tasks. Default value is False.
     #[prost(bool, tag = "5")]
     pub skip_downstream_tasks: bool,
 }
@@ -34578,20 +34651,20 @@ pub mod pipeline_task_rerun_config {
     /// A list of artifact metadata.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ArtifactList {
-        /// Output only. A list of artifact metadata.
+        /// Optional. A list of artifact metadata.
         #[prost(message, repeated, tag = "1")]
         pub artifacts: ::prost::alloc::vec::Vec<super::RuntimeArtifact>,
     }
     /// Runtime inputs data of the task.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Inputs {
-        /// Output only. Input artifacts.
+        /// Optional. Input artifacts.
         #[prost(btree_map = "string, message", tag = "1")]
         pub artifacts: ::prost::alloc::collections::BTreeMap<
             ::prost::alloc::string::String,
             ArtifactList,
         >,
-        /// Output only. Input parameters.
+        /// Optional. Input parameters.
         #[prost(btree_map = "string, message", tag = "2")]
         pub parameter_values: ::prost::alloc::collections::BTreeMap<
             ::prost::alloc::string::String,

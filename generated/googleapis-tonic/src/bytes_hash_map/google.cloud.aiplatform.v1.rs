@@ -7211,6 +7211,22 @@ pub struct DeploymentResourcePool {
     #[prost(bool, tag = "9")]
     pub satisfies_pzi: bool,
 }
+/// PSC config that is used to automatically create forwarding rule via
+/// ServiceConnectionMap.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PscAutomationConfig {
+    /// Required. Project id used to create forwarding rule.
+    #[prost(string, tag = "1")]
+    pub project_id: ::prost::alloc::string::String,
+    /// Required. The full name of the Google Compute Engine
+    /// [network](<https://cloud.google.com/compute/docs/networks-and-firewalls#networks>).
+    /// [Format](<https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert>):
+    /// `projects/{project}/global/networks/{network}`.
+    /// Where {project} is a project number, as in '12345', and {network} is
+    /// network name.
+    #[prost(string, tag = "2")]
+    pub network: ::prost::alloc::string::String,
+}
 /// Represents configuration for private service connect.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivateServiceConnectConfig {
@@ -18304,6 +18320,11 @@ pub struct DeployedIndex {
     /// Note: we only support up to 5 deployment groups(not including 'default').
     #[prost(string, tag = "11")]
     pub deployment_group: ::prost::alloc::string::String,
+    /// Optional. If set for PSC deployed index, PSC connection will be
+    /// automatically created after deployment is done and the endpoint information
+    /// is populated in private_endpoints.psc_automated_endpoints.
+    #[prost(message, repeated, tag = "19")]
+    pub psc_automation_configs: ::prost::alloc::vec::Vec<PscAutomationConfig>,
 }
 /// Used to set up the auth on the DeployedIndex's private endpoint.
 #[derive(Clone, PartialEq, ::prost::Message)]

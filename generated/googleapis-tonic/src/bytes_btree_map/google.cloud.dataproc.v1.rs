@@ -6146,12 +6146,13 @@ pub struct ListSessionsRequest {
     /// A filter is a logical expression constraining the values of various fields
     /// in each session resource. Filters are case sensitive, and may contain
     /// multiple clauses combined with logical operators (AND, OR).
-    /// Supported fields are `session_id`, `session_uuid`, `state`, and
-    /// `create_time`.
+    /// Supported fields are `session_id`, `session_uuid`, `state`, `create_time`,
+    /// and `labels`.
     ///
     /// Example: `state = ACTIVE and create_time < "2023-01-01T00:00:00Z"`
     /// is a filter for sessions in an ACTIVE state that were created before
-    /// 2023-01-01.
+    /// 2023-01-01. `state = ACTIVE and labels.environment=production` is a filter
+    /// for sessions in an ACTIVE state that have a production environment label.
     ///
     /// See <https://google.aip.dev/assets/misc/ebnf-filtering.txt> for a detailed
     /// description of the filter syntax and a list of supported comparators.
@@ -6274,7 +6275,7 @@ pub struct Session {
     #[prost(string, tag = "16")]
     pub session_template: ::prost::alloc::string::String,
     /// The session configuration.
-    #[prost(oneof = "session::SessionConfig", tags = "4")]
+    #[prost(oneof = "session::SessionConfig", tags = "4, 17")]
     pub session_config: ::core::option::Option<session::SessionConfig>,
 }
 /// Nested message and enum types in `Session`.
@@ -6355,6 +6356,9 @@ pub mod session {
         /// Optional. Jupyter session config.
         #[prost(message, tag = "4")]
         JupyterSession(super::JupyterConfig),
+        /// Optional. Spark Connect session config.
+        #[prost(message, tag = "17")]
+        SparkConnectSession(super::SparkConnectConfig),
     }
 }
 /// Jupyter configuration for an interactive session.
@@ -6413,6 +6417,9 @@ pub mod jupyter_config {
         }
     }
 }
+/// Spark Connect configuration for an interactive session.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SparkConnectConfig {}
 /// Generated client implementations.
 pub mod session_controller_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -6747,7 +6754,7 @@ pub struct SessionTemplate {
     #[prost(string, tag = "12")]
     pub uuid: ::prost::alloc::string::String,
     /// The session configuration.
-    #[prost(oneof = "session_template::SessionConfig", tags = "3")]
+    #[prost(oneof = "session_template::SessionConfig", tags = "3, 11")]
     pub session_config: ::core::option::Option<session_template::SessionConfig>,
 }
 /// Nested message and enum types in `SessionTemplate`.
@@ -6758,6 +6765,9 @@ pub mod session_template {
         /// Optional. Jupyter session config.
         #[prost(message, tag = "3")]
         JupyterSession(super::JupyterConfig),
+        /// Optional. Spark Connect session config.
+        #[prost(message, tag = "11")]
+        SparkConnectSession(super::SparkConnectConfig),
     }
 }
 /// Generated client implementations.

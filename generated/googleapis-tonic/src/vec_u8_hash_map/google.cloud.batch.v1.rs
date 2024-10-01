@@ -1237,7 +1237,10 @@ pub mod allocation_policy {
             Policy(super::InstancePolicy),
             /// Name of an instance template used to create VMs.
             /// Named the field as 'instance_template' instead of 'template' to avoid
-            /// c++ keyword conflict.
+            /// C++ keyword conflict.
+            ///
+            /// Batch only supports global instance templates.
+            /// You can specify the global instance template as a full or partial URL.
             #[prost(string, tag = "2")]
             InstanceTemplate(::prost::alloc::string::String),
         }

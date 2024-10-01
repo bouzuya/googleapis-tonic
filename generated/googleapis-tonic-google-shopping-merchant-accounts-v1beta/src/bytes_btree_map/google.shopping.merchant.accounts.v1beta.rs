@@ -481,8 +481,8 @@ pub struct ListAccountIssuesRequest {
     /// Optional. The [IANA](<https://www.iana.org/time-zones>) timezone used to
     /// localize times in human-readable fields. For example 'America/Los_Angeles'.
     /// If not set, 'America/Los_Angeles' will be used.
-    #[prost(message, optional, tag = "5")]
-    pub time_zone: ::core::option::Option<super::super::super::super::r#type::TimeZone>,
+    #[prost(string, tag = "5")]
+    pub time_zone: ::prost::alloc::string::String,
 }
 /// Response message for the `ListAccountIssues` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -603,6 +603,9 @@ pub mod account_issue_service_client {
         }
     }
 }
+/// `AccountAggregation` payload.
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AccountAggregation {}
 /// A [user](<https://support.google.com/merchants/answer/12160472>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct User {
@@ -1033,9 +1036,12 @@ pub struct CreateAndConfigureAccountRequest {
     pub accept_terms_of_service: ::core::option::Option<
         create_and_configure_account_request::AcceptTermsOfService,
     >,
-    /// Optional. If specified, an account service between the account to be
-    /// created and the provider account is initialized as part of the
-    /// creation.
+    /// Required. An account service between the account to be created and the
+    /// provider account is initialized as part of the creation. At least one such
+    /// service needs to be provided. Currently exactly one of these needs to be
+    /// `account_aggregation`, which means you can only create sub accounts, not
+    /// standalone account through this method. Additional `account_management` or
+    /// `product_management` services may be provided.
     #[prost(message, repeated, tag = "4")]
     pub service: ::prost::alloc::vec::Vec<
         create_and_configure_account_request::AddAccountService,
@@ -1046,7 +1052,10 @@ pub mod create_and_configure_account_request {
     /// Reference to a Terms of Service resource.
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AcceptTermsOfService {
-        /// Required. The resource name of the terms of service version.
+        /// Required. The resource name of the terms of service version in the format
+        /// `termsOfService/{version}`. To retrieve the latest version, use the
+        /// [termsOfService.retrieveLatest](/merchant/api/reference/rest/accounts_v1beta/termsOfService/retrieveLatest)
+        /// method.
         #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Required. Region code as defined by [CLDR](<https://cldr.unicode.org/>).
@@ -1063,22 +1072,20 @@ pub mod create_and_configure_account_request {
         /// Format: `accounts/{account}`
         #[prost(string, optional, tag = "1")]
         pub provider: ::core::option::Option<::prost::alloc::string::String>,
-        /// Currently only supports
-        /// [Multi-client](<https://support.google.com/merchants/answer/188487>)
-        /// parent account type.
-        #[prost(oneof = "add_account_service::ServiceType", tags = "2")]
+        /// The service type to be added.
+        #[prost(oneof = "add_account_service::ServiceType", tags = "103")]
         pub service_type: ::core::option::Option<add_account_service::ServiceType>,
     }
     /// Nested message and enum types in `AddAccountService`.
     pub mod add_account_service {
-        /// Currently only supports
-        /// [Multi-client](<https://support.google.com/merchants/answer/188487>)
-        /// parent account type.
+        /// The service type to be added.
         #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
         pub enum ServiceType {
-            /// The provider is an aggregator for the account.
-            #[prost(message, tag = "2")]
-            AccountAggregation(()),
+            /// The provider is an
+            /// [aggregator](<https://support.google.com/merchants/answer/188487>) for
+            /// the account. Payload for service type Account Aggregation.
+            #[prost(message, tag = "103")]
+            AccountAggregation(super::super::AccountAggregation),
         }
     }
 }
@@ -1089,6 +1096,10 @@ pub struct DeleteAccountRequest {
     /// Format: `accounts/{account}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
+    /// Optional. If set to `true`, the account is deleted even if it provides
+    /// services to other accounts or has processed offers.
+    #[prost(bool, tag = "2")]
+    pub force: bool,
 }
 /// Request message for the `UpdateAccount` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1301,6 +1312,9 @@ pub mod accounts_service_client {
         /// Deletes the specified account regardless of its type: standalone, MCA or
         /// sub-account. Deleting an MCA leads to the deletion of all of its
         /// sub-accounts. Executing this method requires admin access.
+        /// The deletion succeeds only if the account does not provide services
+        /// to any other account and has no processed offers. You can use the `force`
+        /// parameter to override this.
         pub async fn delete_account(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteAccountRequest>,
@@ -1361,7 +1375,8 @@ pub mod accounts_service_client {
         /// constraints of the request such as page size or filters.
         /// This is not just listing the sub-accounts of an MCA, but all accounts the
         /// calling user has access to including other MCAs, linked accounts,
-        /// standalone accounts and so on.
+        /// standalone accounts and so on. If no filter is provided, then it returns
+        /// accounts the user is directly added to.
         pub async fn list_accounts(
             &mut self,
             request: impl tonic::IntoRequest<super::ListAccountsRequest>,
@@ -1423,6 +1438,189 @@ pub mod accounts_service_client {
                     GrpcMethod::new(
                         "google.shopping.merchant.accounts.v1beta.AccountsService",
                         "ListSubAccounts",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Collection of information related to the
+/// [autofeed](<https://support.google.com/merchants/answer/7538732>) settings.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AutofeedSettings {
+    /// Identifier. The resource name of the autofeed settings.
+    /// Format: `accounts/{account}/autofeedSettings`.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Required. Enables or disables product crawling through the autofeed for the
+    /// given account. Autofeed accounts must meet [certain
+    /// conditions](<https://support.google.com/merchants/answer/7538732#Configure_automated_feeds_Standard_Experience>),
+    /// which can be checked through the `eligible` field.
+    /// The account must **not** be a marketplace.
+    /// When the autofeed is enabled for the first time, the products usually
+    /// appear instantly. When re-enabling, it might take up to 24 hours for
+    /// products to appear.
+    #[prost(bool, tag = "2")]
+    pub enable_products: bool,
+    /// Output only. Determines whether merchant is eligible for being enrolled
+    /// into an autofeed.
+    #[prost(bool, tag = "3")]
+    pub eligible: bool,
+}
+/// Request message for the `GetAutofeedSettings` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAutofeedSettingsRequest {
+    /// Required. The resource name of the autofeed settings.
+    /// Format: `accounts/{account}/autofeedSettings`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Request message for the `UpdateAutofeedSettings` method.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateAutofeedSettingsRequest {
+    /// Required. The new version of the autofeed setting.
+    #[prost(message, optional, tag = "1")]
+    pub autofeed_settings: ::core::option::Option<AutofeedSettings>,
+    /// Required. List of fields being updated.
+    #[prost(message, optional, tag = "2")]
+    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+}
+/// Generated client implementations.
+pub mod autofeed_settings_service_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Service to support
+    /// [autofeed](https://support.google.com/merchants/answer/7538732) setting.
+    #[derive(Debug, Clone)]
+    pub struct AutofeedSettingsServiceClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl<T> AutofeedSettingsServiceClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> AutofeedSettingsServiceClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+        {
+            AutofeedSettingsServiceClient::new(
+                InterceptedService::new(inner, interceptor),
+            )
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        /// Retrieves the autofeed settings of an account.
+        pub async fn get_autofeed_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetAutofeedSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AutofeedSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/GetAutofeedSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AutofeedSettingsService",
+                        "GetAutofeedSettings",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Updates the autofeed settings of an account.
+        pub async fn update_autofeed_settings(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateAutofeedSettingsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AutofeedSettings>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/UpdateAutofeedSettings",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.shopping.merchant.accounts.v1beta.AutofeedSettingsService",
+                        "UpdateAutofeedSettings",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -1804,6 +2002,13 @@ pub struct BusinessInfo {
     /// Optional. The customer service of the business.
     #[prost(message, optional, tag = "5")]
     pub customer_service: ::core::option::Option<CustomerService>,
+    /// Optional. The 10-digit [Korean business registration
+    /// number](<https://support.google.com/merchants/answer/9037766>) separated with
+    /// dashes in the format: XXX-XX-XXXXX.
+    #[prost(string, optional, tag = "6")]
+    pub korean_business_registration_number: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Request message for the `GetBusinessInfo` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3676,8 +3881,8 @@ pub mod regions_service_client {
         }
     }
 }
-/// The merchant account's \[shipping
-/// setting\]((<https://support.google.com/merchants/answer/6069284>).
+/// The merchant account's [shipping
+/// setting](<https://support.google.com/merchants/answer/6069284>).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShippingSettings {
     /// Identifier. The resource name of the shipping setting.
@@ -4089,11 +4294,15 @@ pub struct DeliveryTime {
     pub cutoff_time: ::core::option::Option<CutoffTime>,
     /// Minimum number of business days spent before an order is shipped.
     /// 0 means same day shipped, 1 means next day shipped.
+    /// 'min_handling_days' and 'max_handling_days' should be either set or not set
+    /// at the same time.
     #[prost(int32, optional, tag = "4")]
     pub min_handling_days: ::core::option::Option<i32>,
     /// Maximum number of business days spent before an order is shipped.
     /// 0 means same day shipped, 1 means next day shipped.
     /// Must be greater than or equal to `min_handling_days`.
+    /// 'min_handling_days' and 'max_handling_days' should be either set or not set
+    /// at the same time.
     #[prost(int32, optional, tag = "5")]
     pub max_handling_days: ::core::option::Option<i32>,
     /// Transit time table, number of business days spent in transit based on row
@@ -4715,12 +4924,12 @@ pub struct GetTermsOfServiceRequest {
 /// Request message for the `RetrieveLatestTermsOfService` method.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveLatestTermsOfServiceRequest {
-    /// Region code as defined by [CLDR](<https://cldr.unicode.org/>). This is either
-    /// a country when the ToS applies specifically to that country or 001 when it
-    /// applies globally.
+    /// Required. Region code as defined by [CLDR](<https://cldr.unicode.org/>). This
+    /// is either a country when the ToS applies specifically to that country or
+    /// 001 when it applies globally.
     #[prost(string, tag = "1")]
     pub region_code: ::prost::alloc::string::String,
-    /// The Kind this terms of service version applies to.
+    /// Required. The Kind this terms of service version applies to.
     #[prost(enumeration = "TermsOfServiceKind", tag = "2")]
     pub kind: i32,
 }
@@ -4928,6 +5137,8 @@ pub mod terms_of_service_service_client {
 pub struct TermsOfServiceAgreementState {
     /// Identifier. The resource name of the terms of service version.
     /// Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+    /// The identifier format is: `{TermsOfServiceKind}-{country}`
+    /// For example, an identifier could be: `MERCHANT_CENTER-US`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Region code as defined by <https://cldr.unicode.org/.> This is the
@@ -4984,6 +5195,7 @@ pub struct Required {
 pub struct GetTermsOfServiceAgreementStateRequest {
     /// Required. The resource name of the terms of service version.
     /// Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+    /// The identifier format is: `{TermsOfServiceKind}-{country}`
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
 }

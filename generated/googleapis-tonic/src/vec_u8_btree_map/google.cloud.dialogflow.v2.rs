@@ -1315,6 +1315,8 @@ pub enum AudioEncoding {
     /// is replaced with a single byte containing the block length. Only Speex
     /// wideband is supported. `sample_rate_hertz` must be 16000.
     SpeexWithHeaderByte = 7,
+    /// 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+    Alaw = 8,
 }
 impl AudioEncoding {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1331,6 +1333,7 @@ impl AudioEncoding {
             AudioEncoding::AmrWb => "AUDIO_ENCODING_AMR_WB",
             AudioEncoding::OggOpus => "AUDIO_ENCODING_OGG_OPUS",
             AudioEncoding::SpeexWithHeaderByte => "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            AudioEncoding::Alaw => "AUDIO_ENCODING_ALAW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1344,6 +1347,7 @@ impl AudioEncoding {
             "AUDIO_ENCODING_AMR_WB" => Some(Self::AmrWb),
             "AUDIO_ENCODING_OGG_OPUS" => Some(Self::OggOpus),
             "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE" => Some(Self::SpeexWithHeaderByte),
+            "AUDIO_ENCODING_ALAW" => Some(Self::Alaw),
             _ => None,
         }
     }
@@ -1473,6 +1477,8 @@ pub enum OutputAudioEncoding {
     OggOpus = 3,
     /// 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
     Mulaw = 5,
+    /// 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+    Alaw = 6,
 }
 impl OutputAudioEncoding {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1487,6 +1493,7 @@ impl OutputAudioEncoding {
             OutputAudioEncoding::Mp364Kbps => "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
             OutputAudioEncoding::OggOpus => "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
             OutputAudioEncoding::Mulaw => "OUTPUT_AUDIO_ENCODING_MULAW",
+            OutputAudioEncoding::Alaw => "OUTPUT_AUDIO_ENCODING_ALAW",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1498,6 +1505,7 @@ impl OutputAudioEncoding {
             "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS" => Some(Self::Mp364Kbps),
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS" => Some(Self::OggOpus),
             "OUTPUT_AUDIO_ENCODING_MULAW" => Some(Self::Mulaw),
+            "OUTPUT_AUDIO_ENCODING_ALAW" => Some(Self::Alaw),
             _ => None,
         }
     }
@@ -10708,6 +10716,14 @@ pub struct ConversationDataset {
     /// contains.
     #[prost(int64, tag = "7")]
     pub conversation_count: i64,
+    /// Output only. A read only boolean field reflecting Zone Isolation status of
+    /// the dataset.
+    #[prost(bool, optional, tag = "8")]
+    pub satisfies_pzi: ::core::option::Option<bool>,
+    /// Output only. A read only boolean field reflecting Zone Separation status of
+    /// the dataset.
+    #[prost(bool, optional, tag = "9")]
+    pub satisfies_pzs: ::core::option::Option<bool>,
 }
 /// The request message for
 /// \[ConversationDatasets.CreateConversationDataset\]\[google.cloud.dialogflow.v2.ConversationDatasets.CreateConversationDataset\].
