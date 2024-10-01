@@ -144,9 +144,9 @@ checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
 
 [[package]]
 name = "firestore-path"
-version = "0.9.26"
+version = "0.9.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a09927d892aa7a414e853c55396e547b94665933878ec89adef0041690a7497"
+checksum = "7726480c05d4f5c8c0f9fd98b61f956c433f9e38daec0410285b09e9aa240897"
 dependencies = [
  "thiserror",
 ]
