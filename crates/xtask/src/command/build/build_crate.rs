@@ -63,7 +63,7 @@ pub fn build_crate(
             .emit_rerun_if_changed(false)
             .out_dir(&out_dir)
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile(&googleapis.proto_paths(), &[googleapis.dir_path()])?;
+            .compile_protos(&googleapis.proto_paths(), &[googleapis.dir_path()])?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(&out_dir)? {
