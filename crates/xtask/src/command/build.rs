@@ -45,23 +45,28 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
     let xtask_dir = dirs::xtask_crate_dir()?;
 
     // load googleapis/
+    println!("load googleapis/");
     let googleapis = Googleapis::load(googleapis_dir)?;
 
     // load state.json
+    println!("load state.json");
     let state_file = xtask_dir.join("state.json");
     let state = State::load(&state_file)?;
 
     // remove generated/
+    println!("remove generated/");
     if generated_dir.exists() {
         fs::remove_dir_all(&generated_dir)?;
     }
 
     // generate generated/
+    println!("generate generated/");
     let crate_versions = state.crate_versions();
     let crate_version = crate_versions
         .get(&CrateName::from_str("googleapis-tonic")?)
         .cloned()
         .unwrap_or_default();
+    println!("  build crate");
     let new_crate_version = build_crate::build_crate(
         &generated_dir,
         &googleapis,
@@ -69,6 +74,7 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
         state.package_hashes(),
         force_update,
     )?;
+    println!("  build crates");
     let mut new_crate_versions = build_crates::build_crates(
         &generated_dir,
         &googleapis,
@@ -79,6 +85,7 @@ pub fn execute(force_update: bool) -> anyhow::Result<()> {
     new_crate_versions.insert(CrateName::from_str("googleapis-tonic")?, new_crate_version);
 
     // update state.json
+    println!("update state.json");
     let updated = state.update(&googleapis, new_crate_versions)?;
     State::save(&state_file, &updated)?;
     Ok(())
